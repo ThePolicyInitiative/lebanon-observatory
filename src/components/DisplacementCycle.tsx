@@ -46,7 +46,7 @@ const DURABLE_RETURN = [
 
 export default function DisplacementCycle() {
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <figure className="card p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           The shelter-and-return cycle, run twice
@@ -84,7 +84,7 @@ export default function DisplacementCycle() {
         </table>
       </div>
 
-      <div className="mt-5 rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg)] p-4">
+      <div className="mt-5 panel-sunken p-4">
         <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
           Why movement is not durable return (situation at the cut-off)
         </h4>
@@ -104,7 +104,7 @@ export default function DisplacementCycle() {
         </ul>
       </div>
 
-      <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         Both post-war moments produced the same risk at the same point:
         populations living in damaged structures through a winter while
         institutions process - except 2026 added occupied and demolished

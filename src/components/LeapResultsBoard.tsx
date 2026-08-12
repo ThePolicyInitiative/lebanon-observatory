@@ -16,7 +16,7 @@ const STATUS_META: Record<string, { label: string; cls: string }> = {
 
 export default function LeapResultsBoard() {
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 transition-shadow duration-200 hover:shadow-[0_2px_14px_rgba(23,59,99,0.07)] sm:p-5">
+    <figure className="card card-interactive p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Promises with dates: LEAP targets versus disclosed results
@@ -33,7 +33,7 @@ export default function LeapResultsBoard() {
           return (
             <li
               key={row.indicator}
-              className="rounded-md border border-[color:var(--color-border)] bg-[#FAFBFC] p-3"
+              className="panel-sunken p-3"
             >
               <div className="flex items-start justify-between gap-2">
                 <p className="text-[13px] font-semibold text-[color:var(--color-navy)]">
@@ -66,7 +66,7 @@ export default function LeapResultsBoard() {
         {leapResults.footnotes.map((f) => (
           <p
             key={f.slice(0, 24)}
-            className="border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]"
+            className="note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]"
           >
             {f}
           </p>

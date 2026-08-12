@@ -68,7 +68,7 @@ export default function FinancePage() {
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
-          <li key={c.n} className="rounded-md border border-[color:var(--color-border)] bg-white p-4">
+          <li key={c.n} className="card p-4">
             <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
               {c.n}. {c.label}
             </p>
@@ -95,7 +95,7 @@ export default function FinancePage() {
       </div>
 
       {/* LEAP components */}
-      <section className="mt-10 rounded-md border border-[color:var(--color-border)] bg-white p-5">
+      <section className="mt-10 card p-5">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
           Inside the initial US$250 million
         </h2>
@@ -148,7 +148,7 @@ export default function FinancePage() {
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="rounded-md border border-[color:var(--color-border)] bg-white p-4">
+            <article key={p.id} className="card p-4">
               <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
                 {p.label}
               </h3>
@@ -168,7 +168,7 @@ export default function FinancePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 rounded-md border border-[color:var(--color-border)] bg-white p-4 text-sm">
+        <div className="mt-4 card p-4 text-sm">
           <p>
             <span className="font-semibold text-[color:var(--color-navy)]">
               Reform targets quantify the mountain:
@@ -186,7 +186,7 @@ export default function FinancePage() {
       </section>
 
       {/* Adjacent flows */}
-      <section className="mt-10 rounded-md border border-[color:var(--color-border)] bg-white p-5">
+      <section className="mt-10 card p-5">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
           Money that moved on parallel tracks - not reconstruction financing
         </h2>

@@ -132,7 +132,7 @@ export default function DeliveryTimeline() {
         />
       </ChartFrame>
 
-      <div className="mt-4 rounded-md border border-[color:var(--color-border)] bg-white p-4">
+      <div className="mt-4 card p-4">
         <h4 className="sr-only">The conversion chain</h4>
         <ol className="flex flex-wrap items-center gap-2 text-[13px]">
           {[

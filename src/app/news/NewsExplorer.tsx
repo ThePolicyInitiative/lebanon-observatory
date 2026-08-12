@@ -110,7 +110,7 @@ export default function NewsExplorer() {
   return (
     <div>
       {/* Disclosure */}
-      <p className="rounded-md border border-[color:var(--color-border)] bg-white p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="card p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         This feed aggregates relevant coverage from selected global, Lebanese,
         humanitarian and official sources. It is broad but not exhaustive.
         Headlines link to the original publishers; nothing here alters the
@@ -255,7 +255,7 @@ export default function NewsExplorer() {
 
       {/* Official directory under Official tab */}
       {tab === "official" ? (
-        <div className="mt-4 rounded-md border border-[color:var(--color-border)] bg-white p-4">
+        <div className="mt-4 card p-4">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             Monitored official sources &amp; key trackers
           </h3>
@@ -308,7 +308,7 @@ export default function NewsExplorer() {
             </button>
           </div>
         ) : articles.length === 0 ? (
-          <div className="rounded-md border border-[color:var(--color-border)] bg-white p-5 text-sm text-[color:var(--color-text-secondary)]">
+          <div className="card p-5 text-sm text-[color:var(--color-text-secondary)]">
             No articles match the current filters. Widen the date range,
             clear the search terms, or switch off &ldquo;only highly
             relevant&rdquo;.
@@ -368,7 +368,7 @@ function NewsCard({
   whyRelevant.push(`Automated relevance score: ${a.relevanceScore}/100 (keyword-based, not a quality judgment).`);
 
   return (
-    <article className="flex h-full flex-col rounded-md border border-[color:var(--color-border)] bg-white p-4" dir={a.language === "ar" ? "rtl" : "ltr"}>
+    <article className="flex h-full flex-col card p-4" dir={a.language === "ar" ? "rtl" : "ltr"}>
       <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]" dir="ltr">
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>

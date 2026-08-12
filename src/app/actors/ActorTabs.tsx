@@ -153,7 +153,7 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
   }
 
   return (
-    <section className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+    <section className="card p-5">
       <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
         On paper versus in practice
       </h3>
@@ -391,7 +391,7 @@ export default function ActorTabs() {
           </section>
         </div>
 
-        <section className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+        <section className="card p-5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             Direct change
           </h3>
@@ -436,7 +436,7 @@ export default function ActorTabs() {
               subtitle="Change in traced NGO and international-agency presence per stage. Gains cluster in governance and humanitarian stages; the assessment contraction reflects repatriation to Lebanese institutions."
               description="Diverging bar chart of change in traced international presence: strategy and coordination up 8, relief up 5, shelter up 4, oversight up 3, procurement up 1, assessment down 7."
             />
-            <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+            <figure className="card p-5">
               <figcaption className="text-sm font-semibold text-[color:var(--color-navy)]">
                 From assessment and humanitarian support to operational governance
               </figcaption>
@@ -487,13 +487,13 @@ export default function ActorTabs() {
         ) : null}
 
         <section className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+          <div className="card p-5">
             <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
               Mandate versus action
             </h3>
             <p className="mt-2 text-sm leading-relaxed">{content.mandateVsAction}</p>
           </div>
-          <div className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+          <div className="card p-5">
             <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
               Chain roles
             </h3>
@@ -516,7 +516,7 @@ export default function ActorTabs() {
 
         <DeJureDeFacto layer={layer} />
 
-        <section className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+        <section className="card p-5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             Geographic presence
           </h3>
@@ -525,7 +525,7 @@ export default function ActorTabs() {
           </div>
         </section>
 
-        <section className="rounded-md border border-[color:var(--color-border)] bg-white p-5">
+        <section className="card p-5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             Named actors in the dataset
           </h3>

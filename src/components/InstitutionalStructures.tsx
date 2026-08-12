@@ -133,7 +133,7 @@ function Corrections({ items }: { items: string[] }) {
 function Map2024() {
   const NAVY = "#173B63";
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-6">
+    <figure className="card p-4 sm:p-6">
       <figcaption className="border-b-2 border-[color:var(--color-navy)] pb-3">
         <h3 className="text-lg font-bold text-[color:var(--color-navy)] sm:text-xl">
           2024 war response - emergency coordination and damage baseline
@@ -278,7 +278,7 @@ function Map2024() {
 function Map2026() {
   const GREEN = "#2F6B4F";
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-6">
+    <figure className="card p-4 sm:p-6">
       <figcaption className="border-b-2 border-[#2F6B4F] pb-3">
         <h3 className="text-lg font-bold text-[#24543E] sm:text-xl">
           2026 post-war reconstruction - debris removal and damage assessment

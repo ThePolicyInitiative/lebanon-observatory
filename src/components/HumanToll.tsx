@@ -17,7 +17,7 @@ function Panel({
   items: { label: string; value: string; detail: string; reporter: string }[];
 }) {
   return (
-    <div className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <div className="card p-4 sm:p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 pb-2" style={{ borderColor: accent }}>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">{title}</h3>
         <span className="text-[11px] font-medium text-[color:var(--color-text-secondary)]">
@@ -77,7 +77,7 @@ export default function HumanToll() {
           items={humanToll.shelter2024.items}
         />
       </div>
-      <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         &ldquo;Returns&rdquo; measure movement, not durable return: people
         counted as returned may have gone back to a damaged building, to
         relatives, or to a rental while awaiting repairs or compensation that,

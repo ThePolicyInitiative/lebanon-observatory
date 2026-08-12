@@ -35,7 +35,7 @@ export default function MapPage() {
         <RegionalComposition />
       </div>
 
-      <section className="mt-8 max-w-3xl rounded-md border border-[color:var(--color-border)] bg-white p-5 text-sm leading-relaxed">
+      <section className="mt-8 max-w-3xl card p-5 text-sm leading-relaxed">
         <h2 className="text-sm font-semibold text-[color:var(--color-navy)]">
           Why there is no national damage layer
         </h2>

@@ -110,7 +110,7 @@ export default function ActorRegister() {
   return (
     <section
       aria-labelledby="actor-register"
-      className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-6"
+      className="card p-4 sm:p-6"
     >
       <h2
         id="actor-register"
@@ -247,7 +247,7 @@ export default function ActorRegister() {
                   {g.records.map((r) => (
                     <article
                       key={r.id}
-                      className="rounded-md border border-[color:var(--color-border)] bg-[#FAFBFC] p-3"
+                      className="panel-sunken p-3"
                     >
                       <p className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wide">
                         <span

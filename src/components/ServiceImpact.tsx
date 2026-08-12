@@ -6,7 +6,7 @@ import serviceImpact from "@/data/service-impact.json";
  */
 export default function ServiceImpact() {
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 transition-shadow duration-200 hover:shadow-[0_2px_14px_rgba(23,59,99,0.07)] sm:p-5">
+    <figure className="card card-interactive p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Services under the 2026 war: the restoration that had to run on
@@ -20,7 +20,7 @@ export default function ServiceImpact() {
         {serviceImpact.items.map((item) => (
           <div
             key={item.sector}
-            className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg)] p-4"
+            className="panel-sunken p-4"
           >
             <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
               {item.sector}

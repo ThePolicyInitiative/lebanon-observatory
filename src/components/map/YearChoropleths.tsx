@@ -45,7 +45,7 @@ export default function YearChoropleths() {
   );
 
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <figure className="card p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Geographic heat maps: traced activity, 2024 and 2026
@@ -197,7 +197,7 @@ export default function YearChoropleths() {
         })}
       </div>
 
-      <p className="mt-4 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         {CAUTION_MAP} Mention counts are traced at the regional-grouping
         level; district boundaries are shown for geographic orientation, not
         as district-level measurements. On the 2026 panel, rust hatching marks

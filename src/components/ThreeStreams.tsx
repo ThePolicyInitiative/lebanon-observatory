@@ -51,7 +51,7 @@ const STREAMS = [
 
 export default function ThreeStreams() {
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <figure className="card p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Three streams that must not be merged
@@ -106,7 +106,7 @@ export default function ThreeStreams() {
           </section>
         ))}
       </div>
-      <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         The firewall between the emergency chain and the project chain is not
         an oversight; it is the design - it protects the programme&apos;s
         legal scope and fiduciary perimeter, and its cost is deferred rather

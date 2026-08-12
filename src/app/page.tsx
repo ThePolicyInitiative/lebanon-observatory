@@ -33,13 +33,12 @@ function SectionHeading({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="max-w-3xl">
-      <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
+    <div className="prose-measure">
+      <p className="flex items-center gap-2.5 font-sans text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
         {String(index).padStart(2, "0")}
+        <span aria-hidden className="h-px w-8 bg-[color:var(--color-amber)]" />
       </p>
-      <h2 className="mt-1 text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl">
-        {title}
-      </h2>
+      <h2 className="mt-2 text-[26px] font-semibold sm:text-[30px]">{title}</h2>
       {children}
     </div>
   );
@@ -126,10 +125,8 @@ export default function HomePage() {
               <div key={label}>
                 <dt className="sr-only">{label}</dt>
                 <dd>
-                  <span className="block text-2xl font-semibold tabular-nums text-white">
-                    {n}
-                  </span>
-                  <span className="mt-1 block text-[11px] leading-snug text-white/65">
+                  <span className="figure-number block text-[27px] text-white">{n}</span>
+                  <span className="mt-1.5 block text-[11px] leading-snug text-white/65">
                     {label}
                   </span>
                 </dd>
@@ -275,7 +272,7 @@ export default function HomePage() {
               concentrated, not damage severity or beneficiary reach.
             </p>
           </SectionHeading>
-          <div className="mt-6 overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-white p-4">
+          <div className="mt-6 overflow-x-auto card p-4">
             <table className="min-w-full border-collapse text-sm tabular-nums">
               <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
                 Total location mentions in the dataset by regional

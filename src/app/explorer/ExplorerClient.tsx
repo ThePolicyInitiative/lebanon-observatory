@@ -229,7 +229,7 @@ export default function ExplorerClient() {
               <button
                 type="button"
                 onClick={() => setSelected(r)}
-                className="w-full rounded-md border border-[color:var(--color-border)] bg-white p-3.5 text-left"
+                className="w-full card p-3.5 text-left"
               >
                 <p className="flex items-center justify-between gap-2 text-[11px] text-[color:var(--color-text-secondary)]">
                   <span className="inline-flex items-center gap-1.5">
@@ -253,7 +253,7 @@ export default function ExplorerClient() {
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="rounded-md border border-[color:var(--color-border)] bg-white p-5 text-sm text-[color:var(--color-text-secondary)]">
+          <p className="card p-5 text-sm text-[color:var(--color-text-secondary)]">
             No entries match the current filters. Reset the filters to see all{" "}
             {roleRecords.length} entries.
           </p>

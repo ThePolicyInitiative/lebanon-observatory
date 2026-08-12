@@ -61,7 +61,7 @@ export default function DamagePage() {
           {destruction.tracks2024.map((t) => (
             <article
               key={t.id}
-              className="flex flex-col rounded-md border border-[color:var(--color-border)] bg-white p-4"
+              className="flex flex-col card p-4"
             >
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
@@ -96,7 +96,7 @@ export default function DamagePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 rounded-md border border-[color:var(--color-border)] bg-white p-4">
+        <div className="mt-4 card p-4">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             2024 debris
           </h3>

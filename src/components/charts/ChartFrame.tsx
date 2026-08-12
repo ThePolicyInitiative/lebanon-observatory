@@ -39,12 +39,14 @@ export default function ChartFrame({
     <figure
       id={id}
       aria-describedby={description ? `${id}-desc` : undefined}
-      className="rounded-md border border-[color:var(--color-border)] bg-white p-4 transition-shadow duration-200 hover:shadow-[0_2px_14px_rgba(23,59,99,0.07)] sm:p-5"
+      className="card card-interactive p-4 sm:p-5"
     >
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">{title}</h3>
+        <h3 className="text-[17px] font-semibold sm:text-lg">{title}</h3>
         {subtitle ? (
-          <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">{subtitle}</p>
+          <p className="prose-measure mt-1.5 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+            {subtitle}
+          </p>
         ) : null}
       </figcaption>
       {description ? (
@@ -54,7 +56,7 @@ export default function ChartFrame({
       ) : null}
       <div className="mt-3">{children}</div>
       {caveat ? (
-        <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="note-caution prose-measure mt-4 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
           {caveat}
         </p>
       ) : null}

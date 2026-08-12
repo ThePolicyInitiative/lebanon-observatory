@@ -22,7 +22,7 @@ export default function FinanceFunnel() {
   return (
     <figure
       id="finance-funnel"
-      className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5"
+      className="card p-4 sm:p-5"
     >
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
@@ -69,7 +69,7 @@ export default function FinanceFunnel() {
             })}
           </div>
 
-          <div className="mt-6 rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg)] p-4">
+          <div className="mt-6 panel-sunken p-4">
             <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
               Magnified: disbursement against the initial US$250 million loan
             </h4>
@@ -120,7 +120,7 @@ export default function FinanceFunnel() {
         </>
       )}
 
-      <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         The US$1 billion framework is not equivalent to the US$11 billion
         national need: even fully funded it covers roughly the public third of
         one war&apos;s assessed needs. Committed finance is not disbursed

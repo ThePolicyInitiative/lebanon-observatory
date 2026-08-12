@@ -8,7 +8,7 @@ import compensation from "@/data/compensation.json";
 export default function CompensationTracks() {
   const tracks = [compensation.stateTrack, compensation.parallelTrack];
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <figure className="card p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Compensation: two tracks, no verified payment

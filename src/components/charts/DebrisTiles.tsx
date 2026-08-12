@@ -31,7 +31,7 @@ export default function DebrisTiles() {
   ];
 
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 transition-shadow duration-200 hover:shadow-[0_2px_14px_rgba(23,59,99,0.07)] sm:p-5">
+    <figure className="card card-interactive p-4 sm:p-5">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           Three debris estimates, three separate rulers
@@ -45,7 +45,7 @@ export default function DebrisTiles() {
         {tiles.map((t) => (
           <div
             key={t.title}
-            className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg)] p-4"
+            className="panel-sunken p-4"
           >
             <p className="text-2xl font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
               {t.figure}
@@ -62,7 +62,7 @@ export default function DebrisTiles() {
           </div>
         ))}
       </div>
-      <p className="mt-3 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         The 2026 zone figures are snapshots of assessed zones only and are not
         cumulative with the 2024 estimate. Quantities of this order sit beyond
         any municipal capability - the dataset compares them to years of

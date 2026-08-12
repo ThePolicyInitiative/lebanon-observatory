@@ -1552,7 +1552,7 @@ export default function SvgLebanonMap({
         {/* Detail panel */}
         <aside
           aria-live="polite"
-          className="rounded-md border border-[color:var(--color-border)] bg-white p-4"
+          className="card p-4"
         >
           {selectedZone && zoneMentions ? (
             <>

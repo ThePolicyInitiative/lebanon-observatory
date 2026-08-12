@@ -51,7 +51,7 @@ export default function ReportedUpdates() {
           return (
             <li
               key={u.sourceUrl + u.actor}
-              className="rounded-md border border-[color:var(--color-border)] bg-white p-3.5"
+              className="card p-3.5"
             >
               <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
                 {meta ? (

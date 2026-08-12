@@ -45,7 +45,7 @@ export default function ReconstructionPulse() {
       aria-labelledby="recon-pulse"
       className="mx-auto max-w-[1360px] px-4 pt-12 sm:px-6"
     >
-      <div className="rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-5 shadow-[0_2px_14px_rgba(23,59,99,0.06)] sm:p-6">
+      <div className="card border-l-4 border-l-[color:var(--color-navy)] p-5 sm:p-6">
         <h2
           id="recon-pulse"
           className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"

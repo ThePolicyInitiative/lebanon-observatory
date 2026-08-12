@@ -65,7 +65,7 @@ function YearMatrix({
   const maxCell = Math.max(1, ...rows.flatMap((r) => r.cells));
 
   return (
-    <figure className="rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5">
+    <figure className="card p-4 sm:p-5">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           <span

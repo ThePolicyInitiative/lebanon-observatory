@@ -691,7 +691,7 @@ export default function LebanonMap() {
         </div>
       </div>
 
-      <p className="mt-4 border-l-2 border-[color:var(--color-amber)] pl-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         {CAUTION_MAP}
       </p>
 
@@ -748,7 +748,7 @@ export default function LebanonMap() {
               const m = mentionsFor(year, r.id);
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
               return (
-                <section key={r.id} className="rounded-md border border-[color:var(--color-border)] bg-white p-4">
+                <section key={r.id} className="card p-4">
                   <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                     {r.label}
                   </h3>
@@ -784,7 +784,7 @@ export default function LebanonMap() {
       {(
         <section
           aria-label={`Traced episodes in ${year}`}
-          className="mt-6 rounded-md border border-[color:var(--color-border)] bg-white p-4 sm:p-5"
+          className="mt-6 card p-4 sm:p-5"
         >
           <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
             What happened where - traced episodes, {year}

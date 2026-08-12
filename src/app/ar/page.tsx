@@ -149,7 +149,7 @@ export default function ArabicPage() {
 
       {/* Reconstruction pulse */}
       <section className="mx-auto max-w-[1360px] px-4 pt-12 sm:px-6">
-        <div className="rounded-md border-r-4 border-[color:var(--color-navy)] bg-white p-5 shadow-[0_2px_14px_rgba(23,59,99,0.06)] sm:p-6">
+        <div className="card border-r-4 border-r-[color:var(--color-navy)] p-5 sm:p-6">
           <h2 className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl">
             {AR.pulse.title}
           </h2>
@@ -236,7 +236,7 @@ export default function ArabicPage() {
             return (
               <div
                 key={t.id}
-                className="rounded-md border border-[color:var(--color-border)] bg-white p-4"
+                className="card p-4"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="flex items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
@@ -295,7 +295,7 @@ export default function ArabicPage() {
           {kpis.map((kpi) => (
             <article
               key={kpi.id}
-              className="rounded-md border border-[color:var(--color-border)] bg-white p-4"
+              className="card p-4"
             >
               <h3 className="text-[13px] font-medium leading-snug text-[color:var(--color-text-secondary)]">
                 {KPI_AR[kpi.id] ?? kpi.label}
