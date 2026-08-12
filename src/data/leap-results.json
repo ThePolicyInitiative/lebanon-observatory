@@ -1,0 +1,88 @@
+{
+  "note": "LEAP results-framework targets versus the disclosed June 2026 results (ISR seq. 4) and appraisal baselines. Targets assume full US$1B framework financing.",
+  "asOf": "2026-06-29",
+  "sourceIds": ["S1", "S2"],
+  "indicators": [
+    {
+      "indicator": "Rubble sustainably managed",
+      "target": "5,000,000 m³",
+      "deadline": "Dec 2027",
+      "resultJune2026": "0",
+      "status": "zero"
+    },
+    {
+      "indicator": "Rubble recycled",
+      "target": "70%",
+      "deadline": "Nov 2030",
+      "resultJune2026": "0",
+      "status": "zero"
+    },
+    {
+      "indicator": "Internationally compliant hazardous-material site",
+      "target": "1 site",
+      "deadline": "original target May 2026",
+      "resultJune2026": "0",
+      "status": "zero"
+    },
+    {
+      "indicator": "Compliant unrecyclable-material sites",
+      "target": "6 sites",
+      "deadline": "Nov 2026",
+      "resultJune2026": "0",
+      "status": "zero"
+    },
+    {
+      "indicator": "Third-Party Monitoring Agent",
+      "target": "contracted by CDR and operating",
+      "deadline": "-",
+      "resultJune2026": "under procurement, not operating",
+      "status": "process"
+    },
+    {
+      "indicator": "Lender's Engineer (compliance due diligence)",
+      "target": "engaged",
+      "deadline": "-",
+      "resultJune2026": "under procurement, not operating",
+      "status": "process"
+    },
+    {
+      "indicator": "Beneficiary-feedback mechanism",
+      "target": "operational",
+      "deadline": "Sep 2025",
+      "resultJune2026": "'No' shown against the target date",
+      "status": "missed"
+    },
+    {
+      "indicator": "Grievances addressed within service standards",
+      "target": "95%",
+      "deadline": "by closing (Dec 2030)",
+      "resultJune2026": "GRM published; mechanism largely not yet operational",
+      "status": "process"
+    },
+    {
+      "indicator": "Notice to signed works/goods contract",
+      "target": "12 weeks",
+      "deadline": "reform target",
+      "resultJune2026": "baseline 56 weeks still displayed (dated 10 Sep 2025)",
+      "status": "baseline"
+    },
+    {
+      "indicator": "Consultancy contracting time",
+      "target": "18 weeks",
+      "deadline": "reform target",
+      "resultJune2026": "baseline 36 weeks still displayed",
+      "status": "baseline"
+    },
+    {
+      "indicator": "Final draft bidding papers to notice",
+      "target": "2 weeks (via digitalisation in CDR)",
+      "deadline": "reform target",
+      "resultJune2026": "baseline 36 weeks still displayed",
+      "status": "baseline"
+    }
+  ],
+  "footnotes": [
+    "The appraisal estimated rubble reuse could save at least 62,000 tonnes of CO₂-equivalent versus disposal and new production - contingent on safe sorting, testing and actual reuse markets.",
+    "The ≈3.76 million m³ of 2026-war debris in the assessed zones has no financed treatment programme attached: LEAP's scope does not extend to it."
+  ]
+}

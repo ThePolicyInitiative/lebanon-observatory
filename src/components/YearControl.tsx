@@ -1,0 +1,72 @@
+"use client";
+
+/**
+ * Three-position year control (2024 | Side-by-side | 2026) with an
+ * optional "Show change" switch. Year colours are used only here and on
+ * comparison markers - never for actor identity.
+ */
+export type YearMode = "2024" | "side" | "2026" | "change";
+
+export default function YearControl({
+  mode,
+  onChange,
+  withChange = true,
+  idPrefix = "yearmode",
+}: {
+  mode: YearMode;
+  onChange: (m: YearMode) => void;
+  withChange?: boolean;
+  idPrefix?: string;
+}) {
+  const positions: { id: YearMode; label: string; color?: string }[] = [
+    { id: "2024", label: "2024", color: "var(--color-y2024)" },
+    { id: "side", label: "Side-by-side" },
+    { id: "2026", label: "2026", color: "var(--color-y2026)" },
+  ];
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <div
+        role="radiogroup"
+        aria-label="Year view"
+        className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
+      >
+        {positions.map((p) => {
+          const active = mode === p.id;
+          return (
+            <button
+              key={p.id}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              id={`${idPrefix}-${p.id}`}
+              onClick={() => onChange(p.id)}
+              className={`min-h-11 px-4 text-sm transition-colors duration-150 ${
+                active
+                  ? "font-semibold text-white"
+                  : "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+              }`}
+              style={
+                active
+                  ? { background: p.color ?? "var(--color-navy)" }
+                  : undefined
+              }
+            >
+              {p.label}
+            </button>
+          );
+        })}
+      </div>
+      {withChange ? (
+        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-[color:var(--color-text)]">
+          <input
+            type="checkbox"
+            checked={mode === "change"}
+            onChange={(e) => onChange(e.target.checked ? "change" : "side")}
+            className="h-4 w-4 accent-[color:var(--color-rust)]"
+          />
+          Show change (2026 − 2024)
+        </label>
+      ) : null}
+    </div>
+  );
+}

@@ -1,0 +1,126 @@
+{
+  "note": "Actors and actions reported by external web sources, gathered 12 August 2026. Kept strictly separate from the verified dataset: nothing here enters the counts, matrices or maps. Each entry states only what its linked source reports. Entries marked as social posts are self-published by the actor or by local pages and carry the weakest verification of anything on this site.",
+  "gatheredOn": "2026-08-12",
+  "updates": [
+    {
+      "dateReported": "2026-08-11",
+      "actor": "KfW (German Development Bank) & UNRWA",
+      "layer": "ngo_international",
+      "sourceKind": "social",
+      "action": "A KfW delegation inspected reconstruction work in blocks 45 and 58 of the Nahr el-Bared camp and said it would support resolving the heritage question and secure the remaining financing to finish the project and return residents. This is the long-running camp reconstruction programme, separate from 2024 and 2026 war damage.",
+      "place": "Nahr el-Bared camp, north Lebanon",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/p/1J98SVUsNb/"
+    },
+    {
+      "dateReported": "2026-08-11",
+      "actor": "UNDP & Ministry of Social Affairs (Haneen Sayed)",
+      "layer": "ngo_international",
+      "action": "Recognised 120 Ministry of Social Affairs coordinators and volunteers for supporting displaced families during the conflict - the coordination backbone of the shelter response.",
+      "place": "Nationwide",
+      "sourceName": "UNDP Lebanon press release, 11 August 2026",
+      "sourceUrl": "https://www.undp.org/lebanon/press-releases",
+      "sourceKind": "institutional"
+    },
+    {
+      "dateReported": "2026-08-07",
+      "actor": "Presidency & Council of Ministers (Joseph Aoun, Nawaf Salam)",
+      "layer": "official",
+      "action": "A new round of Lebanon-Israel talks opened in Rome on 4 August; President Aoun reported 'positive progress' on borders and prisoners, with the talks covering the ceasefire, the demolition of homes, and 'pilot zones' for recovery.",
+      "place": "Rome / south Lebanon",
+      "sourceName": "Al Jazeera",
+      "sourceUrl": "https://www.aljazeera.com/news/2026/8/7/lebanon-points-to-positive-progress-on-borders-prisoners-in-israel-talks",
+      "sourceKind": "press"
+    },
+    {
+      "dateReported": "2026-08-04",
+      "actor": "Ministry of Public Works and Transport",
+      "layer": "official",
+      "sourceKind": "social",
+      "action": "The ministry began building an alternative passage beside the destroyed Qaaqaiyet ej-Jisr bridge to restore crossing while the bridge itself awaits reconstruction - a bypass, explicitly not the rebuild.",
+      "place": "Qaaqaiyet ej-Jisr bridge, Nabatieh area",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/r/1GjHNiTYnF/"
+    },
+    {
+      "dateReported": "2026-08-04",
+      "actor": "Council of the South",
+      "layer": "official",
+      "action": "Teams reported completing damage assessment, beginning rubble clearance and installing temporary structures, while delivering humanitarian aid and preparing for residents' return in southern villages.",
+      "place": "South Lebanon border villages",
+      "sourceName": "Meir Amit ITIC (Israeli research institute; attribute accordingly)",
+      "sourceUrl": "https://www.terrorism-info.org.il/en/spotlight-on-terrorism-hezbollah-and-lebanon-july-27-august-4-2026/",
+      "sourceKind": "press"
+    },
+    {
+      "dateReported": "2026-08-04",
+      "actor": "UNIFIL & Municipality of Tyre (Mayor Hassan Dbouk)",
+      "layer": "municipal",
+      "action": "UNIFIL's commander took part in a transfer-of-assistance ceremony to the Municipality of Tyre; the mayor said the assistance strengthened the municipality's ability to keep providing services to residents.",
+      "place": "Tyre (Sour)",
+      "sourceName": "Meir Amit ITIC (Israeli research institute; attribute accordingly)",
+      "sourceUrl": "https://www.terrorism-info.org.il/en/spotlight-on-terrorism-hezbollah-and-lebanon-july-27-august-4-2026/",
+      "sourceKind": "press"
+    },
+    {
+      "dateReported": "2026-08-03",
+      "actor": "Local authorities at the Qaaqaiyet ej-Jisr crossing",
+      "layer": "municipal",
+      "sourceKind": "social",
+      "action": "An alternative passage was opened alongside the river bridge until the bridge can be rebuilt.",
+      "place": "Qaaqaiyet ej-Jisr bridge",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/r/199Sk38Ki2/"
+    },
+    {
+      "dateReported": "2026-08-03",
+      "actor": "Residents and volunteers of Zaoutar el-Gharbiyeh",
+      "layer": "community",
+      "sourceKind": "social",
+      "action": "Voluntary debris clearance at the Deir Saidat el-Bachara site, described by organisers as a first step toward rebuilding the community. Zaoutar el-Gharbiyeh is one of the villages covered by the 'pilot areas' arrangement.",
+      "place": "Zaoutar el-Gharbiyeh (El Nabatieh district)",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/r/196w3R4vbD/"
+    },
+    {
+      "dateReported": "2026-08-02",
+      "actor": "Council of the South (technical committees)",
+      "layer": "official",
+      "sourceKind": "social",
+      "action": "Technical committees reported completing the first phase of surveying completely and partially destroyed houses in Zaoutar el-Gharbiyeh, in preparation for delivering prefabricated homes to residents. A survey phase and an announced intention, not delivered housing.",
+      "place": "Zaoutar el-Gharbiyeh (El Nabatieh district)",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/r/1D5dw8Namm/"
+    },
+    {
+      "dateReported": "2026-08-02",
+      "actor": "Damage-assessment teams in Zaoutar el-Gharbiyeh",
+      "layer": "official",
+      "sourceKind": "social",
+      "action": "The first phase of damage assessment was reported under way ahead of the delivery of prefabricated houses to residents.",
+      "place": "Zaoutar el-Gharbiyeh (El Nabatieh district)",
+      "sourceName": "Facebook post (self-published)",
+      "sourceUrl": "https://www.facebook.com/share/p/14mNyFLcHQn/"
+    },
+    {
+      "dateReported": "2026-07-01",
+      "actor": "UNDP & Kuwait Fund for Development",
+      "layer": "ngo_international",
+      "action": "Signed a US$3 million partnership ('Empowering Public Services with Solar Energy - Lebanon') to equip seven priority public institutions with solar photovoltaic systems and energy-efficiency upgrades in support of recovery.",
+      "place": "Seven public institutions, nationwide",
+      "sourceName": "UNDP Lebanon",
+      "sourceUrl": "https://www.undp.org/lebanon/press-releases/undp-and-kuwait-fund-sign-us3-million-partnership-strengthen-public-services-lebanon",
+      "sourceKind": "institutional"
+    },
+    {
+      "dateReported": null,
+      "actor": "Prime Minister's Office (Nawaf Salam)",
+      "layer": "official",
+      "action": "The Prime Minister instructed the relevant authorities to accelerate rubble removal, road reopening, infrastructure reconstruction and the restoration of essential services as the first phase of recovery in south Lebanon.",
+      "place": "South Lebanon",
+      "sourceName": "UN Lebanon",
+      "sourceUrl": "https://lebanon.un.org/en/293523-rebuilding-hope-lebanon%E2%80%99s-journey-toward-sustainable-recovery-through-debris-management",
+      "sourceKind": "institutional"
+    }
+  ]
+}

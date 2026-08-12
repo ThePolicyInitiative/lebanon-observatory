@@ -1,0 +1,560 @@
+[
+  {
+    "id": "S-DATASET",
+    "title": "actor-role dataset (706 entries: 343 for 2024 across 104 actors; 363 for 2026 across 124 actors), compiled and recomputed at entry level for this analysis",
+    "organisation": "Lebanon Reconstruction Observatory analytical dataset",
+    "publicationDate": "2026-07-31",
+    "url": null,
+    "sourceType": "dataset",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S1",
+    "title": "LEAP Implementation Status and Results Report (seq. 4)",
+    "organisation": "World Bank",
+    "publicationDate": "2026-06-29",
+    "url": "https://documents1.worldbank.org/curated/en/099062926134535703/pdf/P509428-c4fc70f6-1b1a-434a-be1c-16cfa8a34a3c.pdf",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-08-11"
+  },
+  {
+    "id": "S2",
+    "title": "Lebanon Emergency Assistance Project (P509428), Project Appraisal report",
+    "organisation": "World Bank",
+    "publicationDate": "2025-06-03",
+    "url": "https://documents1.worldbank.org/curated/en/099061125095016009/pdf/BOSIB-92339148-e75a-4dca-8bc2-580a6104a46a.pdf",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S3",
+    "title": "Truce brings no relief to displaced from Lebanon's destroyed, occupied towns",
+    "organisation": "Reuters",
+    "publicationDate": "2026-06-25",
+    "url": "https://www.reuters.com/world/middle-east/truce-brings-no-relief-displaced-lebanons-destroyed-occupied-towns-2026-06-25/",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S4",
+    "title": "Lebanon Rapid Damage and Needs Assessment (RDNA) - full report and press release (reference period 8 Oct 2023 – 20 Dec 2024)",
+    "organisation": "World Bank",
+    "publicationDate": "2025-03-07",
+    "url": "https://www.worldbank.org/en/news/press-release/2025/03/07/lebanon-s-recovery-and-reconstruction-needs-estimated-at-us-11-billion",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S5",
+    "title": "Rapid damage assessment, Beirut and Mount Lebanon",
+    "organisation": "UNDP & CNRS-L",
+    "publicationDate": "2026-06-08",
+    "url": "https://www.undp.org/lebanon/press-releases/rapid-damage-assessment-estimates-over-us365-million-building-damage-across-beirut-and-mount-lebanon",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S6",
+    "title": "Rapid building-level damage assessment, South Lebanon",
+    "organisation": "UNDP & CNRS-L",
+    "publicationDate": "2026-06-22",
+    "url": "https://www.undp.org/lebanon/press-releases/building-damage-assessment-estimates-over-usd-138-billion-across-south-lebanon-until-april-2026",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S7",
+    "title": "LEAP procurement notices #1082 (27 Feb 2026), #1095 and #1096 (12–13 May 2026); portal statuses as displayed 17 Jul 2026; LEAP project page incl. grievance mechanism",
+    "organisation": "Council for Development and Reconstruction",
+    "publicationDate": "2026-07-17",
+    "url": "https://www.cdr.gov.lb",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S8",
+    "title": "Legal Brief on Law No. 22/2025 - The Reconstruction Law",
+    "organisation": "Norwegian Refugee Council",
+    "publicationDate": "2026-05-21",
+    "url": "https://www.nrc.no/globalassets/pdf/briefing-notes/legal-brief-on-law-no.-222025/the-reconstruction-law.pdf",
+    "sourceType": "ngo",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S9",
+    "title": "Hezbollah to pay total $77 million rent for families affected by war",
+    "organisation": "Reuters",
+    "publicationDate": "2024-12-05",
+    "url": "https://www.reuters.com/world/middle-east/hezbollah-pay-total-77-million-rent-families-affected-by-war-2024-12-05/",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S10",
+    "title": "Municipal and union communications (consolidated): publicly posted clearance, shelter and utility-liaison notices from 16+ municipalities and unions incl. Qana, Chehour, Tebnine, Majdal Selm, Tayr Debba, Chehabiyeh and the Dahieh union (Mar–Jul 2026). Self-reported.",
+    "organisation": "Municipal Facebook pages",
+    "publicationDate": "2026-07-01",
+    "url": null,
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S11",
+    "title": "The Socioeconomic Impacts of the 2024 War on Lebanon",
+    "organisation": "UNDP & ESCWA (with UNICEF, ILO, UN-Habitat)",
+    "publicationDate": "2025-07-24",
+    "url": "https://www.undp.org/lebanon/publications/socioeconomic-impacts-2024-war-lebanon",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S12",
+    "title": "Lebanon country overview (macro & poverty update)",
+    "organisation": "World Bank",
+    "publicationDate": "2026-07-01",
+    "url": "https://www.worldbank.org/ext/en/country/lebanon",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S13",
+    "title": "Lebanon Humanitarian Situation Report No. 5 (23 Sep–30 Oct 2024)",
+    "organisation": "UNICEF",
+    "publicationDate": "2024-10-30",
+    "url": "https://www.unicef.org/documents/lebanon-humanitarian-situation-report-no-5-23-september-30-october-2024",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S14",
+    "title": "Lebanon Flash Updates #6 (19 Nov 2024) and #8 (29 Nov 2024)",
+    "organisation": "UNHCR",
+    "publicationDate": "2024-11-29",
+    "url": "https://reliefweb.int/country/lbn",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S15",
+    "title": "Circular No. 6/1: Environmental Guidelines for the Management of War Rubble (summary note, Sep 2025)",
+    "organisation": "Ministry of Environment",
+    "publicationDate": "2024-12-05",
+    "url": "https://www.moe.gov.lb",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S16",
+    "title": "Southern Council announces tender for rubble clearance",
+    "organisation": "L'Orient Today",
+    "publicationDate": "2024-12-27",
+    "url": "https://today.lorientlejour.com/article/1441347/southern-council-announces-tender-for-rubble-clearance.html",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S17",
+    "title": "Challenges confront Lebanon on the long road to reconstruction",
+    "organisation": "The New Humanitarian",
+    "publicationDate": "2025-01-16",
+    "url": "https://www.thenewhumanitarian.org/news-feature/2025/01/16/challenges-confront-lebanon-long-road-reconstruction",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S18",
+    "title": "DRM/NEOR support materials: 'Inside Lebanon's Crisis Coordination Room' (2024); DRM Unit profile and National Operations Room press releases (Nov 2024–Apr 2026)",
+    "organisation": "UNDP Lebanon",
+    "publicationDate": "2026-04-01",
+    "url": "https://www.undp.org/lebanon",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S19",
+    "title": "Municipal survey of 135 affected areas (with governorate DRM units), 5–15 Dec 2024; reported in the UNDP–ESCWA study",
+    "organisation": "UNDP Lebanon",
+    "publicationDate": "2024-12-15",
+    "url": "https://www.undp.org/lebanon/publications/socioeconomic-impacts-2024-war-lebanon",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S20",
+    "title": "Lebanon: New US$250 Million Project to Kickstart the Recovery and Reconstruction (press release)",
+    "organisation": "World Bank",
+    "publicationDate": "2025-06-25",
+    "url": "https://www.worldbank.org/en/news/press-release/2025/06/25/lebanon-new-us-250-million-project-to-kickstart-the-recovery-and-reconstruction-in-conflict-affected-areas",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S21",
+    "title": "Analyses 2024–26: 'Who profits from rubble removal?' (tender analysis, Jan 2025); reporting on rebuilding-permit halts (Meiss al-Jabal, Kfar Kila, Shaqra); Kfarkela participatory entries",
+    "organisation": "Public Works Studio",
+    "publicationDate": "2025-01-15",
+    "url": "https://publicworksstudio.com",
+    "sourceType": "ngo",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S22",
+    "title": "Lebanon Interim Damage and Loss Assessment (DaLA)",
+    "organisation": "World Bank",
+    "publicationDate": "2024-11-14",
+    "url": "https://reports.worldbank.org/en/publication/reports-reports/documentdetail/099111224112085259",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S23",
+    "title": "Building Destruction and Debris Quantities Assessment (South Lebanon & Nabatieh; revised 22 Jan 2025)",
+    "organisation": "UN-Habitat Lebanon, University of Balamand & CREEMO (USJ)",
+    "publicationDate": "2025-01-22",
+    "url": "https://unhabitat.org/sites/default/files/2025/01/unh-uob-usj_building_destruction_and_debris_quantities_assessment_nab-south_revised_22-01-2025.pdf",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S24",
+    "title": "'Why would we wait?': Lebanon starts to rebuild as ceasefire takes effect",
+    "organisation": "The Guardian",
+    "publicationDate": "2024-11-30",
+    "url": "https://www.theguardian.com/world/2024/nov/30/nabatieh-lebanon-starts-to-rebuild-as-ceasefire-takes-effect",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S25",
+    "title": "Displaced families in Lebanon who return home are faced with piles of rubble",
+    "organisation": "Associated Press",
+    "publicationDate": "2024-11-28",
+    "url": "https://apnews.com/article/lebanon-israel-hezbollah-war-displaced-ruins-1e55cd00486ad84ba7df830e7264af68",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S26",
+    "title": "Field report on local and community-funded recovery in South Lebanon",
+    "organisation": "7iber",
+    "publicationDate": "2025-01-01",
+    "url": "https://www.7iber.com/",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S27",
+    "title": "Saida volunteer convoys to Sour and Nabatieh (21–28 Dec 2024, two reports)",
+    "organisation": "L'Orient Today / L'Orient-Le Jour",
+    "publicationDate": "2024-12-28",
+    "url": "https://today.lorientlejour.com",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S28",
+    "title": "Offre Joie operations in Karantina and Basta: Asfari Institute profile (Dec 2024); New Lines Magazine, 'The Volunteers Rebuilding Beirut' (Apr 2025)",
+    "organisation": "Asfari Institute / New Lines Magazine",
+    "publicationDate": "2025-04-01",
+    "url": "https://newlinesmag.com",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S29",
+    "title": "Lebanon Agricultural Damage and Loss Assessment (launch)",
+    "organisation": "FAO & Ministry of Agriculture",
+    "publicationDate": "2025-04-11",
+    "url": "https://www.fao.org/lebanon/news/detail/fao-and-ministry-of-agriculture-launch-the-lebanon-agricultural-damage-and-loss-assessment-report/en",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S30",
+    "title": "The Castles of Mount Amel (tentative list; enhanced protection)",
+    "organisation": "UNESCO World Heritage Centre",
+    "publicationDate": "2024-11-24",
+    "url": "https://whc.unesco.org/en/tentativelists/6900/",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S31",
+    "title": "New nationally funded emergency cash assistance and NDA continuation (press release)",
+    "organisation": "MoSA & UNICEF",
+    "publicationDate": "2024-11-15",
+    "url": "https://www.unicef.org/lebanon/press-releases/ministry-social-affairs-announces-new-nationally-funded-emergency-cash-assistance",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S32",
+    "title": "DTM Data Update: Durable Solutions - Lebanon",
+    "organisation": "IOM",
+    "publicationDate": "2025-04-01",
+    "url": "https://dtm.iom.int/dtm-insights/april-2025-edition/data-update-durable-solutions-lebanon",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S33",
+    "title": "Lebanon mine-action programme page",
+    "organisation": "DanChurchAid",
+    "publicationDate": "2026-07-01",
+    "url": "https://www.danchurchaid.org/what-we-do/where-we-work/lebanon",
+    "sourceType": "ngo",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S34",
+    "title": "Reporting on Hezbollah/Jihad al-Binaa compensation practice: payment-office reporting (Jan 2025); Khiam payment characterisations (Feb 2025)",
+    "organisation": "Associated Press (via Naharnet et al.)",
+    "publicationDate": "2025-02-01",
+    "url": "https://apnews.com",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S35",
+    "title": "OSM Building Dataset Complete for Conflict Affected Districts in Southern Lebanon",
+    "organisation": "Humanitarian OpenStreetMap Team",
+    "publicationDate": "2025-07-11",
+    "url": "https://www.hotosm.org/en/news/osm-building-dataset-complete-for-conflict-affected-districts-in-southern-lebanon/",
+    "sourceType": "ngo",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S36",
+    "title": "Assessment of Damages in the South (Bent Jbeil district)",
+    "organisation": "Mercy Corps Lebanon Crisis Analytics Team",
+    "publicationDate": "2024-12-01",
+    "url": "https://mercycorps.org.lb/wp-content/uploads/2024/12/Assessment-of-Damages-in-the-South_Final.pdf",
+    "sourceType": "ngo",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S37",
+    "title": "Hacking Lebanese politics #26: what's going on with the reconstruction of southern Lebanon?",
+    "organisation": "L'Orient Today",
+    "publicationDate": "2026-02-01",
+    "url": "https://today.lorientlejour.com/article/1484701/",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S38",
+    "title": "Lebanon Emergency Assistance Project: Frequently Asked Questions",
+    "organisation": "World Bank",
+    "publicationDate": "2026-02-17",
+    "url": "https://www.worldbank.org/en/news/factsheet/2026/02/17/lebanon-emergency-assistance-project-frequently-asked-questions",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S39",
+    "title": "Update on the Human Rights Situation in Lebanon (2–22 Mar 2026)",
+    "organisation": "OHCHR ROMENA",
+    "publicationDate": "2026-03-24",
+    "url": "https://www.ohchr.org/sites/default/files/documents/countries/lebanon/update-on-the-human-rights-situation-in-lebanon-23-04-2026.pdf",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S40",
+    "title": "Lebanon Flash Updates Nos. 32 (4 Jun), 34 (11 Jun), 37 (22 Jun), 39 (29 Jun), 41 (6 Jul) and 45 (20 Jul 2026)",
+    "organisation": "OCHA",
+    "publicationDate": "2026-07-20",
+    "url": "https://www.unocha.org/publications",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S41",
+    "title": "Israel and Lebanon agree to conditional ceasefire",
+    "organisation": "Al Jazeera",
+    "publicationDate": "2026-06-04",
+    "url": "https://www.aljazeera.com/news/2026/6/4/israel-and-lebanon-agree-to-conditional-ceasefire",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S42",
+    "title": "Lebanon: conflict since the 2024 ceasefire (research briefing CBP-10887)",
+    "organisation": "UK House of Commons Library",
+    "publicationDate": "2026-06-01",
+    "url": "https://researchbriefings.files.parliament.uk/documents/CBP-10887/CBP-10887.pdf",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S43",
+    "title": "Report of President Aoun's statement on war damage",
+    "organisation": "Xinhua",
+    "publicationDate": "2026-06-19",
+    "url": "https://english.news.cn/20260619/f6d7fb3667ed4b9ca6998caa62351a31/c.html",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S44",
+    "title": "Minutes, Ad-Hoc Inter-Sector Coordination Group Meeting, 2 Mar 2026",
+    "organisation": "Lebanon Response Plan / Government of Lebanon",
+    "publicationDate": "2026-03-02",
+    "url": "https://data.unhcr.org/fr/reports/download/121355",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S45",
+    "title": "Lebanon emergency updates: Flash Update #2 (10 Mar 2026); shelter/registration updates (27 Mar 2026); Middle East Flash Update #12 (Apr 2026)",
+    "organisation": "UNHCR",
+    "publicationDate": "2026-04-01",
+    "url": "https://www.unhcr.org",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S46",
+    "title": "Council for the South response on contractors and 2025 tenders",
+    "organisation": "Nidaa Al Watan",
+    "publicationDate": "2025-09-26",
+    "url": "https://www.nidaalwatan.com/article/344876",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S47",
+    "title": "Reconstruction on agenda of Friday's cabinet session",
+    "organisation": "Naharnet",
+    "publicationDate": "2026-01-29",
+    "url": "https://www.naharnet.com/stories/en/318029-reconstruction-on-agenda-of-friday-s-cabinet-session",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S48",
+    "title": "Rebuilding south to begin despite Israeli violations: Lebanon PM",
+    "organisation": "The New Arab",
+    "publicationDate": "2026-02-07",
+    "url": "https://www.newarab.com/news/rebuilding-south-begin-despite-israeli-violations-lebanon-pm",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S49",
+    "title": "Lebanese government tracks war damage through scientific agency",
+    "organisation": "Le Monde",
+    "publicationDate": "2026-06-13",
+    "url": "https://www.lemonde.fr/en/international/article/2026/06/13/lebanese-government-tracks-war-damage-through-scientific-agency_6754448_4.html",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S50",
+    "title": "Lebanon Humanitarian Situation Reports Nos. 1–2 (Mar 2026)",
+    "organisation": "UNICEF",
+    "publicationDate": "2026-03-31",
+    "url": "https://www.unicef.org/media",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S51",
+    "title": "Emergency Cash Support for Children and Persons with Disabilities (press release)",
+    "organisation": "MoSA, UNICEF & ILO",
+    "publicationDate": "2026-03-11",
+    "url": "https://www.unicef.org/lebanon/press-releases/ministry-social-affairs-unicef-and-ilo-announce-emergency-cash-support-children-and",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S52",
+    "title": "Lebanon 2026: War, Displacement and National Response (presentation, 16 Apr 2026)",
+    "organisation": "Ministry of Social Affairs",
+    "publicationDate": "2026-04-16",
+    "url": "https://www.socialaffairs.gov.lb/media/jponws35/lebanon-response-dc-presentation-16042026.pdf",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S53",
+    "title": "'Reconnecting Lebanon' campaign post",
+    "organisation": "Ministry of Public Works and Transport",
+    "publicationDate": "2026-06-18",
+    "url": "https://www.instagram.com/mopwtleb/reel/DXPUgw1DQec/",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S54",
+    "title": "Announcement on removal of unexploded ordnance and support to ministries",
+    "organisation": "Lebanese Army",
+    "publicationDate": "2026-01-01",
+    "url": "https://www.lebarmy.gov.lb",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S55",
+    "title": "Lebanon: UN clears debris in Dibbine after Israeli withdrawal",
+    "organisation": "Euronews",
+    "publicationDate": "2026-06-05",
+    "url": "https://www.euronews.com/video/2026/06/05/lebanon-un-clears-debris-in-dibbine-after-israeli-withdrawal",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S56",
+    "title": "Fresh strikes on Tyre… UN puts Lebanon destruction bill at $365 million",
+    "organisation": "UN News",
+    "publicationDate": "2026-06-09",
+    "url": "https://news.un.org/en/story/2026/06/1167685",
+    "sourceType": "un",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S57",
+    "title": "The southern suburbs continue rubble management while the South waits",
+    "organisation": "An-Nahar",
+    "publicationDate": "2026-05-15",
+    "url": "https://www.annahar.com/economy/308873/",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S58",
+    "title": "Nabatieh recovery begins amid ongoing southern Lebanon tensions",
+    "organisation": "Al Jazeera",
+    "publicationDate": "2026-07-04",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/7/4/nabatieh-recovery-begins-amid-ongoing-southern-lebanon-tensions",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S59",
+    "title": "Inside the city of grief hit hardest by Israel strikes on southern Lebanon",
+    "organisation": "The Guardian",
+    "publicationDate": "2026-06-19",
+    "url": "https://www.theguardian.com/world/2026/jun/19/lebanon-nabatieh-city-ashura-ceremony-hezbollah-israel",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S60",
+    "title": "Reporting of cabinet compensation parameters (4 Feb 2026); corroborated by Manateq (12 Feb 2026)",
+    "organisation": "An-Nahar / Manateq",
+    "publicationDate": "2026-02-12",
+    "url": "https://www.annahar.com",
+    "sourceType": "media",
+    "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S61",
+    "title": "USD/LBP exchange-rate series",
+    "organisation": "Banque du Liban",
+    "publicationDate": "2026-01-01",
+    "url": "https://www.bdl.gov.lb/economicandfinancialdatasub.php?code=9&docId=161&filecode=90",
+    "sourceType": "official",
+    "accessedDate": "2026-07-31"
+  }
+]

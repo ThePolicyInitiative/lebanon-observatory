@@ -1,0 +1,31 @@
+{
+  "note": "Municipality-reported damage from the UNDP-supported survey of 135 affected areas across 19 districts and 8 governorates, 5-15 December 2024. These are preliminary municipal reports collected in ten days on local knowledge - not engineering assessments - and they are not additive with satellite estimates or with any 2026 figure.",
+  "collected": "2024-12-15",
+  "sourceIds": ["S19", "S11"],
+  "totals": {
+    "reportedAssets": 90076,
+    "housingUnits": 59577,
+    "completelyDamagedShare": 29,
+    "businessEstablishments": 14748,
+    "agriculturalAssets": 14762,
+    "infrastructureAssets": 989,
+    "areasSurveyed": 135,
+    "districtsCovered": 19,
+    "governoratesCovered": 8
+  },
+  "districts": [
+    { "name": "Baabda", "codName": "Baabda", "units": 16000, "completeShare": 63, "note": "The Dahieh belt: the largest single concentration, with roughly two thirds reported completely damaged." },
+    { "name": "Nabatieh", "codName": "El Nabatieh", "units": 14667, "completeShare": null },
+    { "name": "Baalbek", "codName": "Baalbek", "units": 10274, "completeShare": null },
+    { "name": "Sour (Tyre)", "codName": "Sour", "units": 6415, "completeShare": null },
+    { "name": "Saida", "codName": "Saida", "units": 4252, "completeShare": null },
+    { "name": "Bent Jbeil", "codName": "Bent Jbeil", "units": 2866, "completeShare": null },
+    { "name": "Marjaayoun", "codName": "Marjaayoun", "units": 2725, "completeShare": null }
+  ],
+  "namedDistrictSubtotal": 57199,
+  "caveats": [
+    "Municipal declaration, not engineering assessment: the survey traded technical rigour for speed, and produced the response's fastest national damage assessments.",
+    "Named districts account for 57,199 of the 59,577 reported housing units; the remainder is spread across the other surveyed districts.",
+    "Not additive with satellite-based estimates, which use different methods, scopes and cut-offs."
+  ]
+}

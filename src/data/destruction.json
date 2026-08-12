@@ -1,0 +1,99 @@
+{
+  "note": "No single building count exists for the 2024 war: four non-additive data tracks bracket the destruction, and the differences between them are themselves data - of method (satellite radar versus optical imagery versus municipal declaration), scope (four versus six governorates), unit (buildings versus dwellings) and timing. They are presented side by side and never averaged. The 2026 assessments cover two zones only and are not cumulative with any 2024 figure.",
+  "tracks2024": [
+    {
+      "id": "un-synthesis",
+      "label": "UN synthesis (UNDP–ESCWA)",
+      "headline": "63,962 buildings / 229,125 housing units",
+      "detail": "Damaged or destroyed across six governorates, including 23,489 buildings completely destroyed. Published July 2025 as a retrospective synthesis.",
+      "method": "Multi-source synthesis",
+      "scope": "Six governorates",
+      "unit": "Buildings and housing units",
+      "comparability": "not_comparable",
+      "sourceIds": ["S11"]
+    },
+    {
+      "id": "academic-remote",
+      "label": "Remote academic series (UN-Habitat / Univ. of Balamand / CREEMO-USJ)",
+      "headline": "19,537 buildings / 42,384 units",
+      "detail": "Totally or partially destroyed across four governorates; the series also produced the debris-quantity estimates used for planning.",
+      "method": "Remote sensing (satellite analysis)",
+      "scope": "Four governorates",
+      "unit": "Buildings and units",
+      "comparability": "not_comparable",
+      "sourceIds": ["S23"]
+    },
+    {
+      "id": "interim-dala",
+      "label": "Interim Damage and Loss Assessment (World Bank)",
+      "headline": "99,209 damaged housing units",
+      "detail": "Counted on earlier cut-offs, published 14 November 2024 - before the heaviest late-November strikes.",
+      "method": "Interim assessment",
+      "scope": "National on earlier cut-offs",
+      "unit": "Housing units",
+      "comparability": "not_comparable",
+      "sourceIds": ["S22"]
+    },
+    {
+      "id": "municipal-survey",
+      "label": "Municipal survey of 135 areas (UNDP-supported)",
+      "headline": "59,577 municipality-reported damaged units",
+      "detail": "Collected in ten days (5–15 December 2024) entirely on municipal local knowledge - 16,000 units in Baabda district alone (the Dahieh belt), 63% of them reported completely damaged. The response's fastest damage assessments, trading engineering rigour for speed.",
+      "method": "Municipal declaration",
+      "scope": "135 affected areas",
+      "unit": "Housing units (reported)",
+      "comparability": "not_comparable",
+      "sourceIds": ["S19"]
+    }
+  ],
+  "debris2024": {
+    "headline": "Roughly 12 million cubic metres of demolition debris",
+    "detail": "20 to 27 million tonnes excluding road debris across six governorates, against a separate headline national estimate of about 17 million tonnes on a different method - quantities beyond any municipal capability and comparable to years of national construction activity. Volume estimates are remote-sensing products with stated density assumptions.",
+    "sourceIds": ["S11", "S23", "S4"]
+  },
+  "zones2026": [
+    {
+      "id": "south-litani",
+      "label": "South of the Litani",
+      "assessedDamage": "US$1.384 billion in direct building damage",
+      "buildings": "11,095 buildings completely destroyed (≈17,891 units), 2,242 partially damaged, 9,311 with minor damage",
+      "debris": "3.1 million cubic metres of debris",
+      "worstCadasters": [
+        { "name": "Aaitaroun", "destroyed": 1658 },
+        { "name": "Bent Jbeil", "destroyed": 1076 },
+        { "name": "Meiss Ej Jabal", "destroyed": 969 },
+        { "name": "Taybe", "destroyed": 824 }
+      ],
+      "method": "GeoAI workflow comparing 29 April 2026 imagery against an October 2025 baseline; office-based review at roughly 85% estimated accuracy; no field verification. Excludes basements, infrastructure and minor-damage costs.",
+      "verification": "Desk-validated",
+      "published": "2026-06-22",
+      "comparability": "not_comparable",
+      "comparabilityNote": "Explicitly a snapshot; not cumulative with 2024 results. The worst cadasters are the same border communities levelled in 2024, partially reassessed after rebuilding attempts.",
+      "sourceIds": ["S6"]
+    },
+    {
+      "id": "beirut-ml",
+      "label": "Beirut and Mount Lebanon",
+      "assessedDamage": "US$365.0 million (Mount Lebanon ≈US$349.7M, Beirut ≈US$15.4M)",
+      "buildings": "146 buildings destroyed and 264 partially damaged, plus 54 individually targeted apartments; 3,168 units destroyed",
+      "debris": "648,942 cubic metres of debris - 93% of it in Baabda district, the Dahieh belt again",
+      "worstCadasters": [],
+      "method": "February–April 2026 imagery, cross-checked against army, UN security and satellite-centre entries.",
+      "verification": "Field-verified with the scientific council",
+      "published": "2026-06-08",
+      "comparability": "not_comparable",
+      "comparabilityNote": "Different verification method from the southern product - the two zones should not share a legend.",
+      "sourceIds": ["S5"]
+    }
+  ],
+  "zones2026Notes": [
+    "The Bekaa, Baalbek-Hermel and the North had no equivalent assessment by the 31 July 2026 cut-off. Assessed geography is not damaged geography: the real-time national database traced heavy strikes nationwide.",
+    "Applying the standard density assumptions to the two zone volumes yields roughly 5.2–7.0 million tonnes for the assessed zones alone - a report calculation, not an official tonnage.",
+    "Assessed-zone damage of ≈US$1.75 billion sits entirely outside LEAP's legal scope, with no financed treatment or reconstruction attached at the cut-off."
+  ],
+  "presidentialEstimate": {
+    "detail": "Presidential statements in June 2026 put damage at nearly 18% of territory and roughly 68,000 destroyed housing units. These are traced as dated estimates, not consolidated assessment results.",
+    "comparability": "context_only",
+    "sourceIds": ["S43"]
+  }
+}

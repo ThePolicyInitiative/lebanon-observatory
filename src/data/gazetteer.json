@@ -1,0 +1,31 @@
+{
+  "note": "Named affected localities traced in the dataset, with approximate centroid coordinates (village level). Point positions are approximate and mark traced-activity localities, not damage intensity.",
+  "localities": [
+    { "name": "Nabatieh", "region": "south_nabatieh", "lat": 33.3772, "lon": 35.4836 },
+    { "name": "Tyre (Sour)", "region": "south_nabatieh", "lat": 33.2705, "lon": 35.2038 },
+    { "name": "Bint Jbeil (Bent Jbeil)", "region": "south_nabatieh", "lat": 33.1208, "lon": 35.4335 },
+    { "name": "Marjeyoun", "region": "south_nabatieh", "lat": 33.3628, "lon": 35.5911 },
+    { "name": "Aitaroun (Aaitaroun)", "region": "south_nabatieh", "lat": 33.1147, "lon": 35.4711 },
+    { "name": "Meiss el Jabal (Meiss Ej Jabal)", "region": "south_nabatieh", "lat": 33.1592, "lon": 35.5439 },
+    { "name": "Kfar Kila (Kfarkela)", "region": "south_nabatieh", "lat": 33.2500, "lon": 35.5992 },
+    { "name": "Shaqra", "region": "south_nabatieh", "lat": 33.1817, "lon": 35.4794 },
+    { "name": "Khiam", "region": "south_nabatieh", "lat": 33.3081, "lon": 35.6094 },
+    { "name": "Taybe", "region": "south_nabatieh", "lat": 33.2167, "lon": 35.5333 },
+    { "name": "Qana", "region": "south_nabatieh", "lat": 33.2094, "lon": 35.2994 },
+    { "name": "Chehour", "region": "south_nabatieh", "lat": 33.2447, "lon": 35.3131 },
+    { "name": "Tebnine", "region": "south_nabatieh", "lat": 33.2044, "lon": 35.4108 },
+    { "name": "Majdal Selm", "region": "south_nabatieh", "lat": 33.1731, "lon": 35.5058 },
+    { "name": "Chehabiyeh (Shahabiya)", "region": "south_nabatieh", "lat": 33.2469, "lon": 35.2792 },
+    { "name": "Tayr Debba", "region": "south_nabatieh", "lat": 33.2481, "lon": 35.2669 },
+    { "name": "Deir Qanoun el Nahr", "region": "south_nabatieh", "lat": 33.2333, "lon": 35.2500 },
+    { "name": "Hanouiyeh", "region": "south_nabatieh", "lat": 33.2436, "lon": 35.2844 },
+    { "name": "Shama", "region": "south_nabatieh", "lat": 33.1614, "lon": 35.1867 },
+    { "name": "Saida (Sidon)", "region": "south_nabatieh", "lat": 33.5606, "lon": 35.3758 },
+    { "name": "Dibbine", "region": "south_nabatieh", "lat": 33.3439, "lon": 35.5817 },
+    { "name": "Beirut (Karantina, Basta)", "region": "beirut_mount_lebanon", "lat": 33.8938, "lon": 35.5018 },
+    { "name": "Dahieh / southern suburbs (Baabda district)", "region": "beirut_mount_lebanon", "lat": 33.8492, "lon": 35.5031 },
+    { "name": "Costa Brava landfill area", "region": "beirut_mount_lebanon", "lat": 33.8175, "lon": 35.4903 },
+    { "name": "Baalbek", "region": "bekaa_baalbek_hermel", "lat": 34.0058, "lon": 36.2181 }
+  ],
+  "sourceIds": ["S-DATASET"]
+}

@@ -1,0 +1,68 @@
+{
+  "note": "Compensation is tracked with one verification standard for every actor: a ministry's announcement, a council's statement and a party's payment claim are all treated as self-reported until independently confirmed. No state compensation payment was verified by the 31 July 2026 cut-off; absence of verified payment is a bounded claim - payments not publicly reported by that date, not payments proven never to have occurred.",
+  "stateTrack": {
+    "label": "State track",
+    "status2024": "Registration without rules: municipalities, the Council for the South and the Higher Relief Commission compiled damage dossiers that were preliminary registrations, not approved claims. No state compensation reached anyone in 2024.",
+    "instruments": [
+      {
+        "id": "law22",
+        "label": "Law 22/2025 (July 2025)",
+        "detail": "Granted tax and fee relief and regulated rebuilding; its Article 12 sorts destroyed buildings into five land-status categories. It created no unified valuation methodology, no appeals mechanism and no funded general compensation. An Interior Ministry decision added a certification route (police report plus municipal attestation) for the simplest rebuild-in-place cases.",
+        "evidenceLevel": "Legal text in force",
+        "sourceIds": [
+          "S8"
+        ]
+      },
+      {
+        "id": "framework2026",
+        "label": "Cabinet compensation framework (30 January 2026)",
+        "detail": "Divided the territory between the Council for the South (South, Nabatieh, Western Bekaa, Rashaya) and the Higher Relief Commission (elsewhere), with application, inspection and valuation procedures. Reported per-unit parameters - LL 6 billion for a fully destroyed residence in two instalments (≈US$67,000 at the prevailing rate, an illustrative conversion), per-square-metre rates and ceilings for partial damage, twenty per cent furniture assistance - are carried as reported parameters: the primary decision text with amounts was not located.",
+        "evidenceLevel": "Reported parameters - primary text not located",
+        "sourceIds": [
+          "S37",
+          "S60",
+          "S61"
+        ]
+      }
+    ],
+    "status2026": "A formula without money is a queue-formation device: no payment start date was identified, implementation was stated to depend on financing, and no consolidated dataset of dossiers submitted, approved or paid exists publicly. The territorial split re-empowers the two legacy institutions the project chain's design implicitly criticised, under rules and disclosure weaker than the project's. Missing throughout: unified valuation, appeals, tenant protection, funded general compensation.",
+    "verifiedPayments": "None verified by 31 July 2026"
+  },
+  "parallelTrack": {
+    "label": "Parallel track (Hezbollah / Jihad al-Binaa)",
+    "status2024": "The country's largest operating compensation system and its least accountable one: rapid damage assessment through Jihad al-Binaa, cash lump sums and rent support that moved faster than any public instrument, reaching scale while the state was still designing forms.",
+    "instruments": [
+      {
+        "id": "lump-sums",
+        "label": "Announced package (5 December 2024)",
+        "detail": "Lump sums of US$8,000 for destroyed primary residences plus a year's rent (US$6,000 in Beirut and suburbs, US$4,000 elsewhere). A later account characterised the US$8,000 as furniture compensation with rent separate; this analysis therefore asserts only a reported lump-sum payment.",
+        "evidenceLevel": "Self-reported announcement",
+        "sourceIds": [
+          "S9",
+          "S34"
+        ]
+      },
+      {
+        "id": "reported-flows",
+        "label": "Reported flows",
+        "detail": "More than US$50 million reportedly already distributed by December 2024 and over US$77 million anticipated for rent. A circulating figure of US$400 million to 140,000 people is excluded as unauditable. Every figure is a self-declaration; none is audited - the same opacity that prevents audit prevents disproof.",
+        "evidenceLevel": "Reported, unaudited; aggregate claim excluded",
+        "sourceIds": [
+          "S9",
+          "S34"
+        ]
+      }
+    ],
+    "status2026": "Continued presence without 2024-visibility payment reporting, beside a state framework formally occupying the space it had monopolised. Three explanations fit the thinner entry and cannot be separated on this data: genuinely reduced flows; reduced announcement incentives once a public benchmark existed; and reporting displacement toward the formal track. This analysis asserts neither growth nor collapse.",
+    "verifiedPayments": "Reported only; unauditable in both years"
+  },
+  "distributionalFinding": "In both years, compensation actually received by households came from savings, remittances and reported parallel cash - none of it publicly accountable. Speed and rules traded off perfectly: the parallel track paid in weeks precisely because it had no public rules, appeals or audit, while the state track had rules in draft and no money. Payments outside public frameworks set loyalty and spatial priorities no parliament reviewed; by 30 December 2024, Nabatieh's businesses were protesting both tracks' slowness at once.",
+  "sourceIds": [
+    "S9",
+    "S34",
+    "S8",
+    "S37",
+    "S60",
+    "S17"
+  ]
+}

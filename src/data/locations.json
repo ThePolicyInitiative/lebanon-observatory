@@ -1,0 +1,33 @@
+{
+  "note": "Location mentions in the actor-stage dataset, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach.",
+  "regions": [
+    { "id": "south_nabatieh", "label": "South and Nabatieh", "governorates": ["Liban-Sud", "Nabatîyé"], "mappable": true },
+    { "id": "beirut_mount_lebanon", "label": "Beirut and Mount Lebanon", "governorates": ["Beyrouth", "Mont-Liban", "Keserwan-Jbeil"], "mappable": true },
+    { "id": "bekaa_baalbek_hermel", "label": "Bekaa and Baalbek-Hermel", "governorates": ["Béqaa", "Baalbek-Hermel"], "mappable": true },
+    { "id": "north", "label": "North", "governorates": ["Liban-Nord", "Aakkâr"], "mappable": true },
+    { "id": "camps_migrant", "label": "Camps and migrant communities", "governorates": [], "mappable": false },
+    { "id": "national_multi", "label": "National or multi-region", "governorates": [], "mappable": false },
+    { "id": "named_localities", "label": "Named affected localities", "governorates": [], "mappable": false }
+  ],
+  "mentions": {
+    "2024": {
+      "south_nabatieh":        { "official": 32, "municipal": 9, "ngo_international": 15, "community": 55 },
+      "beirut_mount_lebanon":  { "official": 10, "municipal": 8, "ngo_international": 0,  "community": 40 },
+      "bekaa_baalbek_hermel":  { "official": 7,  "municipal": 0, "ngo_international": 0,  "community": 0 },
+      "north":                 { "official": 0,  "municipal": 0, "ngo_international": 1,  "community": 0 },
+      "camps_migrant":         { "official": 1,  "municipal": 0, "ngo_international": 6,  "community": 15 },
+      "national_multi":        { "official": 77, "municipal": 5, "ngo_international": 72, "community": 36 },
+      "named_localities":      { "official": 0,  "municipal": 9, "ngo_international": 0,  "community": 52 }
+    },
+    "2026": {
+      "south_nabatieh":        { "official": 34, "municipal": 6, "ngo_international": 21, "community": 50 },
+      "beirut_mount_lebanon":  { "official": 7,  "municipal": 6, "ngo_international": 5,  "community": 41 },
+      "bekaa_baalbek_hermel":  { "official": 3,  "municipal": 0, "ngo_international": 0,  "community": 0 },
+      "north":                 { "official": 0,  "municipal": 0, "ngo_international": 0,  "community": 6 },
+      "camps_migrant":         { "official": 1,  "municipal": 0, "ngo_international": 11, "community": 13 },
+      "national_multi":        { "official": 76, "municipal": 4, "ngo_international": 79, "community": 65 },
+      "named_localities":      { "official": 0,  "municipal": 3, "ngo_international": 0,  "community": 62 }
+    }
+  },
+  "sourceIds": ["S-DATASET"]
+}

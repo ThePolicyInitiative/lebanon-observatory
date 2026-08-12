@@ -1,0 +1,75 @@
+{
+  "note": "Human toll and displacement across the two wars. The two crises ran on separate reporting systems and are never compared or summed here; each figure carries its own date and reporter.",
+  "war2026": {
+    "asOf": "2026-07-15",
+    "sourceIds": ["S29"],
+    "items": [
+      {
+        "label": "Deaths",
+        "value": "4,328",
+        "detail": "Counted by the Ministry of Public Health to mid-July 2026, from the war that began on 2 March 2026.",
+        "reporter": "Ministry of Public Health"
+      },
+      {
+        "label": "Injuries",
+        "value": "12,230",
+        "detail": "Counted over the same period.",
+        "reporter": "Ministry of Public Health"
+      },
+      {
+        "label": "Displaced at peak",
+        "value": "more than 1 million",
+        "detail": "At or near the peak of the 2026 war.",
+        "reporter": "Humanitarian reporting"
+      },
+      {
+        "label": "Reported returns",
+        "value": "741,111",
+        "detail": "Movement back toward areas of origin - movement data, not proof of durable return to habitable homes.",
+        "reporter": "Humanitarian reporting"
+      },
+      {
+        "label": "Still displaced",
+        "value": "412,700",
+        "detail": "As of 15 July 2026, four and a half months into the war.",
+        "reporter": "Humanitarian reporting"
+      }
+    ]
+  },
+  "shelter2024": {
+    "asOf": "2025-01-31",
+    "sourceIds": ["S17", "S16", "S18", "S19"],
+    "items": [
+      {
+        "label": "Collective sites assessed",
+        "value": "452",
+        "detail": "Government-designated collective sites assessed as needing repairs; work ongoing or completed in 225 of them by 19 November 2024.",
+        "reporter": "UNHCR and partners"
+      },
+      {
+        "label": "Core relief items distributed",
+        "value": "323,410",
+        "detail": "Reaching roughly 193,000 people since 23 September 2024; 94,400 people were targeted for cash-for-shelter.",
+        "reporter": "UNHCR"
+      },
+      {
+        "label": "Shelters supported",
+        "value": "596",
+        "detail": "Hosting 107,667 people with water, sanitation, health and child protection; UNRWA hosted about 3,680 displaced people across 11 further sites.",
+        "reporter": "UNICEF / UNRWA"
+      },
+      {
+        "label": "Shelter departures after the ceasefire",
+        "value": "76%",
+        "detail": "Out by 29 November 2024 - but leaving a shelter did not mean a safe home: many returned to damaged buildings or moved in with relatives while awaiting repairs or compensation.",
+        "reporter": "Shelter-sector reporting"
+      },
+      {
+        "label": "Still displaced into January 2025",
+        "value": "more than 100,000",
+        "detail": "Two months after the ceasefire, with no financed reconstruction programme in place.",
+        "reporter": "Shelter-sector reporting"
+      }
+    ]
+  }
+}

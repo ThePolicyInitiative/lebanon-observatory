@@ -1,0 +1,2524 @@
+[
+ {
+  "id": "a2024-3",
+  "year": 2024,
+  "name": "Presidency of the Council of Ministers (PCM) / Council of Ministers: Najib Mikati (Caretaker PM); Mahmoud Makkiya (SG, Council of Ministers)",
+  "layer": "official",
+  "subtype": "Public Authorities / Institutions",
+  "deJureDeFacto": "De jure: the state holds the monopoly on force and sole authority over reconstruction. De facto: Hezbollah retained parallel reconstruction and social-service capacity; state presence in the South remained thin after decades of limited deployment; LAF redeployment slow and incomplete.",
+  "recordCount": 7,
+  "sourceIds": [
+   "cat2024-3",
+   "cat2024-2",
+   "cat2024-5"
+  ]
+ },
+ {
+  "id": "a2024-4",
+  "year": 2024,
+  "name": "Government Emergency Committee (under PCM / Council of Ministers): Nasser Yassin (Coordinator; Minister of Environment)",
+  "layer": "official",
+  "subtype": "National executive coordination mechanism",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2024-3",
+   "cat2024-25",
+   "cat2024-4"
+  ]
+ },
+ {
+  "id": "a2024-5",
+  "year": 2024,
+  "name": "DRM Unit / National Operations Room (under PCM): Zahi Chahine (Head, DRM Unit)",
+  "layer": "official",
+  "subtype": "National emergency coordination mechanism",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-6",
+   "cat2024-5"
+  ]
+ },
+ {
+  "id": "a2024-6",
+  "year": 2024,
+  "name": "Supreme Council of Defense: Maj. Gen. Mohammad al-Mustafa (Secretary-General)",
+  "layer": "official",
+  "subtype": "Security and emergency institutions",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2024-7"
+  ]
+ },
+ {
+  "id": "a2024-7",
+  "year": 2024,
+  "name": "Council for Development and Reconstruction (CDR)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: national reconstruction coordination body. De facto: little independent capacity; functioned mainly as liaison between government and international donors.",
+  "recordCount": 6,
+  "sourceIds": [
+   "cat2024-26"
+  ]
+ },
+ {
+  "id": "a2024-8",
+  "year": 2024,
+  "name": "Council of the South: Hashem Haidar (Head)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": [
+   "cat2024-28"
+  ]
+ },
+ {
+  "id": "a2024-9",
+  "year": 2024,
+  "name": "Ministry of Agriculture / FAO: Abbas Hajj Hassan (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: lead authority for the agricultural sector. De facto: extension and field capacity minimal; assessment and recovery delivered through FAO and international partners.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-10",
+  "year": 2024,
+  "name": "Governorates and district administrations",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-29"
+  ]
+ },
+ {
+  "id": "a2024-11",
+  "year": 2024,
+  "name": "Higher Relief Commission: Maj. Gen. Mohammad Khair (Secretary-General)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": [
+   "cat2024-7"
+  ]
+ },
+ {
+  "id": "a2024-12",
+  "year": 2024,
+  "name": "Ministry of Education and Higher Education: Abbas Halabi (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-13",
+  "year": 2024,
+  "name": "Ministry of Environment: Nasser Yassin (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: lead authority for environmental protection and debris management. De facto: capacity hollowed out by the fiscal crisis; implementation carried by UN agencies and international partners.",
+  "recordCount": 7,
+  "sourceIds": [
+   "cat2024-25",
+   "cat2024-4"
+  ]
+ },
+ {
+  "id": "a2024-14",
+  "year": 2024,
+  "name": "Ministry of Culture / Directorate General of Antiquities (DGA): Mohammad Wissam Mortada (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-15",
+  "year": 2024,
+  "name": "Ministry of Finance / Treasury",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-16",
+  "year": 2024,
+  "name": "Ministry of Interior and Municipalities: Bassam Mawlawi (Minister)",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: responsible for local government. De facto: councils elected in May 2025 were new and inexperienced; capacity gaps widest in conflict-affected areas.",
+  "recordCount": 6,
+  "sourceIds": [
+   "cat2024-31",
+   "cat2024-32"
+  ]
+ },
+ {
+  "id": "a2024-17",
+  "year": 2024,
+  "name": "Ministry of Industry: George Boujikian (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-18",
+  "year": 2024,
+  "name": "Ministry of Information: Ziad Makary (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-19",
+  "year": 2024,
+  "name": "Ministry of Public Health: Firas Abiad (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: responsible for the health sector. De facto: system strained well beyond capacity; attacks on healthcare facilities continued.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-20",
+  "year": 2024,
+  "name": "Ministry of Public Works and Transport: Ali Hamieh (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: responsible for public infrastructure. De facto: no fiscal room; rehabilitation dependent on World Bank and bilateral financing.",
+  "recordCount": 7,
+  "sourceIds": [
+   "cat2024-15"
+  ]
+ },
+ {
+  "id": "a2024-21",
+  "year": 2024,
+  "name": "Ministry of Telecommunications / Ogero: Johnny Corm (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-22",
+  "year": 2024,
+  "name": "Ministry of Social Affairs: Hector Hajjar (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: responsible for social protection. De facto: limited execution capacity; transfer delivery dependent on WFP and international partners.",
+  "recordCount": 7,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-23",
+  "year": 2024,
+  "name": "Ministry of the Displaced: Issam Sharafeddine (Minister); Ahmad Mahmoud (DG)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-24",
+  "year": 2024,
+  "name": "Municipalities and local offices",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-31",
+   "cat2024-32"
+  ]
+ },
+ {
+  "id": "a2024-25",
+  "year": 2024,
+  "name": "Municipalities in affected areas",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-31",
+   "cat2024-32"
+  ]
+ },
+ {
+  "id": "a2024-26",
+  "year": 2024,
+  "name": "Public Procurement Authority",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-27",
+  "year": 2024,
+  "name": "Directorate General of Customs: Raymond Khoury (Acting DG)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-28",
+  "year": 2024,
+  "name": "Directorate General of Urban Planning (DGUP)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-29",
+  "year": 2024,
+  "name": "Civil Defense and security agencies",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: official emergency-response service. De facto: operated continuously under extreme danger with resources far below the scale of destruction.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-30",
+  "year": 2024,
+  "name": "Union of Municipalities of the Southern Suburbs",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": [
+   "cat2024-31",
+   "cat2024-32"
+  ]
+ },
+ {
+  "id": "a2024-31",
+  "year": 2024,
+  "name": "Donor governments and development partners (EU, Japan, Germany, KfW)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: major donor and development partner. De facto: larger recovery envelopes carried hard conditionality (an IMF deal, disarmament); smaller-scale recovery funding did not.",
+  "recordCount": 6,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-32",
+  "year": 2024,
+  "name": "IOM",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-33",
+  "year": 2024,
+  "name": "OCHA / humanitarian coordination",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: international humanitarian and development coordination authority. De facto: substantial operational presence but constrained by funding gaps, access restrictions and political complexity; UNIFIL drawdown reduced the stabilising presence.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-34",
+  "year": 2024,
+  "name": "UN-Habitat / University of Balamand / CREEMO-USJ",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-35",
+  "year": 2024,
+  "name": "UNDP: Blerta Aliko (Resident Representative)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: UN development agency. De facto: recovery funding thin and donor-dependent; role in practice largely coordination rather than delivery.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-36",
+  "year": 2024,
+  "name": "UNESCO",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-37",
+  "year": 2024,
+  "name": "UN Debris Taskforce",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-37"
+  ]
+ },
+ {
+  "id": "a2024-38",
+  "year": 2024,
+  "name": "UNHCR",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: UN refugee-protection mandate. De facto: heavy operational constraints; refugee returns largely spontaneous and poorly traced.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-39",
+  "year": 2024,
+  "name": "UNICEF / WFP",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: UN food-assistance mandate. De facto: fast and effective delivery but constrained by funding gaps and supply-chain disruption.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-40",
+  "year": 2024,
+  "name": "World Bank",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: development partner providing technical and financial assistance. De facto: substantial influence over reconstruction priorities; hard conditionality (an IMF deal, disarmament) attached by some donors to the large envelopes but not to smaller-scale funding.",
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2024-9"
+  ]
+ },
+ {
+  "id": "a2024-41",
+  "year": 2024,
+  "name": "Amel Association",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-42",
+  "year": 2024,
+  "name": "Anera",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-43",
+  "year": 2024,
+  "name": "Basmeh & Zeitooneh",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-44",
+  "year": 2024,
+  "name": "Beit El Baraka",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-45",
+  "year": 2024,
+  "name": "Caritas Lebanon",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-46",
+  "year": 2024,
+  "name": "INTERSOS",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-47",
+  "year": 2024,
+  "name": "Lebanese Food Bank",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2024-9"
+  ]
+ },
+ {
+  "id": "a2024-48",
+  "year": 2024,
+  "name": "Lebanese Food Bank / V Square",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-49",
+  "year": 2024,
+  "name": "Lebanese Red Cross",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: national Red Cross society. De facto: critical frontline responder operating at severe personal risk to staff and volunteers.",
+  "recordCount": 7,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-50",
+  "year": 2024,
+  "name": "Souk el Tayeb / Matbakh el Kell",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-51",
+  "year": 2024,
+  "name": "Nation Station",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-52",
+  "year": 2024,
+  "name": "NGO consortium / international NGOs",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-53",
+  "year": 2024,
+  "name": "Offre Joie",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-54",
+  "year": 2024,
+  "name": "AUB rubble-recycling researchers",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": "De jure: educational and research institutions. De facto: limited direct policy influence; role confined to technical support and research.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-55",
+  "year": 2024,
+  "name": "HOTOSM volunteer mappers",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-56",
+  "year": 2024,
+  "name": "Khatib & Alami",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-57",
+  "year": 2024,
+  "name": "Order of Engineers and Architects",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-58",
+  "year": 2024,
+  "name": "Public Works Studio",
+  "layer": "community",
+  "subtype": "Policy, research and accountability institutions",
+  "deJureDeFacto": "De jure: civil-society research organisation. De facto: critical analysis produced but limited traction - the exemptions law proceeded regardless.",
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2024-15"
+  ]
+ },
+ {
+  "id": "a2024-59",
+  "year": 2024,
+  "name": "Youth4Governance",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-60",
+  "year": 2024,
+  "name": "Al-Bunyan Co. S.A.L.",
+  "layer": "community",
+  "subtype": "Contractors and private implementers",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-61",
+  "year": 2024,
+  "name": "Nabatieh residents and businesses",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-62",
+  "year": 2024,
+  "name": "Residents, shop owners and households",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-63",
+  "year": 2024,
+  "name": "Shama household- and community-financed reconstruction",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-64",
+  "year": 2024,
+  "name": "Meiss al-Jabal / Kfar Kila / Shaqra individually financed rebuilding",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-65",
+  "year": 2024,
+  "name": "Hanouiyeh family-led debris clearing and livelihood recovery",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-66",
+  "year": 2024,
+  "name": "Abed Al-Kadiri",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-67",
+  "year": 2024,
+  "name": "Beirut Marathon Association",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-68",
+  "year": 2024,
+  "name": "Beit Aam / Beirut Art Center",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-69",
+  "year": 2024,
+  "name": "Lebanese National Theater / Kassem Istanbouli",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-70",
+  "year": 2024,
+  "name": "Palestinian Cultural Club / camp actors",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-71",
+  "year": 2024,
+  "name": "Rotaract water-system volunteers",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-72",
+  "year": 2024,
+  "name": "Aitaroun Recovery Project",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-73",
+  "year": 2024,
+  "name": "Wa Ta'awano prefabricated agricultural and service units",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-74",
+  "year": 2024,
+  "name": "Saida solidarity cleanup campaigns (Sour, Nabatieh)",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-75",
+  "year": 2024,
+  "name": "Jeel volunteer road and debris cleaning",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-76",
+  "year": 2024,
+  "name": "Egna Legna / Migrant Workers' Action",
+  "layer": "community",
+  "subtype": "Migrant / refugee / dignity support",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-77",
+  "year": 2024,
+  "name": "Jeyetna",
+  "layer": "community",
+  "subtype": "Migrant / refugee / dignity support",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-78",
+  "year": 2024,
+  "name": "Banin Charity Organization",
+  "layer": "community",
+  "subtype": "Other / mixed actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-79",
+  "year": 2024,
+  "name": "Local hotlines and municipal police",
+  "layer": "community",
+  "subtype": "Other / mixed actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-80",
+  "year": 2024,
+  "name": "Social-media cleanup leads",
+  "layer": "community",
+  "subtype": "Other / mixed actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-81",
+  "year": 2024,
+  "name": "CNRS-L",
+  "layer": "official",
+  "subtype": "Data and assessment institutions",
+  "deJureDeFacto": "De jure: national scientific research authority. De facto: operated as technical partner to international organisations; little independent implementation capacity.",
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2024-10"
+  ]
+ },
+ {
+  "id": "a2024-82",
+  "year": 2024,
+  "name": "Mercy Corps Lebanon Crisis Analytics Team (LCAT)",
+  "layer": "official",
+  "subtype": "Data and assessment institutions",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-83",
+  "year": 2024,
+  "name": "Directorate General of Roads and Buildings",
+  "layer": "official",
+  "subtype": "Public works and infrastructure",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2024-16",
+   "cat2024-34"
+  ]
+ },
+ {
+  "id": "a2024-84",
+  "year": 2024,
+  "name": "Ministry of Energy and Water: Walid Fayad (Minister)",
+  "layer": "official",
+  "subtype": "Energy and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2024-17"
+  ]
+ },
+ {
+  "id": "a2024-85",
+  "year": 2024,
+  "name": "Electricité du Liban (EDL)",
+  "layer": "official",
+  "subtype": "Energy and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2024-18"
+  ]
+ },
+ {
+  "id": "a2024-86",
+  "year": 2024,
+  "name": "Regional water establishments",
+  "layer": "official",
+  "subtype": "Water and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2024-19",
+   "cat2024-36"
+  ]
+ },
+ {
+  "id": "a2024-87",
+  "year": 2024,
+  "name": "Litani River Authority (LRA)",
+  "layer": "official",
+  "subtype": "Water and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2024-24"
+  ]
+ },
+ {
+  "id": "a2024-88",
+  "year": 2024,
+  "name": "Lebanese Armed Forces / Lebanon Mine Action Center (LAF / LMAC)",
+  "layer": "official",
+  "subtype": "Security and mine action",
+  "deJureDeFacto": "De jure: the LAF is the only legitimate armed force and LMAC the national mine-action authority. De facto: redeployment slow and incomplete, with Hezbollah retaining an armed presence in many areas; LMAC clearance constrained by the scale of contamination and by funding.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-89",
+  "year": 2024,
+  "name": "Qada-level local administration",
+  "layer": "municipal",
+  "subtype": "Local administration",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-90",
+  "year": 2024,
+  "name": "Unions of municipalities",
+  "layer": "municipal",
+  "subtype": "Local administration",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2024-12",
+   "cat2024-31",
+   "cat2024-32"
+  ]
+ },
+ {
+  "id": "a2024-91",
+  "year": 2024,
+  "name": "Local contractors / heavy-equipment owners / public operators",
+  "layer": "community",
+  "subtype": "Contractors and operators",
+  "deJureDeFacto": "De jure: licensed construction entities. De facto: much of the work performed informally; oversight thin; safety and labour standards a traced concern.",
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2024-33"
+  ]
+ },
+ {
+  "id": "a2024-97",
+  "year": 2024,
+  "name": "Banque du Liban (Central Bank): Karim Souaid (Governor, from 2025)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "De jure: central monetary authority. De facto: deeply insolvent, with lost credibility, little effective monetary policy capacity, and slow and contested reform.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-98",
+  "year": 2024,
+  "name": "International Monetary Fund (IMF)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: international financial oversight and lending authority. De facto: reform persistently obstructed by the political class; no programme agreed by mid-2026; conditionality treated by political elites as a threat.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-99",
+  "year": 2024,
+  "name": "Agence Francaise de Developpement (AFD)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: bilateral development partner. De facto: significant influence as PMU across several donor projects, on the back of strong government relationships.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-100",
+  "year": 2024,
+  "name": "International Committee of the Red Cross (ICRC)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": "De jure: neutral humanitarian intermediary. De facto: operated under severe access constraints, with attacks on medical facilities affecting operations.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-101",
+  "year": 2024,
+  "name": "Association of Lebanese Industrialists",
+  "layer": "community",
+  "subtype": "Private sector",
+  "deJureDeFacto": "De jure: private-sector representative body. De facto: limited operational scale; dependent on government and UN coordination for access to debris.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-102",
+  "year": 2024,
+  "name": "Chambers of Commerce, Industry and Agriculture",
+  "layer": "community",
+  "subtype": "Private sector",
+  "deJureDeFacto": "De jure: business representative bodies. De facto: little direct implementation capacity; role confined to advocacy and coordination.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-103",
+  "year": 2024,
+  "name": "Hezbollah",
+  "layer": "community",
+  "subtype": "Political-military and parallel service actors",
+  "deJureDeFacto": "De jure: a political party with parliamentary representation and no legal authority for armed operations or for reconstruction outside the permitting system. De facto: dominant armed actor in the South; parallel governance and social services; reconstruction carried out without permits or legal framework, leaving residents politically dependent on the party for housing.",
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-104",
+  "year": 2024,
+  "name": "Wa'ad / Jihad al-Bina'a (Hezbollah-affiliated)",
+  "layer": "community",
+  "subtype": "Political-military and parallel service actors",
+  "deJureDeFacto": "De jure: an NGO with no official reconstruction authority. De facto: the effective reconstruction actor in Shia-majority areas, bypassing state permits and planning and generating political dependency.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-105",
+  "year": 2024,
+  "name": "Al-Qard Al-Hassan (Hezbollah-affiliated)",
+  "layer": "community",
+  "subtype": "Political-military and parallel service actors",
+  "deJureDeFacto": "De jure: not recognised as an official financial institution and outside the regulatory perimeter. De facto: a critical source of financing for Hezbollah's constituency and significant parallel economic power; targeted militarily.",
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-106",
+  "year": 2024,
+  "name": "Islamic Health Committee (Hezbollah-affiliated)",
+  "layer": "community",
+  "subtype": "Political-military and parallel service actors",
+  "deJureDeFacto": "De jure: an NGO with no official health mandate. De facto: a critical health-service provider in underserved areas, and targeted as a Hezbollah-affiliated body.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-107",
+  "year": 2024,
+  "name": "WeWorld (INGO)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: international NGO implementing donor-funded projects. De facto: significant implementation capacity, working through municipal partnerships and MoUs with municipalities for land access.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-108",
+  "year": 2024,
+  "name": "Action Against Hunger (ACF)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: international humanitarian NGO. De facto: active in underserved areas but constrained by funding and access.",
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-109",
+  "year": 2024,
+  "name": "Norwegian Refugee Council (NRC)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: international humanitarian NGO. De facto: significant protection programming, constrained by access and security.",
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-110",
+  "year": 2024,
+  "name": "Lebanese Agricultural Research Institute (LARI)",
+  "layer": "official",
+  "subtype": "Data and assessment institutions",
+  "deJureDeFacto": "De jure: national agricultural research institution. De facto: limited resources, with operations dependent on international project funding.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-111",
+  "year": 2024,
+  "name": "Nawaya Network",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: local NGO. De facto: effective youth-employment programming, built on earlier UNICEF and donor support.",
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2024-112",
+  "year": 2024,
+  "name": "Al Majmoua / Vitas (microfinance institutions)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": "De jure: licensed microfinance institutions. De facto: limited reach, high interest rates, and operations constrained by the economic crisis.",
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-3",
+  "year": 2026,
+  "name": "Prime Minister's Office / Grand Serail / Council of Ministers: Nawaf Salam (Prime Minister)",
+  "layer": "official",
+  "subtype": "National executive authority",
+  "deJureDeFacto": "'First direct Israel-Lebanon talks since 1993' is contestable: direct Lebanese-Israeli negotiations took place at Naqoura on the maritime boundary in 2020-2022 under US mediation and UNIFIL hosting. Reword or drop the superlative.",
+  "recordCount": 5,
+  "sourceIds": [
+   "cat2026-3",
+   "cat2026-5",
+   "cat2026-6"
+  ]
+ },
+ {
+  "id": "a2026-4",
+  "year": 2026,
+  "name": "Presidency of the Republic: Joseph Aoun (President)",
+  "layer": "official",
+  "subtype": "National executive authority",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-2"
+  ]
+ },
+ {
+  "id": "a2026-5",
+  "year": 2026,
+  "name": "Deputy Prime Minister (within Council of Ministers) Tarek Mitri (Deputy PM)",
+  "layer": "official",
+  "subtype": "National executive authority",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-4",
+   "cat2026-5",
+   "cat2026-3"
+  ]
+ },
+ {
+  "id": "a2026-6",
+  "year": 2026,
+  "name": "National DRM Unit / National Emergency Operations Room (NEOR): Zahi Chahine (Head, DRM Unit)",
+  "layer": "official",
+  "subtype": "National emergency coordination mechanism",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-7",
+   "cat2026-8",
+   "cat2026-50"
+  ]
+ },
+ {
+  "id": "a2026-7",
+  "year": 2026,
+  "name": "Council for Development and Reconstruction (CDR)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 0,
+  "sourceIds": [
+   "cat2026-21",
+   "cat2026-22",
+   "cat2026-50"
+  ]
+ },
+ {
+  "id": "a2026-8",
+  "year": 2026,
+  "name": "Council of the South: Hashem Haidar (Head)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-9",
+  "year": 2026,
+  "name": "Governorates and district administrations",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-10",
+  "year": 2026,
+  "name": "Higher Relief Commission",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-11",
+  "year": 2026,
+  "name": "Lebanese Food Bank / food-security partners",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-12",
+  "year": 2026,
+  "name": "Ministry of Education and Higher Education / TVET schools",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-13",
+  "year": 2026,
+  "name": "Ministry of Environment: Tamara El-Zein (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-37"
+  ]
+ },
+ {
+  "id": "a2026-14",
+  "year": 2026,
+  "name": "Ministry of Interior and Municipalities: Ahmad al-Hajjar (Minister)",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-11",
+   "cat2026-13"
+  ]
+ },
+ {
+  "id": "a2026-15",
+  "year": 2026,
+  "name": "Ministry of Public Health: Rakan Nassereddine (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-39"
+  ]
+ },
+ {
+  "id": "a2026-16",
+  "year": 2026,
+  "name": "Ministry of Public Works and Transport: Fayez Rasamny (Minister)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-32"
+  ]
+ },
+ {
+  "id": "a2026-17",
+  "year": 2026,
+  "name": "Ministry of Public Works and Transport field teams",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-18",
+  "year": 2026,
+  "name": "Ministry of Telecommunications / Ogero",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-68"
+  ]
+ },
+ {
+  "id": "a2026-19",
+  "year": 2026,
+  "name": "Ministry of Social Affairs:Haneen Sayed (Minister); Ola Boutros (LRP General Supervisor)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": "Figure conflict inside the source: this row reports 336,000 people reached with emergency cash while the source's WFP row reports 226,000 as the total reached for the same period. Reconcile the caseload definitions (SRSN versus MPCA versus WFP-executed) before publication.",
+  "recordCount": 8,
+  "sourceIds": [
+   "cat2026-9",
+   "cat2026-38"
+  ]
+ },
+ {
+  "id": "a2026-20",
+  "year": 2026,
+  "name": "Municipalities",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2026-11",
+   "cat2026-13",
+   "cat2026-54"
+  ]
+ },
+ {
+  "id": "a2026-21",
+  "year": 2026,
+  "name": "Public Procurement Authority",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-63"
+  ]
+ },
+ {
+  "id": "a2026-22",
+  "year": 2026,
+  "name": "Directorate General of Urban Planning (DGUP)",
+  "layer": "official",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-23",
+  "year": 2026,
+  "name": "Union of Municipalities of the Southern Suburbs",
+  "layer": "municipal",
+  "subtype": "Public authorities",
+  "deJureDeFacto": null,
+  "recordCount": 7,
+  "sourceIds": [
+   "cat2026-54",
+   "cat2026-13"
+  ]
+ },
+ {
+  "id": "a2026-24",
+  "year": 2026,
+  "name": "Donor governments and development partners (KfW, Japan, EU)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-25",
+  "year": 2026,
+  "name": "IOM",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": [
+   "cat2026-14"
+  ]
+ },
+ {
+  "id": "a2026-26",
+  "year": 2026,
+  "name": "OCHA / humanitarian coordination",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 9,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-27",
+  "year": 2026,
+  "name": "UNDP / National Operations Room: Blerta Aliko (Resident Representative)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2026-18",
+   "cat2026-55"
+  ]
+ },
+ {
+  "id": "a2026-28",
+  "year": 2026,
+  "name": "UNHCR",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-29",
+  "year": 2026,
+  "name": "UNICEF / WFP",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 8,
+  "sourceIds": [
+   "cat2026-15",
+   "cat2026-16"
+  ]
+ },
+ {
+  "id": "a2026-30",
+  "year": 2026,
+  "name": "UNICEF / WFP youth kitchens",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2026-15",
+   "cat2026-16"
+  ]
+ },
+ {
+  "id": "a2026-31",
+  "year": 2026,
+  "name": "UNRWA",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-32",
+  "year": 2026,
+  "name": "UN Debris Taskforce",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-65"
+  ]
+ },
+ {
+  "id": "a2026-33",
+  "year": 2026,
+  "name": "USA for UNHCR + Embrace Relief USA",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-34",
+  "year": 2026,
+  "name": "World Bank / Lebanon Emergency Assistance Project (LEAP)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 7,
+  "sourceIds": [
+   "cat2026-20",
+   "cat2026-51",
+   "cat2026-59"
+  ]
+ },
+ {
+  "id": "a2026-35",
+  "year": 2026,
+  "name": "Action for Humanity / Giving Kitchen",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-36",
+  "year": 2026,
+  "name": "Amel Association",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-37",
+  "year": 2026,
+  "name": "Anera",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-38",
+  "year": 2026,
+  "name": "Beit El Baraka",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-39",
+  "year": 2026,
+  "name": "Caritas Lebanon",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-40",
+  "year": 2026,
+  "name": "Lebanese Red Cross",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": [
+   "cat2026-44"
+  ]
+ },
+ {
+  "id": "a2026-41",
+  "year": 2026,
+  "name": "MSF + Ahla Fawda + Barzakh",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-42",
+  "year": 2026,
+  "name": "Nation Station",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-43",
+  "year": 2026,
+  "name": "NGO consortium / international NGOs",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 9,
+  "sourceIds": [
+   "cat2026-19"
+  ]
+ },
+ {
+  "id": "a2026-44",
+  "year": 2026,
+  "name": "Nusaned",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-45",
+  "year": 2026,
+  "name": "Souk el Tayeb / Matbakh el Kell",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-46",
+  "year": 2026,
+  "name": "World Central Kitchen",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-47",
+  "year": 2026,
+  "name": "Public Works Studio",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-48",
+  "year": 2026,
+  "name": "Order of Engineers and Architects",
+  "layer": "community",
+  "subtype": "Technical, policy and watchdog actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-49",
+  "year": 2026,
+  "name": "Al-Bunyan / contractors",
+  "layer": "community",
+  "subtype": "Contractors and private implementers",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": [
+   "cat2026-58"
+  ]
+ },
+ {
+  "id": "a2026-50",
+  "year": 2026,
+  "name": "Residents and returnees",
+  "layer": "community",
+  "subtype": "Affected residents / self-recovery",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-51",
+  "year": 2026,
+  "name": "Bake Atelier / Jibal / Raseef / Tres Marias",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-52",
+  "year": 2026,
+  "name": "Beirut cultural actors",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-53",
+  "year": 2026,
+  "name": "Beirut Marathon Association",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-54",
+  "year": 2026,
+  "name": "Dada Community Art Space",
+  "layer": "community",
+  "subtype": "Cultural, psychosocial and arts initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-55",
+  "year": 2026,
+  "name": "Food and More by Farah / Live Love Bourj el Barajneh",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-56",
+  "year": 2026,
+  "name": "Hamra Community Kitchen",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-57",
+  "year": 2026,
+  "name": "Haven for Artists",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-58",
+  "year": 2026,
+  "name": "Humans of Dahieh",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-59",
+  "year": 2026,
+  "name": "Juliette & Omar initiative",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-60",
+  "year": 2026,
+  "name": "Local and regional volunteer networks",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-61",
+  "year": 2026,
+  "name": "Ma'a Baad",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-62",
+  "year": 2026,
+  "name": "Maan / Man wa Salwa / Truth Be Told",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-63",
+  "year": 2026,
+  "name": "Palestinian Cultural Club / Mar Elias camp",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-64",
+  "year": 2026,
+  "name": "Reyhan Beirut",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-47"
+  ]
+ },
+ {
+  "id": "a2026-65",
+  "year": 2026,
+  "name": "Rotaract",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-66",
+  "year": 2026,
+  "name": "Solidarity Network with Lebanon",
+  "layer": "community",
+  "subtype": "Community / grassroots / cultural actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-67",
+  "year": 2026,
+  "name": "Student Forum",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-68",
+  "year": 2026,
+  "name": "Tota / Radio Karantina",
+  "layer": "community",
+  "subtype": "Community entries and information initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-69",
+  "year": 2026,
+  "name": "Wled el Balad",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-70",
+  "year": 2026,
+  "name": "Migrant-worker support initiatives",
+  "layer": "community",
+  "subtype": "Migrant / refugee / dignity support",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-71",
+  "year": 2026,
+  "name": "Syrian Eyes",
+  "layer": "community",
+  "subtype": "Migrant, refugee and vulnerable-group support",
+  "deJureDeFacto": null,
+  "recordCount": 6,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-72",
+  "year": 2026,
+  "name": "Ila el Nas",
+  "layer": "community",
+  "subtype": "Other / mixed actors",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-73",
+  "year": 2026,
+  "name": "Popular Coordination",
+  "layer": "community",
+  "subtype": "Other / mixed actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-74",
+  "year": 2026,
+  "name": "WASH sector focal points",
+  "layer": "ngo_international",
+  "subtype": "Sector coordination",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-75",
+  "year": 2026,
+  "name": "Shelter sector focal points",
+  "layer": "ngo_international",
+  "subtype": "Sector coordination",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-76",
+  "year": 2026,
+  "name": "Food Security and Agriculture sector focal points",
+  "layer": "ngo_international",
+  "subtype": "Sector coordination",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-77",
+  "year": 2026,
+  "name": "Subnational sector focal points",
+  "layer": "ngo_international",
+  "subtype": "Sector coordination",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-78",
+  "year": 2026,
+  "name": "WHO",
+  "layer": "ngo_international",
+  "subtype": "UN and health actors",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-17"
+  ]
+ },
+ {
+  "id": "a2026-79",
+  "year": 2026,
+  "name": "Ministry of Finance: Yassine Jaber (Minister)",
+  "layer": "official",
+  "subtype": "Public finance",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-23"
+  ]
+ },
+ {
+  "id": "a2026-80",
+  "year": 2026,
+  "name": "Ministry of Energy and Water: Joe Saddi (Minister)",
+  "layer": "official",
+  "subtype": "Energy and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-33"
+  ]
+ },
+ {
+  "id": "a2026-81",
+  "year": 2026,
+  "name": "Electricité du Liban (EDL)",
+  "layer": "official",
+  "subtype": "Energy and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-34"
+  ]
+ },
+ {
+  "id": "a2026-82",
+  "year": 2026,
+  "name": "Water establishments (SLWE, BWE, BMLWE, NLWE)",
+  "layer": "official",
+  "subtype": "Water and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-35"
+  ]
+ },
+ {
+  "id": "a2026-83",
+  "year": 2026,
+  "name": "Litani River Authority (LRA)",
+  "layer": "official",
+  "subtype": "Water and public utilities",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-36"
+  ]
+ },
+ {
+  "id": "a2026-84",
+  "year": 2026,
+  "name": "Ministry of Agriculture: Nizar Hani (Minister)",
+  "layer": "official",
+  "subtype": "Line ministries",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2026-40"
+  ]
+ },
+ {
+  "id": "a2026-85",
+  "year": 2026,
+  "name": "Ministry of Culture / Directorate General of Antiquities (DGA): Ghassan Salamé (Minister)",
+  "layer": "official",
+  "subtype": "Cultural heritage",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2026-41"
+  ]
+ },
+ {
+  "id": "a2026-86",
+  "year": 2026,
+  "name": "Lebanese Armed Forces (LAF)",
+  "layer": "official",
+  "subtype": "Security and access",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-87",
+  "year": 2026,
+  "name": "UNIFIL",
+  "layer": "official",
+  "subtype": "Security and access",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-88",
+  "year": 2026,
+  "name": "Civil Defense Directorate General",
+  "layer": "official",
+  "subtype": "Security and access",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-43"
+  ]
+ },
+ {
+  "id": "a2026-89",
+  "year": 2026,
+  "name": "Internal Security Forces (ISF):Maj. Gen. Raed Abdallah (DG)",
+  "layer": "official",
+  "subtype": "Security and access",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-45"
+  ]
+ },
+ {
+  "id": "a2026-90",
+  "year": 2026,
+  "name": "CNRS-L / Remote Sensing",
+  "layer": "official",
+  "subtype": "Data and assessment institutions",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-48"
+  ]
+ },
+ {
+  "id": "a2026-91",
+  "year": 2026,
+  "name": "Third-Party Monitoring Agent (TPMA)",
+  "layer": "ngo_international",
+  "subtype": "Monitoring and accountability",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-30",
+   "cat2026-49"
+  ]
+ },
+ {
+  "id": "a2026-92",
+  "year": 2026,
+  "name": "Grievance Redress Mechanism (GRM) / community feedback",
+  "layer": "official",
+  "subtype": "Accountability and feedback",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-31",
+   "cat2026-52"
+  ]
+ },
+ {
+  "id": "a2026-93",
+  "year": 2026,
+  "name": "Public procurement transparency system",
+  "layer": "official",
+  "subtype": "Procurement and transparency",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-63"
+  ]
+ },
+ {
+  "id": "a2026-94",
+  "year": 2026,
+  "name": "LEAP technical assistance and supervision packages",
+  "layer": "official",
+  "subtype": "LEAP implementation packages",
+  "deJureDeFacto": null,
+  "recordCount": 1,
+  "sourceIds": [
+   "cat2026-27"
+  ]
+ },
+ {
+  "id": "a2026-95",
+  "year": 2026,
+  "name": "LEAP Project Management Unit (PMU/PIU in CDR)",
+  "layer": "official",
+  "subtype": "LEAP implementation packages",
+  "deJureDeFacto": null,
+  "recordCount": 4,
+  "sourceIds": [
+   "cat2026-22",
+   "cat2026-50",
+   "cat2026-57"
+  ]
+ },
+ {
+  "id": "a2026-96",
+  "year": 2026,
+  "name": "Ahaly el Madina",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-97",
+  "year": 2026,
+  "name": "Hunna",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-98",
+  "year": 2026,
+  "name": "Tripoli Volunteers",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-99",
+  "year": 2026,
+  "name": "Lebanon Southern",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-100",
+  "year": 2026,
+  "name": "Sanad",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-101",
+  "year": 2026,
+  "name": "Eye on Lebanon",
+  "layer": "community",
+  "subtype": "Community entries and information initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-102",
+  "year": 2026,
+  "name": "Humans of the South",
+  "layer": "community",
+  "subtype": "Community entries and information initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": [
+   "cat2026-46"
+  ]
+ },
+ {
+  "id": "a2026-103",
+  "year": 2026,
+  "name": "Benaa Association",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-104",
+  "year": 2026,
+  "name": "Wadi el Zeineh Initiative",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-105",
+  "year": 2026,
+  "name": "Sanadak",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-106",
+  "year": 2026,
+  "name": "Nordisk Hjalp",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-107",
+  "year": 2026,
+  "name": "Lighter Style",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-108",
+  "year": 2026,
+  "name": "Jeyetna",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-109",
+  "year": 2026,
+  "name": "Deep Sleep",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-110",
+  "year": 2026,
+  "name": "Migrant Workers' Action",
+  "layer": "community",
+  "subtype": "Migrant, refugee and vulnerable-group support",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-111",
+  "year": 2026,
+  "name": "Reman Org",
+  "layer": "community",
+  "subtype": "Migrant, refugee and vulnerable-group support",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-112",
+  "year": 2026,
+  "name": "DoWan",
+  "layer": "community",
+  "subtype": "Migrant, refugee and vulnerable-group support",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-113",
+  "year": 2026,
+  "name": "Bake Atelier",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-114",
+  "year": 2026,
+  "name": "Jibal",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-115",
+  "year": 2026,
+  "name": "Tres Marias",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-116",
+  "year": 2026,
+  "name": "Raseef",
+  "layer": "community",
+  "subtype": "Cultural, psychosocial and arts initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-117",
+  "year": 2026,
+  "name": "Shield",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-118",
+  "year": 2026,
+  "name": "Farah Al Atta",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-119",
+  "year": 2026,
+  "name": "Shababeek Association",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-120",
+  "year": 2026,
+  "name": "One Roof",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-121",
+  "year": 2026,
+  "name": "Maan",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-122",
+  "year": 2026,
+  "name": "Man wa Salwa",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-123",
+  "year": 2026,
+  "name": "Truth Be Told",
+  "layer": "community",
+  "subtype": "Community entries and information initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-124",
+  "year": 2026,
+  "name": "Food and More by Farah",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 2,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-125",
+  "year": 2026,
+  "name": "Live Love Bourj El Barajneh",
+  "layer": "community",
+  "subtype": "Community, volunteer and solidarity initiatives",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-126",
+  "year": 2026,
+  "name": "Sweden (Sida)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-127",
+  "year": 2026,
+  "name": "International Monetary Fund (IMF)",
+  "layer": "ngo_international",
+  "subtype": "UN, donors and multilaterals",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-128",
+  "year": 2026,
+  "name": "Local businesses and MSMEs",
+  "layer": "community",
+  "subtype": "Private sector",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-129",
+  "year": 2026,
+  "name": "Financial sector / commercial banks",
+  "layer": "official",
+  "subtype": "Public finance",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-130",
+  "year": 2026,
+  "name": "Action Against Hunger (ACF)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-131",
+  "year": 2026,
+  "name": "Norwegian Refugee Council (NRC)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 5,
+  "sourceIds": []
+ },
+ {
+  "id": "a2026-132",
+  "year": 2026,
+  "name": "International Committee of the Red Cross (ICRC)",
+  "layer": "ngo_international",
+  "subtype": "NGOs and humanitarian organizations",
+  "deJureDeFacto": null,
+  "recordCount": 3,
+  "sourceIds": [
+   "cat2026-44"
+  ]
+ }
+]
