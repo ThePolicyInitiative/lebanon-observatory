@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
-import { locations, gazetteer, STAGES } from "@/lib/data-client";
+import { LAYER_META } from "@/lib/colors";
+import { locations, STAGES } from "@/lib/data-client";
 import type { SlimRecord } from "@/lib/map-records";
 import {
   DISTRICT_PATHS,
@@ -29,7 +29,6 @@ import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
 import destruction from "@/data/destruction.json";
 import districtDamage from "@/data/district-damage.json";
 import {
-  eventsByLocality,
   eventsByTown,
   eventsFor,
   EVENT_KIND_META,
@@ -74,7 +73,6 @@ type Props = {
   regionValues: Record<string, number>;
   maxRegion: number;
   rampColor: string;
-  localityRecords: Map<string, SlimRecord[]>;
   /** All entries under the current filters, for district-level shading. */
   records: SlimRecord[];
   /** Entries under the non-year filters, both years (change view). */
@@ -163,10 +161,6 @@ const REGION_VIEWS: { label: string; vb: ViewBox }[] = [
   { label: "Tripoli & Akkar", vb: vbFromLonLat(35.6, 34.22, 36.55, 34.75) },
 ];
 
-/** Small teardrop map pin, anchored at its tip (0,0). ~14px tall. */
-const PIN_PATH =
-  "M0 0 C -3.1 -5.4, -4.7 -7.3, -4.7 -9.8 A 4.7 4.7 0 1 1 4.7 -9.8 C 4.7 -7.3, 3.1 -5.4, 0 0 Z";
-
 /** Annular sector path for donut markers (angles in radians, from 12 o'clock). */
 function arcPath(r0: number, r1: number, a0: number, a1: number): string {
   const start = a0 - Math.PI / 2;
@@ -181,7 +175,7 @@ function arcPath(r0: number, r1: number, a0: number, a1: number): string {
  * Vector map at town (cadastre) detail: 1,600+ town polygons from the
  * OCHA COD boundary data shaded by their regional grouping's value,
  * with wheel/drag/button zoom and pan, district outlines and labels,
- * city labels, pins for traced localities, diamond markers on
+ * city labels, markers on the towns work is traced in, diamonds on
  * towns with traced episodes, a hover readout, a scale bar, and
  * hatching over border districts containing Israeli-occupied areas
  * (2026). The district base renders from server HTML instantly; the
@@ -192,7 +186,6 @@ export default function SvgLebanonMap({
   regionValues,
   maxRegion,
   rampColor,
-  localityRecords,
   records,
   recordsAllYears,
   view,
@@ -211,11 +204,12 @@ export default function SvgLebanonMap({
   const [selectedTownRaw, setSelectedTownRaw] = useState<string | null>(null);
   const [selectedTownUid, setSelectedTownUid] = useState<string | null>(null);
   const [selectedOccupation, setSelectedOccupation] = useState<"" | "strip" | "district">("");
-  const [selectedLocality, setSelectedLocality] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [hover, setHover] = useState<string | null>(null);
   const [hoverUid, setHoverUid] = useState<string | null>(null);
   const [vb, setVb] = useState<ViewBox>(HOME);
+  /** Rendered width of the SVG in CSS pixels; VIEW_W until measured. */
+  const [renderedW, setRenderedW] = useState(VIEW_W);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -235,9 +229,30 @@ export default function SvgLebanonMap({
     cy: number;
   } | null>(null);
 
-  /** Counter-scale factor: multiply screen-constant sizes by this. */
-  const k = vb.w / VIEW_W;
+  /**
+   * Two scales that used to be one. `zoom` is how far the viewBox is in
+   * (1 = the whole country) and gates which detail appears. `k` is user
+   * units per CSS pixel: multiply a pixel size by it and the pin, label
+   * or scale bar keeps that size on screen at any container width. The
+   * two agreed only while the map was a fixed 620px-ish wide, so giving
+   * it the full page width scaled every marker up with it.
+   */
+  const zoom = vb.w / VIEW_W;
+  const k = vb.w / renderedW;
   const zoomed = vb.w < VIEW_W - 0.5;
+
+  /* Measure the rendered width so `k` is real pixels. Starts at VIEW_W,
+     which is what the server renders with. */
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect.width ?? 0;
+      if (w > 0) setRenderedW(w);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -440,7 +455,6 @@ export default function SvgLebanonMap({
     setSelectedOccupation(
       year !== 2026 ? "" : t.strip ? "strip" : t.occupied ? "district" : "",
     );
-    setSelectedLocality(null);
   }
 
   function onSearch(value: string) {
@@ -624,17 +638,6 @@ export default function SvgLebanonMap({
     return set;
   }, [placePoints, k]);
 
-  /** Gazetteer pins remain only for places no town point covers. */
-  const fallbackPins = useMemo(() => {
-    const covered = new Set(placePoints.map((p) => p.town.name));
-    return gazetteer.localities.filter((loc) => {
-      if (!localityRecords.has(loc.name)) return false;
-      if (!locIndex) return true;
-      const m = matchLocations(locIndex, [loc.name]);
-      return ![...m.towns].some((tn) => covered.has(tn));
-    });
-  }, [placePoints, localityRecords, locIndex]);
-
   /** Town fills - memoized so zoom/pan and hover don't re-diff 1,600 paths. */
   const townLayer = useMemo(() => {
     if (!towns) return null;
@@ -723,7 +726,6 @@ export default function SvgLebanonMap({
       ] as Record<ActorLayer, number> | undefined)
     : undefined;
 
-  const selectedRecords = selectedLocality ? localityRecords.get(selectedLocality) ?? [] : [];
   const selectedDistrictRecords = selectedDistrict
     ? districtRecords.get(selectedDistrict) ?? []
     : [];
@@ -735,11 +737,6 @@ export default function SvgLebanonMap({
     selectedTownRaw ? eventsByTown.get(selectedTownRaw) : undefined,
     year,
   );
-  const localityEvents = eventsFor(
-    selectedLocality ? eventsByLocality.get(selectedLocality) : undefined,
-    year,
-  );
-
   /** Adaptive scale bar: a round distance that stays 40–150 px on screen. */
   const scaleKm =
     [100, 50, 25, 10, 5, 2, 1].find((km) => (km * PX_PER_KM) / k <= 150) ?? 1;
@@ -795,7 +792,7 @@ export default function SvgLebanonMap({
         ))}
         {view === "change" ? (
           <span className="text-[color:var(--color-text-secondary)]">
-            both years shown; the year toggle applies to pins and episode markers
+            both years shown; the year toggle applies to town and episode markers
           </span>
         ) : null}
       </div>
@@ -1034,7 +1031,7 @@ export default function SvgLebanonMap({
               })()}
 
               {/* District labels appear once zoomed in */}
-              {k <= 0.55
+              {zoom <= 0.55
                 ? DISTRICT_LABELS.map((l) => (
                     <text
                       key={`dl-${l.name}`}
@@ -1090,7 +1087,7 @@ export default function SvgLebanonMap({
                 ? placePoints.map((p) => {
                     const t = p.town;
                     const isSel = selectedTownName === t.name;
-                    const donut = k <= 0.5;
+                    const donut = zoom <= 0.5;
                     const rBase = Math.min(9, 3 + Math.sqrt(p.total) * 1.5);
                     const r = donut ? rBase * 1.7 : rBase;
                     const r0 = r * 0.55;
@@ -1204,64 +1201,6 @@ export default function SvgLebanonMap({
                     );
                   })
                 : null}
-
-              {/* Fallback pins: localities no town point covers */}
-              {view !== "entries" ? null : fallbackPins
-                .map((loc) => {
-                  const recs = localityRecords.get(loc.name)!;
-                  const { x, y } = projectPoint(loc.lon, loc.lat);
-                  const isSel = selectedLocality === loc.name;
-                  return (
-                    <g
-                      key={loc.name}
-                      transform={`translate(${x} ${y}) scale(${k})`}
-                      tabIndex={0}
-                      role="button"
-                      aria-label={`${loc.name}: ${recs.length} traced traced activities in ${year}`}
-                      className="cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
-                      onClick={() => {
-                        setSelectedLocality(loc.name);
-                        setSelectedZone(null);
-                        setSelectedArea(null);
-                        setSelectedDistrict(null);
-                        setSelectedTownRaw(null);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setSelectedLocality(loc.name);
-                          setSelectedZone(null);
-                          setSelectedArea(null);
-                          setSelectedDistrict(null);
-                          setSelectedTownRaw(null);
-                        }
-                      }}
-                    >
-                      <path
-                        d={PIN_PATH}
-                        fill={isSel ? "#D69600" : "#173B63"}
-                        stroke="#FFFFFF"
-                        strokeWidth={1.1}
-                      />
-                      <circle cx={0} cy={-9.8} r={1.7} fill="#FFFFFF" />
-                      {k <= 0.45 ? (
-                        <text
-                          x={6}
-                          y={0}
-                          fontSize={9.5}
-                          fill="#173B63"
-                          stroke="#FFFFFF"
-                          strokeWidth={2.2}
-                          paintOrder="stroke"
-                          fontWeight={600}
-                        >
-                          {loc.name}
-                        </text>
-                      ) : null}
-                      <title>{`${loc.name}: ${recs.length} entries`}</title>
-                    </g>
-                  );
-                })}
 
               {/* Damage-assessment badges: worst cadasters + the Dahieh debris share */}
               {view === "damage" ? (
@@ -1426,14 +1365,6 @@ export default function SvgLebanonMap({
                   <span aria-hidden className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: "#667588" }} />
                   conflict-context episodes only
                 </li>
-                {fallbackPins.length > 0 ? (
-                  <li className="flex items-center gap-1.5">
-                    <svg width="10" height="14" viewBox="-6 -16 12 17" aria-hidden>
-                      <path d={PIN_PATH} fill="#173B63" stroke="#FFFFFF" strokeWidth="1" />
-                    </svg>
-                    locality pin (approximate position)
-                  </li>
-                ) : null}
               </>
             ) : view === "change" ? (
               <>
@@ -1496,7 +1427,7 @@ export default function SvgLebanonMap({
           </ul>
           <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
             Scroll, drag or use the buttons to zoom and pan; district names
-            appear from ×1.8 zoom, pin and marker labels from ×2.2.
+            appear from ×1.8 zoom, marker labels from ×2.2.
             {view === "entries"
               ? " Every marker sits at the actual town where the entry or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
               : view === "change"
@@ -1553,7 +1484,7 @@ export default function SvgLebanonMap({
 
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
-        {(selectedZone && zoneMentions) || selectedLocality ? (
+        {selectedZone && zoneMentions ? (
           <aside aria-live="polite" className="card p-4">
           {selectedZone && zoneMentions ? (
             <>
@@ -1749,29 +1680,6 @@ export default function SvgLebanonMap({
                 </Link>
               </p>
               <EventsList events={townEvents} />
-            </>
-          ) : selectedLocality ? (
-            <>
-              <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-                {selectedLocality} · {year}
-              </h3>
-              <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-                {selectedRecords.length} traced activities under the
-                current filters. Pin position approximate.
-              </p>
-              <ul className="mt-2 space-y-1 text-[13px]">
-                {[...new Set(selectedRecords.map((r) => r.actorName.split(":")[0]))]
-                  .slice(0, 8)
-                  .map((a) => (
-                    <li key={a}>• {a}</li>
-                  ))}
-              </ul>
-              <p className="mt-2 text-xs text-[color:var(--color-text-secondary)]">
-                Stages: {[...new Set(selectedRecords.map((r) => r.stage))].slice(0, 4).join("; ")}
-                <br />
-                Status: {[...new Set(selectedRecords.map((r) => STATUS_LABELS[r.implementationStatus]))].join("; ")}
-              </p>
-              <EventsList events={localityEvents} />
             </>
           ) : null}
           </aside>

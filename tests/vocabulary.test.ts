@@ -43,8 +43,11 @@ function copyStrings(source: string): string[] {
     if (/^[@./]|\.(json|ts|tsx|css|svg|png|geojson)$/.test(s)) continue;
     out.push(s);
   }
-  // Template literals, with the interpolated expressions (code) removed.
-  for (const m of source.matchAll(/`([^`]{4,})`/g))
+  // Single-line template literals, with the interpolated expressions
+  // (code) removed. Pairing backticks across lines cannot be done without
+  // a real lexer - it swallows whole code blocks and reports identifiers
+  // as copy - so multi-line templates are left to the rendered-page check.
+  for (const m of source.matchAll(/`([^`\n]{4,})`/g))
     out.push(m[1].replace(/\$\{[^}]*\}/g, " "));
   for (const m of source.matchAll(/>([^<>{}\n]{4,})</g)) out.push(m[1]);
   return out;

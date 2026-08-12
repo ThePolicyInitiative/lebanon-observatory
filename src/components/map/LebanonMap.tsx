@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
-import { locations, gazetteer, STAGES, CAUTION_MAP } from "@/lib/data-client";
+import { locations, STAGES, CAUTION_MAP } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
 import type { SlimRecord } from "@/lib/map-records";
 import { useUrlState } from "@/lib/useUrlState";
@@ -21,7 +21,6 @@ import {
 } from "@/lib/geo-match";
 import {
   LOCALITY_EVENTS,
-  eventsByLocality,
   eventsByTown,
   eventsFor,
   EVENT_KIND_META,
@@ -103,27 +102,6 @@ export default function LebanonMap() {
     }
     return values;
   }, [year, layerFilter]);
-
-  /** Locality entries under the full filter set (for points + popups). */
-  const localityRecords = useMemo(() => {
-    const out = new Map<string, SlimRecord[]>();
-    for (const loc of gazetteer.localities) {
-      const needle = loc.name.toLowerCase().split("(")[0].trim();
-      const recs = slimRecords.filter((r) => {
-        if (r.year !== year) return false;
-        if (layerFilter !== "all" && r.actorLayer !== layerFilter) return false;
-        if (stageFilter !== "all" && String(r.stageNo) !== stageFilter) return false;
-        if (statusFilter !== "all" && r.implementationStatus !== statusFilter) return false;
-        if (comparabilityFilter !== "all" && r.comparability !== comparabilityFilter) return false;
-        return (
-          r.locationNames.some((l) => l.toLowerCase().includes(needle)) ||
-          r.hay.includes(needle)
-        );
-      });
-      if (recs.length > 0) out.set(loc.name, recs);
-    }
-    return out;
-  }, [year, layerFilter, stageFilter, statusFilter, comparabilityFilter]);
 
   /** Entries under the non-year filters, both years (for the change view). */
   const recordsAllYears = useMemo(
@@ -551,32 +529,6 @@ export default function LebanonMap() {
         });
       }
     }
-    // Gazetteer pins only for localities no town point covers.
-    for (const loc of gazetteer.localities) {
-      const recs = localityRecords.get(loc.name);
-      if (!recs) continue;
-      if (idx) {
-        const m = matchLocations(idx, [loc.name]);
-        if ([...m.towns].some((tn) => covered.has(tn))) continue;
-      }
-      features.push({
-        type: "Feature" as const,
-        geometry: { type: "Point" as const, coordinates: [loc.lon, loc.lat] },
-        properties: {
-          name: loc.name,
-          radius: Math.min(8, 3.5 + Math.sqrt(recs.length) * 0.9),
-          color: "#173B63",
-          popupHtml: detailHtml(
-            loc.name,
-            "",
-            recs,
-            eventsFor(eventsByLocality.get(loc.name), year),
-            "Note: mentions in the actor-stage tracking; point position approximate.",
-          ),
-        },
-      });
-    }
-
     const src = map.getSource("localities");
     if (src && "setData" in src) {
       (src as unknown as { setData: (d: unknown) => void }).setData({
@@ -584,7 +536,7 @@ export default function LebanonMap() {
         features,
       });
     }
-  }, [mapReady, regionValues, localityRecords, filteredRecords, rampColor, maxRegion, year]);
+  }, [mapReady, regionValues, filteredRecords, rampColor, maxRegion, year]);
 
   const selectCls =
     "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
@@ -703,7 +655,6 @@ export default function LebanonMap() {
               regionValues={regionValues}
               maxRegion={maxRegion}
               rampColor={rampColor}
-              localityRecords={localityRecords}
               records={filteredRecords}
               recordsAllYears={recordsAllYears}
               view={mapView}
@@ -792,7 +743,7 @@ export default function LebanonMap() {
           <p className="mt-1 max-w-3xl text-xs text-[color:var(--color-text-secondary)]">
             Locality-level episodes from the verified entry: announced,
             reported or assessed - stated as such, never more. Select the same
-            places on the map via their pins or the town search.
+            places on the map via their town markers or the town search.
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {LOCALITY_EVENTS.filter((l) => l.events.some((e) => e.year === year)).map((l) => (
