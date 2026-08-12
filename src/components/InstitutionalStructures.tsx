@@ -3,9 +3,8 @@ import type { ReactNode } from "react";
 /**
  * The two institutional maps - 2024 emergency response and 2026
  * reconstruction chain - rebuilt for the web from the source diagrams
- * and checked line by line against the tracking. Corrections made
- * during that check are listed at the foot of each map, so a reader can
- * see exactly where the printed versions and the data differ.
+ * and checked line by line, so names, figures and package numbers match
+ * what the analysis carries rather than the printed versions.
  */
 
 type Tone =
@@ -107,24 +106,6 @@ function Chain({ steps }: { steps: { title: string; sub?: string }[] }) {
         </li>
       ))}
     </ol>
-  );
-}
-
-function Corrections({ items }: { items: string[] }) {
-  return (
-    <details className="mt-5 rounded-md border border-dashed border-[color:var(--color-border)] bg-[#FAFBFC] p-3">
-      <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
-        Checked against the analysis - {items.length} corrections applied
-      </summary>
-      <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-        {items.map((c) => (
-          <li key={c.slice(0, 30)} className="flex gap-2">
-            <span aria-hidden className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-rust)]" />
-            <span>{c}</span>
-          </li>
-        ))}
-      </ul>
-    </details>
   );
 }
 
@@ -259,16 +240,6 @@ function Map2024() {
           sub="Data → finance → compensation → procurement → implementation → oversight. Coordination worked; there was no financed delivery vehicle behind it."
         />
       </div>
-
-      <Corrections
-        items={[
-          "The printed version placed Joseph Aoun as President of the Republic in 2024. The presidency was vacant for the whole of 2024; he was elected in January 2025. Shown here as a vacancy, which is the analytical point of the 2024 map.",
-          "Higher Relief Commission leadership: Maj. Gen. Mohammad Khair holds the post as Secretary-General, not the chairman named in the printed version.",
-          "Council of the South: Hashem Haidar is its head, not the name printed.",
-          "Individual names for UN agency heads were dropped: they are not carried here, and the institutions are what the analysis rests on.",
-          "Public-financing share of needs is shown as the single figure carried here (about US$4 billion) rather than the US$3-5 billion range printed.",
-        ]}
-      />
     </figure>
   );
 }
@@ -421,20 +392,6 @@ function Map2026() {
         compensation or reconstruction instrument for 2026-war damage had been
         identified by 31 July 2026.
       </p>
-
-      <Corrections
-        items={[
-          "Ministry of Finance: the printed version in one variant names Youssef Khalil, who held the post in 2024. The 2026 minister is Yassine Jaber.",
-          "Internal Security Forces: one printed variant names Maj. Gen. Imad Osman, the 2024 director-general. The 2026 director-general is Maj. Gen. Raed Abdallah.",
-          "Beirut & Mount Lebanon assessment: buildings destroyed corrected from 160 to 146, and the debris quantity from square metres to 648,942 cubic metres, per the June 2026 assessment.",
-          "Procurement numbers: the printed variants disagree (#1082 versus #1034, #1092). The numbers, subjects, publication dates and portal statuses shown here follow the procurement data: #1082 supervision, #1095 rubble management, #1096 TPMA.",
-          "Package #1082 appeared twice in one printed version with two different subjects; it is shown once here, as supervision of road clearing and restoration.",
-          "Water establishment acronyms corrected to SLWE, BWE, BMLWE and NLWE.",
-          "The Ministry of Social Affairs minister's name is spelled Haneen Sayed here; the printed versions use three different spellings.",
-          "A duplicated Ministry of Public Health box in one printed version was removed.",
-          "Added the finding the printed versions omit: no works contract had been awarded, and the TPMA, Lender's Engineer and grievance mechanism were specified but not operating at the cut-off.",
-        ]}
-      />
     </figure>
   );
 }
