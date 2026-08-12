@@ -95,8 +95,8 @@ export default function ActorTreemap() {
     <ChartFrame
       id="actor-treemap"
       title="The traced actor landscape, cell by cell"
-      subtitle={`Every named actor in the ${year} dataset - cell area is its number of traced role mentions, grouped by layer. Switch the year to watch the landscape recompose.`}
-      caveat="Cell area measures traced presence in the dataset - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled)."
+      subtitle={`Every named actor in the ${year} tracking - cell area is its number of traced role mentions, grouped by layer. Switch the year to watch the landscape recompose.`}
+      caveat="Cell area measures traced presence in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled)."
       chartRef={chartRef}
       description={`Treemap of traced actors in ${year}: ${layerTotals
         .map((l) => `${l.label} ${l.total} mentions across ${l.actors} actors`)

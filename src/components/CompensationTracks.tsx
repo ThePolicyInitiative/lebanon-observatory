@@ -1,7 +1,7 @@
 import compensation from "@/data/compensation.json";
 
 /**
- * Compensation: two tracks, one evidentiary standard, zero verified
+ * Compensation: two tracks, one verification standard, zero verified
  * payments. The module keeps announced, reported and verified strictly
  * apart - the discipline the subject demands most.
  */

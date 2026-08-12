@@ -234,7 +234,7 @@ export default function LebanonMap() {
           const adm2Res = await fetch("/geo/lebanon-adm2.geojson");
           const districts = await adm2Res.json();
           map.addSource("districts", { type: "geojson", data: districts });
-          // Town (cadastre) boundaries from the OCHA COD dataset.
+          // Town (cadastre) boundaries from the OCHA COD boundary data.
           const adm3Res = await fetch("/geo/lebanon-adm3.geojson");
           const towns = await adm3Res.json();
           map.addSource("towns", { type: "geojson", data: towns });
@@ -366,7 +366,7 @@ export default function LebanonMap() {
                 LAYER_META.map(
                   (l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}: <strong>${m[l.id]}</strong>`,
                 ).join("<br/>") +
-                `<br/><em style="color:#667588">Mentions in the dataset - not damage severity or coverage.</em></div>`
+                `<br/><em style="color:#667588">Mentions in the tracking - not damage severity or coverage.</em></div>`
               : `<div style="font-size:12px">${townLine}<strong>${esc(zoneLabel)}</strong></div>`;
             new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)
@@ -571,7 +571,7 @@ export default function LebanonMap() {
             "",
             recs,
             eventsFor(eventsByLocality.get(loc.name), year),
-            "Note: mentions in the actor-stage dataset; point position approximate.",
+            "Note: mentions in the actor-stage tracking; point position approximate.",
           ),
         },
       });

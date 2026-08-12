@@ -54,7 +54,7 @@ export default function ReconstructionPulse() {
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
           The physical rebuilding chain - rubble clearance, debris treatment,
-          reconstruction works, shelter and return - as the dataset actually
+          reconstruction works, shelter and return - as the tracking actually
           shows it: who is present, at what status, and what the procurement
           pipeline has produced.
         </p>
@@ -114,7 +114,7 @@ export default function ReconstructionPulse() {
               ))}
             </ul>
             <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-              Traced activity is not completed output: the dataset contains
+              Traced activity is not completed output: the tracking contains
               no verified completed reconstruction outputs by the cut-off, and
               &ldquo;not verified&rdquo; marks presence the sources cannot
               grade - never assumed zero, never assumed done.

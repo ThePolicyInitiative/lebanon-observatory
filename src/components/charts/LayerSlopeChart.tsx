@@ -80,7 +80,7 @@ export default function LayerSlopeChart() {
       id="layer-slope"
       title="Who gained and who lost ground, 2024 → 2026"
       subtitle="Each line is an actor layer's total traced presence across the twelve value-chain stages. Community and NGO layers rose; official and municipal presence fell."
-      caveat="Counts measure traced presence in the dataset, not performance, spending or coverage. The 2026 total carries the report's traced 360-versus-363 count discrepancy."
+      caveat="Counts measure traced presence in the tracking, not performance, spending or coverage. The 2026 total carries the report's traced 360-versus-363 count discrepancy."
       chartRef={chartRef}
       description={`Slope chart: official ${totals[0].y24} to ${totals[0].y26}; NGO and international ${totals.find((t) => t.id === "ngo_international")?.y24} to ${totals.find((t) => t.id === "ngo_international")?.y26}; municipal ${totals.find((t) => t.id === "municipal")?.y24} to ${totals.find((t) => t.id === "municipal")?.y26}; community ${totals.find((t) => t.id === "community")?.y24} to ${totals.find((t) => t.id === "community")?.y26}.`}
       table={{

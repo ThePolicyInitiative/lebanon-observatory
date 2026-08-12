@@ -112,9 +112,9 @@ export default function MunicipalDumbbell() {
       <ChartFrame
         id="municipal-power-gap"
         title="The municipal power gap, 2024 → 2026"
-        subtitle="Circles mark 2024, diamonds mark 2026 - the shape difference carries year identity alongside colour. Values are grouped functional counts from the analytical dataset."
+        subtitle="Circles mark 2024, diamonds mark 2026 - the shape difference carries year identity alongside colour. Values are grouped functional counts from the analysis."
         caveat={CAUTION_COUNTS}
-        sourceIds={["S-EVIDENCE-BASE"]}
+        sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
         description="Dumbbell chart comparing municipal functional presence between 2024 and 2026: coordination and reporting fell from 6 to 3, damage assessment from 4 to 2, local clearance from 6 to 3, shelter and relief interface rose from 3 to 4, and finance, reconstruction and oversight power was zero in both years."
         table={{

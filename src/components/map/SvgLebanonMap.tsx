@@ -179,7 +179,7 @@ function arcPath(r0: number, r1: number, a0: number, a1: number): string {
 
 /**
  * Vector map at town (cadastre) detail: 1,600+ town polygons from the
- * OCHA COD boundary dataset shaded by their regional grouping's value,
+ * OCHA COD boundary data shaded by their regional grouping's value,
  * with wheel/drag/button zoom and pan, district outlines and labels,
  * city labels, pins for traced localities, diamond markers on
  * towns with traced episodes, a hover readout, a scale bar, and
@@ -461,7 +461,7 @@ export default function SvgLebanonMap({
   const locIndex = useMemo(() => (towns ? buildLocationIndex(towns) : null), [towns]);
 
   /**
-   * The dataset localized: entries matched to the districts and
+   * The tracking localized: entries matched to the districts and
    * towns their location names actually refer to. Derived from real
    * entry fields - regional phrases stay in the zone totals.
    */
@@ -1496,9 +1496,9 @@ export default function SvgLebanonMap({
             Scroll, drag or use the buttons to zoom and pan; district names
             appear from ×1.8 zoom, pin and marker labels from ×2.2.
             {view === "entries"
-              ? " Every marker sits at the actual town where the dataset or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
+              ? " Every marker sits at the actual town where the entry or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
               : view === "change"
-                ? " Colour compares located traced activities per district between the two years under the current layer, stage and status filters. A rise means more traced presence in the dataset - not more delivery, spending or coverage."
+                ? " Colour compares located traced activities per district between the two years under the current layer, stage and status filters. A rise means more traced presence in the tracking - not more delivery, spending or coverage."
                 : view === "survey"
                   ? " Colour is the number of housing units municipalities themselves reported damaged in the December 2024 survey - the fastest national damage assessments the response produced, gathered in ten days on local knowledge."
                   : null}
@@ -1541,7 +1541,7 @@ export default function SvgLebanonMap({
               border villages and an expanded occupation zone demarcated on 18
               June 2026, but publishes no precise boundary geometry. Hatching
               therefore marks the strip of towns whose land reaches the Blue
-              Line (derived from the boundary dataset, including those behind
+              Line (derived from the boundary data, including those behind
               the disputed Ghajar–Shebaa and Metula-adjacent slivers) - the
               closest honest shape to the traced occupation, not its exact
               extent.
@@ -1730,7 +1730,7 @@ export default function SvgLebanonMap({
                 ))}
               </ul>
               <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
-                Mentions in the dataset - not damage severity, expenditure
+                Mentions in the tracking - not damage severity, expenditure
                 or coverage.
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">

@@ -95,7 +95,7 @@ export function roleMixFor(year: Year, layer: ActorLayer) {
   });
 }
 
-/** Municipal power-gap module (grouped functional values, from the analytical dataset). */
+/** Municipal power-gap module (grouped functional values, from the analysis). */
 export const MUNICIPAL_POWER_GAP = [
   { fn: "Coordination and reporting", y2024: 6, y2026: 3 },
   { fn: "Damage assessment", y2024: 4, y2026: 2 },
@@ -113,7 +113,7 @@ export const sources = sourcesJson as SourceRecord[];
 export const roleRecords = roleRecordsJson as RoleRecord[];
 
 /**
- * Slim projection of the dataset for client components that need
+ * Slim projection of the tracking for client components that need
  * identity and classification but not the long narrative text: half the
  * payload of the full set. `hay` is a lower-cased excerpt prefix used
  * only for locality matching on the map.
@@ -164,7 +164,7 @@ export function recordsForLocality(name: string): RoleRecord[] {
   const needle = name.toLowerCase().split("(")[0].trim();
   return roleRecords.filter((r) =>
     r.locationNames.some((l) => l.toLowerCase().includes(needle)) ||
-    r.evidenceExcerpt.toLowerCase().includes(needle),
+    r.summary.toLowerCase().includes(needle),
   );
 }
 

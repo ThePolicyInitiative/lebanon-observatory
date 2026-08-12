@@ -17,7 +17,7 @@ const DIMENSIONS: Dimension[] = [
     id: "authority",
     label: "Authority",
     y2024:
-      "Dispersed by default: territorial bodies held damage dossiers by legacy, ministries held sectors by statute, and no institution held the whole.",
+      "Dispersed by default: territorial bodies held damage claims by legacy, ministries held sectors by statute, and no institution held the whole.",
     y2026:
       "Consolidated inside a project perimeter - cabinet for policy, Public Works for execution leadership, CDR for implementation, World Bank rules - while the Council for the South, the Higher Relief Commission and the parallel track kept de facto authority outside it.",
     change: "Consolidated, selectively: a clear hierarchy inside the perimeter, the old answer outside it.",

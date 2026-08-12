@@ -117,7 +117,7 @@ export default function HomePage() {
           {/* At a glance */}
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
             {[
-              ["706", "actor-stage entries in the dataset (343 for 2024; 363 for 2026)"],
+              ["706", "actor-stage entries in the tracking (343 for 2024; 363 for 2026)"],
               ["104 → 124", "traced actors across the four layers, 2024 → 2026"],
               ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
               ["0", "works contracts awarded, verified completed outputs and verified compensation payments by the cut-off"],
@@ -197,7 +197,7 @@ export default function HomePage() {
           <SectionHeading index={3} title="The command structures, side by side">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               The report&apos;s two structure diagrams, validated against the
-              dataset and rebuilt here: the 2024 emergency system that
+              tracking and rebuilt here: the 2024 emergency system that
               coordinated without a financed delivery vehicle, and the 2026
               settlement of two chains under one government - separated by the
               army clearance gate, joined by the same unresolved gap.
@@ -268,14 +268,14 @@ export default function HomePage() {
               Traced activity concentrated along the southern arc and the
               Dahieh belt in both years, while assessment coverage - and
               therefore future financing eligibility - remained uneven.
-              Mentions in the dataset show where traced activity was
+              Mentions in the tracking show where traced activity was
               concentrated, not damage severity or beneficiary reach.
             </p>
           </SectionHeading>
           <div className="mt-6 overflow-x-auto card p-4">
             <table className="min-w-full border-collapse text-sm tabular-nums">
               <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
-                Total location mentions in the dataset by regional
+                Total location mentions in the tracking by regional
                 grouping (all actor layers).
               </caption>
               <thead>
@@ -319,7 +319,7 @@ export default function HomePage() {
               This feed aggregates relevant coverage from selected global,
               Lebanese, humanitarian and official sources. It is broad but not
               exhaustive, and it is kept strictly separate from the verified
-              analytical dataset.
+              analysis.
             </p>
           </SectionHeading>
           <div className="mt-6">

@@ -65,7 +65,7 @@ export default function DebrisTiles() {
       <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         The 2026 zone figures are snapshots of assessed zones only and are not
         cumulative with the 2024 estimate. Quantities of this order sit beyond
-        any municipal capability - the dataset compares them to years of
+        any municipal capability - the tracking compares them to years of
         national construction activity.
       </p>
     </figure>

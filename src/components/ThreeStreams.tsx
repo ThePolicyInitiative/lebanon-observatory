@@ -38,7 +38,7 @@ const STREAMS = [
     color: "var(--color-rust)",
     bg: "#F7E9E5",
     items: [
-      "An dataset under construction (two bounded assessments, a real-time database)",
+      "An analytical base under construction (two bounded assessments, a real-time database)",
       "No LEAP amendment",
       "No new compensation decision",
       "No dedicated financing identified",

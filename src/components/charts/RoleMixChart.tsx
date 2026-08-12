@@ -105,7 +105,7 @@ export default function RoleMixChart() {
       title="Where each actor layer's traced presence sat in the chain"
       subtitle="Share of each layer's traced presence by chain segment, 2024 vs 2026. Percentages are within-layer compositions; layer sizes differ."
       caveat={CAUTION_COUNTS}
-      sourceIds={["S-EVIDENCE-BASE"]}
+      sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description="Four small-multiple bar panels, one per actor layer, comparing the share of traced presence in governance and data, works delivery, return and recovery, and oversight between 2024 and 2026."
       table={{

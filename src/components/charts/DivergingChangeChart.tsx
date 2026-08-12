@@ -95,7 +95,7 @@ export default function DivergingChangeChart({
       title={title}
       subtitle={subtitle}
       caveat={CAUTION_COUNTS}
-      sourceIds={["S-EVIDENCE-BASE"]}
+      sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description={description}
       table={{

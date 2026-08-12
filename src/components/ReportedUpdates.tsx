@@ -30,7 +30,7 @@ export default function ReportedUpdates() {
           id="reported-updates"
           className="text-xl font-semibold text-[color:var(--color-navy)]"
         >
-          Reported beyond the dataset
+          Reported beyond the tracking
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
           Web-sourced · not in the verified log
@@ -40,7 +40,7 @@ export default function ReportedUpdates() {
         Additional actors and actions found in open web coverage (gathered{" "}
         {fmtDate(webUpdates.gatheredOn)}), all of it after the 31 July 2026
         cut-off. These are reported claims, quoted with their sources - they
-        are not verified against the dataset and enter none of this
+        are not verified against the tracking and enter none of this
         site&apos;s counts or maps. Each entry says how much verification sits
         behind it: an institutional source, a press report, or a self-published
         social post. Follow each link to judge the source yourself.

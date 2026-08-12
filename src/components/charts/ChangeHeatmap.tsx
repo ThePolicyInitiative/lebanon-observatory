@@ -135,7 +135,7 @@ export default function ChangeHeatmap() {
         title="Direct change in traced presence, 2026 minus 2024"
         subtitle="Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Every cell carries its value as a printed number - colour is never the only encoding. Click a cell for the underlying data."
         caveat={CAUTION_COUNTS}
-        sourceIds={["S-EVIDENCE-BASE"]}
+        sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
         description="Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9)."
         table={{
@@ -182,7 +182,7 @@ export default function ChangeHeatmap() {
                 <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
                   {countsFor(2024, cell.layer)[cell.stageNo - 1]} traced in
                   2024 · {countsFor(2026, cell.layer)[cell.stageNo - 1]} in 2026
-                  (analytical dataset) · {records.length} dataset entries
+                  (analysis) · {records.length} traced entries
                   shown below
                 </p>
               </div>
@@ -199,9 +199,9 @@ export default function ChangeHeatmap() {
             <div className="flex-1 overflow-y-auto p-4">
               {records.length === 0 ? (
                 <p className="text-sm text-[color:var(--color-text-secondary)]">
-                  No dataset entries map to this cell at function-column
+                  No traced entries map to this cell at function-column
                   grain. The analytical count above is recomputed at entry
-                  level from the underlying dataset, which is finer
+                  level from the underlying tracking, which is finer
                   grained than the chart figures by construction.
                 </p>
               ) : (
@@ -235,7 +235,7 @@ export default function ChangeHeatmap() {
                           : ""}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-[color:var(--color-text)]">
-                        {r.evidenceExcerpt}
+                        {r.summary}
                       </p>
                     </li>
                   ))}

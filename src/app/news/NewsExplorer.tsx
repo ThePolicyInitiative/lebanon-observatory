@@ -114,7 +114,7 @@ export default function NewsExplorer() {
         This feed aggregates relevant coverage from selected global, Lebanese,
         humanitarian and official sources. It is broad but not exhaustive.
         Headlines link to the original publishers; nothing here alters the
-        verified analytical dataset elsewhere on this site.
+        verified analysis elsewhere on this site.
       </p>
 
       {/* Tabs */}
@@ -296,8 +296,7 @@ export default function NewsExplorer() {
             <p className="font-semibold text-[color:var(--color-rust)]">Live updates unavailable</p>
             <p className="mt-1 text-[color:var(--color-text-secondary)]">{error}</p>
             <p className="mt-2 text-[color:var(--color-text-secondary)]">
-              The analytical data on this site is a separate, verified
-              dataset and is unaffected by news-provider outages.
+              The analytical data on this site is a separate, verified analysis and is unaffected by news-provider outages.
             </p>
             <button
               type="button"

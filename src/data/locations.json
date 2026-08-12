@@ -1,5 +1,5 @@
 {
-  "note": "Location mentions in the actor-stage dataset, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach.",
+  "note": "Location mentions in the actor-stage tracking, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach.",
   "regions": [
     { "id": "south_nabatieh", "label": "South and Nabatieh", "governorates": ["Liban-Sud", "Nabatîyé"], "mappable": true },
     { "id": "beirut_mount_lebanon", "label": "Beirut and Mount Lebanon", "governorates": ["Beyrouth", "Mont-Liban", "Keserwan-Jbeil"], "mappable": true },
@@ -29,5 +29,5 @@
       "named_localities":      { "official": 0,  "municipal": 3, "ngo_international": 0,  "community": 62 }
     }
   },
-  "sourceIds": ["S-DATASET"]
+  "sourceIds": ["S-TRACKING"]
 }

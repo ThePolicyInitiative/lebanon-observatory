@@ -47,7 +47,7 @@ export default function ExplorerClient() {
       if (
         q &&
         !r.actorName.toLowerCase().includes(q) &&
-        !r.evidenceExcerpt.toLowerCase().includes(q) &&
+        !r.summary.toLowerCase().includes(q) &&
         !r.locationNames.some((l) => l.toLowerCase().includes(q))
       )
         return false;
@@ -168,7 +168,7 @@ export default function ExplorerClient() {
         <div className="hidden overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-white md:block">
           <table className="min-w-full border-collapse text-[13px]">
             <caption className="sr-only">
-              dataset entries matching the current filters. Each row is
+              traced entries matching the current filters. Each row is
               one traced actor-function entry; select a row for detail.
             </caption>
             <thead>
@@ -277,7 +277,7 @@ export default function ExplorerClient() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`dataset detail for ${selected.actorName}`}
+          aria-label={`entry detail for ${selected.actorName}`}
           className="fixed inset-0 z-[60] flex justify-end bg-black/30"
           onClick={(e) => { if (e.target === e.currentTarget) setSelected(null); }}
         >
@@ -304,7 +304,7 @@ export default function ExplorerClient() {
             <div className="flex-1 space-y-4 overflow-y-auto p-4 text-sm">
               <section>
                 <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Data summary</h4>
-                <p className="mt-1 leading-relaxed">{selected.evidenceExcerpt}</p>
+                <p className="mt-1 leading-relaxed">{selected.summary}</p>
               </section>
               {selected.formalMandate ? (
                 <section>
@@ -312,10 +312,10 @@ export default function ExplorerClient() {
                   <p className="mt-1 leading-relaxed">{selected.formalMandate}</p>
                 </section>
               ) : null}
-              {selected.documentedAction ? (
+              {selected.tracedAction ? (
                 <section>
                   <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Traced action</h4>
-                  <p className="mt-1 leading-relaxed">{selected.documentedAction}</p>
+                  <p className="mt-1 leading-relaxed">{selected.tracedAction}</p>
                 </section>
               ) : null}
               <dl className="grid grid-cols-2 gap-3 text-[13px]">
@@ -333,7 +333,7 @@ export default function ExplorerClient() {
                 </div>
                 <div>
                   <dt className="font-semibold text-[color:var(--color-text-secondary)]">Locations</dt>
-                  <dd>{selected.locationNames.join("; ") || "Not specified in the dataset"}</dd>
+                  <dd>{selected.locationNames.join("; ") || "Not specified"}</dd>
                 </div>
                 {selected.financingRole ? (
                   <div>
@@ -356,8 +356,8 @@ export default function ExplorerClient() {
               ) : null}
               <section>
                 <p className="text-xs text-[color:var(--color-text-secondary)]">
-                  Verification note: this entry entries traced presence in
-                  the dataset. It is not proof of expenditure,
+                  Verification note: this entry marks traced presence.
+                  It is not proof of expenditure,
                   effectiveness or completed output; statuses above
                   &ldquo;traced activity&rdquo; are assigned only where the
                   underlying text supports them.

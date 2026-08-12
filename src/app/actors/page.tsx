@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import ActorTabs from "./ActorTabs";
 import ActorTreemap from "@/components/charts/ActorTreemap";
 
-/** Heavy browsers of the full dataset: loaded after first paint. */
+/** Heavy browsers of the full tracking: loaded after first paint. */
 const ActorStageMatrix = dynamic(() => import("./ActorStageMatrix"), {
   loading: () => <div className="h-72 animate-pulse rounded-md bg-white" />,
 });

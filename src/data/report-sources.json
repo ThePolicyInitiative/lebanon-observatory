@@ -1,11 +1,11 @@
 [
   {
-    "id": "S-DATASET",
-    "title": "actor-role dataset (706 entries: 343 for 2024 across 104 actors; 363 for 2026 across 124 actors), compiled and recomputed at entry level for this analysis",
-    "organisation": "Lebanon Reconstruction Observatory analytical dataset",
+    "id": "S-TRACKING",
+    "title": "actor-role tracking (706 entries: 343 for 2024 across 104 actors; 363 for 2026 across 124 actors), compiled and recomputed at entry level for this analysis",
+    "organisation": "Lebanon Reconstruction Observatory analysis",
     "publicationDate": "2026-07-31",
     "url": null,
-    "sourceType": "dataset",
+    "sourceType": "tracking",
     "accessedDate": "2026-07-31"
   },
   {
@@ -454,7 +454,7 @@
     "title": "Lebanon Humanitarian Situation Reports Nos. 1–2 (Mar 2026)",
     "organisation": "UNICEF",
     "publicationDate": "2026-03-31",
-    "url": "https://www.unicef.org/media",
+    "url": "https://www.unicef.org/appeals/lebanon/situation-reports",
     "sourceType": "un",
     "accessedDate": "2026-07-31"
   },

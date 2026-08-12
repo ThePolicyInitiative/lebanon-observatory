@@ -52,7 +52,7 @@ const CONTENT: Record<ActorLayer, TabContent> = {
       "CDR runs LEAP procurement under World Bank rules with a published portal; the Council for the South continued legacy tendering outside the project perimeter.",
     implementationRole:
       "Ministry of Public Works holds execution leadership; ministry campaigns and utilities performed emergency repair with unpublished quantities; programme works remained unawarded.",
-    sourceIds: ["S-EVIDENCE-BASE", "S2", "S20", "S1", "S37"],
+    sourceIds: ["S-TRACKING", "S2", "S20", "S1", "S37"],
   },
   ngo_international: {
     profile2024:
@@ -80,7 +80,7 @@ const CONTENT: Record<ActorLayer, TabContent> = {
       "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at the cut-off.",
     implementationRole:
       "Agencies delivered relief, shelter support and WASH at scale in both years; they did not and could not resolve compensation policy, property rights or municipal finance.",
-    sourceIds: ["S-EVIDENCE-BASE", "S2", "S40", "S5", "S6"],
+    sourceIds: ["S-TRACKING", "S2", "S40", "S5", "S6"],
   },
   municipal: {
     profile2024:
@@ -105,7 +105,7 @@ const CONTENT: Record<ActorLayer, TabContent> = {
       "Reported clearance across sixteen-plus localities in 2026, shelter hosting through both displacement waves, utility liaison - labour without authority.",
     coreFinding:
       "Municipalities remained essential as frontline sensors, resident-contact points and access facilitators, but they did not receive proportional reconstruction budgets, contractor-selection power or oversight authority.",
-    sourceIds: ["S-EVIDENCE-BASE", "S19", "S10", "S8"],
+    sourceIds: ["S-TRACKING", "S19", "S10", "S8"],
   },
   community: {
     profile2024:
@@ -136,7 +136,7 @@ const CONTENT: Record<ActorLayer, TabContent> = {
       "Shelter management (one Saida school hosted about 650 families), volunteer clearance campaigns in Nabatieh, entries initiatives and participatory workshops - load-bearing functions a programmed system would staff and budget, performed unpaid.",
     coreFinding:
       "Community action expanded sharply in humanitarian and social-recovery functions but contracted in finance, rubble management and physical reconstruction. It absorbed pressure without acquiring public-works authority.",
-    sourceIds: ["S-EVIDENCE-BASE", "S58", "S59", "S21", "S9"],
+    sourceIds: ["S-TRACKING", "S58", "S59", "S21", "S9"],
   },
 };
 
@@ -158,7 +158,7 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
         On paper versus in practice
       </h3>
       <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-        The dataset entries, actor by actor, the gap between legal
+        The traced entries, actor by actor, the gap between legal
         mandate and actual capacity - the de jure / de facto inversion that
         defines both years.
       </p>
@@ -242,7 +242,7 @@ function RegionTable({ layer }: { layer: ActorLayer }) {
     <div className="overflow-x-auto">
       <table className="min-w-full border-collapse text-sm tabular-nums">
         <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
-          Location mentions in the dataset for this layer (traced
+          Location mentions in the tracking for this layer (traced
           activity, not damage severity or coverage).
         </caption>
         <thead>
@@ -527,13 +527,13 @@ export default function ActorTabs() {
 
         <section className="card p-5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Named actors in the dataset
+            Named actors in the tracking
           </h3>
           <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-            Entry counts are dataset entries (actor × function column),
+            Entry counts are traced entries (actor × function column),
             not measures of importance.{" "}
             <Link href={`/explorer?layer=${layer}`} className="underline underline-offset-2">
-              Open these actors in the dataset explorer →
+              Open these actors in the explorer →
             </Link>
           </p>
           <div className="mt-4">

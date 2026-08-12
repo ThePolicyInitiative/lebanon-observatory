@@ -15,8 +15,8 @@ import type {
 } from "./types";
 
 /**
- * The client-side slice of the dataset. Deliberately separate from
- * `data.ts`: that module also pulls the full dataset, the actor
+ * The client-side slice of the tracking. Deliberately separate from
+ * `data.ts`: that module also pulls the full tracking, the actor
  * catalogue and the source catalogue, so a browser component importing
  * one constant from it would ship all of them. Everything here is small
  * or already slimmed.

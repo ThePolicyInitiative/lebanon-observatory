@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 /**
  * The two institutional maps - 2024 emergency response and 2026
  * reconstruction chain - rebuilt for the web from the source diagrams
- * and checked line by line against the dataset. Corrections made
+ * and checked line by line against the tracking. Corrections made
  * during that check are listed at the foot of each map, so a reader can
  * see exactly where the printed versions and the data differ.
  */
@@ -114,7 +114,7 @@ function Corrections({ items }: { items: string[] }) {
   return (
     <details className="mt-5 rounded-md border border-dashed border-[color:var(--color-border)] bg-[#FAFBFC] p-3">
       <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
-        Checked against the dataset - {items.length} corrections applied
+        Checked against the analysis - {items.length} corrections applied
       </summary>
       <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
         {items.map((c) => (
@@ -222,8 +222,8 @@ function Map2024() {
 
       <Band n={4} title="Relief and reconstruction bridge" accent={NAVY}>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          <Box tone="stateLight" title="Higher Relief Commission" sub="Maj. Gen. Mohammad Khair (Secretary-General) - damage registration and compensation dossiers" />
-          <Box tone="stateLight" title="Council of the South" sub="Hashem Haidar (Head) - southern communities, rubble removal, damage dossiers" />
+          <Box tone="stateLight" title="Higher Relief Commission" sub="Maj. Gen. Mohammad Khair (Secretary-General) - damage registration and compensation claims" />
+          <Box tone="stateLight" title="Council of the South" sub="Hashem Haidar (Head) - southern communities, rubble removal, damage claims" />
           <Box tone="stateLight" title="CDR (preparatory)" sub="Prepared the recovery pipeline that became LEAP in 2025-26" />
           <Box tone="international" title="UN agencies and partners" sub="UNDP, IOM DTM, UNICEF, FAO, WFP, WHO, OCHA - assessment, relief, services" />
         </div>
@@ -237,7 +237,7 @@ function Map2024() {
             { title: "Governorate (governor & DRM unit)", sub: "Validate, prioritise, consolidate" },
             { title: "National Operations Room", sub: "Receive and analyse in real time" },
             { title: "Line ministries / operators", sub: "Act on priorities: roads, power, water, shelters" },
-            { title: "Sector dossiers and RDNA", sub: "Convert damage into an official baseline" },
+            { title: "Sector assessments and RDNA", sub: "Convert damage into an official baseline" },
           ]}
         />
       </Band>
@@ -263,10 +263,10 @@ function Map2024() {
       <Corrections
         items={[
           "The printed version placed Joseph Aoun as President of the Republic in 2024. The presidency was vacant for the whole of 2024; he was elected in January 2025. Shown here as a vacancy, which is the analytical point of the 2024 map.",
-          "Higher Relief Commission leadership: the dataset names Maj. Gen. Mohammad Khair as Secretary-General, not the chairman named in the printed version.",
-          "Council of the South: the dataset names Hashem Haidar as head, not the name printed.",
-          "Individual names for UN agency heads were dropped: they are not carried in this dataset, and the institutions are what the analysis rests on.",
-          "Public-financing share of needs is shown as the single figure the dataset carries (about US$4 billion) rather than the US$3-5 billion range printed.",
+          "Higher Relief Commission leadership: Maj. Gen. Mohammad Khair holds the post as Secretary-General, not the chairman named in the printed version.",
+          "Council of the South: Hashem Haidar is its head, not the name printed.",
+          "Individual names for UN agency heads were dropped: they are not carried here, and the institutions are what the analysis rests on.",
+          "Public-financing share of needs is shown as the single figure carried here (about US$4 billion) rather than the US$3-5 billion range printed.",
         ]}
       />
     </figure>
@@ -323,7 +323,7 @@ function Map2026() {
           Shelter and displacement figures in the printed version (about 136,000
           displaced people in collective shelters; 682 open shelters) come from a
           Ministry of Social Affairs presentation dated 16 April 2026. They are
-          reported figures, not verified in this dataset, and the printed
+          reported figures, not verified here, and the printed
           versions disagree with each other on the shelter count.
         </p>
       </Band>
@@ -424,13 +424,13 @@ function Map2026() {
 
       <Corrections
         items={[
-          "Ministry of Finance: the printed version in one variant names Youssef Khalil, who held the post in 2024. The 2026 minister in the dataset is Yassine Jaber.",
-          "Internal Security Forces: one printed variant names Maj. Gen. Imad Osman, the 2024 director-general. The dataset names Maj. Gen. Raed Abdallah for 2026.",
+          "Ministry of Finance: the printed version in one variant names Youssef Khalil, who held the post in 2024. The 2026 minister is Yassine Jaber.",
+          "Internal Security Forces: one printed variant names Maj. Gen. Imad Osman, the 2024 director-general. The 2026 director-general is Maj. Gen. Raed Abdallah.",
           "Beirut & Mount Lebanon assessment: buildings destroyed corrected from 160 to 146, and the debris quantity from square metres to 648,942 cubic metres, per the June 2026 assessment.",
           "Procurement numbers: the printed variants disagree (#1082 versus #1034, #1092). The numbers, subjects, publication dates and portal statuses shown here follow the procurement data: #1082 supervision, #1095 rubble management, #1096 TPMA.",
           "Package #1082 appeared twice in one printed version with two different subjects; it is shown once here, as supervision of road clearing and restoration.",
           "Water establishment acronyms corrected to SLWE, BWE, BMLWE and NLWE.",
-          "The Ministry of Social Affairs minister's name is spelled Haneen Sayed, following the dataset; the printed versions use three different spellings.",
+          "The Ministry of Social Affairs minister's name is spelled Haneen Sayed here; the printed versions use three different spellings.",
           "A duplicated Ministry of Public Health box in one printed version was removed.",
           "Added the finding the printed versions omit: no works contract had been awarded, and the TPMA, Lender's Engineer and grievance mechanism were specified but not operating at the cut-off.",
         ]}

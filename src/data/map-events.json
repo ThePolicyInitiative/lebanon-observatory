@@ -115,7 +115,7 @@
       "townNames": ["Bourj El-Brajneh", "Haret Hreik", "Chiyah"],
       "events": [
         { "year": 2024, "date": "2024-12-15", "kind": "municipal", "text": "The ten-day municipal survey traced 16,000 damaged housing units in Baabda district - 63% reported completely damaged - the response's fastest damage assessments." },
-        { "year": 2024, "kind": "municipal", "text": "Cabinet assigned the southern-suburbs rubble dossier to the Union of Municipalities, which opened tenders and worked through the al-Bunyan contractor, with debris routed toward Costa Brava." },
+        { "year": 2024, "kind": "municipal", "text": "Cabinet assigned the southern-suburbs rubble clearance to the Union of Municipalities, which opened tenders and worked through the al-Bunyan contractor, with debris routed toward Costa Brava." },
         { "year": 2026, "date": "2026-05-15", "kind": "municipal", "text": "The Dahieh municipal union continued supervising rubble operations with reported sorting arrangements - while the South waited." },
         { "year": 2026, "date": "2026-06-08", "kind": "official", "text": "The UNDP–CNRS-L assessment traced 648,942 m³ of debris across Beirut–Mount Lebanon - 93% of it in Baabda district, the Dahieh belt hit in both wars." }
       ]
@@ -186,7 +186,7 @@
       "name": "Baalbek",
       "townNames": ["Baalbek"],
       "events": [
-        { "year": 2024, "kind": "official", "text": "Fell under the Higher Relief Commission's jurisdiction for damage dossiers and shelter coordination, alongside Mount Lebanon, Dahieh and the North." }
+        { "year": 2024, "kind": "official", "text": "Fell under the Higher Relief Commission's jurisdiction for damage claims and shelter coordination, alongside Mount Lebanon, Dahieh and the North." }
       ]
     }
   ]

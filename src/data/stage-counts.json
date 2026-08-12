@@ -1,5 +1,5 @@
 {
-  "note": "Traced actor-stage presence counts, recomputed at entry level from the actor-role dataset (343 entries for 2024; the seeded 2026 matrix sums to 360 against a report-level recomputation of 363 - a three-entry difference flagged in the methodology). Counts measure traced actor-stage presence. They do not measure expenditure, effectiveness, beneficiaries, geographic coverage or completed output. The 2026 data also identifies some community and volunteer actors more granularly than the 2024 data.",
+  "note": "Traced actor-stage presence counts, recomputed at entry level from the actor-role tracking (343 entries for 2024; the seeded 2026 matrix sums to 360 against a report-level recomputation of 363 - a three-entry difference flagged in the methodology). Counts measure traced actor-stage presence. They do not measure expenditure, effectiveness, beneficiaries, geographic coverage or completed output. The 2026 data also identifies some community and volunteer actors more granularly than the 2024 data.",
   "stages": [
     "Strategy and coordination",
     "Finance and compensation",
@@ -28,5 +28,5 @@
       "community": [34, 4, 4, 4, 1, 2, 2, 13, 25, 55, 23, 5]
     }
   },
-  "sourceIds": ["S-DATASET"]
+  "sourceIds": ["S-TRACKING"]
 }

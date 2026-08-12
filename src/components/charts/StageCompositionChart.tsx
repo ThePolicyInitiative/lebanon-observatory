@@ -172,7 +172,7 @@ export default function StageCompositionChart() {
               : `Traced actor composition per stage, ${mode}.`
         }
         caveat={CAUTION_COUNTS}
-        sourceIds={["S-EVIDENCE-BASE"]}
+        sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
         description="Stacked horizontal bars showing, for each of the twelve reconstruction value-chain stages, how traced actor presence is distributed across official institutions, NGOs and international agencies, municipalities, and community initiatives, comparable between 2024 and 2026."
         table={{

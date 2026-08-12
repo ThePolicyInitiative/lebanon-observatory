@@ -45,13 +45,13 @@ export type RoleRecord = {
   locationNames: string[];
   regions: string[];
   formalMandate: string | null;
-  documentedAction: string | null;
+  tracedAction: string | null;
   implementationStatus: ImplementationStatus;
   financingRole: string | null;
   procurementRole: string | null;
   implementationRole: string | null;
   oversightRole: string | null;
-  evidenceExcerpt: string;
+  summary: string;
   comparability: Comparability;
   sourceIds: string[];
 };

@@ -17,7 +17,7 @@ export const roleRecordSchema = z.object({
   locationNames: z.array(z.string()),
   regions: z.array(z.string()),
   formalMandate: z.string().nullable(),
-  documentedAction: z.string().nullable(),
+  tracedAction: z.string().nullable(),
   implementationStatus: z.enum([
     "formal_mandate",
     "announced",
@@ -33,7 +33,7 @@ export const roleRecordSchema = z.object({
   procurementRole: z.string().nullable(),
   implementationRole: z.string().nullable(),
   oversightRole: z.string().nullable(),
-  evidenceExcerpt: z.string(),
+  summary: z.string(),
   comparability: z.enum(["direct", "qualified", "not_comparable", "context_only"]),
   sourceIds: z.array(z.string()),
 });

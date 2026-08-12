@@ -208,7 +208,7 @@ export const OCCUPIED_COD_DISTRICTS_2026 = [
  * Towns forming the border strip along the Blue Line: within the
  * districts traced as containing occupied areas, the towns whose
  * own polygons reach the southern national boundary. Derived purely
- * from the boundary dataset (per longitude bin, the southernmost
+ * from the boundary data (per longitude bin, the southernmost
  * vertex latitude traces the border; a town qualifies when one of its
  * vertices sits on that envelope). This is the closest honest shape to
  * the traced occupied border villages and the strip demarcated on
@@ -220,7 +220,7 @@ export function computeBorderStripTowns(
 ): Set<string> {
   // Edge topology: the COD layer is topologically clean (shared town
   // boundaries use identical vertex chains), so an edge used by only
-  // one town polygon lies on the national outline. The dataset's
+  // one town polygon lies on the national outline. The tracking's
   // "Conflict" slivers (Ghajar–Shebaa, the Metula-adjacent strip) are
   // excluded from the count, so towns behind them still register as
   // border towns - which is exactly where occupation is traced.
@@ -329,7 +329,7 @@ export const DISTRICT_LABELS: { name: string; x: number; y: number }[] =
   }));
 
 /**
- * Border districts containing Israeli-occupied areas in 2026. The dataset
+ * Border districts containing Israeli-occupied areas in 2026. The tracking
  * entries occupied border villages and an expanded occupation zone
  * demarcated on 18 June 2026, but publishes no precise boundary geometry -
  * so the map hatches the districts that contain occupied areas rather
@@ -346,7 +346,7 @@ export const OCCUPIED_BORDER_DISTRICTS_2026 = [
  * Dissolve a set of town polygons into boundary paths: every edge used
  * by exactly one member of the group is on that group's outline. Because
  * the outline is derived from the same polygons the map fills, the
- * borders always sit exactly on the areas - no cross-dataset mismatch.
+ * borders always sit exactly on the areas - no cross-source mismatch.
  */
 export function dissolveBoundary(features: GeoFeature[]): string {
   const counts = new Map<string, number>();

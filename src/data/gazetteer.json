@@ -1,5 +1,5 @@
 {
-  "note": "Named affected localities traced in the dataset, with approximate centroid coordinates (village level). Point positions are approximate and mark traced-activity localities, not damage intensity.",
+  "note": "Named affected localities traced in the tracking, with approximate centroid coordinates (village level). Point positions are approximate and mark traced-activity localities, not damage intensity.",
   "localities": [
     { "name": "Nabatieh", "region": "south_nabatieh", "lat": 33.3772, "lon": 35.4836 },
     { "name": "Tyre (Sour)", "region": "south_nabatieh", "lat": 33.2705, "lon": 35.2038 },
@@ -27,5 +27,5 @@
     { "name": "Costa Brava landfill area", "region": "beirut_mount_lebanon", "lat": 33.8175, "lon": 35.4903 },
     { "name": "Baalbek", "region": "bekaa_baalbek_hermel", "lat": 34.0058, "lon": 36.2181 }
   ],
-  "sourceIds": ["S-DATASET"]
+  "sourceIds": ["S-TRACKING"]
 }

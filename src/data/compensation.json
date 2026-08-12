@@ -2,7 +2,7 @@
   "note": "Compensation is tracked with one verification standard for every actor: a ministry's announcement, a council's statement and a party's payment claim are all treated as self-reported until independently confirmed. No state compensation payment was verified by the 31 July 2026 cut-off; absence of verified payment is a bounded claim - payments not publicly reported by that date, not payments proven never to have occurred.",
   "stateTrack": {
     "label": "State track",
-    "status2024": "Registration without rules: municipalities, the Council for the South and the Higher Relief Commission compiled damage dossiers that were preliminary registrations, not approved claims. No state compensation reached anyone in 2024.",
+    "status2024": "Registration without rules: municipalities, the Council for the South and the Higher Relief Commission compiled damage submissions that were preliminary registrations, not approved claims. No state compensation reached anyone in 2024.",
     "instruments": [
       {
         "id": "law22",
@@ -25,7 +25,7 @@
         ]
       }
     ],
-    "status2026": "A formula without money is a queue-formation device: no payment start date was identified, implementation was stated to depend on financing, and no consolidated dataset of dossiers submitted, approved or paid exists publicly. The territorial split re-empowers the two legacy institutions the project chain's design implicitly criticised, under rules and disclosure weaker than the project's. Missing throughout: unified valuation, appeals, tenant protection, funded general compensation.",
+    "status2026": "A formula without money is a queue-formation device: no payment start date was identified, implementation was stated to depend on financing, and no consolidated tally of claims submitted, approved or paid exists publicly. The territorial split re-empowers the two legacy institutions the project chain's design implicitly criticised, under rules and disclosure weaker than the project's. Missing throughout: unified valuation, appeals, tenant protection, funded general compensation.",
     "verifiedPayments": "None verified by 31 July 2026"
   },
   "parallelTrack": {

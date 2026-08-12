@@ -9,7 +9,7 @@ import type { ActorLayer, RoleRecord, Year } from "@/lib/types";
 /**
  * The full "who did what" register: every traced actor, expandable
  * to its full list of traced actions - stage by stage, with
- * status, function roles and locations, verbatim from the dataset.
+ * status, function roles and locations, verbatim from the tracking.
  */
 
 const STATUS_CHIP: Record<string, string> = {
@@ -91,7 +91,7 @@ export default function ActorRegister() {
         g.base.toLowerCase().includes(q) ||
         g.people.toLowerCase().includes(q) ||
         g.subtype.toLowerCase().includes(q) ||
-        g.records.some((r) => (r.documentedAction ?? "").toLowerCase().includes(q))
+        g.records.some((r) => (r.tracedAction ?? "").toLowerCase().includes(q))
       );
     });
   }, [query, layer, year]);
@@ -120,7 +120,7 @@ export default function ActorRegister() {
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         Every traced actor and every traced action, as written in the
-        dataset: the stage it belongs to, its status, its function roles and
+        tracking: the stage it belongs to, its status, its function roles and
         where it happened. Traced presence is not performance and a mandate
         is not delivery, so each entry is labelled as exactly what the
         sources support.
@@ -277,7 +277,7 @@ export default function ActorRegister() {
                         ))}
                       </p>
                       <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-[color:var(--color-text)]">
-                        {r.documentedAction ?? r.evidenceExcerpt}
+                        {r.tracedAction ?? r.summary}
                       </p>
                       {r.locationNames.length > 0 ? (
                         <p className="mt-2 text-[11px] text-[color:var(--color-text-secondary)]">

@@ -47,7 +47,7 @@ export default function RegionalComposition() {
       },
       xAxis: {
         type: "value",
-        name: "Location mentions in the dataset",
+        name: "Location mentions in the tracking",
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -86,7 +86,7 @@ export default function RegionalComposition() {
       title="Regional actor composition, 2024 vs 2026"
       subtitle="For each regional grouping the upper stacked bar is 2024 and the lower is 2026; segments are the four actor layers."
       caveat={CAUTION_MAP}
-      sourceIds={["S-EVIDENCE-BASE"]}
+      sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description="Paired stacked bars per regional grouping showing the actor-layer composition of traced location mentions in 2024 and 2026. South and Nabatieh and national/multi-region groupings dominate; community mentions dominate named affected localities."
       table={{

@@ -1,5 +1,5 @@
 /**
- * Place-name matching between the dataset's free-text location
+ * Place-name matching between the tracking's free-text location
  * names and the OCHA COD town/district layer. Transliteration from
  * Arabic varies wildly (Shaqra/Chaqra, Habboush/Habbouch, Jibsheet/
  * Jibchit, Tayr Debba/Tayr Debbeh), so matching runs in three tiers:
@@ -58,7 +58,7 @@ const TOWN_ALIASES: Record<string, string> = {
   hanuiy: "Hanaouay",
   costabrav: "Choueifat El-Aamrousiyeh",
   costabravalandfil: "Choueifat El-Aamrousiyeh",
-  // The dataset itself misspells Taybe's suffix ("Matjaayoun").
+  // The tracking itself misspells Taybe's suffix ("Matjaayoun").
   tayb: "Taybet Matjaayoun",
 };
 const DISTRICT_ALIASES: Record<string, string> = {
