@@ -845,14 +845,13 @@ export default function SvgLebanonMap({
         </span>
       </div>
 
-      {/* The map column is sized to the map itself (its width is capped so
-          the 620x860 portrait never grows taller than ~76vh). Sizing the
-          track to that cap rather than to a fraction stops the column from
-          reserving width the map cannot use, which left the map floating in
-          empty page background. The detail panel takes the remainder. */}
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,54vh)_minmax(0,1fr)]">
+      {/* The map spans the full page width. Lebanon's outline is portrait,
+          so the SVG's height follows from that width - nothing is centred
+          in a narrower column and no side panel reserves space. The detail
+          panel appears under the map, and only once something is picked. */}
+      <div className="grid gap-4">
         <div>
-          <div className="relative mx-auto w-full max-w-[54vh] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          <div className="relative w-full select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
@@ -1552,11 +1551,10 @@ export default function SvgLebanonMap({
           ) : null}
         </div>
 
-        {/* Detail panel */}
-        <aside
-          aria-live="polite"
-          className="card p-4 lg:self-start"
-        >
+        {/* Detail panel: rendered only once a town or zone is picked,
+            so nothing empty sits under the map. */}
+        {(selectedZone && zoneMentions) || selectedLocality ? (
+          <aside aria-live="polite" className="card p-4">
           {selectedZone && zoneMentions ? (
             <>
               <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
@@ -1775,100 +1773,9 @@ export default function SvgLebanonMap({
               </p>
               <EventsList events={localityEvents} />
             </>
-          ) : (
-            /* Nothing selected yet: rank the districts rather than leave
-               the panel blank beside the map. */
-            <>
-              <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-                {view === "change"
-                  ? "Change by district, 2024 → 2026"
-                  : `Where activity concentrated, ${year}`}
-              </h3>
-              <p className="mt-1 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-                {view === "change"
-                  ? "Districts ranked by the size of the shift, under the current filters. Select a town on the map for its own breakdown."
-                  : "Districts ranked by located traced activity, under the current filters. Select a town on the map for its own breakdown."}
-              </p>
-              {view === "change"
-                ? (() => {
-                    const rows = [...change.byDistrict.entries()]
-                      .map(([d, e]) => ({ d, ...e, delta: e.y26 - e.y24 }))
-                      .filter((r) => r.delta !== 0)
-                      .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
-                    if (rows.length === 0) return null;
-                    return (
-                      <ul className="mt-3 space-y-1.5 text-[12px]">
-                        {rows.map((r) => (
-                          <li key={r.d} className="flex items-center gap-2">
-                            <span className="w-28 shrink-0 truncate">{r.d}</span>
-                            <span className="w-14 shrink-0 tabular-nums text-[11px] text-[color:var(--color-text-secondary)]">
-                              {r.y24} → {r.y26}
-                            </span>
-                            <span
-                              aria-hidden
-                              className="h-2 rounded-sm"
-                              style={{
-                                width: `${Math.max(4, (Math.abs(r.delta) / change.maxAbs) * 45)}%`,
-                                background: r.delta > 0 ? "#2F8F6B" : "#B4543F",
-                              }}
-                            />
-                            <span
-                              className={`tabular-nums font-semibold ${r.delta > 0 ? "text-[#1F6B4E]" : "text-[color:var(--color-rust)]"}`}
-                            >
-                              {r.delta > 0 ? "+" : ""}
-                              {r.delta}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    );
-                  })()
-                : (() => {
-                    const rows = [...districtRecords.entries()]
-                      .map(([d, rs]) => ({ d, n: rs.length }))
-                      .sort((a, b) => b.n - a.n);
-                    if (rows.length === 0) return null;
-                    return (
-                      <ul className="mt-3 space-y-1.5 text-[12px]">
-                        {rows.map((r) => (
-                          <li key={r.d} className="flex items-center gap-2">
-                            <span className="w-28 shrink-0 truncate">{r.d}</span>
-                            <span
-                              aria-hidden
-                              className="h-2 rounded-sm"
-                              style={{
-                                width: `${Math.max(4, (r.n / maxDistrict) * 55)}%`,
-                                background: rampColor,
-                                opacity: 0.75,
-                              }}
-                            />
-                            <span className="tabular-nums font-semibold">{r.n}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    );
-                  })()}
-              <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-                Counts are located traced activity - not damage severity,
-                expenditure or coverage.
-              </p>
-              <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
-                <Link
-                  href="/actors#actor-register"
-                  className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-                >
-                  Who did what →
-                </Link>
-                <Link
-                  href="/explorer"
-                  className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-                >
-                  Open the explorer →
-                </Link>
-              </p>
-            </>
-          )}
-        </aside>
+          ) : null}
+          </aside>
+        ) : null}
       </div>
     </div>
   );
