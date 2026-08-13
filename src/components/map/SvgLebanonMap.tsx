@@ -842,13 +842,14 @@ export default function SvgLebanonMap({
         </span>
       </div>
 
-      {/* The map spans the full page width. Lebanon's outline is portrait,
-          so the SVG's height follows from that width - nothing is centred
-          in a narrower column and no side panel reserves space. The detail
-          panel appears under the map, and only once something is picked. */}
-      <div className="grid gap-4">
+      {/* Lebanon's outline is portrait, so a full-width map would run
+          about 1,700px tall. The map is capped by height instead, its
+          column sized to that cap so no gutter is left over, and the space
+          beside it carries the legend and - once something is picked - the
+          detail panel. */}
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,58vh)_minmax(0,1fr)] lg:items-start">
         <div>
-          <div className="relative w-full select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          <div className="relative mx-auto w-full max-w-[58vh] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
@@ -1337,156 +1338,13 @@ export default function SvgLebanonMap({
               Towns: OCHA COD (CC BY-IGO) · Governorates: geoBoundaries · River: © OpenStreetMap contributors
             </div>
           </div>
-
-          {/* Map legend */}
-          <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
-            {view === "entries" ? (
-              <>
-                <li className="flex items-center gap-1.5">
-                  <span className="flex items-center gap-0.5" aria-hidden>
-                    {[0.15, 0.4, 0.65, 0.9].map((o) => (
-                      <span key={o} className="h-2.5 w-4" style={{ background: rampColor, opacity: o }} />
-                    ))}
-                  </span>
-                  fewer → more located traced activities (district tint, 0–{maxDistrict})
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <span className="flex items-center gap-0.5" aria-hidden>
-                    {LAYER_META.map((l) => (
-                      <span key={l.id} className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: l.color }} />
-                    ))}
-                  </span>
-                  marker at the town where it happened - colour = leading actor
-                  layer, size = entries + episodes ({placePoints.length} places);
-                  from ×2 zoom markers become layer-mix donuts with the total
-                  in the centre
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: "#667588" }} />
-                  conflict-context episodes only
-                </li>
-              </>
-            ) : view === "change" ? (
-              <>
-                <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#2F8F6B", opacity: 0.7 }} />
-                  more located entries in 2026 than 2024
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: 0.7 }} />
-                  fewer than 2024 - darker = larger change (max ±{change.maxAbs})
-                </li>
-              </>
-            ) : view === "survey" ? (
-              <li className="flex items-center gap-1.5">
-                <span className="flex items-center gap-0.5" aria-hidden>
-                  {[0.15, 0.4, 0.65, 0.9].map((o) => (
-                    <span key={o} className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: o }} />
-                  ))}
-                </span>
-                housing units reported damaged by municipalities, December 2024
-                (0-{SURVEY_MAX.toLocaleString("en-US")} per district)
-              </li>
-            ) : (
-              <li className="flex items-center gap-1.5">
-                <span
-                  aria-hidden
-                  className="flex h-4 w-4 items-center justify-center rounded-full text-[8px] font-bold text-white"
-                  style={{ background: "#BD5A46" }}
-                >
-                  n
-                </span>
-                buildings completely destroyed, worst cadasters (2026 assessment)
-              </li>
-            )}
-            {showOccupation ? (
-              <>
-                <li className="flex items-center gap-1.5">
-                  <svg width="16" height="12" aria-hidden>
-                    <rect width="16" height="12" fill="url(#occupied-hatch)" stroke="#BD5A46" strokeOpacity="0.7" />
-                  </svg>
-                  Blue Line border-strip towns - traced occupation (2026)
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <svg width="16" height="12" aria-hidden>
-                    <rect
-                      x="1"
-                      y="1"
-                      width="14"
-                      height="10"
-                      fill="none"
-                      stroke="#BD5A46"
-                      strokeOpacity="0.65"
-                      strokeDasharray="3 2"
-                    />
-                  </svg>
-                  districts containing the strip
-                </li>
-              </>
-            ) : null}
-          </ul>
-          <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            Scroll, drag or use the buttons to zoom and pan; district names
-            appear from ×1.8 zoom, marker labels from ×2.2.
-            {view === "entries"
-              ? " Every marker sits at the actual town where the entry or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
-              : view === "change"
-                ? " Colour compares located traced activities per district between the two years under the current layer, stage and status filters. A rise means more traced presence in the tracking - not more delivery, spending or coverage."
-                : view === "survey"
-                  ? " Colour is the number of housing units municipalities themselves reported damaged in the December 2024 survey - the fastest national damage assessments the response produced, gathered in ten days on local knowledge."
-                  : null}
-          </p>
-          {view === "survey" ? (
-            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Municipal declaration, not engineering assessment:{" "}
-              {districtDamage.totals.areasSurveyed} affected areas across{" "}
-              {districtDamage.totals.districtsCovered} districts and{" "}
-              {districtDamage.totals.governoratesCovered} governorates, 5-15
-              December 2024, reporting{" "}
-              {districtDamage.totals.housingUnits.toLocaleString("en-US")}{" "}
-              damaged housing units ({districtDamage.totals.completelyDamagedShare}%
-              completely damaged) within{" "}
-              {districtDamage.totals.reportedAssets.toLocaleString("en-US")}{" "}
-              reported assets. Only the seven districts the survey names
-              individually are shaded; the figures are not additive with
-              satellite estimates or with any 2026 assessment.
-            </p>
-          ) : null}
-          {view === "damage" ? (
-            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Only two zones were assessed by the 31 July 2026 cut-off:{" "}
-              <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
-              ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
-              completely destroyed; desk-validated GeoAI, no field
-              verification) and{" "}
-              <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
-              ({destruction.zones2026[1].assessedDamage}; field-verified). The
-              two products differ in method and must not be compared or
-              summed. Assessed geography is not damaged geography: the
-              real-time national database traced heavy strikes nationwide,
-              and the Bekaa, Baalbek-Hermel and the North had no equivalent
-              assessment.
-            </p>
-          ) : null}
-          {showOccupation ? (
-            <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Occupation marking is indicative: the sources show occupied
-              border villages and an expanded occupation zone demarcated on 18
-              June 2026, but publishes no precise boundary geometry. Hatching
-              therefore marks the strip of towns whose land reaches the Blue
-              Line (derived from the boundary data, including those behind
-              the disputed Ghajar–Shebaa and Metula-adjacent slivers) - the
-              closest honest shape to the traced occupation, not its exact
-              extent.
-            </p>
-          ) : null}
         </div>
 
+        <div className="space-y-4">
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (
           <aside aria-live="polite" className="card p-4">
-          {selectedZone && zoneMentions ? (
             <>
               <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                 {selectedArea ? `${selectedArea} · ` : ""}
@@ -1681,9 +1539,152 @@ export default function SvgLebanonMap({
               </p>
               <EventsList events={townEvents} />
             </>
-          ) : null}
           </aside>
         ) : null}
+
+          {/* Map legend */}
+          <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
+            {view === "entries" ? (
+              <>
+                <li className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-0.5" aria-hidden>
+                    {[0.15, 0.4, 0.65, 0.9].map((o) => (
+                      <span key={o} className="h-2.5 w-4" style={{ background: rampColor, opacity: o }} />
+                    ))}
+                  </span>
+                  fewer → more located traced activities (district tint, 0–{maxDistrict})
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-0.5" aria-hidden>
+                    {LAYER_META.map((l) => (
+                      <span key={l.id} className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: l.color }} />
+                    ))}
+                  </span>
+                  marker at the town where it happened - colour = leading actor
+                  layer, size = entries + episodes ({placePoints.length} places);
+                  from ×2 zoom markers become layer-mix donuts with the total
+                  in the centre
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span aria-hidden className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: "#667588" }} />
+                  conflict-context episodes only
+                </li>
+              </>
+            ) : view === "change" ? (
+              <>
+                <li className="flex items-center gap-1.5">
+                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#2F8F6B", opacity: 0.7 }} />
+                  more located entries in 2026 than 2024
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: 0.7 }} />
+                  fewer than 2024 - darker = larger change (max ±{change.maxAbs})
+                </li>
+              </>
+            ) : view === "survey" ? (
+              <li className="flex items-center gap-1.5">
+                <span className="flex items-center gap-0.5" aria-hidden>
+                  {[0.15, 0.4, 0.65, 0.9].map((o) => (
+                    <span key={o} className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: o }} />
+                  ))}
+                </span>
+                housing units reported damaged by municipalities, December 2024
+                (0-{SURVEY_MAX.toLocaleString("en-US")} per district)
+              </li>
+            ) : (
+              <li className="flex items-center gap-1.5">
+                <span
+                  aria-hidden
+                  className="flex h-4 w-4 items-center justify-center rounded-full text-[8px] font-bold text-white"
+                  style={{ background: "#BD5A46" }}
+                >
+                  n
+                </span>
+                buildings completely destroyed, worst cadasters (2026 assessment)
+              </li>
+            )}
+            {showOccupation ? (
+              <>
+                <li className="flex items-center gap-1.5">
+                  <svg width="16" height="12" aria-hidden>
+                    <rect width="16" height="12" fill="url(#occupied-hatch)" stroke="#BD5A46" strokeOpacity="0.7" />
+                  </svg>
+                  Blue Line border-strip towns - traced occupation (2026)
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <svg width="16" height="12" aria-hidden>
+                    <rect
+                      x="1"
+                      y="1"
+                      width="14"
+                      height="10"
+                      fill="none"
+                      stroke="#BD5A46"
+                      strokeOpacity="0.65"
+                      strokeDasharray="3 2"
+                    />
+                  </svg>
+                  districts containing the strip
+                </li>
+              </>
+            ) : null}
+          </ul>
+          <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            Scroll, drag or use the buttons to zoom and pan; district names
+            appear from ×1.8 zoom, marker labels from ×2.2.
+            {view === "entries"
+              ? " Every marker sits at the actual town where the entry or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
+              : view === "change"
+                ? " Colour compares located traced activities per district between the two years under the current layer, stage and status filters. A rise means more traced presence in the tracking - not more delivery, spending or coverage."
+                : view === "survey"
+                  ? " Colour is the number of housing units municipalities themselves reported damaged in the December 2024 survey - the fastest national damage assessments the response produced, gathered in ten days on local knowledge."
+                  : null}
+          </p>
+          {view === "survey" ? (
+            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              Municipal declaration, not engineering assessment:{" "}
+              {districtDamage.totals.areasSurveyed} affected areas across{" "}
+              {districtDamage.totals.districtsCovered} districts and{" "}
+              {districtDamage.totals.governoratesCovered} governorates, 5-15
+              December 2024, reporting{" "}
+              {districtDamage.totals.housingUnits.toLocaleString("en-US")}{" "}
+              damaged housing units ({districtDamage.totals.completelyDamagedShare}%
+              completely damaged) within{" "}
+              {districtDamage.totals.reportedAssets.toLocaleString("en-US")}{" "}
+              reported assets. Only the seven districts the survey names
+              individually are shaded; the figures are not additive with
+              satellite estimates or with any 2026 assessment.
+            </p>
+          ) : null}
+          {view === "damage" ? (
+            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              Only two zones were assessed by the 31 July 2026 cut-off:{" "}
+              <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
+              ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
+              completely destroyed; desk-validated GeoAI, no field
+              verification) and{" "}
+              <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
+              ({destruction.zones2026[1].assessedDamage}; field-verified). The
+              two products differ in method and must not be compared or
+              summed. Assessed geography is not damaged geography: the
+              real-time national database traced heavy strikes nationwide,
+              and the Bekaa, Baalbek-Hermel and the North had no equivalent
+              assessment.
+            </p>
+          ) : null}
+          {showOccupation ? (
+            <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              Occupation marking is indicative: the sources show occupied
+              border villages and an expanded occupation zone demarcated on 18
+              June 2026, but publishes no precise boundary geometry. Hatching
+              therefore marks the strip of towns whose land reaches the Blue
+              Line (derived from the boundary data, including those behind
+              the disputed Ghajar–Shebaa and Metula-adjacent slivers) - the
+              closest honest shape to the traced occupation, not its exact
+              extent.
+            </p>
+          ) : null}
+        </div>
       </div>
     </div>
   );
