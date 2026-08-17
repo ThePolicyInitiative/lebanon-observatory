@@ -63,10 +63,22 @@ function Card({ u }: { u: Update }) {
       </p>
       <p className="mt-1.5 text-sm font-semibold text-[color:var(--color-navy)]">{u.actor}</p>
       <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">{u.action}</p>
+      {/* Named group: the card sits inside the layer disclosure, so an
+          unnamed group-open would follow that one instead of this. */}
       {u.detail ? (
-        <p className="mt-1.5 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {u.detail}
-        </p>
+        <details className="group/more mt-1.5">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-[11px] font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline [&::-webkit-details-marker]:hidden">
+            <span className="group-open/more:hidden">See more</span>
+            <span className="hidden group-open/more:inline">See less</span>
+            <span aria-hidden className="text-[9px]">
+              <span className="group-open/more:hidden">▸</span>
+              <span className="hidden group-open/more:inline">▾</span>
+            </span>
+          </summary>
+          <p className="mt-1 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            {u.detail}
+          </p>
+        </details>
       ) : null}
       {u.place ? (
         <p className="mt-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
