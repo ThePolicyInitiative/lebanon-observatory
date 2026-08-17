@@ -93,6 +93,35 @@ describe("service impact and web updates", () => {
       expect(["official", "municipal", "ngo_international", "community"]).toContain(u.layer);
     }
   });
+
+  /**
+   * A date may be exact, in words, or genuinely absent - the page prints
+   * "date not stated" for the last case. What must not happen is a
+   * malformed date, or a missing field that hides which case applies.
+   */
+  it("carries a well-formed date field on every web-sourced update", () => {
+    for (const u of webUpdates.updates) {
+      expect("dateReported" in u, `${u.actor} lacks dateReported`).toBe(true);
+      expect("dateText" in u, `${u.actor} lacks dateText`).toBe(true);
+      if (u.dateReported) {
+        expect(u.dateReported, `bad date on ${u.actor}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(Number.isNaN(Date.parse(u.dateReported))).toBe(false);
+      }
+    }
+  });
+
+  /**
+   * A claim reached only through a search summary must say so on the page:
+   * the publisher refused an automated request, so nobody has read it here.
+   */
+  it("flags every update whose page could not be opened", () => {
+    for (const u of webUpdates.updates) {
+      expect(typeof u.openedDirectly, `${u.actor} lacks openedDirectly`).toBe("boolean");
+      if (!u.openedDirectly) {
+        expect(u.caution.length, `${u.actor} is indirect but carries no caution`).toBeGreaterThan(20);
+      }
+    }
+  });
 });
 
 describe("source integrity", () => {
