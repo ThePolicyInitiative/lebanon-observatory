@@ -182,7 +182,7 @@ describe("source integrity", () => {
    * "dossiers", "documents" into "reports"/"entries".
    */
   const CORRUPTION =
-    /\/dossiers\/|dossiers\.|\/entries\/|entries\.worldbank|\/traced\/|\/reports\/CBP|sites\/default\/reports\/|unicef\.org\/reports\//;
+    /\/dossiers\/|dossiers\.|\/entries\/|entries\.worldbank|\/traced\/|\/reports\/CBP|sites\/default\/reports\/|unicef\.org\/reports\/|reports\.worldbank|reports-reports|data\.unhcr\.org\/[a-z]{2}\/reports\/|\/media\/\d+\/dossier\//;
 
   it("keeps every source link https and structurally intact", () => {
     for (const s of reportSources) {
