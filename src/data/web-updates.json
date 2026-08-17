@@ -1121,6 +1121,38 @@
       "caution": "The ministry reporting on its own performance. Meals and blankets are relief, not reconstruction, and the shelter figure is a snapshot at 30 March 2026, not a total.",
       "sourceName": "Ministry of Social Affairs",
       "sourceUrl": "https://www.socialaffairs.gov.lb/news/"
+    },
+    {
+      "dateReported": null,
+      "dateText": "2026",
+      "actor": "UNIFIL municipal support programme",
+      "layer": "ngo_international",
+      "kind": "UN with municipal",
+      "sourceKind": "institutional",
+      "action": "UNIFIL funds small municipal works across its area at roughly US$1 million a year: solar systems that light village roads, water-network repairs and other service projects delivered with the municipalities themselves.",
+      "detail": "With municipalities it also distributed food, water and hygiene supplies to residents of Abbassiyeh and Borj el-Shemali in Sour district. A million dollars a year is small beside the US$1.38 billion of building damage assessed south of the Litani - but it arrives at the municipal tier, which is the tier with no budget of its own, and it stops when the mandate does.",
+      "place": "UNIFIL's area of operations; Abbassiyeh and Borj el-Shemali named",
+      "southOfLitani": true,
+      "openedDirectly": false,
+      "caution": "The annual figure comes from reporting rather than a published budget line, and the project list is illustrative, not complete.",
+      "sourceName": "UNIFIL; Jadidouna",
+      "sourceUrl": "https://unifil.unmissions.org/en/unifil-operations"
+    },
+    {
+      "dateReported": "2026-12-31",
+      "dateText": null,
+      "actor": "UNIFIL - end of mandate",
+      "layer": "ngo_international",
+      "kind": "UN / international",
+      "sourceKind": "institutional",
+      "action": "The Security Council set a final extension: UNIFIL ceases operations on 31 December 2026, draws down uniformed personnel by mid-2027 and completes withdrawal by the end of 2027, transferring its positions to the Lebanese state.",
+      "detail": "Its area of operations is precisely the area between the Litani and the Blue Line. Between 2006 and 2023 its deminers cleared close to five million square metres and destroyed more than 51,000 mines, bombs and unexploded items; routine demining has been suspended since 8 October 2023. Clearance has to happen before rubble removal, so the schedule matters for reconstruction, not only for security. Reporting also calls the mission a financial lifeline for an already neglected area, through local employment and work with municipalities.",
+      "place": "Between the Litani and the Blue Line",
+      "southOfLitani": true,
+      "openedDirectly": false,
+      "caution": "A scheduled future change, not an initiative. What replaces the demining capacity and the municipal support is not settled in any source found.",
+      "sourceName": "House of Commons Library; Defense News; UN Security Council",
+      "sourceUrl": "https://commonslibrary.parliament.uk/research-briefings/cbp-10348/"
     }
   ]
 }

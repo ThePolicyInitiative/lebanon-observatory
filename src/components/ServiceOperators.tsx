@@ -132,6 +132,31 @@ export default function ServiceOperators() {
         </p>
       </div>
 
+      {/* The date every timeline on this page runs into */}
+      <div className="mt-4 rounded-md border-2 border-[color:var(--color-navy)] bg-[#EEF2F7] p-4">
+        <h3 className="text-sm font-bold text-[color:var(--color-navy)]">
+          {ops.horizon.title}
+        </h3>
+        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-[color:var(--color-text)]">
+          {ops.horizon.text}
+        </p>
+        <p className="mt-2 text-[11px]">
+          <a
+            href={ops.horizon.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          >
+            {ops.horizon.sourceName} ↗
+          </a>
+          {!ops.horizon.openedDirectly ? (
+            <span className="ml-2 rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
+              page not opened directly
+            </span>
+          ) : null}
+        </p>
+      </div>
+
       <details className="mt-4 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-3">
         <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
           How to read these accounts ({ops.caveats.length})

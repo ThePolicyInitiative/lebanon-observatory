@@ -139,5 +139,12 @@
     "Restoring a line, a station or a season is not reconstruction: it returns a service to a network, and says nothing about the buildings or the people on it.",
     "Several of these pages refused an automated request and were reached only through a search summary; those are marked.",
     "Dates are given where the source gave one. Where it did not, only the year is shown."
-  ]
+  ],
+  "horizon": {
+    "title": "And in December, the largest actor in this area leaves",
+    "text": "UNIFIL's mandate ends on 31 December 2026. Uniformed personnel are to be drawn down by mid-2027 and the withdrawal completed by the end of that year, closing nearly five decades of presence and handing its positions to the Lebanese state. Its area of operations is defined as exactly the ground this workbook covers: between the Litani and the Blue Line. It is also the body that demines before anyone can clear rubble - it cleared close to five million square metres and destroyed more than 51,000 mines, bombs and unexploded items between 2006 and 2023 - and its routine demining has been suspended since 8 October 2023, so contamination has been accumulating for almost three years. Reporting also describes it as a financial lifeline for the area, employing local people and working through the municipalities. Every timeline on this page runs into that date.",
+    "sourceName": "UN Security Council reporting; House of Commons Library; Defense News",
+    "sourceUrl": "https://commonslibrary.parliament.uk/research-briefings/cbp-10348/",
+    "openedDirectly": false
+  }
 }
