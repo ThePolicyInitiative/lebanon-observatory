@@ -1105,6 +1105,22 @@
       "caution": "North of the Litani, so outside the area, and the school is one example rather than a survey. Included because it is the receiving end of displacement from inside it.",
       "sourceName": "Janoubia",
       "sourceUrl": "https://janoubia.com/2026/03/22/"
+    },
+    {
+      "dateReported": "2026-03-30",
+      "dateText": null,
+      "actor": "Ministry of Social Affairs - national response plan",
+      "layer": "official",
+      "kind": "State / official",
+      "sourceKind": "institutional",
+      "action": "The ministry's own account of the response: 136,000 displaced people received across 669 shelters, 3 million meals, 400,000 blankets and mattresses and 100,000 cleaning kits distributed, and more than 1.1 million people registered on its digital platform. Under the Aman programme, cash was transferred to a further 20,000 families whose eligibility had been checked.",
+      "detail": "Its convoys reached the Marjaayoun villages of Al-Qlaiaa, Borj el-Molouk, Deir Mimas, Bouideh and Ebel es-Saqi, in coordination with the Lebanese Army and UNIFIL - naming villages inside the area that no other actor in this list reaches. The ministry stresses coordination with the governorate disaster-management rooms so that support reaches those entitled to it, which is an admission that targeting is the weak point.",
+      "place": "National; convoys into Marjaayoun district",
+      "southOfLitani": true,
+      "openedDirectly": true,
+      "caution": "The ministry reporting on its own performance. Meals and blankets are relief, not reconstruction, and the shelter figure is a snapshot at 30 March 2026, not a total.",
+      "sourceName": "Ministry of Social Affairs",
+      "sourceUrl": "https://www.socialaffairs.gov.lb/news/"
     }
   ]
 }

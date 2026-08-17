@@ -11,6 +11,7 @@ const SERVICE_TONE: Record<string, string> = {
   Electricity: "#D69600",
   Telecommunications: "#1B8295",
   "Irrigation and hydropower": "#2F8F6B",
+  "Roads and bridges": "#A34F7C",
 };
 
 export default function ServiceOperators() {
@@ -31,14 +32,14 @@ export default function ServiceOperators() {
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-        Electricity, telecoms and irrigation, as the operators themselves describe restoring
-        them. This is the same granularity as the water utility&apos;s own posts and the same
-        standing: unverified, and in none of this site&apos;s counts. It is here because these
-        accounts name the substation, the line and the date, where every assessment stops at the
-        sector.
+        Electricity, telecoms, irrigation and roads, as the operators themselves describe
+        restoring them. This is the same granularity as the water utility&apos;s own posts and
+        the same standing: unverified, and in none of this site&apos;s counts. It is here because
+        these accounts name the substation, the line, the bridge and the date, where every
+        assessment stops at the sector.
       </p>
 
-      <div className="mt-5 grid gap-4 lg:grid-cols-3">
+      <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {ops.operators.map((o) => (
           <article key={o.id} className="card p-4">
             <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
@@ -106,7 +107,7 @@ export default function ServiceOperators() {
         ))}
       </div>
 
-      {/* The finding that cuts across all three */}
+      {/* The finding two ministries state independently */}
       <div className="mt-4 rounded-md border-2 border-[color:var(--color-rust)] bg-[#FBF3F0] p-4">
         <h3 className="text-sm font-bold text-[color:var(--color-rust)]">
           {ops.crossCutting.title}

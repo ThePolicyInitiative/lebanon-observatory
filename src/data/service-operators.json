@@ -94,12 +94,43 @@
       "sourceName": "Litani River Authority; Future TV; Sawt Beirut",
       "sourceUrl": "https://www.litani.gov.lb/ar-lb/news",
       "openedDirectly": false
+    },
+    {
+      "id": "mpwt",
+      "name": "Ministry of Public Works and Transport",
+      "service": "Roads and bridges",
+      "headline": "Paving resumes where clearance allows",
+      "inArea": true,
+      "items": [
+        {
+          "what": "At Majdal Selm, a road rehabilitation whose excavation and base layer had been finished before the war, then abandoned on security grounds, is back under way with base-course and paving work. The ministry resumed it only after obtaining Mechanism approval.",
+          "where": "Majdal Selm (Marjaayoun)",
+          "date": "2026",
+          "figure": "resumed after clearance"
+        },
+        {
+          "what": "Asphalt work on the international coastal road at the Qasmieh bridge, repairing damage caused by the Israeli aggression on that axis - the crossing that carries traffic over the Litani into the south.",
+          "where": "Qasmieh bridge, at the Litani crossing",
+          "date": "2026",
+          "figure": null
+        },
+        {
+          "what": "Repaving and maintenance in the Dabbaa quarter of Tyre and on the Saida-Borj Rahal highway, including asphalt repair and replacement of protective barriers. Farm access roads at Kfour and the tank road at Ezze were rehabilitated to get growers back onto their land, and highway maintenance continues at Deir al-Zahrani.",
+          "where": "Tyre, Borj Rahal, Kfour, Ezze, Deir al-Zahrani",
+          "date": "2026",
+          "figure": null
+        }
+      ],
+      "constraint": "Two of the ministry's own explanations for stopped work are security conditions and waiting on Mechanism approval - the same gate the electricity crews describe. No costs or completion dates are published with any of it.",
+      "sourceName": "Anbaa; Al-Jadeed; Daily Beirut",
+      "sourceUrl": "https://anbaaonline.com/news/336623",
+      "openedDirectly": true
     }
   ],
   "crossCutting": {
     "title": "One constraint runs through all of them",
-    "text": "Repairs on the high-voltage lines between Srireh and the Kfarhouna triangle went ahead only after the ceasefire Mechanism committee approved them. Utility crews in the south are not simply short of money or materials: some of this work requires clearance from the body monitoring the ceasefire, and the parts of the network that stay broken are the parts inside the strip nobody can reach.",
-    "sourceName": "LBCI",
+    "text": "Repairs on the high-voltage lines between Srireh and the Kfarhouna triangle went ahead only after the ceasefire Mechanism committee approved them. The roads ministry gives the same reason for restarting the Majdal Selm road: work resumed once Mechanism approval came through. Two different ministries, two different networks, one gate. Utility crews in the south are not simply short of money and materials - some of this work needs clearance from the body monitoring the ceasefire, and the parts of the network that stay broken are the parts inside the strip nobody can reach.",
+    "sourceName": "LBCI; Anbaa",
     "sourceUrl": "https://www.lbcgroup.tv/news/lebanon-security/940657/",
     "openedDirectly": false
   },
