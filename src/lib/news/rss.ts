@@ -113,6 +113,67 @@ export const RSS_FEEDS: FeedSpec[] = [
     language: "en",
     fixed: { sourceName: "UN News", sourceDomain: "news.un.org" },
   },
+  /**
+   * Publishers' own feeds. These matter beyond adding volume: they link
+   * straight to the article, carry the publisher's own summary, and put
+   * Lebanon's state news agency into a feed that otherwise had no official
+   * voice. They are country- or region-wide rather than pre-filtered, so
+   * the relevance gate in the pipeline does the narrowing.
+   */
+  {
+    name: "nna-en",
+    url: "https://www.nna-leb.gov.lb/en/rss",
+    language: "en",
+    fixed: { sourceName: "National News Agency", sourceDomain: "nna-leb.gov.lb" },
+  },
+  {
+    name: "nna-ar",
+    url: "https://www.nna-leb.gov.lb/ar/rss",
+    language: "ar",
+    fixed: { sourceName: "الوكالة الوطنية للإعلام", sourceDomain: "nna-leb.gov.lb" },
+  },
+  {
+    name: "annahar",
+    url: "https://www.annahar.com/rss",
+    language: "ar",
+    fixed: { sourceName: "Annahar", sourceDomain: "annahar.com" },
+  },
+  {
+    name: "aljazeera-en",
+    url: "https://www.aljazeera.com/xml/rss/all.xml",
+    language: "en",
+    fixed: { sourceName: "Al Jazeera", sourceDomain: "aljazeera.com" },
+  },
+  {
+    name: "arab-news",
+    url: "https://www.arabnews.com/rss.xml",
+    language: "en",
+    fixed: { sourceName: "Arab News", sourceDomain: "arabnews.com" },
+  },
+  {
+    name: "al-modon",
+    url: "https://www.almodon.com/rss",
+    language: "ar",
+    fixed: { sourceName: "Al-Modon", sourceDomain: "almodon.com" },
+  },
+  {
+    name: "this-is-beirut",
+    url: "https://thisisbeirut.com.lb/rss",
+    language: "en",
+    fixed: { sourceName: "This is Beirut", sourceDomain: "thisisbeirut.com.lb" },
+  },
+  {
+    name: "lebanon-files",
+    url: "https://www.lebanonfiles.com/feed/",
+    language: "ar",
+    fixed: { sourceName: "Lebanon Files", sourceDomain: "lebanonfiles.com" },
+  },
+  {
+    name: "un-lebanon",
+    url: "https://lebanon.un.org/en/rss.xml",
+    language: "en",
+    fixed: { sourceName: "United Nations in Lebanon", sourceDomain: "lebanon.un.org" },
+  },
 ];
 
 export async function fetchRssFeed(spec: FeedSpec): Promise<NewsArticle[]> {
@@ -172,6 +233,10 @@ export async function fetchRssFeed(spec: FeedSpec): Promise<NewsArticle[]> {
       ...tags,
       relevanceScore: scoreRelevance(text),
       duplicateGroupId: null,
+      // Google hands out an opaque redirect token instead of the article
+      // URL, and it cannot be resolved without calling Google again. The
+      // card says so rather than implying a direct link.
+      viaAggregator: url.includes("news.google.com"),
     });
   }
   return out;

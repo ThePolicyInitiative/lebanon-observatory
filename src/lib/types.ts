@@ -154,6 +154,12 @@ export type NewsArticle = {
   relevanceScore: number;
   duplicateGroupId: string | null;
   relatedCount?: number;
+  /**
+   * True when the link goes through an aggregator's redirect rather than
+   * straight to the publisher. Google News now hands out opaque tokens that
+   * cannot be resolved offline, so the reader is told before clicking.
+   */
+  viaAggregator?: boolean;
 };
 
 export type NewsResponse = {

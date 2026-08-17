@@ -16,11 +16,14 @@ export default function NewsPage() {
           Live news and official updates
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          Aggregated server-side from Google News feeds in English, Arabic and
-          French, ReliefWeb&apos;s Lebanon updates, UN News, the GDELT project
-          and - when configured - the ReliefWeb API and a licensed news API,
-          with caching, deduplication and keyword relevance filtering.
-          Articles always link to the original publisher.
+          Aggregated server-side from Lebanon&apos;s National News Agency in
+          Arabic and English, Annahar, Al Jazeera, Arab News, ReliefWeb&apos;s
+          Lebanon updates, UN News, Google News in three languages, the GDELT
+          project and - when configured - the ReliefWeb API and a licensed
+          news API, with caching, deduplication and keyword relevance
+          filtering. Most items link straight to the publisher; those that
+          arrive through Google News carry an opaque redirect that cannot be
+          resolved back to the article, and every one of those is marked.
         </p>
       </header>
       <div className="mt-6">

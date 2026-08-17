@@ -45,7 +45,13 @@ export async function GET(req: NextRequest) {
   // filtered per-request; the JSON APIs re-query per parameter set.
   const results = await Promise.all([
     cachedProvider("gdelt", paramsKey, () => fetchGdelt(providerParams)),
-    cachedProvider("reliefweb", paramsKey, () => fetchReliefWeb(providerParams)),
+    // The ReliefWeb JSON API rejects unregistered callers, so without a
+    // registered app name it failed on every request and reported itself
+    // permanently down. ReliefWeb still reaches the feed through its RSS
+    // provider below; this one returns only when it is configured to work.
+    ...(process.env.RELIEFWEB_APP_NAME
+      ? [cachedProvider("reliefweb", paramsKey, () => fetchReliefWeb(providerParams))]
+      : []),
     ...RSS_FEEDS.map((feed) =>
       cachedProvider(feed.name, "fixed", () => fetchRssFeed(feed)),
     ),

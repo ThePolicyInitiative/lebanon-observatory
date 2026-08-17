@@ -229,27 +229,59 @@ export default function NewsExplorer() {
         </button>
       </div>
 
-      {/* Status line */}
-      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[color:var(--color-text-secondary)]">
+      {/* Status line. With a dozen-plus feeds the per-source list is a wall
+          of text, so the headline is the count and the roll-call opens from
+          it. A source that is down is named up front, because it means the
+          coverage below is partial. */}
+      <div className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
         {data ? (
-          <>
-            <span>Last updated: {fmtDateTime(data.lastUpdated)}</span>
-            {data.providers.map((p) => (
-              <span key={p.name} className="inline-flex items-center gap-1">
-                <span
-                  aria-hidden
-                  className={`h-2 w-2 rounded-full ${p.ok ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
-                />
-                {p.name}
-                {p.ok
-                  ? p.fromCache && p.cacheAgeSeconds !== null
-                    ? ` (cached ${Math.round(p.cacheAgeSeconds / 60)} min ago)`
-                    : " (live)"
-                  : " (unavailable - showing last good data)"}
-              </span>
-            ))}
-            <span>{data.total} matched articles</span>
-          </>
+          (() => {
+            const down = data.providers.filter((p) => !p.ok);
+            const up = data.providers.length - down.length;
+            return (
+              <details className="group/src">
+                <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-3 gap-y-1 [&::-webkit-details-marker]:hidden">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span
+                      aria-hidden
+                      className={`h-2 w-2 rounded-full ${down.length === 0 ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
+                    />
+                    <span className="font-semibold">
+                      {up} of {data.providers.length} sources reporting
+                    </span>
+                  </span>
+                  <span>Updated {fmtDateTime(data.lastUpdated)}</span>
+                  <span>{data.total} matched articles</span>
+                  {down.length > 0 ? (
+                    <span className="text-[color:var(--color-rust)]">
+                      {down.map((p) => p.name).join(", ")} unavailable - showing the last good
+                      results from {down.length > 1 ? "those" : "it"}
+                    </span>
+                  ) : null}
+                  <span className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
+                    <span className="group-open/src:hidden">Every source ▸</span>
+                    <span className="hidden group-open/src:inline">Hide sources ▾</span>
+                  </span>
+                </summary>
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                  {data.providers.map((p) => (
+                    <li key={p.name} className="inline-flex items-center gap-1">
+                      <span
+                        aria-hidden
+                        className={`h-2 w-2 rounded-full ${p.ok ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
+                      />
+                      {p.name}
+                      {p.ok
+                        ? p.fromCache && p.cacheAgeSeconds !== null
+                          ? ` (cached ${Math.round(p.cacheAgeSeconds / 60)} min ago)`
+                          : " (live)"
+                        : " (unavailable - showing last good data)"}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            );
+          })()
         ) : null}
       </div>
 
@@ -374,11 +406,25 @@ function NewsCard({
         <span>{fmtDateTime(a.publishedAt)}</span>
         <span className="rounded-sm border border-[color:var(--color-border)] px-1 py-0.5">{LANG_LABEL[a.language]}</span>
         <span className="rounded-sm bg-[#EEF2F7] px-1 py-0.5 capitalize">{a.sourceType}</span>
+        {/* Google hands out an opaque redirect instead of the article URL,
+            so the reader is told where the link actually goes. */}
+        {a.viaAggregator ? (
+          <span
+            className="rounded-sm bg-[#FAF3E3] px-1 py-0.5 font-semibold normal-case text-[#8a6200]"
+            title="This link opens through Google News, which then forwards to the publisher"
+          >
+            via Google News
+          </span>
+        ) : null}
       </p>
       <h3 className="mt-1.5 text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
         <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
           {a.title} <span aria-hidden dir="ltr">↗</span>
-          <span className="sr-only">(opens original article)</span>
+          <span className="sr-only">
+            {a.viaAggregator
+              ? `(opens via Google News, which forwards to ${a.sourceName})`
+              : `(opens the article on ${a.sourceName})`}
+          </span>
         </a>
       </h3>
       {a.description ? (
