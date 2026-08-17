@@ -6,6 +6,7 @@ import humanToll from "@/data/human-toll.json";
 import leapResults from "@/data/leap-results.json";
 import serviceImpact from "@/data/service-impact.json";
 import webUpdates from "@/data/web-updates.json";
+import slwe from "@/data/slwe-posts.json";
 import destruction from "@/data/destruction.json";
 import reportSources from "@/data/report-sources.json";
 
@@ -120,6 +121,41 @@ describe("service impact and web updates", () => {
       if (!u.openedDirectly) {
         expect(u.caution.length, `${u.actor} is indirect but carries no caution`).toBeGreaterThan(20);
       }
+    }
+  });
+});
+
+describe("the water utility's own posts", () => {
+  it("adds up: departments account for every post", () => {
+    const sum = slwe.departments.reduce((a, d) => a + d.posts, 0);
+    expect(sum).toBe(slwe.totalPosts);
+    const south = slwe.departments
+      .filter((d) => d.inArea)
+      .reduce((a, d) => a + d.posts, 0);
+    expect(south).toBe(slwe.southPosts);
+    expect(slwe.restoredCount).toBeLessThanOrEqual(slwe.totalPosts);
+    expect(slwe.southTownsNamed).toBeLessThanOrEqual(slwe.townsNamed);
+  });
+
+  /**
+   * This is a self-published, undated source. It may only ever appear
+   * alongside the caveats that say so - the undated one above all, since
+   * nothing here can be placed against the cut-off.
+   */
+  it("keeps the caveats that make the source usable", () => {
+    expect(slwe.caveats.length).toBeGreaterThanOrEqual(5);
+    const all = slwe.caveats.join(" ").toLowerCase();
+    for (const need of ["self-published", "undated", "cut-off", "not reconstruction"]) {
+      expect(all, `caveats no longer mention "${need}"`).toContain(need);
+    }
+    expect(slwe.sourceKind).toBe("social");
+  });
+
+  it("quotes real posts, attributed to a department", () => {
+    expect(slwe.samples.length).toBeGreaterThan(3);
+    for (const s of slwe.samples) {
+      expect(s.text.length).toBeGreaterThan(40);
+      expect(slwe.departments.some((d) => d.name === s.department)).toBe(true);
     }
   });
 });
