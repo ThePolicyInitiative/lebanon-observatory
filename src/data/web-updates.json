@@ -1,6 +1,6 @@
 {
   "note": "Actors and actions reported by external web sources. Kept strictly separate from the verified tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked source reports, names that source, and says whether the page was opened directly or only reached through a search summary.",
-  "gatheredOn": "2026-08-13",
+  "gatheredOn": "2026-08-17",
   "updates": [
     {
       "dateReported": "2026-08-11",
@@ -288,7 +288,7 @@
       "caution": "A coordination structure. No tonnage, budget or completion figure is attached to it in the source.",
       "sourceName": "UN Development Coordination Office",
       "sourceUrl": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management",
-      "detail": ""
+      "detail": "Who does what inside the ten: UN-Habitat on damage assessment and debris planning, UNEP on environmental handling, UNDP on the strategy itself, ILO on labour standards for the people doing the clearing, UNMAS on unexploded ordnance, UNESCO on heritage, IOM on displacement and return, FAO on environmental impact, OCHA on coordination and UNOPS on delivery. Abandoned quarries are named as the processing sites. The UN Resident Coordinator frames the aim as clearing debris without damaging the environment or public health; a UNDP specialist calls the safety and environmental problem immense but treatable as an opening rather than only a loss."
     },
     {
       "dateReported": null,
@@ -304,7 +304,7 @@
       "caution": "The site already tracks this union and this mayor; this adds the debris-policy position, not a new actor.",
       "sourceName": "UN Development Coordination Office",
       "sourceUrl": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management",
-      "detail": ""
+      "detail": "The mayor heads the Tyre Union of Municipalities as well as the city, which is why the union is the counterpart for debris work across the surrounding cadasters. His stated condition is sequence: assessment first, to map and categorise the targeted buildings, and only then clearance - because rubble moved before a building is assessed takes the basis for any future compensation claim with it."
     },
     {
       "dateReported": null,
@@ -512,7 +512,7 @@
       "caution": "Agriculture is excluded from the World Bank first phase, so this cooperative sits outside the funded chain entirely. Replanted olive and citrus need about seven uninterrupted years to yield.",
       "sourceName": "The New Arab; Daily Beirut",
       "sourceUrl": "https://www.newarab.com/features/lebanese-farmers-strive-rebuild-their-olive-groves-after-war",
-      "detail": ""
+      "detail": "What the harvest figures sit on top of: 23 cooperatives and 16 olive presses destroyed across the south, more than 200 nurseries damaged, and 40,000 olive trees gone. Of the farmers on the national register, 77.9% of the southern ones were displaced, and 1,617 farms were damaged along with 1,848,856 head of livestock and poultry and 29,000 beehives. A cooperative that loses its press does not simply lose a season: the surviving harvest has nowhere to go."
     },
     {
       "dateReported": null,
@@ -592,7 +592,7 @@
       "caution": "North of the Litani, so outside the area - included because the people served are displaced from it, and because it names two local bodies the site does not carry: Al Majmoua and the Saida/Zahrani DRM unit.",
       "sourceName": "UN Women Lebanon",
       "sourceUrl": "https://lebanon.unwomen.org/en/stories/feature-story/2026/08/a-women-led-bakery-rebuilding-hope-in-south-lebanon",
-      "detail": ""
+      "detail": "The five are Wedyan, 45; Hala, 39; Fatima, 45; Fatima, 54; and Zeinab, 56 - all displaced themselves, working inside the shelter they live in, a former hotel. They describe the bakery as much for the routine and the company as for the bread: one says her job is as much to make the others laugh as to make the manakeesh. Their attachment is to land, not to the shelter - in their words, nothing is more precious than it."
     },
     {
       "dateReported": null,
@@ -656,7 +656,7 @@
       "caution": "Shelter that lets farming resume, not house reconstruction. Reported in Arabic media only, which is why an English-language sweep missed it entirely. A partnership with an Iraqi tribal association is also reported, so the funding is not purely domestic.",
       "sourceName": "Al-Modon; Annahar; Al Mayadeen",
       "sourceUrl": "https://www.almodon.com/society/2025/3/3/%D8%A8%D9%8A%D9%88%D8%AA-%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A%D8%A9-%D8%AC%D8%A7%D9%87%D8%B2%D8%A9-%D8%AA%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%B1%D9%88%D8%AD-%D9%84%D8%A8%D9%84%D8%AF%D8%A9-%D8%B1%D8%A7%D9%85%D9%8A%D8%A7-%D8%A7%D9%84%D9%85%D8%AF%D9%85%D8%B1%D8%A9-%D8%A8%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84",
-      "detail": ""
+      "detail": "Its stated ambition is to take the Ramya count from 50 units to 200, and it has already sent a convoy of prefabricated rooms to 10 border villages. The siting is deliberate rather than incidental: the Ramya units went in at the village secondary school, between the two largest farming areas, so that tobacco growers could sleep beside the land they work. Alongside the housing it runs an Agricultural Jihad (الجهاد الزراعي) initiative for affected farmers."
     },
     {
       "dateReported": null,
@@ -1153,6 +1153,150 @@
       "caution": "A scheduled future change, not an initiative. What replaces the demining capacity and the municipal support is not settled in any source found.",
       "sourceName": "House of Commons Library; Defense News; UN Security Council",
       "sourceUrl": "https://commonslibrary.parliament.uk/research-briefings/cbp-10348/"
+    },
+    {
+      "dateReported": "2025-01-16",
+      "dateText": null,
+      "actor": "Al-Amal Al-Baladi Association (جمعية العمل البلدي)",
+      "layer": "ngo_international",
+      "kind": "Local NGO",
+      "sourceKind": "institutional",
+      "action": "A Lebanese association supporting more than 1,000 local authorities, which set out why the prefabricated-housing route for displaced families stalled before it reached the villages.",
+      "detail": "Its account of the blockage: the building law as amended in 2004 says nothing about homes made of anything but concrete, so the units had no legal footing. Donor states including Qatar paid to buy and ship them from Turkey, where they had been meant for earthquake survivors. The villages that needed them had no sewage network, no power connection and no generators to serve them. With the cabinet in caretaker form the question was left pending, and the association judged it might be abandoned altogether. It puts damage at roughly 60% in the frontline villages and 25-30% in the second line behind them.",
+      "place": "National, including the southern villages",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "The association's own account of a project it was pressing for, published January 2025. It states an intention and an obstacle, not an outcome.",
+      "sourceName": "Al-Amal Al-Baladi Association",
+      "sourceUrl": "https://amalbaladi.org.lb/details/2216/"
+    },
+    {
+      "dateReported": "2026-04-07",
+      "dateText": null,
+      "actor": "Nation Station community kitchen",
+      "layer": "community",
+      "kind": "Community / volunteers",
+      "sourceKind": "press",
+      "action": "A neighbourhood kitchen begun after the 2020 port explosion, cooking and handing out about 1,000 meals a day to three collective shelters opened after the escalation.",
+      "detail": "The figure is dated 5 March 2026 in the reporting. The kitchen was not built for this war: it started as a response to the August 2020 port explosion and has run through successive crises since, which is why it could turn to shelter catering within days rather than months.",
+      "place": "Beirut, serving shelters opened after the southern escalation",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "A reported feature, not an audited count. No budget or funder is stated.",
+      "sourceName": "The Tahrir Institute for Middle East Policy",
+      "sourceUrl": "https://timep.org/2026/04/07/war-in-lebanon-community-initiatives-work-to-fill-the-rescue-gap/"
+    },
+    {
+      "dateReported": "2026-04-07",
+      "dateText": null,
+      "actor": "Barzakh café, Hamra (manager Khodr Al Akhdar), with Ahla Fawda",
+      "layer": "community",
+      "kind": "Community / volunteers",
+      "sourceKind": "press",
+      "action": "A Beirut café that turned its kitchen over to shelter meals, scaling from 100 a day to 800 and then 2,500, cooked on site by volunteers with the organisation Ahla Fawda.",
+      "detail": "Its manager describes the scale-up as unplanned: he posted the offer of 100 meals and went to bed, and woke to a response large enough to force the number up twenty-five fold. Ahla Fawda normally works on urban questions and buying back plastic waste; its Eco Hub was turned over to displaced people for meals, clothing and a place to gather.",
+      "place": "Hamra, Beirut",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "Self-described scale, relayed in a reported feature. No independent count.",
+      "sourceName": "The Tahrir Institute for Middle East Policy",
+      "sourceUrl": "https://timep.org/2026/04/07/war-in-lebanon-community-initiatives-work-to-fill-the-rescue-gap/"
+    },
+    {
+      "dateReported": "2026-04-07",
+      "dateText": null,
+      "actor": "Elissar Loghamji (individual initiative)",
+      "layer": "community",
+      "kind": "Community / individuals",
+      "sourceKind": "press",
+      "action": "An individual relief effort aimed at displaced people staying in private homes rather than shelters, which raised over US$100,000 in aid.",
+      "detail": "What it moved: medicine, clothes, pillows, mattresses, food parcels and cooked meals. The targeting is the point - people taken in by relatives or renting privately fall outside shelter counts, so the organised response reaches them last. The initiative had run in an earlier round and was restarted for this war.",
+      "place": "Not specified beyond displaced households in private housing",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "A self-reported total relayed in a feature. No breakdown of what the sum bought, and no period given.",
+      "sourceName": "The Tahrir Institute for Middle East Policy",
+      "sourceUrl": "https://timep.org/2026/04/07/war-in-lebanon-community-initiatives-work-to-fill-the-rescue-gap/"
+    },
+    {
+      "dateReported": "2026-04-07",
+      "dateText": null,
+      "actor": "Ibrahim Al Kadi (individual initiative)",
+      "layer": "community",
+      "kind": "Community / individuals",
+      "sourceKind": "press",
+      "action": "One person collecting donations and matching displaced families to what they need by phone and social media, working across the country rather than in one area.",
+      "detail": "About US$9,000 of aid was moved during the 2024 war and around US$15,000 gathered for this one - clothes, food, fuel and other goods rather than cash. In his own words, what he is doing should be the state's job, but he cannot wait while the need grows. The size of the sums beside the scale of displacement is the finding, not the generosity.",
+      "place": "National, no geographical limit stated",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "Self-reported sums in a feature, with no period or beneficiary count.",
+      "sourceName": "The Tahrir Institute for Middle East Policy",
+      "sourceUrl": "https://timep.org/2026/04/07/war-in-lebanon-community-initiatives-work-to-fill-the-rescue-gap/"
+    },
+    {
+      "dateReported": "2026-04-07",
+      "dateText": null,
+      "actor": "Mada Network and Beit Aam (political coordinator Karim Safieddine)",
+      "layer": "community",
+      "kind": "Community / association",
+      "sourceKind": "press",
+      "action": "A shared collection and handout space for in-kind donations - clothing, blankets, food - passed on to collective shelters, funded through social media appeals.",
+      "detail": "Its coordinator sets the limit himself: for all the volume they move, the need stays far greater than what they can supply. That gap is the recurring shape of the community layer on this page - fast, specific, and small against the scale it is answering.",
+      "place": "Beirut, serving collective shelters",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "No figures for volume, spending or people reached are given.",
+      "sourceName": "The Tahrir Institute for Middle East Policy",
+      "sourceUrl": "https://timep.org/2026/04/07/war-in-lebanon-community-initiatives-work-to-fill-the-rescue-gap/"
+    },
+    {
+      "dateReported": "2026-05-08",
+      "dateText": null,
+      "actor": "Ministry of Agriculture with the World Food Programme and the European Union",
+      "layer": "official",
+      "kind": "State / official",
+      "sourceKind": "press",
+      "action": "Cash assistance of US$1.65 million planned for about 4,840 farmers, with in-kind support for a further 1,850, against a war toll on southern farmland counted in tens of thousands of hectares.",
+      "detail": "The toll the assistance is set against: 18,559 hectares of southern farmland directly damaged, 22.5% of the farmland in the conflict areas and part of 56,264 hectares nationally, across 64 southern towns. Within it, 11,075 hectares of fruit trees, 6,600 hectares of olives, 1,617 farms and 793 plastic greenhouses. Livestock losses run to 1,848,856 head of poultry, sheep, goats and cattle, 29,000 beehives and 2,030 tonnes of fish. Of 23,611 farmers on the register, 77.9% of the southern ones were displaced. Set beside the damage, US$1.65 million reaches about one farmer in five.",
+      "place": "Bint Jbeil, Marjaayoun and Sour districts",
+      "southOfLitani": true,
+      "openedDirectly": true,
+      "caution": "Figures as reported in May 2026, drawn from ministry counting. The assistance is planned, not confirmed as paid.",
+      "sourceName": "Daily Beirut",
+      "sourceUrl": "https://dailybeirut.com/en/lebanon/lebanons-southern-agriculture-faces-catastrophic-losses/"
+    },
+    {
+      "dateReported": "2026-03-23",
+      "dateText": null,
+      "actor": "Ministry of Agriculture (Minister Nizar Hani)",
+      "layer": "official",
+      "kind": "State / official",
+      "sourceKind": "press",
+      "action": "Emergency measures for livestock rather than land: moving cattle and goats to safety, shifting their feed and trying to secure fodder where the supply chain into villages had been cut.",
+      "detail": "The olive sector behind the measures: 40,000 olive trees destroyed and 134 hectares of groves lost, against 110,000 people who make a living from olives; 23 cooperatives and 16 olive presses destroyed, with more than 200 nurseries damaged, and sector losses put at 26,000 tonnes. More than 175 white phosphorus attacks affected over 600 hectares. Destroyed presses and cooperatives matter beyond the trees: without them a surviving harvest cannot be processed or sold, so the loss outlasts the season.",
+      "place": "Zahrani to the border, and the southern districts",
+      "southOfLitani": true,
+      "openedDirectly": true,
+      "caution": "The damage and loss totals in this reporting are dated to the 2023-24 period and are not a 2026 count. The minister's measures are from March 2026.",
+      "sourceName": "The Beiruter",
+      "sourceUrl": "https://www.thebeiruter.com/article/south-lebanon%E2%80%99s-harvest-is-dying-on-the-trees/1350"
+    },
+    {
+      "dateReported": "2026-07-29",
+      "dateText": null,
+      "actor": "Wa Taawanou Association at Zaoutar el-Gharbiyeh",
+      "layer": "community",
+      "kind": "Community / association",
+      "sourceKind": "institutional",
+      "action": "A temporary services centre in the village public square, including a room fitted out for the municipality itself, and a second unit serving daily meals to returning families - both running on solar power.",
+      "detail": "The association supplied the office equipment and furnishings for the municipal room, and assigned volunteers to the village day by day to work with the municipality and the army on clearing and ordering the square. Zaoutar el-Gharbiyeh is one of the pilot-area villages, so this is a community association standing in for municipal premises in a village the state has only just re-entered - not housing, but the place from which a municipality works.",
+      "place": "Zaoutar el-Gharbiyeh (El Nabatieh district)",
+      "southOfLitani": false,
+      "openedDirectly": true,
+      "caution": "Reported from the association's own statement, so it is a claim about its own work. No cost, unit count or duration is given.",
+      "sourceName": "Al-Manar",
+      "sourceUrl": "https://www.almanar.com.lb/article/1058957/"
     }
   ]
 }
