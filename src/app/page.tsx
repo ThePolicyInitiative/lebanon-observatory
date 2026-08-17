@@ -11,8 +11,6 @@ const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"),
   loading: () => <div className="h-96 animate-pulse rounded-md bg-white" />,
 });
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
-import FinanceFunnel from "@/components/charts/FinanceFunnel";
-import DisbursementWaffle from "@/components/charts/DisbursementWaffle";
 import NewsTeaser from "@/components/news/NewsTeaser";
 import { kpis, locations } from "@/lib/data";
 import { GOV_PATHS } from "@/lib/geo";
@@ -248,12 +246,9 @@ export default function HomePage() {
               not data of completed reconstruction.
             </p>
           </SectionHeading>
-          <div className="mt-6">
-            <FinanceFunnel />
-          </div>
-          <div className="mt-6">
-            <DisbursementWaffle />
-          </div>
+          {/* The funnel and the waffle live on /finance. They were embedded
+              here too, printing the same two figures twice on the site; the
+              numbers they carry are already in the indicator strip above. */}
           <p className="mt-3 text-sm">
             <Link
               href="/finance"
