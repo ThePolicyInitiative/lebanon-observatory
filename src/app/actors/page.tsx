@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import ActorTabs from "./ActorTabs";
 import ActorTreemap from "@/components/charts/ActorTreemap";
-
-/** Heavy browsers of the full tracking: loaded after first paint. */
-const ActorStageMatrix = dynamic(() => import("./ActorStageMatrix"), {
-  loading: () => <div className="h-72 animate-pulse rounded-md bg-white" />,
-});
-const ActorRegister = dynamic(() => import("./ActorRegister"), {
-  loading: () => <div className="h-72 animate-pulse rounded-md bg-white" />,
-});
+/**
+ * These two were lazily loaded because each pulled the whole register into
+ * the browser. They now reduce and project on the server and hand small
+ * props to their interactive halves, so a plain import is both simpler and
+ * faster - nothing heavy is left to defer.
+ */
+import ActorStageMatrix from "./ActorStageMatrix";
+import ActorRegister from "./ActorRegister";
 import ReportedUpdates from "@/components/ReportedUpdates";
 import WaterRepairs from "@/components/WaterRepairs";
 import ServiceOperators from "@/components/ServiceOperators";

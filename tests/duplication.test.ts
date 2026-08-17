@@ -4,6 +4,7 @@ import webUpdates from "@/data/web-updates.json";
 import slwe from "@/data/slwe-posts.json";
 import ops from "@/data/service-operators.json";
 import reportSources from "@/data/report-sources.json";
+import stageCounts from "@/data/stage-counts.json";
 
 /**
  * Nothing on this site should say the same thing twice. These guards are
@@ -102,5 +103,31 @@ describe("the web-sourced entries and the operators", () => {
 
   it("lists each source id once", () => {
     expect(duplicates(reportSources, (s) => s.id)).toEqual([]);
+  });
+});
+
+describe("the register payload projection", () => {
+  /**
+   * The register sends stageNo to the browser and looks the label up from
+   * STAGES, rather than repeating the stage name on all 771 entries. That
+   * only holds while the two agree exactly.
+   */
+  it("can rebuild every stage label from stageNo alone", () => {
+    const stages: string[] = stageCounts.stages;
+    expect(stages).toHaveLength(12);
+    for (const r of roleRecords) {
+      expect(stages[r.stageNo - 1], `stageNo ${r.stageNo} on ${r.id}`).toBe(r.stage);
+    }
+  });
+
+  /** The map link uses the group's layer, so an actor may not span layers. */
+  it("keeps one actor layer per actor", () => {
+    const layerByActor = new Map<string, string>();
+    for (const r of roleRecords) {
+      const base = r.actorName.split(":")[0].trim();
+      const seen = layerByActor.get(base);
+      if (seen === undefined) layerByActor.set(base, r.actorLayer);
+      else expect(seen, `${base} appears under two layers`).toBe(r.actorLayer);
+    }
   });
 });

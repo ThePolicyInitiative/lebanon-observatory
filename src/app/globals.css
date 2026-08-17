@@ -133,6 +133,23 @@ p {
   border-radius: 8px;
 }
 
+/* An empty cell in the actor-by-action matrices. There are roughly two
+   thousand of them across the two tables, so the blank swatch is drawn by
+   the cell itself instead of by a span nested inside every one. */
+.cell-empty {
+  padding: 0.25rem;
+}
+
+.cell-empty::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 1.25rem;
+  margin: 0 auto;
+  border-radius: 3px;
+  background: #f1f3f6;
+}
+
 /* The amber rule that marks an analytical caution throughout the site. */
 .note-caution {
   border-left: 2px solid var(--color-amber);
