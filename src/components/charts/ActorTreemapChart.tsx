@@ -53,13 +53,17 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
           width: "100%",
           height: "100%",
           top: 0,
+          // Cells carry the actor's name only. The count is what sets the
+          // cell's size, so printing it inside crowded the small cells with
+          // a number the area already gives; it stays in the tooltip, the
+          // layer totals below and the screen-reader description.
           label: {
             show: true,
             fontSize: 11,
             color: "#FFFFFF",
             formatter: (p) => {
-              const item = p as unknown as { name: string; value: number };
-              return `${item.name}\n${item.value}`;
+              const item = p as unknown as { name: string };
+              return item.name;
             },
           },
           upperLabel: {
