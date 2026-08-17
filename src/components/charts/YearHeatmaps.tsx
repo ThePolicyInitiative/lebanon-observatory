@@ -12,7 +12,8 @@ import type { Year } from "@/lib/types";
 /**
  * Matrix heat maps of traced actor-stage presence for 2024 and 2026:
  * four actor layers by twelve value-chain stages per year, on one shared
- * scale, with every value printed so colour is never the only encoding.
+ * scale. Cells are unlabelled: the value is in the tooltip and in the
+ * figure's description, which is what a reader without the colours gets.
  */
 export default function YearHeatmaps() {
   const chartRef = useRef<ECharts | null>(null);
@@ -119,7 +120,7 @@ export default function YearHeatmaps() {
           xAxisIndex: 0,
           yAxisIndex: 0,
           data: data2024,
-          label: { show: true, fontSize: 10.5, color: "#263645" },
+          label: { show: false },
           itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
         },
         {
@@ -128,7 +129,7 @@ export default function YearHeatmaps() {
           xAxisIndex: 1,
           yAxisIndex: 1,
           data: data2026,
-          label: { show: true, fontSize: 10.5, color: "#263645" },
+          label: { show: false },
           itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
         },
       ],
@@ -148,7 +149,7 @@ export default function YearHeatmaps() {
     <ChartFrame
       id="year-heatmaps"
       title="Heat maps of traced presence: 2024 and 2026"
-      subtitle="Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Every cell prints its value - colour is never the only encoding."
+      subtitle="Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Hover a cell for its value; the counts behind the whole figure are in its description."
       caveat={CAUTION_COUNTS}
       chartRef={chartRef}
       description="Two heat-map panels of traced actor counts across four actor layers and twelve value-chain stages: the 2024 panel shows community presence dominating downstream stages and the state concentrated in coordination; the 2026 panel shows community relief surging to 55, official reconstruction presence rising to 13, and municipal cells near zero throughout."

@@ -99,15 +99,9 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
         {
           type: "heatmap",
           data,
-          label: {
-            show: true,
-            formatter: (p) => {
-              const v = (p.value as [number, number, number])[2];
-              return v === 0 ? "0" : signed(v);
-            },
-            fontSize: 11,
-            color: "#263645",
-          },
+          // Cells are unlabelled. The change is in the tooltip, in the
+          // figure's description and in the drawer a click opens.
+          label: { show: false },
           itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
           emphasis: {
             itemStyle: { borderColor: "#173B63", borderWidth: 2 },
@@ -137,7 +131,7 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
       <ChartFrame
         id="change-heatmap"
         title="Direct change in traced presence, 2026 minus 2024"
-        subtitle="Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Every cell carries its value as a printed number - colour is never the only encoding. Click a cell for the underlying data."
+        subtitle="Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Hover a cell for its value, or click it for the entries behind that change."
         caveat={showCaveat ? CAUTION_COUNTS : undefined}
         sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
