@@ -7,6 +7,35 @@ import ops from "@/data/service-operators.json";
  * replacement tower - where the assessments only reach the sector.
  */
 
+/**
+ * Long passages open from a "See more". The first sentence always stays on
+ * the card: what collapses is the elaboration, never the point itself.
+ * Sentence split ignores decimals - "US$1.38 billion" must not break.
+ */
+function Expandable({ text, className = "" }: { text: string; className?: string }) {
+  const parts = text.split(/(?<=[.!?])\s+(?=[A-Z(])/);
+  if (parts.length < 2 || text.length < 190) {
+    return <p className={className}>{text}</p>;
+  }
+  const [head, ...rest] = parts;
+  // The group name is written out, never interpolated: Tailwind scans the
+  // source statically and would emit no rule for a computed class.
+  return (
+    <details className="group/exp">
+      <summary
+        className={`cursor-pointer list-none [&::-webkit-details-marker]:hidden ${className}`}
+      >
+        {head}{" "}
+        <span className="whitespace-nowrap font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
+          <span className="group-open/exp:hidden">See more ▸</span>
+          <span className="hidden group-open/exp:inline">See less ▾</span>
+        </span>
+      </summary>
+      <p className={`mt-1 ${className}`}>{rest.join(" ")}</p>
+    </details>
+  );
+}
+
 const SERVICE_TONE: Record<string, string> = {
   Electricity: "#D69600",
   Telecommunications: "#1B8295",
@@ -65,9 +94,10 @@ export default function ServiceOperators() {
             <ul className="mt-3 space-y-3">
               {o.items.map((i) => (
                 <li key={i.what.slice(0, 40)} className="panel-sunken p-2.5">
-                  <p className="text-[12.5px] leading-relaxed text-[color:var(--color-text)]">
-                    {i.what}
-                  </p>
+                  <Expandable
+                    text={i.what}
+                    className="text-[12.5px] leading-relaxed text-[color:var(--color-text)]"
+                  />
                   <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
                     {i.figure ? (
                       <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold tabular-nums text-[color:var(--color-navy)]">
@@ -85,9 +115,12 @@ export default function ServiceOperators() {
               ))}
             </ul>
 
-            <p className="note-caution mt-3 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              {o.constraint}
-            </p>
+            <div className="note-caution mt-3">
+              <Expandable
+                text={o.constraint}
+                className="text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]"
+              />
+            </div>
             <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px]">
               <a
                 href={o.sourceUrl}
