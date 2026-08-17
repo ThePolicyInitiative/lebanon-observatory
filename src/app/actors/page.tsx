@@ -13,6 +13,7 @@ const ActorRegister = dynamic(() => import("./ActorRegister"), {
 });
 import ReportedUpdates from "@/components/ReportedUpdates";
 import WaterRepairs from "@/components/WaterRepairs";
+import ServiceOperators from "@/components/ServiceOperators";
 import Takeaways from "@/components/Takeaways";
 
 export const metadata: Metadata = {
@@ -55,6 +56,9 @@ export default function ActorsPage() {
       </div>
       <div className="mt-10">
         <WaterRepairs />
+      </div>
+      <div className="mt-10">
+        <ServiceOperators />
       </div>
       <div className="mt-12">
         <Takeaways

@@ -1,0 +1,112 @@
+{
+  "note": "What the public service operators say about restoring their own networks in the south. Self-published or press-reported, unverified here, and in none of this site's counts. Carried because these operators report at a level of detail - a named substation, a single 66 kV line, a replacement tower - that no assessment reaches.",
+  "gatheredOn": "2026-08-13",
+  "operators": [
+    {
+      "id": "edl",
+      "name": "Électricité du Liban (EDL)",
+      "service": "Electricity",
+      "headline": "Two substations back, one tower at a time",
+      "inArea": true,
+      "items": [
+        {
+          "what": "The Tyre-Wadi Jilo 66 kV line was cut when a high-voltage tower in Bazouriyeh was destroyed and conductors were severed at several points. Teams erected a replacement tower and repaired every damaged conductor along the route, restoring the Wadi Jilo main transformer station, which feeds wide areas of Sour district.",
+          "where": "Bazouriyeh, Wadi Jilo (Sour)",
+          "date": "Completed 22 June 2026, after about a week of continuous work",
+          "figure": "1 tower rebuilt · 66 kV"
+        },
+        {
+          "what": "The 66 kV main transformer station at Nabatieh went out of service when the Zahrani-Nabatieh transmission line failed in the Kfarjouz, Zefta and Wadi al-Kfour areas. Supply to the station, which feeds wide areas of Nabatieh district, was restored five days later.",
+          "where": "Kfarjouz, Zefta, Wadi al-Kfour, Nabatieh",
+          "date": "Out 18 June 2026, restored about 4pm on 23 June 2026",
+          "figure": "5 days out"
+        },
+        {
+          "what": "Work continues on the remaining repairs across all high, medium and low voltage networks in the South and Nabatieh governorates and West Bekaa district, within available means and where field conditions permit access.",
+          "where": "South and Nabatieh governorates, West Bekaa",
+          "date": "Continuing 2026",
+          "figure": null
+        }
+      ],
+      "constraint": "EDL publicly thanked the army command for support and cooperation, describing crews working under dangerous conditions and imminent hazards. Access, not money, is what governs this work.",
+      "sourceName": "Al-Manar; Anbaa; Al-Sadara News",
+      "sourceUrl": "https://www.almanar.com.lb/article/969162/",
+      "openedDirectly": true
+    },
+    {
+      "id": "ogero",
+      "name": "Ogero, with Alfa and Touch",
+      "service": "Telecommunications",
+      "headline": "81 exchanges, 88,000 subscribers, 23 still dark",
+      "inArea": true,
+      "items": [
+        {
+          "what": "Of the 81 telephone exchanges serving the South and Nabatieh, all but 23 are back in service. The 23 that remain out are the ones inside the border strip, and reporting states they had not yet even been inspected - the areas cannot be reached.",
+          "where": "South and Nabatieh governorates; the 23 in the border strip",
+          "date": "2026",
+          "figure": "23 of 81 exchanges out · 88,000 subscribers served"
+        },
+        {
+          "what": "Ogero's director describes a large plan for the area south of the Litani specifically, with technical teams working day and night to return service to subscribers.",
+          "where": "South of the Litani",
+          "date": "2026",
+          "figure": null
+        },
+        {
+          "what": "The Prime Minister chaired a coordination meeting with the telecommunications minister and the chairmen and chief executives of Alfa, Touch and Ogero, to review the plan for restoring telecoms in south Lebanon and to speed up its implementation.",
+          "where": "South Lebanon",
+          "date": "2026",
+          "figure": null
+        }
+      ],
+      "constraint": "The exchanges still out are precisely the ones in the border villages. Telecoms recovery stops at the same line every other service stops at.",
+      "sourceName": "Annahar; Lebanon Debate; Ministry of Telecommunications via IMLebanon",
+      "sourceUrl": "https://www.annahar.com/Economy/188146/",
+      "openedDirectly": false
+    },
+    {
+      "id": "lra",
+      "name": "Litani River Authority",
+      "service": "Irrigation and hydropower",
+      "headline": "The irrigation season opened anyway",
+      "inArea": true,
+      "items": [
+        {
+          "what": "The 2026 irrigation season was launched from the Zrarieh dam through to the Ghaziyeh area, after wide-ranging maintenance, rehabilitation and cleaning. The season is intended to water more than 6,000 hectares of farmland on the southern coast.",
+          "where": "Zrarieh dam to Ghaziyeh, southern coast",
+          "date": "2026 season",
+          "figure": "6,000+ hectares"
+        },
+        {
+          "what": "Teams rehabilitated and repaired damaged infrastructure, treated damage to parts of the irrigation works, serviced the intakes, and cleaned water sections, tunnels and the main and secondary canals.",
+          "where": "Litani irrigation network",
+          "date": "Before the 2026 season",
+          "figure": null
+        },
+        {
+          "what": "Part of the Litani riverbed was cleaned at the movable dam serving the Qasmieh pumping station, and sand deposits were cleared from the station intake.",
+          "where": "Qasmieh pumping station, at the river mouth north of Tyre",
+          "date": "2026",
+          "figure": null
+        }
+      ],
+      "constraint": "The authority's own line is that the damage did not stop it: maintenance was finished and power generation and irrigation continue. Irrigation restored is not the same as farmers able to reach their land, which the farmers' own accounts dispute.",
+      "sourceName": "Litani River Authority; Future TV; Sawt Beirut",
+      "sourceUrl": "https://www.litani.gov.lb/ar-lb/news",
+      "openedDirectly": false
+    }
+  ],
+  "crossCutting": {
+    "title": "One constraint runs through all of them",
+    "text": "Repairs on the high-voltage lines between Srireh and the Kfarhouna triangle went ahead only after the ceasefire Mechanism committee approved them. Utility crews in the south are not simply short of money or materials: some of this work requires clearance from the body monitoring the ceasefire, and the parts of the network that stay broken are the parts inside the strip nobody can reach.",
+    "sourceName": "LBCI",
+    "sourceUrl": "https://www.lbcgroup.tv/news/lebanon-security/940657/",
+    "openedDirectly": false
+  },
+  "caveats": [
+    "Operators describing their own performance. Every figure here is the operator's or the reporting outlet's, with no independent check.",
+    "Restoring a line, a station or a season is not reconstruction: it returns a service to a network, and says nothing about the buildings or the people on it.",
+    "Several of these pages refused an automated request and were reached only through a search summary; those are marked.",
+    "Dates are given where the source gave one. Where it did not, only the year is shown."
+  ]
+}

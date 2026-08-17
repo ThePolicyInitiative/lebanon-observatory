@@ -63,6 +63,11 @@ function Card({ u }: { u: Update }) {
       </p>
       <p className="mt-1.5 text-sm font-semibold text-[color:var(--color-navy)]">{u.actor}</p>
       <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">{u.action}</p>
+      {u.detail ? (
+        <p className="mt-1.5 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          {u.detail}
+        </p>
+      ) : null}
       {u.place ? (
         <p className="mt-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
           <span className="font-semibold">Where:</span> {u.place}
