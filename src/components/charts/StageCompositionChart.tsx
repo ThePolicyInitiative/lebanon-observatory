@@ -15,7 +15,7 @@ import { signed } from "@/lib/format";
  * Visual 3 - Paired stage-composition chart. Who occupied each of the
  * twelve value-chain stages, and how the composition changed.
  */
-export default function StageCompositionChart() {
+export default function StageCompositionChart({ showCaveat = true }: { showCaveat?: boolean } = {}) {
   const [mode, setMode] = useState<YearMode>("side");
   const [percent, setPercent] = useState(true);
   const chartRef = useRef<ECharts | null>(null);
@@ -171,7 +171,7 @@ export default function StageCompositionChart() {
               ? "Change in traced actor presence per stage, 2026 minus 2024, by actor layer."
               : `Traced actor composition per stage, ${mode}.`
         }
-        caveat={CAUTION_COUNTS}
+        caveat={showCaveat ? CAUTION_COUNTS : undefined}
         sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
         description="Stacked horizontal bars showing, for each of the twelve reconstruction value-chain stages, how traced actor presence is distributed across official institutions, NGOs and international agencies, municipalities, and community initiatives, comparable between 2024 and 2026."

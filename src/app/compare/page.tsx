@@ -117,9 +117,10 @@ export default function ComparePage() {
       {/* Composition data */}
       <div className="mt-12 space-y-10">
         <LayerSlopeChart />
+        {/* The standing counts caution prints once, on YearHeatmaps. */}
         <YearHeatmaps />
-        <StageCompositionChart />
-        <RoleMixChart />
+        <StageCompositionChart showCaveat={false} />
+        <RoleMixChart showCaveat={false} />
       </div>
 
       {/* The delivery the system proved, twice */}

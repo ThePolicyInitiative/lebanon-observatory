@@ -9,7 +9,7 @@ import { locations, CAUTION_MAP } from "@/lib/data-client";
 import type { ActorLayer, Year } from "@/lib/types";
 
 /** Paired regional actor-composition chart shown with the map (Visual 8 companion). */
-export default function RegionalComposition() {
+export default function RegionalComposition({ showCaveat = true }: { showCaveat?: boolean } = {}) {
   const chartRef = useRef<ECharts | null>(null);
 
   const regions = locations.regions;
@@ -85,7 +85,7 @@ export default function RegionalComposition() {
       id="regional-composition"
       title="Regional actor composition, 2024 vs 2026"
       subtitle="For each regional grouping the upper stacked bar is 2024 and the lower is 2026; segments are the four actor layers."
-      caveat={CAUTION_MAP}
+      caveat={showCaveat ? CAUTION_MAP : undefined}
       sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description="Paired stacked bars per regional grouping showing the actor-layer composition of traced location mentions in 2024 and 2026. South and Nabatieh and national/multi-region groupings dominate; community mentions dominate named affected localities."

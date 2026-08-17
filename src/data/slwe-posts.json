@@ -2,15 +2,15 @@
   "note": "The South Lebanon Water Establishment's own account of its repair work, taken from its public Facebook posts. Self-published and unverified: it is what one utility says it did, useful precisely because almost nothing else reports at this granularity.",
   "actor": "South Lebanon Water Establishment (SLWE)",
   "sourceKind": "social",
-  "totalPosts": 603,
-  "southPosts": 126,
-  "restoredCount": 308,
+  "totalPosts": 597,
+  "southPosts": 125,
+  "restoredCount": 303,
   "townsNamed": 64,
   "southTownsNamed": 25,
   "departments": [
     {
       "name": "Sidon",
-      "posts": 211,
+      "posts": 208,
       "inArea": false
     },
     {
@@ -20,17 +20,17 @@
     },
     {
       "name": "Nabatieh",
-      "posts": 76,
+      "posts": 75,
       "inArea": false
     },
     {
       "name": "Bint Jbeil",
-      "posts": 73,
+      "posts": 72,
       "inArea": true
     },
     {
       "name": "Zahrani",
-      "posts": 52,
+      "posts": 51,
       "inArea": false
     },
     {
@@ -57,11 +57,11 @@
   "work": [
     {
       "label": "Line and network maintenance",
-      "posts": 461
+      "posts": 455
     },
     {
       "label": "Leak repair",
-      "posts": 210
+      "posts": 207
     },
     {
       "label": "Pumping stations",
@@ -363,17 +363,6 @@
       "arabic": "مؤسسة مياه لبنان الجنوبي | دائرة مياه بنت جبيل\nفرق المؤسسة تنجز معالجة انسداد على خط توزيع في بلدة صفد البطيخ، واستعادت التغذية بالمياه للمشتركين.",
       "towns": "Safad Al-Battikh",
       "districts": "Bent Jbeil",
-      "work": "Line and network maintenance",
-      "restored": true
-    },
-    {
-      "no": 98,
-      "department": "Bint Jbeil",
-      "inArea": true,
-      "text": "Establishment teams are continuing work to close off household connections belonging to homes damaged and destroyed by the recent aggression in the town of Al-Sawwaneh, in order to protect the network and ensure proper water distribution, and water supply to subscribers has been restored.",
-      "arabic": "مؤسسة مياه لبنان الجنوبي | دائرة مياه بنت جبيل\nفرق المؤسسة تواصل العمل على إقفال الوصلات المنزلية الخاصة بالمنازل المتضررة والمدمرة جراء العدوان الأخير في بلدة الصوانة، وذلك حفاظاً على الشبكة وضمان حسن توزيع المياه، واستعادت التغذية بالمياه للمشتركين.",
-      "towns": "",
-      "districts": "",
       "work": "Line and network maintenance",
       "restored": true
     },
@@ -1537,7 +1526,7 @@
     "Self-published. Every line is the utility's own claim about its own work, with no independent check and no photograph or contract behind it here.",
     "Undated. The export carried no date field, so no post can be placed against the 31 July 2026 cut-off, and the file's own summary states it cannot be confirmed that all of them fall after 2 March 2026.",
     "Individual posts are not linkable. The export carried no post URLs, so every row cites the establishment's official page rather than the single post it came from.",
-    "Three posts appeared twice in the source and the second copy of each was removed, leaving 603 of the 606 supplied.",
+    "Nine posts repeat an earlier one and the second copy of each was removed, leaving 597 of the 606 supplied: three were identical, six differed only in punctuation.",
     "Department labels are the utility's own. The match from a post to a cadastral town is ours, made on place-name matching, and is approximate.",
     "A repair is not reconstruction. Restoring supply to a line says nothing about whether the houses on it are standing or the people are back."
   ]

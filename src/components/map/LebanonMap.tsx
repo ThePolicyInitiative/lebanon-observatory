@@ -693,8 +693,13 @@ export default function LebanonMap() {
             </div>
           )}
 
-          {/* Non-mappable groupings */}
+          {/* Non-mappable groupings. The reason they sit outside the map is
+              stated once for the group, not repeated on each card. */}
           <div className="space-y-3">
+            <p className="text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              The groupings below are not mappable to a single governorate, so
+              they are shown separately rather than invented onto the map.
+            </p>
             {nonMappable.map((r) => {
               const m = mentionsFor(year, r.id);
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
@@ -703,10 +708,6 @@ export default function LebanonMap() {
                   <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                     {r.label}
                   </h3>
-                  <p className="text-[11px] text-[color:var(--color-text-secondary)]">
-                    Not mappable to a single governorate - shown separately
-                    rather than invented onto the map.
-                  </p>
                   <p className="mt-2 text-lg font-semibold tabular-nums text-[color:var(--color-navy)]">
                     {total}{" "}
                     <span className="text-xs font-normal text-[color:var(--color-text-secondary)]">

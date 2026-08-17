@@ -32,7 +32,8 @@ export default function MapPage() {
       </div>
 
       <div className="mt-10">
-        <RegionalComposition />
+        {/* The standing geography caution is already printed above the map. */}
+        <RegionalComposition showCaveat={false} />
       </div>
 
       <section className="mt-8 max-w-3xl card p-5 text-sm leading-relaxed">

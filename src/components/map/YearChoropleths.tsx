@@ -7,7 +7,7 @@ import {
   VIEW_W,
   VIEW_H,
 } from "@/lib/geo";
-import { locations, CAUTION_MAP } from "@/lib/data";
+import { locations } from "@/lib/data";
 import type { ActorLayer, Year } from "@/lib/types";
 
 /**
@@ -198,9 +198,11 @@ export default function YearChoropleths() {
       </div>
 
       <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        {CAUTION_MAP} Mention counts are traced at the regional-grouping
-        level; district boundaries are shown for geographic orientation, not
-        as district-level measurements. On the 2026 panel, rust hatching marks
+        {/* The standing geography caution is printed once above the map;
+            what follows is specific to these two panels. */}
+        Mention counts are traced at the regional-grouping level; district
+        boundaries are shown for geographic orientation, not as
+        district-level measurements. On the 2026 panel, rust hatching marks
         the border districts containing Israeli-occupied areas - indicative
         only, since the expanded occupation zone demarcated on 18 June 2026
         has no published boundary geometry.

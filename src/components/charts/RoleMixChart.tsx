@@ -14,7 +14,7 @@ const GROUP_SHORT = ["Governance & assessment", "Works delivery", "Return & reco
  * traced presence in governance/data (stages 1–4), works delivery
  * (5–8), return & recovery (9–11) and oversight (12), 2024 vs 2026.
  */
-export default function RoleMixChart() {
+export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boolean } = {}) {
   const chartRef = useRef<ECharts | null>(null);
 
   const option = useMemo<EChartsOption>(() => {
@@ -104,7 +104,7 @@ export default function RoleMixChart() {
       id="role-mix"
       title="Where each actor layer's traced presence sat in the chain"
       subtitle="Share of each layer's traced presence by chain segment, 2024 vs 2026. Percentages are within-layer compositions; layer sizes differ."
-      caveat={CAUTION_COUNTS}
+      caveat={showCaveat ? CAUTION_COUNTS : undefined}
       sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description="Four small-multiple bar panels, one per actor layer, comparing the share of traced presence in governance and data, works delivery, return and recovery, and oversight between 2024 and 2026."

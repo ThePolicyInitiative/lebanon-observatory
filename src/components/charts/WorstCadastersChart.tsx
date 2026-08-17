@@ -57,12 +57,15 @@ export default function WorstCadastersChart() {
     };
   }, [rows]);
 
+  // The method is stated in full on the zone card above this figure;
+  // repeating that paragraph in the caveat printed it twice on one page,
+  // so the caveat carries the short version.
   return (
     <ChartFrame
       id="worst-cadasters"
       title="The worst-hit cadasters, 2026 assessment"
       subtitle="Buildings completely destroyed in the four worst cadasters of the South-of-the-Litani assessment (29 April 2026 imagery) - the same border communities levelled in 2024, partially reassessed after rebuilding attempts."
-      caveat={`Method: ${zone.method} The figures are a desk-validated snapshot, not cumulative with any 2024 result, and cover only the assessed zone.`}
+      caveat={`Desk-validated GeoAI review of 29 April 2026 imagery, ${zone.label} only. A snapshot, not cumulative with any 2024 result.`}
       chartRef={chartRef}
       description={`Bar chart: ${rows.map((r) => `${r.name} ${r.destroyed.toLocaleString("en-US")}`).join("; ")} buildings completely destroyed.`}
       table={{

@@ -7,26 +7,27 @@ import destruction from "@/data/destruction.json";
  */
 export default function DebrisTiles() {
   const south = destruction.zones2026.find((z) => z.id === "south-litani")!;
-  const bml = destruction.zones2026.find((z) => z.id === "beirut-ml")!;
 
+  /**
+   * Figure, scope and a short method tag only. The full method sentences and
+   * the surrounding prose are already printed on the cards above this figure,
+   * and repeating them here said the same thing twice on one page.
+   */
   const tiles = [
     {
       figure: "≈12M m³",
       title: "2024 war, six governorates",
-      detail: destruction.debris2024.detail,
-      method: "Remote-sensing volume estimates with stated density assumptions",
+      method: "Remote sensing, stated density assumptions",
     },
     {
       figure: "3.1M m³",
       title: "2026, South of the Litani only",
-      detail: south.buildings,
-      method: south.method,
+      method: `GeoAI imagery review · ${south.verification.toLowerCase()}`,
     },
     {
       figure: "648,942 m³",
       title: "2026, Beirut & Mount Lebanon only",
-      detail: bml.debris,
-      method: bml.method,
+      method: "Imagery cross-checked with the army and UN security · field-verified",
     },
   ];
 
@@ -52,9 +53,6 @@ export default function DebrisTiles() {
             </p>
             <p className="mt-0.5 text-[13px] font-semibold text-[color:var(--color-text)]">
               {t.title}
-            </p>
-            <p className="mt-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-              {t.detail}
             </p>
             <p className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
               {t.method}

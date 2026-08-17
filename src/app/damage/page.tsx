@@ -174,24 +174,16 @@ export default function DamagePage() {
                   <span className="font-semibold">Debris: </span>
                   {z.debris}
                 </p>
+                {/* The four cadaster values are charted directly below, so
+                    the card carries the point they make rather than the
+                    numbers a second time. */}
                 {z.worstCadasters.length > 0 ? (
-                  <div>
-                    <p className="font-semibold">
-                      Worst cadasters (destroyed buildings):
-                    </p>
-                    <ul className="mt-1 flex flex-wrap gap-1.5">
-                      {z.worstCadasters.map((c) => (
-                        <li key={c.name} className="rounded-sm bg-[color:var(--color-bg)] px-2 py-0.5 text-xs tabular-nums">
-                          {c.name}: <strong>{c.destroyed.toLocaleString("en-US")}</strong>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-1.5 text-xs text-[color:var(--color-text-secondary)]">
-                      The same border communities levelled in 2024 - repetition
-                      converts reconstruction from a stock problem (rebuild X)
-                      into a flow problem (rebuild under recurrence risk).
-                    </p>
-                  </div>
+                  <p className="text-xs text-[color:var(--color-text-secondary)]">
+                    Its worst-hit cadasters, charted below, are the same border
+                    communities levelled in 2024 - repetition converts
+                    reconstruction from a stock problem (rebuild X) into a flow
+                    problem (rebuild under recurrence risk).
+                  </p>
                 ) : null}
                 <p className="text-xs text-[color:var(--color-text-secondary)]">
                   <span className="font-semibold">Method: </span>

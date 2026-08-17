@@ -14,8 +14,12 @@ import { signed } from "@/lib/format";
  * Visual 2 - Direct-change heatmap. Rows: four actor layers.
  * Columns: twelve stages. Value: 2026 count minus 2024 count.
  * Clicking a cell opens the underlying actors, actions, locations and sources.
+ *
+ * `showCaveat` lets a page that already prints the standing counts caution
+ * under an earlier figure suppress the repeat here. It defaults to on, so a
+ * figure standing alone still carries it.
  */
-export default function ChangeHeatmap() {
+export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: boolean } = {}) {
   const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
   const chartRef = useRef<ECharts | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -134,7 +138,7 @@ export default function ChangeHeatmap() {
         id="change-heatmap"
         title="Direct change in traced presence, 2026 minus 2024"
         subtitle="Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Every cell carries its value as a printed number - colour is never the only encoding. Click a cell for the underlying data."
-        caveat={CAUTION_COUNTS}
+        caveat={showCaveat ? CAUTION_COUNTS : undefined}
         sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
         description="Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9)."

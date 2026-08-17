@@ -225,8 +225,10 @@ export default function HomePage() {
             </p>
           </SectionHeading>
           <div className="mt-6 space-y-8">
+            {/* The standing counts caution prints once per page, on the
+                first figure below; the repeat here is suppressed. */}
             <YearHeatmaps />
-            <ChangeHeatmap />
+            <ChangeHeatmap showCaveat={false} />
           </div>
           <p className="mt-3 text-sm">
             <Link

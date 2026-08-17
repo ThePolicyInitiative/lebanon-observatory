@@ -302,10 +302,10 @@ export default function ExplorerClient() {
               </button>
             </div>
             <div className="flex-1 space-y-4 overflow-y-auto p-4 text-sm">
-              <section>
-                <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Data summary</h4>
-                <p className="mt-1 leading-relaxed">{selected.summary}</p>
-              </section>
+              {/* No "Data summary" block: it is the mandate and the action
+                  concatenated, so printing it here showed the same two
+                  passages twice. It stays in the data, where the search
+                  filter still reads it. */}
               {selected.formalMandate ? (
                 <section>
                   <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Formal mandate</h4>
