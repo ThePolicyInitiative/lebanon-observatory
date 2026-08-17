@@ -151,12 +151,27 @@ describe("the water utility's own posts", () => {
     expect(slwe.sourceKind).toBe("social");
   });
 
-  it("quotes real posts, attributed to a department", () => {
-    expect(slwe.samples.length).toBeGreaterThan(3);
-    for (const s of slwe.samples) {
-      expect(s.text.length).toBeGreaterThan(40);
-      expect(slwe.departments.some((d) => d.name === s.department)).toBe(true);
+  /**
+   * Every post from the departments inside the area is carried, not a
+   * selection: the count must match the aggregate, or the page is quietly
+   * showing less than it claims.
+   */
+  it("carries every in-area post, each attributed to a real department", () => {
+    expect(slwe.areaPosts.length).toBe(slwe.southPosts);
+    const inArea = new Set(
+      slwe.departments.filter((d) => d.inArea).map((d) => d.name),
+    );
+    for (const p of slwe.areaPosts) {
+      expect(p.text.length).toBeGreaterThan(20);
+      expect(inArea.has(p.department), `${p.department} is not an in-area department`).toBe(true);
+      expect(p.inArea).toBe(true);
     }
+    expect(new Set(slwe.areaPosts.map((p) => p.no)).size).toBe(slwe.areaPosts.length);
+  });
+
+  it("links the source page, since individual posts carry no URL", () => {
+    expect(slwe.sourceUrl.startsWith("https://")).toBe(true);
+    expect(slwe.caveats.join(" ")).toContain("not linkable");
   });
 });
 

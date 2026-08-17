@@ -125,23 +125,51 @@ export default function WaterRepairs() {
         </ul>
       </div>
 
-      {/* The posts themselves */}
+      {/* Every post from the departments inside the area */}
       <div className="mt-5">
         <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-          In its own words
+          In its own words: all {slwe.areaPosts.length} posts from the departments inside the area
         </h3>
-        <ul className="mt-2 grid gap-2 md:grid-cols-2">
-          {slwe.samples.map((s) => (
-            <li key={s.text} className="panel-sunken p-3">
-              <p className="text-[10px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-                {s.department}
+        <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining{" "}
+          {slwe.totalPosts - slwe.areaPosts.length} posts from the northern departments are in
+          the workbook.
+        </p>
+        <ul className="mt-2 max-h-[28rem] space-y-2 overflow-y-auto pr-1">
+          {slwe.areaPosts.map((p) => (
+            <li key={p.no} className="panel-sunken p-3">
+              <p className="flex flex-wrap items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                <span>{p.department}</span>
+                {p.towns ? (
+                  <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 normal-case text-[#1F6B4E]">
+                    {p.towns}
+                  </span>
+                ) : null}
+                {p.restored ? (
+                  <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 normal-case text-[color:var(--color-navy)]">
+                    supply restored
+                  </span>
+                ) : null}
               </p>
               <p className="mt-1 text-[12.5px] leading-relaxed text-[color:var(--color-text)]">
-                {s.text}
+                {p.text}
               </p>
             </li>
           ))}
         </ul>
+        <p className="mt-2 text-[11px]">
+          <a
+            href={slwe.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          >
+            {slwe.sourceName} ↗
+          </a>
+          <span className="ml-2 text-[color:var(--color-text-secondary)]">
+            The export carried no per-post links, so this is the page, not the single post.
+          </span>
+        </p>
       </div>
 
       {/* What this is not */}
