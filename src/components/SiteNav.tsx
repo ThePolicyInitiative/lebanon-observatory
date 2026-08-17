@@ -4,22 +4,48 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { AR } from "@/lib/i18n";
+
+/**
+ * One entry per page, in both languages. The Arabic side is a mirror of the
+ * same routes under /ar, so following the navigation never drops the reader
+ * back into English mid-visit.
+ */
 const NAV_ITEMS = [
-  { href: "/", label: "Home" },
-  { href: "/compare", label: "2024 vs 2026" },
-  { href: "/actors", label: "Actor layers" },
-  { href: "/damage", label: "Damage assessments" },
-  { href: "/map", label: "Map" },
-  { href: "/finance", label: "Finance" },
-  { href: "/news", label: "Live updates" },
-  { href: "/explorer", label: "Explorer" },
+  { path: "/", label: "Home", ar: AR.nav.home },
+  { path: "/compare", label: "2024 vs 2026", ar: AR.nav.compare },
+  { path: "/actors", label: "Actor layers", ar: AR.nav.actors },
+  { path: "/damage", label: "Damage assessments", ar: AR.nav.damage },
+  { path: "/map", label: "Map", ar: AR.nav.map },
+  { path: "/finance", label: "Finance", ar: AR.nav.finance },
+  { path: "/news", label: "Live updates", ar: AR.nav.news },
+  { path: "/explorer", label: "Explorer", ar: AR.nav.explorer },
 ];
+
+/** "/compare" becomes "/ar/compare"; "/" becomes "/ar". */
+export function localisedHref(path: string, arabic: boolean): string {
+  if (!arabic) return path;
+  return path === "/" ? "/ar" : `/ar${path}`;
+}
 
 export default function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   /** On the Arabic side the same slot returns the reader to English. */
   const isArabic = pathname.startsWith("/ar");
+  /**
+   * The same page in the other language. Only pages that exist on both sides
+   * cross over; anything else falls back to that language's home.
+   */
+  const basePath = isArabic ? pathname.replace(/^\/ar/, "") || "/" : pathname;
+  const known = NAV_ITEMS.some((i) => i.path === basePath);
+  const counterpart = isArabic
+    ? known
+      ? basePath
+      : "/"
+    : known
+      ? localisedHref(basePath, true)
+      : "/ar";
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#0e2542] bg-[color:var(--color-navy)]/[0.97] backdrop-blur-sm">
@@ -46,14 +72,15 @@ export default function SiteNav() {
         <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
+              const href = localisedHref(item.path, isArabic);
               const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+                href === "/" || href === "/ar"
+                  ? pathname === href
+                  : pathname.startsWith(href);
               return (
-                <li key={item.href}>
+                <li key={item.path}>
                   <Link
-                    href={item.href}
+                    href={href}
                     aria-current={active ? "page" : undefined}
                     className={`inline-flex min-h-11 items-center rounded px-2.5 text-[13px] transition-colors duration-150 ${
                       active
@@ -61,15 +88,17 @@ export default function SiteNav() {
                         : "text-white/70 hover:text-white"
                     }`}
                   >
-                    {item.label}
+                    {isArabic ? item.ar : item.label}
                   </Link>
                 </li>
               );
             })}
           </ul>
         </nav>
+        {/* Switching language keeps the reader on the page they are reading,
+            rather than sending them back to the other language's home. */}
         <Link
-          href={isArabic ? "/" : "/ar"}
+          href={counterpart}
           lang={isArabic ? "en" : "ar"}
           className="ms-auto inline-flex min-h-9 items-center rounded border border-white/35 px-2.5 text-xs font-semibold text-white/85 transition-colors hover:border-white hover:text-white xl:ms-0"
         >
@@ -96,21 +125,22 @@ export default function SiteNav() {
         >
           <ul className="mx-auto max-w-[1360px] px-4 py-2 sm:px-6">
             {NAV_ITEMS.map((item) => {
+              const href = localisedHref(item.path, isArabic);
               const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+                href === "/" || href === "/ar"
+                  ? pathname === href
+                  : pathname.startsWith(href);
               return (
-                <li key={item.href}>
+                <li key={item.path}>
                   <Link
-                    href={item.href}
+                    href={href}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setOpen(false)}
                     className={`block min-h-11 rounded px-2 py-2.5 text-sm ${
                       active ? "font-semibold text-white" : "text-white/70"
                     }`}
                   >
-                    {item.label}
+                    {isArabic ? item.ar : item.label}
                   </Link>
                 </li>
               );

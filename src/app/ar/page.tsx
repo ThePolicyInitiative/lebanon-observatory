@@ -111,19 +111,19 @@ export default function ArabicPage() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
-              href="/map"
+              href="/ar/map"
               className="inline-flex min-h-11 items-center rounded-md bg-[color:var(--color-amber)] px-5 text-sm font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
             >
               {AR.hero.ctaMap}
             </Link>
             <Link
-              href="/compare"
+              href="/ar/compare"
               className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-sm font-semibold text-white hover:bg-white/10"
             >
               {AR.hero.ctaCompare}
             </Link>
             <Link
-              href="/news"
+              href="/ar/news"
               className="inline-flex min-h-11 items-center rounded-md border border-white/25 px-5 text-sm font-semibold text-white/80 hover:border-white/60 hover:text-white"
             >
               {AR.hero.ctaNews}
@@ -314,6 +314,8 @@ export default function ArabicPage() {
           {AR.notice}{" "}
           <Link
             href="/"
+            lang="en"
+            dir="ltr"
             className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline"
           >
             {AR.nav.english}
