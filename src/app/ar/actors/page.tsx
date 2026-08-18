@@ -4,6 +4,9 @@ import { roleRecords } from "@/lib/data";
 import webUpdates from "@/data/web-updates.json";
 import ArabicPageShell from "../ArabicPageShell";
 import WaterRepairs from "@/components/WaterRepairs";
+import ReportedUpdates from "@/components/ReportedUpdates";
+import ServiceOperators from "@/components/ServiceOperators";
+import Takeaways from "@/components/Takeaways";
 import { layers } from "@/lib/vocab";
 
 export const metadata: Metadata = { title: AR.pages.actors.title };
@@ -30,10 +33,23 @@ export default function Page() {
         غير مؤكَّدة ولا تدخل في أي عدّ.
       </p>
 
-      {/* The same module the English page carries, with the utility's own
-          Arabic posts rather than their English rendering. */}
+      {/* The same modules the English page carries. */}
+      <div className="mt-8">
+        <ReportedUpdates locale="ar" />
+      </div>
       <div className="mt-8">
         <WaterRepairs locale="ar" />
+      </div>
+      <div className="mt-8">
+        <ServiceOperators locale="ar" />
+      </div>
+      <div className="mt-10">
+        <Takeaways
+          locale="ar"
+          changed="اتّسع الحضور الرسمي في 2026 وظهرت سلسلة أوضح للتمويل والشراء والرقابة."
+          unchanged="البلديات ما زالت بلا صلاحيات فعلية ولا موارد تكافئ ما يُطلب منها."
+          matters="ما يظهر فعلياً في القرى الجنوبية يقوم به الأهالي والجمعيات والبلديات، وغالباً على نفقتهم."
+        />
       </div>
     </ArabicPageShell>
   );

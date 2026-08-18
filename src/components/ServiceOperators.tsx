@@ -1,4 +1,37 @@
 import ops from "@/data/service-operators.json";
+import type { Locale } from "@/lib/vocab";
+
+const T = {
+  en: {
+    title: "The networks, operator by operator",
+    badge: "Operator-reported · not in the tracking",
+    reaches: "Reaches the area",
+    where: "Where:",
+    when: "When:",
+    indirect: "page not opened directly",
+    howToRead: "How to read these accounts",
+    seeMore: "See more ▸",
+    seeLess: "See less ▾",
+  },
+  ar: {
+    title: "الشبكات، مؤسسة بمؤسسة",
+    badge: "بحسب المشغّل · خارج التتبّع",
+    reaches: "تصل إلى المنطقة",
+    where: "أين:",
+    when: "متى:",
+    indirect: "لم تُفتح الصفحة مباشرة",
+    howToRead: "كيف تُقرأ هذه الروايات",
+    seeMore: "تفاصيل أكثر ◂",
+    seeLess: "إخفاء التفاصيل ▾",
+  },
+} as const;
+
+const SERVICE_AR: Record<string, string> = {
+  Electricity: "الكهرباء",
+  Telecommunications: "الاتصالات",
+  "Irrigation and hydropower": "الري والطاقة المائية",
+  "Roads and bridges": "الطرق والجسور",
+};
 
 /**
  * The public service operators on their own networks. Same quarantine as
@@ -12,7 +45,7 @@ import ops from "@/data/service-operators.json";
  * the card: what collapses is the elaboration, never the point itself.
  * Sentence split ignores decimals - "US$1.38 billion" must not break.
  */
-function Expandable({ text, className = "" }: { text: string; className?: string }) {
+function Expandable({ text, className = "", labels }: { text: string; className?: string; labels: { more: string; less: string } }) {
   const parts = text.split(/(?<=[.!?])\s+(?=[A-Z(])/);
   if (parts.length < 2 || text.length < 190) {
     return <p className={className}>{text}</p>;
@@ -27,8 +60,8 @@ function Expandable({ text, className = "" }: { text: string; className?: string
       >
         {head}{" "}
         <span className="whitespace-nowrap font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
-          <span className="group-open/exp:hidden">See more ▸</span>
-          <span className="hidden group-open/exp:inline">See less ▾</span>
+          <span className="group-open/exp:hidden">{labels.more}</span>
+          <span className="hidden group-open/exp:inline">{labels.less}</span>
         </span>
       </summary>
       <p className={`mt-1 ${className}`}>{rest.join(" ")}</p>
@@ -43,7 +76,10 @@ const SERVICE_TONE: Record<string, string> = {
   "Roads and bridges": "#A34F7C",
 };
 
-export default function ServiceOperators() {
+export default function ServiceOperators({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
+  const ar = locale === "ar";
+  const labels = { more: t.seeMore, less: t.seeLess };
   return (
     <section
       aria-labelledby="service-operators"
@@ -54,18 +90,16 @@ export default function ServiceOperators() {
           id="service-operators"
           className="text-xl font-semibold text-[color:var(--color-navy)]"
         >
-          The networks, operator by operator
+          {t.title}
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
-          Operator-reported · not in the tracking
+          {t.badge}
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-        Electricity, telecoms, irrigation and roads, as the operators themselves describe
-        restoring them. This is the same granularity as the water utility&apos;s own posts and
-        the same standing: unconfirmed, and in none of this site&apos;s counts. It is here because
-        these accounts name the substation, the line, the bridge and the date, where every
-        assessment stops at the sector.
+        {ar
+          ? "الكهرباء والاتصالات والري والطرق، كما يصف المشغّلون أنفسهم إعادتها إلى الخدمة. الدقة هنا هي نفسها في منشورات مؤسسة المياه، والوضع نفسه: غير مؤكَّد، وخارج كل أعداد هذا الموقع. وهي هنا لأن هذه الروايات تسمّي المحطة والخط والجسر والتاريخ، بينما يتوقف كل تقييم عند حدود القطاع."
+          : "Electricity, telecoms, irrigation and roads, as the operators themselves describe restoring them. This is the same granularity as the water utility's own posts and the same standing: unconfirmed, and in none of this site's counts. It is here because these accounts name the substation, the line, the bridge and the date, where every assessment stops at the sector."}
       </p>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -76,11 +110,11 @@ export default function ServiceOperators() {
                 className="rounded-sm px-1.5 py-0.5 font-semibold text-white"
                 style={{ background: SERVICE_TONE[o.service] ?? "#58779B" }}
               >
-                {o.service}
+                {ar ? SERVICE_AR[o.service] ?? o.service : o.service}
               </span>
               {o.inArea ? (
                 <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[#1F6B4E]">
-                  Reaches the area
+                  {t.reaches}
                 </span>
               ) : null}
             </p>
@@ -95,6 +129,7 @@ export default function ServiceOperators() {
               {o.items.map((i) => (
                 <li key={i.what.slice(0, 40)} className="panel-sunken p-2.5">
                   <Expandable
+                    labels={labels}
                     text={i.what}
                     className="text-[12.5px] leading-relaxed text-[color:var(--color-text)]"
                   />
@@ -105,11 +140,11 @@ export default function ServiceOperators() {
                       </span>
                     ) : null}
                     <span>
-                      <span className="font-semibold">Where:</span> {i.where}
+                      <span className="font-semibold">{t.where}</span> {i.where}
                     </span>
                   </p>
                   <p className="mt-0.5 text-[11px] text-[color:var(--color-text-secondary)]">
-                    <span className="font-semibold">When:</span> {i.date}
+                    <span className="font-semibold">{t.when}</span> {i.date}
                   </p>
                 </li>
               ))}
@@ -117,6 +152,7 @@ export default function ServiceOperators() {
 
             <div className="note-caution mt-3">
               <Expandable
+                labels={labels}
                 text={o.constraint}
                 className="text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]"
               />
@@ -132,7 +168,7 @@ export default function ServiceOperators() {
               </a>
               {!o.openedDirectly ? (
                 <span className="rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-                  page not opened directly
+                  {t.indirect}
                 </span>
               ) : null}
             </p>
@@ -159,7 +195,7 @@ export default function ServiceOperators() {
           </a>
           {!ops.crossCutting.openedDirectly ? (
             <span className="ml-2 rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-              page not opened directly
+              {t.indirect}
             </span>
           ) : null}
         </p>
@@ -184,7 +220,7 @@ export default function ServiceOperators() {
           </a>
           {!ops.horizon.openedDirectly ? (
             <span className="ml-2 rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-              page not opened directly
+              {t.indirect}
             </span>
           ) : null}
         </p>
@@ -192,7 +228,7 @@ export default function ServiceOperators() {
 
       <details className="mt-4 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-3">
         <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
-          How to read these accounts ({ops.caveats.length})
+          {t.howToRead} ({ops.caveats.length})
         </summary>
         <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
           {ops.caveats.map((c) => (
