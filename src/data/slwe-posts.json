@@ -87,57 +87,62 @@
       "posts": 10
     },
     {
-      "name": "Tibnine",
-      "district": "Bent Jbeil",
-      "posts": 6
-    },
-    {
       "name": "Safad Al-Battikh",
       "district": "Bent Jbeil",
       "posts": 6
     },
     {
-      "name": "Batoulay",
-      "district": "Sour",
+      "name": "Tibnine",
+      "district": "Bent Jbeil",
       "posts": 5
     },
     {
-      "name": "Deir Aames",
+      "name": "Batoulay",
       "district": "Sour",
-      "posts": 3
-    },
-    {
-      "name": "Baraachit",
-      "district": "Bent Jbeil",
       "posts": 3
     },
     {
       "name": "Zebqine",
       "district": "Sour",
-      "posts": 3
-    },
-    {
-      "name": "Kfar Chouba",
-      "district": "Hasbaya",
-      "posts": 3
-    },
-    {
-      "name": "Marjaayoun",
-      "district": "Marjaayoun",
       "posts": 2
+    },
+    {
+      "name": "Aain Baal",
+      "district": "Sour",
+      "posts": 1
+    },
+    {
+      "name": "Baraachit",
+      "district": "Bent Jbeil",
+      "posts": 1
     },
     {
       "name": "Barich",
       "district": "Sour",
-      "posts": 2
+      "posts": 1
     },
     {
-      "name": "Ibl Es-Saqi",
-      "district": "Marjaayoun",
-      "posts": 2
+      "name": "Bazouriyeh",
+      "district": "Sour",
+      "posts": 1
     },
     {
-      "name": "Aaita Ej-Jabal",
+      "name": "Deir Aames",
+      "district": "Sour",
+      "posts": 1
+    },
+    {
+      "name": "Jmaijmeh",
+      "district": "Bent Jbeil",
+      "posts": 1
+    },
+    {
+      "name": "Srifa",
+      "district": "Sour",
+      "posts": 1
+    },
+    {
+      "name": "Yater",
       "district": "Bent Jbeil",
       "posts": 1
     }
@@ -1120,8 +1125,8 @@
       "inArea": true,
       "text": "Maintenance teams repaired a water leak in the Sour al-Wataniyeh neighbourhood on the Al-Hosh - Ain Baal network, and water supply has been restored to subscribers and to those sheltering there.",
       "arabic": "مؤسسة مياه لبنان الجنوبي | دائرة مياه صور\nفرق الصيانة تنجز معالجة تسرب مياه في حي صور الوطنية على شبكة الحوش - عين بعال، واستعادت التغذية بالمياه للمشتركين والمستقرين فيها.",
-      "towns": "Aainbal",
-      "districts": "Chouf",
+      "towns": "Aain Baal",
+      "districts": "Sour",
       "work": "Leak repair; Line and network maintenance",
       "restored": false
     },

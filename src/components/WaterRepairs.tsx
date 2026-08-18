@@ -38,7 +38,7 @@ export default function WaterRepairs() {
           { k: slwe.totalPosts.toLocaleString("en-US"), v: "repair posts, translated" },
           { k: String(slwe.southPosts), v: "from the three departments south of the Litani" },
           { k: `${restoredShare}%`, v: "end with supply restored to subscribers" },
-          { k: `${slwe.townsNamed}`, v: `localities named, ${slwe.southTownsNamed} of them in the area` },
+          { k: `${slwe.townsNamed}`, v: `localities named across all its posts, ${slwe.southTownsNamed} of them inside the area` },
         ].map((s) => (
           <div key={s.v} className="panel-sunken p-3">
             <p className="figure-number text-2xl text-[color:var(--color-navy)]">{s.k}</p>
@@ -107,8 +107,14 @@ export default function WaterRepairs() {
       {/* Localities inside the area */}
       <div className="mt-5">
         <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-          Most-named localities south of the Litani
+          Most-named localities in the posts carried here
         </h3>
+        <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          Counted across the posts of the three departments inside the area, which
+          is the set listed below and the set the workbook carries. Northern
+          departments also name southern places; those are in the 25 above, not
+          in this list.
+        </p>
         <ul className="mt-2 flex flex-wrap gap-1.5">
           {slwe.topSouthTowns.map((t) => (
             <li
