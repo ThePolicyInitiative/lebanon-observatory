@@ -115,11 +115,11 @@ const DIMENSIONS: Dimension[] = [
   },
   {
     id: "outputs",
-    label: "Verified outputs",
+    label: "Confirmed outputs",
     y2024:
       "No financed programme existed, so no programme outputs; restoration ran on emergency budgets and self-help, quantities unpublished.",
     y2026:
-      "Zero awarded works contracts, zero publicly verified completed reconstruction outputs, zero verified state compensation payments by 31 July 2026.",
+      "Zero awarded works contracts, zero publicly confirmed completed reconstruction outputs, zero confirmed state compensation payments by 31 July 2026.",
     change: "Empty in both years - the report's most uncomfortable finding, and the one the next reporting cycle can falsify.",
     kind: "none",
   },

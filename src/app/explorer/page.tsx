@@ -5,7 +5,7 @@ import ExplorerClient from "./ExplorerClient";
 export const metadata: Metadata = {
   title: "Data explorer",
   description:
-    "Who did what and where: searchable actor-stage tracking for Lebanon's reconstruction system, 2024 and 2026, with sources and verification notes.",
+    "Who did what and where: searchable actor-stage tracking for Lebanon's reconstruction system, 2024 and 2026, with sources and confirmation notes.",
 };
 
 export default function ExplorerPage() {

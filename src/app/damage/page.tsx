@@ -140,7 +140,7 @@ export default function DamagePage() {
         <p className="mt-2 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
           Within their zones, the 2026 numbers describe destruction
           approaching 2024&apos;s southern intensity in one-third the time.
-          The two products use different verification methods and must not
+          The two products use different confirmation methods and must not
           share a legend; neither is cumulative with any 2024 figure.
         </p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
@@ -155,7 +155,7 @@ export default function DamagePage() {
                 </h3>
                 <div className="flex gap-1.5">
                   <span className="rounded-sm bg-[#E8F1F3] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[color:var(--color-teal)]">
-                    {z.verification}
+                    {z.checkedBy}
                   </span>
                   <span className={`rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${COMPARABILITY_BADGE[z.comparability].cls}`}>
                     {COMPARABILITY_BADGE[z.comparability].label}

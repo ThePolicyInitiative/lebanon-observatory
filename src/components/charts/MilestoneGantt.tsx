@@ -35,7 +35,7 @@ export default function MilestoneGantt() {
       id="milestone-gantt"
       title={`${totalDays} days from cabinet request to 1.65% disbursed`}
       subtitle="Elapsed time between each LEAP milestone, drawn to scale. Every institutional step - approval, signing, ratification, effectiveness - consumed months while destruction accumulated."
-      caveat="Milestone dates from the verified timeline; the 2026 war began on 2 March 2026, four days after LEAP became effective. Elapsed time measures institutional sequence, not fault: each step has its own legal prerequisites."
+      caveat="Milestone dates from the tracked timeline; the 2026 war began on 2 March 2026, four days after LEAP became effective. Elapsed time measures institutional sequence, not fault: each step has its own legal prerequisites."
       description={`Timeline segments: ${segments.map((s) => `${s.from.label} to ${s.to.label}: ${s.days} days`).join("; ")}. Total ${totalDays} days.`}
       table={{
         caption: "Elapsed days between LEAP milestones.",

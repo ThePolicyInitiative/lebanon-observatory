@@ -36,7 +36,7 @@ describe("analytical dataset integrity", () => {
     expect(() => stageCountsSchema.parse(stageCountsJson)).not.toThrow();
   });
 
-  it("matches the verified 2024 total of 343 actor-stage records", () => {
+  it("matches the confirmed 2024 total of 343 actor-stage records", () => {
     expect(yearTotal(2024)).toBe(343);
   });
 
@@ -142,7 +142,7 @@ describe("KPIs and finance", () => {
     expect((disbursed.amountUsd / 11_000_000_000) * 100).toBeLessThan(0.05);
   });
 
-  it("never marks contracted works or verified output as completed", () => {
+  it("never marks contracted works or confirmed output as completed", () => {
     for (const step of financeFunnel.filter((f) => f.amountUsd === 0)) {
       expect(step.status).toBe("not_verified");
     }
@@ -183,7 +183,7 @@ describe("evidence log", () => {
     expect(layers.size).toBe(4);
   });
 
-  it("never marks any record as completed output (none was verified)", () => {
+  it("never marks any record as completed output (none was confirmed)", () => {
     expect(roleRecords.some((r) => r.implementationStatus === "completed")).toBe(false);
   });
 });

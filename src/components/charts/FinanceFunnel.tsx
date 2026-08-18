@@ -26,7 +26,7 @@ export default function FinanceFunnel() {
     >
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
-          From assessed need to verified output: the financing funnel
+          From assessed need to confirmed output: the financing funnel
         </h3>
         <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
           Bars are drawn to a common linear scale - the near-invisibility of the
@@ -36,7 +36,7 @@ export default function FinanceFunnel() {
 
       {(
         <>
-          <div className="mt-4 space-y-4" role="img" aria-label="Nested bars: assessed need US$11 billion (100%); LEAP framework US$1 billion (9.09% of need); initial loan US$250 million (2.27% of need); disbursed US$4.13 million (about 0.04% of need). Works contracts awarded and verified completed output: zero as of the cut-off.">
+          <div className="mt-4 space-y-4" role="img" aria-label="Nested bars: assessed need US$11 billion (100%); LEAP framework US$1 billion (9.09% of need); initial loan US$250 million (2.27% of need); disbursed US$4.13 million (about 0.04% of need). Works contracts awarded and confirmed completed output: zero as of the cut-off.">
             {bars.map((b) => {
               const pct = (b.amountUsd / max) * 100;
               return (
@@ -112,7 +112,7 @@ export default function FinanceFunnel() {
                   {z.label}:
                 </span>
                 <span className="text-[color:var(--color-text-secondary)]">
-                  {z.note} <em>(Not verified)</em>
+                  {z.note} <em>(Not confirmed)</em>
                 </span>
               </li>
             ))}

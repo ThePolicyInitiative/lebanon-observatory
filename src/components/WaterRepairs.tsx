@@ -2,7 +2,7 @@ import slwe from "@/data/slwe-posts.json";
 
 /**
  * One utility's own account of its repair work, from its public posts.
- * It sits in the web-sourced quarantine with everything else unverified,
+ * It sits in the web-sourced quarantine with everything else unconfirmed,
  * and it is here for one reason: almost nothing else reports reconstruction
  * at the level of a single distribution line in a single village.
  */
@@ -21,14 +21,14 @@ export default function WaterRepairs() {
           One utility, line by line
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
-          Self-published · not in the verified log
+          Self-published · not in the tracking
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         The {slwe.actor} publishes each repair it makes. {slwe.totalPosts} of those posts,
         translated and grouped here, are the finest-grained account of restoration work anywhere
         in this site - a burst pipe in one village, a pumping line, a 63 mm distribution main.
-        None of it is verified, and none of it enters the counts. It is worth reading anyway,
+        None of it is confirmed, and none of it enters the counts. It is worth reading anyway,
         because the formal tracking has no instrument this small.
       </p>
 

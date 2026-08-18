@@ -52,7 +52,7 @@ export const STATUS_LABELS: Record<string, string> = {
   procurement: "Procurement initiated",
   underway: "Traced activity",
   completed: "Completed output",
-  not_verified: "Not verified",
+  not_verified: "Not confirmed",
 };
 
 export const COMPARABILITY_LABELS: Record<string, string> = {

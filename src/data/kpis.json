@@ -104,7 +104,7 @@
     "value": 4130000,
     "display": "US$4.13 million",
     "kind": "disbursement",
-    "definition": "Cumulative disbursement traced in the LEAP Implementation Status and Results Report of 29 June 2026. Disbursement is not completed output: no works contract had been awarded and no completed reconstruction output was publicly verified by that date.",
+    "definition": "Cumulative disbursement traced in the LEAP Implementation Status and Results Report of 29 June 2026. Disbursement is not completed output: no works contract had been awarded and no completed reconstruction output was publicly confirmed by that date.",
     "referencePeriod": "As of 29 June 2026",
     "geographicScope": "LEAP project scope",
     "sourceIds": ["S1"]

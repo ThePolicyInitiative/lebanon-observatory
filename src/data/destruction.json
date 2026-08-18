@@ -64,8 +64,8 @@
         { "name": "Meiss Ej Jabal", "destroyed": 969 },
         { "name": "Taybe", "destroyed": 824 }
       ],
-      "method": "GeoAI workflow comparing 29 April 2026 imagery against an October 2025 baseline; office-based review at roughly 85% estimated accuracy; no field verification. Excludes basements, infrastructure and minor-damage costs.",
-      "verification": "Desk-validated",
+      "method": "GeoAI workflow comparing 29 April 2026 imagery against an October 2025 baseline; office-based review at roughly 85% estimated accuracy; no field check. Excludes basements, infrastructure and minor-damage costs.",
+      "checkedBy": "Desk-validated",
       "published": "2026-06-22",
       "comparability": "not_comparable",
       "comparabilityNote": "Explicitly a snapshot; not cumulative with 2024 results. The worst cadasters are the same border communities levelled in 2024, partially reassessed after rebuilding attempts.",
@@ -79,10 +79,10 @@
       "debris": "648,942 cubic metres of debris - 93% of it in Baabda district, the Dahieh belt again",
       "worstCadasters": [],
       "method": "February–April 2026 imagery, cross-checked against army, UN security and satellite-centre entries.",
-      "verification": "Field-verified with the scientific council",
+      "checkedBy": "Field-checked with the scientific council",
       "published": "2026-06-08",
       "comparability": "not_comparable",
-      "comparabilityNote": "Different verification method from the southern product - the two zones should not share a legend.",
+      "comparabilityNote": "Different confirmation method from the southern product - the two zones should not share a legend.",
       "sourceIds": ["S5"]
     }
   ],

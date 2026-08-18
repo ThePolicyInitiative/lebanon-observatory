@@ -118,7 +118,7 @@ export default function HomePage() {
               ["706", "actor-stage entries in the tracking (343 for 2024; 363 for 2026)"],
               ["104 → 124", "traced actors across the four layers, 2024 → 2026"],
               ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
-              ["0", "works contracts awarded, verified completed outputs and verified compensation payments by the cut-off"],
+              ["0", "works contracts awarded, confirmed completed outputs and confirmed compensation payments by the cut-off"],
             ].map(([n, label]) => (
               <div key={label}>
                 <dt className="sr-only">{label}</dt>
@@ -315,7 +315,7 @@ export default function HomePage() {
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               This feed aggregates relevant coverage from selected global,
               Lebanese, humanitarian and official sources. It is broad but not
-              exhaustive, and it is kept strictly separate from the verified
+              exhaustive, and it is kept strictly separate from the confirmed
               analysis.
             </p>
           </SectionHeading>
@@ -336,7 +336,7 @@ export default function HomePage() {
             international and contractor roles, but it did not transfer
             meaningful finance or implementation authority to municipalities.
             Community and NGO actors continued to absorb humanitarian and
-            social-recovery pressures, while verified physical reconstruction
+            social-recovery pressures, while confirmed physical reconstruction
             lagged behind institutional design.
           </blockquote>
         </section>

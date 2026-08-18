@@ -4,15 +4,17 @@ import { join } from "node:path";
 
 /**
  * Reader-facing wording is constrained: the site never talks about
- * datasets, records, documents, evidence or files. This guards the copy
- * only - identifiers such as `roleRecords`, the `Record<>` type and
- * `document.querySelector` are code, never read by anyone.
+ * datasets, records, documents, evidence, files or verification. This guards
+ * the copy only - identifiers such as `roleRecords`, the `Record<>` type,
+ * `document.querySelector` and the `not_verified` status key are code, never
+ * read by anyone. A word boundary cannot match inside not_verified, so that
+ * key needs no exemption here.
  */
 
 const BANNED =
-  /\b(datasets?|records?|recorded|documents?|documented|documentation|evidence|evidentiary|dossiers?)\b/i;
+  /\b(datasets?|records?|recorded|documents?|documented|documentation|evidence|evidentiary|dossiers?|verify|verifies|verified|unverified|verifiable|unverifiable|verification)\b/i;
 
-const AR_BANNED = /(الأدلة|أدلة|موثّقة|موثقة|سجلات|وثائق|ملفات)/;
+const AR_BANNED = /(الأدلة|أدلة|موثّقة|موثقة|سجلات|وثائق|ملفات|تحقّق|تحقق|متحقَّق|مُتحقَّق)/;
 
 /** Verbatim third-party titles: altering a citation would misquote it. */
 const ALLOWED = [

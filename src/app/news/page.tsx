@@ -5,7 +5,7 @@ import NewsExplorer from "./NewsExplorer";
 export const metadata: Metadata = {
   title: "Live updates",
   description:
-    "Aggregated live coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official sources - searchable and filterable, kept separate from the verified analysis.",
+    "Aggregated live coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official sources - searchable and filterable, kept separate from the analysis.",
 };
 
 export default function NewsPage() {

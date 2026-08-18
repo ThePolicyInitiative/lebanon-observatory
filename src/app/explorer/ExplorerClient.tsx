@@ -356,7 +356,7 @@ export default function ExplorerClient() {
               ) : null}
               <section>
                 <p className="text-xs text-[color:var(--color-text-secondary)]">
-                  Verification note: this entry marks traced presence.
+                  Confirmation note: this entry marks traced presence.
                   It is not proof of expenditure,
                   effectiveness or completed output; statuses above
                   &ldquo;traced activity&rdquo; are assigned only where the

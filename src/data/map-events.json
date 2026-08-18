@@ -1,5 +1,5 @@
 {
-  "note": "Traced episodes per locality, drawn from the verified traced activity. Each entry states what the sources show - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer.",
+  "note": "Traced episodes per locality, drawn from the the traced activity. Each entry states what the sources show - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer.",
   "localities": [
     {
       "name": "Nabatieh",
@@ -151,28 +151,28 @@
       "name": "Qana",
       "townNames": ["Qana"],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - one of sixteen-plus localities lifting debris; quantities, destinations and completion unverifiable." }
+        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - one of sixteen-plus localities lifting debris; quantities, destinations and completion not confirmable." }
       ]
     },
     {
       "name": "Chehour",
       "townNames": ["Chehour"],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities unverifiable." }
+        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
       ]
     },
     {
       "name": "Tebnine",
       "townNames": ["Tibnine"],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities unverifiable." }
+        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
       ]
     },
     {
       "name": "Majdal Selm",
       "townNames": ["Majdel Selm"],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities unverifiable." }
+        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
       ]
     },
     {

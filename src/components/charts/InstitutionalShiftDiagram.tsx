@@ -4,7 +4,7 @@ type ShiftKind = "formalised" | "built_not_delivering" | "unchanged" | "redirect
 const KIND_META: Record<ShiftKind, { label: string; color: string; bg: string }> = {
   formalised: { label: "Formalised and functioning", color: "#1B8295", bg: "#E8F1F3" },
   built_not_delivering: {
-    label: "Built, not yet matched by verified delivery",
+    label: "Built, not yet matched by confirmed delivery",
     color: "#8a6200",
     bg: "#FAF3E3",
   },
@@ -34,7 +34,7 @@ const ROWS: {
     y2024:
       "No financed reconstruction programme. Humanitarian funding and reported parallel-track cash were the only money moving; needs were quantified at US$11 billion and financed at zero.",
     y2026:
-      "US$250 million effective within a US$1 billion framework; US$4.13 million (1.65%) disbursed by 29 June 2026; a compensation framework designed but with no verified payment.",
+      "US$250 million effective within a US$1 billion framework; US$4.13 million (1.65%) disbursed by 29 June 2026; a compensation framework designed but with no confirmed payment.",
     kind: "built_not_delivering",
     movement:
       "Gained: the World Bank as rule-setter and funder; the Ministry of Finance as loan manager. Not transferred: any financing authority to municipalities; any funded instrument for private (housing) needs.",

@@ -22,12 +22,12 @@ export default function DebrisTiles() {
     {
       figure: "3.1M m³",
       title: "2026, South of the Litani only",
-      method: `GeoAI imagery review · ${south.verification.toLowerCase()}`,
+      method: `GeoAI imagery review · ${south.checkedBy.toLowerCase()}`,
     },
     {
       figure: "648,942 m³",
       title: "2026, Beirut & Mount Lebanon only",
-      method: "Imagery cross-checked with the army and UN security · field-verified",
+      method: "Imagery cross-checked with the army and UN security · field-checked",
     },
   ];
 

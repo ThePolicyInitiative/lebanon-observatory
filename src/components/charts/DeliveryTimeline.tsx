@@ -18,13 +18,13 @@ const TRACKS = [
 const STATUS_STYLE: Record<string, { color: string; symbol: string; label: string }> = {
   completed: { color: "#1B8295", symbol: "circle", label: "Milestone reached" },
   procurement: { color: "#D69600", symbol: "diamond", label: "Process under way" },
-  not_verified: { color: "#BD5A46", symbol: "emptyCircle", label: "Not verified / unpaid" },
+  not_verified: { color: "#BD5A46", symbol: "emptyCircle", label: "Not confirmed / unpaid" },
   context: { color: "#8FA1B5", symbol: "rect", label: "Conflict context" },
 };
 
 /**
  * Visual 10 - Commitment-to-delivery timeline: approvals, disbursement and
- * institutional milestones across tracks, with unverified output marked.
+ * institutional milestones across tracks, with unconfirmed output marked.
  */
 export default function DeliveryTimeline() {
   const chartRef = useRef<ECharts | null>(null);
@@ -104,12 +104,12 @@ export default function DeliveryTimeline() {
     <div>
       <ChartFrame
         id="delivery-timeline"
-        title="From assessment request to (unverified) delivery, Dec 2024 – Jul 2026"
-        subtitle="Filled teal circles: milestones reached. Amber diamonds: processes under way. Open rust circles: not verified or unpaid by the cut-off. Grey squares: conflict context."
-        caveat="Procurement under way is a process milestone, not data of completed reconstruction. Completed works were not publicly verified by the 31 July 2026 cut-off."
+        title="From assessment request to (unconfirmed) delivery, Dec 2024 – Jul 2026"
+        subtitle="Filled teal circles: milestones reached. Amber diamonds: processes under way. Open rust circles: not confirmed or unpaid by the cut-off. Grey squares: conflict context."
+        caveat="Procurement under way is a process milestone, not data of completed reconstruction. Completed works were not publicly confirmed by the 31 July 2026 cut-off."
         sourceIds={["S4", "S2", "S20", "S47", "S1", "S7"]}
         chartRef={chartRef}
-        description="Timeline scatter across five tracks (conflict, data, state decisions, finance, procurement) from December 2024 to July 2026, showing the 2025 approval cluster, the 2026 procurement publications, first disbursement in May 2026, and the absence of verified completed output at the cut-off."
+        description="Timeline scatter across five tracks (conflict, data, state decisions, finance, procurement) from December 2024 to July 2026, showing the 2025 approval cluster, the 2026 procurement publications, first disbursement in May 2026, and the absence of confirmed completed output at the cut-off."
         table={{
           caption: "Milestones in the commitment-to-delivery chain.",
           headers: ["Date", "Track", "Milestone", "Status", "Detail"],
@@ -139,7 +139,7 @@ export default function DeliveryTimeline() {
             { label: "Data", status: "done", note: "RDNA + 2026 assessments delivered" },
             { label: "Architecture", status: "done", note: "LEAP effective; CDR unit staffed" },
             { label: "Procurement / delivery", status: "partial", note: "3 packages published, none awarded" },
-            { label: "Verified output", status: "missing", note: "Completed output not verified by 31 Jul 2026" },
+            { label: "Confirmed output", status: "missing", note: "Completed output not confirmed by 31 Jul 2026" },
           ].map((step, i, arr) => (
             <li key={step.label} className="flex items-center gap-2">
               <span

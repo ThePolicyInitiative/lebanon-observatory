@@ -1,5 +1,5 @@
 {
-  "note": "Actors and actions reported by external web sources. Kept strictly separate from the verified tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked source reports, names that source, and says whether the page was opened directly or only reached through a search summary.",
+  "note": "Actors and actions reported by external web sources. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked source reports, names that source, and says whether the page was opened directly or only reached through a search summary.",
   "gatheredOn": "2026-08-17",
   "updates": [
     {

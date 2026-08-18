@@ -4,13 +4,13 @@ import { fmtDate } from "@/lib/format";
 
 /**
  * Actors and actions reported by external web sources, beyond what the
- * verified tracking carries. Deliberately quarantined: nothing here enters
+ * the tracking itself carries. Deliberately quarantined: nothing here enters
  * the counts, matrices or maps - each entry states only what its linked
  * source reports, with the source named beside it and a caution where the
  * claim needs one.
  */
 
-/** How much verification the reader should expect behind each entry. */
+/** How much confirmation the reader should expect behind each entry. */
 const SOURCE_KIND: Record<string, { label: string; cls: string }> = {
   institutional: {
     label: "Institutional source",
@@ -137,15 +137,15 @@ export default function ReportedUpdates() {
           Reported beyond the tracking
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
-          Web-sourced · not in the verified log
+          Web-sourced · not in the tracking
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         {updates.length} actors and actions found in open web coverage in English, Arabic and
         French (gathered {fmtDate(webUpdates.gatheredOn)}), {south} of them in the area between
         the Litani and the Blue Line. These are reported claims, quoted with their sources - they
-        are not verified against the tracking and enter none of this site&apos;s counts or maps.
-        Each entry says how much verification sits behind it, and {indirect} are marked because
+        are not checked against the tracking and enter none of this site&apos;s counts or maps.
+        Each entry says how much checking sits behind it, and {indirect} are marked because
         the publisher&apos;s page refused an automated request and only a search summary could be
         reached. Follow each link to judge the source yourself.
       </p>

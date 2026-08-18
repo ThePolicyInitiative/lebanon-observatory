@@ -6,7 +6,7 @@ import timeline from "@/data/timeline.json";
 import { getSource } from "@/lib/data";
 
 describe("sector estimates", () => {
-  it("carries the verified headline figures", () => {
+  it("carries the confirmed headline figures", () => {
     const byId = new Map(sectors.sectors.map((s) => [s.id, s]));
     expect(byId.get("housing")?.damage).toBe(4600);
     expect(byId.get("commerce")?.losses).toBe(3400);
@@ -48,14 +48,14 @@ describe("destruction evidence", () => {
   it("keeps both 2026 zones non-cumulative with 2024 and method-distinct", () => {
     expect(destruction.zones2026).toHaveLength(2);
     const [south, bml] = destruction.zones2026;
-    expect(south.verification).toBe("Desk-validated");
-    expect(bml.verification).toContain("Field-verified");
+    expect(south.checkedBy).toBe("Desk-validated");
+    expect(bml.checkedBy).toContain("Field-checked");
     for (const z of destruction.zones2026) {
       expect(z.comparability).toBe("not_comparable");
     }
   });
 
-  it("carries the verified worst-cadaster counts", () => {
+  it("carries the confirmed worst-cadaster counts", () => {
     const south = destruction.zones2026.find((z) => z.id === "south-litani")!;
     const byName = new Map(south.worstCadasters.map((c) => [c.name, c.destroyed]));
     expect(byName.get("Aaitaroun")).toBe(1658);
@@ -70,9 +70,9 @@ describe("destruction evidence", () => {
 });
 
 describe("compensation tracks", () => {
-  it("asserts no verified state payment and no audited parallel figure", () => {
-    expect(compensation.stateTrack.verifiedPayments).toContain("None verified");
-    expect(compensation.parallelTrack.verifiedPayments).toContain("unauditable");
+  it("asserts no confirmed state payment and no audited parallel figure", () => {
+    expect(compensation.stateTrack.confirmedPayments).toContain("None confirmed");
+    expect(compensation.parallelTrack.confirmedPayments).toContain("unauditable");
   });
 
   it("labels every instrument with an evidence level", () => {

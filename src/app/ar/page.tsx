@@ -30,7 +30,7 @@ const STATUS_AR: Record<string, string> = {
   underway: "نشاط مرصود",
   procurement: "شراء مباشَر",
   formal_mandate: "تفويض قانوني",
-  not_verified: "غير مُتحقَّق منه",
+  not_verified: "غير مؤكَّد",
 };
 
 const KPI_AR: Record<string, string> = {

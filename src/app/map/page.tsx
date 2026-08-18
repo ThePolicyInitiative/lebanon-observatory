@@ -42,13 +42,13 @@ export default function MapPage() {
         </h2>
         <p className="mt-2 text-[color:var(--color-text)]">
           The 2026 rapid assessments cover two zones - south of the Litani
-          (desk-validated) and Beirut–Mount Lebanon (field-verified) - while
+          (desk-validated) and Beirut–Mount Lebanon (field-checked) - while
           the Bekaa, Baalbek-Hermel and the North had no equivalent assessment
           by the cut-off. Merging these partial products into a single
           national damage scale would manufacture a false comparison, so this
           observatory does not map damage estimates onto a shared legend. The
           zone-level figures, each with its comparability badge and
-          verification method, are on the{" "}
+          confirmation method, are on the{" "}
           <a href="/damage" className="underline underline-offset-2">damage-data page</a>,
           alongside the four non-additive 2024 building-count tracks.
         </p>

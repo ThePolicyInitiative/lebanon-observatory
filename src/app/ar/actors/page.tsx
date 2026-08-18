@@ -30,7 +30,7 @@ export default function Page() {
       <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         إضافةً إلى ما سبق، يحمل المرصد {webUpdates.updates.length} مدخلاً من تغطية
         مفتوحة على الإنترنت، منها {south} بين الليطاني والخط الأزرق. هذه المدخلات
-        غير مُتحقَّق منها ولا تدخل في أي عدّ.
+        غير مؤكَّدة ولا تدخل في أي عدّ.
       </p>
     </ArabicPageShell>
   );

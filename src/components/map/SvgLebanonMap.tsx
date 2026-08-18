@@ -1372,7 +1372,7 @@ export default function SvgLebanonMap({
                     </strong>{" "}
                     here in the 29 April 2026 South-of-the-Litani assessment (GeoAI
                     against an October 2025 baseline, desk-validated, no field
-                    verification) - among the four worst cadasters nationally.
+                    confirmation) - among the four worst cadasters nationally.
                   </p>
                 ) : null;
               })()}
@@ -1662,9 +1662,9 @@ export default function SvgLebanonMap({
               <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
               ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
               completely destroyed; desk-validated GeoAI, no field
-              verification) and{" "}
+              confirmation) and{" "}
               <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
-              ({destruction.zones2026[1].assessedDamage}; field-verified). The
+              ({destruction.zones2026[1].assessedDamage}; field-checked). The
               two products differ in method and must not be compared or
               summed. Assessed geography is not damaged geography: the
               real-time national database traced heavy strikes nationwide,

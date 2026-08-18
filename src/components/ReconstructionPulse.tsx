@@ -115,8 +115,8 @@ export default function ReconstructionPulse() {
             </ul>
             <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
               Traced activity is not completed output: the tracking contains
-              no verified completed reconstruction outputs by the cut-off, and
-              &ldquo;not verified&rdquo; marks presence the sources cannot
+              no confirmed completed reconstruction outputs by the cut-off, and
+              &ldquo;not confirmed&rdquo; marks presence the sources cannot
               grade - never assumed zero, never assumed done.
             </p>
           </div>

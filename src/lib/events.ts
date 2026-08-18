@@ -2,7 +2,7 @@ import mapEvents from "@/data/map-events.json";
 import type { Year } from "./types";
 
 /** Traced episodes per locality - "what happened where", from the
- * verified traced activity. */
+ * the traced activity. */
 
 export type MapEvent = {
   year: Year;

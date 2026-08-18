@@ -46,7 +46,7 @@ const CONCEPTS = [
   {
     n: 6,
     label: "Completed output",
-    text: "No publicly verified completed reconstruction output, no awarded works contract and no verified state compensation payment by 31 July 2026.",
+    text: "No publicly confirmed completed reconstruction output, no awarded works contract and no confirmed state compensation payment by 31 July 2026.",
   },
 ];
 
@@ -236,8 +236,8 @@ export default function FinancePage() {
       <div className="mt-12">
         <Takeaways
           changed="Lebanon acquired a financing instrument - an account, rules and a pipeline into which additional money can flow - where 2024 had a number and a hope. The political conversions of 2025 moved at institutional speed once a full government existed."
-          unchanged="The denominator: even fully funded, the framework addresses roughly the public third of one war. The private two-thirds of needs and the whole of the 2026 war remained without any financed instrument, and completed verified output stood at zero."
-          matters="Every safeguard that protects money slows it, and households experience only the funnel's bottom. Financing credibility now depends on visible conversion - first works award, first compensation payment, first verified output - each of which is specific, owned and checkable."
+          unchanged="The denominator: even fully funded, the framework addresses roughly the public third of one war. The private two-thirds of needs and the whole of the 2026 war remained without any financed instrument, and completed confirmed output stood at zero."
+          matters="Every safeguard that protects money slows it, and households experience only the funnel's bottom. Financing credibility now depends on visible conversion - first works award, first compensation payment, first confirmed output - each of which is specific, owned and checkable."
         />
       </div>
     </div>

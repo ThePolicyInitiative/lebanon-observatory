@@ -1,5 +1,5 @@
 {
-  "note": "Every value is tracked at its own step of the sequence from assessed need to verified output. Committed finance is not disbursed finance; disbursement is not completed output; procurement under way is a process milestone, not data of completed reconstruction.",
+  "note": "Every value is tracked at its own step of the sequence from assessed need to confirmed output. Committed finance is not disbursed finance; disbursement is not completed output; procurement under way is a process milestone, not data of completed reconstruction.",
   "funnel": [
     {
       "id": "need",
@@ -58,11 +58,11 @@
       "sourceIds": ["S7"]
     },
     {
-      "id": "verified-output",
-      "label": "Completed reconstruction output, publicly verified",
+      "id": "confirmed-output",
+      "label": "Completed reconstruction output, publicly confirmed",
       "amountUsd": 0,
       "status": "not_verified",
-      "note": "Not verified by the 31 July 2026 cut-off. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
+      "note": "Not confirmed by the 31 July 2026 cut-off. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
       "date": "2026-07-31",
       "geographicScope": "LEAP project scope",
       "owner": "Third-Party Monitoring Agent (itself under procurement at the cut-off)",

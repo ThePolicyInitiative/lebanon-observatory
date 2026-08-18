@@ -32,7 +32,7 @@ export default function NewsTeaser() {
     return (
       <p className="card p-4 text-sm text-[color:var(--color-text-secondary)]">
         Live updates are temporarily unavailable. The analytical data on
-        this site is unaffected - it is a separate, verified analysis.{" "}
+        this site is unaffected - it is a separate, confirmed analysis.{" "}
         <Link href="/news" className="underline underline-offset-2">
           Open the live-updates page
         </Link>{" "}

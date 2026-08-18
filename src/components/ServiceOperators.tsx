@@ -57,13 +57,13 @@ export default function ServiceOperators() {
           The networks, operator by operator
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
-          Operator-reported · not in the verified log
+          Operator-reported · not in the tracking
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         Electricity, telecoms, irrigation and roads, as the operators themselves describe
         restoring them. This is the same granularity as the water utility&apos;s own posts and
-        the same standing: unverified, and in none of this site&apos;s counts. It is here because
+        the same standing: unconfirmed, and in none of this site&apos;s counts. It is here because
         these accounts name the substation, the line, the bridge and the date, where every
         assessment stops at the sector.
       </p>

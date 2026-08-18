@@ -742,7 +742,7 @@ export default function LebanonMap() {
             What happened where - traced episodes, {year}
           </h3>
           <p className="mt-1 max-w-3xl text-xs text-[color:var(--color-text-secondary)]">
-            Locality-level episodes from the verified entry: announced,
+            Locality-level episodes from the tracked entries: announced,
             reported or assessed - stated as such, never more. Select the same
             places on the map via their town markers or the town search.
           </p>

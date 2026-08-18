@@ -294,7 +294,7 @@ function Map2026() {
           Shelter and displacement figures in the printed version (about 136,000
           displaced people in collective shelters; 682 open shelters) come from a
           Ministry of Social Affairs presentation dated 16 April 2026. They are
-          reported figures, not verified here, and the printed
+          reported figures, not confirmed here, and the printed
           versions disagree with each other on the shelter count.
         </p>
       </Band>
@@ -329,7 +329,7 @@ function Map2026() {
           />
           <Box tone="stateLight" title="LEAP-CS-TA-00 - Technical assistance to the PMU" sub="Capacity building and institutional strengthening" />
           <Box tone="stateLight" title="Grievance Redress Mechanism (GRM)" sub="Published with contact points and investigation timelines; largely not yet operational" />
-          <Box tone="alert" title="Works contracts awarded by the cut-off: zero" sub="Procurement under way is a process milestone. No works contract, no verified completed output and no verified compensation payment by 31 July 2026." />
+          <Box tone="alert" title="Works contracts awarded by the cut-off: zero" sub="Procurement under way is a process milestone. No works contract, no confirmed completed output and no confirmed compensation payment by 31 July 2026." />
         </div>
       </Band>
 
@@ -358,7 +358,7 @@ function Map2026() {
             sub="Beirut & Mount Lebanon: US$365.0M; 146 buildings destroyed, 264 partially damaged; 648,942 m³ of debris. South of the Litani: US$1.384B; 11,095 buildings completely destroyed; 3.1 million m³ of debris."
           />
           <Box tone="stateLight" title="CNRS-L remote sensing" sub="Geospatial monitoring, change detection against an October 2025 baseline" />
-          <Box tone="gate" title="TPMA - independent verification" sub="Specified for works and safeguards; under procurement, not operating" />
+          <Box tone="gate" title="TPMA - independent confirmation" sub="Specified for works and safeguards; under procurement, not operating" />
           <Box tone="stateLight" title="CDR M&E unit" sub="Results framework and progress reporting" />
           <Box tone="international" title="World Bank supervision" sub="Safeguards, fiduciary rules, technical oversight, Lender's Engineer (under procurement)" />
           <Box tone="community" title="Community feedback" sub="Engagement and complaints handling through the GRM" />
@@ -374,7 +374,7 @@ function Map2026() {
             { title: "PMO / Council of Ministers / LEAP", sub: "Approve priorities and allocate funding" },
             { title: "CDR PMU", sub: "Launch tenders, manage contracts and consultants" },
             { title: "Contractors / operators", sub: "Implement works on the ground" },
-            { title: "TPMA / CDR M&E / World Bank", sub: "Monitor, verify and report results" },
+            { title: "TPMA / CDR M&E / World Bank", sub: "Monitor, check and report results" },
             { title: "Communities and beneficiaries", sub: "Provide feedback and grievances" },
           ]}
         />

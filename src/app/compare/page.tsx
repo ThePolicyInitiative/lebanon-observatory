@@ -12,7 +12,7 @@ import Takeaways from "@/components/Takeaways";
 export const metadata: Metadata = {
   title: "Compare 2024 and 2026",
   description:
-    "Side-by-side comparison of Lebanon's reconstruction system in 2024 and 2026: authority, coordination, finance, assessment, procurement, implementation, municipal power, community substitution, oversight and verified outputs.",
+    "Side-by-side comparison of Lebanon's reconstruction system in 2024 and 2026: authority, coordination, finance, assessment, procurement, implementation, municipal power, community substitution, oversight and confirmed outputs.",
 };
 
 const SUMMARY_2024 = [
@@ -131,7 +131,7 @@ export default function ComparePage() {
       <div className="mt-12">
         <Takeaways
           changed="Authority, finance and procurement acquired named owners inside a formal project perimeter; assessment was partially repatriated to Lebanese institutions; the emergency system improved at its own task."
-          unchanged="Municipal fiscal authority, verified physical output and verified compensation: zero movement in all three. Households and communities continued to absorb the cost of every week of delay."
+          unchanged="Municipal fiscal authority, confirmed physical output and confirmed compensation: zero movement in all three. Households and communities continued to absorb the cost of every week of delay."
           matters="A system that is more coherent on paper but unchanged at its bottom is unstable: the amber dimensions - finance, procurement, oversight - will resolve toward delivery or toward procedure within the next reporting cycle, and the tracking now exists to hold each conversion to a date."
         />
       </div>
