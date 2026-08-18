@@ -1,12 +1,49 @@
 import slwe from "@/data/slwe-posts.json";
+import type { Locale } from "@/lib/vocab";
 
 /**
  * One utility's own account of its repair work, from its public posts.
  * It sits in the web-sourced quarantine with everything else unconfirmed,
  * and it is here for one reason: almost nothing else reports reconstruction
  * at the level of a single distribution line in a single village.
+ *
+ * The Arabic side shows the utility's own Arabic posts rather than the
+ * English translations - for these 125 entries Arabic is the source language,
+ * so the Arabic reader gets the original and the English reader the rendering.
  */
-export default function WaterRepairs() {
+
+const T = {
+  en: {
+    title: "One utility, line by line",
+    badge: "Self-published · not in the tracking",
+    posts: "repair posts, translated",
+    south: "from the three departments south of the Litani",
+    restored: "end with supply restored to subscribers",
+    byDept: "By water department",
+    workKinds: "What the posts describe",
+    multi: "A post can describe more than one kind of work, so these do not sum to",
+    localities: "Most-named localities in the posts carried here",
+    supplyRestored: "supply restored",
+    southTag: "·south",
+  },
+  ar: {
+    title: "مؤسسة واحدة، خطاً بخط",
+    badge: "منشور ذاتياً · خارج التتبّع",
+    posts: "منشور إصلاح",
+    south: "من الدوائر الثلاث جنوب الليطاني",
+    restored: "تنتهي باستعادة التغذية للمشتركين",
+    byDept: "بحسب دائرة المياه",
+    workKinds: "ما تصفه المنشورات",
+    multi: "قد يصف المنشور أكثر من نوع عمل، لذلك لا يكون المجموع",
+    localities: "أكثر البلدات ذكراً في المنشورات المعروضة هنا",
+    supplyRestored: "استُعيدت التغذية",
+    southTag: "·جنوب",
+  },
+} as const;
+
+export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
+  const ar = locale === "ar";
   const maxDept = Math.max(...slwe.departments.map((d) => d.posts));
   const maxWork = Math.max(...slwe.work.map((w) => w.posts));
   const restoredShare = Math.round((slwe.restoredCount / slwe.totalPosts) * 100);
@@ -18,27 +55,44 @@ export default function WaterRepairs() {
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="water-repairs" className="text-xl font-semibold text-[color:var(--color-navy)]">
-          One utility, line by line
+          {t.title}
         </h2>
         <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
-          Self-published · not in the tracking
+          {t.badge}
         </span>
       </div>
       <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-        The {slwe.actor} publishes each repair it makes. {slwe.totalPosts} of those posts,
-        translated and grouped here, are the finest-grained account of restoration work anywhere
-        in this site - a burst pipe in one village, a pumping line, a 63 mm distribution main.
-        None of it is confirmed, and none of it enters the counts. It is worth reading anyway,
-        because the formal tracking has no instrument this small.
+        {ar ? (
+          <>
+            تنشر مؤسسة مياه لبنان الجنوبي كل إصلاح تقوم به. {slwe.totalPosts} من تلك
+            المنشورات، مجمَّعة هنا، هي أدقّ وصف لأعمال الاستعادة في هذا الموقع كله - أنبوب
+            انفجر في بلدة، خط ضخّ، ماسورة توزيع قطرها 63 ملم. لا شيء منها مؤكَّد، ولا يدخل
+            أي منها في العدّ. وتستحق القراءة رغم ذلك، لأن التتبّع الرسمي لا يملك أداة بهذه
+            الدقة.
+          </>
+        ) : (
+          <>
+            The {slwe.actor} publishes each repair it makes. {slwe.totalPosts} of those posts,
+            translated and grouped here, are the finest-grained account of restoration work
+            anywhere in this site - a burst pipe in one village, a pumping line, a 63 mm
+            distribution main. None of it is confirmed, and none of it enters the counts. It is
+            worth reading anyway, because the formal tracking has no instrument this small.
+          </>
+        )}
       </p>
 
       {/* Headline figures */}
       <dl className="mt-4 grid gap-3 sm:grid-cols-4">
         {[
-          { k: slwe.totalPosts.toLocaleString("en-US"), v: "repair posts, translated" },
-          { k: String(slwe.southPosts), v: "from the three departments south of the Litani" },
-          { k: `${restoredShare}%`, v: "end with supply restored to subscribers" },
-          { k: `${slwe.townsNamed}`, v: `localities named across all its posts, ${slwe.southTownsNamed} of them inside the area` },
+          { k: slwe.totalPosts.toLocaleString("en-US"), v: t.posts },
+          { k: String(slwe.southPosts), v: t.south },
+          { k: `${restoredShare}%`, v: t.restored },
+          {
+            k: `${slwe.townsNamed}`,
+            v: ar
+              ? `بلدة مذكورة في كل منشوراتها، ${slwe.southTownsNamed} منها داخل المنطقة`
+              : `localities named across all its posts, ${slwe.southTownsNamed} of them inside the area`,
+          },
         ].map((s) => (
           <div key={s.v} className="panel-sunken p-3">
             <p className="figure-number text-2xl text-[color:var(--color-navy)]">{s.k}</p>
@@ -53,7 +107,7 @@ export default function WaterRepairs() {
         {/* Where the work is reported */}
         <div>
           <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-            By water department
+            {t.byDept}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.departments.map((d) => (
@@ -61,7 +115,7 @@ export default function WaterRepairs() {
                 <span className="w-36 shrink-0 truncate">
                   {d.name}
                   {d.inArea ? (
-                    <span className="ml-1 text-[10px] font-semibold text-[#1F6B4E]">·south</span>
+                    <span className="ml-1 text-[10px] font-semibold text-[#1F6B4E]">{t.southTag}</span>
                   ) : null}
                 </span>
                 <span
@@ -82,7 +136,7 @@ export default function WaterRepairs() {
         {/* What kind of work */}
         <div>
           <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-            What the posts describe
+            {t.workKinds}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.work.map((w) => (
@@ -98,8 +152,7 @@ export default function WaterRepairs() {
             ))}
           </ul>
           <p className="mt-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            A post can describe more than one kind of work, so these do not sum to{" "}
-            {slwe.totalPosts}.
+            {t.multi} {slwe.totalPosts}.
           </p>
         </div>
       </div>
@@ -107,13 +160,12 @@ export default function WaterRepairs() {
       {/* Localities inside the area */}
       <div className="mt-5">
         <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-          Most-named localities in the posts carried here
+          {t.localities}
         </h3>
         <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          Counted across the posts of the three departments inside the area, which
-          is the set listed below and the set the workbook carries. Northern
-          departments also name southern places; those are in the 25 above, not
-          in this list.
+          {ar
+            ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها الملف. الدوائر الشمالية تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
+            : `Counted across the posts of the three departments inside the area, which is the set listed below and the set the workbook carries. Northern departments also name southern places; those are in the ${slwe.southTownsNamed} above, not in this list.`}
         </p>
         <ul className="mt-2 flex flex-wrap gap-1.5">
           {slwe.topSouthTowns.map((t) => (
@@ -134,12 +186,14 @@ export default function WaterRepairs() {
       {/* Every post from the departments inside the area */}
       <div className="mt-5">
         <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-          In its own words: all {slwe.areaPosts.length} posts from the departments inside the area
+          {ar
+            ? `بكلماتها هي: كل المنشورات الـ${slwe.areaPosts.length} من الدوائر داخل المنطقة`
+            : `In its own words: all ${slwe.areaPosts.length} posts from the departments inside the area`}
         </h3>
         <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining{" "}
-          {slwe.totalPosts - slwe.areaPosts.length} posts from the northern departments are in
-          the workbook.
+          {ar
+            ? `بنت جبيل وصور ووادي جيلو كاملة، بلا انتقاء. أما الـ${slwe.totalPosts - slwe.areaPosts.length} منشوراً الباقية من الدوائر الشمالية فهي خارج منطقة هذا العمل.`
+            : `Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining ${slwe.totalPosts - slwe.areaPosts.length} posts from the northern departments are outside this workbook's area.`}
         </p>
         <ul className="mt-2 max-h-[28rem] space-y-2 overflow-y-auto pr-1">
           {slwe.areaPosts.map((p) => (
@@ -153,12 +207,16 @@ export default function WaterRepairs() {
                 ) : null}
                 {p.restored ? (
                   <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 normal-case text-[color:var(--color-navy)]">
-                    supply restored
+                    {t.supplyRestored}
                   </span>
                 ) : null}
               </p>
-              <p className="mt-1 text-[12.5px] leading-relaxed text-[color:var(--color-text)]">
-                {p.text}
+              {/* Arabic is the source language for these posts. */}
+              <p
+                dir={ar ? "rtl" : "ltr"}
+                className="mt-1 text-[12.5px] leading-relaxed text-[color:var(--color-text)]"
+              >
+                {ar ? p.arabic || p.text : p.text}
               </p>
             </li>
           ))}
@@ -181,10 +239,12 @@ export default function WaterRepairs() {
       {/* What this is not */}
       <details className="mt-5 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-3">
         <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
-          What this source is, and what it cannot tell you ({slwe.caveats.length})
+          {ar
+            ? `ما هذا المصدر، وما الذي لا يستطيع قوله (${slwe.caveats.length})`
+            : `What this source is, and what it cannot tell you (${slwe.caveats.length})`}
         </summary>
         <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {slwe.caveats.map((c) => (
+          {(ar ? slwe.caveatsAr : slwe.caveats).map((c) => (
             <li key={c.slice(0, 30)} className="flex gap-2">
               <span
                 aria-hidden

@@ -3,20 +3,17 @@ import { AR } from "@/lib/i18n";
 import { roleRecords } from "@/lib/data";
 import webUpdates from "@/data/web-updates.json";
 import ArabicPageShell from "../ArabicPageShell";
+import WaterRepairs from "@/components/WaterRepairs";
+import { layers } from "@/lib/vocab";
 
 export const metadata: Metadata = { title: AR.pages.actors.title };
 
-const LAYER_AR: Record<string, string> = {
-  official: "المؤسسات الرسمية",
-  ngo_international: "المنظمات الدولية وغير الحكومية",
-  municipal: "البلديات واتحاداتها",
-  community: "المجتمع المحلي والأهالي",
-};
-
 export default function Page() {
-  const counts = Object.entries(LAYER_AR).map(([id, label]) => ({
-    value: String(roleRecords.filter((r) => r.actorLayer === id).length),
-    label,
+  // Layer names come from the shared vocabulary, so the two languages can
+  // never drift apart on what a layer is called.
+  const counts = layers("ar").map((l) => ({
+    value: String(roleRecords.filter((r) => r.actorLayer === l.id).length),
+    label: l.label,
   }));
   const south = webUpdates.updates.filter((u) => u.southOfLitani).length;
   return (
@@ -32,6 +29,12 @@ export default function Page() {
         مفتوحة على الإنترنت، منها {south} بين الليطاني والخط الأزرق. هذه المدخلات
         غير مؤكَّدة ولا تدخل في أي عدّ.
       </p>
+
+      {/* The same module the English page carries, with the utility's own
+          Arabic posts rather than their English rendering. */}
+      <div className="mt-8">
+        <WaterRepairs locale="ar" />
+      </div>
     </ArabicPageShell>
   );
 }

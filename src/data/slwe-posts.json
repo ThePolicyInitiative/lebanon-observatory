@@ -1534,5 +1534,13 @@
     "Nine posts repeat an earlier one and the second copy of each was removed, leaving 597 of the 606 supplied: three were identical, six differed only in punctuation.",
     "Department labels are the utility's own. The match from a post to a cadastral town is ours, made on place-name matching, and is approximate.",
     "A repair is not reconstruction. Restoring supply to a line says nothing about whether the houses on it are standing or the people are back."
+  ],
+  "caveatsAr": [
+    "منشور ذاتياً. كل سطر هو ادّعاء المؤسسة عن عملها هي، بلا تدقيق مستقل وبلا صورة أو عقد خلفه هنا.",
+    "بلا تواريخ. لم يحمل التصدير حقل تاريخ، فلا يمكن وضع أي منشور بالنسبة إلى تاريخ التوقف في 31 تموز 2026.",
+    "المنشورات الفردية غير قابلة للربط. لم يحمل التصدير روابط للمنشورات، فكل صف يحيل إلى صفحة المؤسسة الرسمية لا إلى المنشور نفسه.",
+    "تسعة منشورات تكرّر منشوراً سابقاً وحُذفت النسخة الثانية من كل منها، فبقي 597 من أصل 606 مُسلَّمة: ثلاثة كانت متطابقة وستة اختلفت في الترقيم فقط.",
+    "تسميات الدوائر هي تسميات المؤسسة. أما ربط المنشور ببلدة عقارية فهو من عندنا، مبني على مطابقة أسماء الأماكن، وتقريبي.",
+    "الإصلاح ليس إعادة إعمار. استعادة التغذية على خط لا تقول شيئاً عن بقاء البيوت واقفة أو عودة أهلها."
   ]
 }
