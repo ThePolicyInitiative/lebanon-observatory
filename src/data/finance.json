@@ -10,7 +10,10 @@
       "date": "2025-03-07",
       "geographicScope": "National",
       "owner": "World Bank RDNA at Government of Lebanon request",
-      "sourceIds": ["S4"]
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "الاحتياج المقدَّر (حرب 2023-24)"
     },
     {
       "id": "framework",
@@ -21,7 +24,10 @@
       "date": "2025-06-03",
       "geographicScope": "Conflict-affected areas, 2023–24 damage only",
       "owner": "World Bank / Government of Lebanon",
-      "sourceIds": ["S2"]
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "إطار LEAP القابل للتوسّع"
     },
     {
       "id": "approved",
@@ -32,7 +38,11 @@
       "date": "2025-06-24",
       "geographicScope": "LEAP project scope",
       "owner": "World Bank Board / Parliament of Lebanon (ratified 19 Dec 2025)",
-      "sourceIds": ["S20", "S47"]
+      "sourceIds": [
+        "S20",
+        "S47"
+      ],
+      "labelAr": "القرض الأولي المُقر من البنك الدولي"
     },
     {
       "id": "disbursed",
@@ -44,7 +54,10 @@
       "date": "2026-06-29",
       "geographicScope": "LEAP project scope",
       "owner": "World Bank / CDR project management unit",
-      "sourceIds": ["S1"]
+      "sourceIds": [
+        "S1"
+      ],
+      "labelAr": "المدفوع فعلياً"
     },
     {
       "id": "contracted",
@@ -55,7 +68,11 @@
       "date": "2026-07-17",
       "geographicScope": "LEAP project scope",
       "owner": "CDR procurement",
-      "sourceIds": ["S7"]
+      "sourceIds": [
+        "S7"
+      ],
+      "labelAr": "عقود الأشغال المُرساة",
+      "noteAr": "لم يُعرض أي عقد أشغال مُرسى على بوابة الشراء في مجلس الإنماء والإعمار عند مراجعة البوابة في 17 تموز 2026؛ ثلاث حزم خدمات استشارية كانت قيد التقييم."
     },
     {
       "id": "confirmed-output",
@@ -66,21 +83,101 @@
       "date": "2026-07-31",
       "geographicScope": "LEAP project scope",
       "owner": "Third-Party Monitoring Agent (itself under procurement at the cut-off)",
-      "sourceIds": ["S1", "S7"]
+      "sourceIds": [
+        "S1",
+        "S7"
+      ],
+      "labelAr": "إنجاز إعادة إعمار مكتمل ومُعلَن",
+      "noteAr": "غير مؤكَّد حتى تاريخ التوقف في 31 تموز 2026. مؤشرات الإنجاز المادي المعلنة بقيت عند الصفر مقابل تواريخ خط أساس من أيلول 2025."
     }
   ],
   "leapComponents": [
-    { "label": "Immediate response (rubble, unsafe structures, heritage stabilisation, shelter-schools, road access)", "initialUsd": 50000000, "appraisedUsd": 80000000, "sourceIds": ["S2"] },
-    { "label": "Lifeline services restoration (water, energy, transport, health, education, municipal, emergency services)", "initialUsd": 175000000, "appraisedUsd": 420000000, "sourceIds": ["S2"] },
-    { "label": "Preparation of reconstruction investments", "initialUsd": 15000000, "appraisedUsd": 20000000, "sourceIds": ["S2"] },
-    { "label": "Reconstruction works", "initialUsd": 0, "appraisedUsd": 455000000, "note": "Deliberately received no initial allocation: works need preparation first.", "sourceIds": ["S2"] },
-    { "label": "Project management", "initialUsd": 10000000, "appraisedUsd": 25000000, "sourceIds": ["S2"] }
+    {
+      "label": "Immediate response (rubble, unsafe structures, heritage stabilisation, shelter-schools, road access)",
+      "initialUsd": 50000000,
+      "appraisedUsd": 80000000,
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "الاستجابة الفورية (الأنقاض، الأبنية غير الآمنة، تثبيت التراث، مدارس الإيواء، فتح الطرق)"
+    },
+    {
+      "label": "Lifeline services restoration (water, energy, transport, health, education, municipal, emergency services)",
+      "initialUsd": 175000000,
+      "appraisedUsd": 420000000,
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "استعادة الخدمات الحيوية (مياه، طاقة، نقل، صحة، تعليم، خدمات بلدية وطارئة)"
+    },
+    {
+      "label": "Preparation of reconstruction investments",
+      "initialUsd": 15000000,
+      "appraisedUsd": 20000000,
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "تحضير استثمارات إعادة الإعمار"
+    },
+    {
+      "label": "Reconstruction works",
+      "initialUsd": 0,
+      "appraisedUsd": 455000000,
+      "note": "Deliberately received no initial allocation: works need preparation first.",
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "إدارة المشروع والتنفيذ"
+    },
+    {
+      "label": "Project management",
+      "initialUsd": 10000000,
+      "appraisedUsd": 25000000,
+      "sourceIds": [
+        "S2"
+      ],
+      "labelAr": "الطوارئ والاستجابة السريعة"
+    }
   ],
   "adjacentFlows": [
-    { "label": "Revised humanitarian appeal for the 2026 emergency", "amountUsd": 639900000, "status": "need", "note": "42.2% funded by 6 July 2026. Humanitarian financing, not reconstruction financing.", "sourceIds": ["S40"] },
-    { "label": "AFD financing announced via CDR", "amountUsd": 81000000, "display": "≈€75 million", "status": "committed", "note": "Announced within a February 2026 package; separate from LEAP.", "sourceIds": ["S48"] },
-    { "label": "European grants for livelihoods (February package)", "amountUsd": 38000000, "display": "≈€35 million", "status": "committed", "note": "Livelihoods support, not reconstruction works.", "sourceIds": ["S48"] },
-    { "label": "World Bank social-protection and digital operations", "amountUsd": 350000000, "status": "committed", "note": "Adjacent World Bank operations for other purposes; not reconstruction financing.", "sourceIds": ["S12"] }
+    {
+      "label": "Revised humanitarian appeal for the 2026 emergency",
+      "amountUsd": 639900000,
+      "status": "need",
+      "note": "42.2% funded by 6 July 2026. Humanitarian financing, not reconstruction financing.",
+      "sourceIds": [
+        "S40"
+      ]
+    },
+    {
+      "label": "AFD financing announced via CDR",
+      "amountUsd": 81000000,
+      "display": "≈€75 million",
+      "status": "committed",
+      "note": "Announced within a February 2026 package; separate from LEAP.",
+      "sourceIds": [
+        "S48"
+      ]
+    },
+    {
+      "label": "European grants for livelihoods (February package)",
+      "amountUsd": 38000000,
+      "display": "≈€35 million",
+      "status": "committed",
+      "note": "Livelihoods support, not reconstruction works.",
+      "sourceIds": [
+        "S48"
+      ]
+    },
+    {
+      "label": "World Bank social-protection and digital operations",
+      "amountUsd": 350000000,
+      "status": "committed",
+      "note": "Adjacent World Bank operations for other purposes; not reconstruction financing.",
+      "sourceIds": [
+        "S12"
+      ]
+    }
   ],
   "procurementPackages": [
     {
@@ -89,7 +186,10 @@
       "published": "2026-02-27",
       "deadline": "2026-04-29",
       "statusAtCheck": "Under evaluation (17 Jul 2026 portal check)",
-      "sourceIds": ["S7"]
+      "sourceIds": [
+        "S7"
+      ],
+      "labelAr": "الحزمة 1082 - الإشراف على تنظيف الطرق وترميمها (مرجعيون، صور، بنت جبيل)"
     },
     {
       "id": "1095",
@@ -97,7 +197,10 @@
       "published": "2026-05-12",
       "deadline": "2026-07-07",
       "statusAtCheck": "No award displayed (17 Jul 2026 portal check)",
-      "sourceIds": ["S7"]
+      "sourceIds": [
+        "S7"
+      ],
+      "labelAr": "الحزمة 1095 - هندسة إدارة الركام في موقع مقلع"
     },
     {
       "id": "1096",
@@ -105,7 +208,10 @@
       "published": "2026-05-13",
       "deadline": "2026-07-16",
       "statusAtCheck": "No award displayed (17 Jul 2026 portal check)",
-      "sourceIds": ["S7"]
+      "sourceIds": [
+        "S7"
+      ],
+      "labelAr": "الحزمة 1096 - جهة الرقابة الطرف الثالث (TPMA)"
     }
   ],
   "procurementBaselines": {
@@ -113,6 +219,8 @@
     "worksContractWeeksTarget": 12,
     "consultancyWeeksBaseline": 36,
     "consultancyWeeksTarget": 18,
-    "sourceIds": ["S2"]
+    "sourceIds": [
+      "S2"
+    ]
   }
 }

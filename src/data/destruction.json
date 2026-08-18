@@ -10,7 +10,15 @@
       "scope": "Six governorates",
       "unit": "Buildings and housing units",
       "comparability": "not_comparable",
-      "sourceIds": ["S11"]
+      "sourceIds": [
+        "S11"
+      ],
+      "labelAr": "توليف الأمم المتحدة (البرنامج الإنمائي - الإسكوا)",
+      "headlineAr": "63,962 مبنى / 229,125 وحدة سكنية",
+      "detailAr": "متضررة أو مدمَّرة في ست محافظات، منها 23,489 مبنى مدمَّر كلياً. نُشر في تموز 2025 كتوليف استعادي.",
+      "methodAr": "توليف من مصادر متعددة",
+      "scopeAr": "ست محافظات",
+      "unitAr": "مبانٍ ووحدات سكنية"
     },
     {
       "id": "academic-remote",
@@ -21,7 +29,15 @@
       "scope": "Four governorates",
       "unit": "Buildings and units",
       "comparability": "not_comparable",
-      "sourceIds": ["S23"]
+      "sourceIds": [
+        "S23"
+      ],
+      "labelAr": "سلسلة أكاديمية بالاستشعار عن بعد (الموئل / جامعة البلمند / CREEMO-USJ)",
+      "headlineAr": "19,537 مبنى / 42,384 وحدة",
+      "detailAr": "مدمَّرة كلياً أو جزئياً في أربع محافظات؛ أنتجت السلسلة نفسها تقديرات كميات الركام المستخدمة في التخطيط.",
+      "methodAr": "استشعار عن بعد (تحليل صور الأقمار)",
+      "scopeAr": "أربع محافظات",
+      "unitAr": "مبانٍ ووحدات"
     },
     {
       "id": "interim-dala",
@@ -32,7 +48,15 @@
       "scope": "National on earlier cut-offs",
       "unit": "Housing units",
       "comparability": "not_comparable",
-      "sourceIds": ["S22"]
+      "sourceIds": [
+        "S22"
+      ],
+      "labelAr": "التقييم المرحلي للأضرار والخسائر (البنك الدولي)",
+      "headlineAr": "99,209 وحدة سكنية متضررة",
+      "detailAr": "محسوبة على تواريخ توقف أبكر، ونُشرت في 14 تشرين الثاني 2024 - قبل أعنف ضربات أواخر تشرين الثاني.",
+      "methodAr": "تقييم مرحلي",
+      "scopeAr": "وطني على تواريخ توقف أبكر",
+      "unitAr": "وحدات سكنية"
     },
     {
       "id": "municipal-survey",
@@ -43,13 +67,27 @@
       "scope": "135 affected areas",
       "unit": "Housing units (reported)",
       "comparability": "not_comparable",
-      "sourceIds": ["S19"]
+      "sourceIds": [
+        "S19"
+      ],
+      "labelAr": "مسح بلدي لـ135 منطقة (بدعم من البرنامج الإنمائي)",
+      "headlineAr": "59,577 وحدة متضررة بحسب البلديات",
+      "detailAr": "جُمعت في عشرة أيام (5-15 كانون الأول 2024) اعتماداً على المعرفة المحلية للبلديات وحدها - 16,000 وحدة في قضاء بعبدا وحده (حزام الضاحية)، 63% منها أُبلغ عنها كمتضررة كلياً. أسرع تقييمات الأضرار في الاستجابة، مقابل التنازل عن الدقة الهندسية.",
+      "methodAr": "إفادة بلدية",
+      "scopeAr": "135 منطقة متضررة",
+      "unitAr": "وحدات سكنية (مُبلَّغ عنها)"
     }
   ],
   "debris2024": {
     "headline": "Roughly 12 million cubic metres of demolition debris",
     "detail": "20 to 27 million tonnes excluding road debris across six governorates, against a separate headline national estimate of about 17 million tonnes on a different method - quantities beyond any municipal capability and comparable to years of national construction activity. Volume estimates are remote-sensing products with stated density assumptions.",
-    "sourceIds": ["S11", "S23", "S4"]
+    "sourceIds": [
+      "S11",
+      "S23",
+      "S4"
+    ],
+    "headlineAr": "نحو 12 مليون متر مكعب من ركام الهدم",
+    "detailAr": "من 20 إلى 27 مليون طن باستثناء ركام الطرق في ست محافظات، مقابل تقدير وطني منفصل يبلغ نحو 17 مليون طن بمنهجية مختلفة - كميات تتجاوز أي قدرة بلدية وتوازي سنوات من النشاط الإنشائي الوطني. تقديرات الحجم منتجات استشعار عن بعد بافتراضات كثافة معلنة."
   },
   "zones2026": [
     {
@@ -59,17 +97,38 @@
       "buildings": "11,095 buildings completely destroyed (≈17,891 units), 2,242 partially damaged, 9,311 with minor damage",
       "debris": "3.1 million cubic metres of debris",
       "worstCadasters": [
-        { "name": "Aaitaroun", "destroyed": 1658 },
-        { "name": "Bent Jbeil", "destroyed": 1076 },
-        { "name": "Meiss Ej Jabal", "destroyed": 969 },
-        { "name": "Taybe", "destroyed": 824 }
+        {
+          "name": "Aaitaroun",
+          "destroyed": 1658
+        },
+        {
+          "name": "Bent Jbeil",
+          "destroyed": 1076
+        },
+        {
+          "name": "Meiss Ej Jabal",
+          "destroyed": 969
+        },
+        {
+          "name": "Taybe",
+          "destroyed": 824
+        }
       ],
       "method": "GeoAI workflow comparing 29 April 2026 imagery against an October 2025 baseline; office-based review at roughly 85% estimated accuracy; no field check. Excludes basements, infrastructure and minor-damage costs.",
       "checkedBy": "Desk-validated",
       "published": "2026-06-22",
       "comparability": "not_comparable",
       "comparabilityNote": "Explicitly a snapshot; not cumulative with 2024 results. The worst cadasters are the same border communities levelled in 2024, partially reassessed after rebuilding attempts.",
-      "sourceIds": ["S6"]
+      "sourceIds": [
+        "S6"
+      ],
+      "labelAr": "جنوب الليطاني",
+      "assessedDamageAr": "1.384 مليار دولار أضراراً مباشرة في الأبنية",
+      "buildingsAr": "11,095 مبنى مدمَّر كلياً (نحو 17,891 وحدة)، و2,242 متضرراً جزئياً، و9,311 بأضرار طفيفة",
+      "debrisAr": "3.1 مليون متر مكعب من الركام",
+      "methodAr": "منهجية GeoAI تقارن صور 29 نيسان 2026 بخط أساس من تشرين الأول 2025؛ مراجعة مكتبية بدقة مقدَّرة نحو 85% ومن دون معاينة ميدانية. لا تشمل الطوابق تحت الأرض ولا البنى التحتية ولا كلف الأضرار الطفيفة.",
+      "checkedByAr": "مُدقَّق مكتبياً",
+      "comparabilityNoteAr": "لقطة زمنية صراحةً؛ لا تُجمع مع نتائج 2024. البلدات الأشد تضرراً هي القرى الحدودية نفسها التي سُوّيت في 2024، وأُعيد تقييمها جزئياً بعد محاولات إعادة البناء."
     },
     {
       "id": "beirut-ml",
@@ -83,7 +142,16 @@
       "published": "2026-06-08",
       "comparability": "not_comparable",
       "comparabilityNote": "Different confirmation method from the southern product - the two zones should not share a legend.",
-      "sourceIds": ["S5"]
+      "sourceIds": [
+        "S5"
+      ],
+      "labelAr": "بيروت وجبل لبنان",
+      "assessedDamageAr": "365.0 مليون دولار (جبل لبنان نحو 349.7 مليوناً، بيروت نحو 15.4 مليوناً)",
+      "buildingsAr": "146 مبنى مدمَّراً و264 متضرراً جزئياً، إضافةً إلى 54 شقة استُهدفت منفردة؛ 3,168 وحدة مدمَّرة",
+      "debrisAr": "648,942 متراً مكعباً من الركام - 93% منها في قضاء بعبدا، حزام الضاحية مجدداً",
+      "methodAr": "صور شباط-نيسان 2026، مُقارَنة بمعطيات الجيش والأمن الأممي ومركز الاستشعار.",
+      "checkedByAr": "مُدقَّق ميدانياً مع المجلس العلمي",
+      "comparabilityNoteAr": "منهجية تدقيق مختلفة عن المنتج الجنوبي - لا يجوز أن تتقاسم المنطقتان مفتاح قراءة واحداً."
     }
   ],
   "zones2026Notes": [
@@ -94,6 +162,13 @@
   "presidentialEstimate": {
     "detail": "Presidential statements in June 2026 put damage at nearly 18% of territory and roughly 68,000 destroyed housing units. These are traced as dated estimates, not consolidated assessment results.",
     "comparability": "context_only",
-    "sourceIds": ["S43"]
-  }
+    "sourceIds": [
+      "S43"
+    ]
+  },
+  "zones2026NotesAr": [
+    "لم يحظَ البقاع وبعلبك-الهرمل والشمال بتقييم مماثل حتى تاريخ التوقف في 31 تموز 2026. المساحة المقيَّمة ليست المساحة المتضررة: قاعدة البيانات الآنية رصدت ضربات ثقيلة في كل أنحاء البلاد.",
+    "تطبيق افتراضات الكثافة المعتادة على حجمَي الركام في المنطقتين يعطي نحو 5.2-7.0 مليون طن للمنطقتين المقيَّمتين وحدهما - وهو حساب في التقرير، لا رقم رسمي.",
+    "أضرار المنطقتين المقيَّمتين البالغة نحو 1.75 مليار دولار تقع كلها خارج النطاق القانوني لمشروع LEAP، بلا معالجة ممولة ولا إعادة إعمار مرتبطة بها حتى تاريخ التوقف."
+  ]
 }
