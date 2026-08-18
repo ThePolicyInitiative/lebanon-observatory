@@ -2,9 +2,37 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
-import { STAGES } from "@/lib/data-client";
+import { layers, stageLabel, statusLabel, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
+
+const T = {
+  en: {
+    search: "Search actors and actions",
+    placeholder: "e.g. rubble, CDR, compensation, Nabatieh",
+    layerFilter: "Layer filter",
+    yearFilter: "Year filter",
+    allLayers: "All layers",
+    bothYears: "Both years",
+    showing: (a: number, e: number) => [`Showing `, `${a}`, ` actors with `, `${e}`, ` entries under the current filters.`] as const,
+    where: "Where:",
+    seeMap: "see on the map →",
+    none: "No actors match the current filters.",
+    stages: (n: number) => `${n} stage${n === 1 ? "" : "s"}`,
+  },
+  ar: {
+    search: "ابحث في الجهات والأفعال",
+    placeholder: "مثلاً: أنقاض، مجلس الإنماء، تعويضات، النبطية",
+    layerFilter: "ترشيح بالطبقة",
+    yearFilter: "ترشيح بالسنة",
+    allLayers: "كل الطبقات",
+    bothYears: "السنتان",
+    showing: (a: number, e: number) => [`تُعرض `, `${a}`, ` جهة بـ`, `${e}`, ` مدخلاً ضمن الترشيح الحالي.`] as const,
+    where: "أين:",
+    seeMap: "على الخريطة →",
+    none: "لا جهة تطابق الترشيح الحالي.",
+    stages: (n: number) => `${n} مرحلة`,
+  },
+} as const;
 
 /**
  * The interactive half of the register. It receives groups already built
@@ -50,7 +78,8 @@ export type RegisterGroup = {
   records: RegisterRecord[];
 };
 
-export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[] }) {
+export default function RegisterList({ allGroups, locale = "en" }: { allGroups: RegisterGroup[]; locale?: Locale }) {
+  const t = T[locale];
   const [query, setQuery] = useState("");
   const [layer, setLayer] = useState<"all" | ActorLayer>("all");
   const [year, setYear] = useState<"both" | Year>("both");
@@ -97,19 +126,19 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
             htmlFor="register-search"
             className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]"
           >
-            Search actors and actions
+            {t.search}
           </label>
           <input
             id="register-search"
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. rubble, CDR, compensation, Nabatieh"
+            placeholder={t.placeholder}
             className="mt-1 min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
           />
         </div>
-        <div role="radiogroup" aria-label="Layer filter" className="flex flex-wrap gap-1.5">
-          {[{ id: "all" as const, label: "All layers", color: "#667588" }, ...LAYER_META].map(
+        <div role="radiogroup" aria-label={t.layerFilter} className="flex flex-wrap gap-1.5">
+          {[{ id: "all" as const, label: t.allLayers, color: "#667588" }, ...layers(locale)].map(
             (l) => (
               <button
                 key={l.id}
@@ -131,7 +160,7 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
         </div>
         <div
           role="radiogroup"
-          aria-label="Year filter"
+          aria-label={t.yearFilter}
           className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
         >
           {(["both", 2024, 2026] as const).map((y) => (
@@ -147,22 +176,24 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
                   : "text-[color:var(--color-text-secondary)]"
               }`}
             >
-              {y === "both" ? "Both years" : y}
+              {y === "both" ? t.bothYears : y}
             </button>
           ))}
         </div>
       </div>
 
       <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
-        Showing <strong className="text-[color:var(--color-navy)]">{groups.length}</strong> actors
-        with <strong className="text-[color:var(--color-navy)]">{shownRecords}</strong> entries
-        under the current filters.
+        {t.showing(groups.length, shownRecords)[0]}
+        <strong className="text-[color:var(--color-navy)]">{groups.length}</strong>
+        {t.showing(groups.length, shownRecords)[2]}
+        <strong className="text-[color:var(--color-navy)]">{shownRecords}</strong>
+        {t.showing(groups.length, shownRecords)[4]}
       </p>
 
       {/* Register */}
       <ul className="mt-4 divide-y divide-[color:var(--color-border)] border-t border-[color:var(--color-border)]">
         {groups.map((g) => {
-          const meta = LAYER_META.find((l) => l.id === g.layer)!;
+          const meta = layers(locale).find((l) => l.id === g.layer)!;
           const isOpen = open.has(g.base);
           return (
             <li key={g.base}>
@@ -198,7 +229,7 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
                     </span>
                   ) : null}
                   <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[color:var(--color-text-secondary)]">
-                    {g.stages} stage{g.stages === 1 ? "" : "s"}
+                    {t.stages(g.stages)}
                   </span>
                 </span>
                 <span aria-hidden className="shrink-0 text-[color:var(--color-text-secondary)]">
@@ -220,12 +251,12 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
                           {r.year}
                         </span>
                         <span className="rounded-sm bg-white px-1.5 py-0.5 text-[color:var(--color-navy)] ring-1 ring-[color:var(--color-border)]">
-                          {r.stageNo}. {STAGES[r.stageNo - 1]}
+                          {r.stageNo}. {stageLabel(r.stageNo, locale)}
                         </span>
                         <span
                           className={`rounded-sm px-1.5 py-0.5 ${STATUS_CHIP[r.implementationStatus] ?? "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]"}`}
                         >
-                          {STATUS_LABELS[r.implementationStatus] ?? r.implementationStatus}
+                          {statusLabel(r.implementationStatus, locale)}
                         </span>
                         {r.roles.map((label) => (
                           <span
@@ -241,13 +272,13 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
                       </p>
                       {r.locationNames.length > 0 ? (
                         <p className="mt-2 text-[11px] text-[color:var(--color-text-secondary)]">
-                          <span className="font-semibold">Where:</span>{" "}
+                          <span className="font-semibold">{t.where}</span>{" "}
                           {r.locationNames.join("; ")}{" "}
                           <Link
                             href={`/map?year=${r.year}&layer=${g.layer}&stage=${r.stageNo}`}
                             className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
                           >
-                            see on the map →
+                            {t.seeMap}
                           </Link>
                         </p>
                       ) : null}
@@ -261,7 +292,7 @@ export default function RegisterList({ allGroups }: { allGroups: RegisterGroup[]
       </ul>
       {groups.length === 0 ? (
         <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-[color:var(--color-text-secondary)]">
-          No actors match the current filters.
+          {t.none}
         </p>
       ) : null}
     </>

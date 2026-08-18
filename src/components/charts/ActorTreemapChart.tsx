@@ -4,8 +4,33 @@ import { useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { LAYER_META } from "@/lib/colors";
+import { layers, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
+
+const T = {
+  en: {
+    title: "The traced actor landscape, cell by cell",
+    sub: (y: number) =>
+      `Every named actor in the ${y} tracking - cell area is its number of traced role mentions, grouped by layer. Switch the year to watch the landscape recompose.`,
+    caveat:
+      "Cell area measures traced presence in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled).",
+    mentions: (n: number, y: number) => `${n} traced mention${n === 1 ? "" : "s"} in ${y}`,
+    legend: (label: string, total: number, actors: number) =>
+      `${label}: ${total} mentions · ${actors} actors`,
+    yearLabel: "Treemap year",
+  },
+  ar: {
+    title: "مشهد الجهات المرصودة، خليةً بخلية",
+    sub: (y: number) =>
+      `كل جهة مسمّاة في تتبّع ${y} - مساحة الخلية هي عدد الإشارات المرصودة إليها، مجمّعة بحسب الطبقة. بدّل السنة لترى المشهد يعيد تشكّله.`,
+    caveat:
+      "مساحة الخلية تقيس الحضور المرصود في التتبّع - لا الموازنة ولا الملاك ولا الإنجاز. الجهات المرصودة بأوصاف عامة تظهر كما رُصدت؛ واللون وحده لا يحمل الهوية أبداً (كل خلية مقروءة تحمل اسمها).",
+    mentions: (n: number, y: number) => `${n} إشارة مرصودة في ${y}`,
+    legend: (label: string, total: number, actors: number) =>
+      `${label}: ${total} إشارة · ${actors} جهة`,
+    yearLabel: "سنة المخطط",
+  },
+} as const;
 
 /**
  * The interactive half of the treemap. It takes counts already reduced on
@@ -19,7 +44,8 @@ export type TreemapYear = {
   layers: { id: ActorLayer; actors: [string, number][] }[];
 };
 
-export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
+export default function ActorTreemapChart({ data, locale = "en" }: { data: TreemapYear[]; locale?: Locale }) {
+  const t = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const [year, setYear] = useState<Year>(2026);
 
@@ -28,7 +54,7 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
     const byLayer = new Map<string, [string, number][]>(
       (forYear?.layers ?? []).map((l) => [l.id, l.actors]),
     );
-    const totals = LAYER_META.map((l) => {
+    const totals = layers(locale).map((l) => {
       const actors = byLayer.get(l.id) ?? [];
       return {
         ...l,
@@ -41,7 +67,7 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
         formatter: (p) => {
           const item = p as { name?: string; value?: number; treePathInfo?: { name: string }[] };
           const layer = item.treePathInfo?.[1]?.name ?? "";
-          return `<strong>${item.name}</strong><br/>${layer}<br/>${item.value} traced mention${item.value === 1 ? "" : "s"} in ${year}`;
+          return `<strong>${item.name}</strong><br/>${layer}<br/>${t.mentions(Number(item.value ?? 0), year)}`;
         },
       },
       series: [
@@ -94,14 +120,14 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
       ],
     };
     return { option: opt, layerTotals: totals };
-  }, [data, year]);
+  }, [data, year, locale, t]);
 
   return (
     <ChartFrame
       id="actor-treemap"
-      title="The traced actor landscape, cell by cell"
-      subtitle={`Every named actor in the ${year} tracking - cell area is its number of traced role mentions, grouped by layer. Switch the year to watch the landscape recompose.`}
-      caveat="Cell area measures traced presence in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled)."
+      title={t.title}
+      subtitle={t.sub(year)}
+      caveat={t.caveat}
       chartRef={chartRef}
       description={`Treemap of traced actors in ${year}: ${layerTotals
         .map((l) => `${l.label} ${l.total} mentions across ${l.actors} actors`)
@@ -111,7 +137,7 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
         <div
           className="mb-2 inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
           role="radiogroup"
-          aria-label="Treemap year"
+          aria-label={t.yearLabel}
         >
           {([2024, 2026] as const).map((y) => (
             <button
@@ -141,7 +167,7 @@ export default function ActorTreemapChart({ data }: { data: TreemapYear[] }) {
           {layerTotals.map((l) => (
             <li key={l.id} className="flex items-center gap-1.5">
               <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
-              {l.label}: {l.total} mentions · {l.actors} actors
+              {t.legend(l.label, l.total, l.actors)}
             </li>
           ))}
         </ul>

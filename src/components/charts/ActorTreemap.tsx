@@ -1,4 +1,5 @@
 import { LAYER_META } from "@/lib/colors";
+import type { Locale } from "@/lib/vocab";
 import { roleRecords } from "@/lib/data";
 import type { ActorLayer, Year } from "@/lib/types";
 import ActorTreemapChart, { type TreemapYear } from "./ActorTreemapChart";
@@ -34,6 +35,6 @@ function countYear(year: Year): TreemapYear {
 
 const DATA: TreemapYear[] = [countYear(2024), countYear(2026)];
 
-export default function ActorTreemap() {
-  return <ActorTreemapChart data={DATA} />;
+export default function ActorTreemap({ locale = "en" }: { locale?: Locale } = {}) {
+  return <ActorTreemapChart data={DATA} locale={locale} />;
 }

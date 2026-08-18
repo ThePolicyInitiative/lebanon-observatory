@@ -1,6 +1,18 @@
 import { roleRecords } from "@/lib/data";
 import MatrixTables, { type MatrixRow, type YearMatrixData } from "./MatrixTables";
 import type { Year } from "@/lib/types";
+import type { Locale } from "@/lib/vocab";
+
+const HEAD = {
+  en: {
+    title: "Actor-by-action matrices",
+    lede: "Every traced actor against the twelve value-chain actions, one matrix per year. Rows are grouped by layer and sorted by traced presence; a filled cell counts entries, not results.",
+  },
+  ar: {
+    title: "مصفوفات الجهات مقابل الأفعال",
+    lede: "كل جهة مرصودة مقابل أفعال سلسلة القيمة الاثني عشر، مصفوفة لكل سنة. الصفوف مجمّعة بحسب الطبقة ومرتّبة بحسب الحضور المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
+  },
+} as const;
 
 /**
  * Actor-by-action matrices, one per year: every traced actor as a row,
@@ -37,21 +49,20 @@ const MATRICES: YearMatrixData[] = [
   { year: 2026, rows: buildYear(2026) },
 ];
 
-export default function ActorStageMatrix() {
+export default function ActorStageMatrix({ locale = "en" }: { locale?: Locale } = {}) {
+  const h = HEAD[locale];
   return (
     <section aria-labelledby="actor-matrix">
       <h2
         id="actor-matrix"
         className="text-xl font-semibold text-[color:var(--color-navy)]"
       >
-        Actor-by-action matrices
+        {h.title}
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-        Every traced actor against the twelve value-chain actions, one
-        matrix per year. Rows are grouped by layer and sorted by traced
-        presence; a filled cell counts entries, not results.
+        {h.lede}
       </p>
-      <MatrixTables matrices={MATRICES} />
+      <MatrixTables matrices={MATRICES} locale={locale} />
     </section>
   );
 }

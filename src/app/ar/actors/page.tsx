@@ -7,6 +7,9 @@ import WaterRepairs from "@/components/WaterRepairs";
 import ReportedUpdates from "@/components/ReportedUpdates";
 import ServiceOperators from "@/components/ServiceOperators";
 import Takeaways from "@/components/Takeaways";
+import ActorTreemap from "@/components/charts/ActorTreemap";
+import ActorStageMatrix from "../../actors/ActorStageMatrix";
+import ActorRegister from "../../actors/ActorRegister";
 import { layers } from "@/lib/vocab";
 
 export const metadata: Metadata = { title: AR.pages.actors.title };
@@ -35,6 +38,15 @@ export default function Page() {
 
       {/* The same modules the English page carries. */}
       <div className="mt-8">
+        <ActorTreemap locale="ar" />
+      </div>
+      <div className="mt-10">
+        <ActorStageMatrix locale="ar" />
+      </div>
+      <div className="mt-10">
+        <ActorRegister locale="ar" />
+      </div>
+      <div className="mt-10">
         <ReportedUpdates locale="ar" />
       </div>
       <div className="mt-8">

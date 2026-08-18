@@ -1,9 +1,35 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { LAYER_META } from "@/lib/colors";
-import { STAGES, STAGE_SHORT } from "@/lib/data-client";
+import { layers, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
+
+const T = {
+  en: {
+    heading: "Actor-by-action matrices",
+    lede: "Every traced actor against the twelve value-chain actions, one matrix per year. Rows are grouped by layer and sorted by traced presence; a filled cell counts entries, not results.",
+    filter: "Filter actors",
+    placeholder: "e.g. municipality, UNDP, CDR",
+    panel: (y: number, n: number) => `${y}: ${n} actors × 12 actions`,
+    legend: "cell = entries placing the actor in that action; darker = more",
+    actor: "Actor",
+    total: "Total",
+    actors: (n: number) => `${n} actors`,
+    cell: (a: string, s: string, n: number) => `${a} - ${s}: ${n} entr${n === 1 ? "y" : "ies"}`,
+  },
+  ar: {
+    heading: "مصفوفات الجهات مقابل الأفعال",
+    lede: "كل جهة مرصودة مقابل أفعال سلسلة القيمة الاثني عشر، مصفوفة لكل سنة. الصفوف مجمّعة بحسب الطبقة ومرتّبة بحسب الحضور المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
+    filter: "ترشيح الجهات",
+    placeholder: "مثلاً: بلدية، UNDP، مجلس الإنماء",
+    panel: (y: number, n: number) => `${y}: ${n} جهة × 12 فعلاً`,
+    legend: "الخلية = مدخلات تضع الجهة في ذلك الفعل؛ الأغمق أكثر",
+    actor: "الجهة",
+    total: "المجموع",
+    actors: (n: number) => `${n} جهة`,
+    cell: (a: string, s: string, n: number) => `${a} - ${s}: ${n} مدخل`,
+  },
+} as const;
 
 /**
  * The interactive half of the actor-by-action matrices. It receives the
@@ -22,10 +48,13 @@ export type MatrixRow = {
 
 export type YearMatrixData = { year: Year; rows: MatrixRow[] };
 
-function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; query: string }) {
+function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow[]; query: string; locale: Locale }) {
+  const t = T[locale];
+  const STAGES = stageList(locale);
+  const STAGE_SHORT = stageShortList(locale);
   const q = query.trim().toLowerCase();
   const yearColor = year === 2024 ? "#58779B" : "#2F8F6B";
-  const groups = LAYER_META.map((meta) => ({
+  const groups = layers(locale).map((meta) => ({
     meta,
     rows: rows
       .filter((r) => r.layer === meta.id && (!q || r.base.toLowerCase().includes(q)))
@@ -43,10 +72,10 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
             className="mr-2 inline-block h-3 w-3 rounded-sm align-baseline"
             style={{ background: yearColor }}
           />
-          {year}: {shown} actors × 12 actions
+          {t.panel(year, shown)}
         </h3>
         <span className="text-[11px] text-[color:var(--color-text-secondary)]">
-          cell = entries placing the actor in that action; darker = more
+          {t.legend}
         </span>
       </figcaption>
       <div className="mt-3 max-h-[70vh] overflow-auto rounded-md border border-[color:var(--color-border)]">
@@ -57,7 +86,7 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
                 scope="col"
                 className="sticky left-0 z-20 bg-white px-2 py-2 text-left font-semibold text-[color:var(--color-navy)]"
               >
-                Actor
+                {t.actor}
               </th>
               {STAGE_SHORT.map((s, i) => (
                 <th
@@ -75,7 +104,7 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
                 scope="col"
                 className="px-2 py-2 text-right font-semibold text-[color:var(--color-navy)]"
               >
-                Total
+                {t.total}
               </th>
             </tr>
           </thead>
@@ -89,7 +118,7 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
                     className="sticky left-0 bg-[#F3F5F8] px-2 py-1.5 text-left text-[11px] font-bold uppercase tracking-wide"
                     style={{ color: g.meta.color }}
                   >
-                    {g.meta.label} · {g.rows.length} actors
+                    {g.meta.label} · {t.actors(g.rows.length)}
                   </th>
                 </tr>
                 {g.rows.map((r) => (
@@ -110,7 +139,7 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
                               background: g.meta.color,
                               opacity: 0.35 + (c / maxCell) * 0.65,
                             }}
-                            title={`${r.base} - ${STAGES[i]}: ${c} entry${c === 1 ? "" : "s"}`}
+                            title={t.cell(r.base, STAGES[i], c)}
                           >
                             {c}
                           </span>
@@ -136,7 +165,8 @@ function YearMatrix({ year, rows, query }: { year: Year; rows: MatrixRow[]; quer
   );
 }
 
-export default function MatrixTables({ matrices }: { matrices: YearMatrixData[] }) {
+export default function MatrixTables({ matrices, locale = "en" }: { matrices: YearMatrixData[]; locale?: Locale }) {
+  const t = T[locale];
   const [query, setQuery] = useState("");
   return (
     <>
@@ -145,20 +175,20 @@ export default function MatrixTables({ matrices }: { matrices: YearMatrixData[] 
           htmlFor="matrix-search"
           className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]"
         >
-          Filter actors
+          {t.filter}
         </label>
         <input
           id="matrix-search"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="e.g. municipality, UNDP, CDR"
+          placeholder={t.placeholder}
           className="mt-1 min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
         />
       </div>
       <div className="mt-4 space-y-6">
         {matrices.map((m) => (
-          <YearMatrix key={m.year} year={m.year} rows={m.rows} query={query} />
+          <YearMatrix key={m.year} year={m.year} rows={m.rows} query={query} locale={locale} />
         ))}
       </div>
     </>

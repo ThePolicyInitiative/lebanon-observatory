@@ -1,5 +1,17 @@
 import { roleRecords } from "@/lib/data";
 import RegisterList, { type RegisterGroup } from "./RegisterList";
+import type { Locale } from "@/lib/vocab";
+
+const HEAD = {
+  en: {
+    title: "Who did what - the full register",
+    lede: "Every traced actor and every traced action, as written in the tracking: the stage it belongs to, its status, its function roles and where it happened. Traced presence is not performance and a mandate is not delivery, so each entry is labelled as exactly what the sources support.",
+  },
+  ar: {
+    title: "من فعل ماذا - السجل الكامل",
+    lede: "كل جهة مرصودة وكل فعل مرصود، كما وردا في التتبّع: المرحلة التي ينتمي إليها، وحالته، وأدواره الوظيفية، وأين جرى. الحضور المرصود ليس أداءً، والتفويض ليس إنجازاً، لذلك يُوسم كل مدخل بما تدعمه المصادر بالضبط.",
+  },
+} as const;
 
 /**
  * The full "who did what" register: every traced actor, expandable
@@ -59,20 +71,17 @@ function buildGroups(): RegisterGroup[] {
 
 const ALL_GROUPS = buildGroups();
 
-export default function ActorRegister() {
+export default function ActorRegister({ locale = "en" }: { locale?: Locale } = {}) {
+  const h = HEAD[locale];
   return (
     <section aria-labelledby="actor-register" className="card p-4 sm:p-6">
       <h2 id="actor-register" className="text-xl font-semibold text-[color:var(--color-navy)]">
-        Who did what - the full register
+        {h.title}
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-        Every traced actor and every traced action, as written in the
-        tracking: the stage it belongs to, its status, its function roles and
-        where it happened. Traced presence is not performance and a mandate
-        is not delivery, so each entry is labelled as exactly what the
-        sources support.
+        {h.lede}
       </p>
-      <RegisterList allGroups={ALL_GROUPS} />
+      <RegisterList allGroups={ALL_GROUPS} locale={locale} />
     </section>
   );
 }
