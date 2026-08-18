@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { AR } from "@/lib/i18n";
 import destruction from "@/data/destruction.json";
-import districtDamage from "@/data/district-damage.json";
-import humanToll from "@/data/human-toll.json";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
+import DistrictDamageChart from "@/components/charts/DistrictDamageChart";
+import SectorDamageChart from "@/components/charts/SectorDamageChart";
+import WorstCadastersChart from "@/components/charts/WorstCadastersChart";
+import DebrisTiles from "@/components/charts/DebrisTiles";
+import ServiceImpact from "@/components/ServiceImpact";
+import HumanToll from "@/components/HumanToll";
 
 export const metadata: Metadata = { title: AR.pages.damage.title };
 
@@ -83,38 +87,13 @@ export default function Page() {
       </section>
 
       {/* The municipal survey, district by district */}
-      <section aria-labelledby="ar-districts" className="mt-10">
-        <h2 id="ar-districts" className="text-xl font-semibold text-[color:var(--color-navy)]">
-          المسح البلدي، قضاءً بقضاء
-        </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          {districtDamage.totals.housingUnits.toLocaleString("en-US")} وحدة سكنية أبلغت
-          عنها البلديات، منها{" "}
-          {districtDamage.namedDistrictSubtotal.toLocaleString("en-US")} في الأقضية
-          المسمّاة أدناه.
-        </p>
-        <ul className="mt-4 space-y-1.5">
-          {districtDamage.districts.map((d) => {
-            const max = Math.max(...districtDamage.districts.map((x) => x.units));
-            return (
-              <li key={d.name} className="flex items-center gap-2 text-[12.5px]">
-                <span className="w-28 shrink-0 truncate">{d.name}</span>
-                <span
-                  aria-hidden
-                  className="h-2.5 rounded-sm bg-[color:var(--color-navy)]"
-                  style={{ width: `${Math.max(3, (d.units / max) * 60)}%`, opacity: 0.8 }}
-                />
-                <span className="tabular-nums font-semibold">
-                  {d.units.toLocaleString("en-US")}
-                </span>
-                <span className="text-[11px] text-[color:var(--color-text-secondary)]">
-                  {d.completeShare}% دمار كلي
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <div className="mt-10">
+        <DistrictDamageChart locale="ar" />
+      </div>
+
+      <div className="mt-10">
+        <SectorDamageChart locale="ar" />
+      </div>
 
       {/* 2026 zones */}
       <section aria-labelledby="ar-zones" className="mt-10">
@@ -188,33 +167,21 @@ export default function Page() {
         </ul>
       </section>
 
-      {/* Human toll */}
-      <section aria-labelledby="ar-toll" className="mt-10">
-        <h2 id="ar-toll" className="text-xl font-semibold text-[color:var(--color-navy)]">
-          الكلفة البشرية
-        </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          حربان في لوحتين منفصلتين، لكل منهما تاريخه ومصدره. الأرقام هنا كما وردت عن
-          الجهة التي أعلنتها.
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {humanToll.war2026.items.map((i) => (
-            <div key={i.label} className="card p-3.5">
-              <p className="figure-number text-xl text-[color:var(--color-navy)]">{i.value}</p>
-              <p className="mt-1 text-[12.5px] font-semibold text-[color:var(--color-text)]">
-                {i.label}
-              </p>
-              <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-                {i.reporter}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-2 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          لوحة 2026 محدَّثة حتى {humanToll.war2026.asOf}. تسميات المؤشرات وتفاصيلها
-          بالإنجليزية في الصفحة الإنجليزية.
-        </p>
-      </section>
+      <div className="mt-10">
+        <WorstCadastersChart locale="ar" />
+      </div>
+
+      <div className="mt-10">
+        <DebrisTiles locale="ar" />
+      </div>
+
+      <div className="mt-10">
+        <ServiceImpact locale="ar" />
+      </div>
+
+      <div className="mt-10">
+        <HumanToll locale="ar" />
+      </div>
 
       <div className="mt-10">
         <Takeaways

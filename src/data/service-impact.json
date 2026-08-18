@@ -5,37 +5,49 @@
       "sector": "Health",
       "figure": "3 hospitals & 35 primary health-care centres",
       "detail": "Non-operational nationwide as of 6 July 2026, with access hardest in South and Nabatieh.",
-      "reporter": "WHO / health-cluster reporting"
+      "reporter": "WHO / health-cluster reporting",
+      "sectorAr": "الصحة",
+      "figureAr": "3 مستشفيات و35 مركز رعاية صحية أولية"
     },
     {
       "sector": "Attacks on health care",
       "figure": "196 attacks · 135 health-worker deaths",
       "detail": "WHO traced 196 attacks on health care by 4 June 2026; 131 health-worker deaths at that date, 135 by mid-July.",
-      "reporter": "WHO"
+      "reporter": "WHO",
+      "figureAr": "196 اعتداءً · 135 وفاة بين العاملين الصحيين",
+      "sectorAr": "الاعتداءات على الرعاية الصحية"
     },
     {
       "sector": "Education",
       "figure": "344 schools used as shelters",
       "detail": "Converted to collective shelters by 11 March 2026, disrupting schooling for the displaced and host communities alike.",
-      "reporter": "Education-sector reporting"
+      "reporter": "Education-sector reporting",
+      "sectorAr": "التعليم",
+      "figureAr": "344 مدرسة استُخدمت للإيواء"
     },
     {
       "sector": "Utilities",
       "figure": "Water & electricity",
       "detail": "The most frequently reported gaps in return areas; restoration ran through public operators and municipal improvisation, not project works.",
-      "reporter": "Emergency-chain reporting"
+      "reporter": "Emergency-chain reporting",
+      "sectorAr": "المرافق",
+      "figureAr": "المياه والكهرباء"
     },
     {
       "sector": "Early damage signal",
       "figure": "≈37,836-40,000 housing units",
       "detail": "CNRS-L's real-time database traced more than 5,200 attacks and roughly 37,836-40,000 housing units destroyed or damaged in the first 35 days of the 2026 war - preliminary figures, treated as such.",
-      "reporter": "CNRS-L (preliminary)"
+      "reporter": "CNRS-L (preliminary)",
+      "figureAr": "نحو 37,836-40,000 وحدة سكنية",
+      "sectorAr": "مؤشر ضرر مبكر"
     },
     {
       "sector": "Heritage",
       "figure": "7 cultural properties",
       "detail": "UNESCO's rapid assessment mission (9-14 March 2025) covered seven cultural properties with Lebanese authorities - Baalbek, Tyre and southern sites; conservation decisions rest with the Directorate General of Antiquities.",
-      "reporter": "UNESCO / DGA"
+      "reporter": "UNESCO / DGA",
+      "figureAr": "7 ممتلكات ثقافية",
+      "sectorAr": "التراث"
     }
   ]
 }

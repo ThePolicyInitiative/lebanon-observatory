@@ -2,14 +2,115 @@
   "note": "Sector estimates from the 2023–24 conflict assessment framework. Damage, losses and needs are distinct economic categories and are never summed. Sector estimates carry different cut-offs and methods within one assessment framework; the largest loss figures are macro-estimates rather than enterprise censuses. Null means not stated in the cited source, not zero.",
   "unit": "US$ million",
   "sectors": [
-    { "id": "housing", "label": "Housing", "damage": 4600, "losses": null, "needs": null, "detail": "The single largest damage line; the private two-thirds of national needs is overwhelmingly housing and private economic assets.", "sourceIds": ["S4"] },
-    { "id": "commerce", "label": "Commerce, industry & tourism", "damage": null, "losses": 3400, "needs": null, "detail": "The single largest loss line. A lost season or a closed workshop has no owner, no repair chain and no project line - these losses were absorbed as household impoverishment and enterprise closure.", "sourceIds": ["S4"] },
-    { "id": "environment", "label": "Environment & debris", "damage": 512, "losses": 790, "needs": 444, "detail": "Core ecological envelope costed at US$299M and the rubble and debris envelope at US$145M within the needs figure; solid-waste sector damage put at US$11M.", "sourceIds": ["S4", "S15"] },
-    { "id": "health", "label": "Health", "damage": 208, "losses": 700, "needs": null, "detail": "The system lost the use of 40 hospitals and 42 primary-care centres.", "sourceIds": ["S4"] },
-    { "id": "agriculture", "label": "Agriculture", "damage": 118, "losses": 586, "needs": 263, "detail": "Assessed with FAO and CNRS-L covering crops (olives, citrus, banana), livestock, forestry, fisheries and aquaculture.", "sourceIds": ["S29", "S4"] },
-    { "id": "transport", "label": "Transport", "damage": 198, "losses": null, "needs": null, "detail": "Roughly 930 km of road affected; 21 of 29 Litani River bridges destroyed; 535 road sections assessed.", "sourceIds": ["S4"] },
-    { "id": "electricity", "label": "Electricity", "damage": 98, "losses": null, "needs": null, "detail": "Network damage; restoration ran through EDL's emergency chains, not programme works, within the data window.", "sourceIds": ["S4"] },
-    { "id": "municipal", "label": "Municipal services", "damage": 41, "losses": null, "needs": null, "detail": "On top of collapsed municipal finance - the tier's revenues had already fallen with the currency.", "sourceIds": ["S4"] },
-    { "id": "education", "label": "Education", "damage": null, "losses": null, "needs": null, "detail": "594 public institutions were used as shelters, protecting families at the direct cost of more than 500,000 students' schooling - an institutional cost the monetary columns do not capture.", "sourceIds": ["S4"] }
+    {
+      "id": "housing",
+      "label": "Housing",
+      "damage": 4600,
+      "losses": null,
+      "needs": null,
+      "detail": "The single largest damage line; the private two-thirds of national needs is overwhelmingly housing and private economic assets.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "الإسكان"
+    },
+    {
+      "id": "commerce",
+      "label": "Commerce, industry & tourism",
+      "damage": null,
+      "losses": 3400,
+      "needs": null,
+      "detail": "The single largest loss line. A lost season or a closed workshop has no owner, no repair chain and no project line - these losses were absorbed as household impoverishment and enterprise closure.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "التجارة والصناعة والسياحة"
+    },
+    {
+      "id": "environment",
+      "label": "Environment & debris",
+      "damage": 512,
+      "losses": 790,
+      "needs": 444,
+      "detail": "Core ecological envelope costed at US$299M and the rubble and debris envelope at US$145M within the needs figure; solid-waste sector damage put at US$11M.",
+      "sourceIds": [
+        "S4",
+        "S15"
+      ],
+      "labelAr": "البيئة والركام"
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "damage": 208,
+      "losses": 700,
+      "needs": null,
+      "detail": "The system lost the use of 40 hospitals and 42 primary-care centres.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "الصحة"
+    },
+    {
+      "id": "agriculture",
+      "label": "Agriculture",
+      "damage": 118,
+      "losses": 586,
+      "needs": 263,
+      "detail": "Assessed with FAO and CNRS-L covering crops (olives, citrus, banana), livestock, forestry, fisheries and aquaculture.",
+      "sourceIds": [
+        "S29",
+        "S4"
+      ],
+      "labelAr": "الزراعة"
+    },
+    {
+      "id": "transport",
+      "label": "Transport",
+      "damage": 198,
+      "losses": null,
+      "needs": null,
+      "detail": "Roughly 930 km of road affected; 21 of 29 Litani River bridges destroyed; 535 road sections assessed.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "النقل"
+    },
+    {
+      "id": "electricity",
+      "label": "Electricity",
+      "damage": 98,
+      "losses": null,
+      "needs": null,
+      "detail": "Network damage; restoration ran through EDL's emergency chains, not programme works, within the data window.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "الكهرباء"
+    },
+    {
+      "id": "municipal",
+      "label": "Municipal services",
+      "damage": 41,
+      "losses": null,
+      "needs": null,
+      "detail": "On top of collapsed municipal finance - the tier's revenues had already fallen with the currency.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "الخدمات البلدية"
+    },
+    {
+      "id": "education",
+      "label": "Education",
+      "damage": null,
+      "losses": null,
+      "needs": null,
+      "detail": "594 public institutions were used as shelters, protecting families at the direct cost of more than 500,000 students' schooling - an institutional cost the monetary columns do not capture.",
+      "sourceIds": [
+        "S4"
+      ],
+      "labelAr": "التعليم"
+    }
   ]
 }

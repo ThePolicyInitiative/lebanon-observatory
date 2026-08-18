@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
+import type { Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
@@ -12,7 +13,23 @@ import districtDamage from "@/data/district-damage.json";
  * national damage assessments the 2024 response produced, and the only
  * district-level breakdown available for that war.
  */
-export default function DistrictDamageChart() {
+const TR = {
+  en: {
+    title: "Where the 2024 damage was reported, district by district",
+    sub: (top: number) =>
+      `Municipality-reported damaged housing units from the survey of 135 affected areas, 5-15 December 2024. Baabda - the Dahieh belt - alone reported ${top.toLocaleString("en-US")} units, roughly two thirds of them completely damaged.`,
+    caveat: "",
+  },
+  ar: {
+    title: "أين أُبلغ عن أضرار 2024، قضاءً بقضاء",
+    sub: (top: number) =>
+      `وحدات سكنية متضررة بحسب إفادات البلديات، من مسح 135 منطقة متضررة بين 5 و15 كانون الأول 2024. قضاء بعبدا وحده - حزام الضاحية - أبلغ عن ${top.toLocaleString("en-US")} وحدة، نحو ثلثيها متضرر كلياً.`,
+    caveat:
+      "مسح بلدي جُمع في عشرة أيام على المعرفة المحلية، لا مسحاً هندسياً. الأقضية المسمّاة لا تغطي كل الوحدات المتضررة المُبلَّغ عنها وطنياً.",
+  },
+} as const;
+
+export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale } = {}) {
   const chartRef = useRef<ECharts | null>(null);
   const rows = districtDamage.districts;
   const t = districtDamage.totals;
@@ -69,9 +86,9 @@ export default function DistrictDamageChart() {
   return (
     <ChartFrame
       id="district-damage-2024"
-      title="Where the 2024 damage was reported, district by district"
-      subtitle={`Municipality-reported damaged housing units from the survey of ${t.areasSurveyed} affected areas across ${t.districtsCovered} districts and ${t.governoratesCovered} governorates, 5-15 December 2024. Baabda - the Dahieh belt - alone reported ${rows[0].units.toLocaleString("en-US")} units, roughly two thirds of them completely damaged.`}
-      caveat={districtDamage.caveats.join(" ")}
+      title={TR[locale].title}
+      subtitle={TR[locale].sub(rows[0].units)}
+      caveat={locale === "ar" ? TR.ar.caveat : districtDamage.caveats.join(" ")}
       chartRef={chartRef}
       description={`Bar chart of municipality-reported damaged housing units: ${rows
         .map((d) => `${d.name} ${d.units.toLocaleString("en-US")}`)

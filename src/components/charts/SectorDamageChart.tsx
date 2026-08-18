@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
+import type { Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
@@ -8,7 +9,28 @@ import sectorsJson from "@/data/sectors.json";
 
 /** Sector damage, losses and needs - three distinct economic categories,
  * shown side by side and never summed. Nulls are "not stated", not zero. */
-export default function SectorDamageChart() {
+const T = {
+  en: {
+    title: "Selected sector estimates, 2023–24 conflict",
+    sub: "Damage (blue), losses (light blue) and assessed needs (rust) are distinct categories, never summed. A missing bar means the source states no figure - not zero.",
+    caveat:
+      "Sector estimates carry different cut-offs and methods within one assessment framework, and the largest loss figures are macro-estimates rather than enterprise censuses. Losses towering over damage in the productive sectors explains why livelihood destruction became the least institutionalised loss of the war: a damaged transformer has an owner and a repair chain; a lost agricultural season has neither.",
+    damage: "Damage",
+    losses: "Losses",
+    needs: "Needs",
+  },
+  ar: {
+    title: "تقديرات قطاعية مختارة، حرب 2023-24",
+    sub: "الأضرار (أزرق) والخسائر (أزرق فاتح) والاحتياجات المقدَّرة (خمري) فئات متمايزة لا تُجمع أبداً. غياب العمود يعني أن المصدر لا يذكر رقماً - لا أن الرقم صفر.",
+    caveat:
+      "التقديرات القطاعية تحمل تواريخ توقف ومنهجيات مختلفة داخل إطار تقييم واحد، وأكبر أرقام الخسائر تقديرات كلية لا مسوحاً للمنشآت. تفوّق الخسائر على الأضرار في القطاعات الإنتاجية يفسّر لماذا صار تدمير سبل العيش أقل خسائر الحرب تأطيراً مؤسسياً: المحوّل المتضرر له مالك وسلسلة إصلاح، أما الموسم الزراعي الضائع فلا هذا ولا ذاك.",
+    damage: "أضرار",
+    losses: "خسائر",
+    needs: "احتياجات",
+  },
+} as const;
+
+export default function SectorDamageChart({ locale = "en" }: { locale?: Locale } = {}) {
   const chartRef = useRef<ECharts | null>(null);
   const rows = sectorsJson.sectors.filter(
     (s) => s.damage !== null || s.losses !== null || s.needs !== null,
@@ -57,25 +79,25 @@ export default function SectorDamageChart() {
       },
       yAxis: {
         type: "category",
-        data: cats.map((s) => s.label),
+        data: cats.map((s) => (locale === "ar" ? (s.labelAr ?? s.label) : s.label)),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11, width: 155, overflow: "break" },
       },
       series: [
-        mk("Damage", "damage", "#2E74B5"),
-        mk("Losses", "losses", "#8FB4D9"),
-        mk("Assessed needs", "needs", "#BD5A46"),
+        mk(T[locale].damage, "damage", "#2E74B5"),
+        mk(T[locale].losses, "losses", "#8FB4D9"),
+        mk(T[locale].needs, "needs", "#BD5A46"),
       ],
     };
-  }, [rows]);
+  }, [rows, locale]);
 
   return (
     <ChartFrame
       id="sector-estimates"
-      title="Selected sector estimates, 2023–24 conflict"
-      subtitle="Damage (blue), losses (light blue) and assessed needs (rust) are distinct categories, never summed. A missing bar means the source states no figure - not zero."
-      caveat="Sector estimates carry different cut-offs and methods within one assessment framework, and the largest loss figures are macro-estimates rather than enterprise censuses. Losses towering over damage in the productive sectors explains why livelihood destruction became the least institutionalised loss of the war: a damaged transformer has an owner and a repair chain; a lost agricultural season has neither."
+      title={T[locale].title}
+      subtitle={T[locale].sub}
+      caveat={T[locale].caveat}
       sourceIds={["S4", "S29"]}
       chartRef={chartRef}
       description="Grouped horizontal bars of sector-level damage, losses and needs from the 2023–24 conflict assessment: housing US$4.6 billion damage; commerce, industry and tourism US$3.4 billion losses; environment and debris 512, 790 and 444 million; health 208 and 700 million; agriculture 118, 586 and 263 million; transport 198; electricity 98; municipal services 41 million."
