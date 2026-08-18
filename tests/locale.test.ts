@@ -46,6 +46,41 @@ describe("the Arabic side", () => {
   });
 
   /**
+   * Every Arabic page has to be a page, not a heading with a link out. It
+   * satisfies that either by carrying its own sections of Arabic prose or by
+   * rendering the shared modules, which bring their own. The thresholds are
+   * deliberately low: they catch a page cut back to a stub, they do not pin
+   * the shape of any page.
+   */
+  it("gives every Arabic page real content of its own", () => {
+    const arabicChar = /[؀-ۿ]/g;
+    for (const p of PAGES) {
+      const dir = join(app, "ar", p);
+      const src = readFileSync(join(dir, "page.tsx"), "utf-8");
+
+      // Prose may live in the page or in a component beside it, as the news
+      // feed's does, so both count towards the same floor.
+      let prose = src;
+      for (const m of src.matchAll(/from "\.\/([A-Za-z][\w-]*)"/g)) {
+        const sibling = join(dir, `${m[1]}.tsx`);
+        if (existsSync(sibling)) prose += readFileSync(sibling, "utf-8");
+      }
+      const arabicChars = (prose.match(arabicChar) ?? []).length;
+
+      const sections = (src.match(/<section/g) ?? []).length;
+      const shared = (src.match(/from "@\/components\//g) ?? []).length;
+      const local = (src.match(/from "\.\/[A-Z]/g) ?? []).length;
+      expect(
+        sections + shared + local,
+        `/ar/${p} renders nothing of its own`,
+      ).toBeGreaterThanOrEqual(1);
+      // One floor for every page. It is set below the thinnest page today so
+      // it catches a stub, not so high that it dictates how long a page runs.
+      expect(arabicChars, `/ar/${p} carries too little Arabic`).toBeGreaterThanOrEqual(200);
+    }
+  });
+
+  /**
    * Arabic pages may link to English only on purpose - the way through to
    * the full module. A bare nav or footer link is what strands a reader.
    */
