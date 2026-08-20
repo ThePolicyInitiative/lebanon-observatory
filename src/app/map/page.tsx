@@ -22,7 +22,7 @@ export default function MapPage() {
       </header>
 
       <div className="mt-6">
-        <Suspense fallback={<div className="h-[540px] animate-pulse rounded-md bg-white" />}>
+        <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
           <LebanonMap />
         </Suspense>
       </div>

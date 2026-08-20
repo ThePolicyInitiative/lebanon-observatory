@@ -617,24 +617,22 @@ export default function LebanonMap() {
               onViewChange={(v) => set("view", v)}
             />
           ) : (
-            <div className="relative overflow-hidden rounded-md border border-[color:var(--color-border)]">
+            <div className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
               <div
                 ref={containerRef}
-                className="h-[440px] sm:h-[540px]"
+                className="h-[520px] sm:h-[680px]"
                 aria-label={`Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`}
-              />
-              {/* The same key the vector map prints. */}
-              <MapLegend
-                year={year}
-                rampColor={rampColor}
-                className="pointer-events-none absolute bottom-3 left-3 hidden max-w-[290px] shadow-sm sm:block"
               />
             </div>
           )}
 
-          {/* Non-mappable groupings. The reason they sit outside the map is
-              stated once for the group, not repeated on each card. */}
+          {/* The key, then the groupings that cannot be put on a map at
+              all. The reason they sit outside it is stated once for the
+              group, not repeated on each card. */}
           <div className="space-y-3">
+            {renderMode === "gl" && mapView === "entries" ? (
+              <MapLegend year={year} rampColor={rampColor} />
+            ) : null}
             <p className="text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
               The groupings below are not mappable to a single governorate, so
               they are shown separately rather than invented onto the map.

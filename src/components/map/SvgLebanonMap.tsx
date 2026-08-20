@@ -890,11 +890,11 @@ export default function SvgLebanonMap({
       {/* Lebanon's outline is portrait, so a full-width map would run
           about 1,700px tall. The map is capped by height instead, its
           column sized to that cap so no gutter is left over, and the space
-          beside it carries the legend and - once something is picked - the
+          beside it carries the key and - once something is picked - the
           detail panel. */}
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,58vh)_minmax(0,1fr)] lg:items-start">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,74vh)_minmax(0,1fr)] lg:items-start">
         <div>
-          <div className="relative mx-auto w-full max-w-[58vh] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          <div className="relative mx-auto w-full max-w-[74vh] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
@@ -1317,15 +1317,6 @@ export default function SvgLebanonMap({
                 {hover}
               </div>
             ) : null}
-            {/* The key, over the map on wide screens, under it on narrow. */}
-            {view === "entries" ? (
-              <MapLegend
-                locale={locale}
-                year={year}
-                rampColor={rampColor}
-                className="pointer-events-none absolute bottom-2 start-2 hidden max-w-[290px] shadow-sm lg:block"
-              />
-            ) : null}
             {zoomed ? (
               <button
                 type="button"
@@ -1362,9 +1353,10 @@ export default function SvgLebanonMap({
         </div>
 
         <div className="space-y-4">
-        {/* The same key, in the flow, where the overlay is hidden. */}
+        {/* The key sits beside the map, never over it - covering the
+            south-west corner is covering the most densely traced part. */}
         {view === "entries" ? (
-          <MapLegend locale={locale} year={year} rampColor={rampColor} className="lg:hidden" />
+          <MapLegend locale={locale} year={year} rampColor={rampColor} />
         ) : null}
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
