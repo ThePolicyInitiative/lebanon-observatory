@@ -35,6 +35,30 @@ import {
   type MapEvent,
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
+import type { Locale } from "@/lib/vocab";
+import { buildPins, fanRadius, type Pin } from "@/lib/pins";
+import MapLegend from "./MapLegend";
+
+/**
+ * Fan spacing in screen pixels: the gap between neighbouring pins at a
+ * town. Small enough that a forty-entry town stays a readable cluster,
+ * large enough that every pin can be hit with a pointer.
+ */
+const PIN_SPACING = 5.4;
+
+const PIN_T = {
+  en: {
+    districtTint: (max: number) =>
+      `fewer → more located traced entries (district tint, 0–${max})`,
+    pinCount: (pins: number, places: number) =>
+      `${pins} pins across ${places} places`,
+  },
+  ar: {
+    districtTint: (max: number) =>
+      `من الأقل إلى الأكثر في المدخلات المرصودة المحدَّدة الموقع (تظليل القضاء، 0-${max})`,
+    pinCount: (pins: number, places: number) => `${pins} دبّوساً في ${places} مكاناً`,
+  },
+} as const;
 
 function EventsList({ events }: { events: MapEvent[] }) {
   if (events.length === 0) return null;
@@ -80,6 +104,7 @@ type Props = {
   view: MapView;
   onViewChange: (view: MapView) => void;
   note?: string;
+  locale?: Locale;
 };
 
 export type MapView = "entries" | "change" | "survey" | "damage";
@@ -161,15 +186,6 @@ const REGION_VIEWS: { label: string; vb: ViewBox }[] = [
   { label: "Tripoli & Akkar", vb: vbFromLonLat(35.6, 34.22, 36.55, 34.75) },
 ];
 
-/** Annular sector path for donut markers (angles in radians, from 12 o'clock). */
-function arcPath(r0: number, r1: number, a0: number, a1: number): string {
-  const start = a0 - Math.PI / 2;
-  const end = a1 - Math.PI / 2;
-  const large = end - start > Math.PI ? 1 : 0;
-  const pt = (r: number, a: number) =>
-    `${(r * Math.cos(a)).toFixed(2)} ${(r * Math.sin(a)).toFixed(2)}`;
-  return `M${pt(r1, start)}A${r1} ${r1} 0 ${large} 1 ${pt(r1, end)}L${pt(r0, end)}A${r0} ${r0} 0 ${large} 0 ${pt(r0, start)}Z`;
-}
 
 /**
  * Vector map at town (cadastre) detail: 1,600+ town polygons from the
@@ -191,7 +207,9 @@ export default function SvgLebanonMap({
   view,
   onViewChange,
   note,
+  locale = "en",
 }: Props) {
+  const tr = PIN_T[locale];
   const [towns, setTowns] = useState<Town[] | null>(null);
   const [districtOutlines, setDistrictOutlines] = useState<
     { name: string; d: string }[]
@@ -602,6 +620,33 @@ export default function SvgLebanonMap({
     }
     return out.sort((a, b) => b.total - a.total);
   }, [towns, townRecords, year]);
+
+  /**
+   * Every traced entry as its own pin, placed at the town the sources
+   * name and fanned around its centroid so a forty-entry town is forty
+   * reachable pins rather than one circle with a 40 printed on it.
+   */
+  const entryPins = useMemo(() => {
+    if (!towns || !locIndex) return [] as (Pin & { town: Town; cx: number; cy: number })[];
+    const byName = new Map<string, Town>();
+    for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
+    const district = new Map(towns.map((t) => [t.name, t.district] as const));
+    const grouped = buildPins({
+      entries: records,
+      index: locIndex,
+      townDistrict: district,
+      year,
+      locale,
+      spacing: PIN_SPACING,
+    });
+    const out: (Pin & { town: Town; cx: number; cy: number })[] = [];
+    for (const [name, pins] of grouped) {
+      const t = byName.get(name);
+      if (!t) continue;
+      for (const pin of pins) out.push({ ...pin, town: t, cx: t.cx, cy: t.cy });
+    }
+    return out;
+  }, [towns, locIndex, records, year, locale]);
 
   /** Top points labelled even at national zoom (skipping city labels). */
   const topPlaceNames = useMemo(() => {
@@ -1082,33 +1127,25 @@ export default function SvgLebanonMap({
                 );
               })}
 
-              {/* Unified point layer: everything traced, at the town
-                  where it happened. Colour = leading actor layer. */}
+              {/* One pin per traced entry, fanned around the town the
+                  sources name. Colour = that entry's own actor layer. */}
               {view === "entries"
-                ? placePoints.map((p) => {
-                    const t = p.town;
-                    const isSel = selectedTownName === t.name;
-                    const donut = zoom <= 0.5;
-                    const rBase = Math.min(9, 3 + Math.sqrt(p.total) * 1.5);
-                    const r = donut ? rBase * 1.7 : rBase;
-                    const r0 = r * 0.55;
-                    const showLabel = donut
-                      ? declutteredLabels.has(t.name)
-                      : topPlaceNames.has(t.name);
-                    const describe = `${t.name} - ${t.district} district: ${p.records.length} traced activity${p.records.length === 1 ? "" : "s"}, ${p.episodes.length} episode${p.episodes.length === 1 ? "" : "s"} (${year}); leading layer: ${p.dominantLabel}`;
-                    let acc = 0;
+                ? entryPins.map((pin) => {
+                    const isSel = selectedTownName === pin.townName;
+                    const rp = (isSel ? 1.35 : 1) * (pin.kind === "episode" ? 3 : 2.9);
+                    const label = `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""} · ${pin.detail}`;
                     return (
                       <g
-                        key={`pp-${t.name}`}
-                        transform={`translate(${t.cx} ${t.cy}) scale(${k})`}
+                        key={pin.id}
+                        transform={`translate(${pin.cx} ${pin.cy}) scale(${k}) translate(${pin.dx} ${pin.dy})`}
                         tabIndex={0}
                         role="button"
-                        aria-label={describe}
+                        aria-label={label}
                         className="cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
-                        onClick={() => selectTown(t)}
+                        onClick={() => selectTown(pin.town)}
                         onPointerEnter={() => {
-                          setHover(describe);
-                          setHoverUid(t.name);
+                          setHover(label);
+                          setHoverUid(pin.townName);
                         }}
                         onPointerLeave={() => {
                           setHover(null);
@@ -1117,88 +1154,63 @@ export default function SvgLebanonMap({
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            selectTown(t);
+                            selectTown(pin.town);
                           }
                         }}
                       >
-                        {donut ? (
-                          <>
-                            {p.mix.length === 1 ? (
-                              <circle
-                                r={(r + r0) / 2}
-                                fill="none"
-                                stroke={p.mix[0].color}
-                                strokeWidth={r - r0}
-                              />
-                            ) : (
-                              p.mix.map((m, mi) => {
-                                const a0 = (acc / p.total) * 2 * Math.PI;
-                                acc += m.count;
-                                const a1 = (acc / p.total) * 2 * Math.PI;
-                                return (
-                                  <path
-                                    key={mi}
-                                    d={arcPath(r0, r, a0, a1)}
-                                    fill={m.color}
-                                  />
-                                );
-                              })
-                            )}
-                            <circle r={r0} fill="#FFFFFF" />
-                            {r0 >= 3 ? (
-                              <text
-                                y={r0 * 0.4}
-                                fontSize={Math.max(5.5, r0 * 0.95)}
-                                textAnchor="middle"
-                                fill="#263645"
-                                fontWeight={700}
-                              >
-                                {p.total}
-                              </text>
-                            ) : null}
-                            <circle
-                              r={r + 0.6}
-                              fill="none"
-                              stroke={isSel ? "#173B63" : "#FFFFFF"}
-                              strokeWidth={isSel ? 2 : 1}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <circle
-                              r={r}
-                              fill={p.color}
-                              fillOpacity={0.88}
-                              stroke={isSel ? "#173B63" : "#FFFFFF"}
-                              strokeWidth={isSel ? 2 : 1.2}
-                            />
-                            {p.episodes.length > 0 ? (
-                              <circle
-                                r={r + 1.8}
-                                fill="none"
-                                stroke={p.color}
-                                strokeOpacity={0.5}
-                                strokeWidth={0.9}
-                              />
-                            ) : null}
-                          </>
-                        )}
-                        {showLabel ? (
-                          <text
-                            x={r + 3}
-                            y={3}
-                            fontSize={9.5}
-                            fill="#263645"
-                            stroke="#FFFFFF"
-                            strokeWidth={2.2}
-                            paintOrder="stroke"
-                            fontWeight={600}
-                          >
-                            {t.name}
-                          </text>
-                        ) : null}
-                        <title>{describe}</title>
+                        <circle
+                          r={rp}
+                          fill={pin.color}
+                          fillOpacity={0.92}
+                          stroke={
+                            isSel
+                              ? "#173B63"
+                              : pin.kind === "episode"
+                                ? "#263645"
+                                : "#FFFFFF"
+                          }
+                          strokeWidth={isSel ? 1.6 : pin.kind === "episode" ? 1.4 : 0.9}
+                        />
+                        <title>{label}</title>
                       </g>
+                    );
+                  })
+                : null}
+
+              {/* Town names sit over their fan, not on any one pin. */}
+              {view === "entries"
+                ? placePoints.map((p) => {
+                    const t = p.town;
+                    const showLabel =
+                      zoom <= 0.5
+                        ? declutteredLabels.has(t.name)
+                        : topPlaceNames.has(t.name);
+                    if (!showLabel) return null;
+                    const reach = fanRadius(p.total, PIN_SPACING);
+                    return (
+                      <text
+                        key={`pl-${t.name}`}
+                        transform={`translate(${t.cx} ${t.cy}) scale(${k})`}
+                        x={reach + 5}
+                        y={3}
+                        fontSize={9.5}
+                        fill="#263645"
+                        stroke="#FFFFFF"
+                        strokeWidth={2.2}
+                        paintOrder="stroke"
+                        fontWeight={600}
+                        pointerEvents="none"
+                      >
+                        {t.name}
+                        <tspan
+                          dx={3}
+                          fontSize={8.5}
+                          fontWeight={700}
+                          fill="#667588"
+                        >
+                          {p.total}
+                        </tspan>
+                      </text>
                     );
                   })
                 : null}
@@ -1305,6 +1317,15 @@ export default function SvgLebanonMap({
                 {hover}
               </div>
             ) : null}
+            {/* The key, over the map on wide screens, under it on narrow. */}
+            {view === "entries" ? (
+              <MapLegend
+                locale={locale}
+                year={year}
+                rampColor={rampColor}
+                className="pointer-events-none absolute bottom-2 start-2 hidden max-w-[290px] shadow-sm lg:block"
+              />
+            ) : null}
             {zoomed ? (
               <button
                 type="button"
@@ -1341,6 +1362,10 @@ export default function SvgLebanonMap({
         </div>
 
         <div className="space-y-4">
+        {/* The same key, in the flow, where the overlay is hidden. */}
+        {view === "entries" ? (
+          <MapLegend locale={locale} year={year} rampColor={rampColor} className="lg:hidden" />
+        ) : null}
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (
@@ -1544,32 +1569,17 @@ export default function SvgLebanonMap({
 
           {/* Map legend */}
           <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
+            {/* Colours and pin meaning are in the key; this row carries only
+                what the key does not - the district tint and the pin count. */}
             {view === "entries" ? (
-              <>
-                <li className="flex items-center gap-1.5">
-                  <span className="flex items-center gap-0.5" aria-hidden>
-                    {[0.15, 0.4, 0.65, 0.9].map((o) => (
-                      <span key={o} className="h-2.5 w-4" style={{ background: rampColor, opacity: o }} />
-                    ))}
-                  </span>
-                  fewer → more located traced activities (district tint, 0–{maxDistrict})
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <span className="flex items-center gap-0.5" aria-hidden>
-                    {LAYER_META.map((l) => (
-                      <span key={l.id} className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: l.color }} />
-                    ))}
-                  </span>
-                  marker at the town where it happened - colour = leading actor
-                  layer, size = entries + episodes ({placePoints.length} places);
-                  from ×2 zoom markers become layer-mix donuts with the total
-                  in the centre
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-2.5 rounded-full border border-white" style={{ background: "#667588" }} />
-                  conflict-context episodes only
-                </li>
-              </>
+              <li className="flex items-center gap-1.5">
+                <span className="flex items-center gap-0.5" aria-hidden>
+                  {[0.15, 0.4, 0.65, 0.9].map((o) => (
+                    <span key={o} className="h-2.5 w-4" style={{ background: rampColor, opacity: o }} />
+                  ))}
+                </span>
+                {tr.districtTint(maxDistrict)} · {tr.pinCount(entryPins.length, placePoints.length)}
+              </li>
             ) : view === "change" ? (
               <>
                 <li className="flex items-center gap-1.5">

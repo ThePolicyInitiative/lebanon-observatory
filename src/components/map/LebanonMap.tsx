@@ -5,7 +5,6 @@ import type { Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
 import { locations, STAGES, CAUTION_MAP } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
-import type { SlimRecord } from "@/lib/map-records";
 import { useUrlState } from "@/lib/useUrlState";
 import type { ActorLayer, Year } from "@/lib/types";
 import {
@@ -14,19 +13,20 @@ import {
   LITANI_SEGMENTS,
   type GeoFeature,
 } from "@/lib/geo";
-import {
-  buildLocationIndex,
-  matchLocations,
-  type LocationIndex,
-} from "@/lib/geo-match";
-import {
-  LOCALITY_EVENTS,
-  eventsByTown,
-  eventsFor,
-  EVENT_KIND_META,
-} from "@/lib/events";
+import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
+import { LOCALITY_EVENTS, eventsFor, EVENT_KIND_META } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
+import { buildPins } from "@/lib/pins";
+import MapLegend from "./MapLegend";
 import SvgLebanonMap, { type MapView } from "./SvgLebanonMap";
+
+/**
+ * Fan spacing between neighbouring pins at one town, in degrees of
+ * latitude - about 110 m. A forty-entry town spreads to roughly 700 m,
+ * which reads as "this town" at street zoom and as a tight cluster at
+ * national zoom, without ever stacking two pins on one point.
+ */
+const PIN_SPACING_DEG = 0.001;
 
 type MentionRow = Record<ActorLayer, number>;
 
@@ -316,10 +316,10 @@ export default function LebanonMap() {
             source: "localities",
             paint: {
               "circle-color": ["get", "color"],
-              "circle-opacity": 0.88,
+              "circle-opacity": 0.9,
               "circle-radius": ["get", "radius"],
-              "circle-stroke-color": "#FFFFFF",
-              "circle-stroke-width": 1.5,
+              "circle-stroke-color": ["get", "strokeColor"],
+              "circle-stroke-width": ["get", "strokeWidth"],
             },
           });
 
@@ -440,93 +440,49 @@ export default function LebanonMap() {
       }
     }
 
-    const detailHtml = (
-      name: string,
-      district: string,
-      recs: SlimRecord[],
-      locEvents: ReturnType<typeof eventsFor>,
-      positionNote: string,
-    ): string => {
-      const actors = [...new Set(recs.map((r) => r.actorName.split(":")[0]))];
-      const stages = [...new Set(recs.map((r) => r.stage))];
-      const statuses = [...new Set(recs.map((r) => STATUS_LABELS[r.implementationStatus]))];
-      const eventsHtml = locEvents.length
-        ? `<br/><span style="color:#667588">What happened here:</span>` +
-          locEvents
-            .slice(0, 2)
-            .map(
-              (ev) =>
-                `<br/>• ${ev.date ? `<strong>${esc(fmtDate(ev.date))}:</strong> ` : ""}${esc(ev.text)}`,
-            )
-            .join("")
-        : "";
-      const recsHtml = recs.length
-        ? `<br/><span style="color:#667588">Traced actors (${actors.length}):</span> ${esc(actors.slice(0, 6).join("; "))}${actors.length > 6 ? "…" : ""}` +
-          `<br/><span style="color:#667588">Stages:</span> ${esc(stages.slice(0, 4).join("; "))}${stages.length > 4 ? "…" : ""}` +
-          `<br/><span style="color:#667588">Activity status:</span> ${esc(statuses.join("; "))}`
-        : "";
-      return (
-        `<div style="font-size:12px;line-height:1.5"><strong>${esc(name)}</strong>${district ? ` · ${esc(district)} district` : ""} · ${year}` +
-        recsHtml +
-        eventsHtml +
-        `<br/><em style="color:#667588">${positionNote}</em></div>`
-      );
-    };
 
-    // Unified point layer: every town with entries naming it or traced
-    // episodes, at the town's actual centroid, coloured by leading layer.
+    // One pin per traced entry, fanned around the town the sources name.
     const geoTowns = glTownsRef.current;
     const idx = glIndexRef.current;
     const features: unknown[] = [];
-    const covered = new Set<string>();
     if (geoTowns && idx) {
       const byName = new Map(geoTowns.map((t) => [t.name, t] as const));
-      const townRecs = new Map<string, SlimRecord[]>();
-      for (const r of filteredRecords) {
-        const m = matchLocations(idx, r.locationNames ?? []);
-        for (const tn of m.towns) {
-          if (!townRecs.has(tn)) townRecs.set(tn, []);
-          townRecs.get(tn)!.push(r);
-        }
-      }
-      const names = new Set<string>([...townRecs.keys()]);
-      for (const t of geoTowns) if (eventsByTown.has(t.name)) names.add(t.name);
-      for (const name of names) {
+      const district = new Map(geoTowns.map((t) => [t.name, t.district] as const));
+      const grouped = buildPins({
+        entries: filteredRecords,
+        index: idx,
+        townDistrict: district,
+        year,
+        locale: "en",
+        spacing: PIN_SPACING_DEG,
+      });
+      for (const [name, pins] of grouped) {
         const t = byName.get(name);
-        if (!t || name === "Conflict") continue;
-        const recs = townRecs.get(name) ?? [];
-        const eps = eventsFor(eventsByTown.get(name), year);
-        if (recs.length === 0 && eps.length === 0) continue;
-        const counts: Record<string, number> = {};
-        for (const r of recs) counts[r.actorLayer] = (counts[r.actorLayer] ?? 0) + 1;
-        for (const ev of eps)
-          if (ev.kind !== "context") counts[ev.kind] = (counts[ev.kind] ?? 0) + 1;
-        let color = "#667588";
-        let best = 0;
-        for (const l of LAYER_META) {
-          const c = counts[l.id] ?? 0;
-          if (c > best) {
-            best = c;
-            color = l.color;
-          }
-        }
-        covered.add(name);
-        features.push({
-          type: "Feature" as const,
-          geometry: { type: "Point" as const, coordinates: [t.lon, t.lat] },
-          properties: {
-            name,
-            radius: Math.min(9, 3 + Math.sqrt(recs.length + eps.length) * 1.5),
-            color,
-            popupHtml: detailHtml(
+        if (!t) continue;
+        // Longitude degrees shrink with latitude; widen the x offset so the
+        // fan stays circular on the ground rather than squashed.
+        const lonScale = 1 / Math.max(0.2, Math.cos((t.lat * Math.PI) / 180));
+        for (const pin of pins) {
+          features.push({
+            type: "Feature" as const,
+            geometry: {
+              type: "Point" as const,
+              coordinates: [t.lon + pin.dx * lonScale, t.lat + pin.dy],
+            },
+            properties: {
               name,
-              t.district,
-              recs,
-              eps,
-              "Marker at the town's centroid - the place the sources show.",
-            ),
-          },
-        });
+              radius: 5,
+              color: pin.color,
+              strokeColor: pin.kind === "episode" ? "#263645" : "#FFFFFF",
+              strokeWidth: pin.kind === "episode" ? 2 : 1.5,
+              popupHtml:
+                `<div style="font-size:12px;line-height:1.5"><strong>${esc(pin.title)}</strong>` +
+                `<br/><span style="color:#667588">${esc(pin.townName)}${pin.district ? ` · ${esc(pin.district)} district` : ""} · ${year}</span>` +
+                `<br/>${pin.date ? `<strong>${esc(fmtDate(pin.date))}:</strong> ` : ""}${esc(pin.detail)}` +
+                `<br/><em style="color:#667588">Fanned around the town centre - the place the sources name, not an address.</em></div>`,
+            },
+          });
+        }
       }
     }
     const src = map.getSource("localities");
@@ -667,29 +623,12 @@ export default function LebanonMap() {
                 className="h-[440px] sm:h-[540px]"
                 aria-label={`Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`}
               />
-              {/* Legend */}
-              <div className="pointer-events-none absolute bottom-3 left-3 rounded-md border border-[color:var(--color-border)] bg-white/95 p-2.5 text-[11px] leading-tight">
-                <p className="font-semibold text-[color:var(--color-navy)]">
-                  Traced role concentration, {year}
-                </p>
-                <div className="mt-1.5 flex items-center gap-1">
-                  {[0.15, 0.35, 0.6, 0.9].map((o) => (
-                    <span
-                      key={o}
-                      aria-hidden
-                      className="h-3 w-6"
-                      style={{ background: rampColor, opacity: o }}
-                    />
-                  ))}
-                </div>
-                <p className="mt-0.5 text-[color:var(--color-text-secondary)]">
-                  fewer → more mentions · markers at traced towns, colour
-                  = leading actor layer
-                  {year === 2026
-                    ? " · rust: Blue Line border-strip towns with traced occupation (indicative) · rust dash: districts containing them"
-                    : ""}
-                </p>
-              </div>
+              {/* The same key the vector map prints. */}
+              <MapLegend
+                year={year}
+                rampColor={rampColor}
+                className="pointer-events-none absolute bottom-3 left-3 hidden max-w-[290px] shadow-sm sm:block"
+              />
             </div>
           )}
 
