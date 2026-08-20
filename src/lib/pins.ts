@@ -64,6 +64,44 @@ export function fanRadius(count: number, spacing: number): number {
   return count <= 1 ? 0 : spacing * Math.sqrt(count - 1);
 }
 
+/**
+ * Keep a fanned pin on land.
+ *
+ * The spiral is blind geometry: around a coastal town - Sour, Saida,
+ * Beirut, Naqoura - it happily places entries out in the Mediterranean,
+ * which reads as a claim that something was traced at sea.
+ *
+ * The offset is first rotated around the town at the same radius, in
+ * twelve steps, so the pin keeps its distance from the centre and the fan
+ * keeps its shape; only if the whole circle is water does the radius
+ * shrink. `onLand` takes the caller's own units, so the vector map can
+ * pass projected coordinates and the pan-and-zoom map lon/lat.
+ */
+export function clampToLand(
+  cx: number,
+  cy: number,
+  dx: number,
+  dy: number,
+  onLand: (x: number, y: number) => boolean,
+): { dx: number; dy: number } {
+  if (onLand(cx + dx, cy + dy)) return { dx, dy };
+  const r = Math.hypot(dx, dy);
+  if (r === 0) return { dx, dy };
+  const a0 = Math.atan2(dy, dx);
+  for (let shrink = 1; shrink >= 0.25; shrink -= 0.25) {
+    const rr = r * shrink;
+    for (let step = 1; step <= 12; step++) {
+      // Alternate either side of the original bearing, so a pin moves the
+      // shortest way inland rather than always sweeping one direction.
+      const turn = (Math.ceil(step / 2) * (Math.PI / 6)) * (step % 2 === 0 ? -1 : 1);
+      const nx = Math.cos(a0 + turn) * rr;
+      const ny = Math.sin(a0 + turn) * rr;
+      if (onLand(cx + nx, cy + ny)) return { dx: nx, dy: ny };
+    }
+  }
+  return { dx: 0, dy: 0 };
+}
+
 const CONTEXT_COLOR = "#667588";
 
 const T = {

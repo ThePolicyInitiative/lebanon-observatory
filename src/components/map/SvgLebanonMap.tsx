@@ -19,6 +19,8 @@ import {
   toSvgPath,
   projectPoint,
   featureCentroid,
+  isOnLand,
+  unprojectPoint,
   PX_PER_KM,
   VIEW_W,
   VIEW_H,
@@ -36,7 +38,7 @@ import {
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
-import { buildPins, fanRadius, pinOutline, type Pin } from "@/lib/pins";
+import { buildPins, clampToLand, fanRadius, pinOutline, type Pin } from "@/lib/pins";
 import MapLegend from "./MapLegend";
 
 /**
@@ -629,7 +631,7 @@ export default function SvgLebanonMap({
    * name and fanned around its centroid so a forty-entry town is forty
    * reachable pins rather than one circle with a 40 printed on it.
    */
-  const entryPins = useMemo(() => {
+  const entryPinsRaw = useMemo(() => {
     if (!towns || !locIndex) return [] as (Pin & { town: Town; cx: number; cy: number })[];
     const byName = new Map<string, Town>();
     for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
@@ -650,6 +652,24 @@ export default function SvgLebanonMap({
     }
     return out;
   }, [towns, locIndex, records, year, locale]);
+
+  /**
+   * Pull any pin the spiral put in the sea back onto land. The offsets
+   * are screen pixels inside a scale(k) group, so they are converted to
+   * map units for the test and back afterwards. Kept apart from the
+   * memo above so that zooming re-runs the clamp and not the matching.
+   */
+  const entryPins = useMemo(
+    () =>
+      entryPinsRaw.map((pin) => {
+        const moved = clampToLand(pin.cx, pin.cy, pin.dx * k, pin.dy * k, (x, y) => {
+          const { lon, lat } = unprojectPoint(x, y);
+          return isOnLand(lon, lat);
+        });
+        return { ...pin, dx: moved.dx / k, dy: moved.dy / k };
+      }),
+    [entryPinsRaw, k],
+  );
 
   /** Top points labelled even at national zoom (skipping city labels). */
   const topPlaceNames = useMemo(() => {

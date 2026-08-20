@@ -1,7 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { buildPins, fanOffset, fanRadius, layerColor, pinOutline } from "@/lib/pins";
+import {
+  buildPins,
+  clampToLand,
+  fanOffset,
+  fanRadius,
+  layerColor,
+  pinOutline,
+} from "@/lib/pins";
+import { featureCentroid, isOnLand, unprojectPoint, type GeoFeature } from "@/lib/geo";
 import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
 import { slimRecords } from "@/lib/map-records";
 import { LAYER_COLORS } from "@/lib/colors";
@@ -16,11 +24,16 @@ const gj = JSON.parse(
   readFileSync(join(import.meta.dirname, "..", "public", "geo", "lebanon-adm3.geojson"), "utf8"),
 ) as { features: { properties: Record<string, string> }[] };
 
-const towns = gj.features.map((f) => ({
-  name: String(f.properties.adm3_name ?? ""),
-  district: String(f.properties.adm2_name ?? ""),
-}));
-const index = buildLocationIndex(towns);
+const towns = gj.features.map((f) => {
+  const c = featureCentroid(f as unknown as GeoFeature);
+  return {
+    name: String(f.properties.adm3_name ?? ""),
+    district: String(f.properties.adm2_name ?? ""),
+    cx: c.x,
+    cy: c.y,
+  };
+});
+const index = buildLocationIndex(towns.map((t) => ({ name: t.name, district: t.district })));
 const townDistrict = new Map(towns.map((t) => [t.name, t.district] as const));
 
 function pinsFor(year: 2024 | 2026) {
@@ -30,7 +43,7 @@ function pinsFor(year: 2024 | 2026) {
     townDistrict,
     year,
     locale: "en",
-    spacing: 5.4,
+    spacing: 7,
   });
 }
 
@@ -124,5 +137,28 @@ describe("map pins", () => {
       const edge = pinOutline(layerColor(layer));
       expect(contrast(edge, GROUND), `${layer} outline is too faint`).toBeGreaterThanOrEqual(3);
     }
+  });
+
+  /**
+   * The spiral is blind geometry, so around a coastal town it put entries
+   * out in the Mediterranean - 17 of them across the two years, worst at
+   * Sour and Choueifat. It also pushed border-town pins over the frontier.
+   */
+  it("never leaves a pin off Lebanese land", () => {
+    const byName = new Map<string, (typeof towns)[number]>();
+    for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
+    const ashore = (x: number, y: number) => {
+      const ll = unprojectPoint(x, y);
+      return isOnLand(ll.lon, ll.lat);
+    };
+    for (const year of [2024, 2026] as const)
+      for (const [name, pins] of pinsFor(year)) {
+        const t = byName.get(name);
+        if (!t) continue;
+        for (const pin of pins) {
+          const m = clampToLand(t.cx, t.cy, pin.dx, pin.dy, ashore);
+          expect(ashore(t.cx + m.dx, t.cy + m.dy), `${name} ${year}: pin off land`).toBe(true);
+        }
+      }
   });
 });

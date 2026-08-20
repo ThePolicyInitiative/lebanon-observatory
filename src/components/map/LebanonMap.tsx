@@ -10,13 +10,14 @@ import type { ActorLayer, Year } from "@/lib/types";
 import {
   computeBorderStripTowns,
   featureCentroidLonLat,
+  isOnLand,
   LITANI_SEGMENTS,
   type GeoFeature,
 } from "@/lib/geo";
 import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
 import { LOCALITY_EVENTS, eventsFor, EVENT_KIND_META } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { buildPins, pinOutline } from "@/lib/pins";
+import { buildPins, clampToLand, pinOutline } from "@/lib/pins";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { type MapView } from "./SvgLebanonMap";
 
@@ -456,11 +457,13 @@ export default function LebanonMap() {
         // fan stays circular on the ground rather than squashed.
         const lonScale = 1 / Math.max(0.2, Math.cos((t.lat * Math.PI) / 180));
         for (const pin of pins) {
+          // The spiral knows nothing about the coast; keep the pin ashore.
+          const moved = clampToLand(t.lon, t.lat, pin.dx * lonScale, pin.dy, isOnLand);
           features.push({
             type: "Feature" as const,
             geometry: {
               type: "Point" as const,
-              coordinates: [t.lon + pin.dx * lonScale, t.lat + pin.dy],
+              coordinates: [t.lon + moved.dx, t.lat + moved.dy],
             },
             properties: {
               name,

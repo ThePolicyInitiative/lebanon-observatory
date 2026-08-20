@@ -59,6 +59,61 @@ export function projectPoint(lon: number, lat: number): { x: number; y: number }
   };
 }
 
+/** The inverse of projectPoint - the projection is linear, so this is exact. */
+export function unprojectPoint(x: number, y: number): { lon: number; lat: number } {
+  return {
+    lon: minLon + (x - PAD) / (latCos * scale),
+    lat: maxLat - (y - PAD) / scale,
+  };
+}
+
+/**
+ * The national outline as flat rings, for testing whether a point is on
+ * Lebanese land. Pins are fanned around a town centroid by geometry
+ * alone, which knows nothing about the coast, so a coastal town's fan
+ * would otherwise put entries out in the Mediterranean.
+ *
+ * Nine rings, 2,153 points - small enough to ray-cast per pin.
+ */
+const LAND_RINGS: { pts: number[][]; minLon: number; maxLon: number; minLat: number; maxLat: number }[] =
+  govFeatures.flatMap((f) => {
+    const polys =
+      f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+    return polys.flatMap((poly) =>
+      poly.map((ring) => {
+        let a = Infinity;
+        let b = -Infinity;
+        let c = Infinity;
+        let d = -Infinity;
+        for (const [lon, lat] of ring) {
+          if (lon < a) a = lon;
+          if (lon > b) b = lon;
+          if (lat < c) c = lat;
+          if (lat > d) d = lat;
+        }
+        return { pts: ring, minLon: a, maxLon: b, minLat: c, maxLat: d };
+      }),
+    );
+  });
+
+/** True when lon/lat falls inside any governorate polygon. */
+export function isOnLand(lon: number, lat: number): boolean {
+  for (const ring of LAND_RINGS) {
+    if (lon < ring.minLon || lon > ring.maxLon || lat < ring.minLat || lat > ring.maxLat)
+      continue;
+    let inside = false;
+    const p = ring.pts;
+    for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
+      const [xi, yi] = p[i];
+      const [xj, yj] = p[j];
+      if (yi > lat !== yj > lat && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi)
+        inside = !inside;
+    }
+    if (inside) return true;
+  }
+  return false;
+}
+
 /** SVG units per kilometre (one degree of latitude ≈ 110.574 km). */
 export const PX_PER_KM = scale / 110.574;
 
