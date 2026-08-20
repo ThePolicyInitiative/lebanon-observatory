@@ -41,6 +41,7 @@ import type { Locale } from "@/lib/vocab";
 import { buildPins, clampToLand, fanRadius, pinOutline, type Pin } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
+import ViewRanking, { type RankRow } from "./ViewRanking";
 
 /**
  * Fan geometry, in screen pixels. Nearest-neighbour distance on the
@@ -702,6 +703,39 @@ export default function SvgLebanonMap({
       }),
     [entryPinsRaw, k, landIndex],
   );
+
+  /**
+   * The ranked places behind the open view, built from the same values
+   * the shading and the pins use, so the panel cannot contradict them.
+   */
+  const rankRows = useMemo((): RankRow[] => {
+    if (view === "entries")
+      return placePoints.map((p) => ({
+        key: p.town.name,
+        label: p.town.name,
+        value: p.total,
+      }));
+    if (view === "change")
+      return [...change.byDistrict.entries()].map(([district, e]) => ({
+        key: district,
+        label: district,
+        value: e.y26 - e.y24,
+        signed: true,
+      }));
+    if (view === "survey")
+      return districtDamage.districts.map((d) => ({
+        key: d.codName,
+        label: d.name,
+        value: d.units,
+        display: `${d.units.toLocaleString("en-US")}`,
+        note: d.completeShare ? `${d.completeShare}% complete` : undefined,
+      }));
+    return damageAnchors.map((a) => ({
+      key: a.label,
+      label: a.label,
+      value: a.destroyed,
+    }));
+  }, [view, placePoints, change, damageAnchors]);
 
   /** Top points labelled even at national zoom (skipping city labels). */
   const topPlaceNames = useMemo(() => {
@@ -1481,6 +1515,9 @@ export default function SvgLebanonMap({
         {view === "entries" ? (
           <MapLegend locale={locale} year={year} />
         ) : null}
+        {/* Every view, not just the pinned one, gets its places named
+            and ordered rather than only shaded. */}
+        <ViewRanking view={view} rows={rankRows} locale={locale} />
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (

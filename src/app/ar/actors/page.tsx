@@ -10,7 +10,10 @@ import Takeaways from "@/components/Takeaways";
 import ActorTreemap from "@/components/charts/ActorTreemap";
 import ActorStageMatrix from "../../actors/ActorStageMatrix";
 import ActorRegister from "../../actors/ActorRegister";
-import { layers } from "@/lib/vocab";
+import LayerStageProfile from "@/components/charts/LayerStageProfile";
+import RegionPresence from "@/components/charts/RegionPresence";
+import ActorConcentration from "@/components/charts/ActorConcentration";
+import { cautionCounts, layers } from "@/lib/vocab";
 
 export const metadata: Metadata = { title: AR.pages.actors.title };
 
@@ -43,6 +46,37 @@ export default function Page() {
       <div className="mt-10">
         <ActorStageMatrix locale="ar" />
       </div>
+
+      {/* The English side puts these behind a tab per layer; here they
+          run one after another, which needs no tab machinery and lets a
+          reader compare the four shapes without switching. */}
+      <section aria-labelledby="ar-layer-profiles" className="mt-12">
+        <h2
+          id="ar-layer-profiles"
+          className="text-xl font-semibold text-[color:var(--color-navy)]"
+        >
+          الطبقات الأربع، طبقةً طبقة
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          لكل طبقة شكلها على امتداد السلسلة، وجغرافيتها، والجهات التي تحملها.
+          الأشرطة أعداد حضور مرصود، لا مقاييس إنجاز.
+        </p>
+        {layers("ar").map((l) => (
+          <div key={l.id} className="mt-8">
+            <h3 className="text-lg font-semibold" style={{ color: l.color }}>
+              {l.label}
+            </h3>
+            <div className="mt-3 space-y-4">
+              <LayerStageProfile layer={l.id} locale="ar" showCaveat={false} />
+              <RegionPresence layer={l.id} locale="ar" showCaveat={false} />
+              <ActorConcentration layer={l.id} locale="ar" showCaveat={false} />
+            </div>
+          </div>
+        ))}
+        <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+          {cautionCounts("ar")}
+        </p>
+      </section>
       <div className="mt-10">
         <ActorRegister locale="ar" />
       </div>

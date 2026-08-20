@@ -1,14 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { LAYER_META } from "@/lib/colors";
-import { locations, layerTotal } from "@/lib/data-client";
+import { layerTotal } from "@/lib/data-client";
 import { actors } from "@/lib/data-client";
 import { useUrlState } from "@/lib/useUrlState";
 import type { ActorLayer } from "@/lib/types";
 import { signed } from "@/lib/format";
 import MunicipalDumbbell from "@/components/charts/MunicipalDumbbell";
 import DivergingChangeChart from "@/components/charts/DivergingChangeChart";
+import LayerStageProfile from "@/components/charts/LayerStageProfile";
+import RegionPresence from "@/components/charts/RegionPresence";
+import ActorConcentration from "@/components/charts/ActorConcentration";
 
 type TabContent = {
   profile2024: string;
@@ -237,86 +239,7 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
   );
 }
 
-function RegionTable({ layer }: { layer: ActorLayer }) {
-  return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full border-collapse text-sm tabular-nums">
-        <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
-          Location mentions in the tracking for this layer (traced
-          activity, not damage severity or coverage).
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-left font-semibold text-[color:var(--color-navy)]">Region</th>
-            <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">2024</th>
-            <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">2026</th>
-          </tr>
-        </thead>
-        <tbody>
-          {locations.regions.map((r) => {
-            const m24 = locations.mentions["2024"][r.id as keyof (typeof locations.mentions)["2024"]];
-            const m26 = locations.mentions["2026"][r.id as keyof (typeof locations.mentions)["2026"]];
-            return (
-              <tr key={r.id} className="odd:bg-[color:var(--color-bg)]">
-                <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">{r.label}</td>
-                <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">{m24[layer]}</td>
-                <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">{m26[layer]}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
-function NamedActors({ layer }: { layer: ActorLayer }) {
-  const byYear = (year: 2024 | 2026) =>
-    actors
-      .filter((a) => a.layer === layer && a.year === year)
-      .sort((a, b) => b.recordCount - a.recordCount);
-  return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {([2024, 2026] as const).map((year) => {
-        const list = byYear(year);
-        return (
-          <div key={year}>
-            <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
-              {year} - {list.length} traced actors
-            </h4>
-            <ul className="mt-2 space-y-1 text-[13px]">
-              {list.slice(0, 10).map((a) => (
-                <li key={a.id} className="flex items-baseline justify-between gap-2">
-                  <span className="text-[color:var(--color-text)]">{a.name.split(":")[0]}</span>
-                  <span className="shrink-0 text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
-                    {a.recordCount} entries
-                  </span>
-                </li>
-              ))}
-            </ul>
-            {list.length > 10 ? (
-              <details className="mt-2">
-                <summary className="cursor-pointer text-xs text-[color:var(--color-blue)] underline underline-offset-2">
-                  Show all {list.length} actors
-                </summary>
-                <ul className="mt-2 space-y-1 text-[13px]">
-                  {list.slice(10).map((a) => (
-                    <li key={a.id} className="flex items-baseline justify-between gap-2">
-                      <span>{a.name.split(":")[0]}</span>
-                      <span className="shrink-0 text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
-                        {a.recordCount} entries
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            ) : null}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 export default function ActorTabs() {
   const { get, set } = useUrlState({ layer: "official" });
@@ -426,6 +349,10 @@ export default function ActorTabs() {
           </div>
         </section>
 
+        {/* Every tab: the layer's own shape along the chain. The prose
+            above describes it; this is the same claim, drawn. */}
+        <LayerStageProfile layer={layer} showCaveat={false} />
+
         {layer === "municipal" ? <MunicipalDumbbell /> : null}
         {layer === "ngo_international" ? (
           <>
@@ -516,30 +443,9 @@ export default function ActorTabs() {
 
         <DeJureDeFacto layer={layer} />
 
-        <section className="card p-5">
-          <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Geographic presence
-          </h3>
-          <div className="mt-3">
-            <RegionTable layer={layer} />
-          </div>
-        </section>
+        <RegionPresence layer={layer} showCaveat={false} />
 
-        <section className="card p-5">
-          <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Named actors in the tracking
-          </h3>
-          <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-            Entry counts are traced entries (actor × function column),
-            not measures of importance.{" "}
-            <Link href={`/explorer?layer=${layer}`} className="underline underline-offset-2">
-              Open these actors in the explorer →
-            </Link>
-          </p>
-          <div className="mt-4">
-            <NamedActors layer={layer} />
-          </div>
-        </section>
+        <ActorConcentration layer={layer} />
       </div>
     </div>
   );
