@@ -655,7 +655,7 @@ export default function LebanonMap() {
               group, not repeated on each card. */}
           <div className="space-y-3">
             {renderMode === "gl" && mapView === "entries" ? (
-              <MapLegend year={year} />
+              <MapLegend />
             ) : null}
             <p className="text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
               The groupings below are not mappable to a single governorate, so

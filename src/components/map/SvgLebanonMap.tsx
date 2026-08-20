@@ -1417,7 +1417,7 @@ export default function SvgLebanonMap({
         {/* The key sits beside the map, never over it - covering the
             south-west corner is covering the most densely traced part. */}
         {view === "entries" ? (
-          <MapLegend locale={locale} year={year} />
+          <MapLegend locale={locale} />
         ) : null}
         {/* Every view, not just the pinned one, gets its places named
             and ordered rather than only shaded. */}
