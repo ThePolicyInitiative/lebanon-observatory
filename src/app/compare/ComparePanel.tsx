@@ -314,7 +314,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
           page draws the dimensions themselves - the charts below are all
           about actor layers and stages - so this is the one place the
           comparison's own shape is visible. */}
-      <figure className="mt-6 card p-4 sm:p-5">
+      <figure className="mt-6 card p-3.5 sm:p-4">
         <figcaption>
           <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
             {t.overview}

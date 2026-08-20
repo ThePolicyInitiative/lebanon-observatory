@@ -26,7 +26,7 @@ export default function SiteFooter() {
 
   return (
     <footer className="mt-16 border-t border-[#0e2542] bg-[color:var(--color-navy)]">
-      <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+      <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
         <nav aria-label="Footer">
           <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
             {isArabic ? AR.footer.explore : "Explore"}

@@ -58,7 +58,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
   return (
     <figure
       id="finance-funnel"
-      className="card p-4 sm:p-5"
+      className="card p-3.5 sm:p-4"
     >
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">

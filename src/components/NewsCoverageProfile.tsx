@@ -163,7 +163,7 @@ export default function NewsCoverageProfile({
   })();
 
   return (
-    <figure className="card p-4 sm:p-5">
+    <figure className="card p-3.5 sm:p-4">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">{t.title}</h2>
         <span className="text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">

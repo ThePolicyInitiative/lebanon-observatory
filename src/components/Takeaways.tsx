@@ -21,7 +21,7 @@ export default function Takeaways({
   return (
     <section
       aria-label="Key takeaways"
-      className="grid gap-4 card p-5 md:grid-cols-3"
+      className="grid gap-4 card p-3.5 md:grid-cols-3"
     >
       <div>
         <h2 className="text-sm font-semibold text-[color:var(--color-teal)]">

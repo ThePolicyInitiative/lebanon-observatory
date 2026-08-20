@@ -52,7 +52,7 @@ const CONCEPTS = [
 
 export default function FinancePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           Finance and delivery
@@ -68,7 +68,7 @@ export default function FinancePage() {
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
-          <li key={c.n} className="card p-4">
+          <li key={c.n} className="card p-3.5">
             <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
               {c.n}. {c.label}
             </p>
@@ -77,7 +77,7 @@ export default function FinancePage() {
         ))}
       </ol>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <FinanceFunnel />
       </div>
 
@@ -95,7 +95,7 @@ export default function FinancePage() {
       </div>
 
       {/* LEAP components */}
-      <section className="mt-10 card p-5">
+      <section className="mt-7 card p-3.5">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
           Inside the initial US$250 million
         </h2>
@@ -135,7 +135,7 @@ export default function FinancePage() {
       </section>
 
       {/* Procurement packages */}
-      <section className="mt-10">
+      <section className="mt-7">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
           Procurement packages and their actual status
         </h2>
@@ -148,7 +148,7 @@ export default function FinancePage() {
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="card p-4">
+            <article key={p.id} className="card p-3.5">
               <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
                 {p.label}
               </h3>
@@ -168,7 +168,7 @@ export default function FinancePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-4 text-sm">
+        <div className="mt-4 card p-3.5 text-sm">
           <p>
             <span className="font-semibold text-[color:var(--color-navy)]">
               Reform targets quantify the mountain:
@@ -186,7 +186,7 @@ export default function FinancePage() {
       </section>
 
       {/* Adjacent flows */}
-      <section className="mt-10 card p-5">
+      <section className="mt-7 card p-3.5">
         <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
           Money that moved on parallel tracks - not reconstruction financing
         </h2>
@@ -210,22 +210,22 @@ export default function FinancePage() {
       </section>
 
       {/* Compensation tracks */}
-      <div className="mt-10">
+      <div className="mt-7">
         <CompensationTracks />
       </div>
 
       {/* Timeline */}
-      <div className="mt-10">
+      <div className="mt-7">
         <DeliveryTimeline />
       </div>
 
       {/* Speed of functions */}
-      <div className="mt-10">
+      <div className="mt-7">
         <FunctionSpeedChart />
       </div>
 
       {/* Core statement */}
-      <section className="mt-10 rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6">
+      <section className="mt-7 rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6">
         <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
           Institutional architecture advanced faster than money and physical
           delivery. Procurement under way is a process milestone, not data
@@ -233,7 +233,7 @@ export default function FinancePage() {
         </blockquote>
       </section>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           changed="Lebanon acquired a financing instrument - an account, rules and a pipeline into which additional money can flow - where 2024 had a number and a hope. The political conversions of 2025 moved at institutional speed once a full government existed."
           unchanged="The denominator: even fully funded, the framework addresses roughly the public third of one war. The private two-thirds of needs and the whole of the 2026 war remained without any financed instrument, and completed confirmed output stood at zero."

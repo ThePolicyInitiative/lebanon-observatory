@@ -77,7 +77,7 @@ export default function Page() {
       </div>
 
       {/* Year summaries */}
-      <div className="mt-12 grid gap-4 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
         <section
           aria-label="خلاصة 2024"
           className="rounded-md border-t-4 bg-white p-5"
@@ -117,7 +117,7 @@ export default function Page() {
       {/* Comparative conclusion */}
       <section
         aria-label="الخلاصة المقارِنة"
-        className="mt-10 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6"
+        className="mt-7 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6"
       >
         <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
           لم يكن التحوّل من إنجاز خارج الدولة إلى إنجاز داخلها. كان من إحلال
@@ -128,12 +128,12 @@ export default function Page() {
       </section>
 
       {/* The 2026 structural qualification */}
-      <div className="mt-12">
+      <div className="mt-8">
         <ThreeStreams locale="ar" />
       </div>
 
       {/* Composition data */}
-      <div className="mt-12 space-y-10">
+      <div className="mt-8 space-y-7">
         <LayerSlopeChart locale="ar" />
         {/* The standing counts caution prints once, on YearHeatmaps. */}
         <YearHeatmaps locale="ar" />
@@ -142,11 +142,11 @@ export default function Page() {
       </div>
 
       {/* The delivery the system proved, twice */}
-      <div className="mt-12">
+      <div className="mt-8">
         <DisplacementCycle locale="ar" />
       </div>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           locale="ar"
           changed="اكتسبت السلطة والتمويل والشراء أصحاباً بالاسم داخل محيط مشروع رسمي؛ وأُعيد جزء من التقييم إلى مؤسسات لبنانية؛ ونظام الطوارئ تحسّن في مهمته هو."

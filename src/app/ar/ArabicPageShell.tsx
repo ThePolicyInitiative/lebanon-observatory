@@ -24,7 +24,7 @@ export default function ArabicPageShell({
   children?: ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           {title}
@@ -40,7 +40,7 @@ export default function ArabicPageShell({
       {figures && figures.length > 0 ? (
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {figures.map((f) => (
-            <li key={f.label} className="card p-4">
+            <li key={f.label} className="card p-3.5">
               <p className="figure-number text-2xl text-[color:var(--color-navy)]">
                 {f.value}
               </p>
@@ -54,7 +54,7 @@ export default function ArabicPageShell({
 
       {children}
 
-      <div className="mt-8 card p-4 sm:p-5">
+      <div className="mt-8 card p-3.5 sm:p-4">
         <p className="text-[13px] leading-relaxed text-[color:var(--color-text)]">
           {AR.common.figuresNote}
         </p>

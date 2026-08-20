@@ -43,14 +43,14 @@ export default function Page() {
       <div className="mt-8">
         <ActorTreemap locale="ar" />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ActorStageMatrix locale="ar" />
       </div>
 
       {/* The English side puts these behind a tab per layer; here they
           run one after another, which needs no tab machinery and lets a
           reader compare the four shapes without switching. */}
-      <section aria-labelledby="ar-layer-profiles" className="mt-12">
+      <section aria-labelledby="ar-layer-profiles" className="mt-8">
         <h2
           id="ar-layer-profiles"
           className="text-xl font-semibold text-[color:var(--color-navy)]"
@@ -77,10 +77,10 @@ export default function Page() {
           {cautionCounts("ar")}
         </p>
       </section>
-      <div className="mt-10">
+      <div className="mt-7">
         <ActorRegister locale="ar" />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ReportedUpdates locale="ar" />
       </div>
       <div className="mt-8">
@@ -89,7 +89,7 @@ export default function Page() {
       <div className="mt-8">
         <ServiceOperators locale="ar" />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <Takeaways
           locale="ar"
           changed="اتّسع الحضور الرسمي في 2026 وظهرت سلسلة أوضح للتمويل والشراء والرقابة."

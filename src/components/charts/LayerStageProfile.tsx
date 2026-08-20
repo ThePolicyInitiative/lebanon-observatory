@@ -51,7 +51,7 @@ export default function LayerStageProfile({
   const sum = (xs: number[]) => xs.reduce((x, y) => x + y, 0);
 
   return (
-    <figure className="card p-4 sm:p-5">
+    <figure className="card p-3.5 sm:p-4">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           {t.title}

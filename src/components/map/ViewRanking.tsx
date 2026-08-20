@@ -77,7 +77,7 @@ export default function ViewRanking({
   const max = Math.max(1, ...top.map((r) => Math.abs(r.value)));
 
   return (
-    <figure className="card p-4">
+    <figure className="card p-3.5">
       <figcaption>
         <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">{head}</h3>
         <p className="mt-0.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">

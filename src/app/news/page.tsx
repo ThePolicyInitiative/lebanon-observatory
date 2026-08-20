@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NewsPage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           Live news and official updates

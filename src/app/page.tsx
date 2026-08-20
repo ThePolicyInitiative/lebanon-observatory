@@ -74,7 +74,7 @@ export default function HomePage() {
             />
           ))}
         </svg>
-        <div className="relative mx-auto max-w-[1360px] px-4 py-12 sm:px-6 sm:py-16">
+        <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
           <p className="text-sm font-semibold uppercase tracking-widest text-[color:var(--color-amber)]">
             Lebanon Reconstruction Observatory
           </p>
@@ -139,7 +139,7 @@ export default function HomePage() {
       {/* KPIs */}
       <section
         aria-labelledby="kpi-heading"
-        className="mx-auto max-w-[1360px] px-4 py-12 sm:px-6"
+        className="mx-auto max-w-[1360px] px-4 py-8 sm:px-6"
       >
         <h2
           id="kpi-heading"
@@ -222,7 +222,7 @@ export default function HomePage() {
               physical reconstruction.
             </p>
           </SectionHeading>
-          <div className="mt-6 space-y-8">
+          <div className="mt-6 space-y-6">
             {/* The standing counts caution prints once per page, on the
                 first figure below; the repeat here is suppressed. */}
             <YearHeatmaps />
@@ -269,7 +269,7 @@ export default function HomePage() {
               concentrated, not damage severity or beneficiary reach.
             </p>
           </SectionHeading>
-          <div className="mt-6 overflow-x-auto card p-4">
+          <div className="mt-6 overflow-x-auto card p-3.5">
             <table className="min-w-full border-collapse text-sm tabular-nums">
               <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
                 Total location mentions in the tracking by regional

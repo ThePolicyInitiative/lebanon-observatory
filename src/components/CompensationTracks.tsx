@@ -23,7 +23,7 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
   const ar = locale === "ar";
   const tracks = [compensation.stateTrack, compensation.parallelTrack];
   return (
-    <figure className="card p-4 sm:p-5">
+    <figure className="card p-3.5 sm:p-4">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           {tr.title}

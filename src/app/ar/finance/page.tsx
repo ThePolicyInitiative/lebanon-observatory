@@ -72,7 +72,7 @@ export default function Page() {
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
-          <li key={c.n} className="card p-4">
+          <li key={c.n} className="card p-3.5">
             <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
               {c.n}. {c.label}
             </p>
@@ -81,7 +81,7 @@ export default function Page() {
         ))}
       </ol>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <FinanceFunnel locale="ar" />
       </div>
 
@@ -99,7 +99,7 @@ export default function Page() {
       </div>
 
       {/* LEAP components, in full */}
-      <section aria-labelledby="ar-leap" className="mt-10 card p-5">
+      <section aria-labelledby="ar-leap" className="mt-7 card p-3.5">
         <h2
           id="ar-leap"
           className="text-base font-semibold text-[color:var(--color-navy)]"
@@ -142,7 +142,7 @@ export default function Page() {
       </section>
 
       {/* Procurement packages */}
-      <section aria-labelledby="ar-procurement" className="mt-10">
+      <section aria-labelledby="ar-procurement" className="mt-7">
         <h2
           id="ar-procurement"
           className="text-base font-semibold text-[color:var(--color-navy)]"
@@ -157,7 +157,7 @@ export default function Page() {
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="card p-4">
+            <article key={p.id} className="card p-3.5">
               <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
                 {p.labelAr}
               </h3>
@@ -177,7 +177,7 @@ export default function Page() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-4 text-sm">
+        <div className="mt-4 card p-3.5 text-sm">
           <p>
             <span className="font-semibold text-[color:var(--color-navy)]">
               أهداف الإصلاح تقيس حجم الجبل:
@@ -195,7 +195,7 @@ export default function Page() {
       </section>
 
       {/* Adjacent flows */}
-      <section aria-labelledby="ar-adjacent" className="mt-10 card p-5">
+      <section aria-labelledby="ar-adjacent" className="mt-7 card p-3.5">
         <h2
           id="ar-adjacent"
           className="text-base font-semibold text-[color:var(--color-navy)]"
@@ -221,29 +221,29 @@ export default function Page() {
       </section>
 
       {/* Compensation tracks */}
-      <div className="mt-10">
+      <div className="mt-7">
         <CompensationTracks locale="ar" />
       </div>
 
       {/* Timeline */}
-      <div className="mt-10">
+      <div className="mt-7">
         <DeliveryTimeline locale="ar" />
       </div>
 
       {/* Speed of functions */}
-      <div className="mt-10">
+      <div className="mt-7">
         <FunctionSpeedChart locale="ar" />
       </div>
 
       {/* Core statement */}
-      <section className="mt-10 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6">
+      <section className="mt-7 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6">
         <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
           تقدّمت البنية المؤسسية أسرع من المال ومن الإنجاز المادي. والشراء الجاري
           محطة إجرائية، لا معطى عن إعادة إعمار مكتملة.
         </blockquote>
       </section>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           locale="ar"
           changed="حصل لبنان على أداة تمويل - حساب وقواعد ومسار يمكن أن يتدفّق إليه مال إضافي - حيث لم يكن في 2024 سوى رقم وأمل. والتحوّلات السياسية في 2025 تحرّكت بسرعة مؤسسية حالما وُجدت حكومة كاملة."

@@ -1521,7 +1521,7 @@ export default function SvgLebanonMap({
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (
-          <aside aria-live="polite" className="card p-4">
+          <aside aria-live="polite" className="card p-3.5">
             <>
               <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                 {selectedArea ? `${selectedArea} · ` : ""}

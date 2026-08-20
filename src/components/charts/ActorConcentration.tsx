@@ -131,7 +131,7 @@ export default function ActorConcentration({
   const t = T[locale];
   const meta = layers(locale).find((l) => l.id === layer)!;
   return (
-    <figure className="card p-4 sm:p-5">
+    <figure className="card p-3.5 sm:p-4">
       <figcaption>
         <h3 className="text-base font-semibold" style={{ color: meta.color }}>
           {t.title}

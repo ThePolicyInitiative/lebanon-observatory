@@ -39,7 +39,7 @@ const SUMMARY_2026 = [
 
 export default function ComparePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           Compare 2024 and 2026
@@ -58,7 +58,7 @@ export default function ComparePage() {
       </div>
 
       {/* Year summaries */}
-      <div className="mt-12 grid gap-4 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
         <section
           aria-label="2024 summary"
           className="rounded-md border-t-4 bg-white p-5"
@@ -98,7 +98,7 @@ export default function ComparePage() {
       {/* Comparative conclusion */}
       <section
         aria-label="Comparative conclusion"
-        className="mt-10 rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6"
+        className="mt-7 rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6"
       >
         <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
           The shift was not from non-state delivery to state delivery. It was
@@ -110,12 +110,12 @@ export default function ComparePage() {
       </section>
 
       {/* The 2026 structural qualification */}
-      <div className="mt-12">
+      <div className="mt-8">
         <ThreeStreams />
       </div>
 
       {/* Composition data */}
-      <div className="mt-12 space-y-10">
+      <div className="mt-8 space-y-7">
         <LayerSlopeChart />
         {/* The standing counts caution prints once, on YearHeatmaps. */}
         <YearHeatmaps />
@@ -124,11 +124,11 @@ export default function ComparePage() {
       </div>
 
       {/* The delivery the system proved, twice */}
-      <div className="mt-12">
+      <div className="mt-8">
         <DisplacementCycle />
       </div>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           changed="Authority, finance and procurement acquired named owners inside a formal project perimeter; assessment was partially repatriated to Lebanese institutions; the emergency system improved at its own task."
           unchanged="Municipal fiscal authority, confirmed physical output and confirmed compensation: zero movement in all three. Households and communities continued to absorb the cost of every week of delay."

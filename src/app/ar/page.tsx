@@ -99,7 +99,7 @@ export default function ArabicPage() {
             />
           ))}
         </svg>
-        <div className="relative mx-auto max-w-[1360px] px-4 py-12 sm:px-6 sm:py-16">
+        <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
           <p className="text-sm font-semibold tracking-widest text-[color:var(--color-amber)]">
             {AR.hero.eyebrow}
           </p>
@@ -226,7 +226,7 @@ export default function ArabicPage() {
       </section>
 
       {/* Layer shift */}
-      <section className="mx-auto max-w-[1360px] px-4 py-12 sm:px-6">
+      <section className="mx-auto max-w-[1360px] px-4 py-8 sm:px-6">
         <h2 className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl">
           من ربح ومن خسر موقعه، 2024 ← 2026
         </h2>
@@ -236,7 +236,7 @@ export default function ArabicPage() {
             return (
               <div
                 key={t.id}
-                className="card p-4"
+                className="card p-3.5"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="flex items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
@@ -295,7 +295,7 @@ export default function ArabicPage() {
           {kpis.map((kpi) => (
             <article
               key={kpi.id}
-              className="card p-4"
+              className="card p-3.5"
             >
               <h3 className="text-[13px] font-medium leading-snug text-[color:var(--color-text-secondary)]">
                 {KPI_AR[kpi.id] ?? kpi.label}

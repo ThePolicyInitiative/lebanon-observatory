@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
     <div
-      className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6"
+      className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6"
       aria-busy="true"
       aria-label="Loading page"
     >

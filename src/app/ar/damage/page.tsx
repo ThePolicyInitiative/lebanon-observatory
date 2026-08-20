@@ -32,7 +32,7 @@ export default function Page() {
       ]}
     >
       {/* 2024: four non-additive tracks */}
-      <section aria-labelledby="ar-tracks" className="mt-10">
+      <section aria-labelledby="ar-tracks" className="mt-7">
         <h2 id="ar-tracks" className="text-xl font-semibold text-[color:var(--color-navy)]">
           2024: أربعة مسارات غير قابلة للجمع تحصر الدمار
         </h2>
@@ -43,7 +43,7 @@ export default function Page() {
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {destruction.tracks2024.map((t) => (
-            <article key={t.id} className="flex flex-col card p-4">
+            <article key={t.id} className="flex flex-col card p-3.5">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
                   {t.labelAr}
@@ -75,7 +75,7 @@ export default function Page() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-4">
+        <div className="mt-4 card p-3.5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">ركام 2024</h3>
           <p className="mt-1 figure-number text-lg text-[color:var(--color-navy)]">
             {destruction.debris2024.headlineAr}
@@ -87,16 +87,16 @@ export default function Page() {
       </section>
 
       {/* The municipal survey, district by district */}
-      <div className="mt-10">
+      <div className="mt-7">
         <DistrictDamageChart locale="ar" />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <SectorDamageChart locale="ar" />
       </div>
 
       {/* 2026 zones */}
-      <section aria-labelledby="ar-zones" className="mt-10">
+      <section aria-labelledby="ar-zones" className="mt-7">
         <h2 id="ar-zones" className="text-xl font-semibold text-[color:var(--color-navy)]">
           2026: منطقتان مقيَّمتان فقط - لا صورة وطنية
         </h2>
@@ -107,7 +107,7 @@ export default function Page() {
         </p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {destruction.zones2026.map((z) => (
-            <article key={z.id} className="flex flex-col card p-4">
+            <article key={z.id} className="flex flex-col card p-3.5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                   {z.labelAr}
@@ -167,23 +167,23 @@ export default function Page() {
         </ul>
       </section>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <WorstCadastersChart locale="ar" />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <DebrisTiles locale="ar" />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <ServiceImpact locale="ar" />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <HumanToll locale="ar" />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <Takeaways
           locale="ar"
           changed="صار لعام 2026 تقييمان بمستوى المبنى، وهو ما لم يتوفر بهذه الدقة في 2024."

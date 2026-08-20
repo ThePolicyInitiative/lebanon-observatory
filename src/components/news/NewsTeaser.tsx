@@ -30,7 +30,7 @@ export default function NewsTeaser() {
 
   if (error) {
     return (
-      <p className="card p-4 text-sm text-[color:var(--color-text-secondary)]">
+      <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
         Live updates are temporarily unavailable. The analytical data on
         this site is unaffected - it is a separate, confirmed analysis.{" "}
         <Link href="/news" className="underline underline-offset-2">
@@ -56,7 +56,7 @@ export default function NewsTeaser() {
 
   if (articles.length === 0) {
     return (
-      <p className="card p-4 text-sm text-[color:var(--color-text-secondary)]">
+      <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
         No recent relevant coverage found in the aggregated sources.{" "}
         <Link href="/news" className="underline underline-offset-2">
           Open the live-updates page
@@ -71,7 +71,7 @@ export default function NewsTeaser() {
       {articles.map((a) => (
         <article
           key={a.id}
-          className="card p-4"
+          className="card p-3.5"
         >
           <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
             {a.sourceName} · {fmtDateTime(a.publishedAt)}

@@ -202,7 +202,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
         />
       </ChartFrame>
 
-      <div className="mt-4 card p-4">
+      <div className="mt-4 card p-3.5">
         <h4 className="sr-only">{tr.chainHead}</h4>
         <ol className="flex flex-wrap items-center gap-2 text-[13px]">
           {(["done", "done", "partial", "missing"] as const)

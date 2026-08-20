@@ -48,7 +48,7 @@ export default function ArabicNewsFeed() {
 
   if (error) {
     return (
-      <p className="card p-4 text-sm text-[color:var(--color-rust)]">
+      <p className="card p-3.5 text-sm text-[color:var(--color-rust)]">
         تعذّر تحميل المستجدات ({error}).
       </p>
     );

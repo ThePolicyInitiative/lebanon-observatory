@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function ActorsPage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           Actor layers
@@ -41,25 +41,25 @@ export default function ActorsPage() {
           <ActorTabs />
         </Suspense>
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ActorTreemap />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ActorStageMatrix />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ActorRegister />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ReportedUpdates />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <WaterRepairs />
       </div>
-      <div className="mt-10">
+      <div className="mt-7">
         <ServiceOperators />
       </div>
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           changed="Official institutions specialised into the programmed chain; international actors moved into governance cells; community energy rotated from physical substitution to humanitarian absorption."
           unchanged="Municipal power: zero traced finance, procurement or oversight roles in both years, with traced presence thinning 19 → 12. The tier that knows the ground best remained structurally distant from allocation decisions."

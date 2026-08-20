@@ -261,7 +261,7 @@ export default function ExplorerClient() {
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="card p-5 text-sm text-[color:var(--color-text-secondary)]">
+          <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
             No entries match the current filters. Reset the filters to see all{" "}
             {roleRecords.length} entries.
           </p>

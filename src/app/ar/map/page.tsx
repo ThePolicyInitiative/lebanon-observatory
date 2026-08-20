@@ -53,7 +53,7 @@ export default function Page() {
         { value: "168", label: "بلدة جنوب الليطاني ضمن نطاق العمل" },
       ]}
     >
-      <section aria-labelledby="ar-regions" className="mt-10">
+      <section aria-labelledby="ar-regions" className="mt-7">
         <h2 id="ar-regions" className="text-xl font-semibold text-[color:var(--color-navy)]">
           الإشارات إلى الأماكن، تجمّعاً بتجمّع
         </h2>
@@ -118,7 +118,7 @@ export default function Page() {
         </p>
       </section>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <Takeaways
           locale="ar"
           changed="ثقل الإشارات انتقل نحو الجنوب والنبطية في 2026."

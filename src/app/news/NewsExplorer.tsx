@@ -287,7 +287,7 @@ export default function NewsExplorer() {
 
       {/* Official directory under Official tab */}
       {tab === "official" ? (
-        <div className="mt-4 card p-4">
+        <div className="mt-4 card p-3.5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             Monitored official feeds &amp; key trackers
           </h3>
@@ -339,7 +339,7 @@ export default function NewsExplorer() {
             </button>
           </div>
         ) : articles.length === 0 ? (
-          <div className="card p-5 text-sm text-[color:var(--color-text-secondary)]">
+          <div className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
             No articles match the current filters. Widen the date range,
             clear the search terms, or switch off &ldquo;only highly
             relevant&rdquo;.
@@ -374,7 +374,7 @@ export default function NewsExplorer() {
 
       {/* Analytics */}
       {data && articles.length > 0 ? (
-        <div className="mt-10">
+        <div className="mt-7">
           <NewsAnalytics articles={articles} />
         </div>
       ) : null}
@@ -399,7 +399,7 @@ function NewsCard({
   whyRelevant.push(`Automated relevance score: ${a.relevanceScore}/100 (keyword-based, not a quality judgment).`);
 
   return (
-    <article className="flex h-full flex-col card p-4" dir={a.language === "ar" ? "rtl" : "ltr"}>
+    <article className="flex h-full flex-col card p-3.5" dir={a.language === "ar" ? "rtl" : "ltr"}>
       <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]" dir="ltr">
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>

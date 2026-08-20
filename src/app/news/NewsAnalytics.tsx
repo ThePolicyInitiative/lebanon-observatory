@@ -198,7 +198,7 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
         100 most recent). They measure what gets reported, not reconstruction
         performance.
       </p>
-      <div className="mt-4 card p-4">
+      <div className="mt-4 card p-3.5">
         <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
           {volume
             ? "Coverage volume, last 3 months (GDELT: share of globally monitored online news)"
@@ -223,7 +223,7 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
           ["Coverage by location", locationPairs],
           ["Coverage by actor layer", layerPairs],
         ].map(([title, pairs]) => (
-          <div key={title as string} className="card p-4">
+          <div key={title as string} className="card p-3.5">
             <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">{title as string}</h3>
             {(pairs as [string, number][]).length === 0 ? (
               <p className="mt-2 text-xs text-[color:var(--color-text-secondary)]">No tagged articles in the current selection.</p>
@@ -233,7 +233,7 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
           </div>
         ))}
       </div>
-      <div className="mt-4 card p-4">
+      <div className="mt-4 card p-3.5">
         <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
           Relevance of the matched set
         </h3>

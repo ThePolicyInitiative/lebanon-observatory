@@ -49,7 +49,7 @@ export default function Page() {
       ]}
     >
       {/* What the entries look like, by every axis the explorer filters on */}
-      <section aria-labelledby="ar-status" className="mt-10">
+      <section aria-labelledby="ar-status" className="mt-7">
         <h2 id="ar-status" className="text-xl font-semibold text-[color:var(--color-navy)]">
           المدخلات بحسب حالة التنفيذ
         </h2>
@@ -72,7 +72,7 @@ export default function Page() {
         </ul>
       </section>
 
-      <section aria-labelledby="ar-layer-stage" className="mt-10">
+      <section aria-labelledby="ar-layer-stage" className="mt-7">
         <h2 id="ar-layer-stage" className="text-xl font-semibold text-[color:var(--color-navy)]">
           المدخلات بحسب الطبقة والمرحلة
         </h2>
@@ -127,7 +127,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section aria-labelledby="ar-comparability" className="mt-10">
+      <section aria-labelledby="ar-comparability" className="mt-7">
         <h2 id="ar-comparability" className="text-xl font-semibold text-[color:var(--color-navy)]">
           المدخلات بحسب القابلية للمقارنة
         </h2>
@@ -147,7 +147,7 @@ export default function Page() {
         </p>
       </section>
 
-      <div className="mt-10">
+      <div className="mt-7">
         <Takeaways
           locale="ar"
           changed="عدد المدخلات ارتفع بين السنتين واتّسعت الطبقة الرسمية داخلها."

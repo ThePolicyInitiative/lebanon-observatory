@@ -29,7 +29,7 @@ const COMPARABILITY_BADGE: Record<string, { label: string; cls: string }> = {
 
 export default function DamagePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           The damage assessments - kept honest
@@ -47,7 +47,7 @@ export default function DamagePage() {
       </header>
 
       {/* Four 2024 tracks */}
-      <section aria-labelledby="tracks-2024" className="mt-10">
+      <section aria-labelledby="tracks-2024" className="mt-7">
         <h2 id="tracks-2024" className="text-xl font-semibold text-[color:var(--color-navy)]">
           2024: four non-additive tracks bracket the destruction
         </h2>
@@ -61,7 +61,7 @@ export default function DamagePage() {
           {destruction.tracks2024.map((t) => (
             <article
               key={t.id}
-              className="flex flex-col card p-4"
+              className="flex flex-col card p-3.5"
             >
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
@@ -96,7 +96,7 @@ export default function DamagePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-4">
+        <div className="mt-4 card p-3.5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
             2024 debris
           </h3>
@@ -110,7 +110,7 @@ export default function DamagePage() {
       </section>
 
       {/* District-level municipal survey */}
-      <section aria-labelledby="district-survey" className="mt-12">
+      <section aria-labelledby="district-survey" className="mt-8">
         <h2 id="district-survey" className="sr-only">
           Municipality-reported damage by district
         </h2>
@@ -118,7 +118,7 @@ export default function DamagePage() {
       </section>
 
       {/* Sector chart */}
-      <section aria-labelledby="sector-chart" className="mt-12">
+      <section aria-labelledby="sector-chart" className="mt-8">
         <h2 id="sector-chart" className="text-xl font-semibold text-[color:var(--color-navy)]">
           Sector damage, losses and needs
         </h2>
@@ -133,7 +133,7 @@ export default function DamagePage() {
       </section>
 
       {/* 2026 zones */}
-      <section aria-labelledby="zones-2026" className="mt-12">
+      <section aria-labelledby="zones-2026" className="mt-8">
         <h2 id="zones-2026" className="text-xl font-semibold text-[color:var(--color-navy)]">
           2026: two bounded assessment zones - not a national picture
         </h2>
@@ -213,7 +213,7 @@ export default function DamagePage() {
           <ServiceImpact />
         </div>
 
-        <div className="mt-10">
+        <div className="mt-7">
           <HumanToll />
         </div>
 
@@ -248,7 +248,7 @@ export default function DamagePage() {
         </Link>
       </p>
 
-      <div className="mt-12">
+      <div className="mt-8">
         <Takeaways
           changed="Assessment became the state's cleanest capability gain: 2026 products arrived in weeks, jointly produced with a Lebanese scientific institution, methodologically explicit about their own limits."
           unchanged="No single authoritative baseline exists for either war - the denominator every compensation system needs - and the Bekaa, Baalbek-Hermel and the North remained unassessed in 2026."
