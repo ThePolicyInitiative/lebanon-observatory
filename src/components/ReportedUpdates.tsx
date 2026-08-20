@@ -79,7 +79,7 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
         ) : null}
         {u.dateReported ? (
           <span className="font-semibold tabular-nums text-[color:var(--color-text-secondary)]">
-            {fmtDate(u.dateReported)}
+            {fmtDate(u.dateReported, locale)}
           </span>
         ) : u.dateText ? (
           <span className="font-semibold text-[color:var(--color-text-secondary)]">
@@ -174,7 +174,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
         <>
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
             {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
-            والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn)})، منها {south} في المنطقة بين
+            والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
             الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مصادرها - لم تُقارَن بالتتبّع ولا تدخل
             في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه، و{indirect} منها
             مُعلَّمة لأن صفحة الناشر رفضت الطلب الآلي ولم يتوفّر سوى ملخّص بحث. اتبع كل رابط

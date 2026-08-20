@@ -99,7 +99,8 @@
       "sourceIds": [
         "S2"
       ],
-      "labelAr": "الاستجابة الفورية (الأنقاض، الأبنية غير الآمنة، تثبيت التراث، مدارس الإيواء، فتح الطرق)"
+      "labelAr": "الاستجابة الفورية (الأنقاض، الأبنية غير الآمنة، تثبيت التراث، مدارس الإيواء، فتح الطرق)",
+      "shortAr": "الاستجابة الفورية"
     },
     {
       "label": "Lifeline services restoration (water, energy, transport, health, education, municipal, emergency services)",
@@ -108,7 +109,8 @@
       "sourceIds": [
         "S2"
       ],
-      "labelAr": "استعادة الخدمات الحيوية (مياه، طاقة، نقل، صحة، تعليم، خدمات بلدية وطارئة)"
+      "labelAr": "استعادة الخدمات الحيوية (مياه، طاقة، نقل، صحة، تعليم، خدمات بلدية وطارئة)",
+      "shortAr": "استعادة الخدمات الحيوية"
     },
     {
       "label": "Preparation of reconstruction investments",
@@ -117,7 +119,8 @@
       "sourceIds": [
         "S2"
       ],
-      "labelAr": "تحضير استثمارات إعادة الإعمار"
+      "labelAr": "تحضير استثمارات إعادة الإعمار",
+      "shortAr": "تحضير الاستثمارات"
     },
     {
       "label": "Reconstruction works",
@@ -127,7 +130,9 @@
       "sourceIds": [
         "S2"
       ],
-      "labelAr": "إدارة المشروع والتنفيذ"
+      "labelAr": "أشغال إعادة الإعمار",
+      "shortAr": "أشغال إعادة الإعمار",
+      "noteAr": "لم تُخصَّص لها مبالغ أولية عن قصد: الأشغال تحتاج تحضيراً أولاً."
     },
     {
       "label": "Project management",
@@ -136,7 +141,8 @@
       "sourceIds": [
         "S2"
       ],
-      "labelAr": "الطوارئ والاستجابة السريعة"
+      "labelAr": "إدارة المشروع",
+      "shortAr": "إدارة المشروع"
     }
   ],
   "adjacentFlows": [
@@ -147,7 +153,9 @@
       "note": "42.2% funded by 6 July 2026. Humanitarian financing, not reconstruction financing.",
       "sourceIds": [
         "S40"
-      ]
+      ],
+      "labelAr": "النداء الإنساني المعدَّل لطوارئ 2026",
+      "noteAr": "مموَّل بنسبة 42.2% حتى 6 تموز 2026. تمويل إنساني لا تمويل إعادة إعمار."
     },
     {
       "label": "AFD financing announced via CDR",
@@ -157,7 +165,10 @@
       "note": "Announced within a February 2026 package; separate from LEAP.",
       "sourceIds": [
         "S48"
-      ]
+      ],
+      "labelAr": "تمويل الوكالة الفرنسية للتنمية المعلَن عبر مجلس الإنماء والإعمار",
+      "noteAr": "أُعلن ضمن حزمة شباط 2026؛ منفصل عن LEAP.",
+      "displayAr": "نحو 75 مليون يورو"
     },
     {
       "label": "European grants for livelihoods (February package)",
@@ -167,7 +178,10 @@
       "note": "Livelihoods support, not reconstruction works.",
       "sourceIds": [
         "S48"
-      ]
+      ],
+      "labelAr": "منح أوروبية لسبل العيش (حزمة شباط)",
+      "noteAr": "دعم سبل عيش لا أشغال إعادة إعمار.",
+      "displayAr": "نحو 35 مليون يورو"
     },
     {
       "label": "World Bank social-protection and digital operations",
@@ -176,7 +190,9 @@
       "note": "Adjacent World Bank operations for other purposes; not reconstruction financing.",
       "sourceIds": [
         "S12"
-      ]
+      ],
+      "labelAr": "عمليات البنك الدولي للحماية الاجتماعية والرقمنة",
+      "noteAr": "عمليات مجاورة للبنك الدولي لأغراض أخرى؛ ليست تمويل إعادة إعمار."
     }
   ],
   "procurementPackages": [
@@ -211,7 +227,7 @@
       "sourceIds": [
         "S7"
       ],
-      "labelAr": "الحزمة 1096 - جهة الرقابة الطرف الثالث (TPMA)"
+      "labelAr": "الحزمة 1096 - جهة الرقابة من طرف ثالث (TPMA)"
     }
   ],
   "procurementBaselines": {

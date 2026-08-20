@@ -6,45 +6,59 @@ import { fmtDate } from "@/lib/format";
  * The human toll of the two wars, kept in separate panels: different
  * crises, different reporting systems, never compared or summed.
  */
+type TollItem = {
+  label: string;
+  labelAr: string;
+  value: string;
+  valueAr?: string;
+  detail: string;
+  detailAr: string;
+  reporter: string;
+  reporterAr: string;
+};
+
 function Panel({
   asOfLabel,
   title,
   asOf,
   accent,
   items,
+  locale,
 }: {
   asOfLabel: string;
   title: string;
   asOf: string;
   accent: string;
-  items: { label: string; value: string; detail: string; reporter: string }[];
+  items: readonly TollItem[];
+  locale: Locale;
 }) {
+  const ar = locale === "ar";
   return (
     <div className="card p-4 sm:p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 pb-2" style={{ borderColor: accent }}>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">{title}</h3>
         <span className="text-[11px] font-medium text-[color:var(--color-text-secondary)]">
-          {asOfLabel} {fmtDate(asOf)}
+          {asOfLabel} {fmtDate(asOf, locale)}
         </span>
       </div>
       <ul className="mt-3 space-y-3">
         {items.map((i) => (
           <li key={i.label} className="grid gap-1 sm:grid-cols-[auto_1fr] sm:gap-3">
             <p
-              className="text-xl font-bold tabular-nums tracking-tight sm:w-40 sm:text-right"
+              className="text-xl font-bold tabular-nums tracking-tight sm:w-40 sm:text-end"
               style={{ color: accent }}
             >
-              {i.value}
+              {ar ? (i.valueAr ?? i.value) : i.value}
             </p>
             <div>
               <p className="text-[13px] font-semibold text-[color:var(--color-text)]">
-                {i.label}
+                {ar ? i.labelAr : i.label}
               </p>
               <p className="mt-0.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-                {i.detail}
+                {ar ? i.detailAr : i.detail}
               </p>
               <p className="mt-0.5 text-[10.5px] font-medium text-[color:var(--color-text-secondary)]">
-                {i.reporter}
+                {ar ? i.reporterAr : i.reporter}
               </p>
             </div>
           </li>
@@ -61,6 +75,8 @@ const T = {
     war2026: "2026 war: casualties, displacement and return",
     shelter2024: "2024 conflict: the shelter response",
     asOf: "as of",
+    caution:
+      "“Returns” measure movement, not durable return: people counted as returned may have gone back to a damaged building, to relatives, or to a rental while awaiting repairs or compensation that, at the cut-off, no financed instrument had delivered.",
   },
   ar: {
     heading: "الكلفة البشرية خلف التقييمات",
@@ -68,6 +84,8 @@ const T = {
     war2026: "حرب 2026: الضحايا والنزوح والعودة",
     shelter2024: "حرب 2024: استجابة الإيواء",
     asOf: "حتى",
+    caution:
+      "«العودات» تقيس الحركة لا العودة الدائمة: من يُحصى عائداً قد يكون رجع إلى بناء متضرّر، أو إلى أقارب، أو إلى مسكن مستأجَر في انتظار ترميم أو تعويض لم تكن أي أداة تمويل قد أوصلته حتى تاريخ التوقف.",
   },
 } as const;
 
@@ -88,6 +106,7 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
           asOf={humanToll.war2026.asOf}
           accent="#BD5A46"
           items={humanToll.war2026.items}
+          locale={locale}
         />
         <Panel
           asOfLabel={tr.asOf}
@@ -95,13 +114,11 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
           asOf={humanToll.shelter2024.asOf}
           accent="#58779B"
           items={humanToll.shelter2024.items}
+          locale={locale}
         />
       </div>
       <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        &ldquo;Returns&rdquo; measure movement, not durable return: people
-        counted as returned may have gone back to a damaged building, to
-        relatives, or to a rental while awaiting repairs or compensation that,
-        at the cut-off, no financed instrument had delivered.
+        {tr.caution}
       </p>
     </section>
   );

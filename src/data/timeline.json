@@ -1,29 +1,363 @@
 [
-  { "id": "t1", "date": "2024-09-23", "label": "Escalation of the 2024 war", "detail": "Displacement peaked above 834,000 traced IDPs by late October; nearly 190,000 people in more than 1,100 collective shelters.", "track": "conflict", "status": "context", "sourceIds": ["S13", "S11"] },
-  { "id": "t2", "date": "2024-11-27", "label": "Cessation of hostilities", "detail": "Roughly 76% of shelter residents left within two days; 296 of 1,009 monitored sites closed by 29 November.", "track": "conflict", "status": "context", "sourceIds": ["S14"] },
-  { "id": "t3", "date": "2024-12-05", "label": "First war-rubble guidance; parallel compensation announced", "detail": "Ministry of Environment Circular 6/1 on war rubble; Hezbollah announced its compensation package the same day.", "track": "state", "status": "completed", "sourceIds": ["S15", "S9"] },
-  { "id": "t4", "date": "2024-12-17", "label": "Cabinet requests World Bank-led national assessment (RDNA)", "detail": "The formal start of the data-to-finance chain for the 2023–24 conflict.", "track": "data", "status": "completed", "sourceIds": ["S4"] },
-  { "id": "t5", "date": "2024-12-27", "label": "Council for the South launches first large rubble tender", "detail": "The only substantial traced public tender of 2024; bids opened in January 2025.", "track": "procurement", "status": "completed", "sourceIds": ["S16"] },
-  { "id": "t5b", "date": "2025-01-09", "label": "President Joseph Aoun elected", "detail": "The presidency had been vacant since October 2022. The executive vacuum that explained 2024's missing programme began to close.", "track": "state", "status": "completed", "sourceIds": ["S37"] },
-  { "id": "t5c", "date": "2025-02-08", "label": "Salam government formed", "detail": "A cabinet exercising collective authority replaced the caretaker configuration.", "track": "state", "status": "completed", "sourceIds": ["S37"] },
-  { "id": "t6", "date": "2025-03-07", "label": "RDNA published", "detail": "US$6.8B damage, US$7.2B losses, US$11B recovery needs across 10 sectors and all governorates.", "track": "data", "status": "completed", "sourceIds": ["S4"] },
-  { "id": "t6b", "date": "2025-04-15", "label": "Banking secrecy law amended (April 2025; dated to month)", "detail": "Part of the reform track built on IMF-prescribed measures that made external financing negotiable.", "track": "state", "status": "completed", "sourceIds": ["S-TRACKING", "S12"] },
-  { "id": "t6c", "date": "2025-05-15", "label": "CDR board appointed; municipal elections held (May 2025)", "detail": "The first full CDR board since 2009; municipal councils renewed - legitimacy restored without touching the tier's fiscal base.", "track": "state", "status": "completed", "sourceIds": ["S20", "S-TRACKING"] },
-  { "id": "t7", "date": "2025-06-24", "label": "World Bank Board approves US$250M LEAP loan", "detail": "Initial financing within a US$1 billion scalable framework.", "track": "finance", "status": "completed", "sourceIds": ["S20"] },
-  { "id": "t8", "date": "2025-08-25", "label": "Loan agreement signed", "detail": "", "track": "finance", "status": "completed", "sourceIds": ["S1"] },
-  { "id": "t8b", "date": "2025-07-01", "label": "Law 22/2025 - the Reconstruction Law (July 2025; day not specified)", "detail": "Tax and fee relief plus five land-status categories for destroyed buildings; no unified valuation, no appeals mechanism, no funded general compensation.", "track": "state", "status": "completed", "sourceIds": ["S8"] },
-  { "id": "t9", "date": "2025-12-19", "label": "Parliamentary ratification", "detail": "Parliament ratified the LEAP loan roughly four months after signing.", "track": "finance", "status": "completed", "sourceIds": ["S47"] },
-  { "id": "t10", "date": "2026-01-30", "label": "Cabinet approves compensation framework", "detail": "Territory split between the Council for the South and the Higher Relief Commission; reported per-unit parameters; no payment start date identified and no consolidated claims data public by the cut-off.", "track": "state", "status": "not_verified", "sourceIds": ["S37", "S60"] },
-  { "id": "t11", "date": "2026-02-26", "label": "LEAP becomes effective", "detail": "The project chain became operational four days before the 2026 war began.", "track": "finance", "status": "completed", "sourceIds": ["S1"] },
-  { "id": "t12", "date": "2026-02-27", "label": "First procurement package published (#1082)", "detail": "Supervision of road clearing and restoration in Marjeyoun, Sour and Bint Jbeil.", "track": "procurement", "status": "procurement", "sourceIds": ["S7"] },
-  { "id": "t13", "date": "2026-03-02", "label": "The 2026 war begins", "detail": "Renewed destruction accumulated outside LEAP's legal scope, which is confined to 2023–24 conflict damage. The National Emergency Operations Room activated within hours.", "track": "conflict", "status": "context", "sourceIds": ["S39", "S44"] },
-  { "id": "t14", "date": "2026-05-12", "label": "Packages #1095 and #1096 published", "detail": "Rubble-management engineering and the Third-Party Monitoring Agent - the accountability layer queued in the same pipeline it exists to watch.", "track": "procurement", "status": "procurement", "sourceIds": ["S7"] },
-  { "id": "t14b", "date": "2026-04-16", "label": "US-brokered truce", "detail": "Followed by a 45-day extension in May; de-escalation, not peace.", "track": "conflict", "status": "context", "sourceIds": ["S42"] },
-  { "id": "t15", "date": "2026-05-13", "label": "First disbursement", "detail": "Initial LEAP disbursement traced.", "track": "finance", "status": "completed", "sourceIds": ["S1"] },
-  { "id": "t15b", "date": "2026-06-04", "label": "Conditional ceasefire agreed", "detail": "348 people were killed in the month after the 20 June announcement; displacement orders continued and an expanded occupation zone was demarcated on 18 June.", "track": "conflict", "status": "context", "sourceIds": ["S41", "S42", "S40"] },
-  { "id": "t16", "date": "2026-06-08", "label": "UNDP–CNRS-L damage assessment, Beirut and Mount Lebanon", "detail": "US$365M building damage; field-checked.", "track": "data", "status": "completed", "sourceIds": ["S5"] },
-  { "id": "t17", "date": "2026-06-22", "label": "UNDP–CNRS-L damage assessment, South Lebanon", "detail": "US$1.384B direct building damage south of the Litani; desk-validated snapshot, not cumulative with 2024 results.", "track": "data", "status": "completed", "sourceIds": ["S6"] },
-  { "id": "t18", "date": "2026-06-29", "label": "Disbursement snapshot: US$4.13M (1.65% of the loan)", "detail": "Implementation Status and Results Report; disclosed physical-output indicators at zero.", "track": "finance", "status": "completed", "sourceIds": ["S1"] },
-  { "id": "t19", "date": "2026-07-17", "label": "Procurement portal check", "detail": "#1082 under evaluation; #1095 and #1096 without displayed awards.", "track": "procurement", "status": "procurement", "sourceIds": ["S7"] },
-  { "id": "t20", "date": "2026-07-31", "label": "cut-off", "detail": "By this date: no awarded works contract, no publicly confirmed completed reconstruction output, no confirmed state compensation payment.", "track": "data", "status": "not_verified", "sourceIds": ["S1", "S7", "S37"] }
+  {
+    "id": "t1",
+    "date": "2024-09-23",
+    "label": "Escalation of the 2024 war",
+    "detail": "Displacement peaked above 834,000 traced IDPs by late October; nearly 190,000 people in more than 1,100 collective shelters.",
+    "track": "conflict",
+    "status": "context",
+    "sourceIds": [
+      "S13",
+      "S11"
+    ],
+    "labelAr": "تصاعد حرب 2024",
+    "detailAr": "بلغ النزوح ذروته فوق 834,000 نازح مرصود أواخر تشرين الأول؛ وقرابة 190,000 شخص في أكثر من 1,100 مركز إيواء جماعي."
+  },
+  {
+    "id": "t2",
+    "date": "2024-11-27",
+    "label": "Cessation of hostilities",
+    "detail": "Roughly 76% of shelter residents left within two days; 296 of 1,009 monitored sites closed by 29 November.",
+    "track": "conflict",
+    "status": "context",
+    "sourceIds": [
+      "S14"
+    ],
+    "labelAr": "وقف الأعمال العدائية",
+    "detailAr": "غادر نحو 76% من قاطني مراكز الإيواء خلال يومين؛ وأُقفل 296 من أصل 1,009 مواقع مرصودة حتى 29 تشرين الثاني."
+  },
+  {
+    "id": "t3",
+    "date": "2024-12-05",
+    "label": "First war-rubble guidance; parallel compensation announced",
+    "detail": "Ministry of Environment Circular 6/1 on war rubble; Hezbollah announced its compensation package the same day.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S15",
+      "S9"
+    ],
+    "labelAr": "أول إرشادات لأنقاض الحرب؛ وإعلان تعويضات موازية",
+    "detailAr": "تعميم وزارة البيئة 6/1 بشأن أنقاض الحرب؛ وأعلن حزب الله حزمة تعويضاته في اليوم نفسه."
+  },
+  {
+    "id": "t4",
+    "date": "2024-12-17",
+    "label": "Cabinet requests World Bank-led national assessment (RDNA)",
+    "detail": "The formal start of the data-to-finance chain for the 2023–24 conflict.",
+    "track": "data",
+    "status": "completed",
+    "sourceIds": [
+      "S4"
+    ],
+    "labelAr": "مجلس الوزراء يطلب تقييماً وطنياً بقيادة البنك الدولي (RDNA)",
+    "detailAr": "البداية الرسمية لسلسلة المعطيات إلى التمويل بشأن حرب 2023-24."
+  },
+  {
+    "id": "t5",
+    "date": "2024-12-27",
+    "label": "Council for the South launches first large rubble tender",
+    "detail": "The only substantial traced public tender of 2024; bids opened in January 2025.",
+    "track": "procurement",
+    "status": "completed",
+    "sourceIds": [
+      "S16"
+    ],
+    "labelAr": "مجلس الجنوب يطلق أول مناقصة أنقاض كبيرة",
+    "detailAr": "المناقصة العامة الوحيدة ذات الحجم المرصودة في 2024؛ فُتحت العروض في كانون الثاني 2025."
+  },
+  {
+    "id": "t5b",
+    "date": "2025-01-09",
+    "label": "President Joseph Aoun elected",
+    "detail": "The presidency had been vacant since October 2022. The executive vacuum that explained 2024's missing programme began to close.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S37"
+    ],
+    "labelAr": "انتخاب الرئيس جوزاف عون",
+    "detailAr": "كانت الرئاسة شاغرة منذ تشرين الأول 2022. والفراغ التنفيذي الذي فسّر غياب البرنامج في 2024 بدأ ينغلق."
+  },
+  {
+    "id": "t5c",
+    "date": "2025-02-08",
+    "label": "Salam government formed",
+    "detail": "A cabinet exercising collective authority replaced the caretaker configuration.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S37"
+    ],
+    "labelAr": "تشكيل حكومة سلام",
+    "detailAr": "حكومة تمارس صلاحيات كاملة حلّت محل حكومة تصريف الأعمال."
+  },
+  {
+    "id": "t6",
+    "date": "2025-03-07",
+    "label": "RDNA published",
+    "detail": "US$6.8B damage, US$7.2B losses, US$11B recovery needs across 10 sectors and all governorates.",
+    "track": "data",
+    "status": "completed",
+    "sourceIds": [
+      "S4"
+    ],
+    "labelAr": "نشر تقييم RDNA",
+    "detailAr": "6.8 مليار دولار أضراراً، و7.2 مليار خسائر، و11 ملياراً احتياجات تعافٍ عبر عشرة قطاعات وكل المحافظات."
+  },
+  {
+    "id": "t6b",
+    "date": "2025-04-15",
+    "label": "Banking secrecy law amended (April 2025; dated to month)",
+    "detail": "Part of the reform track built on IMF-prescribed measures that made external financing negotiable.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S-TRACKING",
+      "S12"
+    ],
+    "labelAr": "تعديل قانون السرية المصرفية (نيسان 2025؛ مؤرَّخ بالشهر)",
+    "detailAr": "جزء من مسار الإصلاح المبني على تدابير صندوق النقد التي جعلت التمويل الخارجي قابلاً للتفاوض."
+  },
+  {
+    "id": "t6c",
+    "date": "2025-05-15",
+    "label": "CDR board appointed; municipal elections held (May 2025)",
+    "detail": "The first full CDR board since 2009; municipal councils renewed - legitimacy restored without touching the tier's fiscal base.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S20",
+      "S-TRACKING"
+    ],
+    "labelAr": "تعيين مجلس إدارة مجلس الإنماء والإعمار؛ وإجراء الانتخابات البلدية (أيار 2025)",
+    "detailAr": "أول مجلس إدارة كامل منذ 2009؛ وتجديد المجالس البلدية - شرعية مستعادة من دون المسّ بالقاعدة المالية لهذا المستوى."
+  },
+  {
+    "id": "t7",
+    "date": "2025-06-24",
+    "label": "World Bank Board approves US$250M LEAP loan",
+    "detail": "Initial financing within a US$1 billion scalable framework.",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S20"
+    ],
+    "labelAr": "مجلس البنك الدولي يقرّ قرض LEAP بقيمة 250 مليون دولار",
+    "detailAr": "تمويل أولي ضمن إطار قابل للتوسّع بمليار دولار."
+  },
+  {
+    "id": "t8",
+    "date": "2025-08-25",
+    "label": "Loan agreement signed",
+    "detail": "",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S1"
+    ],
+    "labelAr": "توقيع اتفاقية القرض",
+    "detailAr": ""
+  },
+  {
+    "id": "t8b",
+    "date": "2025-07-01",
+    "label": "Law 22/2025 - the Reconstruction Law (July 2025; day not specified)",
+    "detail": "Tax and fee relief plus five land-status categories for destroyed buildings; no unified valuation, no appeals mechanism, no funded general compensation.",
+    "track": "state",
+    "status": "completed",
+    "sourceIds": [
+      "S8"
+    ],
+    "labelAr": "القانون 22/2025 - قانون إعادة الإعمار (تموز 2025؛ اليوم غير محدَّد)",
+    "detailAr": "إعفاءات ضريبية ورسمية وخمس فئات لوضع الأرض للأبنية المدمَّرة؛ من دون منهجية تقييم موحّدة ولا آلية اعتراض ولا تعويض عام مموَّل."
+  },
+  {
+    "id": "t9",
+    "date": "2025-12-19",
+    "label": "Parliamentary ratification",
+    "detail": "Parliament ratified the LEAP loan roughly four months after signing.",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S47"
+    ],
+    "labelAr": "الإبرام في مجلس النواب",
+    "detailAr": "أبرم المجلس قرض LEAP بعد نحو أربعة أشهر من التوقيع."
+  },
+  {
+    "id": "t10",
+    "date": "2026-01-30",
+    "label": "Cabinet approves compensation framework",
+    "detail": "Territory split between the Council for the South and the Higher Relief Commission; reported per-unit parameters; no payment start date identified and no consolidated claims data public by the cut-off.",
+    "track": "state",
+    "status": "not_verified",
+    "sourceIds": [
+      "S37",
+      "S60"
+    ],
+    "labelAr": "مجلس الوزراء يقرّ إطار التعويضات",
+    "detailAr": "تقسيم المناطق بين مجلس الجنوب والهيئة العليا للإغاثة؛ ومعايير معلَنة لكل وحدة؛ من دون تاريخ لبدء الدفع ومن دون بيانات مجمّعة عن الطلبات حتى تاريخ التوقف."
+  },
+  {
+    "id": "t11",
+    "date": "2026-02-26",
+    "label": "LEAP becomes effective",
+    "detail": "The project chain became operational four days before the 2026 war began.",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S1"
+    ],
+    "labelAr": "نفاذ مشروع LEAP",
+    "detailAr": "صارت سلسلة المشروع نافذة قبل أربعة أيام من بدء حرب 2026."
+  },
+  {
+    "id": "t12",
+    "date": "2026-02-27",
+    "label": "First procurement package published (#1082)",
+    "detail": "Supervision of road clearing and restoration in Marjeyoun, Sour and Bint Jbeil.",
+    "track": "procurement",
+    "status": "procurement",
+    "sourceIds": [
+      "S7"
+    ],
+    "labelAr": "نشر أول حزمة شراء (رقم 1082)",
+    "detailAr": "الإشراف على تنظيف الطرق وترميمها في مرجعيون وصور وبنت جبيل."
+  },
+  {
+    "id": "t13",
+    "date": "2026-03-02",
+    "label": "The 2026 war begins",
+    "detail": "Renewed destruction accumulated outside LEAP's legal scope, which is confined to 2023–24 conflict damage. The National Emergency Operations Room activated within hours.",
+    "track": "conflict",
+    "status": "context",
+    "sourceIds": [
+      "S39",
+      "S44"
+    ],
+    "labelAr": "بدء حرب 2026",
+    "detailAr": "دمار جديد تراكم خارج النطاق القانوني لـLEAP المحصور بأضرار حرب 2023-24. وغرفة العمليات الوطنية الطارئة فُعّلت خلال ساعات."
+  },
+  {
+    "id": "t14",
+    "date": "2026-05-12",
+    "label": "Packages #1095 and #1096 published",
+    "detail": "Rubble-management engineering and the Third-Party Monitoring Agent - the accountability layer queued in the same pipeline it exists to watch.",
+    "track": "procurement",
+    "status": "procurement",
+    "sourceIds": [
+      "S7"
+    ],
+    "labelAr": "نشر الحزمتين 1095 و1096",
+    "detailAr": "هندسة إدارة الأنقاض وجهة الرقابة من طرف ثالث - طبقة المساءلة اصطفّت في المسار البطيء نفسه الذي وُجدت لمراقبته."
+  },
+  {
+    "id": "t14b",
+    "date": "2026-04-16",
+    "label": "US-brokered truce",
+    "detail": "Followed by a 45-day extension in May; de-escalation, not peace.",
+    "track": "conflict",
+    "status": "context",
+    "sourceIds": [
+      "S42"
+    ],
+    "labelAr": "هدنة برعاية أميركية",
+    "detailAr": "تلاها تمديد 45 يوماً في أيار؛ تهدئة لا سلام."
+  },
+  {
+    "id": "t15",
+    "date": "2026-05-13",
+    "label": "First disbursement",
+    "detail": "Initial LEAP disbursement traced.",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S1"
+    ],
+    "labelAr": "أول دفعة",
+    "detailAr": "أول دفعة من LEAP مرصودة."
+  },
+  {
+    "id": "t15b",
+    "date": "2026-06-04",
+    "label": "Conditional ceasefire agreed",
+    "detail": "348 people were killed in the month after the 20 June announcement; displacement orders continued and an expanded occupation zone was demarcated on 18 June.",
+    "track": "conflict",
+    "status": "context",
+    "sourceIds": [
+      "S41",
+      "S42",
+      "S40"
+    ],
+    "labelAr": "اتفاق وقف إطلاق نار مشروط",
+    "detailAr": "قُتل 348 شخصاً في الشهر التالي لإعلان 20 حزيران؛ واستمرت أوامر النزوح، ورُسمت منطقة احتلال موسّعة في 18 حزيران."
+  },
+  {
+    "id": "t16",
+    "date": "2026-06-08",
+    "label": "UNDP–CNRS-L damage assessment, Beirut and Mount Lebanon",
+    "detail": "US$365M building damage; field-checked.",
+    "track": "data",
+    "status": "completed",
+    "sourceIds": [
+      "S5"
+    ],
+    "labelAr": "تقييم أضرار UNDP-CNRS-L، بيروت وجبل لبنان",
+    "detailAr": "365 مليون دولار أضراراً في الأبنية؛ مع معاينة ميدانية."
+  },
+  {
+    "id": "t17",
+    "date": "2026-06-22",
+    "label": "UNDP–CNRS-L damage assessment, South Lebanon",
+    "detail": "US$1.384B direct building damage south of the Litani; desk-validated snapshot, not cumulative with 2024 results.",
+    "track": "data",
+    "status": "completed",
+    "sourceIds": [
+      "S6"
+    ],
+    "labelAr": "تقييم أضرار UNDP-CNRS-L، جنوب لبنان",
+    "detailAr": "1.384 مليار دولار أضراراً مباشرة في الأبنية جنوب الليطاني؛ لقطة مراجَعة مكتبياً، لا تُجمع مع نتائج 2024."
+  },
+  {
+    "id": "t18",
+    "date": "2026-06-29",
+    "label": "Disbursement snapshot: US$4.13M (1.65% of the loan)",
+    "detail": "Implementation Status and Results Report; disclosed physical-output indicators at zero.",
+    "track": "finance",
+    "status": "completed",
+    "sourceIds": [
+      "S1"
+    ],
+    "labelAr": "لقطة الدفع: 4.13 مليون دولار (1.65% من القرض)",
+    "detailAr": "تقرير حالة التنفيذ والنتائج؛ ومؤشرات الإنجاز المادي المعلنة عند الصفر."
+  },
+  {
+    "id": "t19",
+    "date": "2026-07-17",
+    "label": "Procurement portal check",
+    "detail": "#1082 under evaluation; #1095 and #1096 without displayed awards.",
+    "track": "procurement",
+    "status": "procurement",
+    "sourceIds": [
+      "S7"
+    ],
+    "labelAr": "مراجعة بوابة الشراء",
+    "detailAr": "الحزمة 1082 قيد التقييم؛ والحزمتان 1095 و1096 من دون إرساء معروض."
+  },
+  {
+    "id": "t20",
+    "date": "2026-07-31",
+    "label": "cut-off",
+    "detail": "By this date: no awarded works contract, no publicly confirmed completed reconstruction output, no confirmed state compensation payment.",
+    "track": "data",
+    "status": "not_verified",
+    "sourceIds": [
+      "S1",
+      "S7",
+      "S37"
+    ],
+    "labelAr": "تاريخ التوقف",
+    "detailAr": "حتى هذا التاريخ: لا عقد أشغال مُرسى، ولا إنجاز إعادة إعمار مكتمل ومُعلَن، ولا دفعة تعويض حكومية مؤكَّدة."
+  }
 ]

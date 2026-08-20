@@ -5,9 +5,30 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { LAYER_META } from "@/lib/colors";
-import { STAGE_SHORT, STAGES, countsFor } from "@/lib/data-client";
-import { CAUTION_COUNTS } from "@/lib/data-client";
+import { countsFor } from "@/lib/data-client";
+import {
+  cautionCounts,
+  layers,
+  stageList,
+  stageShortList,
+  type Locale,
+} from "@/lib/vocab";
 import type { Year } from "@/lib/types";
+
+const T = {
+  en: {
+    title: "Heat maps of traced presence: 2024 and 2026",
+    sub: "Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Hover a cell for its value; the counts behind the whole figure are in its description.",
+    tracedActors: "traced actors",
+    alt: "Heat maps of traced actor-stage presence for 2024 and 2026",
+  },
+  ar: {
+    title: "خرائط حرارية للحضور المرصود: 2024 و2026",
+    sub: "كل لوحة تُظهر الجهات المرصودة بحسب الطبقة والمرحلة في سنة واحدة، على مقياس واحد مشترك (كلما دكن اللون زاد عدد الجهات المرصودة). مرِّر فوق خانة لترى قيمتها؛ والأعداد خلف الشكل كله واردة في وصفه.",
+    tracedActors: "جهة مرصودة",
+    alt: "خرائط حرارية للحضور المرصود للجهات في المراحل، 2024 و2026",
+  },
+} as const;
 
 /**
  * Matrix heat maps of traced actor-stage presence for 2024 and 2026:
@@ -15,7 +36,9 @@ import type { Year } from "@/lib/types";
  * scale. Cells are unlabelled: the value is in the tooltip and in the
  * figure's description, which is what a reader without the colours gets.
  */
-export default function YearHeatmaps() {
+export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
+  const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
 
   const { data2024, data2026, maxVal } = useMemo(() => {
@@ -37,12 +60,13 @@ export default function YearHeatmaps() {
   }, []);
 
   const option = useMemo<EChartsOption>(() => {
-    const layerLabels = LAYER_META.map((l) => l.short);
+    const layerLabels = layers(locale).map((l) => l.short);
     const mkAxis = (gridIndex: number, showXLabels: boolean) => ({
       x: {
         gridIndex,
         type: "category" as const,
-        data: STAGE_SHORT,
+        data: stageShortList(locale),
+        inverse: ar,
         axisLabel: showXLabels
           ? { rotate: 38, fontSize: 10 }
           : { show: false },
@@ -53,6 +77,7 @@ export default function YearHeatmaps() {
         gridIndex,
         type: "category" as const,
         data: layerLabels,
+        position: ar ? ("right" as const) : ("left" as const),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 10.5 },
@@ -61,14 +86,24 @@ export default function YearHeatmaps() {
     const ax1 = mkAxis(0, false);
     const ax2 = mkAxis(1, true);
     return {
-      title: [
-        { text: "2024", left: 130, top: 6, textStyle: { fontSize: 13, fontWeight: 700, color: "#58779B" } },
-        { text: "2026", left: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: "#2F8F6B" } },
-      ],
-      grid: [
-        { left: 130, right: 90, top: 30, height: 175 },
-        { left: 130, right: 90, top: 270, height: 175 },
-      ],
+      title: ar
+        ? [
+            { text: "2024", right: 130, top: 6, textStyle: { fontSize: 13, fontWeight: 700, color: "#58779B" } },
+            { text: "2026", right: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: "#2F8F6B" } },
+          ]
+        : [
+            { text: "2024", left: 130, top: 6, textStyle: { fontSize: 13, fontWeight: 700, color: "#58779B" } },
+            { text: "2026", left: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: "#2F8F6B" } },
+          ],
+      grid: ar
+        ? [
+            { left: 90, right: 130, top: 30, height: 175 },
+            { left: 90, right: 130, top: 270, height: 175 },
+          ]
+        : [
+            { left: 130, right: 90, top: 30, height: 175 },
+            { left: 130, right: 90, top: 270, height: 175 },
+          ],
       tooltip: {
         formatter: (p) => {
           const params = p as unknown as {
@@ -76,7 +111,7 @@ export default function YearHeatmaps() {
             seriesName: string;
           };
           const [si, li, v] = params.value;
-          return `<strong>${STAGES[si]}</strong><br/>${LAYER_META[li].label}<br/>${params.seriesName}: <strong>${v}</strong> traced actors`;
+          return `<strong>${stageList(locale)[si]}</strong><br/>${layers(locale)[li].label}<br/>${params.seriesName}: <strong>${v}</strong> ${tr.tracedActors}`;
         },
       },
       visualMap: [
@@ -87,7 +122,7 @@ export default function YearHeatmaps() {
           max: maxVal,
           calculable: false,
           orient: "vertical",
-          right: 10,
+          ...(ar ? { left: 10 } : { right: 10 }),
           top: 40,
           itemHeight: 130,
           itemWidth: 12,
@@ -102,7 +137,7 @@ export default function YearHeatmaps() {
           max: maxVal,
           calculable: false,
           orient: "vertical",
-          right: 10,
+          ...(ar ? { left: 10 } : { right: 10 }),
           top: 280,
           itemHeight: 130,
           itemWidth: 12,
@@ -134,10 +169,10 @@ export default function YearHeatmaps() {
         },
       ],
     };
-  }, [data2024, data2026, maxVal]);
+  }, [data2024, data2026, maxVal, locale, ar, tr]);
 
-  const tableRows = LAYER_META.flatMap((layer) =>
-    STAGES.map((stage, i) => [
+  const tableRows = layers(locale).flatMap((layer) =>
+    stageList(locale).map((stage, i) => [
       layer.label,
       stage,
       countsFor(2024, layer.id)[i],
@@ -148,13 +183,16 @@ export default function YearHeatmaps() {
   return (
     <ChartFrame
       id="year-heatmaps"
-      title="Heat maps of traced presence: 2024 and 2026"
-      subtitle="Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Hover a cell for its value; the counts behind the whole figure are in its description."
-      caveat={CAUTION_COUNTS}
+      title={tr.title}
+      subtitle={tr.sub}
+      caveat={cautionCounts(locale)}
       chartRef={chartRef}
-      description="Two heat-map panels of traced actor counts across four actor layers and twelve value-chain stages: the 2024 panel shows community presence dominating downstream stages and the state concentrated in coordination; the 2026 panel shows community relief surging to 55, official reconstruction presence rising to 13, and municipal cells near zero throughout."
+      description={tableRows
+        .filter((r) => Number(r[2]) > 0 || Number(r[3]) > 0)
+        .map((r) => `${r[0]} · ${r[1]}: 2024 ${r[2]}, 2026 ${r[3]}`)
+        .join("; ")}
       table={{
-        caption: "Traced actor-stage presence by layer, stage and year.",
+        caption: tr.alt,
         headers: ["Actor layer", "Stage", "2024", "2026"],
         rows: tableRows,
       }}
@@ -162,7 +200,7 @@ export default function YearHeatmaps() {
       <EChart
         option={option}
         height={530}
-        ariaLabel="Heat maps of traced actor-stage presence for 2024 and 2026"
+        ariaLabel={tr.alt}
         onInit={(c) => {
           chartRef.current = c;
         }}

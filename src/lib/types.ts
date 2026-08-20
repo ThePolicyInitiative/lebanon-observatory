@@ -97,11 +97,13 @@ export type FinanceStatus =
 export type FinanceMetric = {
   id: string;
   label: string;
+  labelAr: string;
   amountUsd: number;
   status: FinanceStatus;
   pctOfNeed?: number;
   pctOfLoan?: number;
   note?: string;
+  noteAr?: string;
   date: string | null;
   geographicScope: string;
   owner?: string;
@@ -124,7 +126,9 @@ export type TimelineEvent = {
   id: string;
   date: string;
   label: string;
+  labelAr: string;
   detail: string;
+  detailAr: string;
   track: "conflict" | "data" | "state" | "finance" | "procurement";
   status: "completed" | "procurement" | "not_verified" | "context";
   sourceIds: string[];

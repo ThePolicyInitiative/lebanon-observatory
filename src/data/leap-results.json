@@ -1,88 +1,140 @@
 {
   "note": "LEAP results-framework targets versus the disclosed June 2026 results (ISR seq. 4) and appraisal baselines. Targets assume full US$1B framework financing.",
   "asOf": "2026-06-29",
-  "sourceIds": ["S1", "S2"],
+  "sourceIds": [
+    "S1",
+    "S2"
+  ],
   "indicators": [
     {
       "indicator": "Rubble sustainably managed",
       "target": "5,000,000 m³",
       "deadline": "Dec 2027",
       "resultJune2026": "0",
-      "status": "zero"
+      "status": "zero",
+      "indicatorAr": "أنقاض مُدارة بطريقة مستدامة",
+      "targetAr": "5,000,000 م³",
+      "deadlineAr": "كانون الأول 2027",
+      "resultJune2026Ar": "صفر"
     },
     {
       "indicator": "Rubble recycled",
       "target": "70%",
       "deadline": "Nov 2030",
       "resultJune2026": "0",
-      "status": "zero"
+      "status": "zero",
+      "indicatorAr": "أنقاض مُعاد تدويرها",
+      "targetAr": "70%",
+      "deadlineAr": "تشرين الثاني 2030",
+      "resultJune2026Ar": "صفر"
     },
     {
       "indicator": "Internationally compliant hazardous-material site",
       "target": "1 site",
       "deadline": "original target May 2026",
       "resultJune2026": "0",
-      "status": "zero"
+      "status": "zero",
+      "indicatorAr": "موقع مواد خطرة مطابق للمعايير الدولية",
+      "targetAr": "موقع واحد",
+      "deadlineAr": "الهدف الأصلي أيار 2026",
+      "resultJune2026Ar": "صفر"
     },
     {
       "indicator": "Compliant unrecyclable-material sites",
       "target": "6 sites",
       "deadline": "Nov 2026",
       "resultJune2026": "0",
-      "status": "zero"
+      "status": "zero",
+      "indicatorAr": "مواقع مطابقة للمواد غير القابلة للتدوير",
+      "targetAr": "6 مواقع",
+      "deadlineAr": "تشرين الثاني 2026",
+      "resultJune2026Ar": "صفر"
     },
     {
       "indicator": "Third-Party Monitoring Agent",
       "target": "contracted by CDR and operating",
       "deadline": "-",
       "resultJune2026": "under procurement, not operating",
-      "status": "process"
+      "status": "process",
+      "indicatorAr": "جهة رقابة من طرف ثالث",
+      "targetAr": "متعاقَد معها من مجلس الإنماء والإعمار وعاملة",
+      "deadlineAr": "-",
+      "resultJune2026Ar": "قيد الشراء، غير عاملة"
     },
     {
       "indicator": "Lender's Engineer (compliance due diligence)",
       "target": "engaged",
       "deadline": "-",
       "resultJune2026": "under procurement, not operating",
-      "status": "process"
+      "status": "process",
+      "indicatorAr": "مهندس المُقرِض (العناية الواجبة للامتثال)",
+      "targetAr": "مُتعاقَد معه",
+      "deadlineAr": "-",
+      "resultJune2026Ar": "قيد الشراء، غير عامل"
     },
     {
       "indicator": "Beneficiary-feedback mechanism",
       "target": "operational",
       "deadline": "Sep 2025",
       "resultJune2026": "'No' shown against the target date",
-      "status": "missed"
+      "status": "missed",
+      "indicatorAr": "آلية تلقّي ملاحظات المستفيدين",
+      "targetAr": "عاملة",
+      "deadlineAr": "أيلول 2025",
+      "resultJune2026Ar": "«لا» مقابل التاريخ المستهدف"
     },
     {
       "indicator": "Grievances addressed within service standards",
       "target": "95%",
       "deadline": "by closing (Dec 2030)",
       "resultJune2026": "GRM published; mechanism largely not yet operational",
-      "status": "process"
+      "status": "process",
+      "indicatorAr": "شكاوى مُعالَجة ضمن معايير الخدمة",
+      "targetAr": "95%",
+      "deadlineAr": "عند الإقفال (كانون الأول 2030)",
+      "resultJune2026Ar": "الآلية منشورة؛ لكنها غير عاملة إلى حد بعيد"
     },
     {
       "indicator": "Notice to signed works/goods contract",
       "target": "12 weeks",
       "deadline": "reform target",
       "resultJune2026": "baseline 56 weeks still displayed (dated 10 Sep 2025)",
-      "status": "baseline"
+      "status": "baseline",
+      "indicatorAr": "من الإعلان إلى توقيع عقد أشغال أو سلع",
+      "targetAr": "12 أسبوعاً",
+      "deadlineAr": "هدف إصلاحي",
+      "resultJune2026Ar": "خط الأساس 56 أسبوعاً ما زال معروضاً (بتاريخ 10 أيلول 2025)"
     },
     {
       "indicator": "Consultancy contracting time",
       "target": "18 weeks",
       "deadline": "reform target",
       "resultJune2026": "baseline 36 weeks still displayed",
-      "status": "baseline"
+      "status": "baseline",
+      "indicatorAr": "زمن التعاقد الاستشاري",
+      "targetAr": "18 أسبوعاً",
+      "deadlineAr": "هدف إصلاحي",
+      "resultJune2026Ar": "خط الأساس 36 أسبوعاً ما زال معروضاً"
     },
     {
       "indicator": "Final draft bidding papers to notice",
       "target": "2 weeks (via digitalisation in CDR)",
       "deadline": "reform target",
       "resultJune2026": "baseline 36 weeks still displayed",
-      "status": "baseline"
+      "status": "baseline",
+      "indicatorAr": "من المسودة النهائية لدفتر الشروط إلى الإعلان",
+      "targetAr": "أسبوعان (عبر الرقمنة في مجلس الإنماء والإعمار)",
+      "deadlineAr": "هدف إصلاحي",
+      "resultJune2026Ar": "خط الأساس 36 أسبوعاً ما زال معروضاً"
     }
   ],
   "footnotes": [
     "The appraisal estimated rubble reuse could save at least 62,000 tonnes of CO₂-equivalent versus disposal and new production - contingent on safe sorting, testing and actual reuse markets.",
     "The ≈3.76 million m³ of 2026-war debris in the assessed zones has no financed treatment programme attached: LEAP's scope does not extend to it."
+  ],
+  "noteAr": "أهداف إطار نتائج LEAP مقابل النتائج المعلنة في حزيران 2026 (تقرير حالة التنفيذ رقم 4) وخطوط أساس التقييم. الأهداف تفترض تمويلاً كاملاً لإطار المليار دولار.",
+  "footnotesAr": [
+    "قدَّر التقييم أن إعادة استعمال الأنقاض يمكن أن توفّر 62,000 طن على الأقل من مكافئ ثاني أكسيد الكربون مقارنة بالطمر والإنتاج الجديد - شرط الفرز الآمن والفحص ووجود أسواق فعلية لإعادة الاستعمال.",
+    "الـ3.76 مليون م³ تقريباً من ركام حرب 2026 في المناطق المقيَّمة لا يقابلها برنامج معالجة مموَّل: نطاق LEAP لا يمتد إليها."
   ]
 }

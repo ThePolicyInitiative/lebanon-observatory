@@ -106,3 +106,37 @@ export function statusList(locale: Locale): [string, string][] {
 export function comparabilityLabel(key: string, locale: Locale): string {
   return (locale === "ar" ? COMPARABILITY_AR[key] : COMPARABILITY_LABELS[key]) ?? key;
 }
+
+/**
+ * The two standing cautions. They are printed under many figures, so they
+ * live here beside the rest of the shared wording rather than in the
+ * data module, where only the English half could ever have lived.
+ */
+export function cautionCounts(locale: Locale): string {
+  return locale === "ar"
+    ? "الأعداد تقيس حضور جهة في مرحلة كما رُصد. وهي لا تقيس الإنفاق ولا الفاعلية ولا عدد المستفيدين ولا التغطية الجغرافية ولا الإنجاز المكتمل. كما أن معطيات 2026 تسمّي بعض الجهات الأهلية والتطوّعية بتفصيل أدق مما فعلت معطيات 2024."
+    : "Counts measure traced actor-stage presence. They do not measure expenditure, effectiveness, beneficiaries, geographic coverage or completed output. The 2026 data also identifies some community and volunteer actors more granularly than the 2024 data.";
+}
+
+export function cautionMap(locale: Locale): string {
+  return locale === "ar"
+    ? "الجغرافيا تُظهر أين رُصد النشاط، لا أين كان الدمار أو الحاجة أكبر. والتجمّعات الإقليمية تختلف في المساحة والسكان وكثافة الإبلاغ؛ وغياب علامة يعني غياب معطى، لا غياب دمار أبداً."
+    : "Geography shows where activity was traced, not where damage or need was greatest. Regional groupings differ in size, population and reporting intensity; absence of a marker means absence of data, never absence of damage.";
+}
+
+/** Stage groupings used by the actor role-mix comparison. */
+export function roleMixGroupLabels(locale: Locale): string[] {
+  return locale === "ar"
+    ? [
+        "الحوكمة والتقييم (المراحل 1-4)",
+        "تنفيذ الأشغال (المراحل 5-8)",
+        "العودة والتعافي (المراحل 9-11)",
+        "الرقابة (المرحلة 12)",
+      ]
+    : [
+        "Governance & assessment (stages 1–4)",
+        "Works delivery (stages 5–8)",
+        "Return & recovery (stages 9–11)",
+        "Oversight (stage 12)",
+      ];
+}

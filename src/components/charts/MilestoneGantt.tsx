@@ -1,19 +1,20 @@
 "use client";
 
 import ChartFrame from "./ChartFrame";
+import type { Locale } from "@/lib/vocab";
 
 /**
  * The road from cabinet request to 1.65% disbursed: elapsed days between
  * each LEAP milestone, drawn to scale.
  */
-const MILESTONES: { date: string; label: string }[] = [
-  { date: "2024-12-17", label: "Cabinet requests RDNA" },
-  { date: "2025-06-24", label: "Board approves US$250M loan" },
-  { date: "2025-08-25", label: "Loan agreement signed" },
-  { date: "2025-12-19", label: "Parliamentary ratification" },
-  { date: "2026-02-26", label: "LEAP effective" },
-  { date: "2026-05-13", label: "First disbursement" },
-  { date: "2026-06-29", label: "US$4.13M disbursed (1.65%)" },
+const MILESTONES: { date: string; label: string; labelAr: string }[] = [
+  { date: "2024-12-17", label: "Cabinet requests RDNA", labelAr: "مجلس الوزراء يطلب تقييم RDNA" },
+  { date: "2025-06-24", label: "Board approves US$250M loan", labelAr: "المجلس يقرّ قرض 250 مليون دولار" },
+  { date: "2025-08-25", label: "Loan agreement signed", labelAr: "توقيع اتفاقية القرض" },
+  { date: "2025-12-19", label: "Parliamentary ratification", labelAr: "الإبرام في مجلس النواب" },
+  { date: "2026-02-26", label: "LEAP effective", labelAr: "نفاذ مشروع LEAP" },
+  { date: "2026-05-13", label: "First disbursement", labelAr: "أول دفعة" },
+  { date: "2026-06-29", label: "US$4.13M disbursed (1.65%)", labelAr: "دفع 4.13 مليون دولار (1.65%)" },
 ];
 
 const SEGMENT_COLORS = ["#58779B", "#6E8AA8", "#8496AF", "#9AA9BD", "#B0BCCB", "#BD5A46"];
@@ -22,7 +23,26 @@ function days(a: string, b: string): number {
   return Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000);
 }
 
-export default function MilestoneGantt() {
+const T = {
+  en: {
+    days: (n: number) => `${n} days from cabinet request to 1.65% disbursed`,
+    sub: "Elapsed time between each LEAP milestone, drawn to scale. Every institutional step - approval, signing, ratification, effectiveness - consumed months while destruction accumulated.",
+    caveat: "Milestone dates from the tracked timeline; the 2026 war began on 2 March 2026, four days after LEAP became effective. Elapsed time measures institutional sequence, not fault: each step has its own legal prerequisites.",
+    days_: (n: number) => `${n} days`,
+    bar: (n: number) => `Proportional bar of ${n} days across six milestone intervals`,
+  },
+  ar: {
+    days: (n: number) => `${n} يوماً من طلب مجلس الوزراء إلى دفع 1.65%`,
+    sub: "الزمن المنقضي بين كل محطة من محطات LEAP، مرسوماً بالمقياس. كل خطوة مؤسسية - الإقرار والتوقيع والإبرام والنفاذ - استهلكت شهوراً بينما كان الدمار يتراكم.",
+    caveat: "تواريخ المحطات من الجدول الزمني المتتبَّع؛ وحرب 2026 بدأت في 2 آذار 2026، أي بعد أربعة أيام من نفاذ LEAP. الزمن المنقضي يقيس التسلسل المؤسسي لا الخطأ: لكل خطوة شروطها القانونية المسبقة.",
+    days_: (n: number) => `${n} يوماً`,
+    bar: (n: number) => `شريط متناسب يمثّل ${n} يوماً موزّعة على ستة فواصل بين المحطات`,
+  },
+} as const;
+
+export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
+  const name = (m: (typeof MILESTONES)[number]) => (locale === "ar" ? m.labelAr : m.label);
   const segments = MILESTONES.slice(0, -1).map((m, i) => ({
     from: m,
     to: MILESTONES[i + 1],
@@ -33,21 +53,21 @@ export default function MilestoneGantt() {
   return (
     <ChartFrame
       id="milestone-gantt"
-      title={`${totalDays} days from cabinet request to 1.65% disbursed`}
-      subtitle="Elapsed time between each LEAP milestone, drawn to scale. Every institutional step - approval, signing, ratification, effectiveness - consumed months while destruction accumulated."
-      caveat="Milestone dates from the tracked timeline; the 2026 war began on 2 March 2026, four days after LEAP became effective. Elapsed time measures institutional sequence, not fault: each step has its own legal prerequisites."
-      description={`Timeline segments: ${segments.map((s) => `${s.from.label} to ${s.to.label}: ${s.days} days`).join("; ")}. Total ${totalDays} days.`}
+      title={tr.days(totalDays)}
+      subtitle={tr.sub}
+      caveat={tr.caveat}
+      description={`${segments.map((s) => `${name(s.from)} → ${name(s.to)}: ${tr.days_(s.days)}`).join("; ")}. ${tr.days_(totalDays)}.`}
       table={{
         caption: "Elapsed days between LEAP milestones.",
         headers: ["From", "To", "Date reached", "Days elapsed"],
-        rows: segments.map((s) => [s.from.label, s.to.label, s.to.date, s.days]),
+        rows: segments.map((s) => [name(s.from), name(s.to), s.to.date, s.days]),
       }}
     >
       <div>
         <div
           className="flex h-9 w-full overflow-hidden rounded-md"
           role="img"
-          aria-label={`Proportional bar of ${totalDays} days across six milestone intervals`}
+          aria-label={tr.bar(totalDays)}
         >
           {segments.map((s, i) => (
             <div
@@ -57,9 +77,9 @@ export default function MilestoneGantt() {
                 width: `${(s.days / totalDays) * 100}%`,
                 background: SEGMENT_COLORS[i],
               }}
-              title={`${s.from.label} → ${s.to.label}: ${s.days} days`}
+              title={`${name(s.from)} → ${name(s.to)}: ${tr.days_(s.days)}`}
             >
-              {s.days >= 40 ? `${s.days}d` : ""}
+              {s.days >= 40 ? s.days : ""}
             </div>
           ))}
         </div>
@@ -72,8 +92,8 @@ export default function MilestoneGantt() {
                 style={{ background: SEGMENT_COLORS[i] }}
               />
               <span>
-                <strong className="text-[color:var(--color-navy)]">{s.days} days</strong>{" "}
-                - {s.from.label} → {s.to.label}{" "}
+                <strong className="text-[color:var(--color-navy)]">{tr.days_(s.days)}</strong>{" "}
+                - {name(s.from)} → {name(s.to)}{" "}
                 <span className="tabular-nums">({s.to.date})</span>
               </span>
             </li>

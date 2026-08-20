@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
+import type { Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
@@ -8,6 +9,8 @@ import { finance } from "@/lib/data-client";
 
 type Component = {
   label: string;
+  labelAr: string;
+  shortAr: string;
   initialUsd: number;
   appraisedUsd: number;
   note?: string;
@@ -15,24 +18,54 @@ type Component = {
 
 /** LEAP's component allocations: initial US$250M loan versus the appraised
  * US$1B framework. */
-export default function LeapComponentsChart() {
+const T = {
+  en: {
+    title: "Where LEAP's money is meant to go",
+    sub: "Component allocations of the initial US$250 million loan (light blue) against the appraised US$1 billion framework (navy).",
+    caveat:
+      "Reconstruction works deliberately received no initial allocation - works need preparation first - so the framework's largest component is entirely unfunded until additional financing arrives. Allocation is not disbursement: by 29 June 2026, 1.65% of the loan had been disbursed.",
+    axis: "US$ million",
+    initial: "Initial US$250M loan",
+    appraised: "Appraised US$1B framework",
+    unit: (v: number) => `US$${v} million`,
+    alt: "Grouped bar chart of LEAP component allocations, initial loan versus appraised framework",
+  },
+  ar: {
+    title: "إلى أين يُفترض أن يذهب مال LEAP",
+    sub: "توزيع مكوّنات القرض الأولي البالغ 250 مليون دولار (أزرق فاتح) مقابل الإطار المقدَّر بمليار دولار (كحلي).",
+    caveat:
+      "أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد - فالأشغال تحتاج تحضيراً أولاً - ولذلك يبقى أكبر مكوّنات الإطار بلا تمويل إلى أن يصل تمويل إضافي. والتخصيص ليس دفعاً: حتى 29 حزيران 2026 كان قد دُفع 1.65% من القرض.",
+    axis: "مليون دولار",
+    initial: "القرض الأولي 250 مليون دولار",
+    appraised: "الإطار المقدَّر بمليار دولار",
+    unit: (v: number) => `${v} مليون دولار`,
+    alt: "رسم أعمدة مجمّعة لتوزيع مكوّنات LEAP، القرض الأولي مقابل الإطار المقدَّر",
+  },
+} as const;
+
+export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const components = finance.leapComponents as Component[];
 
   const option = useMemo<EChartsOption>(() => {
     const cats = [...components].reverse();
-    const short = (l: string) => l.split("(")[0].trim();
+    const short = (c: Component) =>
+      locale === "ar" ? c.shortAr : c.label.split("(")[0].trim();
     return {
-      grid: { left: 165, right: 76, top: 34, bottom: 40 },
+      grid: locale === "ar"
+        ? { left: 76, right: 165, top: 34, bottom: 40 }
+        : { left: 165, right: 76, top: 34, bottom: 40 },
       legend: { top: 0, textStyle: { fontSize: 11 } },
       tooltip: {
         trigger: "axis",
         axisPointer: { type: "shadow" },
-        valueFormatter: (v) => `US$${Number(v ?? 0) / 1e6} million`,
+        valueFormatter: (v) => tr.unit(Number(v ?? 0) / 1e6),
       },
       xAxis: {
         type: "value",
-        name: "US$ million",
+        inverse: locale === "ar",
+        name: tr.axis,
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -42,35 +75,36 @@ export default function LeapComponentsChart() {
       },
       yAxis: {
         type: "category",
-        data: cats.map((c) => short(c.label)),
+        position: locale === "ar" ? "right" : "left",
+        data: cats.map(short),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11, width: 150, overflow: "break" },
       },
       series: [
         {
-          name: "Initial US$250M loan",
+          name: tr.initial,
           type: "bar",
           data: cats.map((c) => c.initialUsd),
           itemStyle: { color: "#58779B", borderRadius: 2 },
           barMaxWidth: 13,
           label: {
             show: true,
-            position: "right",
+            position: locale === "ar" ? "left" : "right",
             fontSize: 10,
             color: "#263645",
             formatter: (p) => `$${(Number((p as { value: number }).value) / 1e6).toFixed(0)}M`,
           },
         },
         {
-          name: "Appraised US$1B framework",
+          name: tr.appraised,
           type: "bar",
           data: cats.map((c) => c.appraisedUsd),
           itemStyle: { color: "#173B63", borderRadius: 2 },
           barMaxWidth: 13,
           label: {
             show: true,
-            position: "right",
+            position: locale === "ar" ? "left" : "right",
             fontSize: 10,
             color: "#263645",
             formatter: (p) => `$${(Number((p as { value: number }).value) / 1e6).toFixed(0)}M`,
@@ -78,21 +112,26 @@ export default function LeapComponentsChart() {
         },
       ],
     };
-  }, [components]);
+  }, [components, locale, tr]);
 
   return (
     <ChartFrame
       id="leap-components"
-      title="Where LEAP's money is meant to go"
-      subtitle="Component allocations of the initial US$250 million loan (light blue) against the appraised US$1 billion framework (navy)."
-      caveat="Reconstruction works deliberately received no initial allocation - works need preparation first - so the framework's largest component is entirely unfunded until additional financing arrives. Allocation is not disbursement: by 29 June 2026, 1.65% of the loan had been disbursed."
+      title={tr.title}
+      subtitle={tr.sub}
+      caveat={tr.caveat}
       chartRef={chartRef}
-      description={`Grouped horizontal bars of LEAP component allocations: ${components.map((c) => `${c.label.split("(")[0].trim()} US$${c.initialUsd / 1e6}M initial versus US$${c.appraisedUsd / 1e6}M appraised`).join("; ")}.`}
+      description={components
+        .map(
+          (c) =>
+            `${locale === "ar" ? c.shortAr : c.label.split("(")[0].trim()}: ${tr.unit(c.initialUsd / 1e6)} / ${tr.unit(c.appraisedUsd / 1e6)}`,
+        )
+        .join("; ")}
       table={{
-        caption: "LEAP component allocations in US$ million.",
-        headers: ["Component", "Initial US$250M loan", "Appraised US$1B framework", "Note"],
+        caption: tr.axis,
+        headers: ["Component", tr.initial, tr.appraised, "Note"],
         rows: components.map((c) => [
-          c.label,
+          locale === "ar" ? c.labelAr : c.label,
           c.initialUsd / 1e6,
           c.appraisedUsd / 1e6,
           c.note ?? "",
@@ -102,7 +141,7 @@ export default function LeapComponentsChart() {
       <EChart
         option={option}
         height={330}
-        ariaLabel="Grouped bar chart of LEAP component allocations, initial loan versus appraised framework"
+        ariaLabel={tr.alt}
         onInit={(c) => {
           chartRef.current = c;
         }}

@@ -4,36 +4,67 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { LAYER_META, YEAR_COLORS } from "@/lib/colors";
-import { ROLE_MIX_GROUPS, roleMixFor, CAUTION_COUNTS } from "@/lib/data-client";
-
-const GROUP_SHORT = ["Governance & assessment", "Works delivery", "Return & recovery", "Oversight"];
+import { YEAR_COLORS } from "@/lib/colors";
+import { roleMixFor } from "@/lib/data-client";
+import {
+  cautionCounts,
+  layers,
+  roleMixGroupLabels,
+  type Locale,
+} from "@/lib/vocab";
 
 /**
  * Visual 4 - Actor role-mix comparison. For each layer, the share of its
  * traced presence in governance/data (stages 1–4), works delivery
  * (5–8), return & recovery (9–11) and oversight (12), 2024 vs 2026.
  */
-export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boolean } = {}) {
+const T = {
+  en: {
+    title: "Where each actor layer's traced presence sat in the chain",
+    sub: "Share of each layer's traced presence by chain segment, 2024 vs 2026. Percentages are within-layer compositions; layer sizes differ.",
+    short: ["Governance & assessment", "Works delivery", "Return & recovery", "Oversight"],
+    alt: "Role-mix comparison across actor layers",
+  },
+  ar: {
+    title: "أين وقع الحضور المرصود لكل طبقة جهات داخل السلسلة",
+    sub: "حصة الحضور المرصود لكل طبقة بحسب مقطع السلسلة، 2024 مقابل 2026. النسب تركيبة داخل الطبقة نفسها، وأحجام الطبقات متفاوتة.",
+    short: ["الحوكمة والتقييم", "تنفيذ الأشغال", "العودة والتعافي", "الرقابة"],
+    alt: "مقارنة مزيج الأدوار بين طبقات الجهات",
+  },
+} as const;
+
+export default function RoleMixChart({
+  showCaveat = true,
+  locale = "en",
+}: { showCaveat?: boolean; locale?: Locale } = {}) {
+  const tr = T[locale];
+  const ar = locale === "ar";
+  const LAYER_META = layers(locale);
+  const GROUP_SHORT = [...tr.short];
   const chartRef = useRef<ECharts | null>(null);
 
   const option = useMemo<EChartsOption>(() => {
+    // In Arabic the two columns read right to left, so the first panel of
+    // each row sits on the right and the axis labels move with it.
+    const near = ar ? "right" : "left";
+    const far = ar ? "left" : "right";
     const grids = LAYER_META.map((_, i) => ({
-      left: i % 2 === 0 ? "7%" : "56%",
-      right: i % 2 === 0 ? "50%" : "3%",
+      [near]: i % 2 === 0 ? "7%" : "56%",
+      [far]: i % 2 === 0 ? "50%" : "3%",
       top: i < 2 ? 60 : 300,
       height: 170,
     }));
     const titles = LAYER_META.map((l, i) => ({
       text: l.label,
       textStyle: { fontSize: 12.5, fontWeight: 600 as const, color: l.color },
-      left: i % 2 === 0 ? "7%" : "56%",
+      [near]: i % 2 === 0 ? "7%" : "56%",
       top: i < 2 ? 28 : 268,
     }));
     const xAxes = LAYER_META.map((_, i) => ({
       gridIndex: i,
       type: "category" as const,
       data: GROUP_SHORT,
+      inverse: ar,
       axisLabel: { fontSize: 9.5, interval: 0, rotate: 18 },
       axisTick: { show: false },
       axisLine: { lineStyle: { color: "#DCE3EA" } },
@@ -42,6 +73,7 @@ export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boole
       gridIndex: i,
       type: "value" as const,
       max: 100,
+      position: ar ? ("right" as const) : ("left" as const),
       axisLabel: { formatter: "{value}%", fontSize: 10 },
       splitLine: { lineStyle: { color: "#EDF0F4" } },
     }));
@@ -86,14 +118,14 @@ export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boole
       yAxis: yAxes,
       series,
     };
-  }, []);
+  }, [ar, LAYER_META, GROUP_SHORT]);
 
   const tableRows = LAYER_META.flatMap((layer) => {
     const mix24 = roleMixFor(2024, layer.id);
     const mix26 = roleMixFor(2026, layer.id);
-    return ROLE_MIX_GROUPS.map((g, i) => [
+    return roleMixGroupLabels(locale).map((group, i) => [
       layer.label,
-      g.label,
+      group,
       `${mix24[i].pct.toFixed(1)}% (${mix24[i].value})`,
       `${mix26[i].pct.toFixed(1)}% (${mix26[i].value})`,
     ]);
@@ -102,15 +134,16 @@ export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boole
   return (
     <ChartFrame
       id="role-mix"
-      title="Where each actor layer's traced presence sat in the chain"
-      subtitle="Share of each layer's traced presence by chain segment, 2024 vs 2026. Percentages are within-layer compositions; layer sizes differ."
-      caveat={showCaveat ? CAUTION_COUNTS : undefined}
+      title={tr.title}
+      subtitle={tr.sub}
+      caveat={showCaveat ? cautionCounts(locale) : undefined}
       sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
-      description="Four small-multiple bar panels, one per actor layer, comparing the share of traced presence in governance and data, works delivery, return and recovery, and oversight between 2024 and 2026."
+      description={tableRows
+        .map((r) => `${r[0]} - ${r[1]}: 2024 ${r[2]}, 2026 ${r[3]}`)
+        .join("; ")}
       table={{
-        caption:
-          "Role mix by actor layer, chain segment and year - percentage of layer presence (traced count).",
+        caption: tr.alt,
         headers: ["Actor layer", "Segment", "2024", "2026"],
         rows: tableRows,
       }}
@@ -118,7 +151,7 @@ export default function RoleMixChart({ showCaveat = true }: { showCaveat?: boole
       <EChart
         option={option}
         height={520}
-        ariaLabel="Role-mix comparison across actor layers"
+        ariaLabel={tr.alt}
         onInit={(c) => {
           chartRef.current = c;
         }}
