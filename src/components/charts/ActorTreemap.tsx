@@ -1,5 +1,6 @@
 import { LAYER_META } from "@/lib/colors";
 import type { Locale } from "@/lib/vocab";
+import { actorBase, actorLabel } from "@/lib/actor-names";
 import { roleRecords } from "@/lib/data";
 import type { ActorLayer, Year } from "@/lib/types";
 import ActorTreemapChart, { type TreemapYear } from "./ActorTreemapChart";
@@ -15,11 +16,11 @@ import ActorTreemapChart, { type TreemapYear } from "./ActorTreemapChart";
  * shipping the whole register to produce one integer per actor.
  */
 
-function countYear(year: Year): TreemapYear {
+function countYear(year: Year, locale: Locale): TreemapYear {
   const byLayer = new Map<ActorLayer, Map<string, number>>();
   for (const r of roleRecords) {
     if (r.year !== year) continue;
-    const actor = r.actorName.split(":")[0].trim();
+    const actor = actorLabel(actorBase(r.actorName), locale);
     if (!byLayer.has(r.actorLayer)) byLayer.set(r.actorLayer, new Map());
     const m = byLayer.get(r.actorLayer)!;
     m.set(actor, (m.get(actor) ?? 0) + 1);
@@ -33,8 +34,12 @@ function countYear(year: Year): TreemapYear {
   };
 }
 
-const DATA: TreemapYear[] = [countYear(2024), countYear(2026)];
+/** Built once per language, at module scope, not per render. */
+const DATA: Record<Locale, TreemapYear[]> = {
+  en: [countYear(2024, "en"), countYear(2026, "en")],
+  ar: [countYear(2024, "ar"), countYear(2026, "ar")],
+};
 
 export default function ActorTreemap({ locale = "en" }: { locale?: Locale } = {}) {
-  return <ActorTreemapChart data={DATA} locale={locale} />;
+  return <ActorTreemapChart data={DATA[locale]} locale={locale} />;
 }

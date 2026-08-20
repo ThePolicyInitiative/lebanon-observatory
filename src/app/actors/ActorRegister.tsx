@@ -1,6 +1,13 @@
 import { roleRecords } from "@/lib/data";
 import RegisterList, { type RegisterGroup } from "./RegisterList";
 import type { Locale } from "@/lib/vocab";
+import {
+  actorBase,
+  actorLabel,
+  actorPeople,
+  peopleLabel,
+  subtypeLabel,
+} from "@/lib/actor-names";
 
 const HEAD = {
   en: {
@@ -23,17 +30,18 @@ const HEAD = {
  * regions and function columns stay here.
  */
 
+/** The key travels; RegisterList prints it in the reader's language. */
 const ROLE_FIELDS = [
   ["financingRole", "finance"],
   ["procurementRole", "procurement"],
   ["implementationRole", "implementation"],
   ["oversightRole", "oversight"],
-] as const;
+] as const satisfies readonly (readonly [string, string])[];
 
-function buildGroups(): RegisterGroup[] {
+function buildGroups(locale: Locale): RegisterGroup[] {
   const byBase = new Map<string, typeof roleRecords>();
   for (const r of roleRecords) {
-    const base = r.actorName.split(":")[0].trim();
+    const base = actorBase(r.actorName);
     if (!byBase.has(base)) byBase.set(base, []);
     byBase.get(base)!.push(r);
   }
@@ -41,14 +49,14 @@ function buildGroups(): RegisterGroup[] {
     .map(([base, records]) => {
       const people =
         records
-          .map((r) => r.actorName.split(":").slice(1).join(":").trim())
+          .map((r) => actorPeople(r.actorName))
           .filter(Boolean)
           .sort((a, b) => b.length - a.length)[0] ?? "";
       const sorted = [...records].sort((a, b) => a.year - b.year || a.stageNo - b.stageNo);
       return {
-        base,
-        people,
-        subtype: records[0].actorSubtype ?? "",
+        base: actorLabel(base, locale),
+        people: peopleLabel(people, locale),
+        subtype: subtypeLabel(records[0].actorSubtype ?? "", locale),
         layer: records[0].actorLayer,
         y24: records.filter((r) => r.year === 2024).length,
         y26: records.filter((r) => r.year === 2026).length,
@@ -69,7 +77,11 @@ function buildGroups(): RegisterGroup[] {
     .sort((a, b) => b.records.length - a.records.length);
 }
 
-const ALL_GROUPS = buildGroups();
+/** Built once per language, at module scope, not per render. */
+const ALL_GROUPS: Record<Locale, RegisterGroup[]> = {
+  en: buildGroups("en"),
+  ar: buildGroups("ar"),
+};
 
 export default function ActorRegister({ locale = "en" }: { locale?: Locale } = {}) {
   const h = HEAD[locale];
@@ -81,7 +93,7 @@ export default function ActorRegister({ locale = "en" }: { locale?: Locale } = {
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         {h.lede}
       </p>
-      <RegisterList allGroups={ALL_GROUPS} locale={locale} />
+      <RegisterList allGroups={ALL_GROUPS[locale]} locale={locale} />
     </section>
   );
 }

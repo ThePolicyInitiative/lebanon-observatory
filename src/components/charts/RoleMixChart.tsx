@@ -40,10 +40,10 @@ export default function RoleMixChart({
   const tr = T[locale];
   const ar = locale === "ar";
   const LAYER_META = layers(locale);
-  const GROUP_SHORT = [...tr.short];
   const chartRef = useRef<ECharts | null>(null);
 
   const option = useMemo<EChartsOption>(() => {
+    const GROUP_SHORT = [...tr.short];
     // In Arabic the two columns read right to left, so the first panel of
     // each row sits on the right and the axis labels move with it.
     const near = ar ? "right" : "left";
@@ -118,7 +118,7 @@ export default function RoleMixChart({
       yAxis: yAxes,
       series,
     };
-  }, [ar, LAYER_META, GROUP_SHORT]);
+  }, [ar, tr, LAYER_META]);
 
   const tableRows = LAYER_META.flatMap((layer) => {
     const mix24 = roleMixFor(2024, layer.id);

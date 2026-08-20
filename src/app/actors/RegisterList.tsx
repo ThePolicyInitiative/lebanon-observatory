@@ -18,6 +18,12 @@ const T = {
     seeMap: "see on the map →",
     none: "No actors match the current filters.",
     stages: (n: number) => `${n} stage${n === 1 ? "" : "s"}`,
+    roles: {
+      finance: "finance",
+      procurement: "procurement",
+      implementation: "implementation",
+      oversight: "oversight",
+    } as Record<string, string>,
   },
   ar: {
     search: "ابحث في الجهات والأفعال",
@@ -31,6 +37,12 @@ const T = {
     seeMap: "على الخريطة →",
     none: "لا جهة تطابق الترشيح الحالي.",
     stages: (n: number) => `${n} مرحلة`,
+    roles: {
+      finance: "تمويل",
+      procurement: "شراء",
+      implementation: "تنفيذ",
+      oversight: "رقابة",
+    } as Record<string, string>,
   },
 } as const;
 
@@ -63,7 +75,7 @@ export type RegisterRecord = {
   locationNames: string[];
   /** tracedAction, or the summary where an entry has no action text. */
   action: string;
-  /** Which function roles the entry carries, as the labels shown. */
+  /** Which function roles the entry carries, as keys into the locale table. */
   roles: string[];
 };
 
@@ -258,12 +270,12 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                         >
                           {statusLabel(r.implementationStatus, locale)}
                         </span>
-                        {r.roles.map((label) => (
+                        {r.roles.map((key) => (
                           <span
-                            key={label}
+                            key={key}
                             className="rounded-sm bg-[#F4EAF0] px-1.5 py-0.5 text-[color:var(--color-magenta)]"
                           >
-                            {label}
+                            {t.roles[key] ?? key}
                           </span>
                         ))}
                       </p>

@@ -2,6 +2,7 @@ import { roleRecords } from "@/lib/data";
 import MatrixTables, { type MatrixRow, type YearMatrixData } from "./MatrixTables";
 import type { Year } from "@/lib/types";
 import type { Locale } from "@/lib/vocab";
+import { actorBase, actorLabel } from "@/lib/actor-names";
 
 const HEAD = {
   en: {
@@ -24,11 +25,11 @@ const HEAD = {
  * never shows - to produce 24kb of counts.
  */
 
-function buildYear(year: Year): MatrixRow[] {
+function buildYear(year: Year, locale: Locale): MatrixRow[] {
   const byBase = new Map<string, MatrixRow>();
   for (const r of roleRecords) {
     if (r.year !== year) continue;
-    const base = r.actorName.split(":")[0].trim();
+    const base = actorLabel(actorBase(r.actorName), locale);
     if (!byBase.has(base)) {
       byBase.set(base, {
         base,
@@ -44,10 +45,17 @@ function buildYear(year: Year): MatrixRow[] {
   return [...byBase.values()];
 }
 
-const MATRICES: YearMatrixData[] = [
-  { year: 2024, rows: buildYear(2024) },
-  { year: 2026, rows: buildYear(2026) },
-];
+/** Built once per language, at module scope, not per render. */
+const MATRICES: Record<Locale, YearMatrixData[]> = {
+  en: [
+    { year: 2024, rows: buildYear(2024, "en") },
+    { year: 2026, rows: buildYear(2026, "en") },
+  ],
+  ar: [
+    { year: 2024, rows: buildYear(2024, "ar") },
+    { year: 2026, rows: buildYear(2026, "ar") },
+  ],
+};
 
 export default function ActorStageMatrix({ locale = "en" }: { locale?: Locale } = {}) {
   const h = HEAD[locale];
@@ -62,7 +70,7 @@ export default function ActorStageMatrix({ locale = "en" }: { locale?: Locale } 
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
         {h.lede}
       </p>
-      <MatrixTables matrices={MATRICES} locale={locale} />
+      <MatrixTables matrices={MATRICES[locale]} locale={locale} />
     </section>
   );
 }
