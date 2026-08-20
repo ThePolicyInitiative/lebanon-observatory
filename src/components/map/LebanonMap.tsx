@@ -657,10 +657,6 @@ export default function LebanonMap() {
             {renderMode === "gl" && mapView === "entries" ? (
               <MapLegend />
             ) : null}
-            <p className="text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              The groupings below are not mappable to a single governorate, so
-              they are shown separately rather than invented onto the map.
-            </p>
             {nonMappable.map((r) => {
               const m = mentionsFor(year, r.id);
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;

@@ -1687,17 +1687,6 @@ export default function SvgLebanonMap({
               </>
             ) : null}
           </ul>
-          <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            Scroll, drag or use the buttons to zoom and pan; district names
-            appear from ×1.8 zoom, marker labels from ×2.2.
-            {view === "entries"
-              ? " Every marker sits at the actual town where the entry or episode is traced (place-name matching across transliteration variants, anchored at the town polygon's centroid). Entries naming only a district shade the backdrop; entries citing only a region stay in the zone totals shown in the panel. Counts measure traced presence, not performance."
-              : view === "change"
-                ? " Colour compares located traced activities per district between the two years under the current layer, stage and status filters. A rise means more traced presence in the tracking - not more delivery, spending or coverage."
-                : view === "survey"
-                  ? " Colour is the number of housing units municipalities themselves reported damaged in the December 2024 survey - the fastest national damage assessments the response produced, gathered in ten days on local knowledge."
-                  : null}
-          </p>
           {view === "survey" ? (
             <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
               Municipal declaration, not engineering assessment:{" "}
@@ -1728,18 +1717,6 @@ export default function SvgLebanonMap({
               real-time national database traced heavy strikes nationwide,
               and the Bekaa, Baalbek-Hermel and the North had no equivalent
               assessment.
-            </p>
-          ) : null}
-          {showOccupation ? (
-            <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Occupation marking is indicative: the reporting shows occupied
-              border villages and an expanded occupation zone demarcated on 18
-              June 2026, but publishes no precise boundary geometry. Hatching
-              therefore marks the strip of towns whose land reaches the Blue
-              Line (derived from the boundary data, including those behind
-              the disputed Ghajar–Shebaa and Metula-adjacent slivers) - the
-              closest honest shape to the traced occupation, not its exact
-              extent.
             </p>
           ) : null}
         </div>
