@@ -44,13 +44,18 @@ import MapLegend from "./MapLegend";
 
 /**
  * Fan geometry, in screen pixels. Nearest-neighbour distance on the
- * spiral is exactly PIN_SPACING, so it has to clear the pin's outer
- * diameter: 2 x (radius + outline) = 5.7, leaving a 1.3px lane of ground
- * between neighbours. The old 5.4 against a 6.7 diameter overlapped.
+ * spiral is exactly PIN_SPACING, so it has to clear the pin's drawn
+ * diameter of 2 x (radius + half the outline) = 7.4, leaving a 1.6px lane
+ * of ground between neighbours.
+ *
+ * PIN_HIT is half the spacing, so the invisible hit circles tile the fan
+ * exactly: every point belongs to its nearest pin, with no dead ground
+ * between targets and no two targets fighting over a click.
  */
-const PIN_SPACING = 7;
-const PIN_R = 2.4;
-const PIN_STROKE = 0.9;
+const PIN_SPACING = 9;
+const PIN_R = 3.2;
+const PIN_STROKE = 1;
+const PIN_HIT = PIN_SPACING / 2;
 
 const PIN_T = {
   en: {
@@ -1194,7 +1199,7 @@ export default function SvgLebanonMap({
                         tabIndex={0}
                         role="button"
                         aria-label={label}
-                        className="cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
+                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
                         onClick={() => {
                           setOpenPin(pin);
                           selectTown(pin.town);
@@ -1215,13 +1220,20 @@ export default function SvgLebanonMap({
                           }
                         }}
                       >
+                        {/* The target, invisible and wider than the dot. */}
+                        <circle r={PIN_HIT} fill="transparent" />
                         {/* An episode is a ring, an entry a solid dot -
-                            distinguishable without relying on colour. */}
+                            distinguishable without relying on colour. The
+                            dot grows under the pointer and on keyboard
+                            focus, so the target being hit is never in
+                            doubt. */}
                         <circle
                           r={rp}
                           fill={pin.kind === "episode" ? "#FFFFFF" : pin.color}
                           stroke={pin.kind === "episode" ? pin.color : edge}
                           strokeWidth={pin.kind === "episode" ? PIN_STROKE * 2 : PIN_STROKE}
+                          className="pointer-events-none transition-transform duration-100 group-hover/pin:scale-150 group-focus-visible/pin:scale-150"
+                          style={{ transformBox: "fill-box", transformOrigin: "center" }}
                         />
                         <title>{label}</title>
                       </g>

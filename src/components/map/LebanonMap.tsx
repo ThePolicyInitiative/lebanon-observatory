@@ -319,6 +319,16 @@ export default function LebanonMap() {
             data: { type: "FeatureCollection", features: [] },
           });
           map.addLayer({
+            id: "locality-hit",
+            type: "circle",
+            source: "localities",
+            paint: {
+              "circle-color": "#000000",
+              "circle-opacity": 0.01,
+              "circle-radius": 12,
+            },
+          });
+          map.addLayer({
             id: "locality-circles",
             type: "circle",
             source: "localities",
@@ -366,7 +376,7 @@ export default function LebanonMap() {
             map.getCanvas().style.cursor = "";
           });
 
-          map.on("click", "locality-circles", (e: MapLayerMouseEvent) => {
+          map.on("click", "locality-hit", (e: MapLayerMouseEvent) => {
             const f = e.features?.[0];
             if (!f) return;
             const html = f.properties?.popupHtml as string;
@@ -375,10 +385,10 @@ export default function LebanonMap() {
               .setHTML(html)
               .addTo(map);
           });
-          map.on("mouseenter", "locality-circles", () => {
+          map.on("mouseenter", "locality-hit", () => {
             map.getCanvas().style.cursor = "pointer";
           });
-          map.on("mouseleave", "locality-circles", () => {
+          map.on("mouseleave", "locality-hit", () => {
             map.getCanvas().style.cursor = "";
           });
 
@@ -476,7 +486,7 @@ export default function LebanonMap() {
             },
             properties: {
               name,
-              radius: 4.5,
+              radius: 6,
               // An episode is a ring, an entry a solid dot - the same
               // distinction the vector map draws.
               color: pin.kind === "episode" ? "#FFFFFF" : pin.color,

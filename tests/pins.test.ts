@@ -9,7 +9,7 @@ import {
   layerColor,
   pinOutline,
 } from "@/lib/pins";
-import { featureCentroid, isOnLand, projectPoint, unprojectPoint, type GeoFeature } from "@/lib/geo";
+import { featureCentroid, projectPoint, type GeoFeature } from "@/lib/geo";
 import { buildLandIndex, isOnLandIndexed } from "@/lib/land";
 import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
 import { slimRecords } from "@/lib/map-records";
@@ -44,7 +44,7 @@ function pinsFor(year: 2024 | 2026) {
     townDistrict,
     year,
     locale: "en",
-    spacing: 7,
+    spacing: 9,
   });
 }
 
@@ -106,16 +106,37 @@ describe("map pins", () => {
    * measurable without looking at it.
    */
   it("keeps a lane of ground between neighbouring pins", () => {
-    // Mirrors SvgLebanonMap: spacing 7, radius 2.4, outline 0.9.
-    const SPACING = 7;
-    const OUTER = 2.4 + 0.9;
+    // Mirrors SvgLebanonMap: spacing 9, radius 3.2, outline 1.
+    const SPACING = 9;
+    const DRAWN = 3.2 + 1 / 2;
     for (const n of [2, 5, 13, 24, 40, 60]) {
       const pts = Array.from({ length: n }, (_, i) => fanOffset(i, SPACING));
       let nearest = Infinity;
       for (let i = 0; i < n; i++)
         for (let j = i + 1; j < n; j++)
           nearest = Math.min(nearest, Math.hypot(pts[i].dx - pts[j].dx, pts[i].dy - pts[j].dy));
-      expect(nearest, `${n} pins overlap`).toBeGreaterThan(OUTER * 2);
+      expect(nearest, `${n} pins overlap`).toBeGreaterThan(DRAWN * 2);
+    }
+  });
+
+  /**
+   * The click targets are invisible circles of half the spacing, so they
+   * tile the fan: no gap a click can fall into, and no two targets
+   * overlapping and fighting over it.
+   */
+  it("tiles click targets across the fan without overlap", () => {
+    const SPACING = 9;
+    const HIT = SPACING / 2;
+    for (const n of [2, 13, 40, 60]) {
+      const pts = Array.from({ length: n }, (_, i) => fanOffset(i, SPACING));
+      let nearest = Infinity;
+      for (let i = 0; i < n; i++)
+        for (let j = i + 1; j < n; j++)
+          nearest = Math.min(nearest, Math.hypot(pts[i].dx - pts[j].dx, pts[i].dy - pts[j].dy));
+      // Touching, never overlapping.
+      expect(nearest, `${n}: targets overlap`).toBeGreaterThanOrEqual(HIT * 2);
+      // And wider than the dot they sit under, or they add nothing.
+      expect(HIT).toBeGreaterThan(3.2 + 1 / 2);
     }
   });
 
@@ -142,12 +163,13 @@ describe("map pins", () => {
 
   /**
    * The spiral is blind geometry, so around a coastal town it put entries
-   * out in the Mediterranean - 17 of them across the two years, worst at
-   * Sour and Choueifat. It also pushed border-town pins over the frontier.
+   * out in the Mediterranean - 23 of them at the current fan width, worst
+   * at Sour and Choueifat - and pushed border-town pins over the frontier.
    *
-   * The test is against the town polygons the map actually draws, not the
-   * nine-ring governorate outline: the coarse version passed two pins that
-   * were sitting just off a fine stretch of coast.
+   * Tested against the town polygons the map draws rather than the
+   * governorate outline. The two rarely disagree, but only one of them is
+   * the boundary the reader can see, so only one of them can be checked
+   * against what the map appears to claim.
    */
   it("never leaves a pin off Lebanese land", () => {
     const land = buildLandIndex(gj.features as unknown as GeoFeature[], 12, (lon, lat) => {
@@ -168,26 +190,4 @@ describe("map pins", () => {
       }
   });
 
-  it("tests against the drawn boundary, which is finer than the outline", () => {
-    // The governorate outline is nine rings; the town layer is 1,640.
-    const land = buildLandIndex(gj.features as unknown as GeoFeature[], 12, (lon, lat) => {
-      const { x, y } = projectPoint(lon, lat);
-      return [x, y];
-    });
-    const byName = new Map<string, (typeof towns)[number]>();
-    for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
-    let coarseLetThrough = 0;
-    for (const year of [2024, 2026] as const)
-      for (const [name, pins] of pinsFor(year)) {
-        const t = byName.get(name);
-        if (!t) continue;
-        for (const pin of pins) {
-          const x = t.cx + pin.dx;
-          const y = t.cy + pin.dy;
-          const ll = unprojectPoint(x, y);
-          if (isOnLand(ll.lon, ll.lat) && !isOnLandIndexed(land, x, y)) coarseLetThrough++;
-        }
-      }
-    expect(coarseLetThrough).toBeGreaterThan(0);
-  });
 });

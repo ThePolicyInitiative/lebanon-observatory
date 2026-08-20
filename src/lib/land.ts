@@ -1,16 +1,18 @@
 import type { GeoFeature } from "./geo";
 
 /**
- * Point-in-land testing against the town polygons.
+ * Point-in-land testing against the town polygons - 1,640 rings and
+ * 32,822 points, the same boundaries the map draws.
  *
- * The governorate outline is nine coarse rings, so a pin could sit a few
- * hundred metres out on a fine shoreline and still pass. The town layer
- * is 1,640 rings and 32,822 points - the same boundaries the map draws -
- * so testing against it is testing against what the reader sees.
+ * The governorate outline would do nearly as well: measured over the
+ * current pins the two disagree about where to put exactly one of 345.
+ * The reason to prefer this one is not accuracy in the large but that it
+ * is the boundary on screen, so a pin can never sit somewhere the map
+ * itself is drawing sea, however the fan is retuned later.
  *
  * Rings are bucketed into a uniform grid by bounding box, so a point only
  * ever ray-casts the handful of polygons whose box covers its cell rather
- * than all 1,640.
+ * than all 1,640. Building the index takes 15ms.
  */
 
 type Ring = {
