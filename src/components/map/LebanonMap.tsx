@@ -527,7 +527,7 @@ export default function LebanonMap() {
   return (
     <div>
       {/* Controls */}
-      <div className="sticky top-[52px] z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
+      <div className="sticky top-[var(--header-h)] z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
         <div className="flex flex-wrap items-end gap-3">
           <div>
             <label htmlFor="map-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">

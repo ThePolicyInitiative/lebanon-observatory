@@ -48,7 +48,7 @@ export default function SiteNav() {
       : "/ar";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#0e2542] bg-[color:var(--color-navy)]/[0.97] backdrop-blur-sm">
+    <header className="sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0e2542] bg-[color:var(--color-navy)]/[0.97] backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1360px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
         <Link
           href={isArabic ? "/ar" : "/"}

@@ -252,7 +252,7 @@ export default function ActorTabs() {
       <div
         role="tablist"
         aria-label="Actor layers"
-        className="sticky top-[52px] z-40 -mx-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-2 backdrop-blur-sm sm:-mx-6 sm:px-6"
+        className="sticky top-[var(--header-h)] z-40 -mx-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-2 backdrop-blur-sm sm:-mx-6 sm:px-6"
       >
         {LAYER_META.map((l) => {
           const active = l.id === layer;

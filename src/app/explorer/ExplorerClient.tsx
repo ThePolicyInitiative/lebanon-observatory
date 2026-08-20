@@ -83,7 +83,7 @@ export default function ExplorerClient() {
   return (
     <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
       {/* Filter sidebar / sheet */}
-      <aside aria-label="Data filters" className="lg:sticky lg:top-[68px] lg:self-start">
+      <aside aria-label="Data filters" className="lg:sticky lg:top-[var(--header-h)] lg:self-start">
         <details className="rounded-md border border-[color:var(--color-border)] bg-white lg:open:pb-4" open>
           <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[color:var(--color-navy)]">
             Filters ({filtered.length} of {roleRecords.length} entries)

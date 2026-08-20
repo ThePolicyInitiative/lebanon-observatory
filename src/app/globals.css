@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
 :root {
+  /*
+   * The sticky site header's height. Every sticky sub-bar - the actor
+   * tabs, the compare year control, the map controls, the explorer
+   * filters - pins itself directly below the header, and each used to
+   * carry its own guess: three said 52px and one said 68px against a
+   * real 65px, so three of them stuck 13px behind the header and had
+   * their top edge clipped. The header's min-height is set from this
+   * same value, so the two cannot drift apart.
+   */
+  --header-h: 65px;
+
   /* Surfaces: the page sits on a cool ground, content on white. */
   --color-bg: #eaeff4;
   --color-surface: #ffffff;
@@ -184,10 +195,11 @@ p {
   border-radius: 2px;
 }
 
+/* An anchored figure lands below the header, not behind it. */
 figure,
 article,
 section {
-  scroll-margin-top: 76px;
+  scroll-margin-top: calc(var(--header-h) + 0.75rem);
 }
 
 /* Scrollbars inside the wide tables and the map, kept unobtrusive. */
@@ -213,19 +225,42 @@ section {
   background-clip: content-box;
 }
 
+/*
+ * Hidden by clipping, not by being parked at left:-9999px.
+ *
+ * That offset is invisible in a left-to-right page because the overflow
+ * falls off the inline start, which browsers do not add to the scrollable
+ * area. Right-to-left flips the inline start to the right, so the same
+ * offset overflowed the inline *end* and gave every Arabic page an
+ * 11,269px scroll width - a phantom horizontal scrollbar and ten thousand
+ * pixels of empty space to pan into.
+ *
+ * Clipping takes the link out of view without occupying any space in
+ * either direction, and `inset-inline-start` restores it on the correct
+ * side of whichever language is being read.
+ */
 .skip-link {
   position: absolute;
-  left: -9999px;
+  inset-inline-start: 0.5rem;
   top: 0;
   z-index: 100;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
   background: var(--color-navy);
   color: #fff;
-  padding: 0.6rem 1rem;
   border-radius: 0 0 0.375rem 0.375rem;
 }
 
 .skip-link:focus {
-  left: 0.5rem;
+  width: auto;
+  height: auto;
+  padding: 0.6rem 1rem;
+  overflow: visible;
+  clip-path: none;
 }
 
 .source-note summary::-webkit-details-marker {
