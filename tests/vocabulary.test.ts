@@ -68,7 +68,7 @@ describe("reader-facing vocabulary", () => {
     const offenders: string[] = [];
     for (const file of walk(join(SRC), /\.tsx?$/)) {
       for (const s of copyStrings(readFileSync(file, "utf8"))) {
-        if (allowed(s)) continue;
+        if (allowed(s) || /^https?:\/\//.test(s)) continue;
         const hit = s.match(BANNED) ?? s.match(AR_BANNED);
         if (hit) offenders.push(`${file.split("src")[1]}: "${hit[0]}" in ${s.slice(0, 70)}`);
       }

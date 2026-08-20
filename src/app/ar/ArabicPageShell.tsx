@@ -5,7 +5,7 @@ import { AR } from "@/lib/i18n";
 /**
  * The frame every Arabic page shares: heading, opening passage, the one
  * caution that page turns on, and the way through to the English original.
- * Figures come from the same source the English side reads, so a number
+ * Figures come from the same data the English side reads, so a number
  * cannot say one thing in Arabic and another in English.
  */
 export default function ArabicPageShell({

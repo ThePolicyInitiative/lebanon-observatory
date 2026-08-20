@@ -10,7 +10,7 @@ import { fmtDateTime } from "@/lib/format";
  * page, so both languages see the same articles from the same providers at
  * the same moment; only the chrome around them is Arabic. Each item keeps its
  * own language, which is the point of a feed that reads Arabic, English and
- * French sources side by side.
+ * French publishers side by side.
  */
 
 const SOURCE_TYPE_AR: Record<string, string> = {
@@ -71,7 +71,7 @@ export default function ArabicNewsFeed() {
       </div>
 
       <p className="mt-2 text-xs text-[color:var(--color-text-secondary)]">
-        {data.providers.length - down.length} من {data.providers.length} مصدراً تعمل ·
+        {data.providers.length - down.length} من {data.providers.length} مزوّداً يعمل ·
         آخر تحديث {fmtDateTime(data.lastUpdated)} · {data.total} مقالاً مطابقاً
         {down.length > 0 ? ` · متعذّرة: ${down.map((p) => p.name).join("، ")}` : ""}
       </p>

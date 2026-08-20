@@ -127,7 +127,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Used national operations-room terminology across the response architecture; notes NOR, NEOR and DRM Operations Room where terminology differs. Operational terminology and communication channels varied across sources, but the function was information routing and coordination."
+  "action": "Used national operations-room terminology across the response architecture; notes NOR, NEOR and DRM Operations Room where terminology differs. Operational terminology and communication channels varied across reports, but the function was information routing and coordination."
  },
  {
   "id": "r2024-5-24",
@@ -1068,7 +1068,7 @@
   "locationNames": [],
   "implementationStatus": "formal_mandate",
   "comparability": "qualified",
-  "action": "Practical telecom-service continuity role during the 2024 emergency; the workbook sources entry the mandate more than confirmed field outputs."
+  "action": "Practical telecom-service continuity role during the 2024 emergency; the workbook states the mandate more than it confirms field outputs."
  },
  {
   "id": "r2024-22-3",
@@ -3450,7 +3450,7 @@
   ],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Mar Elias camp support listed in broad ecosystem source. identified as providing shelter/return support, with confirmation needed."
+  "action": "Mar Elias camp support listed in a broad ecosystem mapping; identified as providing shelter/return support, with confirmation needed."
  },
  {
   "id": "r2024-70-13",
@@ -3466,7 +3466,7 @@
   ],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Mar Elias camp support listed in broad ecosystem source. identified as a relief provider; use as supporting data unless directly confirmed."
+  "action": "Mar Elias camp support listed in a broad ecosystem mapping; identified as a relief provider; use as supporting data unless directly confirmed."
  },
  {
   "id": "r2024-70-14",
@@ -3482,7 +3482,7 @@
   ],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Mar Elias camp support listed in broad ecosystem source. identified as providing health/protection support, with confirmation needed."
+  "action": "Mar Elias camp support listed in a broad ecosystem mapping; identified as providing health/protection support, with confirmation needed."
  },
  {
   "id": "r2024-70-20",
@@ -3498,7 +3498,7 @@
   ],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Mar Elias camp support listed in broad ecosystem source. identified as specialized migrant/refugee support, requiring direct confirmation."
+  "action": "Mar Elias camp support listed in a broad ecosystem mapping; identified as specialized migrant/refugee support, requiring direct confirmation."
  },
  {
   "id": "r2024-71-15",
@@ -3854,7 +3854,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Swiss Barakah, Roya, Al Jazeera social and similar leads require confirmation. identified as involved in rubble work, but the source base needs direct confirmation."
+  "action": "Swiss Barakah, Roya, Al Jazeera social and similar leads require confirmation. identified as involved in rubble work, but the underlying reporting needs direct confirmation."
  },
  {
   "id": "r2024-80-13",
@@ -5103,7 +5103,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Operational information routing across the response architecture; NEOR/DRM terminology varies by source."
+  "action": "Operational information routing across the response architecture; NEOR/DRM terminology varies between reports."
  },
  {
   "id": "r2026-6-22",
@@ -6670,7 +6670,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Continued as the UN-side debris coordination mechanism in 2026. Source entries the Task Force's operations in 2026 as severely constrained by the conflict, with debris management limited to safer areas and humanitarian access prioritised over debris removal."
+  "action": "Continued as the UN-side debris coordination mechanism in 2026. Reporting describes the Task Force's operations in 2026 as severely constrained by the conflict, with debris management limited to safer areas and humanitarian access prioritised over debris removal."
  },
  {
   "id": "r2026-33-4",
@@ -8054,7 +8054,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Food, medicines, mattresses and health-related items in ecosystem source. identified as providing shelter/return support, with confirmation needed."
+  "action": "Food, medicines, mattresses and health-related items in a broad ecosystem mapping; identified as providing shelter/return support, with confirmation needed."
  },
  {
   "id": "r2026-59-12",
@@ -8067,7 +8067,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Food, medicines, mattresses and health-related items in ecosystem source. identified as a relief provider; use as supporting data unless directly confirmed. Named community initiative for practical support during displacement and emergency needs."
+  "action": "Food, medicines, mattresses and health-related items in a broad ecosystem mapping; identified as a relief provider; use as supporting data unless directly confirmed. Named community initiative for practical support during displacement and emergency needs."
  },
  {
   "id": "r2026-59-13",
@@ -8080,7 +8080,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Food, medicines, mattresses and health-related items in ecosystem source. identified as providing health/protection support, with confirmation needed."
+  "action": "Food, medicines, mattresses and health-related items in a broad ecosystem mapping; identified as providing health/protection support, with confirmation needed."
  },
  {
   "id": "r2026-59-16",
@@ -8174,7 +8174,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Community kitchens and essential services across Beirut/Chouf in ecosystem source. identified as a relief provider; use as supporting data unless directly confirmed."
+  "action": "Community kitchens and essential services across Beirut/Chouf in a broad ecosystem mapping; identified as a relief provider; use as supporting data unless directly confirmed."
  },
  {
   "id": "r2026-61-14",
@@ -8187,7 +8187,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Community kitchens and essential services across Beirut/Chouf in ecosystem source. identified as providing water/sanitation support; direct confirmation is still needed."
+  "action": "Community kitchens and essential services across Beirut/Chouf in a broad ecosystem mapping; identified as providing water/sanitation support; direct confirmation is still needed."
  },
  {
   "id": "r2026-61-16",
@@ -8200,7 +8200,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Community kitchens and essential services across Beirut/Chouf in ecosystem source. identified as a youth/community initiative; treat as ecosystem data unless confirmed."
+  "action": "Community kitchens and essential services across Beirut/Chouf in a broad ecosystem mapping; identified as a youth/community initiative; treat as ecosystem data unless confirmed."
  },
  {
   "id": "r2026-61-22",
@@ -8213,7 +8213,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Community kitchens and essential services across Beirut/Chouf in ecosystem source. identified as coordinating support, but direct confirmation is needed."
+  "action": "Community kitchens and essential services across Beirut/Chouf in a broad ecosystem mapping; identified as coordinating support, but direct confirmation is needed."
  },
  {
   "id": "r2026-62-11",
@@ -9310,7 +9310,7 @@
   "locationNames": [],
   "implementationStatus": "not_verified",
   "comparability": "qualified",
-  "action": "Field-level support to access restoration alongside the LAF. Source entries a materially different 2026 picture: seven peacekeepers killed since March 2026, a position shelled in Marjaayoun (June 2026), and withdrawal under way - capacity to support access restoration is correspondingly reduced."
+  "action": "Field-level support to access restoration alongside the LAF. Reporting describes a materially different 2026 picture: seven peacekeepers killed since March 2026, a position shelled in Marjaayoun (June 2026), and withdrawal under way - capacity to support access restoration is correspondingly reduced."
  },
  {
   "id": "r2026-87-31",

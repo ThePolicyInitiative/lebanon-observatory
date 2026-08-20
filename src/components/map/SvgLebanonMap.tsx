@@ -68,7 +68,7 @@ const PIN_T = {
     episodeAt: "Traced episode ·",
     close: "Close this entry",
     pinNote:
-      "One pin, one traced entry. The pin sits in the town the sources name, fanned off its centre so neighbouring entries stay separate - it is not a street address.",
+      "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address.",
   },
   ar: {
     districtTint: (max: number) =>
@@ -79,7 +79,7 @@ const PIN_T = {
     episodeAt: "واقعة مرصودة ·",
     close: "إغلاق هذا المدخل",
     pinNote:
-      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي تسمّيها المصادر، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع.",
+      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع.",
   },
 } as const;
 
@@ -1828,7 +1828,7 @@ export default function SvgLebanonMap({
           ) : null}
           {showOccupation ? (
             <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Occupation marking is indicative: the sources show occupied
+              Occupation marking is indicative: the reporting shows occupied
               border villages and an expanded occupation zone demarcated on 18
               June 2026, but publishes no precise boundary geometry. Hatching
               therefore marks the strip of towns whose land reaches the Blue

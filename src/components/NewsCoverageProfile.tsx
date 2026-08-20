@@ -19,9 +19,9 @@ import type { NewsArticle } from "@/lib/types";
 
 /** Tag values the classifier emits, in Arabic. Anything unmapped shows as is. */
 const AR_LABEL: Record<string, string> = {
-  // source types
+  // publisher kinds
   media: "إعلام",
-  official: "مصدر رسمي",
+  official: "جهة رسمية",
   un: "الأمم المتحدة",
   multilateral: "مؤسسة متعددة الأطراف",
   ngo: "منظمة غير حكومية",
@@ -59,7 +59,7 @@ const T = {
     title: "What this coverage is made of",
     sub: "Counted over the articles on this page. Coverage measures what gets reported, never what was built.",
     publishers: "Which publishers carry it",
-    sourceType: "By source type",
+    sourceType: "By publisher type",
     language: "By language",
     stages: "By chain stage",
     locations: "By place",
@@ -72,7 +72,7 @@ const T = {
     title: "ممّ تتكوّن هذه التغطية",
     sub: "معدودة على المقالات المعروضة في هذه الصفحة. والتغطية تقيس ما يُنشر عنه، لا ما بُني.",
     publishers: "أي وسائل تحمله",
-    sourceType: "بحسب نوع المصدر",
+    sourceType: "بحسب نوع الناشر",
     language: "بحسب اللغة",
     stages: "بحسب مرحلة السلسلة",
     locations: "بحسب المكان",

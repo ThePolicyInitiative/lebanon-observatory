@@ -1,5 +1,5 @@
 {
-  "note": "Actors and actions reported by external web sources. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked source reports, names that source, and says whether the page was opened directly or only reached through a search summary.",
+  "note": "Actors and actions reported in external web coverage. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked page reports, names the publisher, and says whether the page was opened directly or only reached through a search summary.",
   "gatheredOn": "2026-08-17",
   "updates": [
     {
@@ -256,7 +256,7 @@
       "caution": "The most consequential finding for this area: the largest non-state rebuilding programme reportedly leaves out the very border villages that dominate the destruction figures. Amounts are self-reported and unaudited.",
       "sourceName": "PressTV via GlobalSecurity; Naharnet",
       "sourceUrl": "https://www.naharnet.com/stories/en/310323-many-lebanese-whose-homes-were-destroyed-face-a-long-wait",
-      "detail": "The stated terms, from Jihad al-Binaa's director Hussein Khaireddine: over 80% of damaged houses surveyed, and payments of US$8,000 for furniture plus US$6,000 for a year's rent in Beirut, US$4,000 for rent elsewhere. Ali Daamoush put the machinery at 145 teams, 1,250 engineers, 300 analysts and hundreds of auditors, with the money attributed to the Iranian people rather than to a named government or private source. What residents describe receiving is smaller: one household got US$2,500 against US$4,000 of damage, another was offered US$194, and one whose home was destroyed outright received US$14,000 through the Hezbollah-linked lender Qard al-Hasan."
+      "detail": "The stated terms, from Jihad al-Binaa's director Hussein Khaireddine: over 80% of damaged houses surveyed, and payments of US$8,000 for furniture plus US$6,000 for a year's rent in Beirut, US$4,000 for rent elsewhere. Ali Daamoush put the machinery at 145 teams, 1,250 engineers, 300 analysts and hundreds of auditors, with the money attributed to the Iranian people rather than to a named government or private donor. What residents describe receiving is smaller: one household got US$2,500 against US$4,000 of damage, another was offered US$194, and one whose home was destroyed outright received US$14,000 through the Hezbollah-linked lender Qard al-Hasan."
     },
     {
       "dateReported": null,
@@ -285,7 +285,7 @@
       "place": "National, including the south",
       "southOfLitani": false,
       "openedDirectly": true,
-      "caution": "A coordination structure. No tonnage, budget or completion figure is attached to it in the source.",
+      "caution": "A coordination structure. No tonnage, budget or completion figure is attached to it in the reporting.",
       "sourceName": "UN Development Coordination Office",
       "sourceUrl": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management",
       "detail": "Who does what inside the ten: UN-Habitat on damage assessment and debris planning, UNEP on environmental handling, UNDP on the strategy itself, ILO on labour standards for the people doing the clearing, UNMAS on unexploded ordnance, UNESCO on heritage, IOM on displacement and return, FAO on environmental impact, OCHA on coordination and UNOPS on delivery. Abandoned quarries are named as the processing sites. The UN Resident Coordinator frames the aim as clearing debris without damaging the environment or public health; a UNDP specialist calls the safety and environmental problem immense but treatable as an opening rather than only a loss."
@@ -365,7 +365,7 @@
       "place": "National, including southern heritage sites",
       "southOfLitani": false,
       "openedDirectly": true,
-      "caution": "No named site or budget in the source.",
+      "caution": "No named site or budget in the reporting.",
       "sourceName": "UN Development Coordination Office",
       "sourceUrl": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management",
       "detail": "Its place in the ten-agency division of labour is narrow and specific: heritage. The clearing operation is being planned so that historic fabric is inspected and kept rather than lifted out with the rest of the rubble, which is a sequencing constraint on debris teams rather than a separate programme."
@@ -416,7 +416,7 @@
       "caution": "'Non-occupied areas' is the operative limit: it excludes exactly the border strip where school damage is heaviest.",
       "sourceName": "OCHA Flash Update #47",
       "sourceUrl": "https://www.unocha.org/publications/report/lebanon/lebanon-flash-update-47-escalation-hostilities-lebanon-31-july-2026",
-      "detail": "Against that pledge, education sources put the initial toll at eight schools destroyed outright and about a hundred more needing repair or maintenance of varying depth. Repairing 'all schools in non-occupied areas' therefore leaves out the schools in the strip where destruction is total, and the hundred damaged ones are the test of whether the pledge means anything."
+      "detail": "Against that pledge, reporting from the education sector puts the initial toll at eight schools destroyed outright and about a hundred more needing repair or maintenance of varying depth. Repairing 'all schools in non-occupied areas' therefore leaves out the schools in the strip where destruction is total, and the hundred damaged ones are the test of whether the pledge means anything."
     },
     {
       "dateReported": null,
@@ -429,7 +429,7 @@
       "place": "Bent Jbeil, Marjaayoun, El Nabatieh, Sour, Saida cazas",
       "southOfLitani": true,
       "openedDirectly": false,
-      "caution": "Already carried by the site as source S6, and its figures match. Web-side confirmation, not a new finding.",
+      "caution": "Already carried by the site as citation S6, and its figures match. Web-side confirmation, not a new finding.",
       "sourceName": "UNDP",
       "sourceUrl": "https://www.undp.org/lebanon/publications/building-level-damage-assessment-south-lebanon",
       "detail": ""
@@ -765,10 +765,10 @@
       "place": "Bint Jbeil town",
       "southOfLitani": true,
       "openedDirectly": true,
-      "caution": "The most concrete municipal delivery found anywhere in the area - a stated percentage of streets reopened - but no funding source, budget or date is given, and clearing streets is not rebuilding houses.",
+      "caution": "The most concrete municipal delivery found anywhere in the area - a stated percentage of streets reopened - but no funder, budget or date is given, and clearing streets is not rebuilding houses.",
       "sourceName": "Bintjbeil.org; Al-Manar",
       "sourceUrl": "https://bintjbeil.org/post/73579/",
-      "detail": "The detail that carries the most: the municipality's paper archive was destroyed and only a pre-war digital backup survived. A municipality without its own property and resident files cannot certify who owned what - which is precisely the certification role the 2026 chain assigns to this tier."
+      "detail": "The detail that carries the most: the municipality's paper archive was destroyed and only a pre-war digital backup survived. A municipality without its own property and resident registers cannot certify who owned what - which is precisely the certification role the 2026 chain assigns to this tier."
     },
     {
       "dateReported": null,
@@ -829,7 +829,7 @@
       "place": "Blat (Bint Jbeil)",
       "southOfLitani": true,
       "openedDirectly": true,
-      "caution": "The clearest statement in any source of the 2024-to-2026 shift the site traces: more responsibility, unchanged resources.",
+      "caution": "The clearest statement anywhere of the 2024-to-2026 shift the site traces: more responsibility, unchanged resources.",
       "sourceName": "Ici Beyrouth",
       "sourceUrl": "https://icibeyrouth.com/articles/1341048/liban-sud-quand-les-municipalites-tiennent-lieu-detat",
       "detail": "The mayor puts the arithmetic plainly: the municipality must answer to everyone, and its means have not increased. Demand rose with the return; capacity did not. What follows is not refusal but rationing - the same position the neighbouring villages describe."
@@ -957,7 +957,7 @@
       "place": "Tibnine, Marjaayoun; Bint Jbeil and Mays al-Jabal awaiting funds",
       "southOfLitani": true,
       "openedDirectly": false,
-      "caution": "Actual repair of standing public hospitals inside the area, with a named funder. An English-language summary rendered the funder as the Red Crescent; the Arabic source says the Red Cross, and the Arabic is followed here.",
+      "caution": "Actual repair of standing public hospitals inside the area, with a named funder. An English-language summary rendered the funder as the Red Crescent; the Arabic original says the Red Cross, and the Arabic is followed here.",
       "sourceName": "National News Agency (Lebanon), health minister's southern tour",
       "sourceUrl": "https://www.nna-leb.gov.lb/ar/%D8%B3%D9%8A%D8%A7%D8%B3%D8%A9/753088/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B5%D8%AD%D8%A9-%D8%A8%D8%B9%D8%AF-%D8%AC%D9%88%D9%84%D8%A9-%D8%B9%D9%84%D9%89-%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%8A%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D9%86%D8%A8%D8%B7%D9%8A%D8%A9-%D9%85%D9%84%D8%AA%D8%B2%D9%85%D9%88",
       "detail": ""
@@ -1081,12 +1081,12 @@
       "layer": "official",
       "kind": "Damage to services",
       "sourceKind": "press",
-      "action": "Education sources put the initial toll on the school system at eight schools destroyed outright, with about a hundred more needing repair or maintenance of varying depth.",
+      "action": "Reporting from the education sector puts the initial toll on the school system at eight schools destroyed outright, with about a hundred more needing repair or maintenance of varying depth.",
       "detail": "This is the denominator behind the CDR's pledge to repair 'all schools in non-occupied areas' before the school year. It also sits against the separate reporting that residents in frontline villages have been repairing school buildings themselves, to use them as shelter rather than as schools.",
       "place": "South Lebanon and Nabatieh",
       "southOfLitani": true,
       "openedDirectly": false,
-      "caution": "An initial figure attributed to education sources, not a completed assessment, and the split between the two governorates is not given.",
+      "caution": "An initial figure attributed to the education sector, not a completed assessment, and the split between the two governorates is not given.",
       "sourceName": "Saida Online",
       "sourceUrl": "https://www.saidaonline.com/319383"
     },
@@ -1150,7 +1150,7 @@
       "place": "Between the Litani and the Blue Line",
       "southOfLitani": true,
       "openedDirectly": false,
-      "caution": "A scheduled future change, not an initiative. What replaces the demining capacity and the municipal support is not settled in any source found.",
+      "caution": "A scheduled future change, not an initiative. What replaces the demining capacity and the municipal support is not settled in anything found.",
       "sourceName": "House of Commons Library; Defense News; UN Security Council",
       "sourceUrl": "https://commonslibrary.parliament.uk/research-briefings/cbp-10348/"
     },

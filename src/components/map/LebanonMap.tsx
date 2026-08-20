@@ -451,7 +451,7 @@ export default function LebanonMap() {
     }
 
 
-    // One pin per traced entry, fanned around the town the sources name.
+    // One pin per traced entry, fanned around the town the reporting names.
     const geoTowns = glTownsRef.current;
     const idx = glIndexRef.current;
     const features: unknown[] = [];
@@ -504,7 +504,7 @@ export default function LebanonMap() {
                   ? `<br/><span style="font-size:11px;color:#667588">${esc(pin.detail)}</span>`
                   : "") +
                 `<br/><span style="display:inline-block;margin-top:4px;white-space:normal">${esc(pin.body)}</span>` +
-                `<br/><em style="font-size:10.5px;color:#667588">One pin, one traced entry - placed in the town the sources name, not at an address.</em></div>`,
+                `<br/><em style="font-size:10.5px;color:#667588">One pin, one traced entry - placed in the town the reporting names, not at an address.</em></div>`,
             },
           });
         }

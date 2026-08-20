@@ -86,9 +86,9 @@ const CONTENT: Record<ActorLayer, TabContent> = {
   },
   municipal: {
     profile2024:
-      "Municipalities were the system's sensors and shock absorbers, and its least resourced tier: they traced damage, ran or hosted shelters, reopened local access and marshalled volunteers - and the ten-day municipal survey of 135 areas produced the response's fastest national damage assessments. Yet the sources show 19 actor-stage entries with zero systematic roles in finance, direct reconstruction, livelihoods or oversight.",
+      "Municipalities were the system's sensors and shock absorbers, and its least resourced tier: they traced damage, ran or hosted shelters, reopened local access and marshalled volunteers - and the ten-day municipal survey of 135 areas produced the response's fastest national damage assessments. Yet the tracking shows 19 actor-stage entries with zero systematic roles in finance, direct reconstruction, livelihoods or oversight.",
     profile2026:
-      "Municipalities were repositioned rather than empowered: from frontline improvisers to intake-and-certification nodes in longer chains. Their traced presence thinned to 12 entries, concentrated in reporting, shelter support and local clearance. Formal appearances in the new architecture are as data sources, certifiers, consultation subjects and grievance interfaces - never as budget holders, procurers or sequencers.",
+      "Municipalities were repositioned rather than empowered: from frontline improvisers to intake-and-certification nodes in longer chains. Their traced presence thinned to 12 entries, concentrated in reporting, shelter support and local clearance. Formal appearances in the new architecture are as data providers, certifiers, consultation subjects and grievance interfaces - never as budget holders, procurers or sequencers.",
     directChange:
       "Traced presence fell 19 → 12 with no compensating gain anywhere in the row. Formalisation moved authority up while leaving labour down: every new procedure that runs 'through' municipalities extracts work without conferring resources.",
     gains: ["Shelter and relief interface: 3 → 4 - the only functional gain"],

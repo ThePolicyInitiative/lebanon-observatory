@@ -217,7 +217,7 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {[
           ["Which publishers carry it", publisherPairs],
-          ["Coverage by source type", sourceTypePairs],
+          ["Coverage by publisher type", sourceTypePairs],
           ["Coverage by language", languagePairs],
           ["Coverage by value-chain stage", stagePairs],
           ["Coverage by location", locationPairs],

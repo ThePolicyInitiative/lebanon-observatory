@@ -112,7 +112,7 @@ export default function NewsExplorer() {
       {/* Disclosure */}
       <p className="card p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         This feed aggregates relevant coverage from selected global, Lebanese,
-        humanitarian and official sources. It is broad but not exhaustive.
+        humanitarian and official publishers. It is broad but not exhaustive.
         Headlines link to the original publishers; nothing here alters the
         confirmed analysis elsewhere on this site.
       </p>
@@ -229,9 +229,9 @@ export default function NewsExplorer() {
         </button>
       </div>
 
-      {/* Status line. With a dozen-plus feeds the per-source list is a wall
+      {/* Status line. With a dozen-plus feeds the per-provider list is a wall
           of text, so the headline is the count and the roll-call opens from
-          it. A source that is down is named up front, because it means the
+          it. A provider that is down is named up front, because it means the
           coverage below is partial. */}
       <div className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
         {data ? (
@@ -247,7 +247,7 @@ export default function NewsExplorer() {
                       className={`h-2 w-2 rounded-full ${down.length === 0 ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
                     />
                     <span className="font-semibold">
-                      {up} of {data.providers.length} sources reporting
+                      {up} of {data.providers.length} providers reporting
                     </span>
                   </span>
                   <span>Updated {fmtDateTime(data.lastUpdated)}</span>
@@ -259,8 +259,8 @@ export default function NewsExplorer() {
                     </span>
                   ) : null}
                   <span className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
-                    <span className="group-open/src:hidden">Every source ▸</span>
-                    <span className="hidden group-open/src:inline">Hide sources ▾</span>
+                    <span className="group-open/src:hidden">Every provider ▸</span>
+                    <span className="hidden group-open/src:inline">Hide providers ▾</span>
                   </span>
                 </summary>
                 <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
@@ -289,7 +289,7 @@ export default function NewsExplorer() {
       {tab === "official" ? (
         <div className="mt-4 card p-4">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Monitored official sources &amp; key trackers
+            Monitored official feeds &amp; key trackers
           </h3>
           <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
             Official updates are aggregated where public feeds exist; these
@@ -442,7 +442,7 @@ function NewsCard({
       <div className="mt-auto pt-2" dir="ltr">
         {typeof a.relatedCount === "number" && a.relatedCount > 0 ? (
           <p className="text-[11px] text-[color:var(--color-text-secondary)]">
-            Also reported by {a.relatedCount} other source{a.relatedCount > 1 ? "s" : ""}.
+            Also reported by {a.relatedCount} other outlet{a.relatedCount > 1 ? "s" : ""}.
           </p>
         ) : null}
         <button

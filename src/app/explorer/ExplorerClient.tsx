@@ -128,7 +128,7 @@ export default function ExplorerClient() {
               </select>
             </div>
             <div>
-              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Function (source workbook column)</label>
+              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Function (workbook column)</label>
               <select id="ex-fn" className={selectCls} value={get("fn")} onChange={(e) => set("fn", e.target.value)}>
                 <option value="all">All functions</option>
                 {FUNCTION_COLUMNS.map((f) => (

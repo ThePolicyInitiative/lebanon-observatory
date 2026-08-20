@@ -7,7 +7,7 @@ const T = {
   en: {
     title: "Reported beyond the tracking",
     badge: "Web-sourced · not in the tracking",
-    institutional: "Institutional source",
+    institutional: "Institutional publisher",
     press: "Press report",
     social: "Social post - self-published",
     south: "South of the Litani",
@@ -19,8 +19,8 @@ const T = {
   },
   ar: {
     title: "مرصود خارج التتبّع",
-    badge: "من مصادر إلكترونية · خارج التتبّع",
-    institutional: "مصدر مؤسسي",
+    badge: "من مراجع إلكترونية · خارج التتبّع",
+    institutional: "مرجع مؤسسي",
     press: "تقرير صحفي",
     social: "منشور اجتماعي - ذاتي النشر",
     south: "جنوب الليطاني",
@@ -175,10 +175,10 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
             {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
             والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
-            الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مصادرها - لم تُقارَن بالتتبّع ولا تدخل
+            الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مراجعها - لم تُقارَن بالتتبّع ولا تدخل
             في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه، و{indirect} منها
             مُعلَّمة لأن صفحة الناشر رفضت الطلب الآلي ولم يتوفّر سوى ملخّص بحث. اتبع كل رابط
-            لتحكم على المصدر بنفسك.
+            لتحكم على المرجع بنفسك.
           </p>
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
             مجموعة المجتمع المحلي هي الأكبر، وتلك هي الخلاصة: في القرى الجنوبية، العمل الظاهر
@@ -186,8 +186,8 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
             الخاصة في معظمه.
           </p>
           <p className="mt-2 prose-measure text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            نصّ كل مدخل يبقى بلغة مصدره، فما نُقل عن ناشر عربي يظهر بالعربية وما نُقل عن ناشر
-            أجنبي يظهر بلغته - حتى لا تضيف الترجمة طبقة بين القارئ والمصدر.
+            نصّ كل مدخل يبقى بلغة مرجعه، فما نُقل عن ناشر عربي يظهر بالعربية وما نُقل عن ناشر
+            أجنبي يظهر بلغته - حتى لا تضيف الترجمة طبقة بين القارئ والمرجع.
           </p>
         </>
       ) : (
@@ -195,11 +195,11 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
             {updates.length} actors and actions found in open web coverage in English, Arabic and
             French (gathered {fmtDate(webUpdates.gatheredOn)}), {south} of them in the area between
-            the Litani and the Blue Line. These are reported claims, quoted with their sources - they
+            the Litani and the Blue Line. These are reported claims, quoted with their publishers - they
             are not checked against the tracking and enter none of this site&apos;s counts or maps.
             Each entry says how much checking sits behind it, and {indirect} are marked because
             the publisher&apos;s page refused an automated request and only a search summary could be
-            reached. Follow each link to judge the source yourself.
+            reached. Follow each link to judge it yourself.
           </p>
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
             The community group is the largest, and that is the finding: in the southern villages the

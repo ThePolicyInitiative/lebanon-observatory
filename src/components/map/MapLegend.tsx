@@ -17,7 +17,7 @@ const T = {
     episode: "Hollow ring: a traced episode - something that happened here",
     context: "Conflict context",
     ground: "The land itself is unshaded: colour on this map means an actor layer and nothing else.",
-    fan: "Entries in the same town are fanned around its centre so each can be read and opened. A pin marks the town the sources name, never a street address.",
+    fan: "Entries in the same town are fanned around its centre so each can be read and opened. A pin marks the town the reporting names, never a street address.",
     occupied:
       "Rust: Blue Line border-strip towns with traced occupation (indicative); rust dash: the districts containing them.",
   },
@@ -27,7 +27,7 @@ const T = {
     episode: "حلقة مفرغة: واقعة مرصودة - شيء جرى هنا",
     context: "سياق الحرب",
     ground: "الأرض نفسها بلا تظليل: اللون على هذه الخريطة يعني طبقة جهة ولا شيء آخر.",
-    fan: "المدخلات في البلدة نفسها تُنشر حول مركزها ليمكن قراءة كل واحد منها وفتحه. والدبّوس يشير إلى البلدة التي تسمّيها المصادر، لا إلى عنوان في شارع.",
+    fan: "المدخلات في البلدة نفسها تُنشر حول مركزها ليمكن قراءة كل واحد منها وفتحه. والدبّوس يشير إلى البلدة التي يسمّيها الإبلاغ، لا إلى عنوان في شارع.",
     occupied:
       "الخمري: بلدات الشريط الحدودي على الخط الأزرق التي رُصد فيها احتلال (إشارة تقريبية)؛ والتقطيع الخمري: الأقضية التي تضمّها.",
   },

@@ -12,11 +12,11 @@ import {
 const HEAD = {
   en: {
     title: "Who did what - the full register",
-    lede: "Every traced actor and every traced action, as written in the tracking: the stage it belongs to, its status, its function roles and where it happened. Traced presence is not performance and a mandate is not delivery, so each entry is labelled as exactly what the sources support.",
+    lede: "Every traced actor and every traced action, as written in the tracking: the stage it belongs to, its status, its function roles and where it happened. Traced presence is not performance and a mandate is not delivery, so each entry is labelled as exactly what the reporting supports.",
   },
   ar: {
     title: "من فعل ماذا - السجل الكامل",
-    lede: "كل جهة مرصودة وكل فعل مرصود، كما وردا في التتبّع: المرحلة التي ينتمي إليها، وحالته، وأدواره الوظيفية، وأين جرى. الحضور المرصود ليس أداءً، والتفويض ليس إنجازاً، لذلك يُوسم كل مدخل بما تدعمه المصادر بالضبط.",
+    lede: "كل جهة مرصودة وكل فعل مرصود، كما وردا في التتبّع: المرحلة التي ينتمي إليها، وحالته، وأدواره الوظيفية، وأين جرى. الحضور المرصود ليس أداءً، والتفويض ليس إنجازاً، لذلك يُوسم كل مدخل بما يدعمه الإبلاغ بالضبط.",
   },
 } as const;
 

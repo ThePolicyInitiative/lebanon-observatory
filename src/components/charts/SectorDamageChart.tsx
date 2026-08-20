@@ -12,7 +12,7 @@ import sectorsJson from "@/data/sectors.json";
 const T = {
   en: {
     title: "Selected sector estimates, 2023–24 conflict",
-    sub: "Damage (blue), losses (light blue) and assessed needs (rust) are distinct categories, never summed. A missing bar means the source states no figure - not zero.",
+    sub: "Damage (blue), losses (light blue) and assessed needs (rust) are distinct categories, never summed. A missing bar means the assessment states no figure - not zero.",
     caveat:
       "Sector estimates carry different cut-offs and methods within one assessment framework, and the largest loss figures are macro-estimates rather than enterprise censuses. Losses towering over damage in the productive sectors explains why livelihood destruction became the least institutionalised loss of the war: a damaged transformer has an owner and a repair chain; a lost agricultural season has neither.",
     damage: "Damage",
@@ -21,7 +21,7 @@ const T = {
   },
   ar: {
     title: "تقديرات قطاعية مختارة، حرب 2023-24",
-    sub: "الأضرار (أزرق) والخسائر (أزرق فاتح) والاحتياجات المقدَّرة (خمري) فئات متمايزة لا تُجمع أبداً. غياب العمود يعني أن المصدر لا يذكر رقماً - لا أن الرقم صفر.",
+    sub: "الأضرار (أزرق) والخسائر (أزرق فاتح) والاحتياجات المقدَّرة (خمري) فئات متمايزة لا تُجمع أبداً. غياب العمود يعني أن التقييم لا يذكر رقماً - لا أن الرقم صفر.",
     caveat:
       "التقديرات القطاعية تحمل تواريخ توقف ومنهجيات مختلفة داخل إطار تقييم واحد، وأكبر أرقام الخسائر تقديرات كلية لا مسوحاً للمنشآت. تفوّق الخسائر على الأضرار في القطاعات الإنتاجية يفسّر لماذا صار تدمير سبل العيش أقل خسائر الحرب تأطيراً مؤسسياً: المحوّل المتضرر له مالك وسلسلة إصلاح، أما الموسم الزراعي الضائع فلا هذا ولا ذاك.",
     damage: "أضرار",
@@ -66,7 +66,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
         trigger: "axis",
         axisPointer: { type: "shadow" },
         valueFormatter: (v) =>
-          v === null || v === undefined ? "not stated in source" : `US$${v} million`,
+          v === null || v === undefined ? "not stated" : `US$${v} million`,
       },
       xAxis: {
         type: "value",
@@ -102,7 +102,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
       chartRef={chartRef}
       description="Grouped horizontal bars of sector-level damage, losses and needs from the 2023–24 conflict assessment: housing US$4.6 billion damage; commerce, industry and tourism US$3.4 billion losses; environment and debris 512, 790 and 444 million; health 208 and 700 million; agriculture 118, 586 and 263 million; transport 198; electricity 98; municipal services 41 million."
       table={{
-        caption: "Sector estimates in US$ million (- means not stated in the cited source).",
+        caption: "Sector estimates in US$ million (- means not stated in the citation).",
         headers: ["Sector", "Damage", "Losses", "Assessed needs", "Note"],
         rows: sectorsJson.sectors.map((s) => [
           s.label,

@@ -1041,7 +1041,7 @@
   "name": "Al-Qard Al-Hassan (Hezbollah-affiliated)",
   "layer": "community",
   "subtype": "Political-military and parallel service actors",
-  "deJureDeFacto": "De jure: not recognised as an official financial institution and outside the regulatory perimeter. De facto: a critical source of financing for Hezbollah's constituency and significant parallel economic power; targeted militarily.",
+  "deJureDeFacto": "De jure: not recognised as an official financial institution and outside the regulatory perimeter. De facto: a critical channel of financing for Hezbollah's constituency and significant parallel economic power; targeted militarily.",
   "recordCount": 2,
   "sourceIds": []
  },
@@ -1310,7 +1310,7 @@
   "name": "Ministry of Social Affairs:Haneen Sayed (Minister); Ola Boutros (LRP General Supervisor)",
   "layer": "official",
   "subtype": "Public authorities",
-  "deJureDeFacto": "Figure conflict inside the source: this row reports 336,000 people reached with emergency cash while the source's WFP row reports 226,000 as the total reached for the same period. Reconcile the caseload definitions (SRSN versus MPCA versus WFP-executed) before publication.",
+  "deJureDeFacto": "Figure conflict inside the same report: this row reports 336,000 people reached with emergency cash while its WFP row reports 226,000 as the total reached for the same period. Reconcile the caseload definitions (SRSN versus MPCA versus WFP-executed) before publication.",
   "recordCount": 8,
   "sourceIds": [
    "cat2026-9",

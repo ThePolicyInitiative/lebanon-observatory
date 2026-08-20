@@ -240,8 +240,8 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
       <details className="mt-5 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-3">
         <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
           {ar
-            ? `ما هذا المصدر، وما الذي لا يستطيع قوله (${slwe.caveats.length})`
-            : `What this source is, and what it cannot tell you (${slwe.caveats.length})`}
+            ? `من أين يأتي هذا، وما الذي لا يستطيع قوله (${slwe.caveats.length})`
+            : `Where this comes from, and what it cannot tell you (${slwe.caveats.length})`}
         </summary>
         <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
           {(ar ? slwe.caveatsAr : slwe.caveats).map((c) => (

@@ -13,7 +13,7 @@ import { signed } from "@/lib/format";
 /**
  * Visual 2 - Direct-change heatmap. Rows: four actor layers.
  * Columns: twelve stages. Value: 2026 count minus 2024 count.
- * Clicking a cell opens the underlying actors, actions, locations and sources.
+ * Clicking a cell opens the underlying actors, actions, locations and citations.
  *
  * `showCaveat` lets a page that already prints the standing counts caution
  * under an earlier figure suppress the repeat here. It defaults to on, so a

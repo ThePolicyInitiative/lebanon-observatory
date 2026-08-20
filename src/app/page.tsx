@@ -314,7 +314,7 @@ export default function HomePage() {
           <SectionHeading index={7} title="Latest news and official updates">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               This feed aggregates relevant coverage from selected global,
-              Lebanese, humanitarian and official sources. It is broad but not
+              Lebanese, humanitarian and official publishers. It is broad but not
               exhaustive, and it is kept strictly separate from the confirmed
               analysis.
             </p>

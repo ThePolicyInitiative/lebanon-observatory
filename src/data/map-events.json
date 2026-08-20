@@ -1,5 +1,5 @@
 {
-  "note": "Traced episodes per locality, drawn from the the traced activity. Each entry states what the sources show - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer.",
+  "note": "Traced episodes per locality, drawn from the the traced activity. Each entry states what the reporting shows - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer.",
   "localities": [
     {
       "name": "Nabatieh",
