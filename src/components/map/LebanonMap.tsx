@@ -16,17 +16,18 @@ import {
 import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
 import { LOCALITY_EVENTS, eventsFor, EVENT_KIND_META } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { buildPins } from "@/lib/pins";
+import { buildPins, pinOutline } from "@/lib/pins";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { type MapView } from "./SvgLebanonMap";
 
 /**
  * Fan spacing between neighbouring pins at one town, in degrees of
- * latitude - about 110 m. A forty-entry town spreads to roughly 700 m,
- * which reads as "this town" at street zoom and as a tight cluster at
- * national zoom, without ever stacking two pins on one point.
+ * latitude - about 390 m. At 110 m the pins sat inside a single pixel at
+ * national zoom and could not be told apart until deep in; at this
+ * spacing a forty-entry town spans roughly 2.4 km, which separates from
+ * about town zoom onward and still reads as one place from above.
  */
-const PIN_SPACING_DEG = 0.001;
+const PIN_SPACING_DEG = 0.0035;
 
 type MentionRow = Record<ActorLayer, number>;
 
@@ -423,8 +424,8 @@ export default function LebanonMap() {
     // quantity, so shading the land by that same quantity said it twice
     // and set a colour ramp against the pins' own colours.
     if (map.getLayer("gov-fill")) {
-      map.setPaintProperty("gov-fill", "fill-color", "#C6D0DC");
-      map.setPaintProperty("gov-fill", "fill-opacity", 0.55);
+      map.setPaintProperty("gov-fill", "fill-color", "#E1E7EE");
+      map.setPaintProperty("gov-fill", "fill-opacity", 0.9);
     }
     for (const layerId of ["occupied-fill", "occupied-line"]) {
       if (map.getLayer(layerId)) {
@@ -463,10 +464,12 @@ export default function LebanonMap() {
             },
             properties: {
               name,
-              radius: 5,
-              color: pin.color,
-              strokeColor: pin.kind === "episode" ? "#263645" : "#FFFFFF",
-              strokeWidth: pin.kind === "episode" ? 2 : 1.5,
+              radius: 4.5,
+              // An episode is a ring, an entry a solid dot - the same
+              // distinction the vector map draws.
+              color: pin.kind === "episode" ? "#FFFFFF" : pin.color,
+              strokeColor: pin.kind === "episode" ? pin.color : pinOutline(pin.color),
+              strokeWidth: pin.kind === "episode" ? 2.4 : 1.2,
               popupHtml:
                 `<div style="font-size:12px;line-height:1.5"><strong>${esc(pin.title)}</strong>` +
                 `<br/><span style="color:#667588">${esc(pin.townName)}${pin.district ? ` · ${esc(pin.district)} district` : ""} · ${year}</span>` +
@@ -612,7 +615,7 @@ export default function LebanonMap() {
             <div className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
               <div
                 ref={containerRef}
-                className="h-[520px] sm:h-[680px]"
+                className="h-[560px] sm:h-[760px]"
                 aria-label={`Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`}
               />
             </div>

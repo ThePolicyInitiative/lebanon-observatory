@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { buildPins, fanOffset, fanRadius } from "@/lib/pins";
+import { buildPins, fanOffset, fanRadius, layerColor, pinOutline } from "@/lib/pins";
 import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
 import { slimRecords } from "@/lib/map-records";
 import { LAYER_COLORS } from "@/lib/colors";
@@ -85,5 +85,44 @@ describe("map pins", () => {
     );
     expect(fanRadius(1, 5)).toBe(0);
     expect(fanRadius(41, 5)).toBeCloseTo(5 * Math.sqrt(40), 5);
+  });
+
+  /**
+   * The two properties that decide whether a fan is readable, both
+   * measurable without looking at it.
+   */
+  it("keeps a lane of ground between neighbouring pins", () => {
+    // Mirrors SvgLebanonMap: spacing 7, radius 2.4, outline 0.9.
+    const SPACING = 7;
+    const OUTER = 2.4 + 0.9;
+    for (const n of [2, 5, 13, 24, 40, 60]) {
+      const pts = Array.from({ length: n }, (_, i) => fanOffset(i, SPACING));
+      let nearest = Infinity;
+      for (let i = 0; i < n; i++)
+        for (let j = i + 1; j < n; j++)
+          nearest = Math.min(nearest, Math.hypot(pts[i].dx - pts[j].dx, pts[i].dy - pts[j].dy));
+      expect(nearest, `${n} pins overlap`).toBeGreaterThan(OUTER * 2);
+    }
+  });
+
+  it("outlines every layer clear of the map's ground", () => {
+    // WCAG 1.4.11: graphical objects need 3:1 against what is behind them.
+    const GROUND = "#e5eaf0";
+    const lin = (c: number) => {
+      const v = c / 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    };
+    const lum = (hex: string) =>
+      0.2126 * lin(parseInt(hex.slice(1, 3), 16)) +
+      0.7152 * lin(parseInt(hex.slice(3, 5), 16)) +
+      0.0722 * lin(parseInt(hex.slice(5, 7), 16));
+    const contrast = (a: string, b: string) => {
+      const [x, y] = [lum(a), lum(b)];
+      return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+    };
+    for (const layer of ["official", "ngo_international", "municipal", "community"]) {
+      const edge = pinOutline(layerColor(layer));
+      expect(contrast(edge, GROUND), `${layer} outline is too faint`).toBeGreaterThanOrEqual(3);
+    }
   });
 });

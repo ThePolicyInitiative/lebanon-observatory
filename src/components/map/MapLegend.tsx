@@ -14,7 +14,7 @@ const T = {
   en: {
     heading: "Key",
     pins: "One pin per traced entry, coloured by actor layer",
-    episode: "Ringed: a traced episode - something that happened here",
+    episode: "Hollow ring: a traced episode - something that happened here",
     context: "Conflict context",
     ground: "The land itself is unshaded: colour on this map means an actor layer and nothing else.",
     fan: "Entries in the same town are fanned around its centre so each can be read and opened. A pin marks the town the sources name, never a street address.",
@@ -24,7 +24,7 @@ const T = {
   ar: {
     heading: "مفتاح القراءة",
     pins: "دبّوس واحد لكل مدخل مرصود، بلون طبقة الجهة",
-    episode: "بحلقة: واقعة مرصودة - شيء جرى هنا",
+    episode: "حلقة مفرغة: واقعة مرصودة - شيء جرى هنا",
     context: "سياق الحرب",
     ground: "الأرض نفسها بلا تظليل: اللون على هذه الخريطة يعني طبقة جهة ولا شيء آخر.",
     fan: "المدخلات في البلدة نفسها تُنشر حول مركزها ليمكن قراءة كل واحد منها وفتحه. والدبّوس يشير إلى البلدة التي تسمّيها المصادر، لا إلى عنوان في شارع.",
@@ -69,16 +69,16 @@ export default function MapLegend({
         <li className="flex items-center gap-1.5">
           <span
             aria-hidden
-            className="h-2.5 w-2.5 shrink-0 rounded-full ring-2 ring-[color:var(--color-text)]"
-            style={{ background: "#8FA1B5" }}
+            className="h-2.5 w-2.5 shrink-0 rounded-full border-2 bg-white"
+            style={{ borderColor: "#8FA1B5" }}
           />
           <span className="text-[color:var(--color-text-secondary)]">{t.episode}</span>
         </li>
         <li className="flex items-center gap-1.5">
           <span
             aria-hidden
-            className="h-2.5 w-2.5 shrink-0 rounded-full ring-1 ring-white"
-            style={{ background: "#667588" }}
+            className="h-2.5 w-2.5 shrink-0 rounded-full border"
+            style={{ background: "#667588", borderColor: "#384049" }}
           />
           <span className="text-[color:var(--color-text-secondary)]">{t.context}</span>
         </li>

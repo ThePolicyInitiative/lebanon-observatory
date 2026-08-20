@@ -86,6 +86,21 @@ export function layerColor(layer: string): string {
 }
 
 /**
+ * A pin's outline: its own colour at 55% brightness.
+ *
+ * A white outline separates pins from each other but leaves the pin
+ * itself to carry all the contrast against the ground, and the municipal
+ * amber cannot: measured against the map's grey it reaches 1.87:1, under
+ * the 3:1 that graphical objects need. Darkening the pin's own colour for
+ * the edge puts every layer between 5.8:1 and 13.6:1 without touching the
+ * fills, which are the site's actor-layer identity everywhere else.
+ */
+export function pinOutline(color: string): string {
+  const ch = (i: number) => Math.round(parseInt(color.slice(i, i + 2), 16) * 0.55);
+  return `#${[ch(1), ch(3), ch(5)].map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+}
+
+/**
  * Every pin for one year: one per entry naming a town, one per traced
  * episode. `spacing` is in the caller's units. Towns are resolved through
  * the same location index both maps already build.

@@ -36,15 +36,18 @@ import {
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
-import { buildPins, fanRadius, type Pin } from "@/lib/pins";
+import { buildPins, fanRadius, pinOutline, type Pin } from "@/lib/pins";
 import MapLegend from "./MapLegend";
 
 /**
- * Fan spacing in screen pixels: the gap between neighbouring pins at a
- * town. Small enough that a forty-entry town stays a readable cluster,
- * large enough that every pin can be hit with a pointer.
+ * Fan geometry, in screen pixels. Nearest-neighbour distance on the
+ * spiral is exactly PIN_SPACING, so it has to clear the pin's outer
+ * diameter: 2 x (radius + outline) = 5.7, leaving a 1.3px lane of ground
+ * between neighbours. The old 5.4 against a 6.7 diameter overlapped.
  */
-const PIN_SPACING = 5.4;
+const PIN_SPACING = 7;
+const PIN_R = 2.4;
+const PIN_STROKE = 0.9;
 
 const PIN_T = {
   en: {
@@ -721,8 +724,8 @@ export default function SvgLebanonMap({
         // land by the same quantity said it twice and put a colour ramp
         // in direct competition with the actor-layer colours the pins
         // carry. Grey keeps colour meaning exactly one thing.
-        fill = unnamed ? "#B9C2CE" : "#C6D0DC";
-        opacity = unnamed ? 0.35 : 0.55;
+        fill = unnamed ? "#B9C2CE" : "#E1E7EE";
+        opacity = unnamed ? 0.35 : 0.9;
         hoverText = `${t.name} · ${t.district} district - ${dCount} traced activit${dCount === 1 ? "y" : "ies"} in this district${namedCount > 0 ? `, ${namedCount} naming this town` : ""}`;
       }
       if (!affected && !unnamed) opacity *= 0.42;
@@ -735,8 +738,8 @@ export default function SvgLebanonMap({
           d={t.d}
           fill={fill}
           fillOpacity={opacity}
-          stroke={isSel ? "#173B63" : "#FFFFFF"}
-          strokeWidth={isSel ? 1.8 : 0.3}
+          stroke={isSel ? "#173B63" : view === "entries" ? "#AEBBCA" : "#FFFFFF"}
+          strokeWidth={isSel ? 1.8 : view === "entries" ? 0.4 : 0.3}
           strokeOpacity={isSel ? 1 : affected ? 0.8 : 0.45}
           vectorEffect="non-scaling-stroke"
           className={unnamed ? undefined : "cursor-pointer"}
@@ -895,9 +898,9 @@ export default function SvgLebanonMap({
           column sized to that cap so no gutter is left over, and the space
           beside it carries the key and - once something is picked - the
           detail panel. */}
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,74vh)_minmax(0,1fr)] lg:items-start">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,min(82vh,46rem))_minmax(0,1fr)] lg:items-start">
         <div>
-          <div className="relative mx-auto w-full max-w-[74vh] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          <div className="relative mx-auto w-full max-w-[min(82vh,46rem)] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
@@ -933,8 +936,8 @@ export default function SvgLebanonMap({
                     <path
                       key={p.name}
                       d={p.d}
-                      fill="#C6D0DC"
-                      fillOpacity={0.55}
+                      fill="#E1E7EE"
+                      fillOpacity={0.9}
                       stroke="#FFFFFF"
                       strokeWidth={0.6}
                       strokeOpacity={0.85}
@@ -1134,7 +1137,8 @@ export default function SvgLebanonMap({
               {view === "entries"
                 ? entryPins.map((pin) => {
                     const isSel = selectedTownName === pin.townName;
-                    const rp = (isSel ? 1.35 : 1) * (pin.kind === "episode" ? 3 : 2.9);
+                    const rp = PIN_R * (isSel ? 1.4 : 1);
+                    const edge = isSel ? "#173B63" : pinOutline(pin.color);
                     const label = `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""} · ${pin.detail}`;
                     return (
                       <g
@@ -1160,18 +1164,13 @@ export default function SvgLebanonMap({
                           }
                         }}
                       >
+                        {/* An episode is a ring, an entry a solid dot -
+                            distinguishable without relying on colour. */}
                         <circle
                           r={rp}
-                          fill={pin.color}
-                          fillOpacity={0.92}
-                          stroke={
-                            isSel
-                              ? "#173B63"
-                              : pin.kind === "episode"
-                                ? "#263645"
-                                : "#FFFFFF"
-                          }
-                          strokeWidth={isSel ? 1.6 : pin.kind === "episode" ? 1.4 : 0.9}
+                          fill={pin.kind === "episode" ? "#FFFFFF" : pin.color}
+                          stroke={pin.kind === "episode" ? pin.color : edge}
+                          strokeWidth={pin.kind === "episode" ? PIN_STROKE * 2 : PIN_STROKE}
                         />
                         <title>{label}</title>
                       </g>
