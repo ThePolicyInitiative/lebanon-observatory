@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import ResultProfile from "@/components/charts/ResultProfile";
 import Link from "next/link";
 import { LAYER_META, STATUS_LABELS, COMPARABILITY_LABELS } from "@/lib/colors";
 import { roleRecords, actors, STAGES, locations } from "@/lib/data";
@@ -164,6 +165,13 @@ export default function ExplorerClient() {
 
       {/* Results */}
       <div className="mt-4 lg:mt-0">
+        {/* The shape of the current result, above the rows. Narrowing to
+            forty entries told you the count and nothing about what the
+            forty were; this redraws as the filters move. */}
+        <div className="mb-4">
+          <ResultProfile rows={filtered} />
+        </div>
+
         {/* Desktop table */}
         <div className="hidden overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-white md:block">
           <table className="min-w-full border-collapse text-[13px]">

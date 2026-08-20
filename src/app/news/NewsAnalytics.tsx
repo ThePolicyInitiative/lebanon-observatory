@@ -134,11 +134,59 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
     };
   }
 
+  const publisherPairs = countBy((a) => [a.sourceName]);
   const sourceTypePairs = countBy((a) => [a.sourceType]);
   const languagePairs = countBy((a) => [a.language]);
   const stagePairs = countBy((a) => a.valueChainStages);
   const locationPairs = countBy((a) => a.locations);
   const layerPairs = countBy((a) => a.actorLayers);
+
+  /**
+   * How well the matched articles actually score. The gate admits
+   * anything above its floor, so a set can be large and thin; this shows
+   * which it is, in the scorer's own units.
+   */
+  const relevanceBuckets: [string, number][] = (() => {
+    const edges = [0, 20, 40, 60, 80];
+    const labels = ["0-19", "20-39", "40-59", "60-79", "80-100"];
+    const counts = new Array(edges.length).fill(0);
+    for (const a of articles) {
+      const s = Math.max(0, Math.min(100, a.relevanceScore ?? 0));
+      let i = edges.length - 1;
+      while (i > 0 && s < edges[i]) i--;
+      counts[i]++;
+    }
+    return labels.map((l, i) => [l, counts[i]] as [string, number]).filter(([, v]) => v > 0);
+  })();
+
+  /** Buckets are an ordered scale, so they keep their order, not rank. */
+  function scaleBarOption(pairs: [string, number][]): EChartsOption {
+    return {
+      grid: { left: 55, right: 30, top: 10, bottom: 25 },
+      tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+      xAxis: {
+        type: "value",
+        minInterval: 1,
+        splitLine: { lineStyle: { color: "#EDF0F4" } },
+      },
+      yAxis: {
+        type: "category",
+        data: [...pairs].reverse().map(([k]) => k),
+        axisTick: { show: false },
+        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLabel: { fontSize: 10.5 },
+      },
+      series: [
+        {
+          type: "bar",
+          data: [...pairs].reverse().map(([, v]) => v),
+          itemStyle: { color: "#58779B", borderRadius: 2 },
+          barMaxWidth: 14,
+          label: { show: true, position: "right", fontSize: 10.5, color: "#263645" },
+        },
+      ],
+    };
+  }
 
   return (
     <section aria-label="News coverage analytics">
@@ -168,6 +216,7 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
       </div>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {[
+          ["Which publishers carry it", publisherPairs],
           ["Coverage by source type", sourceTypePairs],
           ["Coverage by language", languagePairs],
           ["Coverage by value-chain stage", stagePairs],
@@ -183,6 +232,27 @@ export default function NewsAnalytics({ articles }: { articles: NewsArticle[] })
             )}
           </div>
         ))}
+      </div>
+      <div className="mt-4 card p-4">
+        <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+          Relevance of the matched set
+        </h3>
+        <p className="mt-1 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+          The keyword scorer&apos;s own output, bucketed. A large set can
+          still be a thin one, and this is the difference: it says how well
+          the matched articles scored, not whether they are any good.
+        </p>
+        {relevanceBuckets.length === 0 ? (
+          <p className="mt-2 text-xs text-[color:var(--color-text-secondary)]">
+            No articles in the current selection.
+          </p>
+        ) : (
+          <EChart
+            option={scaleBarOption(relevanceBuckets)}
+            height={170}
+            ariaLabel="Bar chart of matched articles by relevance-score band"
+          />
+        )}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import NewsCoverageProfile from "@/components/NewsCoverageProfile";
 import type { NewsArticle, NewsResponse } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
 
@@ -75,7 +76,14 @@ export default function ArabicNewsFeed() {
         {down.length > 0 ? ` · متعذّرة: ${down.map((p) => p.name).join("، ")}` : ""}
       </p>
 
-      <ul className="mt-4 grid gap-3 md:grid-cols-2">
+      {/* What came in, before the list of what came in. The English page
+          draws the same breakdowns with a chart library; these are plain
+          bars, which lay out right-to-left without being told how. */}
+      <div className="mt-5">
+        <NewsCoverageProfile articles={data.articles} locale="ar" />
+      </div>
+
+      <ul className="mt-6 grid gap-3 md:grid-cols-2">
         {data.articles.map((a: NewsArticle) => (
           <li key={a.id} className="card p-3.5" dir={a.language === "ar" ? "rtl" : "ltr"}>
             <p
