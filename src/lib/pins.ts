@@ -1,6 +1,6 @@
 import { LAYER_COLORS } from "./colors";
-import { actorBase, actorLabel } from "./actor-names";
-import { stageLabel, statusLabel, type Locale } from "./vocab";
+import { actorBase, actorLabel, subtypeLabel } from "./actor-names";
+import { layerLabel, stageLabel, statusLabel, type Locale } from "./vocab";
 import { eventsByTown, eventsFor } from "./events";
 import { matchLocations, type LocationIndex } from "./geo-match";
 import type { SlimRecord } from "./map-records";
@@ -44,6 +44,13 @@ export type Pin = {
   title: string;
   /** Supporting line: stage and status, or the episode's own text. */
   detail: string;
+  /** What the sources say happened - the panel a click opens. */
+  body: string;
+  /** The layer's own name, for the panel. */
+  layerLabel: string;
+  /** Actor subtype, where the tracking carries one. */
+  subtype: string;
+  year: Year;
   date?: string;
 };
 
@@ -108,14 +115,16 @@ const T = {
   en: {
     episode: "Traced episode",
     context: "Conflict context",
-      stage: "Stage",
+    stage: "Stage",
     status: "Status",
+    noAction: "The tracking carries no action text for this entry.",
   },
   ar: {
     episode: "واقعة مرصودة",
     context: "سياق الحرب",
     stage: "المرحلة",
     status: "الحالة",
+    noAction: "لا نص فعل مرصود لهذا المدخل في التتبّع.",
   },
 } as const;
 
@@ -185,6 +194,10 @@ export function buildPins({
         detail:
           `${t.stage} ${r.stageNo}: ${stageLabel(r.stageNo, locale)}` +
           ` · ${t.status}: ${statusLabel(r.implementationStatus, locale)}`,
+        body: r.action?.trim() || t.noAction,
+        layerLabel: layerLabel(r.actorLayer, locale),
+        subtype: subtypeLabel(r.actorSubtype ?? "", locale),
+        year: r.year,
       });
     }
   }
@@ -201,6 +214,10 @@ export function buildPins({
         color: ev.kind === "context" ? CONTEXT_COLOR : layerColor(ev.kind),
         title: ev.kind === "context" ? t.context : t.episode,
         detail: ev.text,
+        body: ev.text,
+        layerLabel: ev.kind === "context" ? t.context : layerLabel(ev.kind, locale),
+        subtype: "",
+        year,
         date: ev.date ?? undefined,
       });
     }

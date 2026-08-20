@@ -39,6 +39,7 @@ import {
 import { fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
 import { buildPins, clampToLand, fanRadius, pinOutline, type Pin } from "@/lib/pins";
+import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 
 /**
@@ -56,12 +57,23 @@ const PIN_T = {
     districtTint: (max: number) =>
       `fewer → more located traced entries (district tint, 0–${max})`,
     pinCount: (pins: number, places: number) =>
-      `${pins} pins across ${places} places`,
+      `${pins} pins across ${places} places - select one for its entry`,
+    entryAt: "Traced entry ·",
+    episodeAt: "Traced episode ·",
+    close: "Close this entry",
+    pinNote:
+      "One pin, one traced entry. The pin sits in the town the sources name, fanned off its centre so neighbouring entries stay separate - it is not a street address.",
   },
   ar: {
     districtTint: (max: number) =>
       `من الأقل إلى الأكثر في المدخلات المرصودة المحدَّدة الموقع (تظليل القضاء، 0-${max})`,
-    pinCount: (pins: number, places: number) => `${pins} دبّوساً في ${places} مكاناً`,
+    pinCount: (pins: number, places: number) =>
+      `${pins} دبّوساً في ${places} مكاناً - اختر واحداً لعرض مدخله`,
+    entryAt: "مدخل مرصود ·",
+    episodeAt: "واقعة مرصودة ·",
+    close: "إغلاق هذا المدخل",
+    pinNote:
+      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي تسمّيها المصادر، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع.",
   },
 } as const;
 
@@ -216,6 +228,9 @@ export default function SvgLebanonMap({
 }: Props) {
   const tr = PIN_T[locale];
   const [towns, setTowns] = useState<Town[] | null>(null);
+  /** Land test built from the town polygons the map itself draws. */
+  const [landIndex, setLandIndex] = useState<LandIndex | null>(null);
+  const [openPin, setOpenPin] = useState<(Pin & { town: Town }) | null>(null);
   const [districtOutlines, setDistrictOutlines] = useState<
     { name: string; d: string }[]
   >([]);
@@ -303,6 +318,14 @@ export default function SvgLebanonMap({
           };
         });
         setTowns(out);
+        // The land test uses the polygons the map draws, not the coarse
+        // governorate outline, so a pin cannot sit just off a fine coast.
+        setLandIndex(
+          buildLandIndex(gj.features, 12, (lon, lat) => {
+            const { x, y } = projectPoint(lon, lat);
+            return [x, y];
+          }),
+        );
 
         // Boundaries dissolved from these same polygons, so outlines sit
         // exactly on the areas they enclose.
@@ -662,13 +685,17 @@ export default function SvgLebanonMap({
   const entryPins = useMemo(
     () =>
       entryPinsRaw.map((pin) => {
-        const moved = clampToLand(pin.cx, pin.cy, pin.dx * k, pin.dy * k, (x, y) => {
-          const { lon, lat } = unprojectPoint(x, y);
-          return isOnLand(lon, lat);
-        });
+        const moved = clampToLand(pin.cx, pin.cy, pin.dx * k, pin.dy * k, (x, y) =>
+          landIndex
+            ? isOnLandIndexed(landIndex, x, y)
+            : (() => {
+                const { lon, lat } = unprojectPoint(x, y);
+                return isOnLand(lon, lat);
+              })(),
+        );
         return { ...pin, dx: moved.dx / k, dy: moved.dy / k };
       }),
-    [entryPinsRaw, k],
+    [entryPinsRaw, k, landIndex],
   );
 
   /** Top points labelled even at national zoom (skipping city labels). */
@@ -1168,7 +1195,10 @@ export default function SvgLebanonMap({
                         role="button"
                         aria-label={label}
                         className="cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
-                        onClick={() => selectTown(pin.town)}
+                        onClick={() => {
+                          setOpenPin(pin);
+                          selectTown(pin.town);
+                        }}
                         onPointerEnter={() => {
                           setHover(label);
                           setHoverUid(pin.townName);
@@ -1180,6 +1210,7 @@ export default function SvgLebanonMap({
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
+                            setOpenPin(pin);
                             selectTown(pin.town);
                           }
                         }}
@@ -1374,6 +1405,65 @@ export default function SvgLebanonMap({
         </div>
 
         <div className="space-y-4">
+        {/* The opened pin, above everything else: it is what the reader
+            just asked for, and one pin is one traced entry. */}
+        {openPin ? (
+          <aside
+            aria-live="polite"
+            className="card border-s-4 p-4"
+            style={{ borderInlineStartColor: openPin.color }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                  {openPin.kind === "episode" ? tr.episodeAt : tr.entryAt}{" "}
+                  {openPin.townName}
+                  {openPin.district ? ` · ${openPin.district}` : ""} · {openPin.year}
+                </p>
+                <h3 className="mt-1 text-sm font-semibold text-[color:var(--color-navy)]">
+                  {openPin.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpenPin(null)}
+                aria-label={tr.close}
+                className="shrink-0 rounded-sm px-1.5 text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+              >
+                ×
+              </button>
+            </div>
+            <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wide">
+              <span
+                className="rounded-sm px-1.5 py-0.5 text-white"
+                style={{ background: openPin.color }}
+              >
+                {openPin.layerLabel}
+              </span>
+              {openPin.subtype ? (
+                <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[color:var(--color-text-secondary)]">
+                  {openPin.subtype}
+                </span>
+              ) : null}
+              {openPin.date ? (
+                <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 tabular-nums text-[color:var(--color-navy)]">
+                  {fmtDate(openPin.date, locale)}
+                </span>
+              ) : null}
+            </p>
+            {openPin.kind === "entry" ? (
+              <p className="mt-2 text-[11.5px] text-[color:var(--color-text-secondary)]">
+                {openPin.detail}
+              </p>
+            ) : null}
+            <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-[color:var(--color-text)]">
+              {openPin.body}
+            </p>
+            <p className="mt-2.5 border-t border-dashed border-[color:var(--color-border)] pt-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              {tr.pinNote}
+            </p>
+          </aside>
+        ) : null}
         {/* The key sits beside the map, never over it - covering the
             south-west corner is covering the most densely traced part. */}
         {view === "entries" ? (

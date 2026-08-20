@@ -18,6 +18,6 @@ export type SlimRecord = Pick<
   | "locationNames"
   | "implementationStatus"
   | "comparability"
-> & { hay: string };
+> & { action: string };
 
 export const slimRecords = roleRecordsSlimJson as SlimRecord[];

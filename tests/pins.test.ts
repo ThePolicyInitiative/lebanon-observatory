@@ -9,7 +9,8 @@ import {
   layerColor,
   pinOutline,
 } from "@/lib/pins";
-import { featureCentroid, isOnLand, unprojectPoint, type GeoFeature } from "@/lib/geo";
+import { featureCentroid, isOnLand, projectPoint, unprojectPoint, type GeoFeature } from "@/lib/geo";
+import { buildLandIndex, isOnLandIndexed } from "@/lib/land";
 import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
 import { slimRecords } from "@/lib/map-records";
 import { LAYER_COLORS } from "@/lib/colors";
@@ -143,14 +144,19 @@ describe("map pins", () => {
    * The spiral is blind geometry, so around a coastal town it put entries
    * out in the Mediterranean - 17 of them across the two years, worst at
    * Sour and Choueifat. It also pushed border-town pins over the frontier.
+   *
+   * The test is against the town polygons the map actually draws, not the
+   * nine-ring governorate outline: the coarse version passed two pins that
+   * were sitting just off a fine stretch of coast.
    */
   it("never leaves a pin off Lebanese land", () => {
+    const land = buildLandIndex(gj.features as unknown as GeoFeature[], 12, (lon, lat) => {
+      const { x, y } = projectPoint(lon, lat);
+      return [x, y];
+    });
     const byName = new Map<string, (typeof towns)[number]>();
     for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
-    const ashore = (x: number, y: number) => {
-      const ll = unprojectPoint(x, y);
-      return isOnLand(ll.lon, ll.lat);
-    };
+    const ashore = (x: number, y: number) => isOnLandIndexed(land, x, y);
     for (const year of [2024, 2026] as const)
       for (const [name, pins] of pinsFor(year)) {
         const t = byName.get(name);
@@ -160,5 +166,28 @@ describe("map pins", () => {
           expect(ashore(t.cx + m.dx, t.cy + m.dy), `${name} ${year}: pin off land`).toBe(true);
         }
       }
+  });
+
+  it("tests against the drawn boundary, which is finer than the outline", () => {
+    // The governorate outline is nine rings; the town layer is 1,640.
+    const land = buildLandIndex(gj.features as unknown as GeoFeature[], 12, (lon, lat) => {
+      const { x, y } = projectPoint(lon, lat);
+      return [x, y];
+    });
+    const byName = new Map<string, (typeof towns)[number]>();
+    for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
+    let coarseLetThrough = 0;
+    for (const year of [2024, 2026] as const)
+      for (const [name, pins] of pinsFor(year)) {
+        const t = byName.get(name);
+        if (!t) continue;
+        for (const pin of pins) {
+          const x = t.cx + pin.dx;
+          const y = t.cy + pin.dy;
+          const ll = unprojectPoint(x, y);
+          if (isOnLand(ll.lon, ll.lat) && !isOnLandIndexed(land, x, y)) coarseLetThrough++;
+        }
+      }
+    expect(coarseLetThrough).toBeGreaterThan(0);
   });
 });

@@ -17,7 +17,8 @@ import {
 import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
 import { LOCALITY_EVENTS, eventsFor, EVENT_KIND_META } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { buildPins, clampToLand, pinOutline } from "@/lib/pins";
+import { buildPins, clampToLand, layerColor, pinOutline } from "@/lib/pins";
+import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { type MapView } from "./SvgLebanonMap";
 
@@ -82,6 +83,8 @@ export default function LebanonMap() {
     { name: string; district: string; lon: number; lat: number }[] | null
   >(null);
   const glIndexRef = useRef<LocationIndex | null>(null);
+  /** Land test from the town polygons, in lon/lat. */
+  const glLandRef = useRef<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const mapReadyRef = useRef(false);
   /**
@@ -225,6 +228,9 @@ export default function LebanonMap() {
           }));
           glTownsRef.current = townList;
           glIndexRef.current = buildLocationIndex(townList);
+          // A cell of 0.02 degrees is roughly 2 km - a few polygons per
+          // bucket, so a pin ray-casts a handful of rings, not 1,640.
+          glLandRef.current = buildLandIndex(towns.features as GeoFeature[], 0.02);
           map.addLayer({
             id: "town-fill",
             type: "fill",
@@ -458,7 +464,10 @@ export default function LebanonMap() {
         const lonScale = 1 / Math.max(0.2, Math.cos((t.lat * Math.PI) / 180));
         for (const pin of pins) {
           // The spiral knows nothing about the coast; keep the pin ashore.
-          const moved = clampToLand(t.lon, t.lat, pin.dx * lonScale, pin.dy, isOnLand);
+          const land = glLandRef.current;
+          const moved = clampToLand(t.lon, t.lat, pin.dx * lonScale, pin.dy, (x, y) =>
+            land ? isOnLandIndexed(land, x, y) : isOnLand(x, y),
+          );
           features.push({
             type: "Feature" as const,
             geometry: {
@@ -474,10 +483,18 @@ export default function LebanonMap() {
               strokeColor: pin.kind === "episode" ? pin.color : pinOutline(pin.color),
               strokeWidth: pin.kind === "episode" ? 2.4 : 1.2,
               popupHtml:
-                `<div style="font-size:12px;line-height:1.5"><strong>${esc(pin.title)}</strong>` +
-                `<br/><span style="color:#667588">${esc(pin.townName)}${pin.district ? ` · ${esc(pin.district)} district` : ""} · ${year}</span>` +
-                `<br/>${pin.date ? `<strong>${esc(fmtDate(pin.date))}:</strong> ` : ""}${esc(pin.detail)}` +
-                `<br/><em style="color:#667588">Fanned around the town centre - the place the sources name, not an address.</em></div>`,
+                `<div style="font-size:12px;line-height:1.5;max-width:300px">` +
+                `<span style="font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#667588">` +
+                `${pin.kind === "episode" ? "Traced episode" : "Traced entry"} · ${esc(pin.townName)}` +
+                `${pin.district ? ` · ${esc(pin.district)}` : ""} · ${year}</span>` +
+                `<br/><strong>${esc(pin.title)}</strong>` +
+                `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : layerColor(pin.layer)};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
+                `${pin.date ? ` <span style="font-size:10.5px;color:#667588">${esc(fmtDate(pin.date))}</span>` : ""}` +
+                (pin.kind === "entry"
+                  ? `<br/><span style="font-size:11px;color:#667588">${esc(pin.detail)}</span>`
+                  : "") +
+                `<br/><span style="display:inline-block;margin-top:4px;white-space:normal">${esc(pin.body)}</span>` +
+                `<br/><em style="font-size:10.5px;color:#667588">One pin, one traced entry - placed in the town the sources name, not at an address.</em></div>`,
             },
           });
         }

@@ -114,9 +114,9 @@ export const roleRecords = roleRecordsJson as RoleRecord[];
 
 /**
  * Slim projection of the tracking for client components that need
- * identity and classification but not the long narrative text: half the
- * payload of the full set. `hay` is a lower-cased excerpt prefix used
- * only for locality matching on the map.
+ * identity, classification and the traced action, but not the long
+ * mandate text: half the payload of the full set. `action` is what the
+ * map prints when a reader opens a pin.
  */
 export type SlimRecord = Pick<
   RoleRecord,
@@ -130,7 +130,7 @@ export type SlimRecord = Pick<
   | "locationNames"
   | "implementationStatus"
   | "comparability"
-> & { hay: string };
+> & { action: string };
 
 export const slimRecords = roleRecordsSlimJson as SlimRecord[];
 export const actors = actorsJson as ActorEntry[];
