@@ -236,6 +236,16 @@ const DIMENSIONS: Dimension[] = [
   },
 ];
 
+/** The verdict colours, for the overview bar and the per-card track. */
+const KIND_COLOR: Record<Dimension["kind"], string> = {
+  gain: "var(--color-teal)",
+  partial: "#D69600",
+  none: "var(--color-rust)",
+  redirected: "var(--color-magenta)",
+};
+
+const KIND_ORDER: Dimension["kind"][] = ["gain", "partial", "none", "redirected"];
+
 const KIND_BADGE: Record<
   Dimension["kind"],
   { label: string; labelAr: string; cls: string }
@@ -263,8 +273,24 @@ const KIND_BADGE: Record<
 };
 
 const T = {
-  en: { change: "Change: " },
-  ar: { change: "الفارق: " },
+  en: {
+    change: "Change: ",
+    overview: "The eleven dimensions at a glance",
+    overviewSub:
+      "Each dimension's verdict, counted. Four improved, three were built without yet delivering, three did not move at all, and one changed direction rather than size.",
+    of: (n: number, total: number) => `${n} of ${total}`,
+    arrow: "→",
+    trackLabel: (kind: string) => `2024 to 2026: ${kind}`,
+  },
+  ar: {
+    change: "الفارق: ",
+    overview: "الأبعاد الأحد عشر في لمحة",
+    overviewSub:
+      "حكم كل بُعد، معدوداً. أربعة تحسّنت، وثلاثة بُنيت ولم تُنجز بعد، وثلاثة لم تتحرّك إطلاقاً، وواحد بدّل وجهته لا حجمه.",
+    of: (n: number, total: number) => `${n} من ${total}`,
+    arrow: "←",
+    trackLabel: (kind: string) => `من 2024 إلى 2026: ${kind}`,
+  },
 } as const;
 
 export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}) {
@@ -284,6 +310,65 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
         />
       </div>
 
+      {/* The eleven verdicts, counted and coloured. Nothing else on the
+          page draws the dimensions themselves - the charts below are all
+          about actor layers and stages - so this is the one place the
+          comparison's own shape is visible. */}
+      <figure className="mt-6 card p-4 sm:p-5">
+        <figcaption>
+          <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+            {t.overview}
+          </h3>
+          <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+            {t.overviewSub}
+          </p>
+        </figcaption>
+        <div
+          aria-hidden
+          className="mt-3 flex h-4 w-full overflow-hidden rounded-sm"
+        >
+          {KIND_ORDER.map((kind) => {
+            const n = DIMENSIONS.filter((d) => d.kind === kind).length;
+            if (n === 0) return null;
+            return (
+              <div
+                key={kind}
+                style={{
+                  width: `${(n / DIMENSIONS.length) * 100}%`,
+                  background: KIND_COLOR[kind],
+                }}
+              />
+            );
+          })}
+        </div>
+        <ul className="mt-2.5 grid gap-x-4 gap-y-1.5 sm:grid-cols-2">
+          {KIND_ORDER.map((kind) => {
+            const list = DIMENSIONS.filter((d) => d.kind === kind);
+            if (list.length === 0) return null;
+            return (
+              <li key={kind} className="text-[12px]">
+                <p className="flex items-center gap-1.5 font-semibold">
+                  <span
+                    aria-hidden
+                    className="h-2.5 w-2.5 shrink-0 rounded-sm"
+                    style={{ background: KIND_COLOR[kind] }}
+                  />
+                  <span style={{ color: KIND_COLOR[kind] }}>
+                    {ar ? KIND_BADGE[kind].labelAr : KIND_BADGE[kind].label}
+                  </span>
+                  <span className="tabular-nums text-[color:var(--color-text-secondary)]">
+                    {t.of(list.length, DIMENSIONS.length)}
+                  </span>
+                </p>
+                <p className="mt-0.5 ps-4 leading-snug text-[color:var(--color-text-secondary)]">
+                  {list.map((d) => d[locale].label).join(" · ")}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </figure>
+
       <div className="mt-6 space-y-4">
         {DIMENSIONS.map((d) => {
           const c = d[locale];
@@ -298,10 +383,50 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
                 <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                   {c.label}
                 </h3>
-                <span
-                  className={`rounded-sm px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide ${badge.cls}`}
-                >
-                  {ar ? badge.labelAr : badge.label}
+                <span className="flex items-center gap-2.5">
+                  {/* 2024 to 2026 for this dimension, in its verdict
+                      colour: a solid run for a gain, dashed where
+                      something was built but has not delivered, flat and
+                      grey where nothing moved. The years dim to match
+                      whichever the control is showing. */}
+                  <span
+                    aria-label={t.trackLabel(ar ? badge.labelAr : badge.label)}
+                    role="img"
+                    className="flex items-center gap-1 text-[10px] font-bold tabular-nums"
+                  >
+                    <span
+                      className={mode === "2026" ? "opacity-30" : ""}
+                      style={{ color: "var(--color-y2024)" }}
+                    >
+                      2024
+                    </span>
+                    <span
+                      aria-hidden
+                      className="h-0 w-8 sm:w-12"
+                      style={{
+                        borderTopWidth: d.kind === "none" ? 1 : 2,
+                        borderTopStyle: d.kind === "partial" ? "dashed" : "solid",
+                        borderTopColor:
+                          d.kind === "none"
+                            ? "var(--color-border)"
+                            : KIND_COLOR[d.kind],
+                      }}
+                    />
+                    <span aria-hidden style={{ color: KIND_COLOR[d.kind] }}>
+                      {d.kind === "none" ? "·" : t.arrow}
+                    </span>
+                    <span
+                      className={mode === "2024" ? "opacity-30" : ""}
+                      style={{ color: "var(--color-y2026)" }}
+                    >
+                      2026
+                    </span>
+                  </span>
+                  <span
+                    className={`rounded-sm px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide ${badge.cls}`}
+                  >
+                    {ar ? badge.labelAr : badge.label}
+                  </span>
                 </span>
               </header>
               <div
