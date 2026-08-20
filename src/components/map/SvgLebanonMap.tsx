@@ -687,10 +687,7 @@ export default function SvgLebanonMap({
   const townLayer = useMemo(() => {
     if (!towns) return null;
     return towns.map((t) => {
-      const v = regionValues[t.zoneId] ?? 0;
-      const zoneT = maxRegion === 0 ? 0 : v / maxRegion;
       const dCount = districtRecords.get(t.district)?.length ?? 0;
-      const distT = dCount / maxDistrict;
       const namedCount = townRecords.get(t.name)?.length ?? 0;
       const unnamed = t.name === "Conflict" || t.name === "Litige" || !t.zoneId;
       const isSel = selectedTownUid === t.uid;
@@ -719,7 +716,13 @@ export default function SvgLebanonMap({
         opacity = 0.1;
         hoverText = `${t.name} · ${t.district} district - select for assessment details`;
       } else {
-        opacity = unnamed ? 0.35 : Math.min(0.85, 0.06 + zoneT * 0.18 + distT * 0.52);
+        // Entries view: the base map is geography and nothing else. The
+        // quantity lives in the pins now, one per entry, so tinting the
+        // land by the same quantity said it twice and put a colour ramp
+        // in direct competition with the actor-layer colours the pins
+        // carry. Grey keeps colour meaning exactly one thing.
+        fill = unnamed ? "#B9C2CE" : "#C6D0DC";
+        opacity = unnamed ? 0.35 : 0.55;
         hoverText = `${t.name} · ${t.district} district - ${dCount} traced activit${dCount === 1 ? "y" : "ies"} in this district${namedCount > 0 ? `, ${namedCount} naming this town` : ""}`;
       }
       if (!affected && !unnamed) opacity *= 0.42;
@@ -926,13 +929,12 @@ export default function SvgLebanonMap({
                 /* Instant server-rendered district base while towns load */
                 DISTRICT_PATHS.map((p) => {
                   const v = regionValues[p.zoneId] ?? 0;
-                  const t = maxRegion === 0 ? 0 : v / maxRegion;
                   return (
                     <path
                       key={p.name}
                       d={p.d}
-                      fill={rampColor}
-                      fillOpacity={v === 0 ? 0.08 : 0.2 + t * 0.7}
+                      fill="#C6D0DC"
+                      fillOpacity={0.55}
                       stroke="#FFFFFF"
                       strokeWidth={0.6}
                       strokeOpacity={0.85}
@@ -1356,7 +1358,7 @@ export default function SvgLebanonMap({
         {/* The key sits beside the map, never over it - covering the
             south-west corner is covering the most densely traced part. */}
         {view === "entries" ? (
-          <MapLegend locale={locale} year={year} rampColor={rampColor} />
+          <MapLegend locale={locale} year={year} />
         ) : null}
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
@@ -1561,17 +1563,9 @@ export default function SvgLebanonMap({
 
           {/* Map legend */}
           <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
-            {/* Colours and pin meaning are in the key; this row carries only
-                what the key does not - the district tint and the pin count. */}
+            {/* Colour meaning lives in the key; this row carries the count. */}
             {view === "entries" ? (
-              <li className="flex items-center gap-1.5">
-                <span className="flex items-center gap-0.5" aria-hidden>
-                  {[0.15, 0.4, 0.65, 0.9].map((o) => (
-                    <span key={o} className="h-2.5 w-4" style={{ background: rampColor, opacity: o }} />
-                  ))}
-                </span>
-                {tr.districtTint(maxDistrict)} · {tr.pinCount(entryPins.length, placePoints.length)}
-              </li>
+              <li>{tr.pinCount(entryPins.length, placePoints.length)}</li>
             ) : view === "change" ? (
               <>
                 <li className="flex items-center gap-1.5">

@@ -16,7 +16,7 @@ const T = {
     pins: "One pin per traced entry, coloured by actor layer",
     episode: "Ringed: a traced episode - something that happened here",
     context: "Conflict context",
-    shading: "Shading: fewer → more traced entries in the zone",
+    ground: "The land itself is unshaded: colour on this map means an actor layer and nothing else.",
     fan: "Entries in the same town are fanned around its centre so each can be read and opened. A pin marks the town the sources name, never a street address.",
     occupied:
       "Rust: Blue Line border-strip towns with traced occupation (indicative); rust dash: the districts containing them.",
@@ -26,7 +26,7 @@ const T = {
     pins: "دبّوس واحد لكل مدخل مرصود، بلون طبقة الجهة",
     episode: "بحلقة: واقعة مرصودة - شيء جرى هنا",
     context: "سياق الحرب",
-    shading: "التظليل: من الأقل إلى الأكثر في المدخلات المرصودة داخل المنطقة",
+    ground: "الأرض نفسها بلا تظليل: اللون على هذه الخريطة يعني طبقة جهة ولا شيء آخر.",
     fan: "المدخلات في البلدة نفسها تُنشر حول مركزها ليمكن قراءة كل واحد منها وفتحه. والدبّوس يشير إلى البلدة التي تسمّيها المصادر، لا إلى عنوان في شارع.",
     occupied:
       "الخمري: بلدات الشريط الحدودي على الخط الأزرق التي رُصد فيها احتلال (إشارة تقريبية)؛ والتقطيع الخمري: الأقضية التي تضمّها.",
@@ -36,12 +36,10 @@ const T = {
 export default function MapLegend({
   locale = "en",
   year,
-  rampColor,
   className = "",
 }: {
   locale?: Locale;
   year: Year;
-  rampColor: string;
   className?: string;
 }) {
   const t = T[locale];
@@ -86,25 +84,11 @@ export default function MapLegend({
         </li>
       </ul>
 
-      {/* Zone shading. */}
-      <div className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-2">
-        <div className="flex items-center gap-1">
-          {[0.15, 0.35, 0.6, 0.9].map((o) => (
-            <span
-              key={o}
-              aria-hidden
-              className="h-3 w-6"
-              style={{ background: rampColor, opacity: o }}
-            />
-          ))}
-        </div>
-        <p className="mt-1 text-[color:var(--color-text-secondary)]">{t.shading}</p>
-      </div>
-
-      {/* The one thing a pin's position does not mean. */}
+      {/* What the ground is not, and what a pin's position does not mean. */}
       <p className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-2 text-[color:var(--color-text-secondary)]">
-        {t.fan}
+        {t.ground}
       </p>
+      <p className="mt-1.5 text-[color:var(--color-text-secondary)]">{t.fan}</p>
       {year === 2026 ? (
         <p className="mt-1.5 text-[color:var(--color-text-secondary)]">{t.occupied}</p>
       ) : null}

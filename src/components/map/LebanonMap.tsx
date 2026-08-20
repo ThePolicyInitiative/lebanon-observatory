@@ -419,20 +419,12 @@ export default function LebanonMap() {
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
-    // One base colour per selection; the value ramp is carried by opacity,
-    // with exact values printed in the popups and table view.
-    const opacityExpr: unknown[] = ["match", ["get", "zoneId"]];
-    for (const region of locations.regions.filter((r) => r.mappable)) {
-      const v = regionValues[region.id] ?? 0;
-      const t = v / maxRegion;
-      opacityExpr.push(region.id, v === 0 ? 0.08 : 0.2 + t * 0.7);
-    }
-    opacityExpr.push(0.15);
-
+    // The ground is neutral: one pin per entry already carries the
+    // quantity, so shading the land by that same quantity said it twice
+    // and set a colour ramp against the pins' own colours.
     if (map.getLayer("gov-fill")) {
-      map.setPaintProperty("gov-fill", "fill-color", rampColor);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      map.setPaintProperty("gov-fill", "fill-opacity", opacityExpr as any);
+      map.setPaintProperty("gov-fill", "fill-color", "#C6D0DC");
+      map.setPaintProperty("gov-fill", "fill-opacity", 0.55);
     }
     for (const layerId of ["occupied-fill", "occupied-line"]) {
       if (map.getLayer(layerId)) {
@@ -492,7 +484,7 @@ export default function LebanonMap() {
         features,
       });
     }
-  }, [mapReady, regionValues, filteredRecords, rampColor, maxRegion, year]);
+  }, [mapReady, filteredRecords, year]);
 
   const selectCls =
     "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
@@ -631,7 +623,7 @@ export default function LebanonMap() {
               group, not repeated on each card. */}
           <div className="space-y-3">
             {renderMode === "gl" && mapView === "entries" ? (
-              <MapLegend year={year} rampColor={rampColor} />
+              <MapLegend year={year} />
             ) : null}
             <p className="text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
               The groupings below are not mappable to a single governorate, so
