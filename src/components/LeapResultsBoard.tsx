@@ -8,30 +8,16 @@ import type { Locale } from "@/lib/vocab";
  * financing; every zero is the disclosed figure, not an inference.
  */
 
-const STATUS_META: Record<
-  string,
-  { label: string; labelAr: string; cls: string }
-> = {
-  zero: {
-    label: "Result: zero",
-    labelAr: "النتيجة: صفر",
-    cls: "bg-[#F7E9E5] text-[color:var(--color-rust)]",
-  },
-  missed: {
-    label: "Target date missed",
-    labelAr: "فات الموعد المستهدف",
-    cls: "bg-[#F7E9E5] text-[color:var(--color-rust)]",
-  },
-  process: {
-    label: "In process",
-    labelAr: "قيد الإجراء",
-    cls: "bg-[#FAF3E3] text-[#8a6200]",
-  },
-  baseline: {
-    label: "Baseline unchanged",
-    labelAr: "خط الأساس بلا تغيير",
-    cls: "bg-[#EEF2F7] text-[color:var(--color-navy)]",
-  },
+/**
+ * Status carries as an edge colour, not a chip. A chip reading "Result:
+ * zero" beside a row that already prints "June 2026: 0" said the same
+ * thing twice, and the words were the site's, not the disclosure's.
+ */
+const STATUS_EDGE: Record<string, string> = {
+  zero: "var(--color-rust)",
+  missed: "var(--color-rust)",
+  process: "#D69600",
+  baseline: "#8FA1B5",
 };
 
 const T = {
@@ -68,23 +54,16 @@ export default function LeapResultsBoard({ locale = "en" }: { locale?: Locale } 
       </figcaption>
       <ul className="mt-4 grid gap-2.5 md:grid-cols-2">
         {leapResults.indicators.map((row) => {
-          const meta = STATUS_META[row.status] ?? STATUS_META.process;
           const deadline = ar ? row.deadlineAr : row.deadline;
           return (
             <li
               key={row.indicator}
-              className="panel-sunken p-3"
+              className="panel-sunken border-s-2 p-3"
+              style={{ borderInlineStartColor: STATUS_EDGE[row.status] ?? "#8FA1B5" }}
             >
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-[13px] font-semibold text-[color:var(--color-navy)]">
-                  {ar ? row.indicatorAr : row.indicator}
-                </p>
-                <span
-                  className={`shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${meta.cls}`}
-                >
-                  {ar ? meta.labelAr : meta.label}
-                </span>
-              </div>
+              <p className="text-[13px] font-semibold text-[color:var(--color-navy)]">
+                {ar ? row.indicatorAr : row.indicator}
+              </p>
               <p className="mt-1.5 text-xs text-[color:var(--color-text-secondary)]">
                 <span className="font-semibold text-[color:var(--color-text)]">
                   {tr.target}

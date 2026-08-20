@@ -18,7 +18,6 @@ const T = {
     disbursed: "Disbursed:",
     disbursedNote: "(US$4.13M by 29 Jun 2026)",
     notDisbursed: "Not yet disbursed:",
-    notConfirmed: "(Not confirmed)",
     caveat:
       "The US$1 billion framework is not equivalent to the US$11 billion national need: even fully funded it covers roughly the public third of one war's assessed needs. Committed finance is not disbursed finance; disbursement is not completed output.",
     barsAlt:
@@ -34,7 +33,6 @@ const T = {
     disbursed: "المدفوع:",
     disbursedNote: "(4.13 مليون دولار حتى 29 حزيران 2026)",
     notDisbursed: "غير المدفوع بعد:",
-    notConfirmed: "(غير مؤكَّد)",
     caveat:
       "إطار المليار دولار لا يعادل الاحتياج الوطني البالغ 11 مليار دولار: حتى لو مُوّل بالكامل فهو يغطي نحو الثلث العام من احتياجات حرب واحدة. والتمويل الملتزَم به ليس تمويلاً مدفوعاً، والدفع ليس إنجازاً مكتملاً.",
     barsAlt:
@@ -147,7 +145,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
               {locale === "ar" ? z.labelAr : z.label}:
             </span>
             <span className="text-[color:var(--color-text-secondary)]">
-              {locale === "ar" ? z.noteAr : z.note} <em>{tr.notConfirmed}</em>
+              {locale === "ar" ? z.noteAr : z.note}
             </span>
           </li>
         ))}
