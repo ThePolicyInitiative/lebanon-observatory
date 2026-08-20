@@ -49,11 +49,10 @@ const CONCEPTS = [
   },
 ];
 
+/** The check date is in the section's opening line; the cards need only the status. */
 const PORTAL_STATUS_AR: Record<string, string> = {
-  "Under evaluation (17 Jul 2026 portal check)":
-    "قيد التقييم (مراجعة البوابة في 17 تموز 2026)",
-  "No award displayed (17 Jul 2026 portal check)":
-    "لا إرساء معروض (مراجعة البوابة في 17 تموز 2026)",
+  "Under evaluation": "قيد التقييم",
+  "No award displayed": "لا إرساء معروض",
 };
 
 export default function Page() {

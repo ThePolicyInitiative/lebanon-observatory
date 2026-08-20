@@ -310,17 +310,18 @@ function Map2026() {
         </div>
       </Band>
 
-      <Band n={4} title="CDR procurement and technical packages (2026)" accent={GREEN}>
+      {/* The check date belongs to the band, not to each package inside it. */}
+      <Band n={4} title="CDR procurement and technical packages, portal checked 17 July 2026" accent={GREEN}>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           <Box
             tone="gate"
             title="#1095 - Rubble management at a quarry site"
-            sub="LEAP-CS-TA-02. Engineering and consulting services. Published 12 May 2026, deadline 7 July 2026. No award displayed at the 17 July 2026 portal check."
+            sub="LEAP-CS-TA-02. Engineering and consulting services. Published 12 May 2026, deadline 7 July 2026. No award displayed."
           />
           <Box
             tone="gate"
             title="#1082 - Supervision of road clearing and restoration"
-            sub="LEAP-CS-SUP-01, covering Marjeyoun, Sour and Bent Jbeil. Published 27 February 2026, deadline 29 April 2026. Under evaluation at the 17 July 2026 portal check."
+            sub="LEAP-CS-SUP-01, covering Marjeyoun, Sour and Bent Jbeil. Published 27 February 2026, deadline 29 April 2026. Under evaluation."
           />
           <Box
             tone="gate"
