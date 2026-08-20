@@ -125,19 +125,11 @@ type Props = {
   /** Entries under the non-year filters, both years (change view). */
   recordsAllYears: SlimRecord[];
   view: MapView;
-  onViewChange: (view: MapView) => void;
   note?: string;
   locale?: Locale;
 };
 
 export type MapView = "entries" | "change" | "survey" | "damage";
-
-const VIEW_OPTIONS: { id: MapView; label: string }[] = [
-  { id: "entries", label: "Traced activity" },
-  { id: "change", label: "Change 2024 → 2026" },
-  { id: "survey", label: "Damage survey 2024" },
-  { id: "damage", label: "Damage assessment 2026" },
-];
 
 /** Municipality-reported damaged housing units, December 2024 survey. */
 const SURVEY_BY_DISTRICT = new Map(
@@ -187,28 +179,6 @@ function vbAround(cx: number, cy: number, w: number): ViewBox {
   return clampVb(cx - w / 2, cy - (w * ASPECT) / 2, w);
 }
 
-/** ViewBox covering a lon/lat rectangle, padded and aspect-corrected. */
-function vbFromLonLat(west: number, south: number, east: number, north: number): ViewBox {
-  const a = projectPoint(west, north);
-  const b = projectPoint(east, south);
-  const pad = 8;
-  let w = b.x - a.x + 2 * pad;
-  let h = b.y - a.y + 2 * pad;
-  if (w / h < 1 / ASPECT) w = h / ASPECT;
-  else h = w * ASPECT;
-  const midX = (a.x + b.x) / 2;
-  const midY = (a.y + b.y) / 2;
-  return clampVb(midX - w / 2, midY - h / 2, w);
-}
-
-/** Quick views over the areas the sources show most densely. */
-const REGION_VIEWS: { label: string; vb: ViewBox }[] = [
-  { label: "South border strip", vb: vbFromLonLat(35.02, 33.04, 35.78, 33.48) },
-  { label: "Beirut & southern suburbs", vb: vbFromLonLat(35.4, 33.75, 35.68, 33.96) },
-  { label: "Baalbek–Hermel", vb: vbFromLonLat(35.82, 33.72, 36.65, 34.78) },
-  { label: "Tripoli & Akkar", vb: vbFromLonLat(35.6, 34.22, 36.55, 34.75) },
-];
-
 
 /**
  * Vector map at town (cadastre) detail: 1,600+ town polygons from the
@@ -228,7 +198,6 @@ export default function SvgLebanonMap({
   records,
   recordsAllYears,
   view,
-  onViewChange,
   note,
   locale = "en",
 }: Props) {
@@ -476,10 +445,6 @@ export default function SvgLebanonMap({
       e.stopPropagation();
       e.preventDefault();
     }
-  }
-
-  function zoomCenter(factor: number) {
-    setVb((cur) => zoomAt(cur, cur.x + cur.w / 2, cur.y + cur.h / 2, factor));
   }
 
   const townNames = useMemo(
@@ -909,75 +874,14 @@ export default function SvgLebanonMap({
         </datalist>
       </div>
 
-      {/* Map view modes */}
-      <div className="mb-2 flex flex-wrap items-center gap-1.5 text-xs" role="group" aria-label="Map view">
-        <span className="font-semibold text-[color:var(--color-text-secondary)]">View:</span>
-        {VIEW_OPTIONS.map((o) => (
-          <button
-            key={o.id}
-            type="button"
-            aria-pressed={view === o.id}
-            onClick={() => onViewChange(o.id)}
-            className={`min-h-8 rounded-md border px-2.5 font-medium ${
-              view === o.id
-                ? "border-[color:var(--color-navy)] bg-[color:var(--color-navy)] text-white"
-                : "border-[color:var(--color-border)] bg-white text-[color:var(--color-text-secondary)] hover:bg-[#EEF2F7] hover:text-[color:var(--color-navy)]"
-            }`}
-          >
-            {o.label}
-          </button>
-        ))}
-        {view === "change" ? (
-          <span className="text-[color:var(--color-text-secondary)]">
-            both years shown; the year toggle applies to town and episode markers
-          </span>
-        ) : null}
-      </div>
-
-      {/* Zoom controls */}
-      <div className="mb-2 flex flex-wrap items-center gap-1.5 text-xs">
-        <button
-          type="button"
-          onClick={() => zoomCenter(1 / 1.6)}
-          aria-label="Zoom in"
-          className="min-h-8 min-w-8 rounded-md border border-[color:var(--color-border)] bg-white px-2 font-bold text-[color:var(--color-navy)] hover:bg-[#EEF2F7]"
-        >
-          +
-        </button>
-        <button
-          type="button"
-          onClick={() => zoomCenter(1.6)}
-          aria-label="Zoom out"
-          className="min-h-8 min-w-8 rounded-md border border-[color:var(--color-border)] bg-white px-2 font-bold text-[color:var(--color-navy)] hover:bg-[#EEF2F7]"
-        >
-          −
-        </button>
-        <button
-          type="button"
-          onClick={() => setVb(HOME)}
-          className={`min-h-8 rounded-md border px-2.5 font-medium ${
-            zoomed
-              ? "border-[color:var(--color-border)] bg-white text-[color:var(--color-navy)] hover:bg-[#EEF2F7]"
-              : "border-[color:var(--color-navy)] bg-[color:var(--color-navy)] text-white"
-          }`}
-        >
-          National view
-        </button>
-        <span className="mx-1 h-4 w-px bg-[color:var(--color-border)]" aria-hidden />
-        {REGION_VIEWS.map((r) => (
-          <button
-            key={r.label}
-            type="button"
-            onClick={() => setVb(r.vb)}
-            className="min-h-8 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 font-medium text-[color:var(--color-text-secondary)] hover:bg-[#EEF2F7] hover:text-[color:var(--color-navy)]"
-          >
-            {r.label}
-          </button>
-        ))}
-        <span className="ml-auto tabular-nums text-[color:var(--color-text-secondary)]">
-          ×{(VIEW_W / vb.w).toFixed(1)} zoom
-        </span>
-      </div>
+      {/* The view switcher, the zoom buttons and the region shortcuts are
+          gone; the map opens on the whole country and is zoomed by wheel,
+          drag, pinch or double-click, with the overview button in the
+          corner to recentre. The zoom factor still reads out, because it
+          is the one thing those gestures do not tell you. */}
+      <p className="mb-2 text-right text-xs tabular-nums text-[color:var(--color-text-secondary)]">
+        ×{(VIEW_W / vb.w).toFixed(1)} zoom
+      </p>
 
       {/* Lebanon's outline is portrait, so a full-width map would run
           about 1,700px tall. The map is capped by height instead, its

@@ -639,7 +639,6 @@ export default function LebanonMap() {
               records={filteredRecords}
               recordsAllYears={recordsAllYears}
               view={mapView}
-              onViewChange={(v) => set("view", v)}
             />
           ) : (
             <div className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
