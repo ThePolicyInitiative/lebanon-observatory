@@ -173,14 +173,10 @@ export default function LebanonMap() {
           attributionControl: false,
         });
         mapRef.current = map;
-        map.addControl(
-          new maplibregl.AttributionControl({
-            customAttribution:
-              "Boundaries: geoBoundaries (public domain) · OCHA COD (CC BY-IGO) · River © OpenStreetMap contributors" +
-              (styleUrl ? " · basemap © its providers" : ""),
-            compact: true,
-          }),
-        );
+        // No custom credit line on the map face. The control stays so that
+        // a configured basemap style can still carry its own provider
+        // attribution, which its terms require.
+        map.addControl(new maplibregl.AttributionControl({ compact: true }));
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
         map.addControl(new maplibregl.FullscreenControl(), "top-right");
         map.keyboard.enable();

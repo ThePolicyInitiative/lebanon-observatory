@@ -1348,9 +1348,6 @@ export default function SvgLebanonMap({
                 </svg>
               </button>
             ) : null}
-            <div className="pointer-events-none absolute bottom-2 right-2 rounded-sm bg-white/90 px-1.5 py-0.5 text-[10px] text-[color:var(--color-text-secondary)]">
-              Towns: OCHA COD (CC BY-IGO) · Governorates: geoBoundaries · River: © OpenStreetMap contributors
-            </div>
           </div>
         </div>
 
