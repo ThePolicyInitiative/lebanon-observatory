@@ -12,7 +12,9 @@ import NewsTeaser from "@/components/news/NewsTeaser";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/", "ar"),
-  title: AR.meta.title,
+  // Absolute: the Arabic home IS the site name, and the layout's template
+  // would otherwise append the same name to itself.
+  title: { absolute: AR.meta.title },
   description: AR.meta.description,
 };
 
