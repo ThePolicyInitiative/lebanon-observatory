@@ -115,6 +115,7 @@ export type Kpi = {
   label: string;
   value: number;
   display: string;
+  displayAr: string;
   kind: "need" | "framework" | "commitment" | "disbursement" | "output";
   definition: string;
   referencePeriod: string;

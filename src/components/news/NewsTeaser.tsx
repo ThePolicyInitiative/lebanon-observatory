@@ -3,10 +3,33 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { NewsArticle, NewsResponse } from "@/lib/types";
+import type { Locale } from "@/lib/vocab";
 import { fmtDateTime } from "@/lib/format";
 
+const T = {
+  en: {
+    href: "/news",
+    unavailable:
+      "Live updates are temporarily unavailable. The analysis on this site is unaffected - it is separate, and confirmed.",
+    open: "Open the live-updates page",
+    retry: "to retry.",
+    loading: "Loading latest updates",
+    empty: "No recent coverage matched the observatory's filters.",
+  },
+  ar: {
+    href: "/ar/news",
+    unavailable:
+      "المستجدات المباشرة غير متاحة مؤقتاً. تحليل هذا الموقع لم يتأثّر - فهو منفصل ومؤكَّد.",
+    open: "افتح صفحة المستجدات",
+    retry: "لإعادة المحاولة.",
+    loading: "جارٍ تحميل آخر المستجدات",
+    empty: "لا تغطية حديثة طابقت ترشيح المرصد.",
+  },
+} as const;
+
 /** Compact latest-updates strip for the homepage, with graceful fallback. */
-export default function NewsTeaser() {
+export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
   const [articles, setArticles] = useState<NewsArticle[] | null>(null);
   const [error, setError] = useState(false);
 
@@ -31,19 +54,18 @@ export default function NewsTeaser() {
   if (error) {
     return (
       <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
-        Live updates are temporarily unavailable. The analytical data on
-        this site is unaffected - it is a separate, confirmed analysis.{" "}
-        <Link href="/news" className="underline underline-offset-2">
-          Open the live-updates page
+        {t.unavailable}{" "}
+        <Link href={t.href} className="underline underline-offset-2">
+          {t.open}
         </Link>{" "}
-        to retry.
+        {t.retry}
       </p>
     );
   }
 
   if (!articles) {
     return (
-      <div aria-busy="true" aria-label="Loading latest updates" className="grid gap-3 sm:grid-cols-2">
+      <div aria-busy="true" aria-label={t.loading} className="grid gap-3 sm:grid-cols-2">
         {[0, 1, 2, 3].map((i) => (
           <div
             key={i}
@@ -57,9 +79,9 @@ export default function NewsTeaser() {
   if (articles.length === 0) {
     return (
       <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
-        No recent relevant coverage found in the aggregated sources.{" "}
-        <Link href="/news" className="underline underline-offset-2">
-          Open the live-updates page
+        {t.empty}{" "}
+        <Link href={t.href} className="underline underline-offset-2">
+          {t.open}
         </Link>
         .
       </p>

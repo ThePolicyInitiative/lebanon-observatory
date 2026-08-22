@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
-import { kpis, roleRecords, stageCounts, STAGES, finance } from "@/lib/data";
+import { kpis, roleRecords, stageCounts, STAGES, finance, locations } from "@/lib/data";
 import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
 import { GOV_PATHS } from "@/lib/geo";
+import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
+import YearHeatmaps from "@/components/charts/YearHeatmaps";
+import NewsTeaser from "@/components/news/NewsTeaser";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/", "ar"),
@@ -48,7 +52,63 @@ const KPI_AR: Record<string, string> = {
   "kpi-disbursed-pct": "نسبة الدفع من القرض",
 };
 
+/** The numbered heading the English narrative uses, mirrored for Arabic. */
+function SectionHeading({
+  index,
+  title,
+  children,
+}: {
+  index: number;
+  title: string;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="prose-measure">
+      <p className="flex items-center gap-2.5 font-sans text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
+        {String(index).padStart(2, "0")}
+        <span aria-hidden className="h-px w-8 bg-[color:var(--color-amber)]" />
+      </p>
+      <h2 className="mt-2 text-[26px] font-semibold sm:text-[30px]">{title}</h2>
+      {children}
+    </div>
+  );
+}
+
+function Body({ children }: { children: ReactNode }) {
+  return (
+    <p className="mt-3 text-sm leading-loose text-[color:var(--color-text)]">
+      {children}
+    </p>
+  );
+}
+
+function Onward({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <p className="mt-3 text-sm">
+      <Link
+        href={href}
+        className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+      >
+        {children} ←
+      </Link>
+    </p>
+  );
+}
+
 export default function ArabicPage() {
+  const regionRows = locations.regions
+    .filter((r) => r.id !== "national_multi" && r.id !== "named_localities")
+    .map((r) => {
+      const key = r.id as keyof (typeof locations.mentions)["2024"];
+      const sum = (m: Record<string, number> | undefined) =>
+        m ? Object.values(m).reduce((a, b) => a + b, 0) : 0;
+      return {
+        label: AR.regions[r.id] ?? r.label,
+        t24: sum(locations.mentions["2024"][key]),
+        t26: sum(locations.mentions["2026"][key]),
+      };
+    });
+
   const chain = [6, 7, 8, 9].map((n) => {
     const i = n - 1;
     const sum = (year: "2024" | "2026") =>
@@ -302,12 +362,116 @@ export default function ArabicPage() {
                 {KPI_AR[kpi.id] ?? kpi.label}
               </h3>
               <p className="mt-1.5 text-2xl font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
-                {kpi.display}
+                {kpi.displayAr ?? kpi.display}
               </p>
             </article>
           ))}
         </div>
       </section>
+
+      {/* The narrative sequence, in the same seven steps as the English side */}
+      <div className="mx-auto max-w-[1360px] space-y-16 px-4 pb-16 sm:px-6">
+        <section aria-label={AR.home.emergency.title}>
+          <SectionHeading index={AR.home.emergency.n} title={AR.home.emergency.title}>
+            <Body>{AR.home.emergency.body}</Body>
+          </SectionHeading>
+        </section>
+
+        <section aria-label={AR.home.middle.title}>
+          <SectionHeading index={AR.home.middle.n} title={AR.home.middle.title}>
+            <Body>{AR.home.middle.body}</Body>
+          </SectionHeading>
+        </section>
+
+        <section id="structures" aria-label={AR.home.structures.title}>
+          <SectionHeading index={AR.home.structures.n} title={AR.home.structures.title}>
+            <Body>{AR.home.structures.body}</Body>
+          </SectionHeading>
+          <div className="mt-6">
+            <InstitutionalShiftDiagram locale="ar" />
+          </div>
+        </section>
+
+        <section aria-label={AR.home.roles.title}>
+          <SectionHeading index={AR.home.roles.n} title={AR.home.roles.title}>
+            <Body>{AR.home.roles.body}</Body>
+          </SectionHeading>
+          <div className="mt-6">
+            <YearHeatmaps locale="ar" />
+          </div>
+          <Onward href="/ar/actors">{AR.home.roles.link}</Onward>
+        </section>
+
+        <section aria-label={AR.home.finance.title}>
+          <SectionHeading index={AR.home.finance.n} title={AR.home.finance.title}>
+            <Body>{AR.home.finance.body}</Body>
+          </SectionHeading>
+          <Onward href="/ar/finance">{AR.home.finance.link}</Onward>
+        </section>
+
+        <section aria-label={AR.home.geography.title}>
+          <SectionHeading index={AR.home.geography.n} title={AR.home.geography.title}>
+            <Body>{AR.home.geography.body}</Body>
+          </SectionHeading>
+          <div className="mt-6 overflow-x-auto card p-3.5">
+            <table className="min-w-full border-collapse text-sm tabular-nums">
+              <caption className="pb-2 text-start text-xs text-[color:var(--color-text-secondary)]">
+                {AR.home.geography.tableCaption}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-start font-semibold text-[color:var(--color-navy)]">
+                    {AR.home.geography.region}
+                  </th>
+                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">2024</th>
+                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">2026</th>
+                </tr>
+              </thead>
+              <tbody>
+                {regionRows.map((r) => (
+                  <tr key={r.label} className="odd:bg-[color:var(--color-bg)]">
+                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">{r.label}</td>
+                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">{r.t24}</td>
+                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">{r.t26}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <Link
+              href="/ar/map"
+              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            >
+              {AR.home.geography.openMap} ←
+            </Link>
+            <Link
+              href="/ar/damage"
+              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            >
+              {AR.home.geography.openDamage} ←
+            </Link>
+          </p>
+        </section>
+
+        <section aria-label={AR.home.news.title}>
+          <SectionHeading index={AR.home.news.n} title={AR.home.news.title}>
+            <Body>{AR.home.news.body}</Body>
+          </SectionHeading>
+          <div className="mt-6">
+            <NewsTeaser locale="ar" />
+          </div>
+        </section>
+
+        <section
+          aria-label={AR.home.conclusion.slice(0, 40)}
+          className="rounded-md border-r-4 border-[color:var(--color-navy)] bg-white p-6"
+        >
+          <blockquote className="editorial-quote max-w-4xl text-lg leading-loose text-[color:var(--color-navy)]">
+            {AR.home.conclusion}
+          </blockquote>
+        </section>
+      </div>
 
       {/* Cross-locale notice */}
       <section className="mx-auto max-w-[1360px] px-4 pb-16 sm:px-6">

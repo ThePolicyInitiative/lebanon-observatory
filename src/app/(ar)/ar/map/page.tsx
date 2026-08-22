@@ -12,16 +12,6 @@ export const metadata: Metadata = {
   alternates: localeAlternates("/map", "ar"),
 };
 
-const REGION_AR: Record<string, string> = {
-  south_nabatieh: "الجنوب والنبطية",
-  beirut_mount_lebanon: "بيروت وجبل لبنان",
-  bekaa_baalbek_hermel: "البقاع وبعلبك-الهرمل",
-  north: "الشمال",
-  camps_migrant: "المخيمات ومجتمعات الوافدين",
-  national_multi: "وطني أو متعدد المناطق",
-  named_localities: "بلدات متضررة مسمّاة",
-};
-
 type Mentions = Record<ActorLayer, number>;
 
 export default function Page() {
@@ -33,7 +23,7 @@ export default function Page() {
       m ? ar.reduce((s, l) => s + (m[l.id] ?? 0), 0) : 0;
     return {
       id: r.id,
-      label: REGION_AR[r.id] ?? r.label,
+      label: AR.regions[r.id] ?? r.label,
       mappable: r.mappable,
       y24: sum(m24),
       y26: sum(m26),

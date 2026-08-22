@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { AR } from "@/lib/i18n";
+import { kpis } from "@/lib/data";
 
 /**
  * The Arabic side has to stay a mirror of the English one. The failure this
@@ -41,6 +42,21 @@ describe("the Arabic side", () => {
     const englishHtml = /<html\s[^>]*>/.exec(english)?.[0] ?? "";
     expect(englishHtml).toContain('lang="en"');
     expect(englishHtml).toContain('dir="ltr"');
+  });
+
+  /**
+   * The Arabic headline figure is a translation of the words around the
+   * number, never of the number. If the two strings ever carry different
+   * digits, one language is telling the reader something the other is not.
+   */
+  it("prints the same digits in both languages for every indicator", () => {
+    const digits = (s: string) => s.replace(/[^\d.%]/g, "");
+    for (const kpi of kpis) {
+      expect(kpi.displayAr, `${kpi.id} has no Arabic figure`).toBeTruthy();
+      expect(digits(kpi.displayAr), `${kpi.id} disagrees across languages`).toBe(
+        digits(kpi.display),
+      );
+    }
   });
 
   it("names every page in Arabic in the navigation", () => {

@@ -65,6 +65,7 @@ export const kpiSchema = z.object({
   label: z.string(),
   value: z.number(),
   display: z.string(),
+  displayAr: z.string(),
   kind: z.enum(["need", "framework", "commitment", "disbursement", "output"]),
   definition: z.string(),
   referencePeriod: z.string(),

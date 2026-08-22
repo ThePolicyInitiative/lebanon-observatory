@@ -8,7 +8,10 @@
     "definition": "Physical damage (US$6.8B) plus economic losses (US$7.2B) from the conflict, as assessed by the World Bank-led Rapid Damage and Needs Assessment. Damage and losses are distinct economic categories combined here only as a headline total.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
     "geographicScope": "National, all governorates",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "14 مليار دولار"
   },
   {
     "id": "kpi-damage",
@@ -19,7 +22,10 @@
     "definition": "Direct physical damage to buildings and infrastructure assessed by the RDNA. Housing alone accounts for US$4.6 billion.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
     "geographicScope": "National, all governorates",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "6.8 مليار دولار"
   },
   {
     "id": "kpi-losses",
@@ -30,7 +36,10 @@
     "definition": "Economic losses (forgone income and output) assessed by the RDNA - commerce, industry and tourism absorbed roughly US$3.4 billion. Losses are not damage and the two must never be summed with needs.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
     "geographicScope": "National, all governorates",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "7.2 مليار دولار"
   },
   {
     "id": "kpi-needs",
@@ -41,7 +50,10 @@
     "definition": "Assessed recovery and reconstruction needs across 10 sectors for the 2023–24 conflict. This is an assessed need, not a financing commitment.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
     "geographicScope": "National, all governorates",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "11 مليار دولار"
   },
   {
     "id": "kpi-public-need",
@@ -52,7 +64,10 @@
     "definition": "The share of assessed needs requiring public financing, including roughly US$1 billion for infrastructure. Range as stated by the RDNA.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
     "geographicScope": "National",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "3–5 مليارات دولار"
   },
   {
     "id": "kpi-private-need",
@@ -63,7 +78,10 @@
     "definition": "The share of assessed needs requiring private financing - overwhelmingly housing and private economic assets. No public instrument covered this requirement within the data window.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
     "geographicScope": "National",
-    "sourceIds": ["S4"]
+    "sourceIds": [
+      "S4"
+    ],
+    "displayAr": "6–8 مليارات دولار"
   },
   {
     "id": "kpi-leap-framework",
@@ -74,7 +92,10 @@
     "definition": "The Lebanon Emergency Assistance Project (LEAP) appraised envelope - a scalable framework, not committed financing. It covers roughly the public third of one war's assessed needs and is not equivalent to the US$11 billion national need.",
     "referencePeriod": "Appraised June 2025",
     "geographicScope": "Conflict-affected areas, 2023–24 conflict damage only",
-    "sourceIds": ["S2"]
+    "sourceIds": [
+      "S2"
+    ],
+    "displayAr": "1 مليار دولار"
   },
   {
     "id": "kpi-leap-loan",
@@ -85,7 +106,11 @@
     "definition": "Initial IBRD loan approved 24 June 2025, effective 26 February 2026. A commitment is not a disbursement.",
     "referencePeriod": "Approved June 2025; effective February 2026",
     "geographicScope": "Conflict-affected areas, 2023–24 conflict damage only",
-    "sourceIds": ["S2", "S20"]
+    "sourceIds": [
+      "S2",
+      "S20"
+    ],
+    "displayAr": "250 مليون دولار"
   },
   {
     "id": "kpi-leap-gap",
@@ -96,7 +121,11 @@
     "definition": "The unfinanced portion of the US$1 billion LEAP framework, awaiting additional partner financing, preferably as grants.",
     "referencePeriod": "As of appraisal (June 2025), unchanged at 29 June 2026",
     "geographicScope": "Conflict-affected areas",
-    "sourceIds": ["S2", "S1"]
+    "sourceIds": [
+      "S2",
+      "S1"
+    ],
+    "displayAr": "750 مليون دولار"
   },
   {
     "id": "kpi-disbursed",
@@ -107,7 +136,10 @@
     "definition": "Cumulative disbursement traced in the LEAP Implementation Status and Results Report of 29 June 2026. Disbursement is not completed output: no works contract had been awarded and no completed reconstruction output was publicly confirmed by that date.",
     "referencePeriod": "As of 29 June 2026",
     "geographicScope": "LEAP project scope",
-    "sourceIds": ["S1"]
+    "sourceIds": [
+      "S1"
+    ],
+    "displayAr": "4.13 ملايين دولار"
   },
   {
     "id": "kpi-disbursed-pct",
@@ -118,6 +150,9 @@
     "definition": "US$4.13 million disbursed as a share of the initial US$250 million loan, by 29 June 2026. Equivalent to roughly 0.04% of the US$11 billion assessed national need.",
     "referencePeriod": "As of 29 June 2026",
     "geographicScope": "LEAP project scope",
-    "sourceIds": ["S1"]
+    "sourceIds": [
+      "S1"
+    ],
+    "displayAr": "1.65%"
   }
 ]
