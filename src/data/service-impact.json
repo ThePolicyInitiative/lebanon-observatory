@@ -7,7 +7,9 @@
       "detail": "Non-operational nationwide as of 6 July 2026, with access hardest in South and Nabatieh.",
       "reporter": "WHO / health-cluster reporting",
       "sectorAr": "الصحة",
-      "figureAr": "3 مستشفيات و35 مركز رعاية صحية أولية"
+      "figureAr": "3 مستشفيات و35 مركز رعاية صحية أولية",
+      "detailAr": "خارج الخدمة على المستوى الوطني حتى 6 تموز 2026، والوصول أصعب ما يكون في الجنوب والنبطية.",
+      "reporterAr": "منظمة الصحة العالمية / قطاع الصحة"
     },
     {
       "sector": "Attacks on health care",
@@ -15,7 +17,9 @@
       "detail": "WHO traced 196 attacks on health care by 4 June 2026; 131 health-worker deaths at that date, 135 by mid-July.",
       "reporter": "WHO",
       "figureAr": "196 اعتداءً · 135 وفاة بين العاملين الصحيين",
-      "sectorAr": "الاعتداءات على الرعاية الصحية"
+      "sectorAr": "الاعتداءات على الرعاية الصحية",
+      "detailAr": "تتبّعت منظمة الصحة العالمية 196 اعتداءً على الرعاية الصحية حتى 4 حزيران 2026؛ و131 وفاة بين العاملين الصحيين في ذلك التاريخ، و135 بحلول منتصف تموز.",
+      "reporterAr": "منظمة الصحة العالمية"
     },
     {
       "sector": "Education",
@@ -23,7 +27,9 @@
       "detail": "Converted to collective shelters by 11 March 2026, disrupting schooling for the displaced and host communities alike.",
       "reporter": "Education-sector reporting",
       "sectorAr": "التعليم",
-      "figureAr": "344 مدرسة استُخدمت للإيواء"
+      "figureAr": "344 مدرسة استُخدمت للإيواء",
+      "detailAr": "حُوّلت إلى مراكز إيواء جماعي حتى 11 آذار 2026، فتعطّلت الدراسة على النازحين والمجتمعات المضيفة معاً.",
+      "reporterAr": "تقارير قطاع التعليم"
     },
     {
       "sector": "Utilities",
@@ -31,7 +37,9 @@
       "detail": "The most frequently reported gaps in return areas; restoration ran through public operators and municipal improvisation, not project works.",
       "reporter": "Emergency-chain reporting",
       "sectorAr": "المرافق",
-      "figureAr": "المياه والكهرباء"
+      "figureAr": "المياه والكهرباء",
+      "detailAr": "أكثر الثغرات تكراراً في مناطق العودة؛ وجرت الاستعادة عبر المؤسسات العامة وارتجال البلديات، لا عبر أشغال مشاريع.",
+      "reporterAr": "تقارير سلاسل الطوارئ"
     },
     {
       "sector": "Early damage signal",
@@ -39,7 +47,9 @@
       "detail": "CNRS-L's real-time database traced more than 5,200 attacks and roughly 37,836-40,000 housing units destroyed or damaged in the first 35 days of the 2026 war - preliminary figures, treated as such.",
       "reporter": "CNRS-L (preliminary)",
       "figureAr": "نحو 37,836-40,000 وحدة سكنية",
-      "sectorAr": "مؤشر ضرر مبكر"
+      "sectorAr": "مؤشر ضرر مبكر",
+      "detailAr": "تتبّعت المنظومة الآنية للمجلس الوطني للبحوث العلمية أكثر من 5,200 اعتداء ونحو 37,836-40,000 وحدة سكنية مدمَّرة أو متضررة في الأيام الخمسة والثلاثين الأولى من حرب 2026 - أرقام أولية، وتُعامَل على هذا الأساس.",
+      "reporterAr": "المجلس الوطني للبحوث العلمية (أولي)"
     },
     {
       "sector": "Heritage",
@@ -47,7 +57,9 @@
       "detail": "UNESCO's rapid assessment mission (9-14 March 2025) covered seven cultural properties with Lebanese authorities - Baalbek, Tyre and southern sites; conservation decisions rest with the Directorate General of Antiquities.",
       "reporter": "UNESCO / DGA",
       "figureAr": "7 ممتلكات ثقافية",
-      "sectorAr": "التراث"
+      "sectorAr": "التراث",
+      "detailAr": "غطّت بعثة التقييم السريع لليونسكو (9-14 آذار 2025) سبع ممتلكات ثقافية بالتعاون مع السلطات اللبنانية - بعلبك وصور ومواقع جنوبية؛ وقرارات الصون تعود إلى المديرية العامة للآثار.",
+      "reporterAr": "اليونسكو / المديرية العامة للآثار"
     }
   ]
 }

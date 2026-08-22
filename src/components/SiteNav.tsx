@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { AR } from "@/lib/i18n";
+import { AR, CHROME } from "@/lib/i18n";
 
 /**
  * One entry per page, in both languages. The Arabic side is a mirror of the
@@ -33,6 +33,7 @@ export default function SiteNav() {
   const [open, setOpen] = useState(false);
   /** On the Arabic side the same slot returns the reader to English. */
   const isArabic = pathname.startsWith("/ar");
+  const chrome = CHROME[isArabic ? "ar" : "en"];
   /**
    * The same page in the other language. Only pages that exist on both sides
    * cross over; anything else falls back to that language's home.
@@ -69,7 +70,7 @@ export default function SiteNav() {
             </span>
           </span>
         </Link>
-        <nav aria-label="Primary" className="hidden xl:block">
+        <nav aria-label={chrome.primaryNav} className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
               const href = localisedHref(item.path, isArabic);
@@ -111,7 +112,7 @@ export default function SiteNav() {
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          <span className="sr-only">{open ? chrome.closeMenu : chrome.openMenu}</span>
           <span aria-hidden className="text-lg leading-none">
             {open ? "✕" : "☰"}
           </span>
@@ -120,7 +121,7 @@ export default function SiteNav() {
       {open ? (
         <nav
           id="mobile-nav"
-          aria-label="Primary mobile"
+          aria-label={chrome.primaryNavMobile}
           className="border-t border-white/15 bg-[color:var(--color-navy)] xl:hidden"
         >
           <ul className="mx-auto max-w-[1360px] px-4 py-2 sm:px-6">

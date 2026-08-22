@@ -18,6 +18,11 @@ const T = {
     damage: "Damage",
     losses: "Losses",
     needs: "Needs",
+    axis: "US$ million",
+    desc: "Grouped horizontal bars of sector-level damage, losses and needs from the 2023–24 conflict assessment",
+    chart: "Grouped bar chart of sector damage, losses and needs",
+    tableCaption: "Sector estimates in US$ million (- means not stated in the citation).",
+    headers: ["Sector", "Damage", "Losses", "Assessed needs", "Note"],
   },
   ar: {
     title: "تقديرات قطاعية مختارة، حرب 2023-24",
@@ -27,6 +32,11 @@ const T = {
     damage: "أضرار",
     losses: "خسائر",
     needs: "احتياجات",
+    axis: "مليون دولار",
+    desc: "أعمدة أفقية مجمّعة للأضرار والخسائر والاحتياجات على مستوى القطاعات من تقييم حرب 2023-24",
+    chart: "رسم بياني مجمّع للأضرار والخسائر والاحتياجات القطاعية",
+    tableCaption: "تقديرات قطاعية بملايين الدولارات (الشرطة تعني أن الرقم غير وارد في المرجع).",
+    headers: ["القطاع", "أضرار", "خسائر", "احتياجات مقدّرة", "ملاحظة"],
   },
 } as const;
 
@@ -70,7 +80,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
       },
       xAxis: {
         type: "value",
-        name: "US$ million",
+        name: T[locale].axis,
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -100,23 +110,30 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
       caveat={T[locale].caveat}
       sourceIds={["S4", "S29"]}
       chartRef={chartRef}
-      description="Grouped horizontal bars of sector-level damage, losses and needs from the 2023–24 conflict assessment: housing US$4.6 billion damage; commerce, industry and tourism US$3.4 billion losses; environment and debris 512, 790 and 444 million; health 208 and 700 million; agriculture 118, 586 and 263 million; transport 198; electricity 98; municipal services 41 million."
+      description={`${T[locale].desc}: ${rows
+        .map(
+          (s) =>
+            `${locale === "ar" ? (s.labelAr ?? s.label) : s.label} ${[s.damage, s.losses, s.needs]
+              .filter((v) => v !== null)
+              .join(", ")}`,
+        )
+        .join("; ")}.`}
       table={{
-        caption: "Sector estimates in US$ million (- means not stated in the citation).",
-        headers: ["Sector", "Damage", "Losses", "Assessed needs", "Note"],
+        caption: T[locale].tableCaption,
+        headers: [...T[locale].headers],
         rows: sectorsJson.sectors.map((s) => [
-          s.label,
+          locale === "ar" ? (s.labelAr ?? s.label) : s.label,
           s.damage ?? "-",
           s.losses ?? "-",
           s.needs ?? "-",
-          s.detail,
+          locale === "ar" ? (s.detailAr ?? s.detail) : s.detail,
         ]),
       }}
     >
       <EChart
         option={option}
         height={430}
-        ariaLabel="Grouped bar chart of sector damage, losses and needs"
+        ariaLabel={T[locale].chart}
         onInit={(c) => {
           chartRef.current = c;
         }}

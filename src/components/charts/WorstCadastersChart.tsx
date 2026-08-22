@@ -14,12 +14,24 @@ const T = {
     sub: "Buildings completely destroyed in the four worst cadasters of the South-of-the-Litani assessment (29 April 2026 imagery) - the same border communities levelled in 2024, partially reassessed after rebuilding attempts.",
     caveat:
       "Desk-checked GeoAI review of 29 April 2026 imagery, south of the Litani only. A snapshot, not cumulative with any 2024 result.",
+    unit: "buildings completely destroyed",
+    desc: "Bar chart",
+    chart: "Bar chart of buildings completely destroyed in the four worst cadasters",
+    tableCaption:
+      "Buildings completely destroyed per cadaster, South-of-the-Litani assessment, published 22 June 2026.",
+    headers: ["Cadaster", "Buildings completely destroyed"],
   },
   ar: {
     title: "البلدات الأشد تضرراً، تقييم 2026",
     sub: "المباني المدمَّرة كلياً في البلدات الأربع الأشد تضرراً ضمن تقييم جنوب الليطاني (صور 29 نيسان 2026) - القرى الحدودية نفسها التي سُوّيت في 2024، وأُعيد تقييمها جزئياً بعد محاولات إعادة البناء.",
     caveat:
       "مراجعة GeoAI مكتبية لصور 29 نيسان 2026، جنوب الليطاني وحده. لقطة زمنية لا تُجمع مع أي نتيجة من 2024.",
+    unit: "مبنى مدمّر كلياً",
+    desc: "رسم بياني",
+    chart: "رسم بياني للمباني المدمّرة كلياً في البلدات الأربع الأشد تضرراً",
+    tableCaption:
+      "مبانٍ مدمّرة كلياً في كل بلدة، تقييم جنوب الليطاني، نُشر في 22 حزيران 2026.",
+    headers: ["البلدة", "مبانٍ مدمّرة كلياً"],
   },
 } as const;
 
@@ -35,11 +47,11 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
       tooltip: {
         trigger: "axis",
         axisPointer: { type: "shadow" },
-        valueFormatter: (v) => `${Number(v).toLocaleString("en-US")} buildings completely destroyed`,
+        valueFormatter: (v) => `${Number(v).toLocaleString("en-US")} ${T[locale].unit}`,
       },
       xAxis: {
         type: "value",
-        name: "buildings completely destroyed",
+        name: T[locale].unit,
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -71,7 +83,7 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
         },
       ],
     };
-  }, [rows]);
+  }, [rows, locale]);
 
   // The method is stated in full on the zone card above this figure;
   // repeating that paragraph in the caveat printed it twice on one page,
@@ -83,17 +95,19 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
       subtitle={T[locale].sub}
       caveat={T[locale].caveat}
       chartRef={chartRef}
-      description={`Bar chart: ${rows.map((r) => `${r.name} ${r.destroyed.toLocaleString("en-US")}`).join("; ")} buildings completely destroyed.`}
+      description={`${T[locale].desc}: ${rows
+        .map((r) => `${r.name} ${r.destroyed.toLocaleString("en-US")}`)
+        .join("; ")} ${T[locale].unit}.`}
       table={{
-        caption: "Buildings completely destroyed per cadaster, South-of-the-Litani assessment, published 22 June 2026.",
-        headers: ["Cadaster", "Buildings completely destroyed"],
+        caption: T[locale].tableCaption,
+        headers: [...T[locale].headers],
         rows: rows.map((r) => [r.name, r.destroyed.toLocaleString("en-US")]),
       }}
     >
       <EChart
         option={option}
         height={240}
-        ariaLabel="Bar chart of buildings completely destroyed in the four worst cadasters"
+        ariaLabel={T[locale].chart}
         onInit={(c) => {
           chartRef.current = c;
         }}

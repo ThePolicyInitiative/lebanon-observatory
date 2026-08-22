@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/vocab";
+import { CHROME } from "@/lib/i18n";
 
 /** Closing block used at the end of every analytical page. */
 const T = {
@@ -20,7 +21,7 @@ export default function Takeaways({
   const t = T[locale];
   return (
     <section
-      aria-label="Key takeaways"
+      aria-label={CHROME[locale].takeaways}
       className="grid gap-4 card p-3.5 md:grid-cols-3"
     >
       <div>

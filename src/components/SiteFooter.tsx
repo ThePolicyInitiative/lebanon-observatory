@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AR } from "@/lib/i18n";
+import { AR, CHROME } from "@/lib/i18n";
 import { localisedHref } from "./SiteNav";
 
 /**
@@ -27,7 +27,7 @@ export default function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-[#0e2542] bg-[color:var(--color-navy)]">
       <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-        <nav aria-label="Footer">
+        <nav aria-label={CHROME[isArabic ? "ar" : "en"].footerNav}>
           <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
             {isArabic ? AR.footer.explore : "Explore"}
           </p>

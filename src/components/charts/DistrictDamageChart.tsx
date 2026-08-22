@@ -19,6 +19,19 @@ const TR = {
     sub: (top: number) =>
       `Municipality-reported damaged housing units from the survey of 135 affected areas, 5-15 December 2024. Baabda - the Dahieh belt - alone reported ${top.toLocaleString("en-US")} units, roughly two thirds of them completely damaged.`,
     caveat: "",
+    unit: "housing units reported damaged",
+    tip: "municipality-reported housing units",
+    desc: "Bar chart of municipality-reported damaged housing units",
+    chart: "Bar chart of municipality-reported damaged housing units by district, December 2024",
+    tiles: [
+      "Housing units",
+      "Business establishments",
+      "Agricultural assets",
+      "Infrastructure & service assets",
+    ],
+    completeShare: (n: number) => `${n}% completely damaged`,
+    total: (n: string) =>
+      `${n} reported assets in total, gathered in ten days entirely on municipal local knowledge.`,
   },
   ar: {
     title: "أين أُبلغ عن أضرار 2024، قضاءً بقضاء",
@@ -26,6 +39,20 @@ const TR = {
       `وحدات سكنية متضررة بحسب إفادات البلديات، من مسح 135 منطقة متضررة بين 5 و15 كانون الأول 2024. قضاء بعبدا وحده - حزام الضاحية - أبلغ عن ${top.toLocaleString("en-US")} وحدة، نحو ثلثيها متضرر كلياً.`,
     caveat:
       "مسح بلدي جُمع في عشرة أيام على المعرفة المحلية، لا مسحاً هندسياً. الأقضية المسمّاة لا تغطي كل الوحدات المتضررة المُبلَّغ عنها وطنياً.",
+    unit: "وحدات سكنية أُبلغ عن تضرّرها",
+    tip: "وحدة سكنية بحسب إفادات البلديات",
+    desc: "رسم بياني للوحدات السكنية المتضررة بحسب إفادات البلديات",
+    chart:
+      "رسم بياني للوحدات السكنية المتضررة بحسب إفادات البلديات، قضاءً بقضاء، كانون الأول 2024",
+    tiles: [
+      "وحدات سكنية",
+      "منشآت تجارية",
+      "أصول زراعية",
+      "أصول بنى تحتية وخدمات",
+    ],
+    completeShare: (n: number) => `${n}% متضررة كلياً`,
+    total: (n: string) =>
+      `${n} أصلاً مُبلَّغاً عنه إجمالاً، جُمعت في عشرة أيام اعتماداً على المعرفة المحلية للبلديات وحدها.`,
   },
 } as const;
 
@@ -33,6 +60,8 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
   const chartRef = useRef<ECharts | null>(null);
   const rows = districtDamage.districts;
   const t = districtDamage.totals;
+
+  const tr = TR[locale];
 
   const option = useMemo<EChartsOption>(() => {
     const cats = [...rows].sort((a, b) => a.units - b.units);
@@ -42,11 +71,11 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
         trigger: "axis",
         axisPointer: { type: "shadow" },
         valueFormatter: (v) =>
-          `${Number(v).toLocaleString("en-US")} municipality-reported housing units`,
+          `${Number(v).toLocaleString("en-US")} ${tr.tip}`,
       },
       xAxis: {
         type: "value",
-        name: "housing units reported damaged",
+        name: tr.unit,
         nameLocation: "middle",
         nameGap: 28,
         nameTextStyle: { fontSize: 11 },
@@ -81,16 +110,16 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
         },
       ],
     };
-  }, [rows]);
+  }, [rows, tr]);
 
   return (
     <ChartFrame
       id="district-damage-2024"
-      title={TR[locale].title}
-      subtitle={TR[locale].sub(rows[0].units)}
-      caveat={locale === "ar" ? TR.ar.caveat : districtDamage.caveats.join(" ")}
+      title={tr.title}
+      subtitle={tr.sub(rows[0].units)}
+      caveat={locale === "ar" ? tr.caveat : districtDamage.caveats.join(" ")}
       chartRef={chartRef}
-      description={`Bar chart of municipality-reported damaged housing units: ${rows
+      description={`${tr.desc}: ${rows
         .map((d) => `${d.name} ${d.units.toLocaleString("en-US")}`)
         .join("; ")}.`}
     >
@@ -98,17 +127,21 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
         <EChart
           option={option}
           height={280}
-          ariaLabel="Bar chart of municipality-reported damaged housing units by district, December 2024"
+          ariaLabel={tr.chart}
           onInit={(c) => {
             chartRef.current = c;
           }}
         />
         <div className="mt-3 grid gap-2 sm:grid-cols-4">
           {[
-            { label: "Housing units", v: t.housingUnits, note: `${t.completelyDamagedShare}% completely damaged` },
-            { label: "Business establishments", v: t.businessEstablishments },
-            { label: "Agricultural assets", v: t.agriculturalAssets },
-            { label: "Infrastructure & service assets", v: t.infrastructureAssets },
+            {
+              label: tr.tiles[0],
+              v: t.housingUnits,
+              note: tr.completeShare(t.completelyDamagedShare),
+            },
+            { label: tr.tiles[1], v: t.businessEstablishments },
+            { label: tr.tiles[2], v: t.agriculturalAssets },
+            { label: tr.tiles[3], v: t.infrastructureAssets },
           ].map((x) => (
             <div
               key={x.label}
@@ -129,8 +162,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
           ))}
         </div>
         <p className="mt-2 text-[11px] text-[color:var(--color-text-secondary)]">
-          {t.reportedAssets.toLocaleString("en-US")} reported assets in total,
-          gathered in ten days entirely on municipal local knowledge.
+          {tr.total(t.reportedAssets.toLocaleString("en-US"))}
         </p>
       </div>
     </ChartFrame>

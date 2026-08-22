@@ -18,6 +18,7 @@ const T = {
     legend: (label: string, total: number, actors: number) =>
       `${label}: ${total} mentions · ${actors} actors`,
     yearLabel: "Treemap year",
+    chart: (y: number) => `Treemap of traced actors by layer, ${y}`,
   },
   ar: {
     title: "مشهد الجهات المرصودة، خليةً بخلية",
@@ -29,6 +30,7 @@ const T = {
     legend: (label: string, total: number, actors: number) =>
       `${label}: ${total} إشارة · ${actors} جهة`,
     yearLabel: "سنة المخطط",
+    chart: (y: number) => `مخطط مساحي للجهات المرصودة بحسب الطبقة، ${y}`,
   },
 } as const;
 
@@ -158,7 +160,7 @@ export default function ActorTreemapChart({ data, locale = "en" }: { data: Treem
         <EChart
           option={option}
           height={420}
-          ariaLabel={`Treemap of traced actors by layer, ${year}`}
+          ariaLabel={t.chart(year)}
           onInit={(c) => {
             chartRef.current = c;
           }}

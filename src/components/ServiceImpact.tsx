@@ -31,13 +31,13 @@ export default function ServiceImpact({ locale = "en" }: { locale?: Locale } = {
               {ar ? (item.sectorAr ?? item.sector) : item.sector}
             </p>
             <p className="mt-1 text-lg font-bold leading-snug tracking-tight text-[color:var(--color-navy)]">
-              {item.figure}
+              {ar ? (item.figureAr ?? item.figure) : item.figure}
             </p>
             <p className="mt-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-              {item.detail}
+              {ar ? (item.detailAr ?? item.detail) : item.detail}
             </p>
             <p className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px] font-medium text-[color:var(--color-text-secondary)]">
-              {item.reporter}
+              {ar ? (item.reporterAr ?? item.reporter) : item.reporter}
             </p>
           </div>
         ))}

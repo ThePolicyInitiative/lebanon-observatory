@@ -12,13 +12,25 @@ import { join } from "node:path";
  */
 
 const BANNED =
-  /\b(datasets?|records?|recorded|documents?|documented|documentation|evidence|evidentiary|dossiers?|verify|verifies|verified|unverified|verifiable|unverifiable|verification)\b/i;
+  /\b(datasets?|records?|recorded|documents?|documented|documentation|evidence|evidentiary|dossiers?|files?|sources?|users?|verify|verifies|verified|unverified|verifiable|unverifiable|verification)\b/i;
 
-const AR_BANNED = /(الأدلة|أدلة|موثّقة|موثقة|سجلات|وثائق|ملفات|تحقّق|تحقق|متحقَّق|مُتحقَّق)/;
+const AR_BANNED =
+  /(الأدلة|أدلة|موثّقة|موثقة|يوثّق|يوثق|سجلات|وثائق|ملفات|المصادر|مصادر|المصدر|مصدر|تحقّق|تحقق|متحقَّق|مُتحقَّق)/;
 
-/** Verbatim third-party titles: altering a citation would misquote it. */
+/**
+ * Strings that keep a banned word for a reason. Two kinds only:
+ *
+ * - a third-party title quoted verbatim, where a rewrite would misquote it;
+ * - a name from outside the site - an HTTP header, a field on someone
+ *   else's API, a publisher's masthead - which is an identifier, not copy.
+ */
 const ALLOWED = [
   "OSM Building Dataset Complete for Conflict Affected Districts in Southern Lebanon",
+  "user-agent",
+  "source.name",
+  "source.shortname",
+  "lebanon-files",
+  "Lebanon Files",
 ];
 
 const SRC = join(import.meta.dirname, "..", "src");

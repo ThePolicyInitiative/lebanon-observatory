@@ -10,21 +10,37 @@ import { AR } from "@/lib/i18n";
  */
 
 const PAGES = ["compare", "actors", "damage", "map", "finance", "news", "explorer"];
+/**
+ * The two halves of the site have separate root layouts, so each lives in
+ * its own route group. Route groups do not appear in a URL: (en)/compare is
+ * /compare and (ar)/ar/compare is /ar/compare.
+ */
 const app = join(process.cwd(), "src", "app");
+const en = join(app, "(en)");
+const ar = join(app, "(ar)", "ar");
 
 describe("the Arabic side", () => {
   it("has a page for every English page", () => {
     for (const p of PAGES) {
-      expect(existsSync(join(app, p, "page.tsx")), `English /${p} is missing`).toBe(true);
-      expect(existsSync(join(app, "ar", p, "page.tsx")), `Arabic /ar/${p} is missing`).toBe(true);
+      expect(existsSync(join(en, p, "page.tsx")), `English /${p} is missing`).toBe(true);
+      expect(existsSync(join(ar, p, "page.tsx")), `Arabic /ar/${p} is missing`).toBe(true);
     }
-    expect(existsSync(join(app, "ar", "page.tsx"))).toBe(true);
+    expect(existsSync(join(ar, "page.tsx"))).toBe(true);
   });
 
-  it("sets Arabic and right-to-left on everything under /ar", () => {
-    const layout = readFileSync(join(app, "ar", "layout.tsx"), "utf-8");
-    expect(layout).toContain('lang="ar"');
-    expect(layout).toContain('dir="rtl"');
+  it("sets Arabic and right-to-left on the document itself, not on a wrapper", () => {
+    const layout = readFileSync(join(app, "(ar)", "layout.tsx"), "utf-8");
+    // Both attributes have to sit on <html>. On a <div> inside <body> they
+    // reach the CSS and nothing else: not a crawler, not a screen reader
+    // announcing the document language.
+    const html = /<html\s[^>]*>/.exec(layout)?.[0] ?? "";
+    expect(html).toContain('lang="ar"');
+    expect(html).toContain('dir="rtl"');
+
+    const english = readFileSync(join(app, "(en)", "layout.tsx"), "utf-8");
+    const englishHtml = /<html\s[^>]*>/.exec(english)?.[0] ?? "";
+    expect(englishHtml).toContain('lang="en"');
+    expect(englishHtml).toContain('dir="ltr"');
   });
 
   it("names every page in Arabic in the navigation", () => {
@@ -55,7 +71,7 @@ describe("the Arabic side", () => {
   it("gives every Arabic page real content of its own", () => {
     const arabicChar = /[؀-ۿ]/g;
     for (const p of PAGES) {
-      const dir = join(app, "ar", p);
+      const dir = join(ar, p);
       const src = readFileSync(join(dir, "page.tsx"), "utf-8");
 
       // Prose may live in the page or in a component beside it, as the news
@@ -86,7 +102,7 @@ describe("the Arabic side", () => {
    */
   it("keeps Arabic pages inside Arabic apart from the deliberate way out", () => {
     for (const p of PAGES) {
-      const src = readFileSync(join(app, "ar", p, "page.tsx"), "utf-8");
+      const src = readFileSync(join(ar, p, "page.tsx"), "utf-8");
       const englishHrefs = [...src.matchAll(/href="(\/(?!ar\b)[^"]*)"/g)].map((m) => m[1]);
       expect(englishHrefs, `/ar/${p} links straight into English`).toEqual([]);
       expect(src).toContain(`englishHref="/${p}"`);
