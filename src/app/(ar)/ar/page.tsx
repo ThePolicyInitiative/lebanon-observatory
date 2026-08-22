@@ -5,6 +5,7 @@ import { AR, localeAlternates } from "@/lib/i18n";
 import { kpis, roleRecords, stageCounts, STAGES, finance, locations } from "@/lib/data";
 import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
 import { GOV_PATHS } from "@/lib/geo";
+import InstitutionalStructures from "@/components/InstitutionalStructures";
 import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
@@ -388,6 +389,9 @@ export default function ArabicPage() {
             <Body>{AR.home.structures.body}</Body>
           </SectionHeading>
           <div className="mt-6">
+            <InstitutionalStructures locale="ar" />
+          </div>
+          <div className="mt-8">
             <InstitutionalShiftDiagram locale="ar" />
           </div>
         </section>
