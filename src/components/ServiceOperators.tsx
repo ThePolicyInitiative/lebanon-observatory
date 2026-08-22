@@ -110,7 +110,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                 className="rounded-sm px-1.5 py-0.5 font-semibold text-white"
                 style={{ background: SERVICE_TONE[o.service] ?? "#58779B" }}
               >
-                {ar ? SERVICE_AR[o.service] ?? o.service : o.service}
+                {ar ? (o.serviceAr ?? SERVICE_AR[o.service] ?? o.service) : o.service}
               </span>
               {o.inArea ? (
                 <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[#1F6B4E]">
@@ -119,41 +119,46 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
               ) : null}
             </p>
             <h3 className="mt-2 text-sm font-semibold text-[color:var(--color-navy)]">
-              {o.name}
+              {ar ? (o.nameAr ?? o.name) : o.name}
             </h3>
             <p className="mt-0.5 text-[13px] font-medium italic text-[color:var(--color-text-secondary)]">
-              {o.headline}
+              {ar ? (o.headlineAr ?? o.headline) : o.headline}
             </p>
 
             <ul className="mt-3 space-y-3">
-              {o.items.map((i) => (
+              {o.items.map((i) => {
+                const figure: string | null = ar ? (i.figureAr ?? i.figure) : i.figure;
+                return (
                 <li key={i.what.slice(0, 40)} className="panel-sunken p-2.5">
                   <Expandable
                     labels={labels}
-                    text={i.what}
+                    text={ar ? (i.whatAr ?? i.what) : i.what}
                     className="text-[12.5px] leading-relaxed text-[color:var(--color-text)]"
                   />
                   <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
-                    {i.figure ? (
+                    {figure ? (
                       <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold tabular-nums text-[color:var(--color-navy)]">
-                        {i.figure}
+                        {figure}
                       </span>
                     ) : null}
                     <span>
-                      <span className="font-semibold">{t.where}</span> {i.where}
+                      <span className="font-semibold">{t.where}</span>{" "}
+                      {ar ? (i.whereAr ?? i.where) : i.where}
                     </span>
                   </p>
                   <p className="mt-0.5 text-[11px] text-[color:var(--color-text-secondary)]">
-                    <span className="font-semibold">{t.when}</span> {i.date}
+                    <span className="font-semibold">{t.when}</span>{" "}
+                    {ar ? (i.dateAr ?? i.date) : i.date}
                   </p>
                 </li>
-              ))}
+                );
+              })}
             </ul>
 
             <div className="note-caution mt-3">
               <Expandable
                 labels={labels}
-                text={o.constraint}
+                text={ar ? (o.constraintAr ?? o.constraint) : o.constraint}
                 className="text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]"
               />
             </div>
@@ -179,10 +184,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       {/* The finding two ministries state independently */}
       <div className="mt-4 rounded-md border-2 border-[color:var(--color-rust)] bg-[#FBF3F0] p-4">
         <h3 className="text-sm font-bold text-[color:var(--color-rust)]">
-          {ops.crossCutting.title}
+          {ar ? ops.crossCutting.titleAr : ops.crossCutting.title}
         </h3>
         <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-[color:var(--color-text)]">
-          {ops.crossCutting.text}
+          {ar ? ops.crossCutting.textAr : ops.crossCutting.text}
         </p>
         <p className="mt-2 text-[11px]">
           <a
@@ -204,10 +209,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       {/* The date every timeline on this page runs into */}
       <div className="mt-4 rounded-md border-2 border-[color:var(--color-navy)] bg-[#EEF2F7] p-4">
         <h3 className="text-sm font-bold text-[color:var(--color-navy)]">
-          {ops.horizon.title}
+          {ar ? ops.horizon.titleAr : ops.horizon.title}
         </h3>
         <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-[color:var(--color-text)]">
-          {ops.horizon.text}
+          {ar ? ops.horizon.textAr : ops.horizon.text}
         </p>
         <p className="mt-2 text-[11px]">
           <a
@@ -231,7 +236,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
           {t.howToRead} ({ops.caveats.length})
         </summary>
         <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {ops.caveats.map((c) => (
+          {(ar ? ops.caveatsAr : ops.caveats).map((c) => (
             <li key={c.slice(0, 30)} className="flex gap-2">
               <span
                 aria-hidden

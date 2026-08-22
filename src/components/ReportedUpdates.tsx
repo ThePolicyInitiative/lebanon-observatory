@@ -49,8 +49,25 @@ const SOURCE_KIND_CLS: Record<string, string> = {
 
 type Update = (typeof webUpdates.updates)[number];
 
+/**
+ * The Arabic twin of each written field. Entries differ in which fields they
+ * carry, so the inferred type is a union in which some members have no Ar
+ * key at all; this view lets one lookup serve every member.
+ */
+type Localised = Partial<
+  Record<
+    "actorAr" | "actionAr" | "detailAr" | "cautionAr" | "placeAr" | "dateTextAr",
+    string
+  >
+>;
+
 function Card({ u, locale }: { u: Update; locale: Locale }) {
   const t = T[locale];
+  const ar = locale === "ar";
+  const loc = u as Localised;
+  /** The Arabic wording where there is one, the English otherwise. */
+  const say = (english: string | undefined, arabic: string | undefined) =>
+    (ar ? (arabic ?? english) : english) ?? "";
   const meta = layers(locale).find((l) => l.id === u.layer);
   return (
     <li className="card p-3.5">
@@ -83,14 +100,18 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
           </span>
         ) : u.dateText ? (
           <span className="font-semibold text-[color:var(--color-text-secondary)]">
-            {u.dateText}
+            {say(u.dateText, loc.dateTextAr)}
           </span>
         ) : (
           <span className="text-[color:var(--color-text-secondary)]">{t.noDate}</span>
         )}
       </p>
-      <p className="mt-1.5 text-sm font-semibold text-[color:var(--color-navy)]">{u.actor}</p>
-      <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">{u.action}</p>
+      <p className="mt-1.5 text-sm font-semibold text-[color:var(--color-navy)]">
+        {say(u.actor, loc.actorAr)}
+      </p>
+      <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">
+        {say(u.action, loc.actionAr)}
+      </p>
       {/* Named group: the card sits inside the layer disclosure, so an
           unnamed group-open would follow that one instead of this. */}
       {u.detail ? (
@@ -104,18 +125,19 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
             </span>
           </summary>
           <p className="mt-1 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            {u.detail}
+            {say(u.detail, loc.detailAr)}
           </p>
         </details>
       ) : null}
       {u.place ? (
         <p className="mt-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
-          <span className="font-semibold">{t.where}</span> {u.place}
+          <span className="font-semibold">{t.where}</span>{" "}
+          {say(u.place, loc.placeAr)}
         </p>
       ) : null}
       {u.caution ? (
         <p className="note-caution mt-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {u.caution}
+          {say(u.caution, loc.cautionAr)}
         </p>
       ) : null}
       <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px]">

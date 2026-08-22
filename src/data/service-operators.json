@@ -13,25 +13,41 @@
           "what": "The Tyre-Wadi Jilo 66 kV line was cut when a high-voltage tower in Bazouriyeh was destroyed and conductors were severed at several points. Teams erected a replacement tower and repaired every damaged conductor along the route, restoring the Wadi Jilo main transformer station, which feeds wide areas of Sour district.",
           "where": "Bazouriyeh, Wadi Jilo (Sour)",
           "date": "Completed 22 June 2026, after about a week of continuous work",
-          "figure": "1 tower rebuilt · 66 kV"
+          "figure": "1 tower rebuilt · 66 kV",
+          "whatAr": "انقطع خط صور - وادي جيلو 66 كيلوفولط حين دُمّر برج توتر عالٍ في البازورية وقُطعت النواقل في عدة نقاط. نصبت الفرق برجاً بديلاً وأصلحت كل ناقل متضرر على امتداد المسار، فأُعيدت محطة التحويل الرئيسية في وادي جيلو التي تغذّي مناطق واسعة من قضاء صور.",
+          "whereAr": "البازورية، وادي جيلو (صور)",
+          "dateAr": "أُنجز في 22 حزيران 2026، بعد نحو أسبوع من العمل المتواصل",
+          "figureAr": "برج واحد أُعيد بناؤه · 66 كيلوفولط"
         },
         {
           "what": "The 66 kV main transformer station at Nabatieh went out of service when the Zahrani-Nabatieh transmission line failed in the Kfarjouz, Zefta and Wadi al-Kfour areas. Supply to the station, which feeds wide areas of Nabatieh district, was restored five days later.",
           "where": "Kfarjouz, Zefta, Wadi al-Kfour, Nabatieh",
           "date": "Out 18 June 2026, restored about 4pm on 23 June 2026",
-          "figure": "5 days out"
+          "figure": "5 days out",
+          "whatAr": "خرجت محطة التحويل الرئيسية 66 كيلوفولط في النبطية عن الخدمة حين تعطّل خط النقل الزهراني - النبطية في مناطق كفرجوز وزفتا ووادي الكفور. وأُعيدت التغذية إلى المحطة، التي تغذّي مناطق واسعة من قضاء النبطية، بعد خمسة أيام.",
+          "whereAr": "كفرجوز، زفتا، وادي الكفور، النبطية",
+          "dateAr": "خرجت في 18 حزيران 2026، وعادت نحو الرابعة بعد ظهر 23 حزيران 2026",
+          "figureAr": "5 أيام خارج الخدمة"
         },
         {
           "what": "Work continues on the remaining repairs across all high, medium and low voltage networks in the South and Nabatieh governorates and West Bekaa district, within available means and where field conditions permit access.",
           "where": "South and Nabatieh governorates, West Bekaa",
           "date": "Continuing 2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "العمل مستمر على ما تبقّى من إصلاحات في شبكات التوتر العالي والمتوسط والمنخفض كافة في محافظتَي الجنوب والنبطية وقضاء البقاع الغربي، ضمن الإمكانات المتاحة وحيث تسمح الظروف الميدانية بالوصول.",
+          "whereAr": "محافظتا الجنوب والنبطية، البقاع الغربي",
+          "dateAr": "مستمر في 2026",
+          "figureAr": null
         }
       ],
       "constraint": "EDL publicly thanked the army command for support and cooperation, describing crews working under dangerous conditions and imminent hazards. Access, not money, is what governs this work.",
       "sourceName": "Al-Manar; Anbaa; Al-Sadara News",
       "sourceUrl": "https://www.almanar.com.lb/article/969162/",
-      "openedDirectly": true
+      "openedDirectly": true,
+      "nameAr": "مؤسسة كهرباء لبنان",
+      "serviceAr": "الكهرباء",
+      "headlineAr": "محطتان عادتا، برجاً واحداً في كل مرة",
+      "constraintAr": "شكرت مؤسسة كهرباء لبنان علناً قيادة الجيش على الدعم والتعاون، وتحدّثت عن فرق تعمل في ظروف خطرة وأخطار وشيكة. ما يحكم هذا العمل هو الوصول، لا المال."
     },
     {
       "id": "ogero",
@@ -44,25 +60,41 @@
           "what": "Of the 81 telephone exchanges serving the South and Nabatieh, all but 23 are back in service. The 23 that remain out are the ones inside the border strip, and reporting states they had not yet even been inspected - the areas cannot be reached.",
           "where": "South and Nabatieh governorates; the 23 in the border strip",
           "date": "2026",
-          "figure": "23 of 81 exchanges out · 88,000 subscribers served"
+          "figure": "23 of 81 exchanges out · 88,000 subscribers served",
+          "whatAr": "من أصل 81 مقسماً هاتفياً تخدم الجنوب والنبطية، عادت كلها إلى الخدمة عدا 23. والمقاسم الثلاثة والعشرون الباقية خارج الخدمة هي تلك الواقعة داخل الشريط الحدودي، وتذكر التغطية أنها لم تُعايَن بعد أصلاً - إذ يتعذّر الوصول إلى تلك المناطق.",
+          "whereAr": "محافظتا الجنوب والنبطية؛ و23 منها في الشريط الحدودي",
+          "dateAr": "2026",
+          "figureAr": "23 من أصل 81 مقسماً خارج الخدمة · 88,000 مشترك مخدوم"
         },
         {
           "what": "Ogero's director describes a large plan for the area south of the Litani specifically, with technical teams working day and night to return service to subscribers.",
           "where": "South of the Litani",
           "date": "2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "يتحدث مدير عام أوجيرو عن خطة كبيرة لمنطقة جنوب الليطاني تحديداً، وفرق تقنية تعمل ليل نهار لإعادة الخدمة إلى المشتركين.",
+          "whereAr": "جنوب الليطاني",
+          "dateAr": "2026",
+          "figureAr": null
         },
         {
           "what": "The Prime Minister chaired a coordination meeting with the telecommunications minister and the chairmen and chief executives of Alfa, Touch and Ogero, to review the plan for restoring telecoms in south Lebanon and to speed up its implementation.",
           "where": "South Lebanon",
           "date": "2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "ترأس رئيس مجلس الوزراء اجتماعاً تنسيقياً مع وزير الاتصالات ورؤساء ومديري ألفا وتاتش وأوجيرو، لمراجعة خطة إعادة الاتصالات في جنوب لبنان وتسريع تنفيذها.",
+          "whereAr": "جنوب لبنان",
+          "dateAr": "2026",
+          "figureAr": null
         }
       ],
       "constraint": "The exchanges still out are precisely the ones in the border villages. Telecoms recovery stops at the same line every other service stops at.",
       "sourceName": "Annahar; Lebanon Debate; Ministry of Telecommunications via IMLebanon",
       "sourceUrl": "https://www.annahar.com/Economy/188146/23-%D8%B3%D9%86%D8%AA%D8%B1%D8%A7%D9%84%D8%A7-%D9%84%D9%85-%D8%AA%D8%AA%D9%85-%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%AA%D9%87%D9%85-%D8%A8%D8%B9%D8%AF-%D9%85%D8%AF%D9%8A%D8%B1-%D8%A3%D9%88%D8%AC%D9%8A%D8%B1%D9%88-%D9%84%D9%80%D8%A7%D9%84%D9%86%D9%87%D8%A7%D8%B1-%D8%AE%D8%B7%D8%A9-%D9%83%D8%A8%D9%8A%D8%B1%D8%A9-%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9-%D8%AC%D9%86%D9%88%D8%A8-%D8%A7%D9%84%D9%84%D9%8A%D8%B7%D8%A7%D9%86%D9%8A",
-      "openedDirectly": false
+      "openedDirectly": false,
+      "nameAr": "أوجيرو، مع ألفا وتاتش",
+      "serviceAr": "الاتصالات",
+      "headlineAr": "81 مقسماً، 88,000 مشترك، و23 ما زالت مطفأة",
+      "constraintAr": "المقاسم التي ما زالت خارج الخدمة هي بالضبط تلك الواقعة في القرى الحدودية. تعافي الاتصالات يتوقف عند الخط نفسه الذي تتوقف عنده كل خدمة أخرى."
     },
     {
       "id": "lra",
@@ -75,25 +107,41 @@
           "what": "The 2026 irrigation season was launched from the Zrarieh dam through to the Ghaziyeh area, after wide-ranging maintenance, rehabilitation and cleaning. The season is intended to water more than 6,000 hectares of farmland on the southern coast.",
           "where": "Zrarieh dam to Ghaziyeh, southern coast",
           "date": "2026 season",
-          "figure": "6,000+ hectares"
+          "figure": "6,000+ hectares",
+          "whatAr": "أُطلق موسم الري لعام 2026 من سد زرارية حتى منطقة الغازية، بعد أعمال صيانة وتأهيل وتنظيف واسعة. ويُتوقع أن يروي الموسم أكثر من 6,000 هكتار من الأراضي الزراعية على الساحل الجنوبي.",
+          "whereAr": "من سد زرارية إلى الغازية، الساحل الجنوبي",
+          "dateAr": "موسم 2026",
+          "figureAr": "أكثر من 6,000 هكتار"
         },
         {
           "what": "Teams rehabilitated and repaired damaged infrastructure, treated damage to parts of the irrigation works, serviced the intakes, and cleaned water sections, tunnels and the main and secondary canals.",
           "where": "Litani irrigation network",
           "date": "Before the 2026 season",
-          "figure": null
+          "figure": null,
+          "whatAr": "أهّلت الفرق البنى المتضررة وأصلحتها، وعالجت الأضرار في أجزاء من منشآت الري، وصانت المآخذ، ونظّفت المقاطع المائية والأنفاق والقنوات الرئيسية والفرعية.",
+          "whereAr": "شبكة ري الليطاني",
+          "dateAr": "قبل موسم 2026",
+          "figureAr": null
         },
         {
           "what": "Part of the Litani riverbed was cleaned at the movable dam serving the Qasmieh pumping station, and sand deposits were cleared from the station intake.",
           "where": "Qasmieh pumping station, at the river mouth north of Tyre",
           "date": "2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "نُظّف جزء من مجرى الليطاني عند السد المتحرك الذي يخدم محطة ضخ القاسمية، وأُزيلت الترسبات الرملية من مأخذ المحطة.",
+          "whereAr": "محطة ضخ القاسمية، عند مصب النهر شمال صور",
+          "dateAr": "2026",
+          "figureAr": null
         }
       ],
       "constraint": "The authority's own line is that the damage did not stop it: maintenance was finished and power generation and irrigation continue. Irrigation restored is not the same as farmers able to reach their land, which the farmers' own accounts dispute.",
       "sourceName": "Litani River Authority; Future TV; Sawt Beirut",
       "sourceUrl": "https://www.litani.gov.lb/ar-lb/news",
-      "openedDirectly": false
+      "openedDirectly": false,
+      "nameAr": "المصلحة الوطنية لنهر الليطاني",
+      "serviceAr": "الري وتوليد الطاقة",
+      "headlineAr": "موسم الري انطلق رغم ذلك",
+      "constraintAr": "خلاصة المصلحة عن نفسها أن الضرر لم يوقفها: الصيانة أُنجزت، وتوليد الطاقة والري مستمران. لكن عودة الري ليست عودة المزارعين إلى أرضهم، وهو ما تنازعه روايات المزارعين أنفسهم."
     },
     {
       "id": "mpwt",
@@ -106,25 +154,41 @@
           "what": "At Majdal Selm, a road rehabilitation whose excavation and base layer had been finished before the war, then abandoned on security grounds, is back under way with base-course and paving work. The ministry resumed it only after obtaining Mechanism approval.",
           "where": "Majdal Selm (Marjaayoun)",
           "date": "2026",
-          "figure": "resumed after clearance"
+          "figure": "resumed after clearance",
+          "whatAr": "في مجدل سلم، عاد تأهيل طريق كان الحفر وطبقة الأساس فيه قد أُنجزا قبل الحرب ثم تُرك لأسباب أمنية، فاستؤنف بأعمال طبقة الأساس والتزفيت. ولم تستأنفه الوزارة إلا بعد الحصول على موافقة الآلية.",
+          "whereAr": "مجدل سلم (مرجعيون)",
+          "dateAr": "2026",
+          "figureAr": "استؤنف بعد التصريح"
         },
         {
           "what": "Asphalt work on the international coastal road at the Qasmieh bridge, repairing damage caused by the Israeli aggression on that axis - the crossing that carries traffic over the Litani into the south.",
           "where": "Qasmieh bridge, at the Litani crossing",
           "date": "2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "أعمال تزفيت على الطريق الساحلية الدولية عند جسر القاسمية، لإصلاح الأضرار التي خلّفها العدوان الإسرائيلي على ذلك المحور - وهو المعبر الذي ينقل حركة السير فوق الليطاني إلى الجنوب.",
+          "whereAr": "جسر القاسمية، عند معبر الليطاني",
+          "dateAr": "2026",
+          "figureAr": null
         },
         {
           "what": "Repaving and maintenance in the Dabbaa quarter of Tyre and on the Saida-Borj Rahal highway, including asphalt repair and replacement of protective barriers. Farm access roads at Kfour and the tank road at Ezze were rehabilitated to get growers back onto their land, and highway maintenance continues at Deir al-Zahrani.",
           "where": "Tyre, Borj Rahal, Kfour, Ezze, Deir al-Zahrani",
           "date": "2026",
-          "figure": null
+          "figure": null,
+          "whatAr": "إعادة تزفيت وصيانة في حي الدبعة في صور وعلى أوتوستراد صيدا - برج رحال، تشمل إصلاح الزفت واستبدال الحواجز الواقية. وأُهّلت طرق زراعية في الكفور وطريق الخزان في العزّة لإعادة المزارعين إلى أرضهم، والصيانة مستمرة على الأوتوستراد في دير الزهراني.",
+          "whereAr": "صور، برج رحال، الكفور، العزّة، دير الزهراني",
+          "dateAr": "2026",
+          "figureAr": null
         }
       ],
       "constraint": "Two of the ministry's own explanations for stopped work are security conditions and waiting on Mechanism approval - the same gate the electricity crews describe. No costs or completion dates are published with any of it.",
       "sourceName": "Anbaa; Al-Jadeed; Daily Beirut",
       "sourceUrl": "https://anbaaonline.com/news/336623",
-      "openedDirectly": true
+      "openedDirectly": true,
+      "nameAr": "وزارة الأشغال العامة والنقل",
+      "serviceAr": "الطرق والجسور",
+      "headlineAr": "التزفيت يستأنف حيث يسمح التصريح",
+      "constraintAr": "اثنان من تفسيرات الوزارة نفسها لتوقف العمل هما الظروف الأمنية وانتظار موافقة الآلية - البوابة نفسها التي تصفها فرق الكهرباء. ولا تُنشر مع أي من ذلك كلفة ولا تاريخ إنجاز."
     }
   ],
   "crossCutting": {
@@ -132,7 +196,9 @@
     "text": "Repairs on the high-voltage lines between Srireh and the Kfarhouna triangle went ahead only after the ceasefire Mechanism committee approved them. The roads ministry gives the same reason for restarting the Majdal Selm road: work resumed once Mechanism approval came through. Two different ministries, two different networks, one gate. Utility crews in the south are not simply short of money and materials - some of this work needs clearance from the body monitoring the ceasefire, and the parts of the network that stay broken are the parts inside the strip nobody can reach.",
     "sourceName": "LBCI; Anbaa",
     "sourceUrl": "https://www.lbcgroup.tv/news/lebanon-security/940657/",
-    "openedDirectly": false
+    "openedDirectly": false,
+    "titleAr": "قيد واحد يسري عليها جميعاً",
+    "textAr": "أعمال الإصلاح على خطوط التوتر العالي بين صرِيرة ومثلث كفرحونة لم تمضِ إلا بعد موافقة لجنة آلية وقف إطلاق النار عليها. ووزارة الأشغال تعطي السبب نفسه لاستئناف طريق مجدل سلم: عاد العمل ما إن وصلت موافقة الآلية. وزارتان مختلفتان، وشبكتان مختلفتان، وبوابة واحدة. فِرق المرافق في الجنوب ليست فقط ناقصة المال والمواد - بعض هذا العمل يحتاج تصريحاً من الجهة التي تراقب وقف إطلاق النار، وأجزاء الشبكة التي تبقى مقطوعة هي الأجزاء داخل الشريط الذي لا يبلغه أحد."
   },
   "caveats": [
     "Operators describing their own performance. Every figure here is the operator's or the reporting outlet's, with no independent check.",
@@ -145,6 +211,15 @@
     "text": "UNIFIL's mandate ends on 31 December 2026. Uniformed personnel are to be drawn down by mid-2027 and the withdrawal completed by the end of that year, closing nearly five decades of presence and handing its positions to the Lebanese state. Its area of operations is defined as exactly the ground this workbook covers: between the Litani and the Blue Line. It is also the body that demines before anyone can clear rubble - it cleared close to five million square metres and destroyed more than 51,000 mines, bombs and unexploded items between 2006 and 2023 - and its routine demining has been suspended since 8 October 2023, so contamination has been accumulating for almost three years. Reporting also describes it as a financial lifeline for the area, employing local people and working through the municipalities. Every timeline on this page runs into that date.",
     "sourceName": "UN Security Council reporting; House of Commons Library; Defense News",
     "sourceUrl": "https://commonslibrary.parliament.uk/research-briefings/cbp-10348/",
-    "openedDirectly": false
-  }
+    "openedDirectly": false,
+    "titleAr": "وفي كانون الأول، تغادر أكبر جهة في هذه المنطقة",
+    "textAr": "تنتهي ولاية اليونيفيل في 31 كانون الأول 2026. ويُخفَّض العديد النظامي بحلول منتصف 2027 ويُنجَز الانسحاب بنهاية تلك السنة، فيُطوى نحو خمسة عقود من الحضور وتُسلَّم المواقع إلى الدولة اللبنانية. ومنطقة عملياتها معرَّفة بأنها بالضبط الأرض التي يغطيها هذا العمل: بين الليطاني والخط الأزرق. وهي أيضاً الجهة التي تنزع الألغام قبل أن يستطيع أحد رفع الأنقاض - إذ طهّرت قرابة خمسة ملايين متر مربع ودمّرت أكثر من 51,000 لغم وقنبلة وذخيرة غير منفجرة بين 2006 و2023 - ونزع الألغام الاعتيادي لديها معلَّق منذ 8 تشرين الأول 2023، فالتلوّث يتراكم منذ ثلاث سنوات تقريباً. وتصفها التغطية أيضاً بأنها شريان مالي للمنطقة، يوظّف أهلها ويعمل عبر بلدياتها. وكل خط زمني في هذه الصفحة يصطدم بذلك التاريخ."
+  },
+  "noteAr": "ما تقوله المؤسسات العامة عن استعادة شبكاتها في الجنوب. منشور عنها أو منقول في الصحافة، غير مؤكَّد هنا، ولا يدخل في أي عدّ من أعداد هذا الموقع. وهو محمول لأن هذه المؤسسات تُبلغ بمستوى من التفصيل - محطة مسمّاة، خط 66 كيلوفولط واحد، برج بديل - لا يبلغه أي تقييم.",
+  "caveatsAr": [
+    "مؤسسات تصف أداءها هي. وكل رقم هنا من المؤسسة أو من الوسيلة الناقلة، بلا فحص مستقل.",
+    "إعادة خط أو محطة أو موسم ليست إعادة إعمار: هي تعيد خدمة إلى شبكة، ولا تقول شيئاً عن الأبنية ولا عن الناس عليها.",
+    "عدد من هذه الصفحات رفض طلباً آلياً ولم يُبلَغ إلا عبر ملخص بحث؛ وتلك مُعلَّمة.",
+    "التواريخ مذكورة حيث ذكرتها التغطية. وحيث لم تفعل، تُعرض السنة وحدها."
+  ]
 }

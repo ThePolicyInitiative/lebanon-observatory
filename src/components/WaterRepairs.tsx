@@ -230,8 +230,10 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
           >
             {slwe.sourceName} ↗
           </a>
-          <span className="ml-2 text-[color:var(--color-text-secondary)]">
-            The export carried no per-post links, so this is the page, not the single post.
+          <span className="ms-2 text-[color:var(--color-text-secondary)]">
+            {ar
+              ? "لم يحمل الملف المصدَّر روابط لكل منشور، فهذه الصفحة لا المنشور المفرد."
+              : "The export carried no per-post links, so this is the page, not the single post."}
           </span>
         </p>
       </div>
