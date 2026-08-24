@@ -62,7 +62,7 @@ export type ActorEntry = {
   name: string;
   layer: ActorLayer;
   subtype: string;
-  deJureDeFacto: string | null;
+  mandateVsCapacity: string | null;
   recordCount: number;
   sourceIds: string[];
 };

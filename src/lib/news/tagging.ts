@@ -19,11 +19,61 @@ const RECONSTRUCTION_BROAD = [
   "déplacés", "abri", "municipalité", "infrastructure", "logement",
 ];
 
+/**
+ * Names that mean Lebanon wherever they appear: the country, the demonym,
+ * its cities, districts and the southern villages this site follows.
+ *
+ * The list is long on purpose. Requiring one of these is now the only way
+ * into the feed, so a village named in a headline has to be recognised or
+ * the story is lost.
+ */
 const LEBANON_MARKERS = [
-  "lebanon", "lebanese", "beirut", "nabatieh", "tyre", "sidon", "saida", "bekaa",
-  "baalbek", "tripoli", "dahieh", "litani", "bint jbeil", "marjeyoun", "khiam",
-  "لبنان", "اللبناني", "بيروت", "النبطية", "صور", "صيدا", "البقاع", "بعلبك",
-  "الضاحية", "liban", "libanais", "beyrouth",
+  // country and demonym
+  "lebanon", "lebanese", "liban", "libanais", "libanaise",
+  "لبنان", "اللبناني", "اللبنانية", "لبنانية",
+  // cities and governorates
+  "beirut", "beyrouth", "nabatieh", "tyre", "sidon", "saida", "bekaa", "baalbek",
+  "tripoli", "hermel", "zahle", "jounieh", "byblos", "jbeil", "akkar", "batroun",
+  "keserwan", "aley", "chouf", "jezzine", "hasbaya", "rashaya",
+  "بيروت", "النبطية", "صيدا", "البقاع", "بعلبك", "طرابلس", "الهرمل", "زحلة",
+  "جونية", "جبيل", "عكار", "البترون", "كسروان", "عاليه", "الشوف", "جزين",
+  "حاصبيا", "راشيا", "مدينة صور", "قضاء صور",
+  // the southern arc and the Dahieh belt
+  "dahieh", "dahiyeh", "litani", "blue line", "bint jbeil", "bent jbeil",
+  "marjeyoun", "marjaayoun", "khiam", "naqoura", "aitaroun", "aita al-shaab",
+  "kfar kila", "kfarkila", "yaroun", "srifa", "houla", "blida", "taybe",
+  "rmeish", "ain ebel", "tibnine", "tebnine", "qana", "zawtar", "zaoutar",
+  "adaisseh", "mays al-jabal", "meiss ej jabal", "majdal selm", "deir mimas",
+  "borj el-brajneh", "haret hreik", "ghobeiry", "choueifat", "baabda",
+  "الضاحية", "الليطاني", "الخط الأزرق", "بنت جبيل", "مرجعيون", "الخيام",
+  "الناقورة", "عيترون", "عيتا الشعب", "كفركلا", "يارون", "صريفا", "حولا",
+  "بليدا", "الطيبة", "رميش", "عين إبل", "تبنين", "قانا", "زوطر", "العديسة",
+  "ميس الجبل", "مجدل سلم", "دير ميماس", "برج البراجنة", "حارة حريك", "بعبدا",
+  "جنوب لبنان", "الجنوب اللبناني",
+];
+
+/**
+ * Other wars, named because their reconstruction coverage reads exactly
+ * like Lebanon's and reaches the feed through the region-wide publishers.
+ * A story is dropped when its headline names one of these and does not
+ * name Lebanon - a Lebanese paper reporting on Gaza is still about Gaza.
+ *
+ * Israel, Hezbollah and Iran are deliberately absent: they appear in
+ * Lebanon's own coverage constantly, and naming them says nothing about
+ * where the story is set.
+ */
+const OTHER_THEATRES = [
+  "gaza", "west bank", "ramallah", "rafah", "khan younis", "hamas",
+  "غزة", "الضفة الغربية", "رفح", "خان يونس", "حماس",
+  "syria", "syrian", "damascus", "aleppo", "idlib", "homs",
+  "سوريا", "سورية", "دمشق", "حلب", "إدلب", "حمص",
+  "ukraine", "ukrainian", "kyiv", "kharkiv", "أوكرانيا", "كييف",
+  "yemen", "sanaa", "houthi", "اليمن", "صنعاء", "الحوثي",
+  "sudan", "khartoum", "السودان", "الخرطوم",
+  "iraq", "baghdad", "mosul", "العراق", "بغداد", "الموصل",
+  "libya", "tripoli, libya", "ليبيا",
+  "afghanistan", "أفغانستان",
+  "turkey earthquake", "زلزال تركيا",
 ];
 
 const LOCATION_TAGS: [string, string[]][] = [
@@ -82,6 +132,12 @@ export function detectLanguage(hint: string | null, text: string): NewsArticle["
 export function isLebanonPrimary(text: string): boolean {
   const t = text.toLowerCase();
   return LEBANON_MARKERS.some((m) => t.includes(m));
+}
+
+/** True when the text names a war other than Lebanon's. */
+export function namesOtherTheatre(text: string): boolean {
+  const t = text.toLowerCase();
+  return OTHER_THEATRES.some((m) => t.includes(m));
 }
 
 export function scoreRelevance(text: string): number {

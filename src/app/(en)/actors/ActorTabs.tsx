@@ -47,7 +47,7 @@ const CONTENT: Record<ActorLayer, TabContent> = {
       "Relief presence held at 4 while the humanitarian load moved to partners",
     ],
     mandateVsAction:
-      "In both years the state held a de jure owner for every stage. What changed was activation: 2024 mandates were claims on budget lines that a caretaker government with a collapsed treasury could not exercise beyond coordination; 2026 re-funded and re-traced a subset of the same mandates rather than inventing new ones.",
+      "In both years the state held an owner on paper for every stage. What changed was activation: 2024 mandates were claims on budget lines that a caretaker government with a collapsed treasury could not exercise beyond coordination; 2026 re-funded and re-traced a subset of the same mandates rather than inventing new ones.",
     financeRole:
       "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment by the cut-off.",
     procurementRole:
@@ -142,16 +142,18 @@ const CONTENT: Record<ActorLayer, TabContent> = {
   },
 };
 
-function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
+function MandateVsCapacity({ layer }: { layer: ActorLayer }) {
   const entries = actors
-    .filter((a) => a.layer === layer && a.deJureDeFacto)
+    .filter((a) => a.layer === layer && a.mandateVsCapacity)
     .sort((a, b) => a.year - b.year || b.recordCount - a.recordCount);
   if (entries.length === 0) return null;
 
-  function split(text: string): { deJure: string | null; deFacto: string | null; raw: string } {
-    const m = text.match(/de jure:?\s*([\s\S]*?)\s*de facto:?\s*([\s\S]*)/i);
-    if (m) return { deJure: m[1], deFacto: m[2], raw: text };
-    return { deJure: null, deFacto: null, raw: text };
+  /** Entries are written "On paper: ... In practice: ..."; anything that
+      does not follow that shape is printed whole. */
+  function split(text: string): { onPaper: string | null; inPractice: string | null; raw: string } {
+    const m = text.match(/on paper:?\s*([\s\S]*?)\s*in practice:?\s*([\s\S]*)/i);
+    if (m) return { onPaper: m[1], inPractice: m[2], raw: text };
+    return { onPaper: null, inPractice: null, raw: text };
   }
 
   return (
@@ -160,13 +162,13 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
         On paper versus in practice
       </h3>
       <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-        The traced entries, actor by actor, the gap between legal
-        mandate and actual capacity - the de jure / de facto inversion that
-        defines both years.
+        The traced entries, actor by actor, the gap between the mandate an actor
+        holds and the capacity it actually has - the inversion that defines
+        both years.
       </p>
       <ul className="mt-4 space-y-3">
         {entries.slice(0, 6).map((a) => {
-          const s = split(a.deJureDeFacto!);
+          const s = split(a.mandateVsCapacity!);
           return (
             <li key={a.id} className="rounded-md border border-[color:var(--color-border)] p-3.5">
               <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
@@ -178,15 +180,15 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
                   {a.year}
                 </span>
               </p>
-              {s.deJure ? (
+              {s.onPaper ? (
                 <div className="mt-2 grid gap-2 sm:grid-cols-2">
                   <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
-                    <span className="font-bold text-[color:var(--color-navy)]">De jure: </span>
-                    {s.deJure}
+                    <span className="font-bold text-[color:var(--color-navy)]">On paper: </span>
+                    {s.onPaper}
                   </p>
                   <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
-                    <span className="font-bold text-[color:var(--color-rust)]">De facto: </span>
-                    {s.deFacto}
+                    <span className="font-bold text-[color:var(--color-rust)]">In practice: </span>
+                    {s.inPractice}
                   </p>
                 </div>
               ) : (
@@ -199,11 +201,11 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
       {entries.length > 6 ? (
         <details className="mt-3">
           <summary className="cursor-pointer text-xs text-[color:var(--color-blue)] underline underline-offset-2">
-            Show all {entries.length} actors with de jure / de facto notes
+            Show all {entries.length} actors with mandate-and-capacity notes
           </summary>
           <ul className="mt-3 space-y-3">
             {entries.slice(6).map((a) => {
-              const s = split(a.deJureDeFacto!);
+              const s = split(a.mandateVsCapacity!);
               return (
                 <li key={a.id} className="rounded-md border border-[color:var(--color-border)] p-3.5">
                   <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
@@ -215,15 +217,15 @@ function DeJureDeFacto({ layer }: { layer: ActorLayer }) {
                       {a.year}
                     </span>
                   </p>
-                  {s.deJure ? (
+                  {s.onPaper ? (
                     <div className="mt-2 grid gap-2 sm:grid-cols-2">
                       <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
-                        <span className="font-bold text-[color:var(--color-navy)]">De jure: </span>
-                        {s.deJure}
+                        <span className="font-bold text-[color:var(--color-navy)]">On paper: </span>
+                        {s.onPaper}
                       </p>
                       <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
-                        <span className="font-bold text-[color:var(--color-rust)]">De facto: </span>
-                        {s.deFacto}
+                        <span className="font-bold text-[color:var(--color-rust)]">In practice: </span>
+                        {s.inPractice}
                       </p>
                     </div>
                   ) : (
@@ -441,7 +443,7 @@ export default function ActorTabs() {
           </div>
         </section>
 
-        <DeJureDeFacto layer={layer} />
+        <MandateVsCapacity layer={layer} />
 
         <RegionPresence layer={layer} showCaveat={false} />
 

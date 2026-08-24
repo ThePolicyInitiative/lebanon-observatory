@@ -1,21 +1,43 @@
 import "server-only";
 import type { NewsArticle } from "@/lib/types";
-import { isLebanonPrimary, normaliseTitle } from "./tagging";
+import { isLebanonPrimary, namesOtherTheatre, normaliseTitle } from "./tagging";
 
 /** Relevance filtering and cross-provider deduplication. */
 
+/**
+ * Publishers whose whole output is Lebanon: the country's own outlets and
+ * agencies, plus ReliefWeb's Lebanon feed, which is filtered to the
+ * country at the query. Everyone else - Al Jazeera, Arab News, UN News -
+ * publishes for the whole region and has to name Lebanon to get in.
+ */
+function publishesOnlyLebanon(domain: string): boolean {
+  return domain.endsWith(".lb") || domain === "reliefweb.int";
+}
+
+/**
+ * Lebanon has to be the subject, not a mention.
+ *
+ * Two things used to let other people's wars through. A high
+ * reconstruction score stood in for naming Lebanon at all, and
+ * "reconstruction" scores the same in Gaza, Kyiv or Khartoum; and a
+ * Lebanese domain was trusted outright, so a Beirut paper's Gaza
+ * coverage came in with it. Both are gone: every article names Lebanon
+ * or a Lebanese place, and a headline about another war is dropped even
+ * when a Lebanese outlet wrote it.
+ */
 export function filterRelevant(articles: NewsArticle[], minScore: number): NewsArticle[] {
   return articles.filter((a) => {
     const text = `${a.title} ${a.description ?? ""}`;
-    const lebaneseSource =
-      a.sourceDomain.endsWith(".lb") || a.sourceDomain === "reliefweb.int";
-    // Every provider query already scopes to Lebanon at entry level.
-    // The headline-level check guards against passing-reference matches
-    // from non-Lebanese outlets; a strong reconstruction score (>= 65,
-    // which requires core keywords) is accepted in its place.
-    if (!lebaneseSource && !isLebanonPrimary(text) && a.relevanceScore < 65) {
-      return false;
-    }
+
+    // The headline is what the story is about. If it names another war
+    // and does not name Lebanon, the story is set there.
+    if (namesOtherTheatre(a.title) && !isLebanonPrimary(a.title)) return false;
+
+    // Otherwise Lebanon must be named somewhere - unless the publisher
+    // only ever writes about Lebanon, where "the southern villages" needs
+    // no country attached.
+    if (!isLebanonPrimary(text) && !publishesOnlyLebanon(a.sourceDomain)) return false;
+
     return a.relevanceScore >= minScore;
   });
 }

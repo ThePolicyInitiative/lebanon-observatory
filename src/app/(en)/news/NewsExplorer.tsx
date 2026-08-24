@@ -111,10 +111,12 @@ export default function NewsExplorer() {
     <div>
       {/* Disclosure */}
       <p className="card p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        This feed aggregates relevant coverage from selected global, Lebanese,
-        humanitarian and official publishers. It is broad but not exhaustive.
-        Headlines link to the original publishers; nothing here alters the
-        confirmed analysis elsewhere on this site.
+        This feed aggregates coverage from selected global, Lebanese,
+        humanitarian and official publishers. Every item names Lebanon or a
+        Lebanese place: coverage of other countries&apos; wars is filtered
+        out, including where a Lebanese outlet published it. It is broad but
+        not exhaustive. Headlines link to the original publishers; nothing
+        here alters the confirmed analysis elsewhere on this site.
       </p>
 
       {/* Tabs */}

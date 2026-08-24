@@ -22,13 +22,13 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "Dispersed by default: territorial bodies held damage claims by legacy, ministries held sectors by statute, and no institution held the whole.",
       y2026:
-        "Consolidated inside a project perimeter - cabinet for policy, Public Works for execution leadership, CDR for implementation, World Bank rules - while the Council for the South, the Higher Relief Commission and the parallel track kept de facto authority outside it.",
+        "Consolidated inside a project perimeter - cabinet for policy, Public Works for execution leadership, CDR for implementation, World Bank rules - while the Council for the South, the Higher Relief Commission and the parallel track kept the real authority outside it.",
       change: "Consolidated, selectively: a clear hierarchy inside the perimeter, the old answer outside it.",
     },
     ar: {
       label: "السلطة",
       y2024:
-        "مشتّتة بحكم الواقع: هيئات المناطق تمسك بمطالبات الأضرار بحكم الإرث، والوزارات تمسك بالقطاعات بحكم النص، ولا مؤسسة تمسك بالمجموع.",
+        "مشتّتة في الواقع: هيئات المناطق تمسك بمطالبات الأضرار بحكم الإرث، والوزارات تمسك بالقطاعات بحكم النص، ولا مؤسسة تمسك بالمجموع.",
       y2026:
         "مجمَّعة داخل محيط المشروع - مجلس الوزراء للسياسة، والأشغال العامة لقيادة التنفيذ، ومجلس الإنماء والإعمار للتنفيذ، وقواعد البنك الدولي - بينما احتفظ مجلس الجنوب والهيئة العليا للإغاثة والمسار الموازي بسلطة فعلية خارجه.",
       change: "تجميع انتقائي: تراتبية واضحة داخل المحيط، والجواب القديم خارجه.",

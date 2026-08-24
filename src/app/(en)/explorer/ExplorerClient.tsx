@@ -356,10 +356,10 @@ export default function ExplorerClient() {
                   </div>
                 ) : null}
               </dl>
-              {actorEntry?.deJureDeFacto ? (
+              {actorEntry?.mandateVsCapacity ? (
                 <section className="rounded-md bg-[color:var(--color-bg)] p-3">
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">De jure vs de facto</h4>
-                  <p className="mt-1 text-[13px] leading-relaxed">{actorEntry.deJureDeFacto}</p>
+                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">On paper versus in practice</h4>
+                  <p className="mt-1 text-[13px] leading-relaxed">{actorEntry.mandateVsCapacity}</p>
                 </section>
               ) : null}
               <section>
