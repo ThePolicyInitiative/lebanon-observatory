@@ -59,9 +59,12 @@ export function fmtDate(iso: string | null, locale: Loc = "en"): string {
   });
 }
 
-export function fmtDateTime(iso: string): string {
+export function fmtDateTime(iso: string, locale: Loc = "en"): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
+  const hm = `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+  if (locale === "ar")
+    return `${d.getDate()} ${AR_MONTHS[d.getMonth()]} ${d.getFullYear()}، ${hm}`;
   return d.toLocaleString("en-GB", {
     day: "numeric",
     month: "short",

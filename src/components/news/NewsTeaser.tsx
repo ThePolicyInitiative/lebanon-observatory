@@ -96,7 +96,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
           className="card p-3.5"
         >
           <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-            {a.sourceName} · {fmtDateTime(a.publishedAt)}
+            {a.sourceName} · {fmtDateTime(a.publishedAt, locale)}
           </p>
           <h3 className="mt-1 text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
             <a

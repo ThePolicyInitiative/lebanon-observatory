@@ -4,10 +4,25 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { STAGES, STAGE_SHORT, countsFor } from "@/lib/data-client";
-import { changeFor, CAUTION_COUNTS } from "@/lib/data-client";
+import { countsFor, changeFor } from "@/lib/data-client";
+import { cautionCounts, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 import { signed } from "@/lib/format";
+
+const T = {
+  en: {
+    axisName: "Change in traced actors (2026 − 2024)",
+    change: "Change: ",
+    tableCaption: (title: string) => `${title} - underlying values.`,
+    tableHeaders: ["Stage", "2024", "2026", "Change"],
+  },
+  ar: {
+    axisName: "التغيّر في الجهات المرصودة (2026 − 2024)",
+    change: "الفارق: ",
+    tableCaption: (title: string) => `${title} - القيم التي خلف الشكل.`,
+    tableHeaders: ["المرحلة", "2024", "2026", "الفارق"],
+  },
+} as const;
 
 /**
  * Visuals 6 & 7 - Diverging bar chart of change in traced presence
@@ -20,38 +35,49 @@ export default function DivergingChangeChart({
   title,
   subtitle,
   description,
+  locale = "en",
 }: {
   id: string;
   layer: ActorLayer;
   title: string;
   subtitle: string;
   description: string;
+  locale?: Locale;
 }) {
+  const t = T[locale];
+  const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const change = changeFor(layer);
+  const stages = stageList(locale);
+  const shorts = stageShortList(locale);
 
-  const sorted = STAGES.map((stage, i) => ({
-    stage,
-    short: STAGE_SHORT[i],
-    value: change[i],
-    y24: countsFor(2024, layer)[i],
-    y26: countsFor(2026, layer)[i],
-  })).sort((a, b) => a.value - b.value);
+  const sorted = stages
+    .map((stage, i) => ({
+      stage,
+      short: shorts[i],
+      value: change[i],
+      y24: countsFor(2024, layer)[i],
+      y26: countsFor(2026, layer)[i],
+    }))
+    .sort((a, b) => a.value - b.value);
 
   const option = useMemo<EChartsOption>(
     () => ({
-      grid: { left: 170, right: 60, top: 10, bottom: 40 },
+      grid: ar
+        ? { left: 60, right: 170, top: 10, bottom: 40 }
+        : { left: 170, right: 60, top: 10, bottom: 40 },
       tooltip: {
         trigger: "item",
         formatter: (p) => {
           const params = p as { dataIndex: number };
           const d = sorted[params.dataIndex];
-          return `<strong>${d.stage}</strong><br/>2024: ${d.y24} · 2026: ${d.y26}<br/>Change: <strong>${signed(d.value)}</strong>`;
+          return `<strong>${d.stage}</strong><br/>2024: ${d.y24} · 2026: ${d.y26}<br/>${t.change}<strong>${signed(d.value)}</strong>`;
         },
       },
       xAxis: {
         type: "value",
-        name: "Change in traced actors (2026 − 2024)",
+        inverse: ar,
+        name: t.axisName,
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -61,6 +87,7 @@ export default function DivergingChangeChart({
       yAxis: {
         type: "category",
         data: sorted.map((d) => d.short),
+        position: ar ? "right" : "left",
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11 },
@@ -86,7 +113,7 @@ export default function DivergingChangeChart({
         },
       ],
     }),
-    [sorted],
+    [sorted, ar, t],
   );
 
   return (
@@ -94,13 +121,13 @@ export default function DivergingChangeChart({
       id={id}
       title={title}
       subtitle={subtitle}
-      caveat={CAUTION_COUNTS}
+      caveat={cautionCounts(locale)}
       sourceIds={["S-TRACKING"]}
       chartRef={chartRef}
       description={description}
       table={{
-        caption: `${title} - underlying values.`,
-        headers: ["Stage", "2024", "2026", "Change"],
+        caption: t.tableCaption(title),
+        headers: [...t.tableHeaders],
         rows: sorted.map((d) => [d.stage, d.y24, d.y26, signed(d.value)]),
       }}
     >

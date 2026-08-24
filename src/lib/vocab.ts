@@ -67,6 +67,36 @@ const COMPARABILITY_AR: Record<string, string> = {
   context_only: "للسياق فقط",
 };
 
+/**
+ * Regional groupings from locations.json, one Arabic rendering each.
+ * Three components once carried their own copies and the same region
+ * ended up with three different Arabic names; this is now the only
+ * dictionary.
+ */
+const REGION_EN: Record<string, string> = {
+  south_nabatieh: "South and Nabatieh",
+  beirut_mount_lebanon: "Beirut and Mount Lebanon",
+  bekaa_baalbek_hermel: "Bekaa and Baalbek-Hermel",
+  north: "North",
+  camps_migrant: "Camps and migrant communities",
+  national_multi: "National or multi-region",
+  named_localities: "Named affected localities",
+};
+
+const REGION_AR: Record<string, string> = {
+  south_nabatieh: "الجنوب والنبطية",
+  beirut_mount_lebanon: "بيروت وجبل لبنان",
+  bekaa_baalbek_hermel: "البقاع وبعلبك-الهرمل",
+  north: "الشمال",
+  camps_migrant: "المخيمات ومجتمعات المهاجرين",
+  national_multi: "وطني أو متعدد المناطق",
+  named_localities: "بلدات متضررة مسمّاة",
+};
+
+export function regionLabel(id: string, locale: Locale): string {
+  return (locale === "ar" ? REGION_AR[id] : REGION_EN[id]) ?? id;
+}
+
 /** Actor layers with their labels in the requested language. */
 export function layers(locale: Locale) {
   return LAYER_META.map((l) =>

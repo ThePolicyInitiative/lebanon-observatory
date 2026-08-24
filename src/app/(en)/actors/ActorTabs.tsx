@@ -1,239 +1,143 @@
 "use client";
 
-import { LAYER_META } from "@/lib/colors";
 import { layerTotal } from "@/lib/data-client";
 import { actors } from "@/lib/data-client";
 import { useUrlState } from "@/lib/useUrlState";
-import type { ActorLayer } from "@/lib/types";
+import { layers, type Locale } from "@/lib/vocab";
+import type { ActorEntry, ActorLayer } from "@/lib/types";
 import { signed } from "@/lib/format";
+import { CONTENT, CHANGE_CHARTS, GOVERNANCE_SHIFT } from "./actor-content";
 import MunicipalDumbbell from "@/components/charts/MunicipalDumbbell";
 import DivergingChangeChart from "@/components/charts/DivergingChangeChart";
 import LayerStageProfile from "@/components/charts/LayerStageProfile";
 import RegionPresence from "@/components/charts/RegionPresence";
 import ActorConcentration from "@/components/charts/ActorConcentration";
 
-type TabContent = {
-  profile2024: string;
-  profile2026: string;
-  directChange: string;
-  gains: string[];
-  losses: string[];
-  mandateVsAction: string;
-  financeRole: string;
-  procurementRole: string;
-  implementationRole: string;
-  coreFinding?: string;
-  sourceIds: string[];
-};
+const T = {
+  en: {
+    tablist: "Actor layers",
+    presence: (a: number, b: number) =>
+      `Traced actor-stage presence: ${a} (2024) → ${b} (2026) · ${signed(b - a)}`,
+    profile2024: "2024 profile",
+    profile2026: "2026 profile",
+    directChange: "Direct change",
+    mainGains: "Main gains",
+    mainLosses: "Main losses",
+    mandateVsAction: "Mandate versus action",
+    chainRoles: "Chain roles",
+    finance: "Finance",
+    procurement: "Procurement",
+    implementation: "Implementation",
+    onPaperHeading: "On paper versus in practice",
+    onPaperIntro:
+      "The traced entries, actor by actor, the gap between the mandate an actor holds and the capacity it actually has - the inversion that defines both years.",
+    onPaper: "On paper: ",
+    inPractice: "In practice: ",
+    showAll: (n: number) => `Show all ${n} actors with mandate-and-capacity notes`,
+    arrow: "→",
+  },
+  ar: {
+    tablist: "طبقات الجهات الفاعلة",
+    presence: (a: number, b: number) =>
+      `الحضور المرصود للجهات في المراحل: ${a} (2024) ← ${b} (2026) · ${signed(b - a)}`,
+    profile2024: "ملامح 2024",
+    profile2026: "ملامح 2026",
+    directChange: "التغيّر المباشر",
+    mainGains: "أبرز المكاسب",
+    mainLosses: "أبرز الخسائر",
+    mandateVsAction: "التفويض مقابل الفعل",
+    chainRoles: "الأدوار على السلسلة",
+    finance: "التمويل",
+    procurement: "الشراء",
+    implementation: "التنفيذ",
+    onPaperHeading: "على الورق مقابل الممارسة",
+    onPaperIntro:
+      "المدخلات المتتبَّعة، جهةً جهة، للفجوة بين التفويض الذي تمسك به الجهة والقدرة التي تملكها فعلاً - الانقلاب الذي يطبع السنتين.",
+    onPaper: "على الورق: ",
+    inPractice: "عملياً: ",
+    showAll: (n: number) => `إظهار جميع الجهات (${n}) التي تحمل ملاحظات عن التفويض والقدرة`,
+    arrow: "←",
+  },
+} as const;
 
-const CONTENT: Record<ActorLayer, TabContent> = {
-  official: {
-    profile2024:
-      "The 2024 state was strong exactly where mandates require least money and weak exactly where reconstruction happens: 24 of 54 traced actors in strategy and coordination and 11 of 37 in assessment, but only 4 of 8 in procurement, 2 of 12 in debris treatment and 3 of 8 in oversight. Every downstream function had a legal public owner; in practice its traced performers were private, communal or international.",
-    profile2026:
-      "The 2026 state concentrated in programmed reconstruction rather than expanding uniformly: steady in strategy (24 → 24), newly present in procurement and oversight cells that were thin or empty before, and thinner as an emergency-finance crowd - one financed project chain replaced fifteen scattered emergency-finance presences.",
-    directChange:
-      "Greater role specialisation rather than uniform state expansion: the official row changed least in total while changing most in kind.",
-    gains: [
-      "Reconstruction and services: 8 → 13 traced actors",
-      "Procurement and contracting: 4 → 5",
-      "Oversight and accountability: 3 → 4",
-      "Strategy held steady at 24 - with an empowered executive behind it",
-    ],
-    losses: [
-      "Finance and compensation: 15 → 7 (a project chain replaced an emergency-finance crowd)",
-      "Shelter and return: 6 → 3 (humanitarian routing formalised through MoSA)",
-      "Livelihoods presence: 4 → 1",
-      "Relief presence held at 4 while the humanitarian load moved to partners",
-    ],
-    mandateVsAction:
-      "In both years the state held an owner on paper for every stage. What changed was activation: 2024 mandates were claims on budget lines that a caretaker government with a collapsed treasury could not exercise beyond coordination; 2026 re-funded and re-traced a subset of the same mandates rather than inventing new ones.",
-    financeRole:
-      "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment by the cut-off.",
-    procurementRole:
-      "CDR runs LEAP procurement under World Bank rules with a published portal; the Council for the South continued legacy tendering outside the project perimeter.",
-    implementationRole:
-      "Ministry of Public Works holds execution leadership; ministry campaigns and utilities performed emergency repair with unpublished quantities; programme works remained unawarded.",
-    sourceIds: ["S-TRACKING", "S2", "S20", "S1", "S37"],
-  },
-  ngo_international: {
-    profile2024:
-      "International organisations supplied the response's data and much of its delivery capacity: dominant in assessment (13 of 37 traced actors), strong in humanitarian finance (12) and relief (11), and absent from procurement and oversight. Agencies substituted excellently for the state's operational functions and not at all for its political ones.",
-    profile2026:
-      "International involvement shifted from assessment and humanitarian support toward operational governance around the formal project, including procurement rules, disclosure, safeguards, supervision, grievance handling and third-party monitoring - first-ever traced presence in procurement and oversight cells.",
-    directChange:
-      "Traced breadth grew moderately while placement changed decisively: fewer assessment presences (the function partially repatriated to CNRS-L), more governance presences around the financed chain.",
-    gains: [
-      "Strategy and coordination: +8 (15 → 23)",
-      "Shelter and return: +4 (7 → 11)",
-      "Relief and protection: +5 (11 → 16)",
-      "Oversight and accountability: +3 (0 → 3)",
-      "Procurement and contracting: +1 (0 → 1)",
-    ],
-    losses: [
-      "Damage and needs assessment: −7 (13 → 6) - a genuine capacity transfer to Lebanese institutions, not a withdrawal",
-      "Finance presence: −2 (12 → 10), as humanitarian finance consolidated",
-    ],
-    mandateVsAction:
-      "International actors do not hold Lebanese legal mandates; their authority in 2026 was contractual and procedural - the price of lendability. Eligibility criteria, procurement thresholds and results frameworks now shape what 'reconstruction' means in practice.",
-    financeRole:
-      "The World Bank became the reconstruction stream's rule-setter as well as funder; the humanitarian appeal (42% funded at 6 July) and bilateral packages ran on parallel tracks that must not be conflated with reconstruction financing.",
-    procurementRole:
-      "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at the cut-off.",
-    implementationRole:
-      "Agencies delivered relief, shelter support and WASH at scale in both years; they did not and could not resolve compensation policy, property rights or municipal finance.",
-    sourceIds: ["S-TRACKING", "S2", "S40", "S5", "S6"],
-  },
-  municipal: {
-    profile2024:
-      "Municipalities were the system's sensors and shock absorbers, and its least resourced tier: they traced damage, ran or hosted shelters, reopened local access and marshalled volunteers - and the ten-day municipal survey of 135 areas produced the response's fastest national damage assessments. Yet the tracking shows 19 actor-stage entries with zero systematic roles in finance, direct reconstruction, livelihoods or oversight.",
-    profile2026:
-      "Municipalities were repositioned rather than empowered: from frontline improvisers to intake-and-certification nodes in longer chains. Their traced presence thinned to 12 entries, concentrated in reporting, shelter support and local clearance. Formal appearances in the new architecture are as data providers, certifiers, consultation subjects and grievance interfaces - never as budget holders, procurers or sequencers.",
-    directChange:
-      "Traced presence fell 19 → 12 with no compensating gain anywhere in the row. Formalisation moved authority up while leaving labour down: every new procedure that runs 'through' municipalities extracts work without conferring resources.",
-    gains: ["Shelter and relief interface: 3 → 4 - the only functional gain"],
-    losses: [
-      "Coordination and reporting: 6 → 3",
-      "Damage assessment: 4 → 2",
-      "Local clearance and enabling: 6 → 3",
-    ],
-    mandateVsAction:
-      "Municipalities held local knowledge, resident contact, damage-reporting and access-facilitation functions in both years - and in neither year did they hold reconstruction budgets, procurement authority, contractor-selection power or oversight authority. Procedural consultation is not decentralisation.",
-    financeRole:
-      "None traced in either year. Municipal revenues collapsed with the currency; no reconstruction budget line, guaranteed envelope or procurement support scheme was created between the wars.",
-    procurementRole:
-      "None traced in either year - with the exception of the Union of Municipalities of the Southern Suburbs, which ran a cabinet-assigned rubble tender in 2024 outside any standing municipal mandate.",
-    implementationRole:
-      "Reported clearance across sixteen-plus localities in 2026, shelter hosting through both displacement waves, utility liaison - labour without authority.",
-    coreFinding:
-      "Municipalities remained essential as frontline sensors, resident-contact points and access facilitators, but they did not receive proportional reconstruction budgets, contractor-selection power or oversight authority.",
-    sourceIds: ["S-TRACKING", "S19", "S10", "S8"],
-  },
-  community: {
-    profile2024:
-      "The community bloc - residents, NGOs, professional bodies, volunteers and parallel networks, 145 of 343 entries - performed the functions of a reconstruction ministry with none of its resources: households cleared and repaired at their own expense, villages financed collective solutions, professionals contributed system inputs, and the parallel track distributed the only compensation actually flowing.",
-    profile2026:
-      "The bloc's entry grew to 172 entries and rotated: traced presence surged in coordination (9 → 34), relief (20 → 55) and shelter (18 → 25) while collapsing in finance (15 → 4), rubble (11 → 2), debris (7 → 2) and physical reconstruction (18 → 13). Its composition shifted from professional-technical to civic-operational - from supplying missing expertise to supplying missing labour.",
-    directChange:
-      "Community action expanded sharply in humanitarian and social-recovery functions but contracted in finance, rubble management and physical reconstruction. It absorbed pressure without acquiring public-works authority.",
-    gains: [
-      "Relief and protection: +35 (20 → 55)",
-      "Strategy and coordination: +25 (9 → 34)",
-      "Shelter and return: +7 (18 → 25)",
-      "Livelihoods and community recovery: +1 (22 → 23)",
-    ],
-    losses: [
-      "Finance and compensation: −11 (15 → 4) - household finance exhausted by a second displacement in eighteen months",
-      "Rubble clearance: −9 (11 → 2)",
-      "Debris treatment: −5 (7 → 2)",
-      "Reconstruction and services: −5 (18 → 13)",
-    ],
-    mandateVsAction:
-      "Community delivery does not imply formal authority, stable finance, equal geographic reach or public accountability. In both wars the bloc was the system's shock absorber; in 2026 it absorbed a social shock because the financial one had already spent it. Part of the traced surge also reflects finer-grained 2026 entries.",
-    financeRole:
-      "Contracted sharply: savings, remittances and diaspora finance were depleted; reported parallel-track cash appears in the 2026 entry as continued relevance rather than measured flows.",
-    procurementRole:
-      "None - physical work professionalised into contractor and ministry channels that the bloc does not control.",
-    implementationRole:
-      "Shelter management (one Saida school hosted about 650 families), volunteer clearance campaigns in Nabatieh, entries initiatives and participatory workshops - load-bearing functions a programmed system would staff and budget, performed unpaid.",
-    coreFinding:
-      "Community action expanded sharply in humanitarian and social-recovery functions but contracted in finance, rubble management and physical reconstruction. It absorbed pressure without acquiring public-works authority.",
-    sourceIds: ["S-TRACKING", "S58", "S59", "S21", "S9"],
-  },
-};
+/** Entries are written "On paper: ... In practice: ..." in English and
+    "على الورق: ... عملياً: ..." in Arabic; anything that does not follow
+    either shape is printed whole. */
+function split(text: string): { onPaper: string | null; inPractice: string | null; raw: string } {
+  const m =
+    text.match(/on paper:?\s*([\s\S]*?)\s*in practice:?\s*([\s\S]*)/i) ??
+    // The Arabic marker requires its colon: without it, letter runs inside
+    // ordinary words (e.g. للعمليات) would satisfy the pattern mid-sentence.
+    text.match(/على الورق:?\s*([\s\S]*?)\s*عملي(?:اً|ًا)?:\s*([\s\S]*)/);
+  if (m) return { onPaper: m[1], inPractice: m[2], raw: text };
+  return { onPaper: null, inPractice: null, raw: text };
+}
 
-function MandateVsCapacity({ layer }: { layer: ActorLayer }) {
+function MandateEntry({ actor, locale }: { actor: ActorEntry; locale: Locale }) {
+  const t = T[locale];
+  const text =
+    locale === "ar"
+      ? (actor.mandateVsCapacityAr ?? actor.mandateVsCapacity!)
+      : actor.mandateVsCapacity!;
+  const s = split(text);
+  return (
+    <li className="rounded-md border border-[color:var(--color-border)] p-3.5">
+      <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
+        {actor.name.split(":")[0]}
+        <span
+          className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
+          style={{ background: actor.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
+        >
+          {actor.year}
+        </span>
+      </p>
+      {s.onPaper ? (
+        <div className="mt-2 grid gap-2 sm:grid-cols-2">
+          <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
+            <span className="font-bold text-[color:var(--color-navy)]">{t.onPaper}</span>
+            {s.onPaper}
+          </p>
+          <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
+            <span className="font-bold text-[color:var(--color-rust)]">{t.inPractice}</span>
+            {s.inPractice}
+          </p>
+        </div>
+      ) : (
+        <p className="mt-2 text-[12.5px] leading-relaxed">{s.raw}</p>
+      )}
+    </li>
+  );
+}
+
+function MandateVsCapacity({ layer, locale }: { layer: ActorLayer; locale: Locale }) {
+  const t = T[locale];
   const entries = actors
     .filter((a) => a.layer === layer && a.mandateVsCapacity)
     .sort((a, b) => a.year - b.year || b.recordCount - a.recordCount);
   if (entries.length === 0) return null;
 
-  /** Entries are written "On paper: ... In practice: ..."; anything that
-      does not follow that shape is printed whole. */
-  function split(text: string): { onPaper: string | null; inPractice: string | null; raw: string } {
-    const m = text.match(/on paper:?\s*([\s\S]*?)\s*in practice:?\s*([\s\S]*)/i);
-    if (m) return { onPaper: m[1], inPractice: m[2], raw: text };
-    return { onPaper: null, inPractice: null, raw: text };
-  }
-
   return (
     <section className="card p-3.5">
       <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-        On paper versus in practice
+        {t.onPaperHeading}
       </h3>
       <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-        The traced entries, actor by actor, the gap between the mandate an actor
-        holds and the capacity it actually has - the inversion that defines
-        both years.
+        {t.onPaperIntro}
       </p>
       <ul className="mt-4 space-y-3">
-        {entries.slice(0, 6).map((a) => {
-          const s = split(a.mandateVsCapacity!);
-          return (
-            <li key={a.id} className="rounded-md border border-[color:var(--color-border)] p-3.5">
-              <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
-                {a.name.split(":")[0]}
-                <span
-                  className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
-                  style={{ background: a.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
-                >
-                  {a.year}
-                </span>
-              </p>
-              {s.onPaper ? (
-                <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                  <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
-                    <span className="font-bold text-[color:var(--color-navy)]">On paper: </span>
-                    {s.onPaper}
-                  </p>
-                  <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
-                    <span className="font-bold text-[color:var(--color-rust)]">In practice: </span>
-                    {s.inPractice}
-                  </p>
-                </div>
-              ) : (
-                <p className="mt-2 text-[12.5px] leading-relaxed">{s.raw}</p>
-              )}
-            </li>
-          );
-        })}
+        {entries.slice(0, 6).map((a) => (
+          <MandateEntry key={a.id} actor={a} locale={locale} />
+        ))}
       </ul>
       {entries.length > 6 ? (
         <details className="mt-3">
           <summary className="cursor-pointer text-xs text-[color:var(--color-blue)] underline underline-offset-2">
-            Show all {entries.length} actors with mandate-and-capacity notes
+            {t.showAll(entries.length)}
           </summary>
           <ul className="mt-3 space-y-3">
-            {entries.slice(6).map((a) => {
-              const s = split(a.mandateVsCapacity!);
-              return (
-                <li key={a.id} className="rounded-md border border-[color:var(--color-border)] p-3.5">
-                  <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
-                    {a.name.split(":")[0]}
-                    <span
-                      className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
-                      style={{ background: a.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
-                    >
-                      {a.year}
-                    </span>
-                  </p>
-                  {s.onPaper ? (
-                    <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                      <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
-                        <span className="font-bold text-[color:var(--color-navy)]">On paper: </span>
-                        {s.onPaper}
-                      </p>
-                      <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
-                        <span className="font-bold text-[color:var(--color-rust)]">In practice: </span>
-                        {s.inPractice}
-                      </p>
-                    </div>
-                  ) : (
-                    <p className="mt-2 text-[12.5px] leading-relaxed">{s.raw}</p>
-                  )}
-                </li>
-              );
-            })}
+            {entries.slice(6).map((a) => (
+              <MandateEntry key={a.id} actor={a} locale={locale} />
+            ))}
           </ul>
         </details>
       ) : null}
@@ -243,20 +147,22 @@ function MandateVsCapacity({ layer }: { layer: ActorLayer }) {
 
 
 
-export default function ActorTabs() {
+export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
   const { get, set } = useUrlState({ layer: "official" });
   const layer = (get("layer") as ActorLayer) || "official";
+  const t = T[locale];
   const content = CONTENT[layer];
-  const meta = LAYER_META.find((l) => l.id === layer)!;
+  const meta = layers(locale).find((l) => l.id === layer)!;
+  const govShift = GOVERNANCE_SHIFT;
 
   return (
     <div>
       <div
         role="tablist"
-        aria-label="Actor layers"
+        aria-label={t.tablist}
         className="sticky top-[var(--header-h)] z-40 -mx-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-2 backdrop-blur-sm sm:-mx-6 sm:px-6"
       >
-        {LAYER_META.map((l) => {
+        {layers(locale).map((l) => {
           const active = l.id === layer;
           return (
             <button
@@ -275,7 +181,7 @@ export default function ActorTabs() {
             >
               <span
                 aria-hidden
-                className="mr-1.5 inline-block h-2.5 w-2.5 rounded-sm"
+                className="me-1.5 inline-block h-2.5 w-2.5 rounded-sm"
                 style={{ background: l.color }}
               />
               {l.label}
@@ -295,55 +201,53 @@ export default function ActorTabs() {
             {meta.label}
           </h2>
           <p className="text-sm tabular-nums text-[color:var(--color-text-secondary)]">
-            Traced actor-stage presence: {layerTotal(2024, layer)} (2024) →{" "}
-            {layerTotal(2026, layer)} (2026) ·{" "}
-            {signed(layerTotal(2026, layer) - layerTotal(2024, layer))}
+            {t.presence(layerTotal(2024, layer), layerTotal(2026, layer))}
           </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2024)" }}>
             <h3 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-y2024)]">
-              2024 profile
+              {t.profile2024}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.profile2024}</p>
+            <p className="mt-2 text-sm leading-relaxed">{content.profile2024[locale]}</p>
           </section>
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2026)" }}>
             <h3 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-y2026)]">
-              2026 profile
+              {t.profile2026}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.profile2026}</p>
+            <p className="mt-2 text-sm leading-relaxed">{content.profile2026[locale]}</p>
           </section>
         </div>
 
         <section className="card p-3.5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Direct change
+            {t.directChange}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed">{content.directChange}</p>
+          <p className="mt-2 text-sm leading-relaxed">{content.directChange[locale]}</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-teal)]">
-                Main gains
+                {t.mainGains}
               </h4>
               <ul className="mt-2 space-y-1.5 text-sm">
                 {content.gains.map((g) => (
-                  <li key={g} className="flex gap-2">
+                  <li key={g.en} className="flex gap-2">
                     <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-teal)]" />
-                    {g}
+                    {g[locale]}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-rust)]">
-                Main losses
+                {t.mainLosses}
               </h4>
               <ul className="mt-2 space-y-1.5 text-sm">
                 {content.losses.map((l) => (
-                  <li key={l} className="flex gap-2">
+                  <li key={l.en} className="flex gap-2">
                     <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-rust)]" />
-                    {l}
+                    {l[locale]}
                   </li>
                 ))}
               </ul>
@@ -353,35 +257,38 @@ export default function ActorTabs() {
 
         {/* Every tab: the layer's own shape along the chain. The prose
             above describes it; this is the same claim, drawn. */}
-        <LayerStageProfile layer={layer} showCaveat={false} />
+        <LayerStageProfile layer={layer} locale={locale} showCaveat={false} />
 
-        {layer === "municipal" ? <MunicipalDumbbell /> : null}
+        {layer === "municipal" ? <MunicipalDumbbell locale={locale} /> : null}
         {layer === "ngo_international" ? (
           <>
             <DivergingChangeChart
-              id="intl-shift"
+              id={CHANGE_CHARTS.ngo_international.id}
               layer="ngo_international"
-              title="International governance shift, 2026 minus 2024"
-              subtitle="Change in traced NGO and international-agency presence per stage. Gains cluster in governance and humanitarian stages; the assessment contraction reflects repatriation to Lebanese institutions."
-              description="Diverging bar chart of change in traced international presence: strategy and coordination up 8, relief up 5, shelter up 4, oversight up 3, procurement up 1, assessment down 7."
+              locale={locale}
+              title={CHANGE_CHARTS.ngo_international.title[locale]}
+              subtitle={CHANGE_CHARTS.ngo_international.subtitle[locale]}
+              description={CHANGE_CHARTS.ngo_international.description[locale]}
             />
             <figure className="card p-3.5">
               <figcaption className="text-sm font-semibold text-[color:var(--color-navy)]">
-                From assessment and humanitarian support to operational governance
+                {govShift.heading[locale]}
               </figcaption>
               <div className="mt-3 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
                 <div className="rounded-md border border-[color:var(--color-y2024)] p-3 text-sm sm:flex-1">
                   <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2024)]">2024</p>
-                  <p className="mt-1">Assessment and humanitarian support beside the state</p>
+                  <p className="mt-1">{govShift.before[locale]}</p>
                 </div>
-                <span aria-hidden className="self-center text-xl text-[color:var(--color-text-secondary)]">→</span>
+                <span aria-hidden className="self-center text-xl text-[color:var(--color-text-secondary)]">
+                  {t.arrow}
+                </span>
                 <div className="rounded-md border border-[color:var(--color-y2026)] p-3 text-sm sm:flex-[2]">
                   <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2026)]">2026</p>
-                  <p className="mt-1">Operational governance around the project:</p>
+                  <p className="mt-1">{govShift.afterIntro[locale]}</p>
                   <ul className="mt-2 flex flex-wrap gap-1.5">
-                    {["Procurement", "Disclosure", "Safeguards", "Supervision", "Grievance mechanism", "Third-party monitoring"].map((t) => (
-                      <li key={t} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-xs font-medium text-[color:var(--color-teal)]">
-                        {t}
+                    {govShift.chips.map((c) => (
+                      <li key={c.en} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-xs font-medium text-[color:var(--color-teal)]">
+                        {c[locale]}
                       </li>
                     ))}
                   </ul>
@@ -392,62 +299,64 @@ export default function ActorTabs() {
         ) : null}
         {layer === "community" ? (
           <DivergingChangeChart
-            id="community-shift"
+            id={CHANGE_CHARTS.community.id}
             layer="community"
-            title="Community-role reallocation, 2026 minus 2024"
-            subtitle="Expanded: relief, coordination, shelter. Contracted: finance, rubble, debris, reconstruction."
-            description="Diverging bar chart of change in traced community presence: relief up 35, coordination up 25, shelter up 7, livelihoods up 1; finance down 11, rubble down 9, debris down 5, reconstruction down 5."
+            locale={locale}
+            title={CHANGE_CHARTS.community.title[locale]}
+            subtitle={CHANGE_CHARTS.community.subtitle[locale]}
+            description={CHANGE_CHARTS.community.description[locale]}
           />
         ) : null}
         {layer === "official" ? (
           <DivergingChangeChart
-            id="official-shift"
+            id={CHANGE_CHARTS.official.id}
             layer="official"
-            title="Official-institution change by stage, 2026 minus 2024"
-            subtitle="Reconstruction and services rose 8 → 13; procurement 4 → 5; oversight 3 → 4; finance narrowed 15 → 7."
-            description="Diverging bar chart of change in traced official-institution presence per value-chain stage."
+            locale={locale}
+            title={CHANGE_CHARTS.official.title[locale]}
+            subtitle={CHANGE_CHARTS.official.subtitle[locale]}
+            description={CHANGE_CHARTS.official.description[locale]}
           />
         ) : null}
 
         {content.coreFinding ? (
-          <p className="rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-5 text-sm font-medium leading-relaxed">
-            {content.coreFinding}
+          <p className="rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-5 text-sm font-medium leading-relaxed">
+            {content.coreFinding[locale]}
           </p>
         ) : null}
 
         <section className="grid gap-4 lg:grid-cols-2">
           <div className="card p-3.5">
             <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-              Mandate versus action
+              {t.mandateVsAction}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.mandateVsAction}</p>
+            <p className="mt-2 text-sm leading-relaxed">{content.mandateVsAction[locale]}</p>
           </div>
           <div className="card p-3.5">
             <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-              Chain roles
+              {t.chainRoles}
             </h3>
             <dl className="mt-2 space-y-2.5 text-sm">
               <div>
-                <dt className="font-semibold text-[color:var(--color-text-secondary)]">Finance</dt>
-                <dd className="leading-relaxed">{content.financeRole}</dd>
+                <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.finance}</dt>
+                <dd className="leading-relaxed">{content.financeRole[locale]}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-[color:var(--color-text-secondary)]">Procurement</dt>
-                <dd className="leading-relaxed">{content.procurementRole}</dd>
+                <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.procurement}</dt>
+                <dd className="leading-relaxed">{content.procurementRole[locale]}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-[color:var(--color-text-secondary)]">Implementation</dt>
-                <dd className="leading-relaxed">{content.implementationRole}</dd>
+                <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.implementation}</dt>
+                <dd className="leading-relaxed">{content.implementationRole[locale]}</dd>
               </div>
             </dl>
           </div>
         </section>
 
-        <MandateVsCapacity layer={layer} />
+        <MandateVsCapacity layer={layer} locale={locale} />
 
-        <RegionPresence layer={layer} showCaveat={false} />
+        <RegionPresence layer={layer} locale={locale} showCaveat={false} />
 
-        <ActorConcentration layer={layer} />
+        <ActorConcentration layer={layer} locale={locale} />
       </div>
     </div>
   );

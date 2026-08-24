@@ -6,6 +6,7 @@
     "layer": "official",
     "subtype": "Public Authorities / Institutions",
     "mandateVsCapacity": "On paper: the state holds the monopoly on force and sole authority over reconstruction. In practice: Hezbollah retained parallel reconstruction and social-service capacity; state presence in the South remained thin after decades of limited deployment; LAF redeployment slow and incomplete.",
+    "mandateVsCapacityAr": "على الورق: الدولة تحتكر القوة وتنفرد بسلطة إعادة الإعمار. عملياً: احتفظ حزب الله بقدرة موازية على إعادة الإعمار والخدمات الاجتماعية؛ وبقي حضور الدولة في الجنوب رقيقاً بعد عقود من الانتشار المحدود؛ وكانت إعادة انتشار الجيش اللبناني بطيئة وغير مكتملة.",
     "recordCount": 7,
     "sourceIds": [
       "cat2024-3",
@@ -59,6 +60,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: national reconstruction coordination body. In practice: little independent capacity; functioned mainly as liaison between government and international donors.",
+    "mandateVsCapacityAr": "على الورق: هيئة وطنية لتنسيق إعادة الإعمار. عملياً: قدرة مستقلة ضئيلة؛ وعملت أساساً حلقة وصل بين الحكومة والمانحين الدوليين.",
     "recordCount": 6,
     "sourceIds": [
       "cat2024-26"
@@ -83,6 +85,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: lead authority for the agricultural sector. In practice: extension and field capacity minimal; assessment and recovery delivered through FAO and international partners.",
+    "mandateVsCapacityAr": "على الورق: السلطة القائدة للقطاع الزراعي. عملياً: قدرة إرشادية وميدانية شبه معدومة؛ والتقييم والتعافي أُنجزا عبر الفاو والشركاء الدوليين.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -127,6 +130,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: lead authority for environmental protection and debris management. In practice: capacity hollowed out by the fiscal crisis; implementation carried by UN agencies and international partners.",
+    "mandateVsCapacityAr": "على الورق: السلطة القائدة لحماية البيئة وإدارة الركام. عملياً: قدرة أفرغتها الأزمة المالية من مضمونها؛ والتنفيذ حملته وكالات الأمم المتحدة والشركاء الدوليون.",
     "recordCount": 7,
     "sourceIds": [
       "cat2024-25",
@@ -160,6 +164,7 @@
     "layer": "municipal",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: responsible for local government. In practice: councils elected in May 2025 were new and inexperienced; capacity gaps widest in conflict-affected areas.",
+    "mandateVsCapacityAr": "على الورق: مسؤولة عن الإدارة المحلية. عملياً: المجالس المنتخبة في أيار 2025 كانت جديدة وقليلة الخبرة؛ وفجوات القدرة كانت الأوسع في المناطق المتضررة من النزاع.",
     "recordCount": 6,
     "sourceIds": [
       "cat2024-31",
@@ -193,6 +198,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: responsible for the health sector. In practice: system strained well beyond capacity; attacks on healthcare facilities continued.",
+    "mandateVsCapacityAr": "على الورق: مسؤولة عن القطاع الصحي. عملياً: نظام مُجهَد بما يتجاوز قدرته بكثير؛ واستمرت الهجمات على المنشآت الصحية.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -203,6 +209,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: responsible for public infrastructure. In practice: no fiscal room; rehabilitation dependent on World Bank and bilateral financing.",
+    "mandateVsCapacityAr": "على الورق: مسؤولة عن البنية التحتية العامة. عملياً: لا هامش مالي؛ وإعادة التأهيل مرهونة بتمويل البنك الدولي والتمويل الثنائي.",
     "recordCount": 7,
     "sourceIds": [
       "cat2024-15"
@@ -225,6 +232,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: responsible for social protection. In practice: limited execution capacity; transfer delivery dependent on WFP and international partners.",
+    "mandateVsCapacityAr": "على الورق: مسؤولة عن الحماية الاجتماعية. عملياً: قدرة تنفيذية محدودة؛ وإيصال التحويلات مرهون ببرنامج الأغذية العالمي والشركاء الدوليين.",
     "recordCount": 7,
     "sourceIds": []
   },
@@ -301,6 +309,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: official emergency-response service. In practice: operated continuously under extreme danger with resources far below the scale of destruction.",
+    "mandateVsCapacityAr": "على الورق: جهاز رسمي للاستجابة للطوارئ. عملياً: عمل بلا انقطاع تحت خطر بالغ وبموارد تقلّ كثيراً عن حجم الدمار.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -324,6 +333,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: major donor and development partner. In practice: larger recovery envelopes carried hard conditionality (an IMF deal, disarmament); smaller-scale recovery funding did not.",
+    "mandateVsCapacityAr": "على الورق: مانح رئيسي وشريك تنموي. عملياً: الأغلفة الأكبر للتعافي حملت اشتراطات صارمة (اتفاق مع صندوق النقد الدولي، ونزع السلاح)؛ أما تمويل التعافي الأصغر حجماً فلم يحملها.",
     "recordCount": 6,
     "sourceIds": []
   },
@@ -344,6 +354,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: international humanitarian and development coordination authority. In practice: substantial operational presence but constrained by funding gaps, access restrictions and political complexity; UNIFIL drawdown reduced the stabilising presence.",
+    "mandateVsCapacityAr": "على الورق: سلطة دولية لتنسيق العمل الإنساني والتنموي. عملياً: حضور تشغيلي كبير تقيّده فجوات التمويل وقيود الوصول والتعقيد السياسي؛ وتقليص اليونيفيل خفّض الحضور المثبِّت للاستقرار.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -364,6 +375,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: UN development agency. In practice: recovery funding thin and donor-dependent; role in practice largely coordination rather than delivery.",
+    "mandateVsCapacityAr": "على الورق: وكالة أممية للتنمية. عملياً: تمويل التعافي رقيق ومرهون بالمانحين؛ والدور الفعلي تنسيق في معظمه لا إنجاز.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -396,6 +408,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: UN refugee-protection mandate. In practice: heavy operational constraints; refugee returns largely spontaneous and poorly traced.",
+    "mandateVsCapacityAr": "على الورق: تفويض أممي لحماية اللاجئين. عملياً: قيود تشغيلية ثقيلة؛ وعودة اللاجئين تلقائية في معظمها وضعيفة الرصد.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -406,6 +419,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: UN food-assistance mandate. In practice: fast and effective delivery but constrained by funding gaps and supply-chain disruption.",
+    "mandateVsCapacityAr": "على الورق: تفويض أممي للمساعدة الغذائية. عملياً: إيصال سريع وفعال تقيّده فجوات التمويل واضطراب سلاسل الإمداد.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -416,6 +430,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: development partner providing technical and financial assistance. In practice: substantial influence over reconstruction priorities; hard conditionality (an IMF deal, disarmament) attached by some donors to the large envelopes but not to smaller-scale funding.",
+    "mandateVsCapacityAr": "على الورق: شريك تنموي يقدّم مساعدة تقنية ومالية. عملياً: تأثير كبير في أولويات إعادة الإعمار؛ واشتراطات صارمة (اتفاق مع صندوق النقد الدولي، ونزع السلاح) ربطها بعض المانحين بالأغلفة الكبيرة دون التمويل الأصغر حجماً.",
     "recordCount": 4,
     "sourceIds": [
       "cat2024-9"
@@ -510,6 +525,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: national Red Cross society. In practice: critical frontline responder operating at severe personal risk to staff and volunteers.",
+    "mandateVsCapacityAr": "على الورق: جمعية وطنية للصليب الأحمر. عملياً: مستجيب أمامي حاسم يعمل وموظفوه ومتطوّعوه معرّضون لخطر شخصي شديد.",
     "recordCount": 7,
     "sourceIds": []
   },
@@ -560,6 +576,7 @@
     "layer": "community",
     "subtype": "Technical, policy and watchdog actors",
     "mandateVsCapacity": "On paper: educational and research institutions. In practice: limited direct policy influence; role confined to technical support and research.",
+    "mandateVsCapacityAr": "على الورق: مؤسسات تعليمية وبحثية. عملياً: تأثير مباشر محدود في السياسات؛ ودور محصور في الدعم التقني والبحث.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -600,6 +617,7 @@
     "layer": "community",
     "subtype": "Policy, research and accountability institutions",
     "mandateVsCapacity": "On paper: civil-society research organisation. In practice: critical analysis produced but limited traction - the exemptions law proceeded regardless.",
+    "mandateVsCapacityAr": "على الورق: هيئة بحثية من المجتمع المدني. عملياً: أنتجت تحليلاً نقدياً بصدى محدود - فقانون الإعفاءات مضى في طريقه على أي حال.",
     "recordCount": 4,
     "sourceIds": [
       "cat2024-15"
@@ -832,6 +850,7 @@
     "layer": "official",
     "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": "On paper: national scientific research authority. In practice: operated as technical partner to international organisations; little independent implementation capacity.",
+    "mandateVsCapacityAr": "على الورق: سلطة وطنية للبحث العلمي. عملياً: عمل شريكاً تقنياً للمنظمات الدولية؛ وقدرته التنفيذية المستقلة ضئيلة.",
     "recordCount": 2,
     "sourceIds": [
       "cat2024-10"
@@ -916,6 +935,7 @@
     "layer": "official",
     "subtype": "Security and mine action",
     "mandateVsCapacity": "On paper: the LAF is the only legitimate armed force and LMAC the national mine-action authority. In practice: redeployment slow and incomplete, with Hezbollah retaining an armed presence in many areas; LMAC clearance constrained by the scale of contamination and by funding.",
+    "mandateVsCapacityAr": "على الورق: الجيش اللبناني هو القوة المسلحة الشرعية الوحيدة، والمركز اللبناني للأعمال المتعلقة بالألغام هو السلطة الوطنية لإزالة الألغام. عملياً: إعادة الانتشار بطيئة وغير مكتملة مع احتفاظ حزب الله بحضور مسلح في مناطق كثيرة؛ وإزالة الألغام لدى المركز مقيَّدة بحجم التلوث وبالتمويل.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -950,6 +970,7 @@
     "layer": "community",
     "subtype": "Contractors and operators",
     "mandateVsCapacity": "On paper: licensed construction entities. In practice: much of the work performed informally; oversight thin; safety and labour standards a traced concern.",
+    "mandateVsCapacityAr": "على الورق: جهات بناء مرخَّصة. عملياً: جانب كبير من العمل جرى بصورة غير نظامية؛ والرقابة رقيقة؛ ومعايير السلامة والعمل شاغل مرصود.",
     "recordCount": 4,
     "sourceIds": [
       "cat2024-33"
@@ -962,6 +983,7 @@
     "layer": "official",
     "subtype": "Public authorities",
     "mandateVsCapacity": "On paper: central monetary authority. In practice: deeply insolvent, with lost credibility, little effective monetary policy capacity, and slow and contested reform.",
+    "mandateVsCapacityAr": "على الورق: السلطة النقدية المركزية. عملياً: إعسار عميق، ومصداقية مفقودة، وقدرة فعلية ضئيلة على السياسة النقدية، وإصلاح بطيء ومتنازع عليه.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -972,6 +994,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: international financial oversight and lending authority. In practice: reform persistently obstructed by the political class; no programme agreed by mid-2026; conditionality treated by political elites as a threat.",
+    "mandateVsCapacityAr": "على الورق: سلطة دولية للرقابة المالية والإقراض. عملياً: إصلاح تعرقله الطبقة السياسية باستمرار؛ ولا برنامج متفقاً عليه حتى منتصف 2026؛ والاشتراطات تعاملها النخب السياسية بوصفها تهديداً.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -982,6 +1005,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: bilateral development partner. In practice: significant influence as PMU across several donor projects, on the back of strong government relationships.",
+    "mandateVsCapacityAr": "على الورق: شريك تنموي ثنائي. عملياً: تأثير كبير بوصفها وحدة إدارة مشاريع في عدة مشاريع للمانحين، مستندة إلى علاقات قوية مع الحكومة.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -992,6 +1016,7 @@
     "layer": "ngo_international",
     "subtype": "UN, donors and multilaterals",
     "mandateVsCapacity": "On paper: neutral humanitarian intermediary. In practice: operated under severe access constraints, with attacks on medical facilities affecting operations.",
+    "mandateVsCapacityAr": "على الورق: وسيط إنساني محايد. عملياً: عملت تحت قيود وصول شديدة، والهجمات على المنشآت الطبية أثّرت في عملياتها.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -1002,6 +1027,7 @@
     "layer": "community",
     "subtype": "Private sector",
     "mandateVsCapacity": "On paper: private-sector representative body. In practice: limited operational scale; dependent on government and UN coordination for access to debris.",
+    "mandateVsCapacityAr": "على الورق: هيئة ممثِّلة للقطاع الخاص. عملياً: نطاق تشغيلي محدود؛ ومرهونة بالتنسيق الحكومي والأممي للوصول إلى الركام.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -1012,6 +1038,7 @@
     "layer": "community",
     "subtype": "Private sector",
     "mandateVsCapacity": "On paper: business representative bodies. In practice: little direct implementation capacity; role confined to advocacy and coordination.",
+    "mandateVsCapacityAr": "على الورق: هيئات ممثِّلة لقطاع الأعمال. عملياً: قدرة تنفيذية مباشرة ضئيلة؛ ودور محصور في المناصرة والتنسيق.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -1022,6 +1049,7 @@
     "layer": "community",
     "subtype": "Political-military and parallel service actors",
     "mandateVsCapacity": "On paper: a political party with parliamentary representation and no legal authority for armed operations or for reconstruction outside the permitting system. In practice: dominant armed actor in the South; parallel governance and social services; reconstruction carried out without permits or legal framework, leaving residents politically dependent on the party for housing.",
+    "mandateVsCapacityAr": "على الورق: حزب سياسي ذو تمثيل نيابي وبلا سلطة قانونية للعمليات المسلحة أو لإعادة الإعمار خارج نظام التراخيص. عملياً: الفاعل المسلح المهيمن في الجنوب؛ وحوكمة وخدمات اجتماعية موازية؛ وإعادة إعمار جرت بلا تراخيص ولا إطار قانوني، تاركةً الأهالي في تبعية سياسية للحزب في مسألة السكن.",
     "recordCount": 5,
     "sourceIds": []
   },
@@ -1032,6 +1060,7 @@
     "layer": "community",
     "subtype": "Political-military and parallel service actors",
     "mandateVsCapacity": "On paper: an NGO with no official reconstruction authority. In practice: the effective reconstruction actor in Shia-majority areas, bypassing state permits and planning and generating political dependency.",
+    "mandateVsCapacityAr": "على الورق: جمعية بلا سلطة رسمية لإعادة الإعمار. عملياً: فاعل إعادة الإعمار الفعلي في المناطق ذات الغالبية الشيعية، متجاوزاً تراخيص الدولة وتخطيطها ومولِّداً تبعية سياسية.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -1042,6 +1071,7 @@
     "layer": "community",
     "subtype": "Political-military and parallel service actors",
     "mandateVsCapacity": "On paper: not recognised as an official financial institution and outside the regulatory perimeter. In practice: a critical channel of financing for Hezbollah's constituency and significant parallel economic power; targeted militarily.",
+    "mandateVsCapacityAr": "على الورق: غير معترف بها مؤسسةً مالية رسمية وخارج المحيط التنظيمي. عملياً: قناة تمويل حاسمة لجمهور حزب الله وقوة اقتصادية موازية كبيرة؛ واستُهدفت عسكرياً.",
     "recordCount": 2,
     "sourceIds": []
   },
@@ -1052,6 +1082,7 @@
     "layer": "community",
     "subtype": "Political-military and parallel service actors",
     "mandateVsCapacity": "On paper: an NGO with no official health mandate. In practice: a critical health-service provider in underserved areas, and targeted as a Hezbollah-affiliated body.",
+    "mandateVsCapacityAr": "على الورق: جمعية بلا تفويض صحي رسمي. عملياً: مزوِّد حاسم للخدمات الصحية في المناطق ناقصة الخدمات، واستُهدفت بوصفها هيئة مرتبطة بحزب الله.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -1062,6 +1093,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: international NGO implementing donor-funded projects. In practice: significant implementation capacity, working through municipal partnerships and MoUs with municipalities for land access.",
+    "mandateVsCapacityAr": "على الورق: منظمة دولية غير حكومية تنفّذ مشاريع بتمويل المانحين. عملياً: قدرة تنفيذية كبيرة، تعمل عبر شراكات بلدية ومذكرات تفاهم مع البلديات للوصول إلى الأراضي.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -1072,6 +1104,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: international humanitarian NGO. In practice: active in underserved areas but constrained by funding and access.",
+    "mandateVsCapacityAr": "على الورق: منظمة إنسانية دولية غير حكومية. عملياً: ناشطة في المناطق ناقصة الخدمات لكن يقيّدها التمويل والوصول.",
     "recordCount": 2,
     "sourceIds": []
   },
@@ -1082,6 +1115,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: international humanitarian NGO. In practice: significant protection programming, constrained by access and security.",
+    "mandateVsCapacityAr": "على الورق: منظمة إنسانية دولية غير حكومية. عملياً: برامج حماية كبيرة يقيّدها الوصول والوضع الأمني.",
     "recordCount": 4,
     "sourceIds": []
   },
@@ -1092,6 +1126,7 @@
     "layer": "official",
     "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": "On paper: national agricultural research institution. In practice: limited resources, with operations dependent on international project funding.",
+    "mandateVsCapacityAr": "على الورق: مؤسسة وطنية للبحوث الزراعية. عملياً: موارد محدودة، وعمليات مرهونة بتمويل المشاريع الدولية.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -1102,6 +1137,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: local NGO. In practice: effective youth-employment programming, built on earlier UNICEF and donor support.",
+    "mandateVsCapacityAr": "على الورق: جمعية محلية. عملياً: برامج فعالة لتشغيل الشباب، بُنيت على دعم سابق من اليونيسف والمانحين.",
     "recordCount": 3,
     "sourceIds": []
   },
@@ -1112,6 +1148,7 @@
     "layer": "ngo_international",
     "subtype": "NGOs and humanitarian organizations",
     "mandateVsCapacity": "On paper: licensed microfinance institutions. In practice: limited reach, high interest rates, and operations constrained by the economic crisis.",
+    "mandateVsCapacityAr": "على الورق: مؤسسات تمويل أصغر مرخَّصة. عملياً: انتشار محدود، وفوائد مرتفعة، وعمليات تقيّدها الأزمة الاقتصادية.",
     "recordCount": 2,
     "sourceIds": []
   },

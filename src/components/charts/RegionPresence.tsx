@@ -1,5 +1,5 @@
 import { locations } from "@/lib/data-client";
-import { cautionMap, type Locale } from "@/lib/vocab";
+import { cautionMap, regionLabel, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
 /**
@@ -10,16 +10,6 @@ import type { ActorLayer } from "@/lib/types";
  * the south or the growth in the camps is a shape now, and the exact
  * counts still sit at the end of each bar.
  */
-
-const REGION_AR: Record<string, string> = {
-  south_nabatieh: "الجنوب والنبطية",
-  beirut_mount_lebanon: "بيروت وجبل لبنان",
-  bekaa_baalbek_hermel: "البقاع وبعلبك-الهرمل",
-  north: "الشمال",
-  camps_migrant: "المخيمات والعمال المهاجرون",
-  national_multi: "وطني أو متعدد المناطق",
-  named_localities: "بلدات مسمّاة",
-};
 
 const T = {
   en: {
@@ -49,7 +39,7 @@ export default function RegionPresence({
     const m26 = locations.mentions["2026"][r.id as keyof (typeof locations.mentions)["2026"]];
     return {
       id: r.id,
-      label: locale === "ar" ? (REGION_AR[r.id] ?? r.label) : r.label,
+      label: locale === "ar" ? regionLabel(r.id, "ar") : r.label,
       mappable: r.mappable,
       v24: m24[layer] ?? 0,
       v26: m26[layer] ?? 0,

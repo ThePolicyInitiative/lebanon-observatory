@@ -1,16 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { newsTagLabel } from "@/components/NewsCoverageProfile";
 import type { NewsArticle, NewsResponse } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
+import type { Locale } from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
 import NewsAnalytics from "./NewsAnalytics";
 
 const TABS = [
-  { id: "latest", label: "Latest updates" },
-  { id: "official", label: "Official updates" },
-  { id: "humanitarian", label: "Humanitarian reports" },
-  { id: "media", label: "General media" },
+  { id: "latest", en: "Latest updates", ar: "آخر المستجدات" },
+  { id: "official", en: "Official updates", ar: "المستجدات الرسمية" },
+  { id: "humanitarian", en: "Humanitarian reports", ar: "التقارير الإنسانية" },
+  { id: "media", en: "General media", ar: "الإعلام العام" },
 ] as const;
 
 const OFFICIAL_DIRECTORY: { name: string; url: string; group: string }[] = [
@@ -33,9 +35,190 @@ const OFFICIAL_DIRECTORY: { name: string; url: string; group: string }[] = [
   { group: "Donors & analysis", name: "L'Orient Today - Lebanon reconstruction coverage", url: "https://today.lorientlejour.com/" },
 ];
 
-const LANG_LABEL: Record<string, string> = { en: "EN", ar: "AR", fr: "FR", other: "Other" };
+/** Directory group headings; publisher names themselves stay as published. */
+const GROUP_AR: Record<string, string> = {
+  "Lebanese state": "الدولة اللبنانية",
+  "Financing & programme entries": "التمويل ومدخلات البرامج",
+  "UN system & humanitarian data": "منظومة الأمم المتحدة والمعطيات الإنسانية",
+  "Donors & analysis": "المانحون والتحليل",
+};
 
-export default function NewsExplorer() {
+const LANG_BADGE: Record<Locale, Record<string, string>> = {
+  en: { en: "EN", ar: "AR", fr: "FR", other: "Other" },
+  ar: { en: "إنجليزي", ar: "عربي", fr: "فرنسي", other: "أخرى" },
+};
+
+const SOURCE_TYPE_AR: Record<string, string> = {
+  official: "رسمي",
+  multilateral: "متعدد الأطراف",
+  un: "أممي",
+  ngo: "منظمة غير حكومية",
+  media: "إعلام",
+};
+
+/** Filter option values are what the API matches on, so they never change;
+ * only their printed labels do. */
+const LOCATION_OPTIONS = [
+  "South and Nabatieh",
+  "Beirut and Mount Lebanon",
+  "Bekaa and Baalbek-Hermel",
+  "North",
+  "Camps and migrant communities",
+];
+
+const SECTOR_OPTIONS = [
+  "Housing",
+  "Roads and transport",
+  "Electricity",
+  "Water",
+  "Debris and environment",
+  "Health",
+  "Education",
+  "Heritage and culture",
+];
+
+const STAGE_OPTIONS = [
+  "Strategy and coordination",
+  "Finance and compensation",
+  "Damage and needs assessment",
+  "Safety and access",
+  "Procurement and contracting",
+  "Rubble clearance",
+  "Debris treatment and disposal",
+  "Reconstruction and services",
+  "Shelter and return",
+  "Relief and protection",
+  "Livelihoods and community recovery",
+  "Oversight and accountability",
+];
+
+/** Every reader-facing string on this module, in both languages. */
+const T = {
+  en: {
+    disclosure:
+      "This feed aggregates coverage from selected global, Lebanese, humanitarian and official publishers. Every item names Lebanon or a Lebanese place: coverage of other countries' wars is filtered out, including where a Lebanese outlet published it. It is broad but not exhaustive. Headlines link to the original publishers; nothing here alters the confirmed analysis elsewhere on this site.",
+    tabsAria: "News categories",
+    search: "Search",
+    searchPlaceholder: "e.g. compensation, rubble, LEAP…",
+    from: "From",
+    to: "To",
+    language: "Language",
+    location: "Location",
+    sector: "Sector",
+    stage: "Value-chain stage",
+    all: "All",
+    langNames: { en: "English", ar: "Arabic", fr: "French", other: "Other" } as Record<string, string>,
+    onlyRelevant: "Only highly relevant",
+    resetFilters: "Reset filters",
+    refresh: "Refresh",
+    rateLimit: "Rate limit reached - please wait a few minutes and refresh.",
+    httpError: (status: number) => `The news service returned an error (HTTP ${status}).`,
+    reporting: (up: number, total: number) => `${up} of ${total} providers reporting`,
+    updated: (when: string) => `Updated ${when}`,
+    showingLatest: (shown: number, total: number) =>
+      `showing the latest ${shown} of ${total} matched articles`,
+    matchedTotal: (total: number) => `${total} matched articles`,
+    someDown: (names: string, several: boolean) =>
+      `${names} unavailable - showing the last good results from ${several ? "those" : "it"}`,
+    everyProvider: "Every provider ▸",
+    hideProviders: "Hide providers ▾",
+    cachedAgo: (min: number) => ` (cached ${min} min ago)`,
+    live: " (live)",
+    providerDown: " (unavailable - showing last good data)",
+    officialHeading: "Monitored official feeds & key trackers",
+    officialBody:
+      "Official updates are aggregated where public feeds exist; these institutional pages, project entries and data portals are monitored directly and linked here rather than scraped.",
+    loadingNews: "Loading news",
+    liveUnavailable: "Live updates unavailable",
+    unaffected:
+      "The analytical data on this site is a separate, confirmed analysis and is unaffected by news-provider outages.",
+    tryAgain: "Try again",
+    noMatch:
+      "No articles match the current filters. Widen the date range, clear the search terms, or switch off “only highly relevant”.",
+    showMore: (remaining: number) => `Show more (${remaining} remaining)`,
+    listJoin: "; ",
+    whyStages: (list: string) => `Mentions value-chain stages: ${list}.`,
+    whyLocations: (list: string) => `References tracked locations: ${list}.`,
+    whySectors: (list: string) => `Touches tracked sectors: ${list}.`,
+    whyLayers: (list: string) => `Involves actor layers: ${list}.`,
+    whyScore: (score: number) =>
+      `Automated relevance score: ${score}/100 (keyword-based, not a quality judgment).`,
+    viaGoogle: "via Google News",
+    viaGoogleTitle: "This link opens through Google News, which then forwards to the publisher",
+    srVia: (name: string) => `(opens via Google News, which forwards to ${name})`,
+    srDirect: (name: string) => `(opens the article on ${name})`,
+    alsoReported: (n: number) => `Also reported by ${n} other outlet${n > 1 ? "s" : ""}.`,
+    hide: "Hide",
+    whyRelevant: "Why is this relevant?",
+  },
+  ar: {
+    disclosure:
+      "يجمّع هذا الشريط تغطية من ناشرين عالميين ولبنانيين وإنسانيين ورسميين مختارين. كل خبر هنا يسمّي لبنان أو مكاناً لبنانياً: تغطية حروب البلدان الأخرى مستبعَدة، ولو نشرتها وسيلة لبنانية. التغطية واسعة لا شاملة. العناوين تحيل إلى الناشرين الأصليين، ولا شيء هنا يغيّر التحليل المؤكَّد في بقية صفحات الموقع.",
+    tabsAria: "فئات الأخبار",
+    search: "بحث",
+    searchPlaceholder: "مثلاً: تعويضات، أنقاض، LEAP…",
+    from: "من",
+    to: "إلى",
+    language: "اللغة",
+    location: "المكان",
+    sector: "القطاع",
+    stage: "مرحلة سلسلة القيمة",
+    all: "الكل",
+    langNames: { en: "الإنجليزية", ar: "العربية", fr: "الفرنسية", other: "لغات أخرى" } as Record<string, string>,
+    onlyRelevant: "الأعلى صلة فقط",
+    resetFilters: "إعادة ضبط الترشيح",
+    refresh: "تحديث",
+    rateLimit: "بلغنا حدّ الطلبات - يُرجى الانتظار دقائق قليلة ثم التحديث.",
+    httpError: (status: number) => `أعادت خدمة الأخبار خطأً (HTTP ${status}).`,
+    reporting: (up: number, total: number) => `${up} من ${total} مزوّداً يعمل`,
+    updated: (when: string) => `آخر تحديث ${when}`,
+    showingLatest: (shown: number, total: number) =>
+      `عرض أحدث ${shown} من أصل ${total} مقالاً مطابقاً`,
+    matchedTotal: (total: number) => `${total} مقالاً مطابقاً`,
+    someDown: (names: string, several: boolean) =>
+      `متعذّر حالياً: ${names} - تُعرض آخر النتائج الجيدة ${several ? "منها" : "منه"}`,
+    everyProvider: "كل المزوّدين ◂",
+    hideProviders: "إخفاء المزوّدين ▾",
+    cachedAgo: (min: number) => ` (مخزَّن قبل ${min} دقيقة)`,
+    live: " (مباشر)",
+    providerDown: " (متعذّر - تُعرض آخر نتائج جيدة)",
+    officialHeading: "التغذيات الرسمية المرصودة وأبرز أدوات التتبّع",
+    officialBody:
+      "تُجمَّع المستجدات الرسمية حيث توجد تغذيات عامة؛ أما هذه الصفحات المؤسسية ومدخلات المشاريع وبوابات المعطيات فتُتابَع مباشرة وتُربَط هنا كما هي بدل كشطها.",
+    loadingNews: "جارٍ تحميل الأخبار",
+    liveUnavailable: "المستجدات المباشرة غير متاحة",
+    unaffected:
+      "المعطيات التحليلية في هذا الموقع تحليل منفصل ومؤكَّد، ولا تتأثر بانقطاع مزوّدي الأخبار.",
+    tryAgain: "حاول مجدداً",
+    noMatch:
+      "لا مقالات تطابق الترشيح الحالي. وسّع نطاق التاريخ، أو امسح كلمات البحث، أو أوقف خيار «الأعلى صلة فقط».",
+    showMore: (remaining: number) => `عرض المزيد (${remaining} متبقياً)`,
+    listJoin: "؛ ",
+    whyStages: (list: string) => `يذكر مراحل من سلسلة القيمة: ${list}.`,
+    whyLocations: (list: string) => `يشير إلى أماكن متتبَّعة: ${list}.`,
+    whySectors: (list: string) => `يلامس قطاعات متتبَّعة: ${list}.`,
+    whyLayers: (list: string) => `يُشرك طبقات من الجهات: ${list}.`,
+    whyScore: (score: number) =>
+      `درجة الصلة الآلية: ${score}/100 (مبنية على الكلمات المفتاحية، لا حكماً على الجودة).`,
+    viaGoogle: "عبر Google News",
+    viaGoogleTitle: "يفتح هذا الرابط عبر Google News الذي يحوّل بدوره إلى الناشر",
+    srVia: (name: string) => `(يفتح عبر Google News الذي يحوّل إلى ${name})`,
+    srDirect: (name: string) => `(يفتح المقال لدى ${name})`,
+    alsoReported: (n: number) =>
+      n === 1
+        ? "أوردته أيضاً وسيلة أخرى واحدة."
+        : n === 2
+          ? "أوردته أيضاً وسيلتان أُخريان."
+          : n <= 10
+            ? `أوردته أيضاً ${n} وسائل أخرى.`
+            : `أوردته أيضاً ${n} وسيلة أخرى.`,
+    hide: "إخفاء",
+    whyRelevant: "لماذا هذا ذو صلة؟",
+  },
+} as const;
+
+export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
   const { get, set, reset } = useUrlState({
     tab: "latest",
     q: "",
@@ -77,8 +260,8 @@ export default function NewsExplorer() {
     const url = `/api/news?${queryString}`;
     fetch(url)
       .then(async (r) => {
-        if (r.status === 429) throw new Error("Rate limit reached - please wait a few minutes and refresh.");
-        if (!r.ok) throw new Error(`The news service returned an error (HTTP ${r.status}).`);
+        if (r.status === 429) throw new Error(t.rateLimit);
+        if (!r.ok) throw new Error(t.httpError(r.status));
         return (await r.json()) as NewsResponse;
       })
       .then((d) => {
@@ -87,7 +270,7 @@ export default function NewsExplorer() {
       })
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [queryString]);
+  }, [queryString, t]);
 
   useEffect(() => {
     // Synchronising with an external system (the news endpoint): the
@@ -111,31 +294,26 @@ export default function NewsExplorer() {
     <div>
       {/* Disclosure */}
       <p className="card p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        This feed aggregates coverage from selected global, Lebanese,
-        humanitarian and official publishers. Every item names Lebanon or a
-        Lebanese place: coverage of other countries&apos; wars is filtered
-        out, including where a Lebanese outlet published it. It is broad but
-        not exhaustive. Headlines link to the original publishers; nothing
-        here alters the confirmed analysis elsewhere on this site.
+        {t.disclosure}
       </p>
 
       {/* Tabs */}
-      <div role="tablist" aria-label="News categories" className="mt-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)]">
-        {TABS.map((t) => {
-          const active = t.id === tab;
+      <div role="tablist" aria-label={t.tabsAria} className="mt-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)]">
+        {TABS.map((tb) => {
+          const active = tb.id === tab;
           return (
             <button
-              key={t.id}
+              key={tb.id}
               role="tab"
               aria-selected={active}
-              onClick={() => set("tab", t.id)}
+              onClick={() => set("tab", tb.id)}
               className={`min-h-11 rounded-t-md border-b-2 px-3.5 text-sm transition-colors duration-150 ${
                 active
                   ? "border-[color:var(--color-navy)] font-semibold text-[color:var(--color-navy)]"
                   : "border-transparent text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
               }`}
             >
-              {t.label}
+              {tb[locale]}
             </button>
           );
         })}
@@ -145,7 +323,7 @@ export default function NewsExplorer() {
       <div className="mt-4 flex flex-wrap items-end gap-3">
         <div className="min-w-[200px] flex-1">
           <label htmlFor="news-q" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-            Search
+            {t.search}
           </label>
           <input
             id="news-q"
@@ -155,54 +333,51 @@ export default function NewsExplorer() {
               if (e.key === "Enter") set("q", (e.target as HTMLInputElement).value);
             }}
             onBlur={(e) => set("q", e.target.value)}
-            placeholder="e.g. compensation, rubble, LEAP…"
+            placeholder={t.searchPlaceholder}
             className={`mt-1 w-full ${inputCls}`}
           />
         </div>
         <div>
-          <label htmlFor="news-from" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">From</label>
+          <label htmlFor="news-from" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.from}</label>
           <input id="news-from" type="date" value={get("from")} onChange={(e) => set("from", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-to" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">To</label>
+          <label htmlFor="news-to" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.to}</label>
           <input id="news-to" type="date" value={get("to")} onChange={(e) => set("to", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-lang" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Language</label>
+          <label htmlFor="news-lang" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.language}</label>
           <select id="news-lang" value={get("language")} onChange={(e) => set("language", e.target.value)} className={`mt-1 ${inputCls}`}>
-            <option value="">All</option>
-            <option value="en">English</option>
-            <option value="ar">Arabic</option>
-            <option value="fr">French</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="news-loc" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Location</label>
-          <select id="news-loc" value={get("location")} onChange={(e) => set("location", e.target.value)} className={`mt-1 ${inputCls}`}>
-            <option value="">All</option>
-            <option value="South and Nabatieh">South and Nabatieh</option>
-            <option value="Beirut and Mount Lebanon">Beirut and Mount Lebanon</option>
-            <option value="Bekaa and Baalbek-Hermel">Bekaa and Baalbek-Hermel</option>
-            <option value="North">North</option>
-            <option value="Camps and migrant communities">Camps and migrant communities</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="news-sector" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Sector</label>
-          <select id="news-sector" value={get("sector")} onChange={(e) => set("sector", e.target.value)} className={`mt-1 ${inputCls}`}>
-            <option value="">All</option>
-            {["Housing", "Roads and transport", "Electricity", "Water", "Debris and environment", "Health", "Education", "Heritage and culture"].map((s) => (
-              <option key={s} value={s}>{s}</option>
+            <option value="">{t.all}</option>
+            {(["en", "ar", "fr", "other"] as const).map((code) => (
+              <option key={code} value={code}>{t.langNames[code]}</option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="news-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Value-chain stage</label>
+          <label htmlFor="news-loc" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.location}</label>
+          <select id="news-loc" value={get("location")} onChange={(e) => set("location", e.target.value)} className={`mt-1 ${inputCls}`}>
+            <option value="">{t.all}</option>
+            {LOCATION_OPTIONS.map((s) => (
+              <option key={s} value={s}>{newsTagLabel(s, locale)}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="news-sector" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.sector}</label>
+          <select id="news-sector" value={get("sector")} onChange={(e) => set("sector", e.target.value)} className={`mt-1 ${inputCls}`}>
+            <option value="">{t.all}</option>
+            {SECTOR_OPTIONS.map((s) => (
+              <option key={s} value={s}>{newsTagLabel(s, locale)}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="news-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.stage}</label>
           <select id="news-stage" value={get("stage")} onChange={(e) => set("stage", e.target.value)} className={`mt-1 ${inputCls}`}>
-            <option value="">All</option>
-            {["Strategy and coordination", "Finance and compensation", "Damage and needs assessment", "Safety and access", "Procurement and contracting", "Rubble clearance", "Debris treatment and disposal", "Reconstruction and services", "Shelter and return", "Relief and protection", "Livelihoods and community recovery", "Oversight and accountability"].map((s) => (
-              <option key={s} value={s}>{s}</option>
+            <option value="">{t.all}</option>
+            {STAGE_OPTIONS.map((s) => (
+              <option key={s} value={s}>{newsTagLabel(s, locale)}</option>
             ))}
           </select>
         </div>
@@ -213,21 +388,21 @@ export default function NewsExplorer() {
             onChange={(e) => set("relevant", e.target.checked ? "1" : "0")}
             className="h-4 w-4 accent-[color:var(--color-navy)]"
           />
-          Only highly relevant
+          {t.onlyRelevant}
         </label>
         <button
           type="button"
           onClick={reset}
           className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)]"
         >
-          Reset filters
+          {t.resetFilters}
         </button>
         <button
           type="button"
-          onClick={() => setRefreshTick((t) => t + 1)}
+          onClick={() => setRefreshTick((n) => n + 1)}
           className="min-h-11 rounded-md border border-[color:var(--color-navy)] bg-white px-3 text-sm font-medium text-[color:var(--color-navy)]"
         >
-          Refresh
+          {t.refresh}
         </button>
       </div>
 
@@ -249,24 +424,23 @@ export default function NewsExplorer() {
                       className={`h-2 w-2 rounded-full ${down.length === 0 ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
                     />
                     <span className="font-semibold">
-                      {up} of {data.providers.length} providers reporting
+                      {t.reporting(up, data.providers.length)}
                     </span>
                   </span>
-                  <span>Updated {fmtDateTime(data.lastUpdated)}</span>
+                  <span>{t.updated(fmtDateTime(data.lastUpdated, locale))}</span>
                   <span>
                     {data.total > data.articles.length
-                      ? `showing the latest ${data.articles.length} of ${data.total} matched articles`
-                      : `${data.total} matched articles`}
+                      ? t.showingLatest(data.articles.length, data.total)
+                      : t.matchedTotal(data.total)}
                   </span>
                   {down.length > 0 ? (
                     <span className="text-[color:var(--color-rust)]">
-                      {down.map((p) => p.name).join(", ")} unavailable - showing the last good
-                      results from {down.length > 1 ? "those" : "it"}
+                      {t.someDown(down.map((p) => p.name).join(locale === "ar" ? "، " : ", "), down.length > 1)}
                     </span>
                   ) : null}
                   <span className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
-                    <span className="group-open/src:hidden">Every provider ▸</span>
-                    <span className="hidden group-open/src:inline">Hide providers ▾</span>
+                    <span className="group-open/src:hidden">{t.everyProvider}</span>
+                    <span className="hidden group-open/src:inline">{t.hideProviders}</span>
                   </span>
                 </summary>
                 <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
@@ -279,9 +453,9 @@ export default function NewsExplorer() {
                       {p.name}
                       {p.ok
                         ? p.fromCache && p.cacheAgeSeconds !== null
-                          ? ` (cached ${Math.round(p.cacheAgeSeconds / 60)} min ago)`
-                          : " (live)"
-                        : " (unavailable - showing last good data)"}
+                          ? t.cachedAgo(Math.round(p.cacheAgeSeconds / 60))
+                          : t.live
+                        : t.providerDown}
                     </li>
                   ))}
                 </ul>
@@ -295,22 +469,20 @@ export default function NewsExplorer() {
       {tab === "official" ? (
         <div className="mt-4 card p-3.5">
           <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-            Monitored official feeds &amp; key trackers
+            {t.officialHeading}
           </h3>
           <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-            Official updates are aggregated where public feeds exist; these
-            institutional pages, project entries and data portals are
-            monitored directly and linked here rather than scraped.
+            {t.officialBody}
           </p>
           {[...new Set(OFFICIAL_DIRECTORY.map((o) => o.group))].map((group) => (
             <div key={group} className="mt-3">
               <h4 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-teal)]">
-                {group}
+                {locale === "ar" ? (GROUP_AR[group] ?? group) : group}
               </h4>
               <ul className="mt-1 grid gap-1 text-sm sm:grid-cols-2">
                 {OFFICIAL_DIRECTORY.filter((o) => o.group === group).map((o) => (
                   <li key={o.url}>
-                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-[color:var(--color-blue)] underline-offset-2 hover:underline">
+                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-[color:var(--color-blue)] underline-offset-2 hover:underline" dir="ltr">
                       {o.name} ↗
                     </a>
                   </li>
@@ -324,31 +496,29 @@ export default function NewsExplorer() {
       {/* Results */}
       <div className="mt-5" aria-live="polite">
         {loading ? (
-          <div className="grid gap-3 md:grid-cols-2" aria-busy="true" aria-label="Loading news">
+          <div className="grid gap-3 md:grid-cols-2" aria-busy="true" aria-label={t.loadingNews}>
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="h-36 animate-pulse rounded-md border border-[color:var(--color-border)] bg-white" />
             ))}
           </div>
         ) : error ? (
           <div className="rounded-md border border-[color:var(--color-rust)] bg-white p-5 text-sm">
-            <p className="font-semibold text-[color:var(--color-rust)]">Live updates unavailable</p>
+            <p className="font-semibold text-[color:var(--color-rust)]">{t.liveUnavailable}</p>
             <p className="mt-1 text-[color:var(--color-text-secondary)]">{error}</p>
             <p className="mt-2 text-[color:var(--color-text-secondary)]">
-              The analytical data on this site is a separate, confirmed analysis and is unaffected by news-provider outages.
+              {t.unaffected}
             </p>
             <button
               type="button"
-              onClick={() => setRefreshTick((t) => t + 1)}
+              onClick={() => setRefreshTick((n) => n + 1)}
               className="mt-3 min-h-11 rounded-md border border-[color:var(--color-navy)] px-4 text-sm font-medium text-[color:var(--color-navy)]"
             >
-              Try again
+              {t.tryAgain}
             </button>
           </div>
         ) : articles.length === 0 ? (
           <div className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
-            No articles match the current filters. Widen the date range,
-            clear the search terms, or switch off &ldquo;only highly
-            relevant&rdquo;.
+            {t.noMatch}
           </div>
         ) : (
           <>
@@ -357,6 +527,7 @@ export default function NewsExplorer() {
                 <li key={a.id}>
                   <NewsCard
                     article={a}
+                    locale={locale}
                     expanded={expanded === a.id}
                     onToggle={() => setExpanded(expanded === a.id ? null : a.id)}
                   />
@@ -370,7 +541,7 @@ export default function NewsExplorer() {
                   onClick={() => setVisibleCount((c) => c + 25)}
                   className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-5 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
                 >
-                  Show more ({articles.length - visibleCount} remaining)
+                  {t.showMore(articles.length - visibleCount)}
                 </button>
               </div>
             ) : null}
@@ -381,7 +552,7 @@ export default function NewsExplorer() {
       {/* Analytics */}
       {data && articles.length > 0 ? (
         <div className="mt-7">
-          <NewsAnalytics articles={articles} />
+          <NewsAnalytics articles={articles} locale={locale} />
         </div>
       ) : null}
     </div>
@@ -390,36 +561,45 @@ export default function NewsExplorer() {
 
 function NewsCard({
   article: a,
+  locale,
   expanded,
   onToggle,
 }: {
   article: NewsArticle;
+  locale: Locale;
   expanded: boolean;
   onToggle: () => void;
 }) {
+  const t = T[locale];
+  const chrome = locale === "ar" ? "rtl" : "ltr";
+  const label = (v: string) => newsTagLabel(v, locale);
   const whyRelevant: string[] = [];
-  if (a.valueChainStages.length > 0) whyRelevant.push(`Mentions value-chain stages: ${a.valueChainStages.join("; ")}.`);
-  if (a.locations.length > 0) whyRelevant.push(`References tracked locations: ${a.locations.join("; ")}.`);
-  if (a.sectors.length > 0) whyRelevant.push(`Touches tracked sectors: ${a.sectors.join("; ")}.`);
-  if (a.actorLayers.length > 0) whyRelevant.push(`Involves actor layers: ${a.actorLayers.join("; ")}.`);
-  whyRelevant.push(`Automated relevance score: ${a.relevanceScore}/100 (keyword-based, not a quality judgment).`);
+  if (a.valueChainStages.length > 0)
+    whyRelevant.push(t.whyStages(a.valueChainStages.map(label).join(t.listJoin)));
+  if (a.locations.length > 0)
+    whyRelevant.push(t.whyLocations(a.locations.map(label).join(t.listJoin)));
+  if (a.sectors.length > 0)
+    whyRelevant.push(t.whySectors(a.sectors.map(label).join(t.listJoin)));
+  if (a.actorLayers.length > 0)
+    whyRelevant.push(t.whyLayers(a.actorLayers.map(label).join(t.listJoin)));
+  whyRelevant.push(t.whyScore(a.relevanceScore));
 
   return (
     <article className="flex h-full flex-col card p-3.5" dir={a.language === "ar" ? "rtl" : "ltr"}>
-      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]" dir="ltr">
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]" dir={chrome}>
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>
-        <span>{fmtDateTime(a.publishedAt)}</span>
-        <span className="rounded-sm border border-[color:var(--color-border)] px-1 py-0.5">{LANG_LABEL[a.language]}</span>
-        <span className="rounded-sm bg-[#EEF2F7] px-1 py-0.5 capitalize">{a.sourceType}</span>
+        <span>{fmtDateTime(a.publishedAt, locale)}</span>
+        <span className="rounded-sm border border-[color:var(--color-border)] px-1 py-0.5">{LANG_BADGE[locale][a.language] ?? a.language}</span>
+        <span className="rounded-sm bg-[#EEF2F7] px-1 py-0.5 capitalize">{locale === "ar" ? (SOURCE_TYPE_AR[a.sourceType] ?? a.sourceType) : a.sourceType}</span>
         {/* Google hands out an opaque redirect instead of the article URL,
             so the reader is told where the link actually goes. */}
         {a.viaAggregator ? (
           <span
             className="rounded-sm bg-[#FAF3E3] px-1 py-0.5 font-semibold normal-case text-[#8a6200]"
-            title="This link opens through Google News, which then forwards to the publisher"
+            title={t.viaGoogleTitle}
           >
-            via Google News
+            {t.viaGoogle}
           </span>
         ) : null}
       </p>
@@ -427,9 +607,7 @@ function NewsCard({
         <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
           {a.title} <span aria-hidden dir="ltr">↗</span>
           <span className="sr-only">
-            {a.viaAggregator
-              ? `(opens via Google News, which forwards to ${a.sourceName})`
-              : `(opens the article on ${a.sourceName})`}
+            {a.viaAggregator ? t.srVia(a.sourceName) : t.srDirect(a.sourceName)}
           </span>
         </a>
       </h3>
@@ -437,18 +615,18 @@ function NewsCard({
         <p className="mt-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">{a.description}</p>
       ) : null}
       {(a.valueChainStages.length > 0 || a.locations.length > 0) && (
-        <ul className="mt-2 flex flex-wrap gap-1" dir="ltr">
-          {[...a.valueChainStages.slice(0, 2), ...a.locations.slice(0, 2)].map((t) => (
-            <li key={t} className="rounded-sm bg-[color:var(--color-bg)] px-1.5 py-0.5 text-[10.5px] text-[color:var(--color-text-secondary)]">
-              {t}
+        <ul className="mt-2 flex flex-wrap gap-1" dir={chrome}>
+          {[...a.valueChainStages.slice(0, 2), ...a.locations.slice(0, 2)].map((tag) => (
+            <li key={tag} className="rounded-sm bg-[color:var(--color-bg)] px-1.5 py-0.5 text-[10.5px] text-[color:var(--color-text-secondary)]">
+              {label(tag)}
             </li>
           ))}
         </ul>
       )}
-      <div className="mt-auto pt-2" dir="ltr">
+      <div className="mt-auto pt-2" dir={chrome}>
         {typeof a.relatedCount === "number" && a.relatedCount > 0 ? (
           <p className="text-[11px] text-[color:var(--color-text-secondary)]">
-            Also reported by {a.relatedCount} other outlet{a.relatedCount > 1 ? "s" : ""}.
+            {t.alsoReported(a.relatedCount)}
           </p>
         ) : null}
         <button
@@ -457,10 +635,10 @@ function NewsCard({
           aria-expanded={expanded}
           className="mt-1 min-h-8 text-[11px] text-[color:var(--color-blue)] underline decoration-dotted underline-offset-2"
         >
-          {expanded ? "Hide" : "Why is this relevant?"}
+          {expanded ? t.hide : t.whyRelevant}
         </button>
         {expanded ? (
-          <ul className="mt-1.5 space-y-1 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[11px] text-[color:var(--color-text-secondary)]">
+          <ul className="mt-1.5 space-y-1 border-s-2 border-[color:var(--color-border)] ps-2.5 text-[11px] text-[color:var(--color-text-secondary)]">
             {whyRelevant.map((w) => (
               <li key={w}>{w}</li>
             ))}

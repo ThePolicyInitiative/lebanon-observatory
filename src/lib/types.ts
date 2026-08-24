@@ -63,6 +63,7 @@ export type ActorEntry = {
   layer: ActorLayer;
   subtype: string;
   mandateVsCapacity: string | null;
+  mandateVsCapacityAr?: string | null;
   recordCount: number;
   sourceIds: string[];
 };

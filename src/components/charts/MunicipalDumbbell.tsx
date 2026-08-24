@@ -4,21 +4,67 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { MUNICIPAL_POWER_GAP, CAUTION_COUNTS } from "@/lib/data-client";
+import { MUNICIPAL_POWER_GAP } from "@/lib/data-client";
 import { YEAR_COLORS } from "@/lib/colors";
+import { cautionCounts, type Locale } from "@/lib/vocab";
+
+const T = {
+  en: {
+    title: "The municipal power gap, 2024 → 2026",
+    subtitle:
+      "Circles mark 2024, diamonds mark 2026 - the shape difference carries year identity alongside colour. Values are grouped functional counts from the analysis.",
+    axisName: "Traced functional presence (grouped counts)",
+    description:
+      "Dumbbell chart comparing municipal functional presence between 2024 and 2026: coordination and reporting fell from 6 to 3, damage assessment from 4 to 2, local clearance from 6 to 3, shelter and relief interface rose from 3 to 4, and finance, reconstruction and oversight power was zero in both years.",
+    ariaLabel: "Dumbbell chart of municipal functional presence in 2024 and 2026",
+    tableCaption: "Municipal functional presence by grouped function and year.",
+    tableHeaders: ["Function", "2024", "2026"],
+    note:
+      "In both years: no traced municipal finance role, no reconstruction authority and no oversight role.",
+  },
+  ar: {
+    title: "فجوة السلطة البلدية، 2024 ← 2026",
+    subtitle:
+      "الدوائر تشير إلى 2024 والمعيّنات إلى 2026 - فاختلاف الشكل يحمل هوية السنة إلى جانب اللون. والقيم أعداد وظيفية مجمَّعة من التحليل.",
+    axisName: "الحضور الوظيفي المرصود (أعداد مجمَّعة)",
+    description:
+      "شكل نقاط مزدوجة يقارن الحضور الوظيفي البلدي بين 2024 و2026: التنسيق والإبلاغ هبط من 6 إلى 3، وتقييم الأضرار من 4 إلى 2، والإزالة المحلية من 6 إلى 3، وواجهة الإيواء والإغاثة صعدت من 3 إلى 4، وسلطة التمويل وإعادة الإعمار والرقابة كانت صفراً في السنتين.",
+    ariaLabel: "شكل نقاط مزدوجة للحضور الوظيفي البلدي في 2024 و2026",
+    tableCaption: "الحضور الوظيفي البلدي بحسب الوظيفة المجمَّعة والسنة.",
+    tableHeaders: ["الوظيفة", "2024", "2026"],
+    note: "في السنتين: لا دور تمويلي بلدي مرصود، ولا سلطة إعادة إعمار، ولا دور رقابي.",
+  },
+} as const;
+
+/** Arabic renderings of the grouped municipal functions the data carries. */
+const FN_AR: Record<string, string> = {
+  "Coordination and reporting": "التنسيق والإبلاغ",
+  "Damage assessment": "تقييم الأضرار",
+  "Local clearance and enabling": "الإزالة المحلية والتمكين",
+  "Shelter and relief interface": "واجهة الإيواء والإغاثة",
+  "Finance, reconstruction and oversight power": "سلطة التمويل وإعادة الإعمار والرقابة",
+};
 
 /**
  * Visual 5 - Municipal power gap. Dumbbell chart comparing grouped
  * municipal functional presence in 2024 and 2026.
  */
-export default function MunicipalDumbbell() {
+export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
+  const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const rows = [...MUNICIPAL_POWER_GAP].reverse();
+  const fnLabel = useMemo(
+    () => (fn: string) => (ar ? (FN_AR[fn] ?? fn) : fn),
+    [ar],
+  );
 
   const option = useMemo<EChartsOption>(() => {
-    const categories = rows.map((r) => r.fn);
+    const categories = rows.map((r) => fnLabel(r.fn));
     return {
-      grid: { left: 230, right: 60, top: 34, bottom: 40 },
+      grid: ar
+        ? { left: 60, right: 230, top: 34, bottom: 40 }
+        : { left: 230, right: 60, top: 34, bottom: 40 },
       legend: {
         top: 0,
         data: [
@@ -34,7 +80,8 @@ export default function MunicipalDumbbell() {
       xAxis: {
         type: "value",
         max: 7,
-        name: "Traced functional presence (grouped counts)",
+        inverse: ar,
+        name: t.axisName,
         nameLocation: "middle",
         nameGap: 26,
         nameTextStyle: { fontSize: 11 },
@@ -44,6 +91,7 @@ export default function MunicipalDumbbell() {
       yAxis: {
         type: "category",
         data: categories,
+        position: ar ? "right" : "left",
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11.5, width: 210, overflow: "break" },
@@ -105,36 +153,35 @@ export default function MunicipalDumbbell() {
         },
       ],
     };
-  }, [rows]);
+  }, [rows, ar, t, fnLabel]);
 
   return (
     <div>
       <ChartFrame
         id="municipal-power-gap"
-        title="The municipal power gap, 2024 → 2026"
-        subtitle="Circles mark 2024, diamonds mark 2026 - the shape difference carries year identity alongside colour. Values are grouped functional counts from the analysis."
-        caveat={CAUTION_COUNTS}
+        title={t.title}
+        subtitle={t.subtitle}
+        caveat={cautionCounts(locale)}
         sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
-        description="Dumbbell chart comparing municipal functional presence between 2024 and 2026: coordination and reporting fell from 6 to 3, damage assessment from 4 to 2, local clearance from 6 to 3, shelter and relief interface rose from 3 to 4, and finance, reconstruction and oversight power was zero in both years."
+        description={t.description}
         table={{
-          caption: "Municipal functional presence by grouped function and year.",
-          headers: ["Function", "2024", "2026"],
-          rows: MUNICIPAL_POWER_GAP.map((r) => [r.fn, r.y2024, r.y2026]),
+          caption: t.tableCaption,
+          headers: [...t.tableHeaders],
+          rows: MUNICIPAL_POWER_GAP.map((r) => [fnLabel(r.fn), r.y2024, r.y2026]),
         }}
       >
         <EChart
           option={option}
           height={340}
-          ariaLabel="Dumbbell chart of municipal functional presence in 2024 and 2026"
+          ariaLabel={t.ariaLabel}
           onInit={(c) => {
             chartRef.current = c;
           }}
         />
       </ChartFrame>
-      <p className="mt-3 rounded-md border-l-4 border-[color:var(--color-rust)] bg-white p-4 text-sm font-medium leading-relaxed text-[color:var(--color-text)]">
-        In both years: no traced municipal finance role, no reconstruction
-        authority and no oversight role.
+      <p className="mt-3 rounded-md border-s-4 border-[color:var(--color-rust)] bg-white p-4 text-sm font-medium leading-relaxed text-[color:var(--color-text)]">
+        {t.note}
       </p>
     </div>
   );

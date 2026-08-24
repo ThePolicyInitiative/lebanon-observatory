@@ -1,6 +1,6 @@
 "use client";
 
-import type { Locale } from "@/lib/vocab";
+import { layerLabel, regionLabel, stageList, type Locale } from "@/lib/vocab";
 import type { NewsArticle } from "@/lib/types";
 
 /**
@@ -17,7 +17,12 @@ import type { NewsArticle } from "@/lib/types";
  * reported, never what was built.
  */
 
-/** Tag values the classifier emits, in Arabic. Anything unmapped shows as is. */
+/**
+ * Tag values the classifier emits, in Arabic. Anything unmapped shows as is.
+ * The keys are exactly the strings src/lib/news/tagging.ts emits; stages,
+ * regions and actor layers take their Arabic from the shared vocabulary in
+ * src/lib/vocab.ts so a name cannot drift between modules.
+ */
 const AR_LABEL: Record<string, string> = {
   // publisher kinds
   media: "إعلام",
@@ -30,29 +35,48 @@ const AR_LABEL: Record<string, string> = {
   en: "الإنكليزية",
   fr: "الفرنسية",
   other: "لغات أخرى",
-  // chain stages
-  "Reconstruction and services": "إعادة الإعمار والخدمات",
-  "Relief and protection": "الإغاثة والحماية",
-  "Shelter and return": "الإيواء والعودة",
-  "Finance and compensation": "التمويل والتعويضات",
-  "Strategy and coordination": "الاستراتيجيا والتنسيق",
-  "Damage and needs assessment": "تقييم الأضرار والاحتياجات",
-  "Procurement and contracting": "الشراء والتعاقد",
-  "Rubble and debris": "الأنقاض والركام",
-  "Livelihoods and recovery": "سبل العيش والتعافي",
-  "Oversight and accountability": "الرقابة والمساءلة",
-  // locations
-  "South and Nabatieh": "الجنوب والنبطية",
-  "Beirut and Mount Lebanon": "بيروت وجبل لبنان",
-  "Camps and migrant communities": "المخيمات ومجتمعات المهاجرين",
-  "Bekaa and Baalbek-Hermel": "البقاع وبعلبك-الهرمل",
-  North: "الشمال",
-  // actor layers
-  "Official institutions": "المؤسسات الرسمية",
-  "NGOs & international agencies": "المنظمات الدولية وغير الحكومية",
-  "Municipalities & local authorities": "البلديات والسلطات المحلية",
-  "Community initiatives": "مبادرات المجتمع المحلي",
+  // sectors, as tagging.ts names them
+  Housing: "السكن",
+  "Roads and transport": "الطرق والنقل",
+  Electricity: "الكهرباء",
+  Water: "المياه",
+  "Debris and environment": "الركام والبيئة",
+  Health: "الصحة",
+  Education: "التعليم",
+  "Heritage and culture": "التراث والثقافة",
 };
+
+// The twelve chain stages: tagging.ts emits the English stage names
+// verbatim, so the shared stage vocabulary covers them one for one.
+stageList("en").forEach((stage, i) => {
+  AR_LABEL[stage] = stageList("ar")[i];
+});
+
+// Regional groupings from locations.json: the tag strings equal the
+// English region labels, so both halves come from regionLabel.
+for (const id of [
+  "south_nabatieh",
+  "beirut_mount_lebanon",
+  "bekaa_baalbek_hermel",
+  "north",
+  "camps_migrant",
+]) {
+  AR_LABEL[regionLabel(id, "en")] = regionLabel(id, "ar");
+}
+
+// Actor layers, likewise tagged with their English labels.
+for (const id of ["official", "ngo_international", "municipal", "community"]) {
+  AR_LABEL[layerLabel(id, "en")] = layerLabel(id, "ar");
+}
+
+/**
+ * One lookup for every module that prints a classifier tag: English shows
+ * the tag as emitted, Arabic shows its dictionary rendering. Values that
+ * are not tags - publisher names, score bands - pass through unchanged.
+ */
+export function newsTagLabel(value: string, locale: Locale): string {
+  return locale === "ar" ? (AR_LABEL[value] ?? value) : value;
+}
 
 const T = {
   en: {
@@ -108,7 +132,7 @@ function Panel({
       ) : (
         <ul className="mt-1.5 space-y-1.5">
           {pairs.map(([key, v]) => {
-            const label = ordered ? key : locale === "ar" ? (AR_LABEL[key] ?? key) : key;
+            const label = ordered ? key : newsTagLabel(key, locale);
             return (
               <li key={key}>
                 <p className="flex items-baseline justify-between gap-2 text-[11.5px]">

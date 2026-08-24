@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { roleRecords } from "@/lib/data";
 import webUpdates from "@/data/web-updates.json";
@@ -10,9 +11,7 @@ import Takeaways from "@/components/Takeaways";
 import ActorTreemap from "@/components/charts/ActorTreemap";
 import ActorStageMatrix from "@/app/(en)/actors/ActorStageMatrix";
 import ActorRegister from "@/app/(en)/actors/ActorRegister";
-import LayerStageProfile from "@/components/charts/LayerStageProfile";
-import RegionPresence from "@/components/charts/RegionPresence";
-import ActorConcentration from "@/components/charts/ActorConcentration";
+import ActorTabs from "@/app/(en)/actors/ActorTabs";
 import { cautionCounts, layers } from "@/lib/vocab";
 
 export const metadata: Metadata = {
@@ -44,17 +43,10 @@ export default function Page() {
         غير مؤكَّدة ولا تدخل في أي عدّ.
       </p>
 
-      {/* The same modules the English page carries. */}
-      <div className="mt-8">
-        <ActorTreemap locale="ar" />
-      </div>
-      <div className="mt-7">
-        <ActorStageMatrix locale="ar" />
-      </div>
-
-      {/* The English side puts these behind a tab per layer; here they
-          run one after another, which needs no tab machinery and lets a
-          reader compare the four shapes without switching. */}
+      {/* The full per-layer analytical narrative, the same module the
+          English page mounts: profiles, direct change, gains and losses,
+          chain roles, core findings, mandate-versus-capacity notes and the
+          layer figures, tab by tab. */}
       <section aria-labelledby="ar-layer-profiles" className="mt-8">
         <h2
           id="ar-layer-profiles"
@@ -63,25 +55,27 @@ export default function Page() {
           الطبقات الأربع، طبقةً طبقة
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          لكل طبقة شكلها على امتداد السلسلة، وجغرافيتها، والجهات التي تحملها.
-          الأشرطة أعداد حضور مرصود، لا مقاييس إنجاز.
+          لكل طبقة ملامحها في السنتين، وتغيّرها المباشر بمكاسبه وخسائره،
+          وأدوارها على السلسلة، وشكلها على امتدادها، وجغرافيتها، والجهات التي
+          تحملها. الأشرطة أعداد حضور مرصود، لا مقاييس إنجاز.
         </p>
-        {layers("ar").map((l) => (
-          <div key={l.id} className="mt-8">
-            <h3 className="text-lg font-semibold" style={{ color: l.color }}>
-              {l.label}
-            </h3>
-            <div className="mt-3 space-y-4">
-              <LayerStageProfile layer={l.id} locale="ar" showCaveat={false} />
-              <RegionPresence layer={l.id} locale="ar" showCaveat={false} />
-              <ActorConcentration layer={l.id} locale="ar" showCaveat={false} />
-            </div>
-          </div>
-        ))}
+        <div className="mt-4">
+          <Suspense fallback={<div className="h-24 animate-pulse rounded-md bg-white" />}>
+            <ActorTabs locale="ar" />
+          </Suspense>
+        </div>
         <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
           {cautionCounts("ar")}
         </p>
       </section>
+
+      {/* The same modules the English page carries. */}
+      <div className="mt-8">
+        <ActorTreemap locale="ar" />
+      </div>
+      <div className="mt-7">
+        <ActorStageMatrix locale="ar" />
+      </div>
       <div className="mt-7">
         <ActorRegister locale="ar" />
       </div>

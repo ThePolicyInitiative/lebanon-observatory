@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import ArabicPageShell from "../ArabicPageShell";
-import ArabicNewsFeed from "./ArabicNewsFeed";
+import NewsExplorer from "@/app/(en)/news/NewsExplorer";
 
 export const metadata: Metadata = {
   title: AR.pages.news.title,
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
   alternates: localeAlternates("/news", "ar"),
 };
 
+/**
+ * The Arabic live-updates page mounts the same explorer as the English one,
+ * in Arabic: tabs, search, filters, the provider roll-call, the official
+ * directory and the coverage analytics all run here over the same endpoint,
+ * so both languages read the same articles at the same moment.
+ */
 export default function Page() {
   return (
     <ArabicPageShell
@@ -17,9 +24,30 @@ export default function Page() {
       point={AR.pages.news.point}
       englishHref="/news"
     >
-      <div className="mt-8">
-        <ArabicNewsFeed />
-      </div>
+      <section aria-labelledby="ar-news-explorer" className="mt-8">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2
+            id="ar-news-explorer"
+            className="text-xl font-semibold text-[color:var(--color-navy)]"
+          >
+            آخر ما نُشر
+          </h2>
+          <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200]">
+            غير مؤكَّد · خارج كل عدّ
+          </span>
+        </div>
+        <div className="mt-4">
+          <Suspense fallback={<div className="h-64 animate-pulse rounded-md bg-white" />}>
+            <NewsExplorer locale="ar" />
+          </Suspense>
+        </div>
+        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          كل خبر يبقى بلغة ناشره ويحيل إليه، وأسماء المنابر تظهر كما تكتبها
+          هي. المقالات الإنجليزية والفرنسية تُعرض باتجاه كتابتها داخل الصفحة
+          العربية. والترشيح والبحث والتبويبات وتحليلات التغطية تعمل هنا
+          كاملة بالعربية، وتقرأ ما تقرؤه الصفحة الإنجليزية في اللحظة نفسها.
+        </p>
+      </section>
     </ArabicPageShell>
   );
 }
