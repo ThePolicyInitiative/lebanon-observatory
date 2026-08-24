@@ -830,7 +830,7 @@
     "year": 2024,
     "name": "CNRS-L",
     "layer": "official",
-    "subtype": "Data and assessment institutions",
+    "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": "On paper: national scientific research authority. In practice: operated as technical partner to international organisations; little independent implementation capacity.",
     "recordCount": 2,
     "sourceIds": [
@@ -842,7 +842,7 @@
     "year": 2024,
     "name": "Mercy Corps Lebanon Crisis Analytics Team (LCAT)",
     "layer": "official",
-    "subtype": "Data and assessment institutions",
+    "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": null,
     "recordCount": 2,
     "sourceIds": []
@@ -1090,7 +1090,7 @@
     "year": 2024,
     "name": "Lebanese Agricultural Research Institute (LARI)",
     "layer": "official",
-    "subtype": "Data and assessment institutions",
+    "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": "On paper: national agricultural research institution. In practice: limited resources, with operations dependent on international project funding.",
     "recordCount": 3,
     "sourceIds": []
@@ -1121,7 +1121,7 @@
     "name": "Prime Minister's Office / Grand Serail / Council of Ministers: Nawaf Salam (Prime Minister)",
     "layer": "official",
     "subtype": "National executive authority",
-    "mandateVsCapacity": "'First direct Israel-Lebanon talks since 1993' is contestable: direct Lebanese-Israeli negotiations took place at Naqoura on the maritime boundary in 2020-2022 under US mediation and UNIFIL hosting. Reword or drop the superlative.",
+    "mandateVsCapacity": null,
     "recordCount": 5,
     "sourceIds": [
       "cat2026-3",
@@ -1310,7 +1310,7 @@
     "name": "Ministry of Social Affairs:Haneen Sayed (Minister); Ola Boutros (LRP General Supervisor)",
     "layer": "official",
     "subtype": "Public authorities",
-    "mandateVsCapacity": "Figure conflict inside the same report: this row reports 336,000 people reached with emergency cash while its WFP row reports 226,000 as the total reached for the same period. Reconcile the caseload definitions (SRSN versus MPCA versus WFP-executed) before publication.",
+    "mandateVsCapacity": null,
     "recordCount": 8,
     "sourceIds": [
       "cat2026-9",
@@ -2076,7 +2076,7 @@
     "year": 2026,
     "name": "CNRS-L / Remote Sensing",
     "layer": "official",
-    "subtype": "Data and assessment institutions",
+    "subtype": "Assessment and analysis institutions",
     "mandateVsCapacity": null,
     "recordCount": 2,
     "sourceIds": [

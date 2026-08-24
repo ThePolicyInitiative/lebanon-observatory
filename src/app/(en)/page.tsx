@@ -117,8 +117,8 @@ export default function HomePage() {
           {/* At a glance */}
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
             {[
-              ["706", "actor-stage entries in the tracking (343 for 2024; 363 for 2026)"],
-              ["104 → 124", "traced actors across the four layers, 2024 → 2026"],
+              ["771", "traced entries in the tracking (357 for 2024; 414 for 2026)"],
+              ["105 → 130", "actors across the four layers, 2024 → 2026"],
               ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
               ["0", "works contracts awarded, confirmed completed outputs and confirmed compensation payments by the cut-off"],
             ].map(([n, label]) => (
@@ -133,6 +133,14 @@ export default function HomePage() {
               </div>
             ))}
           </dl>
+          <p className="mt-3 max-w-3xl text-[11px] leading-snug text-white/55">
+            Two counts coexist by design: the charts on the compare and actors
+            pages read the report-level actor-stage counts (343 for 2024; 360
+            for 2026, with the report&apos;s 363 recomputation flagged there),
+            while the explorer and the register list the finer underlying
+            entries counted here. An actor can carry several entries within one
+            stage.
+          </p>
         </div>
       </section>
 

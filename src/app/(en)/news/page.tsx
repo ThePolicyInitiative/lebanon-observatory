@@ -19,8 +19,9 @@ export default function NewsPage() {
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
           Aggregated server-side from Lebanon&apos;s National News Agency in
-          Arabic and English, Annahar, Al Jazeera, Arab News, ReliefWeb&apos;s
-          Lebanon updates, UN News, Google News in three languages, the GDELT
+          Arabic and English, Annahar, Al-Modon, Al Jazeera, Arab News,
+          ReliefWeb&apos;s Lebanon updates, UN News and other Lebanese and
+          international outlets, Google News in three languages, the GDELT
           project and - when configured - the ReliefWeb API and a licensed
           news API, with caching, deduplication and keyword relevance
           filtering. Most items link straight to the publisher; those that

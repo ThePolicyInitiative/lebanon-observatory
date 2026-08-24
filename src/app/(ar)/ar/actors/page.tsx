@@ -23,10 +23,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   // Layer names come from the shared vocabulary, so the two languages can
-  // never drift apart on what a layer is called.
+  // never drift apart on what a layer is called. The values are entry counts
+  // for the two years together, and the label says so.
   const counts = layers("ar").map((l) => ({
     value: String(roleRecords.filter((r) => r.actorLayer === l.id).length),
-    label: l.label,
+    label: `${l.label} (مدخلات السنتين معاً)`,
   }));
   const south = webUpdates.updates.filter((u) => u.southOfLitani).length;
   return (

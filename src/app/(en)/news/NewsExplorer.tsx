@@ -253,7 +253,11 @@ export default function NewsExplorer() {
                     </span>
                   </span>
                   <span>Updated {fmtDateTime(data.lastUpdated)}</span>
-                  <span>{data.total} matched articles</span>
+                  <span>
+                    {data.total > data.articles.length
+                      ? `showing the latest ${data.articles.length} of ${data.total} matched articles`
+                      : `${data.total} matched articles`}
+                  </span>
                   {down.length > 0 ? (
                     <span className="text-[color:var(--color-rust)]">
                       {down.map((p) => p.name).join(", ")} unavailable - showing the last good

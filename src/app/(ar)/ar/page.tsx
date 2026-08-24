@@ -208,6 +208,9 @@ export default function ArabicPage() {
               </div>
             ))}
           </dl>
+          <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-white/55">
+            {AR.glanceNote}
+          </p>
         </div>
       </section>
 

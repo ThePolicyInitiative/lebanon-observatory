@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { roleRecords } from "@/lib/data";
-import stageCounts from "@/data/stage-counts.json";
 import ArabicPageShell from "../ArabicPageShell";
 import ComparePanel from "@/app/(en)/compare/ComparePanel";
 import StageCompositionChart from "@/components/charts/StageCompositionChart";
@@ -12,7 +11,6 @@ import RoleMixChart from "@/components/charts/RoleMixChart";
 import ThreeStreams from "@/components/ThreeStreams";
 import DisplacementCycle from "@/components/DisplacementCycle";
 import Takeaways from "@/components/Takeaways";
-import { layers } from "@/lib/vocab";
 
 export const metadata: Metadata = {
   title: AR.pages.compare.title,
@@ -42,18 +40,15 @@ const SUMMARY_2026 = [
   "أكثر تقدّماً في الإجراءات والشراء منها في الإنجاز المادي المكتمل",
 ];
 
-type Counts = Record<string, number[]>;
-
 export default function Page() {
   const y24 = roleRecords.filter((r) => r.year === 2024).length;
   const y26 = roleRecords.filter((r) => r.year === 2026).length;
-  const c24 = stageCounts.counts["2024"] as Counts;
-  const c26 = stageCounts.counts["2026"] as Counts;
-  const byLayer = layers("ar").map((l) => ({
-    id: l.id,
-    y26: (c26[l.id] ?? []).reduce((x, y) => x + y, 0),
-    y24: (c24[l.id] ?? []).reduce((x, y) => x + y, 0),
-  }));
+  // The hero counts stay on one grain: the finer entry log. The matrix's
+  // report-level actor-stage counts belong to the charts below, which carry
+  // their own caveat.
+  const rows26 = (layerId: string) =>
+    roleRecords.filter((r) => r.year === 2026 && r.actorLayer === layerId)
+      .length;
 
   return (
     <ArabicPageShell
@@ -65,11 +60,11 @@ export default function Page() {
         { value: String(y24), label: "مدخل متتبَّع في 2024" },
         { value: String(y26), label: "مدخل متتبَّع في 2026" },
         {
-          value: String(byLayer.find((l) => l.id === "community")?.y26 ?? 0),
+          value: String(rows26("community")),
           label: "منها للمجتمع المحلي في 2026",
         },
         {
-          value: String(byLayer.find((l) => l.id === "municipal")?.y26 ?? 0),
+          value: String(rows26("municipal")),
           label: "منها للبلديات في 2026",
         },
       ]}

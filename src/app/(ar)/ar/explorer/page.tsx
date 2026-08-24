@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AR, localeAlternates } from "@/lib/i18n";
-import { roleRecords, actors } from "@/lib/data";
+import { roleRecords } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
 import { layers, stageLabel, statusList, comparabilityLabel } from "@/lib/vocab";
@@ -47,7 +47,7 @@ export default function Page() {
       englishHref="/explorer"
       figures={[
         { value: String(roleRecords.length), label: "مدخل متتبَّع" },
-        { value: String(actors.length), label: "جهة فاعلة مسمّاة" },
+        { value: "105 ← 130", label: "جهة فاعلة، 2024 ثم 2026" },
         { value: "12", label: "مرحلة في سلسلة القيمة" },
         { value: "2", label: "سنتان تحت المقارنة" },
       ]}

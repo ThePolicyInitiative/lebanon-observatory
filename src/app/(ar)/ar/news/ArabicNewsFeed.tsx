@@ -72,7 +72,10 @@ export default function ArabicNewsFeed() {
 
       <p className="mt-2 text-xs text-[color:var(--color-text-secondary)]">
         {data.providers.length - down.length} من {data.providers.length} مزوّداً يعمل ·
-        آخر تحديث {fmtDateTime(data.lastUpdated)} · {data.total} مقالاً مطابقاً
+        آخر تحديث {fmtDateTime(data.lastUpdated)} ·{" "}
+        {data.total > data.articles.length
+          ? `عرض أحدث ${data.articles.length} من أصل ${data.total} مقالاً مطابقاً`
+          : `${data.total} مقالاً مطابقاً`}
         {down.length > 0 ? ` · متعذّرة: ${down.map((p) => p.name).join("، ")}` : ""}
       </p>
 
