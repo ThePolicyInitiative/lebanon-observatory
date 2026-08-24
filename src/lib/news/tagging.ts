@@ -182,17 +182,24 @@ const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 
 export function sanitizeText(raw: string | null | undefined, maxLen = 500): string {
   if (!raw) return "";
-  return raw
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(CONTROL_CHARS, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, maxLen);
+  return (
+    raw
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;|&apos;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      // Strip again AFTER entity decoding: encoded input like
+      // &lt;img onerror=...&gt; re-materializes as a literal tag above,
+      // and this render layer must never store tag-shaped strings even
+      // though every current consumer renders them as text nodes.
+      .replace(/<[^>]*>/g, " ")
+      .replace(CONTROL_CHARS, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, maxLen)
+  );
 }
 
 export function safeUrl(raw: string | null | undefined): string | null {

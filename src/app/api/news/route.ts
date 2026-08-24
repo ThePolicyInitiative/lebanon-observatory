@@ -18,8 +18,12 @@ export const dynamic = "force-dynamic";
 const querySchema = newsQuerySchema;
 
 export async function GET(req: NextRequest) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  // Rightmost x-forwarded-for entry: appended by the nearest hop, so a
+  // client cannot rotate it to mint fresh rate-limit buckets the way it
+  // can with the leftmost entry. Served directly, Next fills the header
+  // from the socket address.
+  const forwarded = req.headers.get("x-forwarded-for");
+  const ip = forwarded?.split(",").at(-1)?.trim() || "local";
   if (rateLimited(ip)) {
     return NextResponse.json(
       { error: "Rate limit exceeded. Try again in a few minutes." },
@@ -123,9 +127,14 @@ export async function GET(req: NextRequest) {
     lastUpdated: new Date().toISOString(),
   };
 
+  // A response built while providers are down must not be pinned by a CDN
+  // for longer than the server itself would wait before retrying.
+  const allDown = results.length > 0 && results.every((r) => !r.ok);
   return NextResponse.json(body, {
     headers: {
-      "cache-control": "public, s-maxage=300, stale-while-revalidate=1500",
+      "cache-control": allDown
+        ? "public, s-maxage=60, stale-while-revalidate=300"
+        : "public, s-maxage=300, stale-while-revalidate=1500",
     },
   });
 }

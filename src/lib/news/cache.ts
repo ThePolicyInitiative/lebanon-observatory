@@ -21,6 +21,26 @@ const TTL_MS =
  * success TTL; the last good payload keeps being served meanwhile. */
 const FAILURE_TTL_MS = 60 * 1000;
 
+/** Both maps are keyed by free-text query parameters, so without a cap a
+ * long-lived process accumulates one entry per distinct search forever.
+ * Past the cap the oldest entries go; the fixed-key RSS entries are
+ * always among the freshest, so real traffic never loses them. */
+const MAX_CACHE_ENTRIES = 200;
+const LAST_GOOD_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
+function evict(map: Map<string, CacheEntry>): void {
+  if (map.size <= MAX_CACHE_ENTRIES) return;
+  const byAge = [...map.entries()].sort((a, b) => a[1].fetchedAt - b[1].fetchedAt);
+  for (let i = 0; i < byAge.length - MAX_CACHE_ENTRIES; i++) map.delete(byAge[i][0]);
+}
+
+function sweepLastGood(now: number): void {
+  for (const [k, v] of lastGood) {
+    if (now - v.fetchedAt > LAST_GOOD_MAX_AGE_MS) lastGood.delete(k);
+  }
+  evict(lastGood);
+}
+
 export type ProviderResult = {
   name: string;
   ok: boolean;
@@ -37,9 +57,12 @@ async function refresh(
 ): Promise<void> {
   try {
     const articles = await fetcher();
-    const entry = { articles, fetchedAt: Date.now(), error: null };
+    const now = Date.now();
+    const entry = { articles, fetchedAt: now, error: null };
     cache.set(key, entry);
     lastGood.set(key, entry);
+    evict(cache);
+    sweepLastGood(now);
   } catch (err) {
     const message = err instanceof Error ? err.message : "provider error";
     // Never log secrets; message contains only status/network info.
@@ -50,6 +73,7 @@ async function refresh(
       fetchedAt: prev?.fetchedAt ?? Date.now(),
       error: message,
     });
+    evict(cache);
   } finally {
     inflight.delete(key);
   }
@@ -110,8 +134,9 @@ export function rateLimited(ip: string): boolean {
   }
   list.push(now);
   hits.set(ip, list);
-  // Opportunistic cleanup to bound memory.
-  if (hits.size > 5000) {
+  // Opportunistic cleanup to bound memory. Swept early enough that a
+  // client minting keys cannot grow the map far inside one window.
+  if (hits.size > 1000) {
     for (const [k, v] of hits) {
       if (v.every((t) => now - t >= WINDOW_MS)) hits.delete(k);
     }

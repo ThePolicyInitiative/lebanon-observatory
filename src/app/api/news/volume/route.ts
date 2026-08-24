@@ -105,6 +105,15 @@ export async function GET() {
       lastUpdated: new Date(entry.fetchedAt).toISOString(),
       unit: "Share of globally monitored online news coverage (%)",
     },
-    { headers: { "cache-control": "public, s-maxage=1800, stale-while-revalidate=3600" } },
+    {
+      headers: {
+        // A failed or empty series recovers at the server after 60s; the
+        // CDN window must not outlive that.
+        "cache-control":
+          entry.error === null
+            ? "public, s-maxage=1800, stale-while-revalidate=3600"
+            : "public, s-maxage=60, stale-while-revalidate=300",
+      },
+    },
   );
 }
