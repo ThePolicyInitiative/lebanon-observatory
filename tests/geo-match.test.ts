@@ -45,6 +45,26 @@ describe("location matching", () => {
     );
   });
 
+  /**
+   * Cities the boundary layer holds only as quarters. Without an alias the
+   * city's own name matches no town, so the place carries no marker: the
+   * whole of Tripoli had none.
+   */
+  it("puts a marker on cities the layer only holds as quarters", () => {
+    expect(firstTown("Tripoli")).toBe("Trablous Et-Tell");
+    expect(districtsOf("Tripoli")).toContain("Tripoli");
+  });
+
+  /**
+   * An alias is a decision; mechanical matching is a guess. Hamra is the
+   * case that proves it has to win - there is a village of that name in
+   * Nabatieh, eighty kilometres from the Beirut quarter the entries mean.
+   */
+  it("prefers a written alias to a same-named town elsewhere", () => {
+    expect(firstTown("Hamra")).toBe("Ras Beyrouth");
+    expect(districtsOf("Hamra")).toContain("Beirut");
+  });
+
   it("resolves district references", () => {
     expect(districtsOf("Bent Jbeil district")).toContain("Bent Jbeil");
     expect(districtsOf("Nabatieh")).toContain(

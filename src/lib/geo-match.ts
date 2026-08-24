@@ -52,7 +52,15 @@ function skeletonOf(normalized: string): string {
   return normalized.replace(/[aeiouyw]/g, "");
 }
 
-/** Aliases (pre-normalized key → COD target). Well-known geography only. */
+/**
+ * Aliases (pre-normalized key → COD target). Well-known geography only.
+ *
+ * These are read before the mechanical tiers, because a hand-written
+ * decision should beat a fuzzy one. Read afterwards they were useless for
+ * exactly the ambiguous names they exist to settle: "Hamra" met the
+ * Nabatieh village of that name first and pinned Beirut's Hamra eighty
+ * kilometres south of itself.
+ */
 const TOWN_ALIASES: Record<string, string> = {
   aitarun: "Aaintaroun",
   hanuiy: "Hanaouay",
@@ -60,6 +68,12 @@ const TOWN_ALIASES: Record<string, string> = {
   costabravalandfil: "Choueifat El-Aamrousiyeh",
   // The tracking itself misspells Taybe's suffix ("Matjaayoun").
   tayb: "Taybet Matjaayoun",
+  // Cities the layer holds only as quarters, so the city's own name
+  // matches nothing and the place gets no marker at all. Each points at
+  // the quarter that is the city's centre.
+  tripoli: "Trablous Et-Tell",
+  trablus: "Trablous Et-Tell",
+  hamr: "Ras Beyrouth",
 };
 const DISTRICT_ALIASES: Record<string, string> = {
   tyr: "Sour",
@@ -69,7 +83,6 @@ const DISTRICT_ALIASES: Record<string, string> = {
   suthernsuburbsbeirut: "Baabda",
   beirutsuthernsuburbs: "Baabda",
   karantin: "Beirut",
-  hamr: "Beirut",
   bast: "Beirut",
   marelias: "Beirut",
   mareliascamp: "Beirut",
@@ -126,13 +139,13 @@ function matchPart(index: LocationIndex, part: string): Match | null {
   for (const candidate of [part, part.replace(GENERIC, " ")]) {
     const key = normalizePlace(candidate);
     if (!key) continue;
-    const town = index.exact.get(key) ?? index.skeleton.get(skeletonOf(key));
-    if (town) return { kind: "town", town: town.name, district: town.district };
     const aliasTown = TOWN_ALIASES[key];
     if (aliasTown) {
       const t = index.exact.get(normalizePlace(aliasTown));
       if (t) return { kind: "town", town: t.name, district: t.district };
     }
+    const town = index.exact.get(key) ?? index.skeleton.get(skeletonOf(key));
+    if (town) return { kind: "town", town: town.name, district: town.district };
     const district = index.districts.get(key) ?? DISTRICT_ALIASES[key];
     if (district) return { kind: "district", district };
   }

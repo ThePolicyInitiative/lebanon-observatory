@@ -18641,7 +18641,9 @@
     "stage": "Shelter and return",
     "stageNo": 9,
     "functionColumn": "Shelter / return",
-    "locationNames": [],
+    "locationNames": [
+      "Tripoli"
+    ],
     "regions": [
       "national_multi"
     ],
@@ -18666,7 +18668,9 @@
     "stage": "Safety and access",
     "stageNo": 4,
     "functionColumn": "Safety / first response",
-    "locationNames": [],
+    "locationNames": [
+      "Tripoli"
+    ],
     "regions": [
       "beirut_mount_lebanon",
       "south_nabatieh"

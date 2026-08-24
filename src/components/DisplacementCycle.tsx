@@ -81,47 +81,6 @@ const ROWS: { en: Row; ar: Row }[] = [
   },
 ];
 
-const DURABLE_RETURN: { en: [string, string]; ar: [string, string] }[] = [
-  {
-    en: ["Housing", "Unrepaired - no financed instrument for either war's private damage"],
-    ar: ["السكن", "بلا ترميم - ولا أداة تمويل لأضرار القطاع الخاص في أي من الحربين"],
-  },
-  {
-    en: [
-      "Services",
-      "Partially restored - three hospitals and 35 health centres closed at 6 July; water and electricity led reported gaps in return areas",
-    ],
-    ar: [
-      "الخدمات",
-      "مستعادة جزئياً - ثلاثة مستشفيات و35 مركزاً صحياً مقفلة في 6 تموز؛ والمياه والكهرباء تتصدّران الثغرات المعلَنة في مناطق العودة",
-    ],
-  },
-  {
-    en: [
-      "Safety",
-      "Unresolved south of the Litani - continuing ordnance, strikes and occupied border villages",
-    ],
-    ar: [
-      "الأمان",
-      "غير محسوم جنوب الليطاني - ذخائر مستمرة وغارات وقرى حدودية محتلة",
-    ],
-  },
-  {
-    en: ["Tenure", "Unaddressed - co-ownership, inheritance, tenancy and entries gaps untouched"],
-    ar: ["الحيازة", "غير معالَجة - الشيوع والإرث والإيجار وثغرات القيود بقيت على حالها"],
-  },
-  {
-    en: [
-      "Livelihoods",
-      "Unprogrammed - the largest loss lines had no institutional owner in either year",
-    ],
-    ar: [
-      "سبل العيش",
-      "بلا برنامج - أكبر بنود الخسارة لم يكن لها صاحب مؤسسي في أي من السنتين",
-    ],
-  },
-];
-
 const T = {
   en: {
     title: "The shelter-and-return cycle, run twice",
@@ -130,10 +89,6 @@ const T = {
     metric: "Metric",
     cycle2024: "2024 cycle",
     cycle2026: "2026 cycle",
-    testHead: "Why movement is not durable return (situation at the cut-off)",
-    testSub: "The durable-return test - housing, services, safety, tenure, livelihoods - was failed on at least three of five dimensions for large populations, and aid financing threatened food, rent and protection support from September.",
-    caveat:
-      "Both post-war moments produced the same risk at the same point: populations living in damaged structures through a winter while institutions process - except 2026 added occupied and demolished border villages whose residents cannot even return to rubble. July's reassuring return curves will be cited to close the emergency exactly when the unfinanced phase begins.",
   },
   ar: {
     title: "دورة الإيواء والعودة، جرت مرتين",
@@ -142,10 +97,6 @@ const T = {
     metric: "المؤشر",
     cycle2024: "دورة 2024",
     cycle2026: "دورة 2026",
-    testHead: "لماذا الحركة ليست عودة دائمة (الوضع عند تاريخ التوقف)",
-    testSub: "اختبار العودة الدائمة - السكن والخدمات والأمان والحيازة وسبل العيش - سقط في ثلاثة من خمسة أبعاد على الأقل بالنسبة إلى أعداد كبيرة من الناس، وتمويل المساعدات كان يهدّد دعم الغذاء والإيجار والحماية اعتباراً من أيلول.",
-    caveat:
-      "أنتجت اللحظتان بعد الحربين الخطر نفسه عند النقطة نفسها: ناس يعيشون في أبنية متضرّرة طوال شتاء بينما تُنجز المؤسسات إجراءاتها - إلا أن 2026 أضافت قرى حدودية محتلة ومهدَّمة لا يستطيع أهلها العودة حتى إلى الركام. ومنحنيات العودة المطمئنة في تموز ستُستشهَد بها لإقفال الطوارئ في اللحظة نفسها التي تبدأ فيها المرحلة غير المموَّلة.",
   },
 } as const;
 
@@ -187,29 +138,6 @@ export default function DisplacementCycle({ locale = "en" }: { locale?: Locale }
         </table>
       </div>
 
-      <div className="mt-5 panel-sunken p-4">
-        <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
-          {tr.testHead}
-        </h4>
-        <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-          {tr.testSub}
-        </p>
-        <ul className="mt-3 space-y-1.5 text-[13px]">
-          {DURABLE_RETURN.map((d) => {
-            const [dim, state] = d[locale];
-            return (
-              <li key={dim} className="flex gap-2">
-                <span className="w-24 shrink-0 font-semibold text-[color:var(--color-rust)]">{dim}</span>
-                <span>{state}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        {tr.caveat}
-      </p>
     </figure>
   );
 }

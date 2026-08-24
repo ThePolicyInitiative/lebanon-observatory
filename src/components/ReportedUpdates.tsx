@@ -15,7 +15,7 @@ const T = {
     seeMore: "See more",
     seeLess: "See less",
     where: "Where:",
-    indirect: "page not opened directly",
+    indirect: "from a search summary",
   },
   ar: {
     title: "مرصود خارج التتبّع",
@@ -28,7 +28,7 @@ const T = {
     seeMore: "تفاصيل أكثر",
     seeLess: "إخفاء التفاصيل",
     where: "أين:",
-    indirect: "لم تُفتح الصفحة مباشرة",
+    indirect: "من ملخص بحث",
   },
 } as const;
 
