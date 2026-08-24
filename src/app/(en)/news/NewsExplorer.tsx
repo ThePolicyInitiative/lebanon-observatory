@@ -6,6 +6,7 @@ import type { NewsArticle, NewsResponse } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 import NewsAnalytics from "./NewsAnalytics";
 
 const TABS = [
@@ -290,6 +291,12 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
   const inputCls =
     "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm";
 
+  const roving = useRovingRadio({
+    count: TABS.length,
+    activeIndex: TABS.findIndex((tb) => tb.id === tab),
+    onActivate: (i) => set("tab", TABS[i].id),
+  });
+
   return (
     <div>
       {/* Disclosure */}
@@ -299,13 +306,16 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Tabs */}
       <div role="tablist" aria-label={t.tabsAria} className="mt-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)]">
-        {TABS.map((tb) => {
+        {TABS.map((tb, i) => {
           const active = tb.id === tab;
           return (
             <button
               key={tb.id}
               role="tab"
               aria-selected={active}
+              id={`news-tab-${tb.id}`}
+              aria-controls="news-tabpanel"
+              {...roving.itemProps(i)}
               onClick={() => set("tab", tb.id)}
               className={`min-h-11 rounded-t-md border-b-2 px-3.5 text-sm transition-colors duration-150 ${
                 active
@@ -494,7 +504,13 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
       ) : null}
 
       {/* Results */}
-      <div className="mt-5" aria-live="polite">
+      <div
+        className="mt-5"
+        aria-live="polite"
+        role="tabpanel"
+        id="news-tabpanel"
+        aria-labelledby={`news-tab-${tab}`}
+      >
         {loading ? (
           <div className="grid gap-3 md:grid-cols-2" aria-busy="true" aria-label={t.loadingNews}>
             {Array.from({ length: 6 }).map((_, i) => (

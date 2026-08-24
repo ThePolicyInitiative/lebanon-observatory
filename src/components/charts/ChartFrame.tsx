@@ -14,18 +14,21 @@ type Props = {
   title: string;
   subtitle?: string;
   caveat?: string;
+  /** Accepted and IGNORED: on-page source chips were removed by design. */
   sourceIds?: string[];
-  /** Retained for compatibility; the on-page table view is disabled. */
+  /** Accepted and IGNORED: the on-page table view was removed by design.
+   * Editing a table spec at a call site changes nothing a reader sees. */
   table?: TableSpec;
   children: ReactNode;
-  /** Retained for compatibility with chart components. */
+  /** Accepted and IGNORED: the frame no longer drives the chart instance. */
   chartRef?: React.MutableRefObject<ECharts | null>;
   description?: string;
 };
 
 /**
- * Shared frame for every analytical visual: title hierarchy, caveat,
- * a screen-reader description and a shareable-URL copy control.
+ * Shared frame for every analytical visual: title hierarchy, caveat and
+ * a screen-reader description. Table/export/copy-link controls were
+ * removed deliberately and must not return.
  */
 export default function ChartFrame({
   id,

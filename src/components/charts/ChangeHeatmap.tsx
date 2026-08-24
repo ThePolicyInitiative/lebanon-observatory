@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
@@ -48,6 +48,8 @@ const T = {
     tableCaption: "Change in traced actor-stage presence, 2026 minus 2024.",
     tableHeaders: ["Actor layer", "Stage", "2024", "2026", "Change"],
     chartAria: "Heatmap of change in traced actor presence by layer and stage",
+    chartKeys:
+      "Interactive change heatmap. While it holds focus, the arrow keys move between cells and Enter opens the traced entries behind the selected cell.",
     dialogLabel: (layer: string, stage: string) => `Data for ${layer} in ${stage}`,
     drawerCounts: (y24: number, y26: number) =>
       `${y24} traced in 2024 · ${y26} in 2026 (analysis)`,
@@ -69,6 +71,8 @@ const T = {
     tableCaption: "التغيّر في الحضور المرصود بين الجهات والمراحل، 2026 ناقص 2024.",
     tableHeaders: ["طبقة الجهة", "المرحلة", "2024", "2026", "التغيّر"],
     chartAria: "خريطة حرارية للتغيّر في الحضور المرصود للجهات بحسب الطبقة والمرحلة",
+    chartKeys:
+      "خريطة حرارية تفاعلية للتغيّر. ما دامت في بؤرة التركيز، تنقل مفاتيح الأسهم بين الخلايا ويفتح Enter المدخلات المتتبَّعة وراء الخلية المختارة.",
     dialogLabel: (layer: string, stage: string) => `معطيات ${layer} في ${stage}`,
     drawerCounts: (y24: number, y26: number) =>
       `${y24} مرصوداً في 2024 · ${y26} في 2026 (التحليل)`,
@@ -99,6 +103,10 @@ export default function ChangeHeatmap({
   const requestSeq = useRef(0);
   const chartRef = useRef<ECharts | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const chartWrapRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  /** The cell the keyboard is on: stage and layer indices into the grid. */
+  const focusedCell = useRef({ si: 0, li: 0 });
 
   const t = T[locale];
   const layerMeta = layers(locale);
@@ -107,6 +115,12 @@ export default function ChangeHeatmap({
   useEffect(() => {
     if (cell) closeRef.current?.focus();
   }, [cell]);
+
+  /** Closing hands focus back to the chart container the dialog grew from. */
+  const close = useCallback(() => {
+    setCell(null);
+    chartWrapRef.current?.focus();
+  }, []);
 
   function openCell(layer: ActorLayer, stageNo: number) {
     const seq = ++requestSeq.current;
@@ -122,12 +136,96 @@ export default function ChangeHeatmap({
   }
 
   useEffect(() => {
+    if (!cell) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setCell(null);
+      if (e.key === "Escape") close();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [cell, close]);
+
+  /** Loop Tab and Shift+Tab within the open dialog. */
+  function trapTab(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key !== "Tab") return;
+    const root = dialogRef.current;
+    if (!root) return;
+    const focusables = root.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    if (focusables.length === 0) {
+      e.preventDefault();
+      return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+    if (e.shiftKey) {
+      if (active === first || !root.contains(active)) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else if (active === last || !root.contains(active)) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  /** Ring the keyboard cell and surface its value the way hovering does. */
+  function highlightCell(si: number, li: number, prev?: { si: number; li: number }) {
+    const chart = chartRef.current;
+    if (!chart) return;
+    if (prev) {
+      chart.dispatchAction({
+        type: "downplay",
+        seriesIndex: 0,
+        dataIndex: prev.li * 12 + prev.si,
+      });
+    }
+    const dataIndex = li * 12 + si;
+    chart.dispatchAction({ type: "highlight", seriesIndex: 0, dataIndex });
+    chart.dispatchAction({ type: "showTip", seriesIndex: 0, dataIndex });
+  }
+
+  /** Arrow keys walk the grid; Enter opens the cell the walk is on. */
+  function onChartKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    const { si, li } = focusedCell.current;
+    let nsi = si;
+    let nli = li;
+    switch (e.key) {
+      case "ArrowRight":
+        nsi = Math.min(stages.length - 1, si + 1);
+        break;
+      case "ArrowLeft":
+        nsi = Math.max(0, si - 1);
+        break;
+      // The category y-axis puts index 0 at the bottom of the grid.
+      case "ArrowUp":
+        nli = Math.min(layerMeta.length - 1, li + 1);
+        break;
+      case "ArrowDown":
+        nli = Math.max(0, li - 1);
+        break;
+      case "Enter":
+        e.preventDefault();
+        openCell(layerMeta[li].id, si + 1);
+        return;
+      default:
+        return;
+    }
+    e.preventDefault();
+    focusedCell.current = { si: nsi, li: nli };
+    highlightCell(nsi, nli, { si, li });
+  }
+
+  /** Leaving the chart clears the keyboard ring and its tooltip. */
+  function onChartBlur() {
+    const chart = chartRef.current;
+    if (!chart) return;
+    const { si, li } = focusedCell.current;
+    chart.dispatchAction({ type: "downplay", seriesIndex: 0, dataIndex: li * 12 + si });
+    chart.dispatchAction({ type: "hideTip" });
+  }
 
   const { data, maxAbs } = useMemo(() => {
     const cells: [number, number, number][] = [];
@@ -234,22 +332,31 @@ export default function ChangeHeatmap({
           rows: tableRows,
         }}
       >
-        <EChart
-          option={option}
-          height={330}
-          ariaLabel={t.chartAria}
-          onInit={(c) => {
-            chartRef.current = c;
-          }}
-          onEvents={{
-            click: (p) => {
-              const params = p as { value?: [number, number, number] };
-              if (!params.value) return;
-              const [si, li] = params.value;
-              openCell(layerMeta[li].id, si + 1);
-            },
-          }}
-        />
+        <div
+          ref={chartWrapRef}
+          tabIndex={0}
+          role="application"
+          aria-label={t.chartKeys}
+          onKeyDown={onChartKeyDown}
+          onBlur={onChartBlur}
+        >
+          <EChart
+            option={option}
+            height={330}
+            ariaLabel={t.chartAria}
+            onInit={(c) => {
+              chartRef.current = c;
+            }}
+            onEvents={{
+              click: (p) => {
+                const params = p as { value?: [number, number, number] };
+                if (!params.value) return;
+                const [si, li] = params.value;
+                openCell(layerMeta[li].id, si + 1);
+              },
+            }}
+          />
+        </div>
       </ChartFrame>
 
       {cell ? (
@@ -260,10 +367,12 @@ export default function ChangeHeatmap({
             layerMeta.find((l) => l.id === cell.layer)?.label ?? cell.layer,
             stages[cell.stageNo - 1],
           )}
+          ref={dialogRef}
           className="fixed inset-0 z-[60] flex justify-end bg-black/30"
           onClick={(e) => {
-            if (e.target === e.currentTarget) setCell(null);
+            if (e.target === e.currentTarget) close();
           }}
+          onKeyDown={trapTab}
         >
           <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white shadow-xl">
             <div className="flex items-start justify-between gap-3 border-b border-[color:var(--color-border)] p-4">
@@ -283,7 +392,7 @@ export default function ChangeHeatmap({
               <button
                 ref={closeRef}
                 type="button"
-                onClick={() => setCell(null)}
+                onClick={close}
                 className="min-h-11 min-w-11 rounded border border-[color:var(--color-border)] text-sm"
               >
                 <span className="sr-only">{t.close}</span>

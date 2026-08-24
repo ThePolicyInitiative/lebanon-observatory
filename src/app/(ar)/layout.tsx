@@ -57,6 +57,25 @@ export const metadata: Metadata = {
  * the served markup: a wrapper inside <body> reaches CSS, but it never
  * reaches a crawler or a screen reader announcing the document's language.
  */
+/** The same entity as the English half, named in Arabic for crawlers. */
+const JSON_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "مرصد إعادة إعمار لبنان",
+      alternateName: "Lebanon Reconstruction Observatory",
+      url: `${SITE_URL}/ar`,
+      inLanguage: ["ar", "en"],
+    },
+    {
+      "@type": "Organization",
+      name: "Lebanon Reconstruction Observatory",
+      url: SITE_URL,
+    },
+  ],
+});
+
 export default function ArabicRootLayout({ children }: { children: ReactNode }) {
   return (
     <html
@@ -66,6 +85,7 @@ export default function ArabicRootLayout({ children }: { children: ReactNode }) 
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        <script type="application/ld+json">{JSON_LD}</script>
         <a href="#main-content" className="skip-link">
           {CHROME.ar.skip}
         </a>

@@ -15,7 +15,9 @@ export type SlimRecord = Pick<
   | "actorSubtype"
   | "stage"
   | "stageNo"
+  | "functionColumn"
   | "locationNames"
+  | "regions"
   | "implementationStatus"
   | "comparability"
 > & {

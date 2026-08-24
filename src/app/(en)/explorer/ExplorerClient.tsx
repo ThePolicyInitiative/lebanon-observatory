@@ -3,14 +3,173 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ResultProfile from "@/components/charts/ResultProfile";
 import Link from "next/link";
-import { LAYER_META, STATUS_LABELS, COMPARABILITY_LABELS } from "@/lib/colors";
-import { roleRecords, actors, STAGES, locations } from "@/lib/data";
+import { actors, locations } from "@/lib/data-client";
+import { slimRecords, type SlimRecord } from "@/lib/map-records";
+import {
+  comparabilityLabel,
+  layers,
+  regionLabel,
+  stageLabel,
+  stageList,
+  statusLabel,
+  statusList,
+  type Locale,
+} from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
 import type { RoleRecord } from "@/lib/types";
 
-const FUNCTION_COLUMNS = [...new Set(roleRecords.map((r) => r.functionColumn))].sort();
+/**
+ * The explorer runs entirely over the slim projection the map already
+ * ships: list, filters and search never need the full log. Only when a
+ * row is opened does the drawer fetch that one entry's complete text
+ * from /entries/{id}.json - the same static-file pattern the change
+ * heatmap uses with /cells/ - so the browser downloads narrative prose
+ * one entry at a time instead of all 771 at once.
+ */
 
-export default function ExplorerClient() {
+const FUNCTION_COLUMNS = [...new Set(slimRecords.map((r) => r.functionColumn))].sort();
+const TOTAL = slimRecords.length;
+
+/** Every reader-facing string on this module, in both languages. */
+const T = {
+  en: {
+    filtersAria: "Data filters",
+    filtersSummary: (n: number, m: number) => `Filters (${n} of ${m} entries)`,
+    search: "Search",
+    searchPlaceholder: "Actor, place, keyword…",
+    year: "Year",
+    bothYears: "Both years",
+    layer: "Actor layer",
+    allLayers: "All layers",
+    stage: "Value-chain stage",
+    allStages: "All stages",
+    fn: "Function (workbook column)",
+    allFns: "All functions",
+    status: "Implementation status",
+    allStatuses: "All statuses",
+    region: "Region",
+    allRegions: "All regions",
+    reset: "Reset all filters",
+    shown: (n: number, m: number) => `${n} of ${m} entries shown`,
+    tableCaption:
+      "traced entries matching the current filters. Each row is one traced actor-function entry; select a row for detail.",
+    headers: ["Year", "Actor", "Layer", "Stage", "Location", "Activity", "Status"],
+    empty: (m: number) =>
+      `No entries match the current filters. Reset the filters to see all ${m} entries.`,
+    showMore: (n: number) => `Show more (${n} remaining)`,
+    dialogLabel: (name: string) => `entry detail for ${name}`,
+    close: "Close",
+    loadingDetail: "Loading this entry…",
+    loadFailed: "This entry could not be loaded.",
+    retry: "Try again",
+    formalMandate: "Formal mandate",
+    tracedAction: "Traced action",
+    statusLabel: "Implementation status",
+    comparability: "Comparability",
+    fnColumn: "Function / sector column",
+    locationsLabel: "Locations",
+    regionsLabel: "Regions",
+    financeRole: "Finance role",
+    procurementRole: "Procurement role",
+    implementationRole: "Implementation role",
+    oversightRole: "Oversight role",
+    notSpecified: "Not specified",
+    citations: "Citations",
+    onPaper: "On paper versus in practice",
+    confirmNote:
+      "Confirmation note: this entry marks traced presence. It is not proof of expenditure, effectiveness or completed output; statuses above “traced activity” are assigned only where the underlying text supports them.",
+    sameActor: (n: number) => `Same actor, other stages (${n})`,
+    relatedActors: "Related actors in this stage and year",
+    relatedNews: "Related news",
+    openCoverage: (s: string) => `Open live coverage tagged “${s}” →`,
+    joiner: "; ",
+  },
+  ar: {
+    filtersAria: "مرشّحات المعطيات",
+    filtersSummary: (n: number, m: number) => `المرشّحات (${n} من ${m} من المدخلات)`,
+    search: "بحث",
+    searchPlaceholder: "جهة، مكان، كلمة مفتاحية…",
+    year: "السنة",
+    bothYears: "السنتان معاً",
+    layer: "طبقة الجهة",
+    allLayers: "كل الطبقات",
+    stage: "مرحلة سلسلة القيمة",
+    allStages: "كل المراحل",
+    fn: "الوظيفة (عمود المصنّف)",
+    allFns: "كل الوظائف",
+    status: "حالة التنفيذ",
+    allStatuses: "كل الحالات",
+    region: "المنطقة",
+    allRegions: "كل المناطق",
+    reset: "إعادة ضبط كل المرشّحات",
+    shown: (n: number, m: number) => `${n} من ${m} من المدخلات معروضة`,
+    tableCaption:
+      "المدخلات المتتبَّعة المطابقة للمرشّحات الحالية. كل صف مدخل واحد لجهة ووظيفة؛ اختر صفاً لعرض التفصيل.",
+    headers: ["السنة", "الجهة", "الطبقة", "المرحلة", "الموقع", "النشاط", "الحالة"],
+    empty: (m: number) =>
+      `لا مدخلات تطابق المرشّحات الحالية. أعد ضبط المرشّحات لعرض المدخلات كلها (${m}).`,
+    showMore: (n: number) => `عرض المزيد (${n} متبقياً)`,
+    dialogLabel: (name: string) => `تفصيل المدخل: ${name}`,
+    close: "إغلاق",
+    loadingDetail: "جارٍ تحميل هذا المدخل…",
+    loadFailed: "تعذّر تحميل هذا المدخل.",
+    retry: "أعد المحاولة",
+    formalMandate: "التفويض الرسمي",
+    tracedAction: "النشاط المتتبَّع",
+    statusLabel: "حالة التنفيذ",
+    comparability: "القابلية للمقارنة",
+    fnColumn: "عمود الوظيفة / القطاع",
+    locationsLabel: "المواقع",
+    regionsLabel: "المناطق",
+    financeRole: "دور تمويلي",
+    procurementRole: "دور في الشراء",
+    implementationRole: "دور تنفيذي",
+    oversightRole: "دور رقابي",
+    notSpecified: "غير محدَّد",
+    citations: "الإحالات",
+    onPaper: "على الورق مقابل الممارسة",
+    confirmNote:
+      "ملاحظة تأكيد: هذا المدخل يدل على حضور متتبَّع، لا على إنفاق أو فاعلية أو ناتج مكتمل؛ والحالات الأعلى من «نشاط مرصود» لا تُسنَد إلا حيث يدعمها النص الأساسي.",
+    sameActor: (n: number) => `الجهة نفسها، مراحل أخرى (${n})`,
+    relatedActors: "جهات ذات صلة في هذه المرحلة والسنة",
+    relatedNews: "مستجدات ذات صلة",
+    openCoverage: (s: string) => `افتح التغطية الحية الموسومة «${s}» ←`,
+    joiner: "؛ ",
+  },
+} as const;
+
+/**
+ * One passage of entry text in the page's language where a twin exists,
+ * in its own language where none does: an English fallback inside the
+ * Arabic page keeps its own direction instead of being bent right-to-left.
+ */
+function EntryText({
+  en,
+  arText,
+  locale,
+  className,
+}: {
+  en: string | null | undefined;
+  arText?: string | null;
+  locale: Locale;
+  className?: string;
+}) {
+  const text = locale === "ar" ? (arText ?? en) : en;
+  if (!text) return null;
+  const foreign = locale === "ar" && !arText;
+  return (
+    <p className={className} {...(foreign ? { lang: "en", dir: "ltr" as const } : {})}>
+      {text}
+    </p>
+  );
+}
+
+export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = {}) {
+  const ar = locale === "ar";
+  const t = T[locale];
+  const layerMeta = layers(locale);
+  const stages = stageList(locale);
+
   const { get, set, reset } = useUrlState({
     year: "all",
     layer: "all",
@@ -20,143 +179,217 @@ export default function ExplorerClient() {
     region: "all",
     q: "",
   });
-  const [selected, setSelected] = useState<RoleRecord | null>(null);
+  const [selected, setSelected] = useState<SlimRecord | null>(null);
+  // null while the entry's full text is on its way from /entries/.
+  const [detail, setDetail] = useState<RoleRecord | null>(null);
+  const [detailFailed, setDetailFailed] = useState(false);
   const [visible, setVisible] = useState(50);
+  const requestSeq = useRef(0);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  /** The control that opened the drawer, so closing can hand focus back. */
+  const openerRef = useRef<HTMLElement | null>(null);
+
+  function loadDetail(id: string) {
+    const seq = ++requestSeq.current;
+    setDetail(null);
+    setDetailFailed(false);
+    fetch(`/entries/${id}.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error(String(res.status));
+        return res.json() as Promise<RoleRecord>;
+      })
+      .then((full) => {
+        if (requestSeq.current === seq) setDetail(full);
+      })
+      .catch(() => {
+        if (requestSeq.current === seq) setDetailFailed(true);
+      });
+  }
+
+  function open(r: SlimRecord, opener?: HTMLElement | null) {
+    if (opener) openerRef.current = opener;
+    setSelected(r);
+    loadDetail(r.id);
+  }
+
+  function close() {
+    requestSeq.current++;
+    // Release the top layer first: while the dialog is modal, everything
+    // outside it is inert and the focus restoration below would be a no-op.
+    dialogRef.current?.close();
+    setSelected(null);
+    setDetail(null);
+    setDetailFailed(false);
+    const opener = openerRef.current;
+    openerRef.current = null;
+    opener?.focus();
+  }
+
+  // showModal() gives the drawer a native focus trap: everything behind
+  // the dialog is inert, so Tab can no longer walk out into the page.
+  useEffect(() => {
+    const d = dialogRef.current;
+    if (selected && d && !d.open) d.showModal();
+  }, [selected]);
 
   useEffect(() => {
     if (selected) closeRef.current?.focus();
   }, [selected]);
 
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setSelected(null);
+  /**
+   * Search text per entry, prebuilt once so typing stays instant:
+   * actor, action (plus its Arabic twin under Arabic), locations in
+   * both scripts, and the stage in both its raw and printed names.
+   */
+  const haystacks = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const r of slimRecords) {
+      const parts = [r.actorName, r.action, r.stage, stageLabel(r.stageNo, locale), ...r.locationNames];
+      if (ar) {
+        if (r.actionAr) parts.push(r.actionAr);
+        if (r.locationNamesAr) parts.push(...r.locationNamesAr);
+      }
+      m.set(r.id, parts.join(" ").toLowerCase());
     }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+    return m;
+  }, [ar, locale]);
 
   const filtered = useMemo(() => {
     const q = get("q").toLowerCase();
-    return roleRecords.filter((r) => {
+    return slimRecords.filter((r) => {
       if (get("year") !== "all" && String(r.year) !== get("year")) return false;
       if (get("layer") !== "all" && r.actorLayer !== get("layer")) return false;
       if (get("stage") !== "all" && String(r.stageNo) !== get("stage")) return false;
       if (get("fn") !== "all" && r.functionColumn !== get("fn")) return false;
       if (get("status") !== "all" && r.implementationStatus !== get("status")) return false;
       if (get("region") !== "all" && !r.regions.includes(get("region"))) return false;
-      if (
-        q &&
-        !r.actorName.toLowerCase().includes(q) &&
-        !r.summary.toLowerCase().includes(q) &&
-        !r.locationNames.some((l) => l.toLowerCase().includes(q))
-      )
-        return false;
+      if (q && !(haystacks.get(r.id) ?? "").includes(q)) return false;
       return true;
     });
-  }, [get]);
+  }, [get, haystacks]);
 
-  const actorEntry = selected
-    ? actors.find((a) => a.id === selected.actorId)
-    : null;
+  // Actor identity in the slim projection is the (name, year) pair: the
+  // full log's per-year actor ids resolve to exactly that.
   const relatedRecords = selected
-    ? roleRecords.filter((r) => r.actorId === selected.actorId && r.id !== selected.id)
+    ? slimRecords.filter(
+        (r) => r.actorName === selected.actorName && r.year === selected.year && r.id !== selected.id,
+      )
     : [];
-  const relatedActors = selected
+  const relatedActorNames = selected
     ? [
         ...new Set(
-          roleRecords
+          slimRecords
             .filter(
               (r) =>
                 r.stageNo === selected.stageNo &&
                 r.year === selected.year &&
-                r.actorId !== selected.actorId,
+                r.actorName !== selected.actorName,
             )
             .map((r) => r.actorName.split(":")[0]),
         ),
       ].slice(0, 8)
     : [];
+  const actorEntry = detail ? actors.find((a) => a.id === detail.actorId) : null;
+  const mvc = actorEntry
+    ? ar
+      ? (actorEntry.mandateVsCapacityAr ?? actorEntry.mandateVsCapacity)
+      : actorEntry.mandateVsCapacity
+    : null;
+
+  const name = (s: string) =>
+    ar ? (
+      <span lang="en" dir="ltr">
+        {s}
+      </span>
+    ) : (
+      s
+    );
+  const locsFor = (r: SlimRecord) =>
+    ar && r.locationNamesAr?.length ? r.locationNamesAr : r.locationNames;
 
   const selectCls =
     "min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm";
+  const headingCls =
+    "text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]";
 
   return (
     <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
       {/* Filter sidebar / sheet */}
-      <aside aria-label="Data filters" className="lg:sticky lg:top-[var(--header-h)] lg:self-start">
+      <aside aria-label={t.filtersAria} className="lg:sticky lg:top-[var(--header-h)] lg:self-start">
         <details className="rounded-md border border-[color:var(--color-border)] bg-white lg:open:pb-4" open>
           <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[color:var(--color-navy)]">
-            Filters ({filtered.length} of {roleRecords.length} entries)
+            {t.filtersSummary(filtered.length, TOTAL)}
           </summary>
           <div className="space-y-3 px-4 pb-4">
             <div>
-              <label htmlFor="ex-q" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Search</label>
+              <label htmlFor="ex-q" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.search}</label>
               <input
                 id="ex-q"
                 type="search"
                 defaultValue={get("q")}
                 onKeyDown={(e) => { if (e.key === "Enter") set("q", (e.target as HTMLInputElement).value); }}
                 onBlur={(e) => set("q", e.target.value)}
-                placeholder="Actor, place, keyword…"
+                placeholder={t.searchPlaceholder}
                 className={selectCls}
               />
             </div>
             <div>
-              <label htmlFor="ex-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Year</label>
+              <label htmlFor="ex-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.year}</label>
               <select id="ex-year" className={selectCls} value={get("year")} onChange={(e) => set("year", e.target.value)}>
-                <option value="all">Both years</option>
+                <option value="all">{t.bothYears}</option>
                 <option value="2024">2024</option>
                 <option value="2026">2026</option>
               </select>
             </div>
             <div>
-              <label htmlFor="ex-layer" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Actor layer</label>
+              <label htmlFor="ex-layer" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.layer}</label>
               <select id="ex-layer" className={selectCls} value={get("layer")} onChange={(e) => set("layer", e.target.value)}>
-                <option value="all">All layers</option>
-                {LAYER_META.map((l) => (
+                <option value="all">{t.allLayers}</option>
+                {layerMeta.map((l) => (
                   <option key={l.id} value={l.id}>{l.label}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="ex-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Value-chain stage</label>
+              <label htmlFor="ex-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.stage}</label>
               <select id="ex-stage" className={selectCls} value={get("stage")} onChange={(e) => set("stage", e.target.value)}>
-                <option value="all">All stages</option>
-                {STAGES.map((s, i) => (
+                <option value="all">{t.allStages}</option>
+                {stages.map((s, i) => (
                   <option key={s} value={String(i + 1)}>{i + 1}. {s}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Function (workbook column)</label>
+              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.fn}</label>
               <select id="ex-fn" className={selectCls} value={get("fn")} onChange={(e) => set("fn", e.target.value)}>
-                <option value="all">All functions</option>
+                <option value="all">{t.allFns}</option>
                 {FUNCTION_COLUMNS.map((f) => (
                   <option key={f} value={f}>{f}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="ex-status" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Implementation status</label>
+              <label htmlFor="ex-status" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.status}</label>
               <select id="ex-status" className={selectCls} value={get("status")} onChange={(e) => set("status", e.target.value)}>
-                <option value="all">All statuses</option>
-                {Object.entries(STATUS_LABELS).map(([k, v]) => (
+                <option value="all">{t.allStatuses}</option>
+                {statusList(locale).map(([k, v]) => (
                   <option key={k} value={k}>{v}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="ex-region" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">Region</label>
+              <label htmlFor="ex-region" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.region}</label>
               <select id="ex-region" className={selectCls} value={get("region")} onChange={(e) => set("region", e.target.value)}>
-                <option value="all">All regions</option>
+                <option value="all">{t.allRegions}</option>
                 {locations.regions.map((r) => (
-                  <option key={r.id} value={r.id}>{r.label}</option>
+                  <option key={r.id} value={r.id}>{regionLabel(r.id, locale)}</option>
                 ))}
               </select>
             </div>
             <div className="pt-1">
               <button type="button" onClick={reset} className="min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white text-sm text-[color:var(--color-text-secondary)]">
-                Reset all filters
+                {t.reset}
               </button>
             </div>
           </div>
@@ -165,24 +398,26 @@ export default function ExplorerClient() {
 
       {/* Results */}
       <div className="mt-4 lg:mt-0">
+        {/* The filtered count, announced to screen readers as it changes. */}
+        <p role="status" aria-live="polite" className="sr-only">
+          {t.shown(filtered.length, TOTAL)}
+        </p>
+
         {/* The shape of the current result, above the rows. Narrowing to
             forty entries told you the count and nothing about what the
             forty were; this redraws as the filters move. */}
         <div className="mb-4">
-          <ResultProfile rows={filtered} />
+          <ResultProfile rows={filtered} locale={locale} />
         </div>
 
         {/* Desktop table */}
         <div className="hidden overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-white md:block">
           <table className="min-w-full border-collapse text-[13px]">
-            <caption className="sr-only">
-              traced entries matching the current filters. Each row is
-              one traced actor-function entry; select a row for detail.
-            </caption>
+            <caption className="sr-only">{t.tableCaption}</caption>
             <thead>
               <tr>
-                {["Year", "Actor", "Layer", "Stage", "Location", "Activity", "Status"].map((h) => (
-                  <th key={h} scope="col" className="whitespace-nowrap border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-left font-semibold text-[color:var(--color-navy)]">
+                {t.headers.map((h) => (
+                  <th key={h} scope="col" className="whitespace-nowrap border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-start font-semibold text-[color:var(--color-navy)]">
                     {h}
                   </th>
                 ))}
@@ -193,7 +428,7 @@ export default function ExplorerClient() {
                 <tr
                   key={r.id}
                   className="cursor-pointer odd:bg-[color:var(--color-bg)] hover:bg-[#EEF2F7]"
-                  onClick={() => setSelected(r)}
+                  onClick={(e) => open(r, e.currentTarget.querySelector("button"))}
                 >
                   <td className="border-b border-[color:var(--color-border)] px-2.5 py-2 tabular-nums">
                     <span
@@ -206,24 +441,26 @@ export default function ExplorerClient() {
                   <td className="max-w-[220px] border-b border-[color:var(--color-border)] px-2.5 py-2">
                     <button
                       type="button"
-                      onClick={(e) => { e.stopPropagation(); setSelected(r); }}
-                      className="text-left font-medium text-[color:var(--color-navy)] underline-offset-2 hover:underline"
+                      onClick={(e) => { e.stopPropagation(); open(r, e.currentTarget); }}
+                      className="text-start font-medium text-[color:var(--color-navy)] underline-offset-2 hover:underline"
                     >
-                      {r.actorName.split(":")[0]}
+                      {name(r.actorName.split(":")[0])}
                     </button>
                   </td>
                   <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">
                     <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                      <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: LAYER_META.find((l) => l.id === r.actorLayer)?.color }} />
-                      {LAYER_META.find((l) => l.id === r.actorLayer)?.short}
+                      <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: layerMeta.find((l) => l.id === r.actorLayer)?.color }} />
+                      {layerMeta.find((l) => l.id === r.actorLayer)?.short}
                     </span>
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{r.stage}</td>
+                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{stageLabel(r.stageNo, locale)}</td>
                   <td className="max-w-[160px] border-b border-[color:var(--color-border)] px-2.5 py-2 text-[color:var(--color-text-secondary)]">
-                    {r.locationNames.slice(0, 2).join("; ") || "-"}
+                    {locsFor(r).slice(0, 2).join(t.joiner) || "-"}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{r.functionColumn}</td>
-                  <td className="whitespace-nowrap border-b border-[color:var(--color-border)] px-2.5 py-2">{STATUS_LABELS[r.implementationStatus]}</td>
+                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">
+                    {ar ? <span lang="en" dir="ltr">{r.functionColumn}</span> : r.functionColumn}
+                  </td>
+                  <td className="whitespace-nowrap border-b border-[color:var(--color-border)] px-2.5 py-2">{statusLabel(r.implementationStatus, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -236,13 +473,13 @@ export default function ExplorerClient() {
             <li key={r.id}>
               <button
                 type="button"
-                onClick={() => setSelected(r)}
-                className="w-full card p-3.5 text-left"
+                onClick={(e) => open(r, e.currentTarget)}
+                className="w-full card p-3.5 text-start"
               >
                 <p className="flex items-center justify-between gap-2 text-[11px] text-[color:var(--color-text-secondary)]">
                   <span className="inline-flex items-center gap-1.5">
-                    <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: LAYER_META.find((l) => l.id === r.actorLayer)?.color }} />
-                    {LAYER_META.find((l) => l.id === r.actorLayer)?.short}
+                    <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: layerMeta.find((l) => l.id === r.actorLayer)?.color }} />
+                    {layerMeta.find((l) => l.id === r.actorLayer)?.short}
                   </span>
                   <span
                     className="rounded-sm px-1.5 py-0.5 text-[10.5px] font-semibold text-white"
@@ -251,9 +488,9 @@ export default function ExplorerClient() {
                     {r.year}
                   </span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-[color:var(--color-navy)]">{r.actorName.split(":")[0]}</p>
+                <p className="mt-1 text-sm font-semibold text-[color:var(--color-navy)]">{name(r.actorName.split(":")[0])}</p>
                 <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
-                  {r.stage} · {r.functionColumn} · {STATUS_LABELS[r.implementationStatus]}
+                  {stageLabel(r.stageNo, locale)} · {ar ? <span lang="en" dir="ltr">{r.functionColumn}</span> : r.functionColumn} · {statusLabel(r.implementationStatus, locale)}
                 </p>
               </button>
             </li>
@@ -262,8 +499,7 @@ export default function ExplorerClient() {
 
         {filtered.length === 0 ? (
           <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
-            No entries match the current filters. Reset the filters to see all{" "}
-            {roleRecords.length} entries.
+            {t.empty(TOTAL)}
           </p>
         ) : null}
 
@@ -274,38 +510,39 @@ export default function ExplorerClient() {
               onClick={() => setVisible((v) => v + 100)}
               className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-5 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
             >
-              Show more ({filtered.length - visible} remaining)
+              {t.showMore(filtered.length - visible)}
             </button>
           </div>
         ) : null}
       </div>
 
-      {/* Detail drawer */}
+      {/* Detail drawer: a native modal dialog, so focus is genuinely
+          trapped inside it and handed back to the opening row on close. */}
       {selected ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`entry detail for ${selected.actorName}`}
-          className="fixed inset-0 z-[60] flex justify-end bg-black/30"
-          onClick={(e) => { if (e.target === e.currentTarget) setSelected(null); }}
+        <dialog
+          ref={dialogRef}
+          aria-label={t.dialogLabel(selected.actorName)}
+          className="fixed inset-0 z-[60] m-0 h-full max-h-none w-full max-w-none justify-end border-0 bg-black/30 p-0 open:flex"
+          onCancel={(e) => { e.preventDefault(); close(); }}
+          onClick={(e) => { if (e.target === e.currentTarget) close(); }}
         >
-          <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white shadow-xl">
+          <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white text-[color:var(--color-text)] shadow-xl">
             <div className="flex items-start justify-between gap-3 border-b border-[color:var(--color-border)] p-4">
               <div>
                 <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-                  {LAYER_META.find((l) => l.id === selected.actorLayer)?.label} · {selected.year} · {selected.stage}
+                  {layerMeta.find((l) => l.id === selected.actorLayer)?.label} · {selected.year} · {stageLabel(selected.stageNo, locale)}
                 </p>
                 <h3 className="mt-0.5 text-sm font-semibold text-[color:var(--color-navy)]">
-                  {selected.actorName}
+                  {name(selected.actorName)}
                 </h3>
               </div>
               <button
                 ref={closeRef}
                 type="button"
-                onClick={() => setSelected(null)}
+                onClick={close}
                 className="min-h-11 min-w-11 rounded border border-[color:var(--color-border)] text-sm"
               >
-                <span className="sr-only">Close</span>
+                <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
               </button>
             </div>
@@ -314,107 +551,161 @@ export default function ExplorerClient() {
                   concatenated, so printing it here showed the same two
                   passages twice. It stays in the data, where the search
                   filter still reads it. */}
-              {selected.formalMandate ? (
-                <section>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Formal mandate</h4>
-                  <p className="mt-1 leading-relaxed">{selected.formalMandate}</p>
-                </section>
-              ) : null}
-              {selected.tracedAction ? (
-                <section>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Traced action</h4>
-                  <p className="mt-1 leading-relaxed">{selected.tracedAction}</p>
-                </section>
-              ) : null}
-              <dl className="grid grid-cols-2 gap-3 text-[13px]">
-                <div>
-                  <dt className="font-semibold text-[color:var(--color-text-secondary)]">Implementation status</dt>
-                  <dd>{STATUS_LABELS[selected.implementationStatus]}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-[color:var(--color-text-secondary)]">Comparability</dt>
-                  <dd>{COMPARABILITY_LABELS[selected.comparability]}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-[color:var(--color-text-secondary)]">Function / sector column</dt>
-                  <dd>{selected.functionColumn}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-[color:var(--color-text-secondary)]">Locations</dt>
-                  <dd>{selected.locationNames.join("; ") || "Not specified"}</dd>
-                </div>
-                {selected.financingRole ? (
-                  <div>
-                    <dt className="font-semibold text-[color:var(--color-text-secondary)]">Finance role</dt>
-                    <dd>{selected.financingRole}</dd>
-                  </div>
-                ) : null}
-                {selected.procurementRole ? (
-                  <div>
-                    <dt className="font-semibold text-[color:var(--color-text-secondary)]">Procurement role</dt>
-                    <dd>{selected.procurementRole}</dd>
-                  </div>
-                ) : null}
-              </dl>
-              {actorEntry?.mandateVsCapacity ? (
+              {detailFailed ? (
                 <section className="rounded-md bg-[color:var(--color-bg)] p-3">
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">On paper versus in practice</h4>
-                  <p className="mt-1 text-[13px] leading-relaxed">{actorEntry.mandateVsCapacity}</p>
+                  <p className="text-[13px] text-[color:var(--color-text-secondary)]">{t.loadFailed}</p>
+                  <button
+                    type="button"
+                    onClick={() => loadDetail(selected.id)}
+                    className="mt-2 min-h-9 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-[13px] text-[color:var(--color-navy)]"
+                  >
+                    {t.retry}
+                  </button>
                 </section>
-              ) : null}
-              <section>
-                <p className="text-xs text-[color:var(--color-text-secondary)]">
-                  Confirmation note: this entry marks traced presence.
-                  It is not proof of expenditure,
-                  effectiveness or completed output; statuses above
-                  &ldquo;traced activity&rdquo; are assigned only where the
-                  underlying text supports them.
-                </p>
-              </section>
+              ) : !detail ? (
+                <div aria-busy="true" aria-label={t.loadingDetail} className="space-y-2">
+                  <p className="text-[13px] text-[color:var(--color-text-secondary)]">{t.loadingDetail}</p>
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-[color:var(--color-bg)]" />
+                  <div className="h-4 w-full animate-pulse rounded bg-[color:var(--color-bg)]" />
+                  <div className="h-4 w-2/3 animate-pulse rounded bg-[color:var(--color-bg)]" />
+                </div>
+              ) : (
+                <>
+                  {detail.formalMandate ? (
+                    <section>
+                      <h4 className={headingCls}>{t.formalMandate}</h4>
+                      <EntryText en={detail.formalMandate} arText={detail.formalMandateAr} locale={locale} className="mt-1 leading-relaxed" />
+                    </section>
+                  ) : null}
+                  {detail.tracedAction ? (
+                    <section>
+                      <h4 className={headingCls}>{t.tracedAction}</h4>
+                      <EntryText en={detail.tracedAction} arText={detail.tracedActionAr} locale={locale} className="mt-1 leading-relaxed" />
+                    </section>
+                  ) : null}
+                  <dl className="grid grid-cols-2 gap-3 text-[13px]">
+                    <div>
+                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.statusLabel}</dt>
+                      <dd>{statusLabel(detail.implementationStatus, locale)}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.comparability}</dt>
+                      <dd>{comparabilityLabel(detail.comparability, locale)}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.fnColumn}</dt>
+                      <dd>{ar ? <span lang="en" dir="ltr">{detail.functionColumn}</span> : detail.functionColumn}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.locationsLabel}</dt>
+                      <dd>
+                        {ar && detail.locationNamesAr?.length
+                          ? detail.locationNamesAr.join(t.joiner)
+                          : detail.locationNames.join(t.joiner) || t.notSpecified}
+                      </dd>
+                    </div>
+                    {detail.regions.length > 0 ? (
+                      <div>
+                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.regionsLabel}</dt>
+                        <dd>{detail.regions.map((id) => regionLabel(id, locale)).join(t.joiner)}</dd>
+                      </div>
+                    ) : null}
+                    {detail.financingRole ? (
+                      <div>
+                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.financeRole}</dt>
+                        <dd>{ar ? <span lang="en" dir="ltr">{detail.financingRole}</span> : detail.financingRole}</dd>
+                      </div>
+                    ) : null}
+                    {detail.procurementRole ? (
+                      <div>
+                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.procurementRole}</dt>
+                        <dd>{ar ? <span lang="en" dir="ltr">{detail.procurementRole}</span> : detail.procurementRole}</dd>
+                      </div>
+                    ) : null}
+                    {detail.implementationRole ? (
+                      <div>
+                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.implementationRole}</dt>
+                        <dd>{ar ? <span lang="en" dir="ltr">{detail.implementationRole}</span> : detail.implementationRole}</dd>
+                      </div>
+                    ) : null}
+                    {detail.oversightRole ? (
+                      <div>
+                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.oversightRole}</dt>
+                        <dd>{ar ? <span lang="en" dir="ltr">{detail.oversightRole}</span> : detail.oversightRole}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                  {detail.sourceIds.length > 0 ? (
+                    <section>
+                      <h4 className={headingCls}>{t.citations}</h4>
+                      <ul className="mt-1 flex flex-wrap gap-1.5">
+                        {detail.sourceIds.map((id) => (
+                          <li key={id} dir="ltr" className="rounded-sm bg-[color:var(--color-bg)] px-2 py-0.5 font-mono text-[11px]">
+                            {id}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  ) : null}
+                  {mvc ? (
+                    <section className="rounded-md bg-[color:var(--color-bg)] p-3">
+                      <h4 className={headingCls}>{t.onPaper}</h4>
+                      <EntryText
+                        en={actorEntry?.mandateVsCapacity}
+                        arText={actorEntry?.mandateVsCapacityAr}
+                        locale={locale}
+                        className="mt-1 text-[13px] leading-relaxed"
+                      />
+                    </section>
+                  ) : null}
+                  <section>
+                    <p className="text-xs text-[color:var(--color-text-secondary)]">{t.confirmNote}</p>
+                  </section>
+                </>
+              )}
               {relatedRecords.length > 0 ? (
                 <section>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-                    Same actor, other stages ({relatedRecords.length})
-                  </h4>
+                  <h4 className={headingCls}>{t.sameActor(relatedRecords.length)}</h4>
                   <ul className="mt-1 flex flex-wrap gap-1.5">
                     {relatedRecords.slice(0, 8).map((r) => (
                       <li key={r.id}>
                         <button
                           type="button"
-                          onClick={() => setSelected(r)}
+                          onClick={() => open(r)}
                           className="rounded-sm bg-[color:var(--color-bg)] px-2 py-1 text-xs hover:bg-[#EEF2F7]"
                         >
-                          {r.stage}
+                          {stageLabel(r.stageNo, locale)}
                         </button>
                       </li>
                     ))}
                   </ul>
                 </section>
               ) : null}
-              {relatedActors.length > 0 ? (
+              {relatedActorNames.length > 0 ? (
                 <section>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-                    Related actors in this stage and year
-                  </h4>
-                  <p className="mt-1 text-[13px] text-[color:var(--color-text-secondary)]">
-                    {relatedActors.join("; ")}
+                  <h4 className={headingCls}>{t.relatedActors}</h4>
+                  <p
+                    className="mt-1 text-[13px] text-[color:var(--color-text-secondary)]"
+                    {...(ar ? { lang: "en", dir: "ltr" as const } : {})}
+                  >
+                    {relatedActorNames.join("; ")}
                   </p>
                 </section>
               ) : null}
               <section>
-                <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">Related news</h4>
+                <h4 className={headingCls}>{t.relatedNews}</h4>
                 <p className="mt-1 text-[13px]">
                   <Link
-                    href={`/news?stage=${encodeURIComponent(selected.stage)}`}
+                    href={`${ar ? "/ar" : ""}/news?stage=${encodeURIComponent(selected.stage)}`}
                     className="text-[color:var(--color-blue)] underline underline-offset-2"
                   >
-                    Open live coverage tagged &ldquo;{selected.stage}&rdquo; →
+                    {t.openCoverage(stageLabel(selected.stageNo, locale))}
                   </Link>
                 </p>
               </section>
             </div>
           </div>
-        </div>
+        </dialog>
       ) : null}
     </div>
   );

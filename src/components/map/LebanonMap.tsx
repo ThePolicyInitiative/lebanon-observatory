@@ -15,6 +15,7 @@ import {
   type Locale,
 } from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import {
   computeBorderStripTowns,
@@ -592,6 +593,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   const selectCls =
     "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
 
+  const yearOptions = ["2024", "2026"] as const;
+  const yearRoving = useRovingRadio({
+    count: yearOptions.length,
+    activeIndex: yearOptions.findIndex((y) => y === String(year)),
+    onActivate: (i) => set("year", yearOptions[i]),
+  });
+
   const nonMappable = locations.regions.filter((r) => !r.mappable);
 
   return (
@@ -604,12 +612,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               {t.year}
             </label>
             <div className="mt-1 inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white" role="radiogroup" aria-label={t.mapYear}>
-              {(["2024", "2026"] as const).map((y) => (
+              {yearOptions.map((y, i) => (
                 <button
                   key={y}
                   type="button"
                   role="radio"
                   aria-checked={String(year) === y}
+                  {...yearRoving.itemProps(i)}
                   onClick={() => set("year", y)}
                   className={`min-h-11 px-4 text-sm ${
                     String(year) === y ? "font-semibold text-white" : "text-[color:var(--color-text-secondary)]"

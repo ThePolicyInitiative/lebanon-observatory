@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { layers, stageLabel, statusLabel, type Locale } from "@/lib/vocab";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 
 const T = {
@@ -120,6 +121,23 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
 
   const shownRecords = groups.reduce((a, g) => a + g.records.length, 0);
 
+  const layerOptions = [
+    { id: "all" as const, label: t.allLayers, color: "#667588" },
+    ...layers(locale),
+  ];
+  const layerRoving = useRovingRadio({
+    count: layerOptions.length,
+    activeIndex: layerOptions.findIndex((l) => l.id === layer),
+    onActivate: (i) => setLayer(layerOptions[i].id as "all" | ActorLayer),
+  });
+
+  const yearOptions = ["both", 2024, 2026] as const;
+  const yearRoving = useRovingRadio({
+    count: yearOptions.length,
+    activeIndex: yearOptions.findIndex((y) => y === year),
+    onActivate: (i) => setYear(yearOptions[i]),
+  });
+
   function toggle(base: string) {
     setOpen((cur) => {
       const next = new Set(cur);
@@ -150,13 +168,14 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
           />
         </div>
         <div role="radiogroup" aria-label={t.layerFilter} className="flex flex-wrap gap-1.5">
-          {[{ id: "all" as const, label: t.allLayers, color: "#667588" }, ...layers(locale)].map(
-            (l) => (
+          {layerOptions.map(
+            (l, i) => (
               <button
                 key={l.id}
                 type="button"
                 role="radio"
                 aria-checked={layer === l.id}
+                {...layerRoving.itemProps(i)}
                 onClick={() => setLayer(l.id as "all" | ActorLayer)}
                 className={`inline-flex min-h-9 items-center gap-1.5 rounded-md border px-2.5 text-xs font-medium transition-colors ${
                   layer === l.id
@@ -175,12 +194,13 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
           aria-label={t.yearFilter}
           className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
         >
-          {(["both", 2024, 2026] as const).map((y) => (
+          {yearOptions.map((y, i) => (
             <button
               key={y}
               type="button"
               role="radio"
               aria-checked={year === y}
+              {...yearRoving.itemProps(i)}
               onClick={() => setYear(y)}
               className={`min-h-9 px-3 text-xs font-medium ${
                 year === y

@@ -48,6 +48,24 @@ export const metadata: Metadata = {
  * lang="ar" dir="rtl" before any script runs - assistive technology and
  * crawlers both read the document element, not a wrapper inside the body.
  */
+/** Binds the two language halves to one entity for search engines. */
+const JSON_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Lebanon Reconstruction Observatory",
+      url: SITE_URL,
+      inLanguage: ["en", "ar"],
+    },
+    {
+      "@type": "Organization",
+      name: "Lebanon Reconstruction Observatory",
+      url: SITE_URL,
+    },
+  ],
+});
+
 export default function EnglishRootLayout({ children }: { children: ReactNode }) {
   return (
     <html
@@ -60,6 +78,7 @@ export default function EnglishRootLayout({ children }: { children: ReactNode })
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        <script type="application/ld+json">{JSON_LD}</script>
         <a href="#main-content" className="skip-link">
           {CHROME.en.skip}
         </a>

@@ -17,13 +17,20 @@
   --color-surface: #ffffff;
   --color-surface-sunken: #f4f7fa;
 
+  /*
+   * The teal, rust and 2026-green tokens carry text and chips as well as
+   * graphics, so they sit at or above 4.8:1 on white and about 4.7:1 on
+   * their pale chip tints - the old values (#1b8295, #bd5a46, #2f8f6b)
+   * measured 3.9-4.5:1 at the small sizes they are used at. Chart fills
+   * use their own literals and keep the original hues.
+   */
   --color-navy: #173b63;
   --color-navy-deep: #102a48;
   --color-blue: #2e74b5;
-  --color-teal: #1b8295;
+  --color-teal: #177384;
   --color-amber: #d69600;
   --color-magenta: #a34f7c;
-  --color-rust: #bd5a46;
+  --color-rust: #b04a37;
 
   --color-text: #1f2d3d;
   --color-text-secondary: #5d6b7d;
@@ -32,7 +39,7 @@
   --color-border-strong: #c3cfdd;
 
   --color-y2024: #58779b;
-  --color-y2026: #2f8f6b;
+  --color-y2026: #28805f;
 
   /* One elevation ramp, used everywhere. */
   --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);

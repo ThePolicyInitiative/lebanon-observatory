@@ -1,6 +1,7 @@
 "use client";
 
 import type { Locale } from "@/lib/vocab";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 
 /**
  * Three-position year control (2024 | Side-by-side | 2026) with an
@@ -41,6 +42,11 @@ export default function YearControl({
     { id: "side", label: t.side },
     { id: "2026", label: "2026", color: "var(--color-y2026)" },
   ];
+  const roving = useRovingRadio({
+    count: positions.length,
+    activeIndex: positions.findIndex((p) => p.id === mode),
+    onActivate: (i) => onChange(positions[i].id),
+  });
   return (
     <div className="flex flex-wrap items-center gap-3">
       <div
@@ -48,7 +54,7 @@ export default function YearControl({
         aria-label={t.group}
         className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
       >
-        {positions.map((p) => {
+        {positions.map((p, i) => {
           const active = mode === p.id;
           return (
             <button
@@ -57,6 +63,7 @@ export default function YearControl({
               role="radio"
               aria-checked={active}
               id={`${idPrefix}-${p.id}`}
+              {...roving.itemProps(i)}
               onClick={() => onChange(p.id)}
               className={`min-h-11 px-4 text-sm transition-colors duration-150 ${
                 active

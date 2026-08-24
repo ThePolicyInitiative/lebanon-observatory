@@ -52,7 +52,8 @@ export default function KpiCard({
       <p className="mt-2 flex-1 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         {ar ? kpi.definitionAr ?? kpi.definition : kpi.definition}
       </p>
-      <dl className="mt-3 space-y-0.5 border-t border-[color:var(--color-border)] pt-2 text-[11px] text-[color:var(--color-text-muted)]">
+      {/* Secondary, not muted: at 11px the muted grey sits under 3.5:1. */}
+      <dl className="mt-3 space-y-0.5 border-t border-[color:var(--color-border)] pt-2 text-[11px] text-[color:var(--color-text-secondary)]">
         <div className="flex gap-1">
           <dt className="font-semibold">{t.reference}</dt>
           <dd>{ar ? kpi.referencePeriodAr ?? kpi.referencePeriod : kpi.referencePeriod}</dd>

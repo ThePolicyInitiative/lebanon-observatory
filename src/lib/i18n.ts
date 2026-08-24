@@ -4,7 +4,16 @@
  * between the two versions.
  */
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+if (!configuredSiteUrl && process.env.NODE_ENV === "production") {
+  // Loud, because the failure is quiet: a production build without this
+  // variable ships localhost canonicals, hreflang pairs, OG URLs and
+  // sitemap entries that look fine in every visual check.
+  console.warn(
+    "[site] NEXT_PUBLIC_SITE_URL is not set - canonical, hreflang and sitemap URLs will point at localhost.",
+  );
+}
+export const SITE_URL = configuredSiteUrl || "http://localhost:3000";
 
 /**
  * The canonical address of a page and the address of its counterpart in the
@@ -110,7 +119,7 @@ export const AR = {
     explore: "تصفّح",
   },
   notice:
-    "الوحدتان الوحيدتان اللتان ما زالتا بالإنجليزية هما مخططا البنية المؤسسية لعامي 2024 و2026، ولائحة الجهات الفاعلة المفصّلة. وما عدا ذلك في هذا الموقع متاح بالعربية كاملاً.",
+    "هذا الموقع متاح بالعربية كاملاً: الصفحات والرسوم والخريطة التفاعلية والمستكشف والمستجدات كلها تعمل بالعربية. وما اقتُبس من إبلاغ خارجي - عناوين الناشرين في شريط المستجدات وبعض نصوص التغطية والوقائع - يبقى بلغته الأصلية.",
 
   /**
    * The narrative sequence of the home page. The English side runs the same
@@ -169,7 +178,7 @@ export const AR = {
     figuresNote:
       "الأرقام في هذه الصفحة مأخوذة من المرجع نفسه الذي تستخدمه النسخة الإنجليزية، فلا يمكن أن تختلف بين اللغتين.",
     englishModules:
-      "الوحدات التفاعلية على هذه الصفحة - الرسوم البيانية والجداول واللوائح - ما زالت بالإنجليزية.",
+      "ما اقتُبس في هذه الصفحة من إبلاغ خارجي - عناوين الناشرين وبعض نصوص التغطية المفتوحة - يبقى بلغته الأصلية.",
     backToArabicHome: "عودة إلى الصفحة الرئيسية بالعربية",
   },
 

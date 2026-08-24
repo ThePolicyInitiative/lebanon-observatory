@@ -3,6 +3,7 @@
 import { layerTotal } from "@/lib/data-client";
 import { actors } from "@/lib/data-client";
 import { useUrlState } from "@/lib/useUrlState";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 import { layers, type Locale } from "@/lib/vocab";
 import type { ActorEntry, ActorLayer } from "@/lib/types";
 import { signed } from "@/lib/format";
@@ -152,8 +153,14 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
   const layer = (get("layer") as ActorLayer) || "official";
   const t = T[locale];
   const content = CONTENT[layer];
-  const meta = layers(locale).find((l) => l.id === layer)!;
+  const layerList = layers(locale);
+  const meta = layerList.find((l) => l.id === layer)!;
   const govShift = GOVERNANCE_SHIFT;
+  const roving = useRovingRadio({
+    count: layerList.length,
+    activeIndex: layerList.findIndex((l) => l.id === layer),
+    onActivate: (i) => set("layer", layerList[i].id),
+  });
 
   return (
     <div>
@@ -162,7 +169,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         aria-label={t.tablist}
         className="sticky top-[var(--header-h)] z-40 -mx-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-2 backdrop-blur-sm sm:-mx-6 sm:px-6"
       >
-        {layers(locale).map((l) => {
+        {layerList.map((l, i) => {
           const active = l.id === layer;
           return (
             <button
@@ -171,6 +178,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               aria-selected={active}
               aria-controls={`tabpanel-${l.id}`}
               id={`tab-${l.id}`}
+              {...roving.itemProps(i)}
               onClick={() => set("layer", l.id)}
               className={`min-h-11 rounded-t-md border-b-[3px] px-3.5 text-[13px] transition-colors duration-150 ${
                 active

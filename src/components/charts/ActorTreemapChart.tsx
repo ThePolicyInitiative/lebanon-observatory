@@ -5,6 +5,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { layers, type Locale } from "@/lib/vocab";
+import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 
 const T = {
@@ -50,6 +51,12 @@ export default function ActorTreemapChart({ data, locale = "en" }: { data: Treem
   const t = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const [year, setYear] = useState<Year>(2026);
+  const yearOptions = [2024, 2026] as const;
+  const yearRoving = useRovingRadio({
+    count: yearOptions.length,
+    activeIndex: yearOptions.findIndex((y) => y === year),
+    onActivate: (i) => setYear(yearOptions[i]),
+  });
 
   const { option, layerTotals } = useMemo(() => {
     const forYear = data.find((d) => d.year === year);
@@ -141,12 +148,13 @@ export default function ActorTreemapChart({ data, locale = "en" }: { data: Treem
           role="radiogroup"
           aria-label={t.yearLabel}
         >
-          {([2024, 2026] as const).map((y) => (
+          {yearOptions.map((y, i) => (
             <button
               key={y}
               type="button"
               role="radio"
               aria-checked={year === y}
+              {...yearRoving.itemProps(i)}
               onClick={() => setYear(y)}
               className={`min-h-9 px-4 text-sm ${
                 year === y ? "font-semibold text-white" : "text-[color:var(--color-text-secondary)]"

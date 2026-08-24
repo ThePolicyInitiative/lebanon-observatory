@@ -36,6 +36,7 @@ describe("slim projection stays in sync with the full log", () => {
         "actorSubtype",
         "stage",
         "stageNo",
+        "functionColumn",
         "implementationStatus",
         "comparability",
       ] as const) {
@@ -47,8 +48,23 @@ describe("slim projection stays in sync with the full log", () => {
       expect(s.locationNamesAr ?? [], `${s.id}.locationNamesAr`).toEqual(
         full.locationNamesAr ?? [],
       );
-      const flatAr = (full.tracedActionAr ?? full.summaryAr?.replace(/\n+/g, " ").trim()) || undefined;
+      expect(s.regions, `${s.id}.regions`).toEqual(full.regions);
+      const flatten = (v: string | null | undefined) =>
+        v ? v.replace(/\n+/g, " ").trim() : v;
+      expect(s.action, `${s.id}.action`).toEqual(
+        (full.tracedAction ?? flatten(full.summary)) || "",
+      );
+      const flatAr = (full.tracedActionAr ?? flatten(full.summaryAr)) || undefined;
       expect(s.actionAr, `${s.id}.actionAr`).toEqual(flatAr);
+    }
+  });
+});
+
+describe("per-entry detail files stay in sync with the full log", () => {
+  it("serves every entry verbatim at /entries/{id}.json", () => {
+    for (const r of roleRecords) {
+      const file = join(__dirname, "..", "public", "entries", `${r.id}.json`);
+      expect(JSON.parse(readFileSync(file, "utf8")), r.id).toEqual(r);
     }
   });
 });

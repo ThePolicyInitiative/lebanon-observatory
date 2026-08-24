@@ -28,12 +28,16 @@ the cache module for Redis.
 ## Performance
 
 - **Data is split by consumer.** `src/lib/data.ts` is the server-side
-  source of truth (full evidence base, source catalogues).
-  `src/lib/data-client.ts` carries only what browser components need -
-  counts, wording, small datasets - so importing one constant never ships
-  the whole corpus. `src/lib/map-records.ts` holds the map's own
-  projection (355 kB versus 774 kB: identity and classification, no
-  narrative text). Regenerate it whenever `role-records.json` changes.
+  source of truth (the full entry log and the source register) and
+  re-exports everything shared from `src/lib/data-client.ts`, which
+  carries only what browser components need. `src/lib/map-records.ts`
+  holds the slim projection the map and explorer filter on (identity,
+  classification and action text in both languages). Two static
+  projections live under `public/`: `cells/` (one file per heatmap cell,
+  fetched when a reader opens a cell drawer) and `entries/` (one file
+  per entry, fetched when the explorer opens a detail panel). All three
+  projections are guarded by `tests/projections.test.ts`, which fails
+  whenever `role-records.json` changes without them.
 - **MapLibre loads on demand.** The vector map is the default and is part
   of the server HTML; the ~940 kB GL library is imported inside the
   effect that runs only when a reader opts into pan-and-zoom, and its CSS
@@ -82,8 +86,13 @@ the cache module for Redis.
 8. News-provider failure states (see docs/news-providers.md).
 9. API-key security: view page source and the network tab - no key appears;
    /api/news responses contain no provider URLs with credentials.
-10. The copy-shareable-link control on chart frames.
+10. Shareable URLs: filter state on /explorer, /news, /compare and /map
+    survives a reload and a paste into another browser.
 11. Loading and empty states: news skeletons, empty filter results,
     explorer with zero matches.
 12. The planned / under way / completed distinction: statuses in the
     explorer drawer, funnel "Not verified" rows, and the timeline legend.
+13. Arabic parity: /ar carries the same modules at the same depth - the
+    interactive map, the explorer with Arabic entry text, the news
+    filters, the actors narrative - and every figure matches its English
+    twin. Arabic renders in IBM Plex Sans Arabic, not an OS fallback.
