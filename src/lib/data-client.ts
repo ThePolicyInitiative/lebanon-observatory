@@ -1,6 +1,5 @@
 import stageCountsJson from "@/data/stage-counts.json";
 import locationsJson from "@/data/locations.json";
-import gazetteerJson from "@/data/gazetteer.json";
 import kpisJson from "@/data/kpis.json";
 import financeJson from "@/data/finance.json";
 import timelineJson from "@/data/timeline.json";
@@ -45,7 +44,6 @@ export const stageCounts = stageCountsJson.counts as Record<
 >;
 
 export const locations = locationsJson;
-export const gazetteer = gazetteerJson;
 export const kpis = kpisJson as Kpi[];
 export const finance = financeJson;
 export const financeFunnel = financeJson.funnel as FinanceMetric[];

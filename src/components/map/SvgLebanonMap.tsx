@@ -269,7 +269,15 @@ export default function SvgLebanonMap({
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/geo/lebanon-adm3.geojson")
+    // The cadastre file is the map's largest network cost and nothing
+    // above the fold needs it: the coarse district base renders first,
+    // and the fine towns, land index and dissolved outlines swap in
+    // when this arrives. Waiting for idle keeps it off the critical
+    // path of the first paint.
+    let idleId: number | undefined;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
+    const load = () =>
+      fetch("/geo/lebanon-adm3.geojson")
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((gj: { features: GeoFeature[] }) => {
         if (cancelled) return;
@@ -334,8 +342,15 @@ export default function SvgLebanonMap({
       .catch(() => {
         /* district base remains visible */
       });
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(() => void load(), { timeout: 4000 });
+    } else {
+      timerId = setTimeout(() => void load(), 250);
+    }
     return () => {
       cancelled = true;
+      if (idleId !== undefined) window.cancelIdleCallback?.(idleId);
+      if (timerId !== undefined) clearTimeout(timerId);
     };
   }, []);
 

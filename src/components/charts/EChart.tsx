@@ -1,9 +1,40 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as echarts from "echarts";
+import { init, use as register } from "echarts/core";
+import {
+  BarChart,
+  LineChart,
+  ScatterChart,
+  HeatmapChart,
+  TreemapChart,
+  CustomChart,
+} from "echarts/charts";
+import {
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  VisualMapComponent,
+} from "echarts/components";
+import { SVGRenderer } from "echarts/renderers";
 import type { EChartsOption, ECharts } from "echarts";
 import { UI } from "@/lib/colors";
+
+// Only what the site draws. A new series or option component must be
+// registered here or the chart renders empty.
+register([
+  BarChart,
+  LineChart,
+  ScatterChart,
+  HeatmapChart,
+  TreemapChart,
+  CustomChart,
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  VisualMapComponent,
+  SVGRenderer,
+]);
 
 type Props = {
   option: EChartsOption;
@@ -32,7 +63,7 @@ export default function EChart({
   useEffect(() => {
     if (!ref.current) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const chart = echarts.init(ref.current, undefined, { renderer: "svg" });
+    const chart = init(ref.current, undefined, { renderer: "svg" });
     chartRef.current = chart;
     const base: EChartsOption = {
       animation: !reduced,

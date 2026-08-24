@@ -6,9 +6,25 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
 import { STAGE_SHORT, STAGES, changeFor, countsFor, CAUTION_COUNTS } from "@/lib/data-client";
-import { recordsForCell } from "@/lib/data";
-import type { ActorLayer } from "@/lib/types";
+import type { ActorLayer, RoleRecord } from "@/lib/types";
 import { signed } from "@/lib/format";
+
+/**
+ * What the drawer prints for one traced entry. Served as one static JSON
+ * per heatmap cell from /cells/{layer}-{stageNo}.json so the browser
+ * never downloads the full log; a vitest keeps those files in sync with
+ * role-records.json.
+ */
+type CellEntry = Pick<
+  RoleRecord,
+  | "id"
+  | "year"
+  | "actorName"
+  | "functionColumn"
+  | "implementationStatus"
+  | "locationNames"
+  | "summary"
+>;
 
 /**
  * Visual 2 - Direct-change heatmap. Rows: four actor layers.
@@ -21,12 +37,28 @@ import { signed } from "@/lib/format";
  */
 export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: boolean } = {}) {
   const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
+  // null while the cell's entries are on their way from /cells/.
+  const [records, setRecords] = useState<CellEntry[] | null>(null);
+  const requestSeq = useRef(0);
   const chartRef = useRef<ECharts | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (cell) closeRef.current?.focus();
   }, [cell]);
+
+  function openCell(layer: ActorLayer, stageNo: number) {
+    const seq = ++requestSeq.current;
+    setCell({ layer, stageNo });
+    setRecords(null);
+    fetch(`/cells/${layer}-${stageNo}.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<CellEntry[]>) : []))
+      .catch(() => [] as CellEntry[])
+      .then((rows) => {
+        if (requestSeq.current !== seq) return;
+        setRecords([...rows].sort((a, b) => a.year - b.year));
+      });
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -112,10 +144,6 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
     [maxAbs, data],
   );
 
-  const records = cell
-    ? recordsForCell(cell.layer, cell.stageNo).sort((a, b) => a.year - b.year)
-    : [];
-
   const tableRows = LAYER_META.flatMap((layer) =>
     STAGES.map((stage, i) => [
       layer.label,
@@ -154,7 +182,7 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
               const params = p as { value?: [number, number, number] };
               if (!params.value) return;
               const [si, li] = params.value;
-              setCell({ layer: LAYER_META[li].id, stageNo: si + 1 });
+              openCell(LAYER_META[li].id, si + 1);
             },
           }}
         />
@@ -180,8 +208,10 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
                 <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
                   {countsFor(2024, cell.layer)[cell.stageNo - 1]} traced in
                   2024 · {countsFor(2026, cell.layer)[cell.stageNo - 1]} in 2026
-                  (analysis) · {records.length} traced entries
-                  shown below
+                  (analysis)
+                  {records !== null
+                    ? ` · ${records.length} traced entries shown below`
+                    : ""}
                 </p>
               </div>
               <button
@@ -195,7 +225,11 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-4">
-              {records.length === 0 ? (
+              {records === null ? (
+                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                  Loading the entries behind this cell…
+                </p>
+              ) : records.length === 0 ? (
                 <p className="text-sm text-[color:var(--color-text-secondary)]">
                   No traced entries map to this cell at function-column
                   grain. The analytical count above is recomputed at entry
