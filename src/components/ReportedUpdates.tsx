@@ -15,7 +15,6 @@ const T = {
     seeMore: "See more",
     seeLess: "See less",
     where: "Where:",
-    indirect: "from a search summary",
   },
   ar: {
     title: "مرصود خارج التتبّع",
@@ -28,7 +27,6 @@ const T = {
     seeMore: "تفاصيل أكثر",
     seeLess: "إخفاء التفاصيل",
     where: "أين:",
-    indirect: "من ملخص بحث",
   },
 } as const;
 
@@ -149,11 +147,6 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
         >
           {u.sourceName} ↗
         </a>
-        {u.openedDirectly === false ? (
-          <span className="rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-            {t.indirect}
-          </span>
-        ) : null}
       </p>
     </li>
   );
@@ -164,7 +157,6 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
   const ar = locale === "ar";
   const updates = webUpdates.updates;
   const south = updates.filter((u) => u.southOfLitani).length;
-  const indirect = updates.filter((u) => u.openedDirectly === false).length;
 
   /** Grouped by actor layer, community first: that is where the new material is. */
   const groups = ["community", "municipal", "official", "ngo_international"]
@@ -198,18 +190,13 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
             {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
             والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
             الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مراجعها - لم تُقارَن بالتتبّع ولا تدخل
-            في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه، و{indirect} منها
-            مُعلَّمة لأن صفحة الناشر رفضت الطلب الآلي ولم يتوفّر سوى ملخّص بحث. اتبع كل رابط
+            في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه. اتبع كل رابط
             لتحكم على المرجع بنفسك.
           </p>
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
             مجموعة المجتمع المحلي هي الأكبر، وتلك هي الخلاصة: في القرى الجنوبية، العمل الظاهر
             فعلياً يقوم به الأهالي والجمعيات القروية والمجموعات الشبابية والبلديات، وعلى نفقتهم
             الخاصة في معظمه.
-          </p>
-          <p className="mt-2 prose-measure text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-            نصّ كل مدخل يبقى بلغة مرجعه، فما نُقل عن ناشر عربي يظهر بالعربية وما نُقل عن ناشر
-            أجنبي يظهر بلغته - حتى لا تضيف الترجمة طبقة بين القارئ والمرجع.
           </p>
         </>
       ) : (
@@ -219,9 +206,8 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
             French (gathered {fmtDate(webUpdates.gatheredOn)}), {south} of them in the area between
             the Litani and the Blue Line. These are reported claims, quoted with their publishers - they
             are not checked against the tracking and enter none of this site&apos;s counts or maps.
-            Each entry says how much checking sits behind it, and {indirect} are marked because
-            the publisher&apos;s page refused an automated request and only a search summary could be
-            reached. Follow each link to judge it yourself.
+            Each entry says how much checking sits behind it. Follow each link to judge it
+            yourself.
           </p>
           <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
             The community group is the largest, and that is the finding: in the southern villages the

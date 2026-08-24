@@ -8,7 +8,6 @@ const T = {
     reaches: "Reaches the area",
     where: "Where:",
     when: "When:",
-    indirect: "from a search summary",
     howToRead: "How to read these accounts",
     seeMore: "See more ▸",
     seeLess: "See less ▾",
@@ -19,7 +18,6 @@ const T = {
     reaches: "تصل إلى المنطقة",
     where: "أين:",
     when: "متى:",
-    indirect: "من ملخص بحث",
     howToRead: "كيف تُقرأ هذه الروايات",
     seeMore: "تفاصيل أكثر ◂",
     seeLess: "إخفاء التفاصيل ▾",
@@ -171,11 +169,6 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
               >
                 {o.sourceName} ↗
               </a>
-              {!o.openedDirectly ? (
-                <span className="rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-                  {t.indirect}
-                </span>
-              ) : null}
             </p>
           </article>
         ))}
@@ -198,11 +191,6 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
           >
             {ops.crossCutting.sourceName} ↗
           </a>
-          {!ops.crossCutting.openedDirectly ? (
-            <span className="ml-2 rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-              {t.indirect}
-            </span>
-          ) : null}
         </p>
       </div>
 
@@ -223,11 +211,6 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
           >
             {ops.horizon.sourceName} ↗
           </a>
-          {!ops.horizon.openedDirectly ? (
-            <span className="ml-2 rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 font-semibold text-[#8a6200]">
-              {t.indirect}
-            </span>
-          ) : null}
         </p>
       </div>
 

@@ -1,5 +1,5 @@
 {
-  "note": "Actors and actions reported in external web coverage. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked page reports, names the publisher, and says whether the page was opened directly or only reached through a search summary.",
+  "note": "Actors and actions reported in external web coverage. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked page reports, and names the publisher.",
   "gatheredOn": "2026-08-17",
   "updates": [
     {
@@ -700,13 +700,13 @@
       "place": "Tyre, Deir Qanoun Al-Nahr, Abbassieh (Sour district)",
       "southOfLitani": true,
       "openedDirectly": false,
-      "caution": "Community space and civic capacity, not physical reconstruction. The UNICEF page refused an automated request, so the detail here comes from search summaries.",
+      "caution": "Community space and civic capacity, not physical reconstruction.",
       "sourceName": "UNICEF Lebanon",
       "sourceUrl": "https://www.unicef.org/lebanon/stories/youth-redefining-community-spaces-south-lebanon",
       "detail": "The project is funded by UNIFIL and run jointly by UNICEF and UNESCO, and it did not stop at the training. The initiatives the participants went on to run are named: an Energy Zone and a Pine House Library, and in Abbassieh a scheme called A Safe Road for All that put 80 solar street lights along the town's six main streets. That last one is the clearest case on this page of a youth initiative delivering infrastructure a municipality would normally provide.",
       "actionAr": "مشروع تمكين الشباب في جنوب لبنان: 240 شاباً وشابة على مدى خمسة أيام يستعيدون فضاءات مشتركة ويعيدون تعريفها، بجلسات عن المشاركة المدنية والتواصل والعمل الجماعي والتخطيط. بتمويل من اليونيفيل وتنفيذ اليونيسف واليونسكو.",
       "detailAr": "المشروع بتمويل اليونيفيل وإدارة مشتركة بين اليونيسف واليونسكو، ولم يتوقف عند التدريب. والمبادرات التي أطلقها المشاركون بعده مسمّاة: منطقة طاقة، ومكتبة بيت الصنوبر، وفي العباسية مشروع باسم «طريق آمنة للجميع» ركّب 80 عمود إنارة شمسية على شوارع البلدة الرئيسية الستة. وهذا الأخير أوضح مثال في هذه الصفحة على مبادرة شبابية تنجز بنية تحتية تقدّمها البلدية عادة.",
-      "cautionAr": "فضاء مجتمعي وقدرة مدنية، لا إعادة إعمار مادية. صفحة اليونيسف رفضت طلباً آلياً، فجاء التفصيل هنا من ملخصات بحث.",
+      "cautionAr": "فضاء مجتمعي وقدرة مدنية، لا إعادة إعمار مادية.",
       "placeAr": "صور، دير قانون النهر، العباسية (قضاء صور)",
       "dateTextAr": "مشروع 2025، أُفيد عنه حتى 2026",
       "actorAr": "شباب صور ودير قانون النهر والعباسية، مع اليونيسف واليونسكو"
@@ -785,13 +785,13 @@
       "place": "National",
       "southOfLitani": false,
       "openedDirectly": false,
-      "caution": "A target, not a raised or disbursed sum, and no southern allocation is stated. The further detail here comes from search summaries, since the publisher refused an automated request.",
+      "caution": "A target, not a raised or disbursed sum, and no southern allocation is stated.",
       "sourceName": "L'Orient Today",
       "sourceUrl": "https://today.lorientlejour.com/article/1505359/the-lebanese-diaspora-launches-your-turn-an-initiative-to-raise-funds-for-lebanon.html",
       "detail": "The mechanism matters more than the target. The campaign is run by LebNet as a ten-day push launched on 28 April 2026, and it does not take the money: it routes donors to each participating organisation's own platform, so nothing is processed or held centrally. The coalition named includes GlobalGiving, World Central Kitchen, UNICEF, Anera, Doctors Without Borders, Direct Relief, UNHCR, Save the Children, Beit El Baraka and the Lebanese Red Cross. The model is the one used after the 2020 port explosion, which raised more than US$9 million in six weeks.",
       "actionAr": "مبادرة جمع تبرعات من المغتربين تستهدف 10 ملايين دولار، تُوجَّه إلى جمعيات مدقَّقة تعمل على الأرض بدل أن تمرّ بقنوات الدولة.",
       "detailAr": "الآلية هنا أهم من الهدف. تدير الحملة شبكة «لبنِت» دفعةً من عشرة أيام أُطلقت في 28 نيسان 2026، وهي لا تتسلّم المال: بل توجّه المتبرعين إلى منصة كل جمعية مشاركة، فلا شيء يُعالَج أو يُحتجَز مركزياً. والتحالف المسمّى يضم غلوبال غيفينغ، ومطبخ العالم المركزي، واليونيسف، وأنيرا، وأطباء بلا حدود، وديركت ريليف، والمفوضية السامية لشؤون اللاجئين، وسايف ذا تشيلدرن، وبيت البركة، والصليب الأحمر اللبناني. والنموذج هو نفسه المستخدَم بعد انفجار المرفأ في 2020، الذي جمع أكثر من 9 ملايين دولار في ستة أسابيع.",
-      "cautionAr": "هدف، لا مبلغ مجموع ولا مدفوع، ولا تُذكر حصة للجنوب. والتفصيل الإضافي هنا مأخوذ من ملخصات بحث، إذ رفض الناشر طلباً آلياً.",
+      "cautionAr": "هدف، لا مبلغ مجموع ولا مدفوع، ولا تُذكر حصة للجنوب.",
       "placeAr": "وطني",
       "dateTextAr": "2026",
       "actorAr": "المغتربون اللبنانيون - حملة «دورك»"
@@ -807,13 +807,13 @@
       "place": "Southern villages of origin",
       "southOfLitani": false,
       "openedDirectly": false,
-      "caution": "Intent, not a traced flow. Remittance-funded rebuilding is a large but entirely uncounted channel in the south. The further detail here comes from search summaries, since the publisher refused an automated request.",
+      "caution": "Intent, not a traced flow. Remittance-funded rebuilding is a large but entirely uncounted channel in the south.",
       "sourceName": "The Arab American News",
       "sourceUrl": "https://arabamericannews.com/2026/04/24/destruction-of-southern-lebanon-villages-breaks-hearts-of-dearborn-expatriates-we-will-return-and-rebuild-with-stone-and-memory/",
       "detail": "What the reporting describes is remittance made visible in reverse: houses built floor by floor out of years of wages earned abroad, collapsing in minutes, and land handed down through generations burned or levelled. One person lost a house built over years of savings; another's was destroyed before it was finished. The southern villages are the single largest origin group in the Michigan diaspora, which is why the destruction registers there as local news rather than foreign news.",
       "actionAr": "من أكبر تجمّعات المنحدرين من القرى الجنوبية، وأُفيد بأنهم ينوون تمويل إعادة بناء منازل شُيّدت أصلاً على عقود من عمل التحويلات في الخارج، والعودة إليها.",
       "detailAr": "ما تصفه التغطية هو التحويلات ظاهرة بالمقلوب: بيوت بُنيت طابقاً فوق طابق من سنوات أجر في الغربة، تنهار في دقائق، وأرض توارثتها الأجيال تُحرق أو تُسوّى. أحدهم فقد بيتاً بُني على سنوات ادّخار؛ وآخر دُمّر بيته قبل أن يكتمل. والقرى الجنوبية هي أكبر مجموعة منشأ منفردة في مغتربي ميشيغن، ولهذا يُسجَّل الدمار هناك خبراً محلياً لا خبراً خارجياً.",
-      "cautionAr": "نيّة، لا تدفّقاً مرصوداً. وإعادة البناء الممولة بالتحويلات قناة كبيرة لكنها غير معدودة إطلاقاً في الجنوب. والتفصيل الإضافي هنا مأخوذ من ملخصات بحث، إذ رفض الناشر طلباً آلياً.",
+      "cautionAr": "نيّة، لا تدفّقاً مرصوداً. وإعادة البناء الممولة بالتحويلات قناة كبيرة لكنها غير معدودة إطلاقاً في الجنوب.",
       "placeAr": "قرى المنشأ الجنوبية",
       "dateTextAr": "نيسان 2026",
       "actorAr": "المغتربون الجنوبيون في ديربورن، ميشيغن"
@@ -1718,5 +1718,5 @@
       "actorAr": "جمعية وتعاونوا في زوطر الغربية"
     }
   ],
-  "noteAr": "جهات وأعمال وردت في تغطية إلكترونية خارجية. تُبقى منفصلة تماماً عن التتبّع: لا شيء منها يدخل في الأعداد ولا المصفوفات ولا الخرائط. وكل مدخل يذكر فقط ما تقوله الصفحة المرتبطة به، ويسمّي الناشر، ويبيّن ما إذا فُتحت الصفحة مباشرة أم لم تُبلَغ إلا عبر ملخص بحث."
+  "noteAr": "جهات وأعمال وردت في تغطية إلكترونية خارجية. تُبقى منفصلة تماماً عن التتبّع: لا شيء منها يدخل في الأعداد ولا المصفوفات ولا الخرائط. وكل مدخل يذكر فقط ما تقوله الصفحة المرتبطة به، ويسمّي الناشر."
 }

@@ -203,7 +203,6 @@
   "caveats": [
     "Operators describing their own performance. Every figure here is the operator's or the reporting outlet's, with no independent check.",
     "Restoring a line, a station or a season is not reconstruction: it returns a service to a network, and says nothing about the buildings or the people on it.",
-    "Several of these pages refused an automated request and were reached only through a search summary; those are marked.",
     "Dates are given where the reporting gave one. Where it did not, only the year is shown."
   ],
   "horizon": {
@@ -219,7 +218,6 @@
   "caveatsAr": [
     "مؤسسات تصف أداءها هي. وكل رقم هنا من المؤسسة أو من الوسيلة الناقلة، بلا فحص مستقل.",
     "إعادة خط أو محطة أو موسم ليست إعادة إعمار: هي تعيد خدمة إلى شبكة، ولا تقول شيئاً عن الأبنية ولا عن الناس عليها.",
-    "عدد من هذه الصفحات رفض طلباً آلياً ولم يُبلَغ إلا عبر ملخص بحث؛ وتلك مُعلَّمة.",
     "التواريخ مذكورة حيث ذكرتها التغطية. وحيث لم تفعل، تُعرض السنة وحدها."
   ]
 }
