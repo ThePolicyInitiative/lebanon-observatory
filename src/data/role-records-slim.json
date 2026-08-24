@@ -8104,9 +8104,7 @@
     "stage": "Reconstruction and services",
     "stageNo": 8,
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
@@ -8121,9 +8119,7 @@
     "stage": "Shelter and return",
     "stageNo": 9,
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
@@ -8138,9 +8134,7 @@
     "stage": "Relief and protection",
     "stageNo": 10,
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
@@ -8155,9 +8149,7 @@
     "stage": "Reconstruction and services",
     "stageNo": 8,
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
@@ -9213,9 +9205,7 @@
     "stage": "Strategy and coordination",
     "stageNo": 1,
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
@@ -9657,9 +9647,7 @@
     "actorSubtype": "Community, volunteer and solidarity initiatives",
     "stage": "Shelter and return",
     "stageNo": 9,
-    "locationNames": [
-      "Tripoli"
-    ],
+    "locationNames": [],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
     "action": "Northern volunteer lead for aid and solidarity support connected to displacement response."
@@ -9672,9 +9660,7 @@
     "actorSubtype": "Community, volunteer and solidarity initiatives",
     "stage": "Safety and access",
     "stageNo": 4,
-    "locationNames": [
-      "Tripoli"
-    ],
+    "locationNames": [],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
     "action": "Adds geographic spread beyond Beirut and the southern suburbs."

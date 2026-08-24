@@ -68,11 +68,13 @@ const TOWN_ALIASES: Record<string, string> = {
   costabravalandfil: "Choueifat El-Aamrousiyeh",
   // The tracking itself misspells Taybe's suffix ("Matjaayoun").
   tayb: "Taybet Matjaayoun",
-  // Cities the layer holds only as quarters, so the city's own name
-  // matches nothing and the place gets no marker at all. Each points at
-  // the quarter that is the city's centre.
-  tripoli: "Trablous Et-Tell",
-  trablus: "Trablous Et-Tell",
+  // Beirut's Hamra, which the layer holds as the quarter Ras Beyrouth. It
+  // needs saying because there is a village called Hamra in Nabatieh, and
+  // the mechanical tiers reach that one.
+  //
+  // Cities that appear only as a group's address belong in no alias here:
+  // Tripoli was not struck in either war, and a marker on it would say that
+  // work happened somewhere nothing was traced.
   hamr: "Ras Beyrouth",
 };
 const DISTRICT_ALIASES: Record<string, string> = {

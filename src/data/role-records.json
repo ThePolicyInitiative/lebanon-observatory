@@ -15653,13 +15653,10 @@
     "stageNo": 8,
     "functionColumn": "Reconstruction / repair",
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "regions": [
-      "beirut_mount_lebanon",
-      "north"
+      "beirut_mount_lebanon"
     ],
     "formalMandate": null,
     "tracedAction": "Ma'a Baad, Solidarity Network, Hamra Community Kitchen, Haven for Artists, Tripoli Volunteers, Rotaract and others. identified as providing shelter/return support, with confirmation needed.",
@@ -15683,13 +15680,10 @@
     "stageNo": 9,
     "functionColumn": "Shelter / return",
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "regions": [
-      "beirut_mount_lebanon",
-      "north"
+      "beirut_mount_lebanon"
     ],
     "formalMandate": null,
     "tracedAction": "Ma'a Baad, Solidarity Network, Hamra Community Kitchen, Haven for Artists, Tripoli Volunteers, Rotaract and others. identified as a relief provider; use as supporting data unless directly confirmed.",
@@ -15713,13 +15707,10 @@
     "stageNo": 10,
     "functionColumn": "Health / protection",
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "regions": [
-      "beirut_mount_lebanon",
-      "north"
+      "beirut_mount_lebanon"
     ],
     "formalMandate": null,
     "tracedAction": "Ma'a Baad, Solidarity Network, Hamra Community Kitchen, Haven for Artists, Tripoli Volunteers, Rotaract and others. identified as providing water/sanitation support; direct confirmation is still needed.",
@@ -15743,13 +15734,10 @@
     "stageNo": 8,
     "functionColumn": "Education / schools",
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "regions": [
-      "beirut_mount_lebanon",
-      "north"
+      "beirut_mount_lebanon"
     ],
     "formalMandate": null,
     "tracedAction": "Ma'a Baad, Solidarity Network, Hamra Community Kitchen, Haven for Artists, Tripoli Volunteers, Rotaract and others. identified as a youth/community initiative; treat as ecosystem data unless confirmed.",
@@ -17747,13 +17735,10 @@
     "stageNo": 1,
     "functionColumn": "Mandate / law",
     "locationNames": [
-      "Hamra",
-      "Beirut",
-      "Tripoli"
+      "Beirut"
     ],
     "regions": [
-      "beirut_mount_lebanon",
-      "north"
+      "beirut_mount_lebanon"
     ],
     "formalMandate": null,
     "tracedAction": "Represents the formal cultural-heritage and antiquities authority.",
@@ -18641,9 +18626,7 @@
     "stage": "Shelter and return",
     "stageNo": 9,
     "functionColumn": "Shelter / return",
-    "locationNames": [
-      "Tripoli"
-    ],
+    "locationNames": [],
     "regions": [
       "national_multi"
     ],
@@ -18668,9 +18651,7 @@
     "stage": "Safety and access",
     "stageNo": 4,
     "functionColumn": "Safety / first response",
-    "locationNames": [
-      "Tripoli"
-    ],
+    "locationNames": [],
     "regions": [
       "beirut_mount_lebanon",
       "south_nabatieh"

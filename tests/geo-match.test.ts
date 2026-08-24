@@ -22,6 +22,17 @@ function districtsOf(loc: string): string[] {
   return [...matchLocations(index, [loc]).districts];
 }
 
+/** The governorates the war did not reach, so nothing may be marked there. */
+const NORTHERN = new Set([
+  "Tripoli",
+  "Akkar",
+  "El Koura",
+  "Zgharta",
+  "El Batroun",
+  "Bcharre",
+  "El Minieh-Dennie",
+]);
+
 describe("location matching", () => {
   it("resolves transliteration variants to COD town spellings", () => {
     expect(firstTown("Tayr Debba")).toBe("Tayr Debbeh");
@@ -43,16 +54,6 @@ describe("location matching", () => {
     expect(firstTown("the Costa Brava landfill / Beirut coastal landfill area")).toBe(
       "Choueifat El-Aamrousiyeh",
     );
-  });
-
-  /**
-   * Cities the boundary layer holds only as quarters. Without an alias the
-   * city's own name matches no town, so the place carries no marker: the
-   * whole of Tripoli had none.
-   */
-  it("puts a marker on cities the layer only holds as quarters", () => {
-    expect(firstTown("Tripoli")).toBe("Trablous Et-Tell");
-    expect(districtsOf("Tripoli")).toContain("Tripoli");
   });
 
   /**
@@ -97,6 +98,32 @@ describe("location matching", () => {
     }
     expect(firstTown("Taybe")).toBe("Taybet Matjaayoun");
     expect(firstTown("Bent Jbeil")).toBe("Bent Jbayl");
+  });
+
+  /**
+   * A group's address is not a place where work happened. Tripoli was not
+   * struck in either war, and every mention of it in the tracking came from
+   * a name - Tripoli Volunteers - so nothing may put a marker there. Hamra
+   * is the opposite case: it is a real Beirut location that the mechanical
+   * tiers send to a village of the same name in Nabatieh.
+   */
+  it("puts Hamra in Beirut and puts nothing in Tripoli", () => {
+    expect(firstTown("Hamra")).toBe("Ras Beyrouth");
+
+    const tripoli = matchLocations(index, ["Tripoli"]);
+    expect(tripoli.towns.size).toBe(0);
+
+    const northern = new Set(
+      towns.filter((t) => NORTHERN.has(t.district)).map((t) => t.name),
+    );
+    for (const rec of roleRecords as { locationNames?: string[] }[]) {
+      for (const town of matchLocations(index, rec.locationNames ?? []).towns) {
+        expect(
+          northern.has(town),
+          `nothing was traced in the north, yet ${town} is marked there`,
+        ).toBe(false);
+      }
+    }
   });
 
   it("localizes at least three quarters of located record mentions", () => {
