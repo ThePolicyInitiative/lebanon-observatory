@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { roleRecords, stageCounts, STAGES, finance } from "@/lib/data";
-import { STATUS_LABELS } from "@/lib/colors";
+import { roleRecords, stageCounts, finance } from "@/lib/data";
+import { stageLabel, statusLabel, type Locale } from "@/lib/vocab";
 
 /**
  * The reconstruction pulse: what the sources show on the physical
  * rebuilding chain itself - rubble, debris, works, shelter and return -
  * with the honest status mix and the procurement pipeline beside it.
+ * One component for both languages: the layout and the figures are
+ * shared, only the words switch with `locale`.
  */
 
 const CHAIN_STAGE_NOS = [6, 7, 8, 9]; // Rubble clearance → Shelter and return
@@ -17,18 +19,61 @@ const STATUS_CHIP: Record<string, string> = {
   not_verified: "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]",
 };
 
-export default function ReconstructionPulse() {
+/** The procurement portal's status wording, rendered in Arabic. */
+const STATUS_AT_CHECK_AR: Record<string, string> = {
+  "Under evaluation": "قيد التقييم",
+  "No award displayed": "لم يُعرض أي إرساء",
+};
+
+const T = {
+  en: {
+    title: "Reconstruction on the ground",
+    lede:
+      "The physical rebuilding chain - rubble clearance, debris treatment, reconstruction works, shelter and return - as the tracking actually shows it: who is present, at what status, and what the procurement pipeline has produced.",
+    presence: "Traced presence, 2024 → 2026",
+    statusHeading: (n: number) => `Status of the ${n} chain entries, 2026`,
+    statusHonesty:
+      "Traced activity is not completed output: the tracking contains no confirmed completed reconstruction outputs by the cut-off, and “not confirmed” marks presence the reporting cannot grade - never assumed zero, never assumed done.",
+    pipeline: "The procurement pipeline",
+    packages: "LEAP packages tracked",
+    zeroContracts:
+      "Works contracts awarded by the cut-off: zero. Procurement under way is a process milestone, not reconstruction.",
+    financeLink: "Finance & delivery →",
+    mapLink: "Where work is traced →",
+  },
+  ar: {
+    title: "إعادة الإعمار على الأرض",
+    lede:
+      "سلسلة إعادة البناء المادية - رفع الأنقاض، معالجة الركام، أعمال إعادة الإعمار، الإيواء والعودة - كما يُظهره التتبّع: من هو حاضر، وبأي وضع، وما الذي أنتجته سلسلة الشراء.",
+    presence: "الحضور المرصود، 2024 ← 2026",
+    statusHeading: (n: number) => `أوضاع مدخلات السلسلة الـ${n}، 2026`,
+    statusHonesty:
+      "النشاط المرصود ليس إنجازاً مكتملاً: فالتتبّع لا يتضمن أي مخرجات إعادة إعمار مكتملة مؤكَّدة حتى تاريخ التوقف، و“غير مؤكَّد” يعلّم حضوراً لا يستطيع الإبلاغ تصنيفه - لا يُفترض أنه صفر أبداً، ولا يُفترض أنه أُنجز أبداً.",
+    pipeline: "مسار الشراء",
+    packages: "حزم LEAP المتتبَّعة",
+    zeroContracts:
+      "عقود الأشغال المُرساة حتى تاريخ التوقف: صفر. الشراء الجاري مرحلة إجرائية، لا إعادة إعمار.",
+    financeLink: "التمويل والإنجاز ←",
+    mapLink: "أين رُصد العمل ←",
+  },
+} as const;
+
+export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
+  const ar = locale === "ar";
+  const base = ar ? "/ar" : "";
+
   const chainTotals = CHAIN_STAGE_NOS.map((n) => {
     const i = n - 1;
     const sum = (year: "2024" | "2026") =>
       Object.values(stageCounts[year]).reduce((a, layer) => a + layer[i], 0);
-    return { stage: STAGES[i], y24: sum("2024"), y26: sum("2026") };
+    return { stage: stageLabel(n, locale), y24: sum("2024"), y26: sum("2026") };
   });
   const maxChain = Math.max(...chainTotals.flatMap((c) => [c.y24, c.y26]));
 
   const statusMix = STATUS_ORDER.map((status) => ({
     status,
-    label: STATUS_LABELS[status] ?? status,
+    label: statusLabel(status, locale),
     count: roleRecords.filter(
       (r) =>
         r.year === 2026 &&
@@ -45,24 +90,35 @@ export default function ReconstructionPulse() {
       aria-labelledby="recon-pulse"
       className="mx-auto max-w-[1360px] px-4 pt-12 sm:px-6"
     >
-      <div className="card border-l-4 border-l-[color:var(--color-navy)] p-5 sm:p-6">
+      <div
+        className={`card p-5 sm:p-6 ${
+          ar
+            ? "border-r-4 border-r-[color:var(--color-navy)]"
+            : "border-l-4 border-l-[color:var(--color-navy)]"
+        }`}
+      >
         <h2
           id="recon-pulse"
           className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"
         >
-          Reconstruction on the ground
+          {t.title}
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          The physical rebuilding chain - rubble clearance, debris treatment,
-          reconstruction works, shelter and return - as the tracking actually
-          shows it: who is present, at what status, and what the procurement
-          pipeline has produced.
+        <p
+          className={`mt-2 max-w-3xl text-sm text-[color:var(--color-text-secondary)] ${
+            ar ? "leading-loose" : "leading-relaxed"
+          }`}
+        >
+          {t.lede}
         </p>
         <div className="mt-5 grid gap-6 lg:grid-cols-3">
           {/* Traced presence on the physical chain */}
           <div>
-            <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-              Traced presence, 2024 → 2026
+            <h3
+              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+                ar ? "" : "uppercase tracking-wide"
+              }`}
+            >
+              {t.presence}
             </h3>
             <ul className="mt-3 space-y-3">
               {chainTotals.map((c) => (
@@ -96,8 +152,12 @@ export default function ReconstructionPulse() {
 
           {/* Status honesty */}
           <div>
-            <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-              Status of the {chainRecords2026} chain entries, 2026
+            <h3
+              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+                ar ? "" : "uppercase tracking-wide"
+              }`}
+            >
+              {t.statusHeading(chainRecords2026)}
             </h3>
             <ul className="mt-3 space-y-2">
               {statusMix.map((s) => (
@@ -114,50 +174,56 @@ export default function ReconstructionPulse() {
               ))}
             </ul>
             <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-              Traced activity is not completed output: the tracking contains
-              no confirmed completed reconstruction outputs by the cut-off, and
-              &ldquo;not confirmed&rdquo; marks presence the reporting cannot
-              grade - never assumed zero, never assumed done.
+              {t.statusHonesty}
             </p>
           </div>
 
           {/* Procurement pipeline */}
           <div>
-            <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-              The procurement pipeline
+            <h3
+              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+                ar ? "" : "uppercase tracking-wide"
+              }`}
+            >
+              {t.pipeline}
             </h3>
             <p className="mt-3 text-3xl font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
               {packages.length}
-              <span className="ml-2 align-middle text-sm font-medium text-[color:var(--color-text-secondary)]">
-                LEAP packages tracked
+              <span className="ms-2 align-middle text-sm font-medium text-[color:var(--color-text-secondary)]">
+                {t.packages}
               </span>
             </p>
             <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-              {packages.slice(0, 3).map((p) => (
-                <li key={p.id}>
-                  <span className="font-medium text-[color:var(--color-text)]">
-                    {p.label.split(" - ")[1] ?? p.label}
-                  </span>{" "}
-                  - {p.statusAtCheck}
-                </li>
-              ))}
+              {packages.slice(0, 3).map((p) => {
+                const label = ar ? p.labelAr ?? p.label : p.label;
+                const status = ar
+                  ? STATUS_AT_CHECK_AR[p.statusAtCheck] ?? p.statusAtCheck
+                  : p.statusAtCheck;
+                return (
+                  <li key={p.id}>
+                    <span className="font-medium text-[color:var(--color-text)]">
+                      {label.split(" - ")[1] ?? label}
+                    </span>{" "}
+                    - {status}
+                  </li>
+                );
+              })}
             </ul>
             <p className="mt-3 rounded-sm bg-[#F7E9E5] px-2.5 py-1.5 text-xs font-medium text-[color:var(--color-rust)]">
-              Works contracts awarded by the cut-off: zero. Procurement under
-              way is a process milestone, not reconstruction.
+              {t.zeroContracts}
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
               <Link
-                href="/finance"
+                href={`${base}/finance`}
                 className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
               >
-                Finance &amp; delivery →
+                {t.financeLink}
               </Link>
               <Link
-                href="/map"
+                href={`${base}/map`}
                 className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
               >
-                Where work is traced →
+                {t.mapLink}
               </Link>
             </div>
           </div>

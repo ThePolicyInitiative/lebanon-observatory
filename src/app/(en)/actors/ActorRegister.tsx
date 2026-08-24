@@ -66,10 +66,17 @@ function buildGroups(locale: Locale): RegisterGroup[] {
           year: r.year,
           stageNo: r.stageNo,
           implementationStatus: r.implementationStatus,
-          locationNames: r.locationNames,
+          locationNames:
+            locale === "ar" && r.locationNamesAr?.length
+              ? r.locationNamesAr
+              : r.locationNames,
           // One entry carries no action text of its own; the register has
-          // always fallen back to the summary for it.
-          action: r.tracedAction ?? r.summary,
+          // always fallen back to the summary for it. The Arabic register
+          // reads the translated twins so entry text matches the page.
+          action:
+            locale === "ar"
+              ? (r.tracedActionAr ?? r.summaryAr ?? r.tracedAction ?? r.summary)
+              : (r.tracedAction ?? r.summary),
           roles: ROLE_FIELDS.filter(([field]) => r[field]).map(([, label]) => label),
         })),
       };

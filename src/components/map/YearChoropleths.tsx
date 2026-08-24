@@ -8,6 +8,7 @@ import {
   VIEW_H,
 } from "@/lib/geo";
 import { locations } from "@/lib/data";
+import { regionLabel, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
 
 /**
@@ -32,7 +33,35 @@ function totalsFor(year: Year): Record<string, number> {
 
 const YEAR_RAMP: Record<Year, string> = { 2024: "#58779B", 2026: "#2F8F6B" };
 
-export default function YearChoropleths() {
+const T = {
+  en: {
+    heading: "Geographic heat maps: traced activity, 2024 and 2026",
+    sub: "District-level maps shaded by each regional grouping's total traced mentions (all four actor layers), on one shared scale so the two years are honestly comparable. Exact values are printed beneath each map; camps and national-scale activity cannot be drawn onto districts and are listed separately.",
+    mapAria: (year: number, list: string, occupation: boolean) =>
+      `District-level heat map of Lebanon for ${year}: ${list}.${occupation ? " Hatched districts contain Israeli-occupied border areas." : ""}`,
+    ariaRow: (label: string, v: number) => `${label} ${v} mentions`,
+    districtTitle: (name: string, zone: string, v: number, year: number) =>
+      `${name} district - ${zone}: ${v} mentions in ${year}`,
+    notMappable: (label: string) => `${label} (not mappable)`,
+    caption:
+      "Mention counts are traced at the regional-grouping level; district boundaries are shown for geographic orientation, not as district-level measurements. On the 2026 panel, rust hatching marks the border districts containing Israeli-occupied areas - indicative only, since the expanded occupation zone demarcated on 18 June 2026 has no published boundary geometry.",
+  },
+  ar: {
+    heading: "خرائط حرارية جغرافية: النشاط المرصود، 2024 و2026",
+    sub: "خرائط على مستوى الأقضية مظلَّلة بمجموع الإشارات المرصودة لكل تجمّع إقليمي (طبقات الجهات الأربع)، على مقياس واحد مشترك حتى تكون المقارنة بين السنتين أمينة. القيم الدقيقة مطبوعة تحت كل خريطة؛ والمخيمات والنشاط الوطني لا يمكن رسمهما على الأقضية فيُعرضان منفصلين.",
+    mapAria: (year: number, list: string, occupation: boolean) =>
+      `خريطة حرارية على مستوى الأقضية للبنان لسنة ${year}: ${list}.${occupation ? " الأقضية المخطَّطة تضم مناطق حدودية محتلة إسرائيلياً." : ""}`,
+    ariaRow: (label: string, v: number) => `${label} ${v} إشارة`,
+    districtTitle: (name: string, zone: string, v: number, year: number) =>
+      `قضاء ${name} - ${zone}: ${v} إشارة في ${year}`,
+    notMappable: (label: string) => `${label} (خارج الخريطة)`,
+    caption:
+      "أعداد الإشارات مرصودة على مستوى التجمّع الإقليمي؛ وحدود الأقضية معروضة للتوجيه الجغرافي لا كقياسات على مستوى القضاء. وفي لوحة 2026، يعلّم التخطيط الصدئ الأقضية الحدودية التي تضم مناطق محتلة إسرائيلياً - على سبيل الدلالة فقط، إذ لا هندسة حدود منشورة لمنطقة الاحتلال الموسَّعة التي رُسمت في 18 حزيران 2026.",
+  },
+} as const;
+
+export default function YearChoropleths({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
   const totals: Record<Year, Record<string, number>> = {
     2024: totalsFor(2024),
     2026: totalsFor(2026),
@@ -48,14 +77,10 @@ export default function YearChoropleths() {
     <figure className="card p-3.5 sm:p-4">
       <figcaption>
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
-          Geographic heat maps: traced activity, 2024 and 2026
+          {t.heading}
         </h3>
         <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
-          District-level maps shaded by each regional grouping&apos;s total
-          traced mentions (all four actor layers), on one shared scale so
-          the two years are honestly comparable. Exact values are printed
-          beneath each map; camps and national-scale activity cannot be drawn
-          onto districts and are listed separately.
+          {t.sub}
         </p>
       </figcaption>
 
@@ -70,13 +95,19 @@ export default function YearChoropleths() {
               >
                 {year}
               </p>
-              <div className="mt-2 rounded-md border border-[color:var(--color-border)] bg-[#E9EDF2]">
+              {/* The drawing stays left-to-right in both languages, so the
+                  geometry never mirrors. */}
+              <div dir="ltr" className="mt-2 rounded-md border border-[color:var(--color-border)] bg-[#E9EDF2]">
                 <svg
                   viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
                   role="img"
-                  aria-label={`District-level heat map of Lebanon for ${year}: ${mappable
-                    .map((r) => `${r.label} ${totals[year][r.id] ?? 0} mentions`)
-                    .join("; ")}.${year === 2026 ? " Hatched districts contain Israeli-occupied border areas." : ""}`}
+                  aria-label={t.mapAria(
+                    year,
+                    mappable
+                      .map((r) => t.ariaRow(regionLabel(r.id, locale), totals[year][r.id] ?? 0))
+                      .join("; "),
+                    year === 2026,
+                  )}
                   className="h-auto w-full"
                 >
                   <defs>
@@ -93,18 +124,18 @@ export default function YearChoropleths() {
                   </defs>
                   {DISTRICT_PATHS.map((p) => {
                     const v = totals[year][p.zoneId] ?? 0;
-                    const t = v / sharedMax;
+                    const t2 = v / sharedMax;
                     return (
                       <path
                         key={p.name}
                         d={p.d}
                         fill={ramp}
-                        fillOpacity={v === 0 ? 0.08 : 0.2 + t * 0.72}
+                        fillOpacity={v === 0 ? 0.08 : 0.2 + t2 * 0.72}
                         stroke="#FFFFFF"
                         strokeWidth={0.6}
                         strokeOpacity={0.85}
                       >
-                        <title>{`${p.name} district - ${p.zoneLabel}: ${v} mentions in ${year}`}</title>
+                        <title>{t.districtTitle(p.name, regionLabel(p.zoneId, locale) || p.zoneLabel, v, year)}</title>
                       </path>
                     );
                   })}
@@ -168,7 +199,7 @@ export default function YearChoropleths() {
                               : 0.2 + ((totals[year][r.id] ?? 0) / sharedMax) * 0.72,
                         }}
                       />
-                      {r.label}
+                      {regionLabel(r.id, locale)}
                     </span>
                     <span className="font-semibold">{totals[year][r.id] ?? 0}</span>
                   </li>
@@ -186,7 +217,7 @@ export default function YearChoropleths() {
                         key={r.id}
                         className="flex items-center justify-between gap-2 text-[color:var(--color-text-secondary)]"
                       >
-                        <span>{r.label} (not mappable)</span>
+                        <span>{t.notMappable(regionLabel(r.id, locale))}</span>
                         <span className="font-semibold">{total}</span>
                       </li>
                     );
@@ -200,12 +231,7 @@ export default function YearChoropleths() {
       <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
         {/* The standing geography caution is printed once above the map;
             what follows is specific to these two panels. */}
-        Mention counts are traced at the regional-grouping level; district
-        boundaries are shown for geographic orientation, not as
-        district-level measurements. On the 2026 panel, rust hatching marks
-        the border districts containing Israeli-occupied areas - indicative
-        only, since the expanded occupation zone demarcated on 18 June 2026
-        has no published boundary geometry.
+        {t.caption}
       </p>
     </figure>
   );

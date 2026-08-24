@@ -2,9 +2,18 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
-import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
-import { locations, STAGES, CAUTION_MAP } from "@/lib/data-client";
+import { LAYER_META } from "@/lib/colors";
+import { locations } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
+import {
+  cautionMap,
+  comparabilityLabel,
+  layers,
+  regionLabel,
+  stageList,
+  statusList,
+  type Locale,
+} from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
 import type { ActorLayer, Year } from "@/lib/types";
 import {
@@ -20,7 +29,7 @@ import { fmtDate } from "@/lib/format";
 import { buildPins, clampToLand, layerColor, pinOutline } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
-import SvgLebanonMap, { type MapView } from "./SvgLebanonMap";
+import SvgLebanonMap, { eventKindLabel, type MapView } from "./SvgLebanonMap";
 
 /**
  * Fan spacing between neighbouring pins at one town, in degrees of
@@ -56,7 +65,70 @@ function esc(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
-export default function LebanonMap() {
+/** Reader-facing strings of this component, both languages. */
+const T = {
+  en: {
+    year: "Year",
+    mapYear: "Map year",
+    actorLayer: "Actor layer",
+    allLayers: "All layers",
+    stage: "Value-chain stage (points)",
+    allStages: "All stages",
+    status: "Implementation status (points)",
+    allStatuses: "All statuses",
+    comparability: "Comparability (points)",
+    all: "All",
+    reset: "Reset all filters",
+    backToVector: "Back to vector map",
+    glOptIn: "Pan & zoom (GL) map",
+    glAria: (year: number) =>
+      `Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`,
+    districtOf: (district: string) => `${district} district`,
+    tracedMentions: (year: string) => `Traced mentions, ${year}:`,
+    popupCaution: "Mentions in the tracking - not damage severity or coverage.",
+    tracedEntry: "Traced entry",
+    tracedEpisode: "Traced episode",
+    pinFoot:
+      "One pin, one traced entry - placed in the town the reporting names, not at an address.",
+    mentionsIn: (year: number) => `mentions in ${year}`,
+    happenedAria: (year: number) => `Traced episodes in ${year}`,
+    happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
+    happenedSub:
+      "Locality-level episodes from the tracked entries: announced, reported or assessed - stated as such, never more. Select the same places on the map via their town markers or the town search.",
+  },
+  ar: {
+    year: "السنة",
+    mapYear: "سنة الخريطة",
+    actorLayer: "طبقة الجهات",
+    allLayers: "كل الطبقات",
+    stage: "مرحلة سلسلة القيمة (النقاط)",
+    allStages: "كل المراحل",
+    status: "حالة التنفيذ (النقاط)",
+    allStatuses: "كل الحالات",
+    comparability: "القابلية للمقارنة (النقاط)",
+    all: "الكل",
+    reset: "إعادة ضبط كل الترشيح",
+    backToVector: "عودة إلى الخريطة المتجهة",
+    glOptIn: "خريطة تحريك وتقريب (GL)",
+    glAria: (year: number) =>
+      `خريطة للبنان تُظهر تركّز الأدوار المرصودة بحسب مناطق المحافظات لسنة ${year}. استخدم عرض الجدول بديلاً ميسّراً للوحة المفاتيح؛ والخريطة نفسها تدعم التحريك والتقريب بلوحة المفاتيح عند التركيز عليها.`,
+    districtOf: (district: string) => `قضاء ${district}`,
+    tracedMentions: (year: string) => `الإشارات المرصودة، ${year}:`,
+    popupCaution: "إشارات في التتبّع - لا شدّة الضرر ولا التغطية.",
+    tracedEntry: "مدخل مرصود",
+    tracedEpisode: "واقعة مرصودة",
+    pinFoot:
+      "دبّوس واحد لمدخل مرصود واحد - موضوع في البلدة التي يسمّيها الإبلاغ، لا على عنوان بعينه.",
+    mentionsIn: (year: number) => `إشارة في ${year}`,
+    happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
+    happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
+    happenedSub:
+      "وقائع على مستوى البلدات من المدخلات المتتبَّعة: أُعلن أو أُبلغ أو قُيِّم - كما ورد لا أكثر. اختر الأماكن نفسها على الخريطة عبر علامات بلداتها أو عبر البحث عن بلدة.",
+  },
+} as const;
+
+export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
   const { get, set, reset } = useUrlState({
     year: "2026",
     layer: "all",
@@ -350,16 +422,18 @@ export default function LebanonMap() {
             const townDistrict = townFeat?.properties?.adm2_name as string | undefined;
             const townLine =
               townName && townName !== "Conflict"
-                ? `<strong>${esc(townName)}</strong> · ${esc(townDistrict ?? "")} district<br/>`
+                ? `<strong>${esc(townName)}</strong> · ${esc(t.districtOf(townDistrict ?? ""))}<br/>`
                 : "";
+            const dirAttr = locale === "ar" ? ` dir="rtl"` : "";
+            const zoneName = (zoneId && regionLabel(zoneId, locale)) || zoneLabel;
             const m = zoneId ? mentionsFor(Number(get("year") || 2026) as Year, zoneId) : null;
             const html = m
-              ? `<div style="font-size:12px">${townLine}<strong>${esc(zoneLabel)}</strong><br/>Traced mentions, ${get("year") || 2026}:<br/>` +
-                LAYER_META.map(
+              ? `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong><br/>${esc(t.tracedMentions(String(get("year") || 2026)))}<br/>` +
+                layers(locale).map(
                   (l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}: <strong>${m[l.id]}</strong>`,
                 ).join("<br/>") +
-                `<br/><em style="color:#667588">Mentions in the tracking - not damage severity or coverage.</em></div>`
-              : `<div style="font-size:12px">${townLine}<strong>${esc(zoneLabel)}</strong></div>`;
+                `<br/><em style="color:#667588">${esc(t.popupCaution)}</em></div>`
+              : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
             new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)
               .setHTML(html)
@@ -459,26 +533,26 @@ export default function LebanonMap() {
         index: idx,
         townDistrict: district,
         year,
-        locale: "en",
+        locale,
         spacing: PIN_SPACING_DEG,
       });
       for (const [name, pins] of grouped) {
-        const t = byName.get(name);
-        if (!t) continue;
+        const town = byName.get(name);
+        if (!town) continue;
         // Longitude degrees shrink with latitude; widen the x offset so the
         // fan stays circular on the ground rather than squashed.
-        const lonScale = 1 / Math.max(0.2, Math.cos((t.lat * Math.PI) / 180));
+        const lonScale = 1 / Math.max(0.2, Math.cos((town.lat * Math.PI) / 180));
         for (const pin of pins) {
           // The spiral knows nothing about the coast; keep the pin ashore.
           const land = glLandRef.current;
-          const moved = clampToLand(t.lon, t.lat, pin.dx * lonScale, pin.dy, (x, y) =>
+          const moved = clampToLand(town.lon, town.lat, pin.dx * lonScale, pin.dy, (x, y) =>
             land ? isOnLandIndexed(land, x, y) : isOnLand(x, y),
           );
           features.push({
             type: "Feature" as const,
             geometry: {
               type: "Point" as const,
-              coordinates: [t.lon + moved.dx, t.lat + moved.dy],
+              coordinates: [town.lon + moved.dx, town.lat + moved.dy],
             },
             properties: {
               name,
@@ -489,18 +563,18 @@ export default function LebanonMap() {
               strokeColor: pin.kind === "episode" ? pin.color : pinOutline(pin.color),
               strokeWidth: pin.kind === "episode" ? 2.4 : 1.2,
               popupHtml:
-                `<div style="font-size:12px;line-height:1.5;max-width:300px">` +
+                `<div${locale === "ar" ? ` dir="rtl"` : ""} style="font-size:12px;line-height:1.5;max-width:300px">` +
                 `<span style="font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#667588">` +
-                `${pin.kind === "episode" ? "Traced episode" : "Traced entry"} · ${esc(pin.townName)}` +
+                `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry} · ${esc(pin.townName)}` +
                 `${pin.district ? ` · ${esc(pin.district)}` : ""} · ${year}</span>` +
                 `<br/><strong>${esc(pin.title)}</strong>` +
                 `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : layerColor(pin.layer)};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
-                `${pin.date ? ` <span style="font-size:10.5px;color:#667588">${esc(fmtDate(pin.date))}</span>` : ""}` +
+                `${pin.date ? ` <span style="font-size:10.5px;color:#667588">${esc(fmtDate(pin.date, locale))}</span>` : ""}` +
                 (pin.kind === "entry"
                   ? `<br/><span style="font-size:11px;color:#667588">${esc(pin.detail)}</span>`
                   : "") +
                 `<br/><span style="display:inline-block;margin-top:4px;white-space:normal">${esc(pin.body)}</span>` +
-                `<br/><em style="font-size:10.5px;color:#667588">One pin, one traced entry - placed in the town the reporting names, not at an address.</em></div>`,
+                `<br/><em style="font-size:10.5px;color:#667588">${esc(t.pinFoot)}</em></div>`,
             },
           });
         }
@@ -513,7 +587,7 @@ export default function LebanonMap() {
         features,
       });
     }
-  }, [mapReady, filteredRecords, year]);
+  }, [mapReady, filteredRecords, year, locale, t]);
 
   const selectCls =
     "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
@@ -527,9 +601,9 @@ export default function LebanonMap() {
         <div className="flex flex-wrap items-end gap-3">
           <div>
             <label htmlFor="map-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-              Year
+              {t.year}
             </label>
-            <div className="mt-1 inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white" role="radiogroup" aria-label="Map year">
+            <div className="mt-1 inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white" role="radiogroup" aria-label={t.mapYear}>
               {(["2024", "2026"] as const).map((y) => (
                 <button
                   key={y}
@@ -553,47 +627,46 @@ export default function LebanonMap() {
           </div>
           <div>
             <label htmlFor="map-layer" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-              Actor layer
+              {t.actorLayer}
             </label>
             <select id="map-layer" className={`mt-1 ${selectCls}`} value={layerFilter} onChange={(e) => set("layer", e.target.value)}>
-              <option value="all">All layers</option>
-              {LAYER_META.map((l) => (
+              <option value="all">{t.allLayers}</option>
+              {layers(locale).map((l) => (
                 <option key={l.id} value={l.id}>{l.label}</option>
               ))}
             </select>
           </div>
           <div>
             <label htmlFor="map-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-              Value-chain stage (points)
+              {t.stage}
             </label>
             <select id="map-stage" className={`mt-1 ${selectCls}`} value={stageFilter} onChange={(e) => set("stage", e.target.value)}>
-              <option value="all">All stages</option>
-              {STAGES.map((s, i) => (
+              <option value="all">{t.allStages}</option>
+              {stageList(locale).map((s, i) => (
                 <option key={s} value={String(i + 1)}>{s}</option>
               ))}
             </select>
           </div>
           <div>
             <label htmlFor="map-status" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-              Implementation status (points)
+              {t.status}
             </label>
             <select id="map-status" className={`mt-1 ${selectCls}`} value={statusFilter} onChange={(e) => set("status", e.target.value)}>
-              <option value="all">All statuses</option>
-              {Object.entries(STATUS_LABELS).map(([k, v]) => (
+              <option value="all">{t.allStatuses}</option>
+              {statusList(locale).map(([k, v]) => (
                 <option key={k} value={k}>{v}</option>
               ))}
             </select>
           </div>
           <div>
             <label htmlFor="map-comp" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-              Comparability (points)
+              {t.comparability}
             </label>
             <select id="map-comp" className={`mt-1 ${selectCls}`} value={comparabilityFilter} onChange={(e) => set("comparability", e.target.value)}>
-              <option value="all">All</option>
-              <option value="direct">Directly comparable</option>
-              <option value="qualified">Comparable with qualification</option>
-              <option value="not_comparable">Not directly comparable</option>
-              <option value="context_only">Context only</option>
+              <option value="all">{t.all}</option>
+              {(["direct", "qualified", "not_comparable", "context_only"] as const).map((k) => (
+                <option key={k} value={k}>{comparabilityLabel(k, locale)}</option>
+              ))}
             </select>
           </div>
           <button
@@ -601,7 +674,7 @@ export default function LebanonMap() {
             onClick={reset}
             className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
           >
-            Reset all filters
+            {t.reset}
           </button>
           <button
             type="button"
@@ -615,13 +688,13 @@ export default function LebanonMap() {
             aria-pressed={renderMode === "gl"}
             className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
           >
-            {renderMode === "gl" ? "Back to vector map" : "Pan & zoom (GL) map"}
+            {renderMode === "gl" ? t.backToVector : t.glOptIn}
           </button>
         </div>
       </div>
 
       <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        {CAUTION_MAP}
+        {cautionMap(locale)}
       </p>
 
       {(
@@ -635,13 +708,14 @@ export default function LebanonMap() {
               records={filteredRecords}
               recordsAllYears={recordsAllYears}
               view={mapView}
+              locale={locale}
             />
           ) : (
-            <div className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
+            <div dir="ltr" className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
               <div
                 ref={containerRef}
                 className="h-[560px] sm:h-[760px]"
-                aria-label={`Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`}
+                aria-label={t.glAria(year)}
               />
             </div>
           )}
@@ -651,7 +725,7 @@ export default function LebanonMap() {
               group, not repeated on each card. */}
           <div className="space-y-3">
             {renderMode === "gl" && mapView === "entries" ? (
-              <MapLegend />
+              <MapLegend locale={locale} />
             ) : null}
             {nonMappable.map((r) => {
               const m = mentionsFor(year, r.id);
@@ -659,16 +733,16 @@ export default function LebanonMap() {
               return (
                 <section key={r.id} className="card p-3.5">
                   <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-                    {r.label}
+                    {regionLabel(r.id, locale)}
                   </h3>
                   <p className="mt-2 text-lg font-semibold tabular-nums text-[color:var(--color-navy)]">
                     {total}{" "}
                     <span className="text-xs font-normal text-[color:var(--color-text-secondary)]">
-                      mentions in {year}
+                      {t.mentionsIn(year)}
                     </span>
                   </p>
                   <ul className="mt-2 space-y-1 text-xs">
-                    {LAYER_META.map((l) => (
+                    {layers(locale).map((l) => (
                       <li key={l.id} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-1.5">
                           <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
@@ -688,16 +762,14 @@ export default function LebanonMap() {
       {/* What happened where: traced episodes for the selected year */}
       {(
         <section
-          aria-label={`Traced episodes in ${year}`}
+          aria-label={t.happenedAria(year)}
           className="mt-6 card p-3.5 sm:p-4"
         >
           <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
-            What happened where - traced episodes, {year}
+            {t.happenedHead(year)}
           </h3>
           <p className="mt-1 max-w-3xl text-xs text-[color:var(--color-text-secondary)]">
-            Locality-level episodes from the tracked entries: announced,
-            reported or assessed - stated as such, never more. Select the same
-            places on the map via their town markers or the town search.
+            {t.happenedSub}
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {LOCALITY_EVENTS.filter((l) => l.events.some((e) => e.year === year)).map((l) => (
@@ -714,14 +786,14 @@ export default function LebanonMap() {
                     return (
                       <li key={i} className="text-[12.5px] leading-relaxed">
                         <span
-                          className="mr-1.5 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                          className="me-1.5 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
                           style={{ color: meta.color, background: meta.bg }}
                         >
-                          {meta.label}
+                          {eventKindLabel(e.kind, locale)}
                         </span>
                         {e.date ? (
-                          <span className="mr-1 font-semibold text-[color:var(--color-navy)]">
-                            {fmtDate(e.date)}:
+                          <span className="me-1 font-semibold text-[color:var(--color-navy)]">
+                            {fmtDate(e.date, locale)}:
                           </span>
                         ) : null}
                         {e.text}

@@ -44,6 +44,11 @@ describe("slim projection stays in sync with the full log", () => {
       expect(s.locationNames, `${s.id}.locationNames`).toEqual(
         full.locationNames,
       );
+      expect(s.locationNamesAr ?? [], `${s.id}.locationNamesAr`).toEqual(
+        full.locationNamesAr ?? [],
+      );
+      const flatAr = (full.tracedActionAr ?? full.summaryAr?.replace(/\n+/g, " ").trim()) || undefined;
+      expect(s.actionAr, `${s.id}.actionAr`).toEqual(flatAr);
     }
   });
 });
@@ -67,7 +72,9 @@ describe("heatmap cell files stay in sync with the full log", () => {
           functionColumn: string;
           implementationStatus: string;
           locationNames: string[];
+          locationNamesAr: string[];
           summary: string;
+          summaryAr: string | null;
         }[];
         const expected = roleRecords
           .filter((r) => r.actorLayer === layer && r.stageNo === stageNo)
@@ -78,7 +85,9 @@ describe("heatmap cell files stay in sync with the full log", () => {
             functionColumn: r.functionColumn,
             implementationStatus: r.implementationStatus,
             locationNames: r.locationNames,
+            locationNamesAr: r.locationNamesAr ?? [],
             summary: r.summary,
+            summaryAr: r.summaryAr ?? null,
           }));
         expect(cell, `${layer}-${stageNo}.json`).toEqual(expected);
         total += cell.length;

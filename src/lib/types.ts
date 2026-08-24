@@ -43,15 +43,20 @@ export type RoleRecord = {
   stageNo: number;
   functionColumn: string;
   locationNames: string[];
+  /** Arabic renderings parallel to locationNames, same length and order. */
+  locationNamesAr?: string[];
   regions: string[];
   formalMandate: string | null;
+  formalMandateAr?: string | null;
   tracedAction: string | null;
+  tracedActionAr?: string | null;
   implementationStatus: ImplementationStatus;
   financingRole: string | null;
   procurementRole: string | null;
   implementationRole: string | null;
   oversightRole: string | null;
   summary: string;
+  summaryAr?: string;
   comparability: Comparability;
   sourceIds: string[];
 };

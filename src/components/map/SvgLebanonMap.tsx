@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LAYER_META } from "@/lib/colors";
-import { locations, STAGES } from "@/lib/data-client";
+import { locations } from "@/lib/data-client";
 import type { SlimRecord } from "@/lib/map-records";
 import {
   DISTRICT_PATHS,
@@ -37,7 +37,7 @@ import {
   type MapEvent,
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import type { Locale } from "@/lib/vocab";
+import { layers, regionLabel, stageList, type Locale } from "@/lib/vocab";
 import { buildPins, clampToLand, fanRadius, pinOutline, type Pin } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
@@ -69,6 +69,55 @@ const PIN_T = {
     close: "Close this entry",
     pinNote:
       "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address.",
+    happenedHere: "What happened here",
+    findTown: (n: string) => `Find a town (${n} cadastral towns - selecting zooms to it)`,
+    loading: "loading",
+    searchPlaceholder: "e.g. Aaintaroun (Bent Jbeil)",
+    zoomReadout: (z: string) => `×${z} zoom`,
+    mapAria: (year: number, occupation: boolean) =>
+      `Town-level map of Lebanon shaded by located traced activities for ${year}.${occupation ? " Hatched towns form the Blue Line border strip with traced Israeli occupation." : ""} Zoom with the buttons above the map; use the town search box for keyboard access to individual towns.`,
+    baseTitle: (name: string, zone: string, v: number, year: number) =>
+      `${name} - ${zone}: ${v} mentions (${year})`,
+    area: (name: string, district: string) => `${name} · ${district} district`,
+    hoverChange: (name: string, district: string, y24: number, y26: number) =>
+      `${name} · ${district} district - activity ${y24} → ${y26} (${y26 - y24 >= 0 ? "+" : ""}${y26 - y24})`,
+    hoverSurvey: (name: string, district: string, units: string, completeShare?: number) =>
+      `${name} · ${district} district - ${units} housing units reported damaged (Dec 2024 municipal survey)${completeShare ? `, ${completeShare}% completely damaged` : ""}`,
+    hoverSurveyNone: (name: string, district: string) =>
+      `${name} · ${district} district - not among the districts named in the December 2024 municipal survey`,
+    hoverDamage: (name: string, district: string) =>
+      `${name} · ${district} district - select for assessment details`,
+    hoverEntries: (name: string, district: string, dCount: number, namedCount: number) =>
+      `${name} · ${district} district - ${dCount} traced activit${dCount === 1 ? "y" : "ies"} in this district${namedCount > 0 ? `, ${namedCount} naming this town` : ""}`,
+    stripSuffix: " · Blue Line border strip (occupation)",
+    occupiedSuffix: " · district contains occupied areas",
+    unnamed: "Unnamed or disputed area (boundary data)",
+    overviewAria: "Overview map - click to recentre the view",
+    km: "km",
+    dahieh: "Dahieh belt: 93% of Beirut–ML debris",
+    dmgAria: (label: string, n: string) =>
+      `${label}: ${n} buildings completely destroyed in the 2026 assessment`,
+    dmgTitle: (label: string, n: string) =>
+      `${label}: ${n} buildings completely destroyed - South of the Litani assessment, 29 April 2026 imagery, desk-validated`,
+    stageTip: (no: number, name: string, c: number) =>
+      `${no}. ${name}: ${c} entry${c === 1 ? "" : "s"}`,
+    stagesCaption: (present: number) =>
+      `value-chain stages 1–12 (hover for names) - ${present} of 12 present`,
+    zoneScaleNote:
+      "Mention counts are traced at the regional-grouping level; town boundaries are shown for geographic orientation.",
+    mentionsCaution:
+      "Mentions in the tracking - not damage severity, expenditure or coverage.",
+    whoLink: "Who did what here →",
+    explorerLink: "Open the data explorer →",
+    changeMorePins: "more located entries in 2026 than 2024",
+    changeFewerPins: (maxAbs: number) =>
+      `fewer than 2024 - darker = larger change (max ±${maxAbs})`,
+    surveyLegend: (max: string) =>
+      `housing units reported damaged by municipalities, December 2024 (0-${max} per district)`,
+    damageLegend: "buildings completely destroyed, worst cadasters (2026 assessment)",
+    stripLegend: "Blue Line border-strip towns - traced occupation (2026)",
+    stripDistrictsLegend: "districts containing the strip",
+    completeShare: (pct: number) => `${pct}% complete`,
   },
   ar: {
     districtTint: (max: number) =>
@@ -80,15 +129,75 @@ const PIN_T = {
     close: "إغلاق هذا المدخل",
     pinNote:
       "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع.",
+    happenedHere: "ما الذي جرى هنا",
+    findTown: (n: string) => `ابحث عن بلدة (${n} بلدة عقارية - اختيارها يقرّب الخريطة إليها)`,
+    loading: "قيد التحميل",
+    searchPlaceholder: "مثال: Aaintaroun (Bent Jbeil)",
+    zoomReadout: (z: string) => `تكبير ×${z}`,
+    mapAria: (year: number, occupation: boolean) =>
+      `خريطة لبنان على مستوى البلدات مظلَّلة بالنشاط المرصود المحدَّد الموقع لسنة ${year}.${occupation ? " البلدات المخطَّطة تشكّل شريط الخط الأزرق الحدودي حيث رُصد احتلال إسرائيلي." : ""} قرّب بالعجلة أو السحب أو النقر المزدوج؛ ومربّع البحث عن بلدة يتيح الوصول إلى البلدات بلوحة المفاتيح.`,
+    baseTitle: (name: string, zone: string, v: number, year: number) =>
+      `${name} - ${zone}: ${v} إشارة (${year})`,
+    area: (name: string, district: string) => `${name} · قضاء ${district}`,
+    hoverChange: (name: string, district: string, y24: number, y26: number) =>
+      `${name} · قضاء ${district} - النشاط من ${y24} إلى ${y26} (${y26 - y24 >= 0 ? "+" : ""}${y26 - y24})`,
+    hoverSurvey: (name: string, district: string, units: string, completeShare?: number) =>
+      `${name} · قضاء ${district} - ${units} وحدة سكنية أُبلغ عن تضرّرها (مسح البلديات، كانون الأول 2024)${completeShare ? `، منها ${completeShare}% متضرّرة كلياً` : ""}`,
+    hoverSurveyNone: (name: string, district: string) =>
+      `${name} · قضاء ${district} - ليس من الأقضية المسمّاة في مسح البلديات في كانون الأول 2024`,
+    hoverDamage: (name: string, district: string) =>
+      `${name} · قضاء ${district} - اختره لتفاصيل التقييم`,
+    hoverEntries: (name: string, district: string, dCount: number, namedCount: number) =>
+      `${name} · قضاء ${district} - ${dCount} نشاطاً مرصوداً في هذا القضاء${namedCount > 0 ? `، منها ${namedCount} يسمّي هذه البلدة` : ""}`,
+    stripSuffix: " · شريط الخط الأزرق الحدودي (احتلال)",
+    occupiedSuffix: " · قضاء يضم مناطق محتلة",
+    unnamed: "منطقة بلا اسم أو متنازَع عليها (معطيات الحدود)",
+    overviewAria: "خريطة عامة - انقر لإعادة توسيط العرض",
+    km: "كم",
+    dahieh: "حزام الضاحية: 93% من ركام بيروت وجبل لبنان",
+    dmgAria: (label: string, n: string) =>
+      `${label}: ${n} مبنى مدمَّراً كلياً في تقييم 2026`,
+    dmgTitle: (label: string, n: string) =>
+      `${label}: ${n} مبنى مدمَّراً كلياً - تقييم جنوب الليطاني، صور 29 نيسان 2026، بتدقيق مكتبي`,
+    stageTip: (no: number, name: string, c: number) => `${no}. ${name}: ${c} مدخل`,
+    stagesCaption: (present: number) =>
+      `مراحل سلسلة القيمة 1-12 (مرّر المؤشر للأسماء) - ${present} من 12 حاضرة`,
+    zoneScaleNote:
+      "أعداد الإشارات مرصودة على مستوى التجمّع الإقليمي؛ وحدود البلدات معروضة للتوجيه الجغرافي.",
+    mentionsCaution: "إشارات في التتبّع - لا شدّة الضرر ولا الإنفاق ولا التغطية.",
+    whoLink: "من فعل ماذا هنا ←",
+    explorerLink: "افتح مستكشف المدخلات ←",
+    changeMorePins: "مدخلات محدَّدة الموقع في 2026 أكثر منها في 2024",
+    changeFewerPins: (maxAbs: number) =>
+      `أقل من 2024 - الأغمق يعني تبدّلاً أكبر (الحد الأقصى ±${maxAbs})`,
+    surveyLegend: (max: string) =>
+      `وحدات سكنية أُبلغ عن تضرّرها من البلديات، كانون الأول 2024 (0-${max} لكل قضاء)`,
+    damageLegend: "أبنية مدمَّرة كلياً، أسوأ العقارات (تقييم 2026)",
+    stripLegend: "بلدات شريط الخط الأزرق الحدودي - احتلال مرصود (2026)",
+    stripDistrictsLegend: "أقضية تضم الشريط",
+    completeShare: (pct: number) => `${pct}% تضرّر كلي`,
   },
 } as const;
 
-function EventsList({ events }: { events: MapEvent[] }) {
+/** Arabic chip labels for the traced-episode kinds; EN keeps EVENT_KIND_META. */
+const KIND_AR: Record<MapEvent["kind"], string> = {
+  official: "رسمي",
+  municipal: "بلدي",
+  ngo_international: "دولي / غير حكومي",
+  community: "أهلي",
+  context: "سياق الحرب",
+};
+
+export function eventKindLabel(kind: MapEvent["kind"], locale: Locale): string {
+  return locale === "ar" ? KIND_AR[kind] : EVENT_KIND_META[kind].label;
+}
+
+function EventsList({ events, locale = "en" }: { events: MapEvent[]; locale?: Locale }) {
   if (events.length === 0) return null;
   return (
     <div className="mt-3 border-t border-dashed border-[color:var(--color-border)] pt-2.5">
       <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-        What happened here
+        {PIN_T[locale].happenedHere}
       </h4>
       <ul className="mt-1.5 space-y-2">
         {events.map((e, i) => {
@@ -96,14 +205,14 @@ function EventsList({ events }: { events: MapEvent[] }) {
           return (
             <li key={i} className="text-[12.5px] leading-relaxed">
               <span
-                className="mr-1.5 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                className="me-1.5 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
                 style={{ color: meta.color, background: meta.bg }}
               >
-                {meta.label}
+                {eventKindLabel(e.kind, locale)}
               </span>
               {e.date ? (
-                <span className="mr-1 font-semibold text-[color:var(--color-navy)]">
-                  {fmtDate(e.date)}:
+                <span className="me-1 font-semibold text-[color:var(--color-navy)]">
+                  {fmtDate(e.date, locale)}:
                 </span>
               ) : null}
               {e.text}
@@ -480,7 +589,7 @@ export default function SvgLebanonMap({
 
   function selectTown(t: Town) {
     setSelectedZone(t.zoneId || null);
-    setSelectedArea(`${t.name} · ${t.district} district`);
+    setSelectedArea(tr.area(t.name, t.district));
     setSelectedDistrict(t.district);
     setSelectedTownRaw(t.name);
     setSelectedTownUid(t.uid);
@@ -708,14 +817,14 @@ export default function SvgLebanonMap({
         label: d.name,
         value: d.units,
         display: `${d.units.toLocaleString("en-US")}`,
-        note: d.completeShare ? `${d.completeShare}% complete` : undefined,
+        note: d.completeShare ? tr.completeShare(d.completeShare) : undefined,
       }));
     return damageAnchors.map((a) => ({
       key: a.label,
       label: a.label,
       value: a.destroyed,
     }));
-  }, [view, placePoints, change, damageAnchors]);
+  }, [view, placePoints, change, damageAnchors, tr]);
 
   /** Top points labelled even at national zoom (skipping city labels). */
   const topPlaceNames = useMemo(() => {
@@ -773,17 +882,17 @@ export default function SvgLebanonMap({
         const delta = e.y26 - e.y24;
         fill = delta >= 0 ? "#2F8F6B" : "#BD5A46";
         opacity = 0.06 + (Math.abs(delta) / change.maxAbs) * 0.72;
-        hoverText = `${t.name} · ${t.district} district - activity ${e.y24} → ${e.y26} (${delta >= 0 ? "+" : ""}${delta})`;
+        hoverText = tr.hoverChange(t.name, t.district, e.y24, e.y26);
       } else if (view === "survey" && !unnamed) {
         const s = SURVEY_BY_DISTRICT.get(t.district);
         fill = "#BD5A46";
         opacity = s ? 0.12 + (s.units / SURVEY_MAX) * 0.75 : 0.05;
         hoverText = s
-          ? `${t.name} · ${t.district} district - ${s.units.toLocaleString("en-US")} housing units reported damaged (Dec 2024 municipal survey)${s.completeShare ? `, ${s.completeShare}% completely damaged` : ""}`
-          : `${t.name} · ${t.district} district - not among the districts named in the December 2024 municipal survey`;
+          ? tr.hoverSurvey(t.name, t.district, s.units.toLocaleString("en-US"), s.completeShare ?? undefined)
+          : tr.hoverSurveyNone(t.name, t.district);
       } else if (view === "damage" && !unnamed) {
         opacity = 0.1;
-        hoverText = `${t.name} · ${t.district} district - select for assessment details`;
+        hoverText = tr.hoverDamage(t.name, t.district);
       } else {
         // Entries view: the base map is geography and nothing else. The
         // quantity lives in the pins now, one per entry, so tinting the
@@ -792,11 +901,11 @@ export default function SvgLebanonMap({
         // carry. Grey keeps colour meaning exactly one thing.
         fill = unnamed ? "#B9C2CE" : "#E1E7EE";
         opacity = unnamed ? 0.35 : 0.9;
-        hoverText = `${t.name} · ${t.district} district - ${dCount} traced activit${dCount === 1 ? "y" : "ies"} in this district${namedCount > 0 ? `, ${namedCount} naming this town` : ""}`;
+        hoverText = tr.hoverEntries(t.name, t.district, dCount, namedCount);
       }
       if (!affected && !unnamed) opacity *= 0.42;
-      if (!unnamed && onStrip2026) hoverText += " · Blue Line border strip (occupation)";
-      else if (!unnamed && occupied2026) hoverText += " · district contains occupied areas";
+      if (!unnamed && onStrip2026) hoverText += tr.stripSuffix;
+      else if (!unnamed && occupied2026) hoverText += tr.occupiedSuffix;
 
       return (
         <path
@@ -828,14 +937,14 @@ export default function SvgLebanonMap({
           }
         >
           <title>
-            {unnamed ? "Unnamed or disputed area (boundary data)" : hoverText}
+            {unnamed ? tr.unnamed : hoverText}
           </title>
         </path>
       );
     });
     // selectTown is recreated per render but only closes over `year` (a dep).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [towns, regionValues, maxRegion, rampColor, selectedTownUid, year, view, change, districtRecords, townRecords, maxDistrict, maxTown]);
+  }, [towns, regionValues, maxRegion, rampColor, selectedTownUid, year, view, change, districtRecords, townRecords, maxDistrict, maxTown, locale]);
 
   const zoneMentions = selectedZone
     ? (locations.mentions[String(year) as "2024" | "2026"][
@@ -870,7 +979,7 @@ export default function SvgLebanonMap({
       {/* Town search */}
       <div className="mb-3">
         <label htmlFor="town-search" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
-          Find a town ({towns ? townNames.length.toLocaleString("en-US") : "loading"} cadastral towns - selecting zooms to it)
+          {tr.findTown(towns ? townNames.length.toLocaleString("en-US") : tr.loading)}
         </label>
         <input
           id="town-search"
@@ -878,7 +987,7 @@ export default function SvgLebanonMap({
           list="town-list"
           value={search}
           onChange={(e) => onSearch(e.target.value)}
-          placeholder="e.g. Aaintaroun (Bent Jbeil)"
+          placeholder={tr.searchPlaceholder}
           disabled={!towns}
           className="mt-1 min-h-11 w-full max-w-md rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
         />
@@ -894,8 +1003,8 @@ export default function SvgLebanonMap({
           drag, pinch or double-click, with the overview button in the
           corner to recentre. The zoom factor still reads out, because it
           is the one thing those gestures do not tell you. */}
-      <p className="mb-2 text-right text-xs tabular-nums text-[color:var(--color-text-secondary)]">
-        ×{(VIEW_W / vb.w).toFixed(1)} zoom
+      <p className="mb-2 text-end text-xs tabular-nums text-[color:var(--color-text-secondary)]">
+        {tr.zoomReadout((VIEW_W / vb.w).toFixed(1))}
       </p>
 
       {/* Lebanon's outline is portrait, so a full-width map would run
@@ -905,12 +1014,14 @@ export default function SvgLebanonMap({
           detail panel. */}
       <div className="grid gap-5 lg:grid-cols-[minmax(0,min(82vh,46rem))_minmax(0,1fr)] lg:items-start">
         <div>
-          <div className="relative mx-auto w-full max-w-[min(82vh,46rem)] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          {/* The drawing itself stays left-to-right in both languages, so
+              geometry, labels and the scale bar never mirror. */}
+          <div dir="ltr" className="relative mx-auto w-full max-w-[min(82vh,46rem)] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
               role="group"
-              aria-label={`Town-level map of Lebanon shaded by located traced activities for ${year}.${showOccupation ? " Hatched towns form the Blue Line border strip with traced Israeli occupation." : ""} Zoom with the buttons above the map; use the town search box for keyboard access to individual towns.`}
+              aria-label={tr.mapAria(year, showOccupation)}
               className={`block h-auto w-full ${dragging ? "cursor-grabbing" : ""}`}
               style={{ touchAction: zoomed ? "none" : "pan-y" }}
               onPointerDown={onPointerDown}
@@ -947,7 +1058,7 @@ export default function SvgLebanonMap({
                       strokeWidth={0.6}
                       strokeOpacity={0.85}
                     >
-                      <title>{`${p.name} - ${p.zoneLabel}: ${v} mentions (${year})`}</title>
+                      <title>{tr.baseTitle(p.name, regionLabel(p.zoneId, locale) || p.zoneLabel, v, year)}</title>
                     </path>
                   );
                 })
@@ -1245,7 +1356,7 @@ export default function SvgLebanonMap({
                         onClick={() => selectTown(a.town)}
                         tabIndex={0}
                         role="button"
-                        aria-label={`${a.label}: ${a.destroyed.toLocaleString("en-US")} buildings completely destroyed in the 2026 assessment`}
+                        aria-label={tr.dmgAria(a.label, a.destroyed.toLocaleString("en-US"))}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
@@ -1275,7 +1386,7 @@ export default function SvgLebanonMap({
                         >
                           {a.label}
                         </text>
-                        <title>{`${a.label}: ${a.destroyed.toLocaleString("en-US")} buildings completely destroyed - South of the Litani assessment, 29 April 2026 imagery, desk-validated`}</title>
+                        <title>{tr.dmgTitle(a.label, a.destroyed.toLocaleString("en-US"))}</title>
                       </g>
                     );
                   })}
@@ -1299,7 +1410,7 @@ export default function SvgLebanonMap({
                           paintOrder="stroke"
                           fontWeight={600}
                         >
-                          Dahieh belt: 93% of Beirut–ML debris
+                          {tr.dahieh}
                         </text>
                       </g>
                     );
@@ -1325,7 +1436,7 @@ export default function SvgLebanonMap({
                 <rect x={0} y={-2.5 * k} width={scaleLen} height={2.5 * k} fill="#3D4C5C" />
                 <rect x={0} y={-2.5 * k} width={scaleLen / 2} height={2.5 * k} fill="#8595A6" />
                 <text x={scaleLen + 4 * k} y={0} fontSize={9 * k} fill="#3D4C5C">
-                  {scaleKm} km
+                  {scaleKm} {tr.km}
                 </text>
               </g>
             </svg>
@@ -1337,7 +1448,7 @@ export default function SvgLebanonMap({
             {zoomed ? (
               <button
                 type="button"
-                aria-label="Overview map - click to recentre the view"
+                aria-label={tr.overviewAria}
                 className="absolute right-2 top-2 rounded-sm border border-[color:var(--color-border)] bg-white/90 p-0.5 shadow-sm"
                 onClick={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -1441,31 +1552,65 @@ export default function SvgLebanonMap({
             <>
               <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
                 {selectedArea ? `${selectedArea} · ` : ""}
-                {locations.regions.find((r) => r.id === selectedZone)?.label} · {year}
+                {regionLabel(selectedZone, locale)} · {year}
               </h3>
               {selectedOccupation === "strip" ? (
                 <p className="mt-1.5 rounded-sm bg-[#F7E9E5] px-2 py-1 text-xs font-medium text-[color:var(--color-rust)]">
-                  On the Blue Line border strip, where the sources show
-                  occupied villages and the zone demarcated on 18 June 2026;
-                  residents of occupied villages cannot return.
+                  {locale === "ar" ? (
+                    <>
+                      على شريط الخط الأزرق الحدودي، حيث يُظهر الإبلاغ قرى
+                      محتلة والمنطقة التي رُسمت حدودها في 18 حزيران 2026؛
+                      وأهالي القرى المحتلة لا يستطيعون العودة.
+                    </>
+                  ) : (
+                    <>
+                      On the Blue Line border strip, where the sources show
+                      occupied villages and the zone demarcated on 18 June 2026;
+                      residents of occupied villages cannot return.
+                    </>
+                  )}
                 </p>
               ) : selectedOccupation === "district" ? (
                 <p className="mt-1.5 rounded-sm bg-[#FBF3EC] px-2 py-1 text-xs text-[color:var(--color-rust)]">
-                  In a district whose border strip contains Israeli-occupied
-                  areas (2026); this town itself is not on the strip.
+                  {locale === "ar" ? (
+                    <>
+                      في قضاء يضم شريطه الحدودي مناطق محتلة إسرائيلياً
+                      (2026)؛ هذه البلدة نفسها ليست على الشريط.
+                    </>
+                  ) : (
+                    <>
+                      In a district whose border strip contains Israeli-occupied
+                      areas (2026); this town itself is not on the strip.
+                    </>
+                  )}
                 </p>
               ) : null}
               {(() => {
                 const anchor = damageAnchors.find((a) => a.town.name === selectedTownRaw);
                 return anchor ? (
                   <p className="mt-2 rounded-sm bg-[#F7E9E5] px-2.5 py-2 text-xs leading-relaxed">
-                    <strong className="text-[color:var(--color-rust)]">
-                      {anchor.destroyed.toLocaleString("en-US")} buildings completely
-                      destroyed
-                    </strong>{" "}
-                    here in the 29 April 2026 South-of-the-Litani assessment (GeoAI
-                    against an October 2025 baseline, desk-validated, no field
-                    confirmation) - among the four worst cadasters nationally.
+                    {locale === "ar" ? (
+                      <>
+                        <strong className="text-[color:var(--color-rust)]">
+                          {anchor.destroyed.toLocaleString("en-US")} مبنى مدمَّراً
+                          كلياً
+                        </strong>{" "}
+                        هنا في تقييم جنوب الليطاني بتاريخ 29 نيسان 2026 (ذكاء
+                        اصطناعي جغرافي مقابل خط أساس تشرين الأول 2025، بتدقيق
+                        مكتبي ومن دون تثبيت ميداني) - من بين أسوأ أربعة عقارات
+                        على مستوى البلاد.
+                      </>
+                    ) : (
+                      <>
+                        <strong className="text-[color:var(--color-rust)]">
+                          {anchor.destroyed.toLocaleString("en-US")} buildings completely
+                          destroyed
+                        </strong>{" "}
+                        here in the 29 April 2026 South-of-the-Litani assessment (GeoAI
+                        against an October 2025 baseline, desk-validated, no field
+                        confirmation) - among the four worst cadasters nationally.
+                      </>
+                    )}
                   </p>
                 ) : null;
               })()}
@@ -1475,49 +1620,101 @@ export default function SvgLebanonMap({
                   : undefined;
                 return s ? (
                   <p className="mt-2 rounded-sm bg-[#F7E9E5] px-2.5 py-2 text-xs leading-relaxed">
-                    <strong className="text-[color:var(--color-rust)]">
-                      {s.units.toLocaleString("en-US")} housing units
-                    </strong>{" "}
-                    reported damaged in {s.name} in the December 2024 municipal
-                    survey
-                    {s.completeShare ? `, ${s.completeShare}% of them completely damaged` : ""}
-                    . Municipal declaration collected in ten days, not an
-                    engineering assessment.
+                    {locale === "ar" ? (
+                      <>
+                        <strong className="text-[color:var(--color-rust)]">
+                          {s.units.toLocaleString("en-US")} وحدة سكنية
+                        </strong>{" "}
+                        أُبلغ عن تضرّرها في {s.name} في مسح البلديات في كانون
+                        الأول 2024
+                        {s.completeShare ? `، منها ${s.completeShare}% متضرّرة كلياً` : ""}
+                        . تصريح بلدي جُمع في عشرة أيام، لا تقييم هندسي.
+                      </>
+                    ) : (
+                      <>
+                        <strong className="text-[color:var(--color-rust)]">
+                          {s.units.toLocaleString("en-US")} housing units
+                        </strong>{" "}
+                        reported damaged in {s.name} in the December 2024 municipal
+                        survey
+                        {s.completeShare ? `, ${s.completeShare}% of them completely damaged` : ""}
+                        . Municipal declaration collected in ten days, not an
+                        engineering assessment.
+                      </>
+                    )}
                   </p>
                 ) : null;
               })()}
               {view === "change" && selectedDistrict ? (
                 <p className="mt-2 rounded-sm bg-[#F4F6F9] px-2.5 py-2 text-xs leading-relaxed">
-                  Located entries in {selectedDistrict} district:{" "}
-                  <strong className="text-[color:var(--color-navy)]">
-                    {(change.byDistrict.get(selectedDistrict)?.y24 ?? 0).toLocaleString("en-US")}
-                  </strong>{" "}
-                  in 2024 →{" "}
-                  <strong className="text-[color:var(--color-navy)]">
-                    {(change.byDistrict.get(selectedDistrict)?.y26 ?? 0).toLocaleString("en-US")}
-                  </strong>{" "}
-                  in 2026 under the current filters.
+                  {locale === "ar" ? (
+                    <>
+                      المدخلات المحدَّدة الموقع في قضاء {selectedDistrict}: من{" "}
+                      <strong className="text-[color:var(--color-navy)]">
+                        {(change.byDistrict.get(selectedDistrict)?.y24 ?? 0).toLocaleString("en-US")}
+                      </strong>{" "}
+                      في 2024 إلى{" "}
+                      <strong className="text-[color:var(--color-navy)]">
+                        {(change.byDistrict.get(selectedDistrict)?.y26 ?? 0).toLocaleString("en-US")}
+                      </strong>{" "}
+                      في 2026 ضمن الترشيح الحالي.
+                    </>
+                  ) : (
+                    <>
+                      Located entries in {selectedDistrict} district:{" "}
+                      <strong className="text-[color:var(--color-navy)]">
+                        {(change.byDistrict.get(selectedDistrict)?.y24 ?? 0).toLocaleString("en-US")}
+                      </strong>{" "}
+                      in 2024 →{" "}
+                      <strong className="text-[color:var(--color-navy)]">
+                        {(change.byDistrict.get(selectedDistrict)?.y26 ?? 0).toLocaleString("en-US")}
+                      </strong>{" "}
+                      in 2026 under the current filters.
+                    </>
+                  )}
                 </p>
               ) : null}
               {selectedDistrict ? (
                 <div className="mt-2 rounded-sm bg-[#F4F6F9] px-2.5 py-2 text-xs leading-relaxed">
                   <p>
-                    <span className="font-semibold text-[color:var(--color-navy)]">
-                      {selectedDistrictRecords.length}
-                    </span>{" "}
-                    traced activity{selectedDistrictRecords.length === 1 ? "" : "s"} locate
-                    work in {selectedDistrict} district under the current filters
-                    {selectedTownRecords.length > 0 ? (
+                    {locale === "ar" ? (
                       <>
-                        {" "}-{" "}
                         <span className="font-semibold text-[color:var(--color-navy)]">
-                          {selectedTownRecords.length}
+                          {selectedDistrictRecords.length}
                         </span>{" "}
-                        name{selectedTownRecords.length === 1 ? "s" : ""} {selectedTownName}{" "}
-                        directly
+                        نشاطاً مرصوداً يحدد موقع عمل في قضاء {selectedDistrict}{" "}
+                        ضمن الترشيح الحالي
+                        {selectedTownRecords.length > 0 ? (
+                          <>
+                            {" "}-{" "}
+                            <span className="font-semibold text-[color:var(--color-navy)]">
+                              {selectedTownRecords.length}
+                            </span>{" "}
+                            منها يسمّي {selectedTownName} مباشرة
+                          </>
+                        ) : null}
+                        .
                       </>
-                    ) : null}
-                    .
+                    ) : (
+                      <>
+                        <span className="font-semibold text-[color:var(--color-navy)]">
+                          {selectedDistrictRecords.length}
+                        </span>{" "}
+                        traced activity{selectedDistrictRecords.length === 1 ? "" : "s"} locate
+                        work in {selectedDistrict} district under the current filters
+                        {selectedTownRecords.length > 0 ? (
+                          <>
+                            {" "}-{" "}
+                            <span className="font-semibold text-[color:var(--color-navy)]">
+                              {selectedTownRecords.length}
+                            </span>{" "}
+                            name{selectedTownRecords.length === 1 ? "s" : ""} {selectedTownName}{" "}
+                            directly
+                          </>
+                        ) : null}
+                        .
+                      </>
+                    )}
                   </p>
                   {(() => {
                     const recs =
@@ -1528,7 +1725,7 @@ export default function SvgLebanonMap({
                     return (
                       <>
                         <div className="mt-2 space-y-1">
-                          {LAYER_META.map((l) => {
+                          {layers(locale).map((l) => {
                             const c = recs.filter((r) => r.actorLayer === l.id).length;
                             if (c === 0) return null;
                             return (
@@ -1564,7 +1761,7 @@ export default function SvgLebanonMap({
                                 {stageCounts.map((c, i) => (
                                   <div
                                     key={i}
-                                    title={`${i + 1}. ${STAGES[i]}: ${c} entry${c === 1 ? "" : "s"}`}
+                                    title={tr.stageTip(i + 1, stageList(locale)[i], c)}
                                     className="w-3.5 rounded-t-[2px]"
                                     style={{
                                       height: `${4 + (c / maxStage) * 26}px`,
@@ -1574,12 +1771,11 @@ export default function SvgLebanonMap({
                                 ))}
                               </div>
                               <p className="mt-0.5 text-[10px] text-[color:var(--color-text-secondary)]">
-                                value-chain stages 1–12 (hover for names) -{" "}
-                                {stageCounts.filter((c) => c > 0).length} of 12 present
+                                {tr.stagesCaption(stageCounts.filter((c) => c > 0).length)}
                               </p>
                               <p className="sr-only">
                                 {stageCounts
-                                  .map((c, i) => `${STAGES[i]}: ${c}`)
+                                  .map((c, i) => `${stageList(locale)[i]}: ${c}`)
                                   .join("; ")}
                               </p>
                             </div>
@@ -1598,11 +1794,10 @@ export default function SvgLebanonMap({
                 </div>
               ) : null}
               <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
-                Mention counts are traced at the regional-grouping level;
-                town boundaries are shown for geographic orientation.
+                {tr.zoneScaleNote}
               </p>
               <ul className="mt-3 space-y-1.5 text-sm">
-                {LAYER_META.map((l) => (
+                {layers(locale).map((l) => (
                   <li key={l.id} className="flex items-center justify-between gap-2">
                     <span className="flex items-center gap-1.5">
                       <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
@@ -1613,24 +1808,23 @@ export default function SvgLebanonMap({
                 ))}
               </ul>
               <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
-                Mentions in the tracking - not damage severity, expenditure
-                or coverage.
+                {tr.mentionsCaution}
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
                 <Link
-                  href="/actors#actor-register"
+                  href={locale === "ar" ? "/ar/actors" : "/actors#actor-register"}
                   className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
                 >
-                  Who did what here →
+                  {tr.whoLink}
                 </Link>
                 <Link
-                  href="/explorer"
+                  href={locale === "ar" ? "/ar/explorer" : "/explorer"}
                   className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
                 >
-                  Open the data explorer →
+                  {tr.explorerLink}
                 </Link>
               </p>
-              <EventsList events={townEvents} />
+              <EventsList events={townEvents} locale={locale} />
             </>
           </aside>
         ) : null}
@@ -1644,11 +1838,11 @@ export default function SvgLebanonMap({
               <>
                 <li className="flex items-center gap-1.5">
                   <span aria-hidden className="h-2.5 w-4" style={{ background: "#2F8F6B", opacity: 0.7 }} />
-                  more located entries in 2026 than 2024
+                  {tr.changeMorePins}
                 </li>
                 <li className="flex items-center gap-1.5">
                   <span aria-hidden className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: 0.7 }} />
-                  fewer than 2024 - darker = larger change (max ±{change.maxAbs})
+                  {tr.changeFewerPins(change.maxAbs)}
                 </li>
               </>
             ) : view === "survey" ? (
@@ -1658,8 +1852,7 @@ export default function SvgLebanonMap({
                     <span key={o} className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: o }} />
                   ))}
                 </span>
-                housing units reported damaged by municipalities, December 2024
-                (0-{SURVEY_MAX.toLocaleString("en-US")} per district)
+                {tr.surveyLegend(SURVEY_MAX.toLocaleString("en-US"))}
               </li>
             ) : (
               <li className="flex items-center gap-1.5">
@@ -1670,7 +1863,7 @@ export default function SvgLebanonMap({
                 >
                   n
                 </span>
-                buildings completely destroyed, worst cadasters (2026 assessment)
+                {tr.damageLegend}
               </li>
             )}
             {showOccupation ? (
@@ -1679,7 +1872,7 @@ export default function SvgLebanonMap({
                   <svg width="16" height="12" aria-hidden>
                     <rect width="16" height="12" fill="url(#occupied-hatch)" stroke="#BD5A46" strokeOpacity="0.7" />
                   </svg>
-                  Blue Line border-strip towns - traced occupation (2026)
+                  {tr.stripLegend}
                 </li>
                 <li className="flex items-center gap-1.5">
                   <svg width="16" height="12" aria-hidden>
@@ -1694,41 +1887,78 @@ export default function SvgLebanonMap({
                       strokeDasharray="3 2"
                     />
                   </svg>
-                  districts containing the strip
+                  {tr.stripDistrictsLegend}
                 </li>
               </>
             ) : null}
           </ul>
           {view === "survey" ? (
             <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Municipal declaration, not engineering assessment:{" "}
-              {districtDamage.totals.areasSurveyed} affected areas across{" "}
-              {districtDamage.totals.districtsCovered} districts and{" "}
-              {districtDamage.totals.governoratesCovered} governorates, 5-15
-              December 2024, reporting{" "}
-              {districtDamage.totals.housingUnits.toLocaleString("en-US")}{" "}
-              damaged housing units ({districtDamage.totals.completelyDamagedShare}%
-              completely damaged) within{" "}
-              {districtDamage.totals.reportedAssets.toLocaleString("en-US")}{" "}
-              reported assets. Only the seven districts the survey names
-              individually are shaded; the figures are not additive with
-              satellite estimates or with any 2026 assessment.
+              {locale === "ar" ? (
+                <>
+                  تصريح بلدي، لا تقييم هندسي:{" "}
+                  {districtDamage.totals.areasSurveyed} منطقة متضررة في{" "}
+                  {districtDamage.totals.districtsCovered} قضاءً و
+                  {districtDamage.totals.governoratesCovered} محافظات، 5-15
+                  كانون الأول 2024، بإبلاغ عن{" "}
+                  {districtDamage.totals.housingUnits.toLocaleString("en-US")}{" "}
+                  وحدة سكنية متضررة ({districtDamage.totals.completelyDamagedShare}%
+                  منها متضررة كلياً) ضمن{" "}
+                  {districtDamage.totals.reportedAssets.toLocaleString("en-US")}{" "}
+                  أصلاً مبلَّغاً عنه. الأقضية السبعة التي يسمّيها المسح فرادى
+                  هي وحدها المظلَّلة؛ والأرقام لا تُجمع مع التقديرات الساتلية
+                  ولا مع أي تقييم لسنة 2026.
+                </>
+              ) : (
+                <>
+                  Municipal declaration, not engineering assessment:{" "}
+                  {districtDamage.totals.areasSurveyed} affected areas across{" "}
+                  {districtDamage.totals.districtsCovered} districts and{" "}
+                  {districtDamage.totals.governoratesCovered} governorates, 5-15
+                  December 2024, reporting{" "}
+                  {districtDamage.totals.housingUnits.toLocaleString("en-US")}{" "}
+                  damaged housing units ({districtDamage.totals.completelyDamagedShare}%
+                  completely damaged) within{" "}
+                  {districtDamage.totals.reportedAssets.toLocaleString("en-US")}{" "}
+                  reported assets. Only the seven districts the survey names
+                  individually are shaded; the figures are not additive with
+                  satellite estimates or with any 2026 assessment.
+                </>
+              )}
             </p>
           ) : null}
           {view === "damage" ? (
             <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
-              Only two zones were assessed by the 31 July 2026 cut-off:{" "}
-              <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
-              ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
-              completely destroyed; desk-validated GeoAI, no field
-              confirmation) and{" "}
-              <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
-              ({destruction.zones2026[1].assessedDamage}; field-checked). The
-              two products differ in method and must not be compared or
-              summed. Assessed geography is not damaged geography: the
-              real-time national database traced heavy strikes nationwide,
-              and the Bekaa, Baalbek-Hermel and the North had no equivalent
-              assessment.
+              {locale === "ar" ? (
+                <>
+                  لم تُقيَّم بحلول تاريخ التوقف في 31 تموز 2026 سوى منطقتين:{" "}
+                  <strong className="text-[color:var(--color-navy)]">جنوب الليطاني</strong>{" "}
+                  ({destruction.zones2026[0].assessedDamage}؛ 11,095 مبنى
+                  مدمَّراً كلياً؛ ذكاء اصطناعي جغرافي بتدقيق مكتبي ومن دون
+                  تثبيت ميداني) و
+                  <strong className="text-[color:var(--color-navy)]">بيروت وجبل لبنان</strong>{" "}
+                  ({destruction.zones2026[1].assessedDamage}؛ بفحص ميداني).
+                  المنتجان يختلفان في المنهجية ولا يجوز مقارنتهما ولا جمعهما.
+                  والجغرافيا المقيَّمة ليست الجغرافيا المتضررة: فالتتبّع الوطني
+                  الآني رصد ضربات عنيفة في عموم البلاد، ولم يكن للبقاع
+                  وبعلبك-الهرمل والشمال أي تقييم مواز.
+                </>
+              ) : (
+                <>
+                  Only two zones were assessed by the 31 July 2026 cut-off:{" "}
+                  <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
+                  ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
+                  completely destroyed; desk-validated GeoAI, no field
+                  confirmation) and{" "}
+                  <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
+                  ({destruction.zones2026[1].assessedDamage}; field-checked). The
+                  two products differ in method and must not be compared or
+                  summed. Assessed geography is not damaged geography: the
+                  real-time national database traced heavy strikes nationwide,
+                  and the Bekaa, Baalbek-Hermel and the North had no equivalent
+                  assessment.
+                </>
+              )}
             </p>
           ) : null}
         </div>

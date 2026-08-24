@@ -62,6 +62,8 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
   const t = districtDamage.totals;
 
   const tr = TR[locale];
+  const districtName = (d: { name: string; nameAr?: string }) =>
+    locale === "ar" ? d.nameAr ?? d.name : d.name;
 
   const option = useMemo<EChartsOption>(() => {
     const cats = [...rows].sort((a, b) => a.units - b.units);
@@ -85,7 +87,9 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
       },
       yAxis: {
         type: "category",
-        data: cats.map((d) => d.name),
+        data: cats.map((d) =>
+          locale === "ar" ? d.nameAr ?? d.name : d.name,
+        ),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11.5 },
@@ -110,7 +114,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
         },
       ],
     };
-  }, [rows, tr]);
+  }, [rows, tr, locale]);
 
   return (
     <ChartFrame
@@ -120,7 +124,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
       caveat={locale === "ar" ? tr.caveat : districtDamage.caveats.join(" ")}
       chartRef={chartRef}
       description={`${tr.desc}: ${rows
-        .map((d) => `${d.name} ${d.units.toLocaleString("en-US")}`)
+        .map((d) => `${districtName(d)} ${d.units.toLocaleString("en-US")}`)
         .join("; ")}.`}
     >
       <div>

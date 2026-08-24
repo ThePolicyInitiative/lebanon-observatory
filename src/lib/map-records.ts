@@ -18,6 +18,11 @@ export type SlimRecord = Pick<
   | "locationNames"
   | "implementationStatus"
   | "comparability"
-> & { action: string };
+> & {
+  action: string;
+  /** The same action text in Arabic, for the Arabic map's popups. */
+  actionAr?: string;
+  locationNamesAr?: string[];
+};
 
 export const slimRecords = roleRecordsSlimJson as SlimRecord[];

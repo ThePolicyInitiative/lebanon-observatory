@@ -14,13 +14,13 @@
     "governoratesCovered": 8
   },
   "districts": [
-    { "name": "Baabda", "codName": "Baabda", "units": 16000, "completeShare": 63, "note": "The Dahieh belt: the largest single concentration, with roughly two thirds reported completely damaged." },
-    { "name": "Nabatieh", "codName": "El Nabatieh", "units": 14667, "completeShare": null },
-    { "name": "Baalbek", "codName": "Baalbek", "units": 10274, "completeShare": null },
-    { "name": "Sour (Tyre)", "codName": "Sour", "units": 6415, "completeShare": null },
-    { "name": "Saida", "codName": "Saida", "units": 4252, "completeShare": null },
-    { "name": "Bent Jbeil", "codName": "Bent Jbeil", "units": 2866, "completeShare": null },
-    { "name": "Marjaayoun", "codName": "Marjaayoun", "units": 2725, "completeShare": null }
+    { "name": "Baabda", "nameAr": "بعبدا", "codName": "Baabda", "units": 16000, "completeShare": 63, "note": "The Dahieh belt: the largest single concentration, with roughly two thirds reported completely damaged." },
+    { "name": "Nabatieh", "nameAr": "النبطية", "codName": "El Nabatieh", "units": 14667, "completeShare": null },
+    { "name": "Baalbek", "nameAr": "بعلبك", "codName": "Baalbek", "units": 10274, "completeShare": null },
+    { "name": "Sour (Tyre)", "nameAr": "صور", "codName": "Sour", "units": 6415, "completeShare": null },
+    { "name": "Saida", "nameAr": "صيدا", "codName": "Saida", "units": 4252, "completeShare": null },
+    { "name": "Bent Jbeil", "nameAr": "بنت جبيل", "codName": "Bent Jbeil", "units": 2866, "completeShare": null },
+    { "name": "Marjaayoun", "nameAr": "مرجعيون", "codName": "Marjaayoun", "units": 2725, "completeShare": null }
   ],
   "namedDistrictSubtotal": 57199,
   "caveats": [

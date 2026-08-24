@@ -4,8 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { LAYER_META, STATUS_LABELS } from "@/lib/colors";
-import { STAGE_SHORT, STAGES, changeFor, countsFor, CAUTION_COUNTS } from "@/lib/data-client";
+import { changeFor, countsFor } from "@/lib/data-client";
+import {
+  cautionCounts,
+  layers,
+  stageList,
+  stageShortList,
+  statusLabel,
+  type Locale,
+} from "@/lib/vocab";
 import type { ActorLayer, RoleRecord } from "@/lib/types";
 import { signed } from "@/lib/format";
 
@@ -23,8 +30,55 @@ type CellEntry = Pick<
   | "functionColumn"
   | "implementationStatus"
   | "locationNames"
+  | "locationNamesAr"
   | "summary"
+  | "summaryAr"
 >;
+
+const T = {
+  en: {
+    title: "Direct change in traced presence, 2026 minus 2024",
+    subtitle:
+      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Hover a cell for its value, or click it for the entries behind that change.",
+    tipChange: "Change",
+    tipClick: "Click for underlying data",
+    visualMapText: ["gain (teal)", "contraction (rust)"],
+    description:
+      "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9).",
+    tableCaption: "Change in traced actor-stage presence, 2026 minus 2024.",
+    tableHeaders: ["Actor layer", "Stage", "2024", "2026", "Change"],
+    chartAria: "Heatmap of change in traced actor presence by layer and stage",
+    dialogLabel: (layer: string, stage: string) => `Data for ${layer} in ${stage}`,
+    drawerCounts: (y24: number, y26: number) =>
+      `${y24} traced in 2024 · ${y26} in 2026 (analysis)`,
+    drawerShown: (n: number) => ` · ${n} traced entries shown below`,
+    close: "Close",
+    loading: "Loading the entries behind this cell…",
+    empty:
+      "No traced entries map to this cell at function-column grain. The analytical count above is recomputed at entry level from the underlying tracking, which is finer grained than the chart figures by construction.",
+  },
+  ar: {
+    title: "التغيّر المباشر في الحضور المرصود، 2026 ناقص 2024",
+    subtitle:
+      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
+    tipChange: "التغيّر",
+    tipClick: "انقر لعرض ما وراء الخلية",
+    visualMapText: ["كسب (أزرق مخضرّ)", "انكماش (صدئ)"],
+    description:
+      "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع طبقات فاعلة واثنتي عشرة مرحلة من سلسلة القيمة. أكبر المكاسب إغاثة المجتمع المحلي (+35) وتنسيقه (+25)؛ وأعمق الانكماشات تمويل المجتمع المحلي (-11) ورفع الأنقاض لديه (-9).",
+    tableCaption: "التغيّر في الحضور المرصود بين الجهات والمراحل، 2026 ناقص 2024.",
+    tableHeaders: ["طبقة الجهة", "المرحلة", "2024", "2026", "التغيّر"],
+    chartAria: "خريطة حرارية للتغيّر في الحضور المرصود للجهات بحسب الطبقة والمرحلة",
+    dialogLabel: (layer: string, stage: string) => `معطيات ${layer} في ${stage}`,
+    drawerCounts: (y24: number, y26: number) =>
+      `${y24} مرصوداً في 2024 · ${y26} في 2026 (التحليل)`,
+    drawerShown: (n: number) => ` · ${n} من المدخلات المتتبَّعة معروضة أدناه`,
+    close: "إغلاق",
+    loading: "جارٍ تحميل المدخلات وراء هذه الخلية…",
+    empty:
+      "لا مدخلات متتبَّعة تقابل هذه الخلية على مستوى عمود الوظيفة. العدد التحليلي أعلاه يُعاد حسابه على مستوى المدخل من التتبّع الأساسي، وهو أدق تفصيلاً من أرقام الرسم بحكم البناء.",
+  },
+} as const;
 
 /**
  * Visual 2 - Direct-change heatmap. Rows: four actor layers.
@@ -35,13 +89,20 @@ type CellEntry = Pick<
  * under an earlier figure suppress the repeat here. It defaults to on, so a
  * figure standing alone still carries it.
  */
-export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: boolean } = {}) {
+export default function ChangeHeatmap({
+  locale = "en",
+  showCaveat = true,
+}: { locale?: Locale; showCaveat?: boolean } = {}) {
   const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
   // null while the cell's entries are on their way from /cells/.
   const [records, setRecords] = useState<CellEntry[] | null>(null);
   const requestSeq = useRef(0);
   const chartRef = useRef<ECharts | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+
+  const t = T[locale];
+  const layerMeta = layers(locale);
+  const stages = stageList(locale);
 
   useEffect(() => {
     if (cell) closeRef.current?.focus();
@@ -70,8 +131,9 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
 
   const { data, maxAbs } = useMemo(() => {
     const cells: [number, number, number][] = [];
-    for (let li = 0; li < LAYER_META.length; li++) {
-      const change = changeFor(LAYER_META[li].id);
+    const ls = layers("en");
+    for (let li = 0; li < ls.length; li++) {
+      const change = changeFor(ls[li].id);
       for (let si = 0; si < 12; si++) {
         cells.push([si, li, change[si]]);
       }
@@ -82,22 +144,25 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
     };
   }, []);
 
-  const option = useMemo<EChartsOption>(
-    () => ({
+  const option = useMemo<EChartsOption>(() => {
+    const tt = T[locale];
+    const ls = layers(locale);
+    const stageNames = stageList(locale);
+    return {
       grid: { left: 210, right: 20, top: 10, bottom: 90 },
       tooltip: {
         formatter: (p) => {
           const { value } = p as unknown as { value: [number, number, number] };
           const [si, li, v] = value;
-          const layer = LAYER_META[li];
+          const layer = ls[li];
           const y24 = countsFor(2024, layer.id)[si];
           const y26 = countsFor(2026, layer.id)[si];
-          return `<strong>${STAGES[si]}</strong><br/>${layer.label}<br/>2024: ${y24} · 2026: ${y26} · Change: <strong>${signed(v)}</strong><br/><em>Click for underlying data</em>`;
+          return `<strong>${stageNames[si]}</strong><br/>${layer.label}<br/>2024: ${y24} · 2026: ${y26} · ${tt.tipChange}: <strong>${signed(v)}</strong><br/><em>${tt.tipClick}</em>`;
         },
       },
       xAxis: {
         type: "category",
-        data: STAGE_SHORT,
+        data: stageShortList(locale),
         position: "bottom",
         axisLabel: { rotate: 38, fontSize: 10.5 },
         axisTick: { show: false },
@@ -105,7 +170,7 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
       },
       yAxis: {
         type: "category",
-        data: LAYER_META.map((l) => l.label),
+        data: ls.map((l) => l.label),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 11.5 },
@@ -121,7 +186,7 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
         bottom: 62,
         itemWidth: 10,
         itemHeight: 90,
-        text: ["gain (teal)", "contraction (rust)"],
+        text: [...tt.visualMapText],
         textStyle: { fontSize: 10 },
         inRange: {
           color: ["#BD5A46", "#E4B3A7", "#FFFFFF", "#9CC7CE", "#1B8295"],
@@ -140,12 +205,11 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
           },
         },
       ],
-    }),
-    [maxAbs, data],
-  );
+    };
+  }, [maxAbs, data, locale]);
 
-  const tableRows = LAYER_META.flatMap((layer) =>
-    STAGES.map((stage, i) => [
+  const tableRows = layerMeta.flatMap((layer) =>
+    stages.map((stage, i) => [
       layer.label,
       stage,
       countsFor(2024, layer.id)[i],
@@ -158,22 +222,22 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
     <div className="relative">
       <ChartFrame
         id="change-heatmap"
-        title="Direct change in traced presence, 2026 minus 2024"
-        subtitle="Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Hover a cell for its value, or click it for the entries behind that change."
-        caveat={showCaveat ? CAUTION_COUNTS : undefined}
+        title={t.title}
+        subtitle={t.subtitle}
+        caveat={showCaveat ? cautionCounts(locale) : undefined}
         sourceIds={["S-TRACKING"]}
         chartRef={chartRef}
-        description="Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9)."
+        description={t.description}
         table={{
-          caption: "Change in traced actor-stage presence, 2026 minus 2024.",
-          headers: ["Actor layer", "Stage", "2024", "2026", "Change"],
+          caption: t.tableCaption,
+          headers: [...t.tableHeaders],
           rows: tableRows,
         }}
       >
         <EChart
           option={option}
           height={330}
-          ariaLabel="Heatmap of change in traced actor presence by layer and stage"
+          ariaLabel={t.chartAria}
           onInit={(c) => {
             chartRef.current = c;
           }}
@@ -182,7 +246,7 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
               const params = p as { value?: [number, number, number] };
               if (!params.value) return;
               const [si, li] = params.value;
-              openCell(LAYER_META[li].id, si + 1);
+              openCell(layerMeta[li].id, si + 1);
             },
           }}
         />
@@ -192,7 +256,10 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Data for ${LAYER_META.find((l) => l.id === cell.layer)?.label} in ${STAGES[cell.stageNo - 1]}`}
+          aria-label={t.dialogLabel(
+            layerMeta.find((l) => l.id === cell.layer)?.label ?? cell.layer,
+            stages[cell.stageNo - 1],
+          )}
           className="fixed inset-0 z-[60] flex justify-end bg-black/30"
           onClick={(e) => {
             if (e.target === e.currentTarget) setCell(null);
@@ -202,16 +269,15 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
             <div className="flex items-start justify-between gap-3 border-b border-[color:var(--color-border)] p-4">
               <div>
                 <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
-                  {LAYER_META.find((l) => l.id === cell.layer)?.label} ·{" "}
-                  {STAGES[cell.stageNo - 1]}
+                  {layerMeta.find((l) => l.id === cell.layer)?.label} ·{" "}
+                  {stages[cell.stageNo - 1]}
                 </h3>
                 <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
-                  {countsFor(2024, cell.layer)[cell.stageNo - 1]} traced in
-                  2024 · {countsFor(2026, cell.layer)[cell.stageNo - 1]} in 2026
-                  (analysis)
-                  {records !== null
-                    ? ` · ${records.length} traced entries shown below`
-                    : ""}
+                  {t.drawerCounts(
+                    countsFor(2024, cell.layer)[cell.stageNo - 1],
+                    countsFor(2026, cell.layer)[cell.stageNo - 1],
+                  )}
+                  {records !== null ? t.drawerShown(records.length) : ""}
                 </p>
               </div>
               <button
@@ -220,21 +286,18 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
                 onClick={() => setCell(null)}
                 className="min-h-11 min-w-11 rounded border border-[color:var(--color-border)] text-sm"
               >
-                <span className="sr-only">Close</span>
+                <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-4">
               {records === null ? (
                 <p className="text-sm text-[color:var(--color-text-secondary)]">
-                  Loading the entries behind this cell…
+                  {t.loading}
                 </p>
               ) : records.length === 0 ? (
                 <p className="text-sm text-[color:var(--color-text-secondary)]">
-                  No traced entries map to this cell at function-column
-                  grain. The analytical count above is recomputed at entry
-                  level from the underlying tracking, which is finer
-                  grained than the chart figures by construction.
+                  {t.empty}
                 </p>
               ) : (
                 <ul className="space-y-4">
@@ -261,13 +324,19 @@ export default function ChangeHeatmap({ showCaveat = true }: { showCaveat?: bool
                       </div>
                       <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
                         {r.functionColumn} ·{" "}
-                        {STATUS_LABELS[r.implementationStatus]}
-                        {r.locationNames.length > 0
-                          ? ` · ${r.locationNames.slice(0, 3).join("; ")}`
-                          : ""}
+                        {statusLabel(r.implementationStatus, locale)}
+                        {(() => {
+                          const locs =
+                            locale === "ar" && r.locationNamesAr?.length
+                              ? r.locationNamesAr
+                              : r.locationNames;
+                          return locs.length > 0
+                            ? ` · ${locs.slice(0, 3).join(locale === "ar" ? "؛ " : "; ")}`
+                            : "";
+                        })()}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-[color:var(--color-text)]">
-                        {r.summary}
+                        {locale === "ar" && r.summaryAr ? r.summaryAr : r.summary}
                       </p>
                     </li>
                   ))}

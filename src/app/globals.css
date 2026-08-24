@@ -91,6 +91,34 @@ h3 {
   line-height: 1.3;
 }
 
+/*
+ * The Arabic tree reads in IBM Plex Sans Arabic. The (ar) layout and the
+ * global 404 expose it as --font-sans-arabic; the two selectors cover a
+ * whole Arabic document ([dir="rtl"] on <html>, body a descendant) and an
+ * Arabic island inside a Latin document (a dir="rtl" element in <body>).
+ * On the Latin tree the variable is undefined, so the stack falls straight
+ * through to the existing fonts and nothing changes.
+ */
+[dir="rtl"] body,
+body [dir="rtl"] {
+  font-family: var(--font-sans-arabic), var(--font-sans), Inter, "Segoe UI", system-ui,
+    sans-serif;
+}
+
+/*
+ * Arabic headings: the Latin serif face has no Arabic glyphs, so the text
+ * face leads the stack (Latin fragments inside it still resolve), and the
+ * negative Latin tracking above is neutralised - Arabic script joins its
+ * letters and must never be tightened.
+ */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3 {
+  font-family: var(--font-sans-arabic), var(--font-serif), Georgia, "Times New Roman",
+    serif;
+  letter-spacing: 0;
+}
+
 /* Running text keeps a readable measure and a slightly open rhythm. */
 p {
   text-wrap: pretty;

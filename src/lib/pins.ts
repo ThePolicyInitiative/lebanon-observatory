@@ -194,7 +194,10 @@ export function buildPins({
         detail:
           `${t.stage} ${r.stageNo}: ${stageLabel(r.stageNo, locale)}` +
           ` · ${t.status}: ${statusLabel(r.implementationStatus, locale)}`,
-        body: r.action?.trim() || t.noAction,
+        body:
+          (locale === "ar" ? r.actionAr?.trim() : undefined) ||
+          r.action?.trim() ||
+          t.noAction,
         layerLabel: layerLabel(r.actorLayer, locale),
         subtype: subtypeLabel(r.actorSubtype ?? "", locale),
         year: r.year,

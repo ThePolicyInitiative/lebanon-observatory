@@ -99,18 +99,22 @@
       "worstCadasters": [
         {
           "name": "Aaitaroun",
+          "nameAr": "عيترون",
           "destroyed": 1658
         },
         {
           "name": "Bent Jbeil",
+          "nameAr": "بنت جبيل",
           "destroyed": 1076
         },
         {
           "name": "Meiss Ej Jabal",
+          "nameAr": "ميس الجبل",
           "destroyed": 969
         },
         {
           "name": "Taybe",
+          "nameAr": "الطيبة",
           "destroyed": 824
         }
       ],
@@ -161,6 +165,7 @@
   ],
   "presidentialEstimate": {
     "detail": "Presidential statements in June 2026 put damage at nearly 18% of territory and roughly 68,000 destroyed housing units. These are traced as dated estimates, not consolidated assessment results.",
+    "detailAr": "وضعت تصريحات رئاسية في حزيران 2026 الأضرار عند نحو 18% من مساحة البلاد ونحو 68,000 وحدة سكنية مدمَّرة. تُرصد هذه بوصفها تقديرات مؤرَّخة، لا نتائج تقييم موحَّدة.",
     "comparability": "context_only",
     "sourceIds": [
       "S43"

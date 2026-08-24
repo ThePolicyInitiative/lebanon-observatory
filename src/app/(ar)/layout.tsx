@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Inter, Source_Serif_4 } from "next/font/google";
 import "../globals.css";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -15,6 +15,17 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "600"],
+});
+
+/**
+ * The Arabic text face. globals.css prepends this variable to the sans
+ * stack under [dir="rtl"], which this layout sets on <html>, so the whole
+ * Arabic tree reads in it while the Latin tree never loads it.
+ */
+const plexArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-sans-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -33,6 +44,11 @@ export const metadata: Metadata = {
     siteName: AR.meta.title,
     locale: "ar",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: AR.meta.title,
+    description: AR.meta.description,
+  },
 };
 
 /**
@@ -46,7 +62,7 @@ export default function ArabicRootLayout({ children }: { children: ReactNode }) 
     <html
       lang="ar"
       dir="rtl"
-      className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${inter.variable} ${sourceSerif.variable} ${plexArabic.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">

@@ -15,9 +15,12 @@ export const roleRecordSchema = z.object({
   stageNo: z.number().int().min(1).max(12),
   functionColumn: z.string(),
   locationNames: z.array(z.string()),
+  locationNamesAr: z.array(z.string()).optional(),
   regions: z.array(z.string()),
   formalMandate: z.string().nullable(),
+  formalMandateAr: z.string().nullable().optional(),
   tracedAction: z.string().nullable(),
+  tracedActionAr: z.string().nullable().optional(),
   implementationStatus: z.enum([
     "formal_mandate",
     "announced",
@@ -34,6 +37,7 @@ export const roleRecordSchema = z.object({
   implementationRole: z.string().nullable(),
   oversightRole: z.string().nullable(),
   summary: z.string(),
+  summaryAr: z.string().optional(),
   comparability: z.enum(["direct", "qualified", "not_comparable", "context_only"]),
   sourceIds: z.array(z.string()),
 });
@@ -63,13 +67,17 @@ export const stageCountsSchema = z.object({
 export const kpiSchema = z.object({
   id: z.string(),
   label: z.string(),
+  labelAr: z.string().optional(),
   value: z.number(),
   display: z.string(),
   displayAr: z.string(),
   kind: z.enum(["need", "framework", "commitment", "disbursement", "output"]),
   definition: z.string(),
+  definitionAr: z.string().optional(),
   referencePeriod: z.string(),
+  referencePeriodAr: z.string().optional(),
   geographicScope: z.string(),
+  geographicScopeAr: z.string().optional(),
   sourceIds: z.array(z.string()).min(1),
 });
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
 import destruction from "@/data/destruction.json";
 import ArabicPageShell from "../ArabicPageShell";
@@ -9,16 +10,13 @@ import WorstCadastersChart from "@/components/charts/WorstCadastersChart";
 import DebrisTiles from "@/components/charts/DebrisTiles";
 import ServiceImpact from "@/components/ServiceImpact";
 import HumanToll from "@/components/HumanToll";
+import { comparabilityLabel } from "@/lib/vocab";
+import { fmtDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: AR.pages.damage.title,
   description: AR.pages.damage.desc,
   alternates: localeAlternates("/damage", "ar"),
-};
-
-const COMPARABILITY_AR: Record<string, string> = {
-  not_comparable: "غير قابل للمقارنة مباشرة",
-  context_only: "للسياق فقط",
 };
 
 export default function Page() {
@@ -53,7 +51,7 @@ export default function Page() {
                   {t.labelAr}
                 </h3>
                 <span className="shrink-0 rounded-sm bg-[#F7E9E5] px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--color-rust)]">
-                  {COMPARABILITY_AR[t.comparability] ?? t.comparability}
+                  {comparabilityLabel(t.comparability, "ar")}
                 </span>
               </div>
               <p className="mt-2 figure-number text-lg text-[color:var(--color-navy)]">
@@ -121,7 +119,7 @@ export default function Page() {
                     {z.checkedByAr}
                   </span>
                   <span className="rounded-sm bg-[#F7E9E5] px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--color-rust)]">
-                    {COMPARABILITY_AR[z.comparability] ?? z.comparability}
+                    {comparabilityLabel(z.comparability, "ar")}
                   </span>
                 </div>
               </div>
@@ -140,7 +138,7 @@ export default function Page() {
                 <ul className="mt-2 flex flex-wrap gap-1.5">
                   {z.worstCadasters.map((c) => (
                     <li key={c.name} className="chip bg-[color:var(--color-bg)]">
-                      {c.name}
+                      {c.nameAr ?? c.name}
                       <span className="ms-1 tabular-nums font-bold">
                         {c.destroyed.toLocaleString("en-US")}
                       </span>
@@ -156,6 +154,10 @@ export default function Page() {
                 <span className="font-semibold">القابلية للمقارنة: </span>
                 {z.comparabilityNoteAr}
               </p>
+              <p className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-2.5 text-[11px] text-[color:var(--color-text-secondary)]">
+                نُشر في {fmtDate(z.published, "ar")} (البرنامج الإنمائي والمجلس
+                الوطني للبحوث العلمية في لبنان)
+              </p>
             </article>
           ))}
         </div>
@@ -169,6 +171,14 @@ export default function Page() {
             </li>
           ))}
         </ul>
+        <div className="mt-4 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-4">
+          <p className="text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 text-[10px] font-semibold">
+              {comparabilityLabel("context_only", "ar")}
+            </span>{" "}
+            {destruction.presidentialEstimate.detailAr}
+          </p>
+        </div>
       </section>
 
       <div className="mt-7">
@@ -186,6 +196,22 @@ export default function Page() {
       <div className="mt-7">
         <HumanToll locale="ar" />
       </div>
+
+      <p className="mt-8 text-sm">
+        <Link
+          href="/ar/map"
+          className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+        >
+          اطّلع على أين تركّز النشاط المرصود ←
+        </Link>{" "}
+        ·{" "}
+        <Link
+          href="/ar/finance"
+          className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+        >
+          اطّلع على التمويل الذي أعقب المعطيات ←
+        </Link>
+      </p>
 
       <div className="mt-7">
         <Takeaways

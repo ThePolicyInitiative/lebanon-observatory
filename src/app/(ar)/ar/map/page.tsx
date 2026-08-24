@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import "maplibre-gl/dist/maplibre-gl.css";
+import { Suspense } from "react";
+import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { locations } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
-import { layers } from "@/lib/vocab";
+import LebanonMap from "@/components/map/LebanonMap";
+import YearChoropleths from "@/components/map/YearChoropleths";
+import RegionalComposition from "@/components/map/RegionalComposition";
+import { layers, regionLabel } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -23,7 +29,7 @@ export default function Page() {
       m ? ar.reduce((s, l) => s + (m[l.id] ?? 0), 0) : 0;
     return {
       id: r.id,
-      label: AR.regions[r.id] ?? r.label,
+      label: regionLabel(r.id, "ar"),
       mappable: r.mappable,
       y24: sum(m24),
       y26: sum(m26),
@@ -47,7 +53,55 @@ export default function Page() {
         { value: "168", label: "بلدة جنوب الليطاني ضمن نطاق العمل" },
       ]}
     >
-      <section aria-labelledby="ar-regions" className="mt-7">
+      {/* The full interactive map, the same module the English page
+          mounts, in Arabic. */}
+      <section aria-labelledby="ar-interactive" className="mt-7">
+        <h2 id="ar-interactive" className="text-xl font-semibold text-[color:var(--color-navy)]">
+          أين تركّز النشاط المرصود
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          دبّوس واحد لكل مدخل متتبَّع، موضوع في البلدة التي يسمّيها الإبلاغ.
+          رشّح بالسنة وطبقة الجهات والمرحلة وحالة التنفيذ، وابحث عن بلدة
+          لتقريب الخريطة إليها.
+        </p>
+        <div className="mt-4">
+          <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
+            <LebanonMap locale="ar" />
+          </Suspense>
+        </div>
+      </section>
+
+      <div className="mt-7">
+        <YearChoropleths locale="ar" />
+      </div>
+
+      <div className="mt-7">
+        {/* The standing geography caution is already printed above the map. */}
+        <RegionalComposition locale="ar" showCaveat={false} />
+      </div>
+
+      <section className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
+        <h2 className="text-sm font-semibold text-[color:var(--color-navy)]">
+          لماذا لا توجد طبقة أضرار وطنية
+        </h2>
+        <p className="mt-2 text-[color:var(--color-text)]">
+          تغطي التقييمات السريعة لعام 2026 منطقتين اثنتين - جنوب الليطاني
+          (بتدقيق مكتبي) وبيروت-جبل لبنان (بفحص ميداني) - بينما لم يكن
+          للبقاع وبعلبك-الهرمل والشمال أي تقييم مواز بحلول تاريخ التوقف.
+          ودمج هذين المنتجين الجزئيين في مقياس أضرار وطني واحد يصنع مقارنة
+          زائفة، ولذلك لا يرسم هذا المرصد تقديرات الأضرار على مفتاح مشترك.
+          الأرقام على مستوى كل منطقة، مع شارة قابلية المقارنة وطريقة
+          التثبيت لكل رقم، معروضة في{" "}
+          <Link href="/ar/damage" className="underline underline-offset-2">
+            صفحة تقديرات الأضرار
+          </Link>
+          ، إلى جانب مسارات عدّ الأبنية الأربعة غير القابلة للجمع لعام 2024.
+        </p>
+      </section>
+
+      {/* The regional bar list stays as a reading complement below the
+          interactive map: the same totals, glanceable without a pointer. */}
+      <section aria-labelledby="ar-regions" className="mt-8">
         <h2 id="ar-regions" className="text-xl font-semibold text-[color:var(--color-navy)]">
           الإشارات إلى الأماكن، تجمّعاً بتجمّع
         </h2>

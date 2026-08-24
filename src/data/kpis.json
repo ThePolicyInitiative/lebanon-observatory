@@ -2,12 +2,16 @@
   {
     "id": "kpi-total-cost",
     "label": "Estimated total economic cost",
+    "labelAr": "الكلفة الإجمالية المقدّرة للحرب",
     "value": 14000000000,
     "display": "US$14 billion",
     "kind": "need",
     "definition": "Physical damage (US$6.8B) plus economic losses (US$7.2B) from the conflict, as assessed by the World Bank-led Rapid Damage and Needs Assessment. Damage and losses are distinct economic categories combined here only as a headline total.",
+    "definitionAr": "الأضرار المادية (6.8 مليار دولار) مضافاً إليها الخسائر الاقتصادية (7.2 مليار دولار) الناجمة عن النزاع، كما قدّرها التقييم السريع للأضرار والاحتياجات الذي قاده البنك الدولي. الأضرار والخسائر فئتان اقتصاديتان متمايزتان لا تُجمعان هنا إلا كرقم إجمالي للعنوان.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
+    "referencePeriodAr": "8 تشرين الأول 2023 - 20 كانون الأول 2024 (نُشر في آذار 2025)",
     "geographicScope": "National, all governorates",
+    "geographicScopeAr": "وطني، كل المحافظات",
     "sourceIds": [
       "S4"
     ],
@@ -16,12 +20,16 @@
   {
     "id": "kpi-damage",
     "label": "Physical damage",
+    "labelAr": "الأضرار المباشرة",
     "value": 6800000000,
     "display": "US$6.8 billion",
     "kind": "need",
     "definition": "Direct physical damage to buildings and infrastructure assessed by the RDNA. Housing alone accounts for US$4.6 billion.",
+    "definitionAr": "أضرار مادية مباشرة في الأبنية والبنى التحتية قدّرها التقييم السريع للأضرار والاحتياجات. السكن وحده يمثّل 4.6 مليار دولار.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
+    "referencePeriodAr": "8 تشرين الأول 2023 - 20 كانون الأول 2024 (نُشر في آذار 2025)",
     "geographicScope": "National, all governorates",
+    "geographicScopeAr": "وطني، كل المحافظات",
     "sourceIds": [
       "S4"
     ],
@@ -30,12 +38,16 @@
   {
     "id": "kpi-losses",
     "label": "Economic losses",
+    "labelAr": "الخسائر الاقتصادية",
     "value": 7200000000,
     "display": "US$7.2 billion",
     "kind": "need",
     "definition": "Economic losses (forgone income and output) assessed by the RDNA - commerce, industry and tourism absorbed roughly US$3.4 billion. Losses are not damage and the two must never be summed with needs.",
+    "definitionAr": "خسائر اقتصادية (دخل وإنتاج فائتان) قدّرها التقييم السريع للأضرار والاحتياجات - استوعبت التجارة والصناعة والسياحة منها نحو 3.4 مليار دولار. الخسائر ليست أضراراً، ولا يجوز أبداً جمع الاثنتين مع الاحتياجات.",
     "referencePeriod": "8 Oct 2023 – 20 Dec 2024 (published March 2025)",
+    "referencePeriodAr": "8 تشرين الأول 2023 - 20 كانون الأول 2024 (نُشر في آذار 2025)",
     "geographicScope": "National, all governorates",
+    "geographicScopeAr": "وطني، كل المحافظات",
     "sourceIds": [
       "S4"
     ],
@@ -44,12 +56,16 @@
   {
     "id": "kpi-needs",
     "label": "Recovery and reconstruction needs",
+    "labelAr": "احتياجات التعافي وإعادة الإعمار",
     "value": 11000000000,
     "display": "US$11 billion",
     "kind": "need",
     "definition": "Assessed recovery and reconstruction needs across 10 sectors for the 2023–24 conflict. This is an assessed need, not a financing commitment.",
+    "definitionAr": "احتياجات التعافي وإعادة الإعمار المقدَّرة في 10 قطاعات لنزاع 2023-24. هذا احتياج مقدَّر، لا التزام تمويلي.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
+    "referencePeriodAr": "قُدّرت لنزاع 2023-24 (نُشرت في آذار 2025)",
     "geographicScope": "National, all governorates",
+    "geographicScopeAr": "وطني، كل المحافظات",
     "sourceIds": [
       "S4"
     ],
@@ -58,12 +74,16 @@
   {
     "id": "kpi-public-need",
     "label": "Estimated public financing requirement",
+    "labelAr": "احتياجات القطاع العام",
     "value": 4000000000,
     "display": "US$3–5 billion",
     "kind": "need",
     "definition": "The share of assessed needs requiring public financing, including roughly US$1 billion for infrastructure. Range as stated by the RDNA.",
+    "definitionAr": "حصة الاحتياجات المقدَّرة التي تتطلب تمويلاً عاماً، ومنها نحو مليار دولار للبنى التحتية. المدى كما ورد في التقييم السريع للأضرار والاحتياجات.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
+    "referencePeriodAr": "قُدّرت لنزاع 2023-24 (نُشرت في آذار 2025)",
     "geographicScope": "National",
+    "geographicScopeAr": "وطني",
     "sourceIds": [
       "S4"
     ],
@@ -72,12 +92,16 @@
   {
     "id": "kpi-private-need",
     "label": "Estimated private financing requirement",
+    "labelAr": "احتياجات القطاع الخاص",
     "value": 7000000000,
     "display": "US$6–8 billion",
     "kind": "need",
     "definition": "The share of assessed needs requiring private financing - overwhelmingly housing and private economic assets. No public instrument covered this requirement within the data window.",
+    "definitionAr": "حصة الاحتياجات المقدَّرة التي تتطلب تمويلاً خاصاً - وهي في غالبيتها الساحقة سكن وأصول اقتصادية خاصة. لم تغطِّ أي أداة عامة هذا الاحتياج ضمن نافذة المعطيات.",
     "referencePeriod": "Assessed for 2023–24 conflict (published March 2025)",
+    "referencePeriodAr": "قُدّرت لنزاع 2023-24 (نُشرت في آذار 2025)",
     "geographicScope": "National",
+    "geographicScopeAr": "وطني",
     "sourceIds": [
       "S4"
     ],
@@ -86,12 +110,16 @@
   {
     "id": "kpi-leap-framework",
     "label": "LEAP scalable framework",
+    "labelAr": "إطار مشروع LEAP",
     "value": 1000000000,
     "display": "US$1 billion",
     "kind": "framework",
     "definition": "The Lebanon Emergency Assistance Project (LEAP) appraised envelope - a scalable framework, not committed financing. It covers roughly the public third of one war's assessed needs and is not equivalent to the US$11 billion national need.",
+    "definitionAr": "الغلاف المقدَّر لمشروع المساعدة الطارئة للبنان (LEAP) - إطار قابل للتوسّع، لا تمويل ملتزَم به. يغطي تقريباً الثلث العام من الاحتياجات المقدَّرة لحرب واحدة، وليس مكافئاً للاحتياج الوطني البالغ 11 مليار دولار.",
     "referencePeriod": "Appraised June 2025",
+    "referencePeriodAr": "قُيّم في حزيران 2025",
     "geographicScope": "Conflict-affected areas, 2023–24 conflict damage only",
+    "geographicScopeAr": "المناطق المتضررة من النزاع، أضرار نزاع 2023-24 فقط",
     "sourceIds": [
       "S2"
     ],
@@ -100,12 +128,16 @@
   {
     "id": "kpi-leap-loan",
     "label": "Initial LEAP financing",
+    "labelAr": "القرض الأولي المُقر",
     "value": 250000000,
     "display": "US$250 million",
     "kind": "commitment",
     "definition": "Initial IBRD loan approved 24 June 2025, effective 26 February 2026. A commitment is not a disbursement.",
+    "definitionAr": "قرض أولي من البنك الدولي للإنشاء والتعمير أُقرّ في 24 حزيران 2025 وأصبح نافذاً في 26 شباط 2026. الالتزام ليس دفعاً.",
     "referencePeriod": "Approved June 2025; effective February 2026",
+    "referencePeriodAr": "أُقرّ في حزيران 2025؛ نافذ منذ شباط 2026",
     "geographicScope": "Conflict-affected areas, 2023–24 conflict damage only",
+    "geographicScopeAr": "المناطق المتضررة من النزاع، أضرار نزاع 2023-24 فقط",
     "sourceIds": [
       "S2",
       "S20"
@@ -115,12 +147,16 @@
   {
     "id": "kpi-leap-gap",
     "label": "Remaining framework gap",
+    "labelAr": "الفجوة ضمن الإطار",
     "value": 750000000,
     "display": "US$750 million",
     "kind": "need",
     "definition": "The unfinanced portion of the US$1 billion LEAP framework, awaiting additional partner financing, preferably as grants.",
+    "definitionAr": "الجزء غير الممول من إطار LEAP البالغ مليار دولار، في انتظار تمويل إضافي من الشركاء، ويُفضَّل أن يكون منحاً.",
     "referencePeriod": "As of appraisal (June 2025), unchanged at 29 June 2026",
+    "referencePeriodAr": "منذ التقييم (حزيران 2025)، بلا تغيير حتى 29 حزيران 2026",
     "geographicScope": "Conflict-affected areas",
+    "geographicScopeAr": "المناطق المتضررة من النزاع",
     "sourceIds": [
       "S2",
       "S1"
@@ -130,12 +166,16 @@
   {
     "id": "kpi-disbursed",
     "label": "Disbursed by 29 June 2026",
+    "labelAr": "المبلغ المدفوع فعلياً",
     "value": 4130000,
     "display": "US$4.13 million",
     "kind": "disbursement",
     "definition": "Cumulative disbursement traced in the LEAP Implementation Status and Results Report of 29 June 2026. Disbursement is not completed output: no works contract had been awarded and no completed reconstruction output was publicly confirmed by that date.",
+    "definitionAr": "الدفع التراكمي المرصود في تقرير حالة التنفيذ والنتائج لمشروع LEAP بتاريخ 29 حزيران 2026. الدفع ليس إنجازاً مكتملاً: لم يُرسَ أي عقد أشغال، ولم يكن أي مخرج إعادة إعمار مكتمل مؤكَّداً علناً حتى ذلك التاريخ.",
     "referencePeriod": "As of 29 June 2026",
+    "referencePeriodAr": "حتى 29 حزيران 2026",
     "geographicScope": "LEAP project scope",
+    "geographicScopeAr": "نطاق مشروع LEAP",
     "sourceIds": [
       "S1"
     ],
@@ -144,12 +184,16 @@
   {
     "id": "kpi-disbursed-pct",
     "label": "Share of initial loan disbursed",
+    "labelAr": "نسبة الدفع من القرض",
     "value": 1.65,
     "display": "1.65%",
     "kind": "disbursement",
     "definition": "US$4.13 million disbursed as a share of the initial US$250 million loan, by 29 June 2026. Equivalent to roughly 0.04% of the US$11 billion assessed national need.",
+    "definitionAr": "4.13 ملايين دولار مدفوعة كنسبة من القرض الأولي البالغ 250 مليون دولار، حتى 29 حزيران 2026. أي ما يعادل نحو 0.04% من الاحتياج الوطني المقدَّر البالغ 11 مليار دولار.",
     "referencePeriod": "As of 29 June 2026",
+    "referencePeriodAr": "حتى 29 حزيران 2026",
     "geographicScope": "LEAP project scope",
+    "geographicScopeAr": "نطاق مشروع LEAP",
     "sourceIds": [
       "S1"
     ],

@@ -39,6 +39,8 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
   const chartRef = useRef<ECharts | null>(null);
   const zone = destruction.zones2026.find((z) => z.id === "south-litani")!;
   const rows = zone.worstCadasters;
+  const cadasterName = (c: { name: string; nameAr?: string }) =>
+    locale === "ar" ? c.nameAr ?? c.name : c.name;
 
   const option = useMemo<EChartsOption>(() => {
     const cats = [...rows].reverse();
@@ -60,7 +62,9 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
       },
       yAxis: {
         type: "category",
-        data: cats.map((c) => c.name),
+        data: cats.map((c) =>
+          locale === "ar" ? c.nameAr ?? c.name : c.name,
+        ),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
         axisLabel: { fontSize: 12 },
@@ -96,12 +100,12 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
       caveat={T[locale].caveat}
       chartRef={chartRef}
       description={`${T[locale].desc}: ${rows
-        .map((r) => `${r.name} ${r.destroyed.toLocaleString("en-US")}`)
+        .map((r) => `${cadasterName(r)} ${r.destroyed.toLocaleString("en-US")}`)
         .join("; ")} ${T[locale].unit}.`}
       table={{
         caption: T[locale].tableCaption,
         headers: [...T[locale].headers],
-        rows: rows.map((r) => [r.name, r.destroyed.toLocaleString("en-US")]),
+        rows: rows.map((r) => [cadasterName(r), r.destroyed.toLocaleString("en-US")]),
       }}
     >
       <EChart
