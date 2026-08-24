@@ -113,6 +113,18 @@ describe("location mentions", () => {
     expect(locations.mentions["2026"].national_multi.ngo_international).toBe(79);
     expect(locations.mentions["2026"].named_localities.community).toBe(62);
   });
+
+  /**
+   * The north reads zero for 2026 on purpose. Its six community mentions
+   * all traced back to a group's home address - Tripoli Volunteers named in
+   * another entry's action - rather than to a place that group worked, and
+   * neither war reached those governorates. The table and the tracking have
+   * to agree about that.
+   */
+  it("places nothing in the north in 2026", () => {
+    const north = locations.mentions["2026"].north;
+    expect(Object.values(north).reduce((a, b) => a + b, 0)).toBe(0);
+  });
 });
 
 describe("KPIs and finance", () => {
