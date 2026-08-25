@@ -62,8 +62,6 @@ const PIN_HIT = PIN_SPACING / 2;
 
 const PIN_T = {
   en: {
-    districtTint: (max: number) =>
-      `fewer → more located traced entries (district tint, 0–${max})`,
     pinCount: (pins: number, places: number) =>
       `${pins} pins across ${places} places - select one for its entry`,
     entryAt: "Traced entry ·",
@@ -122,8 +120,6 @@ const PIN_T = {
     completeShare: (pct: number) => `${pct}% complete`,
   },
   ar: {
-    districtTint: (max: number) =>
-      `من الأقل إلى الأكثر في المدخلات المرصودة المحدَّدة الموقع (تظليل القضاء، 0-${max})`,
     pinCount: (pins: number, places: number) =>
       `${pins} دبّوساً في ${places} مكاناً - اختر واحداً لعرض مدخله`,
     entryAt: "مدخل مرصود ·",

@@ -83,23 +83,34 @@ scraped, respecting each site's terms.
   reconstruction-related keyword present. "Only highly relevant" raises the
   threshold to core reconstruction terms.
 - **Deduplication**: canonical-URL collapse, then normalised-title and
-  token-similarity grouping; the best-sourced earliest article leads with an
-  "also reported by N sources" count.
+  token-similarity grouping; the earliest article from the best-attested
+  publisher leads, with an "Also reported by N other outlets" count.
 - **Caching**: per-provider in-memory cache, TTL `NEWS_CACHE_TTL_SECONDS`
   (default 1800s), stale-while-revalidate, and retention of the last
-  successful response when a provider fails (the UI labels cached age and
-  provider status).
+  successful response when a provider fails.
 - **Resilience**: 9s request timeout, 2 retries with exponential backoff,
   per-IP rate limiting (60 requests / 5 minutes), provider errors logged
   without secrets.
 - **Copyright**: headline + short description + link only; no full-text
   proxying or republication; no AI-generated summaries.
 
+### What the reader is not shown
+
+The response carries `providers[]` (name, ok, fromCache, cacheAgeSeconds,
+error) and `lastUpdated`, and no page reads either. That is deliberate, not
+an oversight: the per-provider roll-call, the "last updated" stamp and the
+matched-article count were all removed from the page, because how the feed
+was assembled is not something a reader of the analysis needs to weigh. The
+payload stays because it is the only way to see provider health from
+`/api/news` when something is wrong. Treat it as operator diagnostics, and
+do not put it back on the page without asking.
+
 ## Failure modes to test
 
 1. Disconnect the network → the endpoint returns the last cached payload
-   with `providers[].ok=false`; the UI shows "unavailable - showing last
-   good data", and on a cold cache the news page shows its error state while
-   the rest of the site is unaffected.
+   with `providers[].ok=false`, and on a cold cache the news page shows its
+   error state - "Live updates unavailable", plus a line saying the analysis
+   elsewhere on the site is separate and unaffected - while the rest of the
+   site carries on.
 2. Invalid query parameters → HTTP 400 with field errors (covered by tests).
 3. Hammering the endpoint → HTTP 429 after 60 requests in 5 minutes.

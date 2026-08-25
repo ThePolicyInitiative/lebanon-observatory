@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { newsTagLabel } from "@/components/NewsCoverageProfile";
+import { newsTagLabel } from "@/lib/news/tag-labels";
 import type { NewsArticle, NewsResponse } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";

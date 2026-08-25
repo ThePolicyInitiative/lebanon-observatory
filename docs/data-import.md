@@ -2,7 +2,7 @@
 
 ## What the analytical core is
 
-`src/data` holds 26 validated JSON files. Ten of them carry the analytical
+`src/data` holds 27 validated JSON files. Ten of them carry the analytical
 core - the figures the charts, the matrices and the explorer are built from:
 
 | File | Contents | Grain |
@@ -16,7 +16,7 @@ core - the figures the charts, the matrices and the explorer are built from:
 | `timeline.json` | Milestone chain Dec 2024 – Jul 2026 | event |
 | `report-sources.json` | Citation register (62 entries) | citation |
 | `gazetteer.json` | Named localities with approximate coordinates | locality |
-| `catalog-sources.json` | Mention-level catalogue (110 entries with URLs) | mention |
+| `catalog-sources.json` | Mention-level catalogue (109 entries with URLs) | mention |
 
 `catalog-sources.json` is provenance rather than analysis: no app code
 imports it, and its only consumer is the URL-integrity assertion in
@@ -24,14 +24,20 @@ imports it, and its only consumer is the URL-integrity assertion in
 chips in the explorer detail panel, but nothing resolves them against the
 catalogue.
 
-The remaining sixteen files are reader-facing page content added since this
+The remaining seventeen files are reader-facing page content added since this
 table was first written - `destruction.json`, `district-damage.json`,
 `map-events.json`, `web-updates.json`, `compensation.json`,
 `human-toll.json`, `leap-results.json`, `litani.json`, `sectors.json`,
 `service-impact.json`, `service-operators.json`, `slwe-posts.json`,
-`role-records-slim.json`, `actor-names-ar.json`, `lebanon-adm1.json` and
-`lebanon-adm2.json`. They follow the same rule as the core: edit the JSON,
-then `npm test`.
+`coverage-archive.json`, `role-records-slim.json`, `actor-names-ar.json`,
+`lebanon-adm1.json` and `lebanon-adm2.json`. They follow the same rule as the
+core: edit the JSON, then `npm test`.
+
+Two of those are generated rather than written. `role-records-slim.json` is a
+projection of `role-records.json` built by `npm run projections`, which also
+writes `public/cells/` and `public/entries/`; `tests/projections.test.ts`
+fails if it is stale. Edit `role-records.json` and rebuild - never the slim
+file.
 
 Two grains coexist deliberately: charts read the analytical stage counts;
 the explorer shows the finer entry log. The mapping from the 31 function
@@ -59,13 +65,24 @@ script that:
    catalogue mentions (unmatched entries fall back to the compiled base
    citation).
 
-**That script is not in this repository, and neither are the workbooks it
-read.** There is no `scripts/` directory and `package.json` carries only
-`dev`, `build`, `start`, `lint` and `test`. The rules above are kept as a
-description of how the numbers came to be, not as a path you can re-run: the
-JSON in `src/data` is the source of truth now, and the test suite is what
-holds it honest. Internal workbook names are not displayed anywhere on the
-site.
+**That import script is not in this repository, and neither are the files it
+read.** The rules above are kept as a description of how the numbers came to
+be, not as a path you can re-run: the JSON in `src/data` is authoritative
+now, and the test suite is what holds it honest.
+
+`scripts/` does exist, but it holds derivation rather than import - it builds
+things *out of* `src/data`, never into it:
+
+| Script | Run it with | Writes |
+| --- | --- | --- |
+| `build-projections.mjs` | `npm run projections` | `src/data/role-records-slim.json`, `public/cells/`, `public/entries/` |
+| `build-search-index.mjs` | `node scripts/build-search-index.mjs` | `public/search-index.json` |
+
+`package.json` carries `dev`, `build`, `start`, `lint`, `test`, `test:e2e`,
+`test:e2e:install` and `projections`. Both generated artefacts are guarded:
+`tests/projections.test.ts` and `tests/search-index.test.ts` fail if what is
+committed is not what the current data builds, so a data edit that skips the
+rebuild is caught by `npm test` rather than shipped.
 
 ## Updating the data
 

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 /**
  * The Arabic live-updates page mounts the same explorer as the English one,
- * in Arabic: tabs, search, filters, the provider roll-call, the official
- * directory and the coverage analytics all run here over the same endpoint,
- * so both languages read the same articles at the same moment.
+ * in Arabic: tabs, search, filters, the official directory and the coverage
+ * analytics all run here over the same endpoint, so both languages read the
+ * same articles at the same moment.
  */
 export default async function Page({
   searchParams,

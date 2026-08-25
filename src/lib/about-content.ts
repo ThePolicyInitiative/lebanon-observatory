@@ -16,10 +16,10 @@
 export const CONTENT_CUT_OFF = "2026-07-31";
 
 /**
- * The last content release. Kept in step with CONTENT_UPDATED in
- * src/app/sitemap.ts by hand: the crawler date and the reader-facing date
- * are the same fact, and a footer that ages while the sitemap moves is
- * worse than no date at all.
+ * The last content release, and the one place it is written. The crawler
+ * date and the reader-facing date are the same fact, so src/app/sitemap.ts
+ * derives CONTENT_UPDATED from this constant rather than repeating it - a
+ * footer that ages while the sitemap moves is worse than no date at all.
  */
 export const ANALYSIS_REVISED = "2026-08-25";
 

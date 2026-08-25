@@ -166,18 +166,23 @@ The only exception is hashed `/_next/static` assets, whose immutable
    full-screen. If WebGL is unavailable or blocked, the page must
    automatically show the SVG vector map (same figures, keyboard-selectable
    governorates) within ~7 seconds - a blank map box is a bug.
-   On the SVG map also verify: wheel/drag and button zoom, the four region
-   quick views, district labels appearing from ×1.8 zoom, pin/marker labels
-   from ×2.2, the scale bar staying readable at every zoom level, the town
-   search zooming to its result, and diamond markers opening the episode
-   panel. Then switch the three map views: "Located records" (three-tier
-   shading, amber named towns), "Change 2024 → 2026" (green/rust diverging
-   by district, both years regardless of the year toggle), and "Damage
-   assessment 2026" (worst-cadaster badges, Dahieh debris badge, the
-   two-zone caveat box, pins and diamonds hidden). The occupation hatch must
-   cover only the Blue Line border-strip towns, with dashed outlines on the
-   four containing districts, and the mini-map inset must appear when
-   zoomed and recentre on click.
+   On the SVG map also verify: district labels appearing from ×1.8 zoom,
+   pin/marker labels from ×2.2, the scale bar staying readable at every zoom
+   level, the town search zooming to its result, and diamond markers opening
+   the episode panel. The occupation hatch must cover only the Blue Line
+   border-strip towns, with dashed outlines on the four containing districts,
+   and the mini-map inset must appear when zoomed and recentre on click.
+
+   Note what is NOT here any more. `efac8d0` stripped the view switcher, the
+   zoom buttons, the National reset and the five region shortcuts, so there
+   is nothing to click for any of them. The map still has four views -
+   `entries`, `change`, `survey`, `damage` (`MapView` in
+   `SvgLebanonMap.tsx`) - and three of them can now only be reached by
+   editing `?view=` in the URL, which means their legends, ViewRanking panels
+   and caveat boxes are reader-facing surface with no route to it. That is a
+   pending decision, not a checklist step: either give them a control back or
+   remove them. Until it is settled, exercise them by URL so a regression in
+   an unreachable view is still caught.
 5. Mobile layout at 375px: nav menu, filter sheets, stacked cards, map
    panels. Check specifically that no page scrolls horizontally, that the
    actor matrix and evidence table pan inside their own scroll containers
