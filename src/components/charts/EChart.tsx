@@ -67,12 +67,31 @@ export default function EChart({
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const chart = init(ref.current, undefined, { renderer: "svg" });
     chartRef.current = chart;
+    /*
+     * Resolved here rather than handed to ECharts as a `var(--font-sans)`
+     * string, which failed twice over.
+     *
+     * The string never named --font-sans-arabic at all, so every Arabic
+     * label rendered in Inter - a face with no Arabic glyphs - and fell
+     * through to whatever the system had.
+     *
+     * Worse, and in both languages: zrender measures text by assigning to
+     * canvas `ctx.font`, and a font shorthand containing `var(...)` is
+     * invalid, so the assignment silently failed and the canvas stayed at
+     * its default `10px sans-serif`. Every label width, every
+     * overlap-hide decision and every containLabel grid size was computed
+     * against a font no chart was drawn in.
+     *
+     * The container inherits the page's own stack, and [dir="rtl"] body
+     * swaps in the Arabic face, so reading the computed value gives each
+     * locale the right one without this component knowing which it is.
+     */
+    const fontFamily = getComputedStyle(ref.current).fontFamily;
     const base: EChartsOption = {
       animation: !reduced,
       animationDuration: 200,
       textStyle: {
-        fontFamily:
-          "var(--font-sans), Inter, 'Segoe UI', system-ui, sans-serif",
+        fontFamily,
         color: UI.text,
       },
       tooltip: { confine: true },
