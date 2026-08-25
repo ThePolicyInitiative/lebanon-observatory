@@ -362,7 +362,13 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
   return (
     <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
       {/* Filter sidebar / sheet */}
-      <aside aria-label={t.filtersAria} className="lg:sticky lg:top-[var(--header-h)] lg:self-start">
+      {/* Capped on the aside rather than the inner panel, so the summary
+          scrolls with the filters it counts instead of pinning above a
+          list that has scrolled away from it. */}
+      <aside
+        aria-label={t.filtersAria}
+        className="lg:sticky lg:top-[var(--header-h)] lg:max-h-[calc(100dvh-var(--header-h))] lg:self-start lg:overflow-y-auto lg:overscroll-contain"
+      >
         <details className="rounded-md border border-[color:var(--color-border)] bg-white lg:open:pb-4" open>
           <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[color:var(--color-navy)]">
             {t.filtersSummary(filtered.length, TOTAL)}

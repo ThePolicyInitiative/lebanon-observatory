@@ -269,3 +269,58 @@ test.describe("the map", () => {
     expect(w.crashes).toEqual([]);
   });
 });
+
+/**
+ * The sticky budget, asserted where it actually bites.
+ *
+ * Sticky chrome is the one kind of layout defect that a desktop review
+ * cannot see: every bar here fits comfortably at 1280px and three of them
+ * ate most of a phone. The map's control bar reached 453px under the 65px
+ * header - 78% of a 667px viewport before any map was visible - and the
+ * actor tab bar 205px, because four full layer names cannot pair on a
+ * 343px line.
+ *
+ * Both languages, deliberately. The Arabic strings are shorter in three of
+ * the four cases (its tab bar was already one row where English took four),
+ * so a threshold checked only in Arabic would have passed throughout.
+ */
+test.describe("the sticky budget on a phone", () => {
+  test.use({ viewport: { width: 375, height: 667 } });
+
+  for (const route of ROUTES) {
+    test(`leaves most of the viewport to the reader on ${route}`, async ({ page }) => {
+      await page.goto(route);
+      await page.waitForLoadState("networkidle");
+
+      const measured = await page.evaluate(() => {
+        const stuck = [...document.querySelectorAll<HTMLElement>("*")].filter((el) => {
+          const cs = getComputedStyle(el);
+          if (cs.position !== "sticky" && cs.position !== "fixed") return false;
+          // Only what pins VERTICALLY costs the reader viewport height. The
+          // actor matrices freeze their row headers with `sticky start-0` on
+          // roughly 180 <th> cells - horizontal sticky, which takes no
+          // vertical space at all. Summing those gave 7,270px on /actors.
+          return cs.top !== "auto";
+        });
+        // Nested sticky elements would double-count; keep only outermost.
+        const outermost = stuck.filter((el) => !stuck.some((o) => o !== el && o.contains(el)));
+        const total = outermost.reduce((sum, el) => sum + el.getBoundingClientRect().height, 0);
+        return {
+          total,
+          viewport: window.innerHeight,
+          bars: outermost.map((el) => ({
+            tag: el.tagName.toLowerCase(),
+            h: Math.round(el.getBoundingClientRect().height),
+          })),
+        };
+      });
+
+      // Half the screen. Generous - the worst offender was at 78% - but it
+      // is a budget, not a target, and it is what makes a regression loud.
+      expect(
+        measured.total,
+        `sticky chrome ${Math.round(measured.total)}px of ${measured.viewport}px: ${JSON.stringify(measured.bars)}`,
+      ).toBeLessThan(measured.viewport * 0.5);
+    });
+  }
+});

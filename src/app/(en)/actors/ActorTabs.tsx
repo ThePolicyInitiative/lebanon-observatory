@@ -196,6 +196,12 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               id={`tab-${l.id}`}
               {...roving.itemProps(i)}
               onClick={() => set("layer", l.id)}
+              /* The full label is 162-241px against a 343px phone line, so
+                 each tab took its own row and the bar stood 205px tall
+                 below a 65px header. The short forms already exist for
+                 every layer in both languages, so the accessible name
+                 stays the full one and only the visible text shortens. */
+              aria-label={l.label}
               className={`min-h-11 rounded-t-md border-b-[3px] px-3.5 text-[13px] transition-colors duration-150 ${
                 active
                   ? "font-semibold text-[color:var(--color-navy)]"
@@ -208,7 +214,8 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
                 className="me-1.5 inline-block h-2.5 w-2.5 rounded-sm"
                 style={{ background: l.color }}
               />
-              {l.label}
+              <span className="sm:hidden">{l.short}</span>
+              <span className="hidden sm:inline">{l.label}</span>
             </button>
           );
         })}

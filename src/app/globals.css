@@ -12,6 +12,29 @@
    */
   --header-h: 65px;
 
+  /*
+   * THE STICKY BUDGET. Every sticky element must cap its own height, and
+   * the total of them must leave the reader most of the viewport.
+   *
+   * The drift note above is about sub-bars agreeing on where the header
+   * ENDS. This is the other half, which nothing was tracking: how tall the
+   * sub-bars themselves are allowed to grow. Nothing capped them, so on a
+   * 375px phone the map's control bar reached 453px under the 65px header -
+   * 64% of an 812px viewport, 78% of a 667px one, before any map was
+   * visible. The actor tab bar stood 205px because four full layer names
+   * cannot pair on one line. The open nav reached 522px, and in landscape
+   * its last entries were simply unreachable: a sticky element with only
+   * `top` set never scrolls its own overflow back into view.
+   *
+   * So: a sticky container either fits, or it carries a max-h and its own
+   * overflow, or it stops being sticky at the width where it cannot fit.
+   * The map bar takes the third route below sm and the second above it.
+   * tests/e2e/smoke.spec.ts asserts the budget on every route in both
+   * languages, because the Arabic bars are shorter in three of four cases
+   * and would pass a threshold the English ones fail.
+   */
+  --sticky-budget: 40vh;
+
   /* Surfaces: the page sits on a cool ground, content on white. */
   --color-bg: #eaeff4;
   --color-surface: #ffffff;

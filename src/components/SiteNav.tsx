@@ -130,7 +130,12 @@ export default function SiteNav() {
           aria-label={chrome.primaryNavMobile}
           className="border-t border-white/15 bg-[color:var(--color-navy)] xl:hidden"
         >
-          <ul className="mx-auto max-w-[1360px] px-4 py-2 sm:px-6">
+          {/* Ten 44px rows plus padding is 522px of sticky element, and the
+              hamburger stays active all the way to xl - so a phone in
+              landscape, or any window under 1280px, lost the last entries
+              permanently: a sticky element with only `top` set never
+              scrolls its own overflow back into view. */}
+          <ul className="mx-auto max-h-[calc(100dvh-var(--header-h)-1px)] max-w-[1360px] overflow-y-auto overscroll-contain px-4 py-2 sm:px-6">
             {NAV_ITEMS.map((item) => {
               const href = localisedHref(item.path, isArabic);
               const active =

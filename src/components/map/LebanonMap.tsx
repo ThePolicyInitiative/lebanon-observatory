@@ -598,8 +598,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     }
   }, [mapReady, filteredRecords, year, locale, t]);
 
+  /*
+   * `w-full` matters on a phone: a bare <select> is sized by its longest
+   * option, and three of these exceed half the 343px line, so each one
+   * claimed a row of its own. Filling a grid column instead lets them pair.
+   */
   const selectCls =
-    "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
+    "min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
 
   const yearOptions = ["2024", "2026"] as const;
   const yearRoving = useRovingRadio({
@@ -613,8 +618,15 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   return (
     <div>
       {/* Controls */}
-      <div className="sticky top-[var(--header-h)] z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
-        <div className="flex flex-wrap items-end gap-3">
+      {/*
+        Not sticky on a phone. Pinned, this bar stood 453px tall under a
+        65px header - 64% of a 812px viewport and 78% of a 667px one, before
+        any map was visible. Letting it scroll away below sm costs nothing:
+        a reader sets a filter and then wants the map, not the controls.
+        Above sm it pins as before, with a cap so it can never do this again.
+      */}
+      <div className="z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:sticky sm:top-[var(--header-h)] sm:max-h-[40vh] sm:overflow-y-auto sm:px-6">
+        <div className="grid grid-cols-2 items-end gap-3 sm:flex sm:flex-wrap">
           <div>
             <label htmlFor="map-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
               {t.year}
