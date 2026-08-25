@@ -80,7 +80,9 @@ const LOCATION_TAGS: [string, string[]][] = [
   ["South and Nabatieh", ["south lebanon", "nabatieh", "tyre", "sour ", "bint jbeil", "bent jbeil", "marjeyoun", "khiam", "litani", "aitaroun", "kfar kila", "naqoura", "الجنوب", "النبطية", "صور", "بنت جبيل", "مرجعيون", "الخيام", "sud du liban"]],
   ["Beirut and Mount Lebanon", ["beirut", "dahieh", "southern suburbs", "baabda", "mount lebanon", "بيروت", "الضاحية", "بعبدا", "جبل لبنان", "beyrouth"]],
   ["Bekaa and Baalbek-Hermel", ["bekaa", "baalbek", "hermel", "zahle", "البقاع", "بعلبك", "الهرمل", "زحلة"]],
-  ["North", ["tripoli", "akkar", "north lebanon", "طرابلس", "عكار", "الشمال"]],
+  // No northern bucket: the war did not reach those governorates, so this
+  // site does not file reconstruction coverage under one. The bare
+  // "tripoli" keyword it used to carry matched Tripoli in Libya too.
   ["Camps and migrant communities", ["palestinian camp", "refugee camp", "unrwa", "migrant", "مخيم", "لاجئ"]],
 ];
 

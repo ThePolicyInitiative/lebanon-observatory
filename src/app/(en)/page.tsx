@@ -223,13 +223,13 @@ export default function HomePage() {
           <SectionHeading index={4} title="Who gained and lost roles">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               The system rotated rather than grew. Official institutions
-              consolidated into programmed reconstruction and appeared for the
-              first time in procurement and oversight cells. International
-              actors moved from assessment toward operational governance around
-              the project. Municipalities thinned everywhere without gaining
-              authority. Community initiatives surged in relief and
-              coordination while contracting out of finance, rubble and
-              physical reconstruction.
+              consolidated into programmed reconstruction and grew in
+              procurement and oversight cells that were thin before.
+              International actors moved from assessment toward operational
+              governance around the project. Municipalities thinned overall -
+              19 traced entries to 12 - without gaining authority anywhere.
+              Community initiatives surged in relief and coordination while
+              contracting out of finance, rubble and physical reconstruction.
             </p>
           </SectionHeading>
           <div className="mt-6 space-y-6">

@@ -321,8 +321,8 @@ const BANDS_2024: BandSpec[] = [
           {
             title: { en: "Water establishments", ar: "مؤسسات المياه" },
             sub: {
-              en: "South Lebanon, Bekaa, Beirut & Mount Lebanon, North Lebanon (SLWE, BWE, BMLWE, NLWE) + Litani River Authority",
-              ar: "الجنوب، والبقاع، وبيروت وجبل لبنان، والشمال + المصلحة الوطنية لنهر الليطاني",
+              en: "South Lebanon, Bekaa, Beirut & Mount Lebanon (SLWE, BWE, BMLWE) + Litani River Authority",
+              ar: "الجنوب، والبقاع، وبيروت وجبل لبنان + المصلحة الوطنية لنهر الليطاني",
             },
           },
           {
@@ -844,8 +844,8 @@ const BANDS_2026: BandSpec[] = [
           {
             title: { en: "Water establishments", ar: "مؤسسات المياه" },
             sub: {
-              en: "SLWE, BWE, BMLWE, NLWE - water supply and wastewater",
-              ar: "الجنوب، والبقاع، وبيروت وجبل لبنان، والشمال - التزويد بالمياه والصرف الصحي",
+              en: "SLWE, BWE, BMLWE - water supply and wastewater",
+              ar: "الجنوب، والبقاع، وبيروت وجبل لبنان - التزويد بالمياه والصرف الصحي",
             },
           },
           {

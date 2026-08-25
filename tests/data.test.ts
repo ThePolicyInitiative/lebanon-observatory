@@ -115,15 +115,26 @@ describe("location mentions", () => {
   });
 
   /**
-   * The north reads zero for 2026 on purpose. Its six community mentions
-   * all traced back to a group's home address - Tripoli Volunteers named in
-   * another entry's action - rather than to a place that group worked, and
-   * neither war reached those governorates. The table and the tracking have
-   * to agree about that.
+   * Neither war reached the northern governorates, so the north is not a
+   * grouping at all: not a row that reads zero, not a filter that returns
+   * nothing, not an empty bar. This guards the whole shape of that rule -
+   * no northern grouping in the table, and no entry tagged to one.
    */
-  it("places nothing in the north in 2026", () => {
-    const north = locations.mentions["2026"].north;
-    expect(Object.values(north).reduce((a, b) => a + b, 0)).toBe(0);
+  it("carries no northern grouping and tags no entry to one", () => {
+    for (const year of ["2024", "2026"] as const) {
+      expect(
+        Object.keys(locations.mentions[year]),
+        `${year} mentions still carry a northern grouping`,
+      ).not.toContain("north");
+    }
+    expect(
+      locations.regions.map((r) => r.id),
+      "locations.json still declares a northern region",
+    ).not.toContain("north");
+    expect(
+      roleRecords.filter((r) => (r.regions ?? []).includes("north")).map((r) => r.id),
+      "entries still tagged to the north",
+    ).toEqual([]);
   });
 });
 

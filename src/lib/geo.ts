@@ -448,10 +448,14 @@ export const LITANI_PATHS: string[] = LITANI_SEGMENTS.map(
       .join("L"),
 );
 
-/** Major-city reference labels (well-known coordinates, village precision). */
+/**
+ * Major-city reference labels (well-known coordinates, village
+ * precision). Northern cities are not among them: this is a map of where
+ * the war and the reconstruction were traced, and labelling Tripoli on it
+ * invites the reader to look for something there that never happened.
+ */
 export const CITY_LABELS: { name: string; lon: number; lat: number }[] = [
   { name: "Beirut", lon: 35.5018, lat: 33.8938 },
-  { name: "Tripoli", lon: 35.8497, lat: 34.4367 },
   { name: "Saida", lon: 35.3758, lat: 33.5606 },
   { name: "Tyre", lon: 35.2038, lat: 33.2705 },
   { name: "Nabatieh", lon: 35.4836, lat: 33.3772 },

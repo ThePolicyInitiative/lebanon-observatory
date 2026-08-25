@@ -103,7 +103,6 @@ export const REGIONS = {
   south_nabatieh: { en: "South and Nabatieh", ar: "الجنوب والنبطية" },
   beirut_mount_lebanon: { en: "Beirut and Mount Lebanon", ar: "بيروت وجبل لبنان" },
   bekaa_baalbek_hermel: { en: "Bekaa and Baalbek-Hermel", ar: "البقاع وبعلبك-الهرمل" },
-  north: { en: "North", ar: "الشمال" },
   camps_migrant: { en: "Camps and migrant communities", ar: "المخيمات ومجتمعات المهاجرين" },
   national_multi: { en: "National or multi-region", ar: "وطني أو متعدد المناطق" },
   named_localities: { en: "Named affected localities", ar: "بلدات متضررة مسمّاة" },

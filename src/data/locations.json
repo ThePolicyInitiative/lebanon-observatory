@@ -1,5 +1,5 @@
 {
-  "note": "Location mentions in the actor-stage tracking, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach. The north reads zero in both years because neither war reached those governorates: the mentions it once carried were national-scope phrases in an actor's remit, or a group's home address rather than a place it worked, and each was traced back and removed.",
+  "note": "Location mentions in the actor-stage tracking, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach. North Lebanon is not among the groupings: neither war reached those governorates, so nothing there was traced, and a grouping reading zero would invite that absence to be read as a finding.",
   "regions": [
     {
       "id": "south_nabatieh",
@@ -26,15 +26,6 @@
       "governorates": [
         "Béqaa",
         "Baalbek-Hermel"
-      ],
-      "mappable": true
-    },
-    {
-      "id": "north",
-      "label": "North",
-      "governorates": [
-        "Liban-Nord",
-        "Aakkâr"
       ],
       "mappable": true
     },
@@ -77,12 +68,6 @@
         "ngo_international": 0,
         "community": 0
       },
-      "north": {
-        "official": 0,
-        "municipal": 0,
-        "ngo_international": 0,
-        "community": 0
-      },
       "camps_migrant": {
         "official": 1,
         "municipal": 0,
@@ -117,12 +102,6 @@
       },
       "bekaa_baalbek_hermel": {
         "official": 3,
-        "municipal": 0,
-        "ngo_international": 0,
-        "community": 0
-      },
-      "north": {
-        "official": 0,
         "municipal": 0,
         "ngo_international": 0,
         "community": 0

@@ -23,8 +23,15 @@ export const CONTENT_CUT_OFF = "2026-07-31";
  */
 export const ANALYSIS_REVISED = "2026-08-24";
 
-/** PLACEHOLDER - the owner replaces this with the real address. */
-export const CONTACT_EMAIL = "contact@lebanon-observatory.org";
+/**
+ * The observatory's contact address, or null while there is none.
+ *
+ * It is null rather than a plausible-looking placeholder on purpose: a
+ * site that publishes a live mailto nobody reads is worse than one that
+ * says plainly it has no channel open yet. Set it here and it appears on
+ * the About page and in the footer, in both languages.
+ */
+export const CONTACT_EMAIL: string | null = null;
 
 type Figure = { value: string; label: string };
 type Section = { id: string; heading: string; body?: string[]; points?: string[] };
@@ -37,7 +44,7 @@ type AboutCopy = {
   point: string;
   figures: Figure[];
   sections: Section[];
-  contact: { heading: string; body: string; note: string };
+  contact: { heading: string; body: string; note: string; none: string };
   crossLink: string;
 };
 
@@ -110,6 +117,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
       heading: "How to reach us",
       body: "Questions, corrections and challenges to any figure go to one address:",
       note: "Write naming the page and the figure in question. Press enquiries should give the deadline in the first line.",
+      none: "No contact address is open yet. Until one is, corrections cannot be sent to the observatory directly - so treat every figure as checkable against the page that carries it and the caveat printed beside it.",
     },
     crossLink: "Read this page in Arabic",
   },
@@ -182,6 +190,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
       heading: "كيف تصل إلينا",
       body: "الأسئلة والتصويبات والاعتراضات على أي رقم تذهب إلى عنوان واحد:",
       note: "اكتب ذاكراً الصفحة والرقم موضع السؤال. وطلبات الصحافة تذكر المهلة في السطر الأول.",
+      none: "لا عنوان تواصل مفتوح بعد. وإلى أن يتوفّر، لا سبيل لإرسال التصويبات إلى المرصد مباشرة - فليُقرأ كل رقم مقابل الصفحة التي تحمله والتحفّظ المطبوع إلى جانبه.",
     },
     crossLink: "افتح هذه الصفحة بالإنجليزية",
   },

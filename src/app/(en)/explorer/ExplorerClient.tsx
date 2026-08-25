@@ -19,6 +19,15 @@ import { useUrlState } from "@/lib/useUrlState";
 import type { RoleRecord } from "@/lib/types";
 
 /**
+ * One entry as /entries/{id}.json serves it: the record, plus its
+ * citations already resolved to what they name and where they live, so
+ * the drawer never has to print a bare internal id.
+ */
+type EntryDetail = RoleRecord & {
+  citations?: { id: string; label: string; url: string | null }[];
+};
+
+/**
  * The explorer runs entirely over the slim projection the map already
  * ships: list, filters and search never need the full log. Only when a
  * row is opened does the drawer fetch that one entry's complete text
@@ -48,7 +57,7 @@ const T = {
     allLayers: "All layers",
     stage: "Value-chain stage",
     allStages: "All stages",
-    fn: "Function (workbook column)",
+    fn: "Function column",
     allFns: "All functions",
     status: "Implementation status",
     allStatuses: "All statuses",
@@ -101,7 +110,7 @@ const T = {
     allLayers: "كل الطبقات",
     stage: "مرحلة سلسلة القيمة",
     allStages: "كل المراحل",
-    fn: "الوظيفة (عمود المصنّف)",
+    fn: "عمود الوظيفة",
     allFns: "كل الوظائف",
     status: "حالة التنفيذ",
     allStatuses: "كل الحالات",
@@ -200,7 +209,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
   );
   const [selected, setSelected] = useState<SlimRecord | null>(arrivedOn);
   // null while the entry's full text is on its way from /entries/.
-  const [detail, setDetail] = useState<RoleRecord | null>(null);
+  const [detail, setDetail] = useState<EntryDetail | null>(null);
   const [detailFailed, setDetailFailed] = useState(false);
   const [visible, setVisible] = useState(50);
   const requestSeq = useRef(0);
@@ -215,7 +224,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
     fetch(`/entries/${id}.json`)
       .then((res) => {
         if (!res.ok) throw new Error(String(res.status));
-        return res.json() as Promise<RoleRecord>;
+        return res.json() as Promise<EntryDetail>;
       })
       .then((full) => {
         if (requestSeq.current === seq) setDetail(full);
@@ -680,13 +689,26 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                       </div>
                     ) : null}
                   </dl>
-                  {detail.sourceIds.length > 0 ? (
+                  {detail.citations && detail.citations.length > 0 ? (
                     <section>
                       <h4 className={headingCls}>{t.citations}</h4>
-                      <ul className="mt-1 flex flex-wrap gap-1.5">
-                        {detail.sourceIds.map((id) => (
-                          <li key={id} dir="ltr" className="rounded-sm bg-[color:var(--color-bg)] px-2 py-0.5 font-mono text-[11px]">
-                            {id}
+                      {/* What is being cited, by name and link. The ids
+                          themselves mean nothing outside the compilation. */}
+                      <ul className="mt-1 space-y-1">
+                        {detail.citations.map((c) => (
+                          <li key={c.id} className="text-[12.5px] leading-snug">
+                            {c.url ? (
+                              <a
+                                href={c.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[color:var(--color-blue)] underline underline-offset-2"
+                              >
+                                {c.label} <span aria-hidden dir="ltr">↗</span>
+                              </a>
+                            ) : (
+                              c.label
+                            )}
                           </li>
                         ))}
                       </ul>

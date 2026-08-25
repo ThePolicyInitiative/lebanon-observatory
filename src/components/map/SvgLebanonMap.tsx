@@ -1049,6 +1049,12 @@ export default function SvgLebanonMap({
                 /* Instant server-rendered district base while towns load */
                 DISTRICT_PATHS.map((p) => {
                   const v = regionValues[p.zoneId] ?? 0;
+                  // Districts outside the zones the war reached are drawn
+                  // as land and named, and that is all: a "0 mentions"
+                  // tooltip on a northern district invites the reader to
+                  // read absence of tracing as absence of activity, when
+                  // there was nothing there to trace.
+                  const traced = AFFECTED_ZONE_IDS.includes(p.zoneId);
                   return (
                     <path
                       key={p.name}
@@ -1059,7 +1065,11 @@ export default function SvgLebanonMap({
                       strokeWidth={0.6}
                       strokeOpacity={0.85}
                     >
-                      <title>{tr.baseTitle(p.name, regionLabel(p.zoneId, locale) || p.zoneLabel, v, year)}</title>
+                      <title>
+                        {traced
+                          ? tr.baseTitle(p.name, regionLabel(p.zoneId, locale) || p.zoneLabel, v, year)
+                          : p.name}
+                      </title>
                     </path>
                   );
                 })
@@ -1941,8 +1951,8 @@ export default function SvgLebanonMap({
                   ({destruction.zones2026[1].assessedDamageAr}؛ بفحص ميداني).
                   المنتجان يختلفان في المنهجية ولا يجوز مقارنتهما ولا جمعهما.
                   والجغرافيا المقيَّمة ليست الجغرافيا المتضررة: فالتتبّع الوطني
-                  الآني رصد ضربات عنيفة في عموم البلاد، ولم يكن للبقاع
-                  وبعلبك-الهرمل والشمال أي تقييم مواز.
+                  الآني رصد ضربات عنيفة في المناطق التي بلغتها الحرب، ولم يكن
+                  للبقاع وبعلبك-الهرمل أي تقييم مواز.
                 </>
               ) : (
                 <>
@@ -1955,9 +1965,9 @@ export default function SvgLebanonMap({
                   ({destruction.zones2026[1].assessedDamage}; field-checked). The
                   two products differ in method and must not be compared or
                   summed. Assessed geography is not damaged geography: the
-                  real-time national database traced heavy strikes nationwide,
-                  and the Bekaa, Baalbek-Hermel and the North had no equivalent
-                  assessment.
+                  real-time national database traced heavy strikes across the
+                  areas the war reached, and the Bekaa and Baalbek-Hermel had no
+                  equivalent assessment.
                 </>
               )}
             </p>

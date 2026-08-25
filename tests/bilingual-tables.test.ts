@@ -271,11 +271,12 @@ describe("the shared vocabulary", () => {
   });
 
   it("names every region in both languages, from one dictionary", () => {
+    // The groupings the tracking actually uses. There is no northern one:
+    // neither war reached those governorates.
     const regions = [
       "south_nabatieh",
       "beirut_mount_lebanon",
       "bekaa_baalbek_hermel",
-      "north",
       "camps_migrant",
       "national_multi",
       "named_localities",

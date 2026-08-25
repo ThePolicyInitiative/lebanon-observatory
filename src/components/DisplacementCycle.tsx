@@ -84,7 +84,7 @@ const ROWS: { en: Row; ar: Row }[] = [
 const T = {
   en: {
     title: "The shelter-and-return cycle, run twice",
-    sub: "Shelter is the state-plus-humanitarian system's proven competence - and durable return is nobody's mandate. “Returned” counts registrations of movement; it cannot see secondary displacement or doubling-up, and the series splices different reporting systems at different dates.",
+    sub: "Shelter is where the state-plus-humanitarian system was traced most densely - and durable return is nobody's mandate. “Returned” counts registrations of movement; it cannot see secondary displacement or doubling-up, and the series splices different reporting systems at different dates.",
     caption: "Displacement and shelter metrics for the 2024 and 2026 cycles.",
     metric: "Metric",
     cycle2024: "2024 cycle",

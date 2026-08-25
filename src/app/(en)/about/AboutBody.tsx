@@ -53,22 +53,30 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
         >
           {t.contact.heading}
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          {t.contact.body}
-        </p>
-        <p className="mt-2 text-sm font-semibold">
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            lang="en"
-            dir="ltr"
-            className="inline-block text-[color:var(--color-blue)] underline underline-offset-2"
-          >
-            {CONTACT_EMAIL}
-          </a>
-        </p>
-        <p className="mt-2.5 max-w-3xl text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {t.contact.note}
-        </p>
+        {CONTACT_EMAIL ? (
+          <>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+              {t.contact.body}
+            </p>
+            <p className="mt-2 text-sm font-semibold">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                lang="en"
+                dir="ltr"
+                className="inline-block text-[color:var(--color-blue)] underline underline-offset-2"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </p>
+            <p className="mt-2.5 max-w-3xl text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              {t.contact.note}
+            </p>
+          </>
+        ) : (
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+            {t.contact.none}
+          </p>
+        )}
       </section>
     </div>
   );

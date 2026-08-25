@@ -27,6 +27,28 @@ const flatten = (v) => (v ? v.replace(/\n+/g, " ").trim() : v);
 
 const log = JSON.parse(readFileSync(join(dataDir, "role-records.json"), "utf8"));
 
+/**
+ * Entry citations, resolved.
+ *
+ * The entry files used to carry bare ids, and the explorer printed them:
+ * a row of chips reading `cat2024-3` under a heading promising citations,
+ * resolving to nothing anywhere on the site. Resolving them here means
+ * the drawer can name what it is citing and link to it.
+ */
+const catalogue = new Map(
+  JSON.parse(readFileSync(join(dataDir, "catalog-sources.json"), "utf8")).map((c) => [
+    c.id,
+    { label: c.mention, url: (c.urls ?? [])[0] ?? null },
+  ]),
+);
+const citationsFor = (ids) =>
+  (ids ?? [])
+    .map((id) => {
+      const hit = catalogue.get(id);
+      return hit ? { id, label: hit.label, url: hit.url } : null;
+    })
+    .filter(Boolean);
+
 /* ------------------------------------------------------- slim projection */
 const slim = log.map((r) => ({
   id: r.id,
@@ -78,7 +100,10 @@ mkdirSync(entryDir, { recursive: true });
 // Cleared first, so an entry deleted from the log stops being served.
 for (const f of readdirSync(entryDir)) unlinkSync(join(entryDir, f));
 for (const r of log) {
-  writeFileSync(join(entryDir, `${r.id}.json`), JSON.stringify(r));
+  writeFileSync(
+    join(entryDir, `${r.id}.json`),
+    JSON.stringify({ ...r, citations: citationsFor(r.sourceIds) }),
+  );
 }
 
 const bytes = (dir) =>

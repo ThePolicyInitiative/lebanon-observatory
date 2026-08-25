@@ -83,7 +83,7 @@ const DIMENSIONS: Dimension[] = [
         "Four non-additive damage tracks, national scope, months of latency, internationally produced; a usable national baseline only in March 2025.",
       y2026:
         "Bounded products in weeks, jointly produced with a Lebanese scientific institution (CNRS-L), plus a real-time national database - but covering two zones, with the Bekaa and Baalbek-Hermel unassessed at the cut-off.",
-      change: "The cleanest capability gain of any function; coverage was traded for speed.",
+      change: "Faster products from fewer traced actors - 37 to 21 across the chain's assessment stage; coverage was traded for speed.",
     },
     ar: {
       label: "التقييم",
@@ -91,7 +91,7 @@ const DIMENSIONS: Dimension[] = [
         "أربعة مسارات أضرار غير قابلة للجمع، بنطاق وطني، وبتأخّر شهور، ومن إنتاج دولي؛ ولم يتوفّر خط أساس وطني صالح للاستعمال قبل آذار 2025.",
       y2026:
         "منتجات محدودة النطاق أُنجزت في أسابيع، بإنتاج مشترك مع مؤسسة علمية لبنانية (المجلس الوطني للبحوث العلمية)، مع قاعدة معطيات وطنية آنية - لكنها تغطّي منطقتين، وبقي البقاع وبعلبك-الهرمل بلا تقييم حتى تاريخ التوقف.",
-      change: "أنظف مكسب في القدرة بين كل الوظائف؛ وقد بودلت التغطية بالسرعة.",
+      change: "منتجات أسرع من عدد أقل من الجهات المرصودة - من 37 إلى 21 في مرحلة التقييم؛ وقد بودلت التغطية بالسرعة.",
     },
   },
   {
@@ -160,17 +160,17 @@ const DIMENSIONS: Dimension[] = [
     en: {
       label: "Municipal authority",
       y2024:
-        "Sensors and shock absorbers: damage reporting, shelter hosting, local access - with zero traced roles in finance, procurement, direct reconstruction and oversight.",
+        "Sensors and shock absorbers: damage reporting, shelter hosting, local access - with no traced oversight role at all, and finance, procurement and direct works in single figures.",
       y2026:
-        "Intake and certification nodes in longer chains - with zero traced roles in finance, procurement, direct reconstruction and oversight.",
+        "Intake and certification nodes in longer chains - with no traced finance or oversight role, and one traced entry each in procurement and direct works.",
       change: "The comparison's null result: no empowerment in either year, and thinner traced presence (19 → 12 entries).",
     },
     ar: {
       label: "السلطة البلدية",
       y2024:
-        "حسّاسات وممتصّات صدمات: إبلاغ عن الأضرار، واستضافة إيواء، وتأمين وصول محلي - وبصفر أدوار مرصودة في التمويل والشراء وإعادة الإعمار المباشرة والرقابة.",
+        "حسّاسات وممتصّات صدمات: إبلاغ عن الأضرار، واستضافة إيواء، وتأمين وصول محلي - بلا أي دور رقابي مرصود، وبأعداد أحادية في التمويل والشراء والأشغال المباشرة.",
       y2026:
-        "نقاط استقبال وإفادة في سلاسل أطول - وبصفر أدوار مرصودة في التمويل والشراء وإعادة الإعمار المباشرة والرقابة.",
+        "نقاط استقبال وإفادة في سلاسل أطول - بلا دور تمويلي أو رقابي مرصود، وبمدخل واحد في كلٍّ من الشراء والأشغال المباشرة.",
       change: "النتيجة الصفرية في هذه المقارنة: لا تمكين في أي من السنتين، وحضور مرصود أنحف (19 ← 12 مدخلاً).",
     },
   },
@@ -180,7 +180,7 @@ const DIMENSIONS: Dimension[] = [
     en: {
       label: "Community substitution",
       y2024:
-        "The largest traced presence in every downstream stage - clearing, repairing, financing recovery from savings, remittances and labour.",
+        "The largest traced presence in most downstream stages - clearing, repairing, financing recovery from savings, remittances and labour.",
       y2026:
         "Grew overall (145 → 172 entries) while rotating into relief, coordination and shelter and out of finance, rubble and physical reconstruction.",
       change: "Substitution changed currency, not size: the system consumed savings and labour in 2024, care capacity and volunteer time in 2026.",
@@ -188,7 +188,7 @@ const DIMENSIONS: Dimension[] = [
     ar: {
       label: "إحلال المجتمع المحلي",
       y2024:
-        "أكبر حضور مرصود في كل مرحلة لاحقة - تنظيف وترميم وتمويل تعافٍ من المدّخرات والتحويلات والعمل.",
+        "أكبر حضور مرصود في معظم المراحل اللاحقة - تنظيف وترميم وتمويل تعافٍ من المدّخرات والتحويلات والعمل.",
       y2026:
         "اتّسع إجمالاً (145 ← 172 مدخلاً) مع انتقال نحو الإغاثة والتنسيق والإيواء، وخروج من التمويل والأنقاض وإعادة الإعمار المادية.",
       change: "الإحلال بدّل عملته لا حجمه: استهلك النظام المدّخرات والعمل في 2024، وطاقة الرعاية ووقت المتطوّعين في 2026.",

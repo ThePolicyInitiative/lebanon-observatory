@@ -219,8 +219,8 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
         </h3>
         <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
           {ar
-            ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها التتبّع. الدوائر الشمالية تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
-            : `Counted across the posts of the three departments inside the area, which is the set listed below and the set the workbook carries. Northern departments also name southern places; those are in the ${slwe.southTownsNamed} above, not in this list.`}
+            ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها التتبّع. ودوائر المؤسسة الأخرى تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
+            : `Counted across the posts of the three departments inside the area, which is the set listed below and the set this compilation carries. The establishment's other departments also name southern places; those are in the ${slwe.southTownsNamed} above, not in this list.`}
         </p>
         <ul className="mt-2 flex flex-wrap gap-1.5">
           {/* Named `town`, not `t`: the locale table is also called t, and a
@@ -254,8 +254,8 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
         </h3>
         <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
           {ar
-            ? `بنت جبيل وصور ووادي جيلو كاملة، بلا انتقاء. أما الـ${slwe.totalPosts - slwe.areaPosts.length} منشوراً الباقية من الدوائر الشمالية فهي خارج منطقة هذا العمل.`
-            : `Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining ${slwe.totalPosts - slwe.areaPosts.length} posts from the northern departments are outside this workbook's area.`}
+            ? `بنت جبيل وصور ووادي جيلو كاملة، بلا انتقاء. أما الـ${slwe.totalPosts - slwe.areaPosts.length} منشوراً الباقية فهي من دوائر المؤسسة الأخرى، خارج منطقة هذا العمل.`
+            : `Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining ${slwe.totalPosts - slwe.areaPosts.length} posts come from the establishment's other departments, outside this work's area.`}
         </p>
         <ul className="mt-2 max-h-[28rem] space-y-2 overflow-y-auto pe-1">
           {slwe.areaPosts.map((p) => (

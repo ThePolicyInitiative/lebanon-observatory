@@ -17,7 +17,7 @@ const T = {
       "Waffle chart of 100 squares representing the US$250 million approved loan; 1.65 squares are filled, representing the US$4.13 million disbursed by 29 June 2026.",
     grid: "100 squares; 1.65 filled, representing 1.65% disbursed",
     legendDisbursed: "disbursed - US$4.13M (1.65%)",
-    legendUndisbursed: "undisbursed - US$245.88M",
+    legendUndisbursed: "undisbursed - US$245.87M",
   },
   ar: {
     title: "250 مليون دولار مُقرّة. 4.13 مليون دولار مدفوعة.",
@@ -28,7 +28,7 @@ const T = {
       "رسم مربعات من 100 خانة تمثّل القرض المُقر البالغ 250 مليون دولار؛ 1.65 خانة ممتلئة تمثّل 4.13 مليون دولار مدفوعة حتى 29 حزيران 2026.",
     grid: "100 مربع؛ 1.65 منها ممتلئ، أي 1.65% مدفوعة",
     legendDisbursed: "المدفوع - 4.13 مليون دولار (1.65%)",
-    legendUndisbursed: "غير المدفوع - 245.88 مليون دولار",
+    legendUndisbursed: "غير المدفوع - 245.87 مليون دولار",
   },
 } as const;
 

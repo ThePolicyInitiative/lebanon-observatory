@@ -133,7 +133,10 @@ describe("boundary projection", () => {
   });
 
   it("projects every city label inside the viewBox", () => {
-    expect(CITY_LABELS.length).toBeGreaterThanOrEqual(7);
+    expect(CITY_LABELS.length).toBeGreaterThanOrEqual(6);
+    // No northern city is labelled: the map shows where the war and the
+    // reconstruction were traced, and neither reached the north.
+    expect(CITY_LABELS.map((c) => c.name)).not.toContain("Tripoli");
     for (const c of CITY_LABELS) {
       const { x, y } = projectPoint(c.lon, c.lat);
       expect(x).toBeGreaterThan(0);

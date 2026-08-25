@@ -77,7 +77,7 @@ const ROWS: Record<Locale, Row[]> = {
       kind: "redirected",
       dimension: "Community role",
       y2024:
-        "The largest traced presence in every downstream stage: finance substitution, rubble clearance, reconstruction, relief - funded by savings, remittances and labour.",
+        "The largest traced presence in most downstream stages: finance substitution, rubble clearance, reconstruction, relief - funded by savings, remittances and labour.",
       y2026:
         "Expanded overall but redirected: relief, coordination and shelter grew while finance, rubble clearance and reconstruction contracted.",
     },
@@ -127,7 +127,7 @@ const ROWS: Record<Locale, Row[]> = {
       kind: "redirected",
       dimension: "دور المجتمع المحلي",
       y2024:
-        "أكبر حضور مرصود في كل مرحلة لاحقة: استبدال التمويل، ورفع الأنقاض، وإعادة البناء، والإغاثة - بتمويل من المدّخرات والتحويلات والعمل اليدوي.",
+        "أكبر حضور مرصود في معظم المراحل اللاحقة: استبدال التمويل، ورفع الأنقاض، وإعادة البناء، والإغاثة - بتمويل من المدّخرات والتحويلات والعمل اليدوي.",
       y2026:
         "اتّسع إجمالاً لكنه أُعيد توجيهه: نمت الإغاثة والتنسيق والإيواء، بينما تراجع التمويل ورفع الأنقاض وإعادة البناء.",
     },

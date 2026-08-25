@@ -96,7 +96,7 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
   },
   ngo_international: {
     profile2024: {
-      en: "International organisations supplied the response's data and much of its delivery capacity: dominant in assessment (13 of 37 traced actors), strong in humanitarian finance (12) and relief (11), and absent from procurement and oversight. Agencies substituted excellently for the state's operational functions and not at all for its political ones.",
+      en: "International organisations supplied the response's data and much of its delivery capacity: dominant in assessment (13 of 37 traced actors), strong in humanitarian finance (12) and relief (11), and absent from procurement and oversight. Agencies stood in for the state's operational functions and not at all for its political ones.",
       ar: "وفّرت المنظمات الدولية معطيات الاستجابة وجانباً كبيراً من قدرتها على الإنجاز: هيمنة في التقييم (13 من 37 جهة مرصودة)، وقوة في التمويل الإنساني (12) والإغاثة (11)، وغياب عن الشراء والرقابة. أحلّت الوكالات نفسها بامتياز محل وظائف الدولة التشغيلية، ولم تحلّ إطلاقاً محل وظائفها السياسية.",
     },
     profile2026: {

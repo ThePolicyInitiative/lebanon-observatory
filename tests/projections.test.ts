@@ -61,10 +61,31 @@ describe("slim projection stays in sync with the full log", () => {
 });
 
 describe("per-entry detail files stay in sync with the full log", () => {
-  it("serves every entry verbatim at /entries/{id}.json", () => {
+  const catalogue = new Map(
+    (
+      JSON.parse(
+        readFileSync(join(__dirname, "..", "src", "data", "catalog-sources.json"), "utf8"),
+      ) as { id: string; mention: string; urls?: string[] }[]
+    ).map((c) => [c.id, { label: c.mention, url: c.urls?.[0] ?? null }]),
+  );
+
+  it("serves every entry at /entries/{id}.json with its citations resolved", () => {
     for (const r of roleRecords) {
       const file = join(__dirname, "..", "public", "entries", `${r.id}.json`);
-      expect(JSON.parse(readFileSync(file, "utf8")), r.id).toEqual(r);
+      const served = JSON.parse(readFileSync(file, "utf8"));
+      const { citations, ...record } = served;
+      expect(record, r.id).toEqual(r);
+      // The drawer prints what is cited, not the id, so every id has to
+      // resolve to something the catalogue actually holds.
+      expect(citations, `${r.id} citations`).toEqual(
+        (r.sourceIds ?? [])
+          .filter((id) => catalogue.has(id))
+          .map((id) => ({ id, label: catalogue.get(id)!.label, url: catalogue.get(id)!.url })),
+      );
+      expect(
+        (citations as unknown[]).length,
+        `${r.id} has ids that resolve to nothing`,
+      ).toBe((r.sourceIds ?? []).length);
     }
   });
 });

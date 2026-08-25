@@ -77,14 +77,18 @@ export default function SiteFooter() {
               >
                 {f.aboutLink}
               </Link>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                lang="en"
-                dir="ltr"
-                className="inline-flex min-h-8 items-center text-white/70 underline-offset-2 hover:text-white hover:underline"
-              >
-                {CONTACT_EMAIL}
-              </a>
+              {/* No address until a real one exists: a live mailto that
+                  reaches nobody is worse than none. */}
+              {CONTACT_EMAIL ? (
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  lang="en"
+                  dir="ltr"
+                  className="inline-flex min-h-8 items-center text-white/70 underline-offset-2 hover:text-white hover:underline"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              ) : null}
             </p>
           </section>
 

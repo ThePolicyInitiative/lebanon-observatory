@@ -63,7 +63,6 @@ const LOCATION_OPTIONS = [
   "South and Nabatieh",
   "Beirut and Mount Lebanon",
   "Bekaa and Baalbek-Hermel",
-  "North",
   "Camps and migrant communities",
 ];
 
