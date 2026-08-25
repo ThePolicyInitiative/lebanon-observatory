@@ -3,9 +3,9 @@ import type { Locale } from "@/lib/vocab";
 type ShiftKind = "formalised" | "built_not_delivering" | "unchanged" | "redirected";
 
 const KIND_COLOR: Record<ShiftKind, { color: string; bg: string }> = {
-  formalised: { color: "#1B8295", bg: "#E8F1F3" },
+  formalised: { color: "#177384", bg: "#E8F1F3" },
   built_not_delivering: { color: "#8a6200", bg: "#FAF3E3" },
-  unchanged: { color: "#BD5A46", bg: "#F7E9E5" },
+  unchanged: { color: "#B04A37", bg: "#F7E9E5" },
   redirected: { color: "#A34F7C", bg: "#F4EAF0" },
 };
 

@@ -21,8 +21,16 @@
    * The teal, rust and 2026-green tokens carry text and chips as well as
    * graphics, so they sit at or above 4.8:1 on white and about 4.7:1 on
    * their pale chip tints - the old values (#1b8295, #bd5a46, #2f8f6b)
-   * measured 3.9-4.5:1 at the small sizes they are used at. Chart fills
-   * use their own literals and keep the original hues.
+   * measured 3.9-4.5:1 at the small sizes they are used at.
+   *
+   * These are now the ONLY values for these three hues. The rule used to be
+   * that chart fills kept the original hues while text took the corrected
+   * ones, and the result was a second, stale copy of the palette in
+   * src/lib/colors.ts whose every value disagreed with the token beside it -
+   * so the layer colour every actor chip is drawn from was the 4.49:1 teal,
+   * not the 5.49:1 one. One value per hue removes that whole class of bug;
+   * the hue shift is imperceptible in a fill. tests/design-tokens.test.ts
+   * holds the two copies together.
    */
   --color-navy: #173b63;
   --color-navy-deep: #102a48;
@@ -40,6 +48,17 @@
 
   --color-y2024: #58779b;
   --color-y2026: #28805f;
+
+  /*
+   * An accent does two jobs: it fills a swatch, and it colours the label
+   * sitting on that swatch's pale tint. A fill only has to be
+   * distinguishable; text has to clear 4.5:1 against its own background.
+   * Teal and rust manage both - 4.79:1 on #e8f1f3 and 4.57:1 on #f7e9e5 -
+   * but the 2026 green reaches only 4.20:1 on its own #e8f1ec tint, so
+   * text on the green tint takes a darker sibling: 4.72:1 there, 5.44:1 on
+   * white, and 4.70:1 on the page ground.
+   */
+  --color-y2026-text: #257759;
 
   /* One elevation ramp, used everywhere. */
   --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);

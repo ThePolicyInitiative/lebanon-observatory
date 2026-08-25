@@ -27,7 +27,7 @@ const TONE_BOX: Record<Tone, string> = {
   state: "bg-[#2E74B5] text-white border-transparent",
   stateLight: "bg-white text-[color:var(--color-text)] border-[#9FB4CB]",
   delivery: "bg-[#F1F4F8] text-[color:var(--color-text)] border-[#C6D2DF]",
-  international: "bg-[#1B8295] text-white border-transparent",
+  international: "bg-[color:var(--color-teal)] text-white border-transparent",
   community: "bg-[#A34F7C] text-white border-transparent",
   gate: "bg-[#FBF0D5] text-[#6b4e00] border-[#D69600]",
   alert: "bg-[#FBF3F0] text-[color:var(--color-rust)] border-[color:var(--color-rust)]",
