@@ -110,6 +110,12 @@ describe("location matching", () => {
   it("puts Hamra in Beirut and puts nothing in Tripoli", () => {
     expect(firstTown("Hamra")).toBe("Ras Beyrouth");
 
+    // Sidon is the third of these: "Saida" and the Baalbek village
+    // "Saaideh" fold to one key, and the mechanical tiers reached the
+    // village, drawing every Sidon entry in the Bekaa.
+    expect(firstTown("Saida")).toBe("Saida El-Qadimeh");
+    expect(districtsOf("Saida")).toContain("Saida");
+
     const tripoli = matchLocations(index, ["Tripoli"]);
     expect(tripoli.towns.size).toBe(0);
 

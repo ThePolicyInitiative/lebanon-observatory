@@ -233,6 +233,25 @@ export const AFFECTED_ZONE_IDS = [
 ];
 
 /**
+ * Two adm3_name values in the COD town layer are not town names: "Conflict"
+ * marks a contested sliver and "Litige" a disputed area, 65 of them spread
+ * across fifteen districts. Painting either as a label invents a place, so
+ * both maps ask here rather than each carrying its own list - which is how
+ * the vector map came to exclude both while the pan-and-zoom map excluded
+ * only one.
+ */
+const UNNAMED_AREA_NAMES = new Set(["Conflict", "Litige"]);
+
+export function isUnnamedArea(name: string | null | undefined): boolean {
+  return UNNAMED_AREA_NAMES.has(String(name ?? "").trim());
+}
+
+/** The same rule as a MapLibre filter expression, for the GL layers. */
+export function unnamedAreaFilter(property: string) {
+  return ["all", ...[...UNNAMED_AREA_NAMES].map((n) => ["!=", property, n])];
+}
+
+/**
  * Regional grouping for the OCHA COD governorate names used by the
  * town-level (ADM3) layer.
  */

@@ -20,6 +20,7 @@ import {
   projectPoint,
   featureCentroid,
   isOnLand,
+  isUnnamedArea,
   unprojectPoint,
   PX_PER_KM,
   VIEW_W,
@@ -426,7 +427,7 @@ export default function SvgLebanonMap({
           const m = new Map<string, GeoFeature[]>();
           for (const f of gj.features) {
             const n = String(f.properties.adm3_name ?? "");
-            if (!n || n === "Conflict") continue;
+            if (!n || isUnnamedArea(n)) continue;
             const g = key(f);
             if (!g) continue;
             if (!m.has(g)) m.set(g, []);
@@ -578,9 +579,7 @@ export default function SvgLebanonMap({
         ? [
             ...new Set(
               towns
-                .filter(
-                  (t) => t.name && t.name !== "Conflict" && t.name !== "Litige",
-                )
+                .filter((t) => t.name && !isUnnamedArea(t.name))
                 .map((t) => `${t.name} (${t.district})`),
             ),
           ].sort()
@@ -707,7 +706,7 @@ export default function SvgLebanonMap({
     }[] = [];
     for (const name of names) {
       const t = byName.get(name);
-      if (!t || name === "Conflict") continue;
+      if (!t || isUnnamedArea(name)) continue;
       const recs = townRecords.get(name) ?? [];
       const eps = eventsFor(eventsByTown.get(name), year);
       if (recs.length === 0 && eps.length === 0) continue;
@@ -868,7 +867,7 @@ export default function SvgLebanonMap({
     return towns.map((t) => {
       const dCount = districtRecords.get(t.district)?.length ?? 0;
       const namedCount = townRecords.get(t.name)?.length ?? 0;
-      const unnamed = t.name === "Conflict" || t.name === "Litige" || !t.zoneId;
+      const unnamed = isUnnamedArea(t.name) || !t.zoneId;
       const isSel = selectedTownUid === t.uid;
       // Areas outside the assessed war zones are carried as context.
       const affected = AFFECTED_ZONE_IDS.includes(t.zoneId);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
+import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { LAYER_META } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
@@ -21,7 +21,9 @@ import {
   computeBorderStripTowns,
   featureCentroidLonLat,
   isOnLand,
+  isUnnamedArea,
   LITANI_SEGMENTS,
+  unnamedAreaFilter,
   type GeoFeature,
 } from "@/lib/geo";
 import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
@@ -345,7 +347,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             type: "symbol",
             source: "towns",
             minzoom: 10.2,
-            filter: ["!=", "adm3_name", "Conflict"],
+            filter: unnamedAreaFilter("adm3_name") as FilterSpecification,
             layout: {
               "text-field": ["get", "adm3_name"],
               "text-font": ["Noto Sans Regular"],
@@ -428,7 +430,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             const townName = townFeat?.properties?.adm3_name as string | undefined;
             const townDistrict = townFeat?.properties?.adm2_name as string | undefined;
             const townLine =
-              townName && townName !== "Conflict"
+              townName && !isUnnamedArea(townName)
                 ? `<strong>${esc(townName)}</strong> · ${esc(t.districtOf(townDistrict ?? ""))}<br/>`
                 : "";
             const dirAttr = locale === "ar" ? ` dir="rtl"` : "";

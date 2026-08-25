@@ -76,6 +76,12 @@ const TOWN_ALIASES: Record<string, string> = {
   // Tripoli was not struck in either war, and a marker on it would say that
   // work happened somewhere nothing was traced.
   hamr: "Ras Beyrouth",
+  // Sidon, for the same reason: "Saida" and the Baalbek village "Saaideh"
+  // both fold to "said", and the exact index reaches Saaideh first - ninety
+  // kilometres north-east, in the Bekaa. map-events.json already anchors the
+  // city's episodes on its three core cadastres; this names the old city, the
+  // one they share a centre with.
+  said: "Saida El-Qadimeh",
 };
 const DISTRICT_ALIASES: Record<string, string> = {
   tyr: "Sour",

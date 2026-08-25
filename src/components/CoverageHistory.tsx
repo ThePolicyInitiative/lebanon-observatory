@@ -133,9 +133,12 @@ export default function CoverageHistory({
     </a>
   );
 
+  // The section keeps #coverage-history because every filter link scrolls to
+  // it; the heading needs an id of its own, or aria-labelledby resolves to
+  // the section itself and the block has no accessible name.
   return (
-    <section aria-labelledby="coverage-history" id="coverage-history" className="mt-10 scroll-mt-[calc(var(--header-h)+1rem)]">
-      <h2 id="coverage-history" className="text-xl font-semibold text-[color:var(--color-navy)]">
+    <section aria-labelledby="coverage-history-heading" id="coverage-history" className="mt-10 scroll-mt-[calc(var(--header-h)+1rem)]">
+      <h2 id="coverage-history-heading" className="text-xl font-semibold text-[color:var(--color-navy)]">
         {t.heading}
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
