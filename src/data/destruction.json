@@ -160,7 +160,7 @@
   ],
   "zones2026Notes": [
     "The Bekaa and Baalbek-Hermel had no equivalent assessment by the 31 July 2026 cut-off. Assessed geography is not damaged geography: the real-time national database traced heavy strikes across the areas the war reached.",
-    "Applying the standard density assumptions to the two zone volumes yields roughly 5.2–7.0 million tonnes for the assessed zones alone - a report calculation, not an official tonnage.",
+    "Applying a density of 1.4–1.9 tonnes per cubic metre to the two zone volumes yields roughly 5.2–7.0 million tonnes for the assessed zones alone - a report calculation, not an official tonnage. The 2024 volume and tonnage above imply a higher density than this, so the two tonnages do not rest on one assumption and must never be summed.",
     "Assessed-zone damage of ≈US$1.75 billion sits entirely outside LEAP's legal scope, with no financed treatment or reconstruction attached at the cut-off."
   ],
   "presidentialEstimate": {
@@ -173,7 +173,7 @@
   },
   "zones2026NotesAr": [
     "لم يحظَ البقاع وبعلبك-الهرمل بتقييم مماثل حتى تاريخ التوقف في 31 تموز 2026. المساحة المقيَّمة ليست المساحة المتضررة: قاعدة البيانات الآنية رصدت ضربات ثقيلة في المناطق التي بلغتها الحرب.",
-    "تطبيق افتراضات الكثافة المعتادة على حجمَي الركام في المنطقتين يعطي نحو 5.2-7.0 مليون طن للمنطقتين المقيَّمتين وحدهما - وهو حساب في التقرير، لا رقم رسمي.",
+    "تطبيق كثافة تتراوح بين 1.4 و1.9 طن للمتر المكعب على حجمَي الركام في المنطقتين يعطي نحو 5.2-7.0 مليون طن للمنطقتين المقيَّمتين وحدهما - وهو حساب في التقرير، لا رقم رسمي. وحجم 2024 وحمولته أعلاه يفترضان كثافة أعلى من هذه، فالتقديران لا يقومان على افتراض واحد ولا يجوز جمعهما أبداً.",
     "أضرار المنطقتين المقيَّمتين البالغة نحو 1.75 مليار دولار تقع كلها خارج النطاق القانوني لمشروع LEAP، بلا معالجة ممولة ولا إعادة إعمار مرتبطة بها حتى تاريخ التوقف."
   ]
 }

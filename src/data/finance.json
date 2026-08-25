@@ -201,6 +201,7 @@
       "label": "Package #1082 - Supervision of road clearing and restoration (Marjeyoun, Sour, Bint Jbeil)",
       "published": "2026-02-27",
       "deadline": "2026-04-29",
+      "extended": true,
       "statusAtCheck": "Under evaluation",
       "sourceIds": [
         "S7"

@@ -488,8 +488,10 @@ const KEY_FIGURES_2024 = {
       ar: "احتياجات التعافي وإعادة الإعمار: نحو 11 مليار دولار",
     },
     {
-      en: "Public-financing share of needs: about US$4 billion",
-      ar: "حصة التمويل العام من الاحتياجات: نحو 4 مليارات دولار",
+      // The RDNA states a range, and the indicator card on this same page
+      // prints it as one. The 4 was this site's own midpoint.
+      en: "Public-financing share of needs: about US$3-5 billion",
+      ar: "حصة التمويل العام من الاحتياجات: نحو 3-5 مليارات دولار",
     },
   ],
 };

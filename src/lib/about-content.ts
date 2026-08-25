@@ -21,7 +21,7 @@ export const CONTENT_CUT_OFF = "2026-07-31";
  * are the same fact, and a footer that ages while the sitemap moves is
  * worse than no date at all.
  */
-export const ANALYSIS_REVISED = "2026-08-24";
+export const ANALYSIS_REVISED = "2026-08-25";
 
 /**
  * The observatory's contact address, or null while there is none.

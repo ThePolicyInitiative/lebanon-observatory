@@ -94,7 +94,9 @@ const ITEMS: {
   {
     label: "Assessment request → programme effectiveness",
     labelAr: "من طلب التقييم إلى نفاذ البرنامج",
-    days: 437,
+    // 17 Dec 2024 to 26 Feb 2026 is 436 days, not 437; the Gantt on the
+    // same page derives the interval from these two dates and got it right.
+    days: 436,
     display: "≈14 months",
     displayAr: "نحو 14 شهراً",
     emergency: false,

@@ -242,14 +242,14 @@
   {
     "id": "t14",
     "date": "2026-05-12",
-    "label": "Packages #1095 and #1096 published",
+    "label": "Packages #1095 and #1096 published on consecutive days",
     "detail": "Rubble-management engineering and the Third-Party Monitoring Agent - the accountability layer queued in the same pipeline it exists to watch.",
     "track": "procurement",
     "status": "procurement",
     "sourceIds": [
       "S7"
     ],
-    "labelAr": "نشر الحزمتين 1095 و1096",
+    "labelAr": "نشر الحزمتين 1095 و1096 في يومين متتاليين",
     "detailAr": "هندسة إدارة الأنقاض وجهة الرقابة من طرف ثالث - طبقة المساءلة اصطفّت في المسار البطيء نفسه الذي وُجدت لمراقبته."
   },
   {

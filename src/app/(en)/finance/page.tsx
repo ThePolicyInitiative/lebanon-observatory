@@ -167,7 +167,12 @@ export default function FinancePage() {
                 </div>
                 <div className="flex gap-1.5">
                   <dt className="font-semibold">Deadline:</dt>
-                  <dd>{fmtDate(p.deadline)} (extended)</dd>
+                  {/* Only #1082 is reported as extended; the flag lives in
+                      finance.json so the other two stop claiming it. */}
+                  <dd>
+                    {fmtDate(p.deadline)}
+                    {"extended" in p && p.extended ? " (extended)" : ""}
+                  </dd>
                 </div>
               </dl>
               <p className="mt-2 inline-block rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[11px] font-semibold text-[#8a6200]">

@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8">
+<style>
+body{font:20px/2.1 "Segoe UI",sans-serif;padding:20px;background:#fff}
+div{border:1px solid #ccc;padding:6px 10px;margin:6px 0;max-width:760px}
+b{font:12px monospace;color:#a00;display:block}
+</style>
+<h3>RTL base direction (dir=rtl)</h3>
+<div dir="rtl"><b>YearControl ar showChange — typed: أظهر الفارق (2026 − 2024)</b>أظهر الفارق (2026 − 2024)</div>
+<div dir="rtl"><b>SiteNav masthead — typed: 2024–2026</b>2024–2026</div>
+<div dir="rtl"><b>signed() +15 in Arabic run — typed: التغيّر: +15</b>التغيّر: +15</div>
+<div dir="rtl"><b>signed() -9 in Arabic run — typed: التغيّر: −9</b>التغيّر: −9</div>
+<div dir="rtl"><b>actor-content — typed: تقييم الأضرار: −7 (13 ← 6) - نقل</b>تقييم الأضرار: −7 (13 ← 6) - نقل</div>
+<div dir="rtl"><b>explorer figure — typed: 105 ← 130</b>105 ← 130</div>
+<div dir="rtl"><b>fmtDate ar — typed: 13 أيار 2026</b>13 أيار 2026</div>
+<div dir="rtl"><b>map hoverChange — typed: النبطية · قضاء النبطية - النشاط من 4 إلى 19 (+15)</b>النبطية · قضاء النبطية - النشاط من 4 إلى 19 (+15)</div>
+<div dir="rtl"><b>FIXED with LTR isolate U+2066/2069 — أظهر الفارق ⁦(2026 − 2024)⁩</b>أظهر الفارق &#x2066;(2026 − 2024)&#x2069;</div>
+<div dir="rtl"><b>FIXED masthead isolate — ⁦2024–2026⁩</b>&#x2066;2024–2026&#x2069;</div>
+<div dir="rtl"><b>FIXED signed isolate — التغيّر: ⁦+15⁩</b>التغيّر: &#x2066;+15&#x2069;</div>
+
+<h3>Arabic string inside dir=ltr container (the map overlay chip at SvgLebanonMap.tsx:1454)</h3>
+<div dir="ltr"><b>typed: النبطية · قضاء النبطية - 12 نشاطاً مرصوداً · شريط الخط الأزرق الحدودي (احتلال)</b>النبطية · قضاء النبطية - 12 نشاطاً مرصوداً · شريط الخط الأزرق الحدودي (احتلال)</div>
+<div dir="rtl"><b>same string, dir=rtl (how it looks everywhere else on the page)</b>النبطية · قضاء النبطية - 12 نشاطاً مرصوداً · شريط الخط الأزرق الحدودي (احتلال)</div>
