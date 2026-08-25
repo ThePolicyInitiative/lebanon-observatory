@@ -12,6 +12,7 @@ import {
 } from "echarts/charts";
 import {
   GridComponent,
+  TitleComponent,
   TooltipComponent,
   LegendComponent,
   VisualMapComponent,
@@ -30,6 +31,7 @@ register([
   TreemapChart,
   CustomChart,
   GridComponent,
+  TitleComponent,
   TooltipComponent,
   LegendComponent,
   VisualMapComponent,
