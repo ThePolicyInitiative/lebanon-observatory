@@ -150,90 +150,109 @@ p {
   text-wrap: pretty;
 }
 
-.prose-measure {
-  max-width: 68ch;
-}
+/*
+ * Everything from here down is a class a call site opts into and sometimes
+ * needs to opt back out of, so it belongs in Tailwind's `components` layer.
+ *
+ * This file's first line is `@import "tailwindcss"`, which declares the
+ * layer order theme, base, components, utilities. A rule written outside
+ * every layer is not merely last - it outranks all of them, whatever the
+ * specificity. So `.card` beat `border-s-4`, and two accent bars have been
+ * rendering as hairlines: the map's pin panel, whose start border is
+ * coloured by actor layer, and the LEAP board's status edge, which is how a
+ * reader tells a met target from a missed one at a glance. Both set the
+ * colour inline, so the colour applied and the width did not - which is why
+ * they looked deliberate rather than broken.
+ *
+ * Inside `components` these still beat bare element selectors and still lose
+ * to any utility a call site adds, which is the whole point of them.
+ */
+@layer components {
+  .prose-measure {
+    max-width: 68ch;
+  }
 
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
 
-/* Figures read as data, not prose: tighter, lined up, never italic. */
-.figure-number {
-  font-variant-numeric: tabular-nums lining-nums;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
+  /* Figures read as data, not prose: tighter, lined up, never italic. */
+  .figure-number {
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
 
-.editorial-quote {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-  text-wrap: pretty;
-}
+  .editorial-quote {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    text-wrap: pretty;
+  }
 
-/* ------------------------------------------------------------ surfaces -- */
+  /* -------------------------------------------------------- surfaces -- */
 
-.card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-}
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
 
-.card-interactive {
-  transition:
-    box-shadow 180ms ease,
-    transform 180ms ease,
-    border-color 180ms ease;
-}
+  .card-interactive {
+    transition:
+      box-shadow 180ms ease,
+      transform 180ms ease,
+      border-color 180ms ease;
+  }
 
-.card-interactive:hover {
-  box-shadow: var(--shadow-lift);
-  border-color: var(--color-border-strong);
-}
+  .card-interactive:hover {
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-border-strong);
+  }
 
-/* A quiet inset panel for secondary material inside a card. */
-.panel-sunken {
-  background: var(--color-surface-sunken);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-}
+  /* A quiet inset panel for secondary material inside a card. */
+  .panel-sunken {
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
 
-/* An empty cell in the actor-by-action matrices. There are roughly two
-   thousand of them across the two tables, so the blank swatch is drawn by
-   the cell itself instead of by a span nested inside every one. */
-.cell-empty {
-  padding: 0.25rem;
-}
+  /* An empty cell in the actor-by-action matrices. There are roughly two
+     thousand of them across the two tables, so the blank swatch is drawn by
+     the cell itself instead of by a span nested inside every one. */
+  .cell-empty {
+    padding: 0.25rem;
+  }
 
-.cell-empty::before {
-  content: "";
-  display: block;
-  width: 2.25rem;
-  height: 1.25rem;
-  margin: 0 auto;
-  border-radius: 3px;
-  background: #f1f3f6;
-}
+  .cell-empty::before {
+    content: "";
+    display: block;
+    width: 2.25rem;
+    height: 1.25rem;
+    margin: 0 auto;
+    border-radius: 3px;
+    background: #f1f3f6;
+  }
 
-/* The amber rule that marks an analytical caution throughout the site. */
-.note-caution {
-  border-left: 2px solid var(--color-amber);
-  padding-left: 0.75rem;
-}
+  /* The amber rule that marks an analytical caution throughout the site. */
+  .note-caution {
+    border-left: 2px solid var(--color-amber);
+    padding-left: 0.75rem;
+  }
 
-/* --------------------------------------------------------------- chips -- */
+  /* ----------------------------------------------------------- chips -- */
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 4px;
-  padding: 0.125rem 0.4rem;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.4;
-  white-space: nowrap;
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 4px;
+    padding: 0.125rem 0.4rem;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
 }
 
 /* -------------------------------------------------------------- detail -- */
