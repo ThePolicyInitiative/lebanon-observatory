@@ -45,3 +45,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Throwaway probes. Three have reached commits already: two bidi
+# harnesses in the root and a public/__bidi.html that shipped at a real URL.
+_*.mjs
+public/__*.html
