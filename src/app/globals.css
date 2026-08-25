@@ -60,6 +60,14 @@
    */
   --color-y2026-text: #257759;
 
+  /*
+   * The 2024 sibling, for the same reason and found the same way: #58779b
+   * printed on its own #eef2f7 chip measures 4.13:1. This is 4.75:1 there
+   * and 5.34:1 on white. The pair now behaves consistently - each year has
+   * a fill and a text value, and neither is asked to be both.
+   */
+  --color-y2024-text: #516d8f;
+
   /* One elevation ramp, used everywhere. */
   --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);
   --shadow-lift: 0 4px 16px rgba(16, 42, 72, 0.1);
@@ -143,6 +151,49 @@ body [dir="rtl"] {
   font-family: var(--font-sans-arabic), var(--font-serif), Georgia, "Times New Roman",
     serif;
   letter-spacing: 0;
+}
+
+/*
+ * The same reasoning, for the places tracking arrives from a utility rather
+ * than from this file. Arabic joins its letters: tracking pulls the joins
+ * apart and the word stops reading as one word, so no Arabic run may carry
+ * any. The rule above covers headings only, and ten components were putting
+ * +0.025em to +0.1em into Arabic body copy through `tracking-wide` and
+ * friends, plus -0.02em through `.figure-number`.
+ *
+ * This has to sit OUTSIDE @layer components, which begins below. A rule
+ * inside that layer loses to `.tracking-wide` no matter how specific it is,
+ * because Tailwind's `utilities` layer outranks `components` by declaration
+ * order. Unlayered beats both - which is the one case where the thing that
+ * made `.card` a bug makes this a backstop.
+ *
+ * The call sites should still use the `ar ? "" : "uppercase tracking-wide"`
+ * guard the codebase already invented. This is what stops the eleventh
+ * component from reopening it.
+ */
+[dir="rtl"] .tracking-tight,
+[dir="rtl"] .tracking-tighter,
+[dir="rtl"] .tracking-wide,
+[dir="rtl"] .tracking-wider,
+[dir="rtl"] .tracking-widest,
+[dir="rtl"] .figure-number,
+[dir="rtl"] .chip {
+  letter-spacing: 0;
+}
+
+/*
+ * The editorial quote is a serif in English and cannot be one in Arabic -
+ * the Latin serif carries no Arabic glyphs, so without this the Arabic
+ * conclusions on the home, compare and finance pages fall through to
+ * whatever serif the platform happens to have. Same construction as the
+ * heading stack above.
+ *
+ * Deliberately font-family only: the three Arabic call sites set their own
+ * leading, and blanketing line-height here would silently overrule them.
+ */
+[dir="rtl"] .editorial-quote {
+  font-family: var(--font-sans-arabic), var(--font-sans), Inter, "Segoe UI", system-ui,
+    sans-serif;
 }
 
 /* Running text keeps a readable measure and a slightly open rhythm. */
@@ -233,10 +284,15 @@ p {
     background: #f1f3f6;
   }
 
-  /* The amber rule that marks an analytical caution throughout the site. */
+  /*
+   * The amber rule that marks an analytical caution throughout the site.
+   * Logical, not physical: this is the site's one standing caution signal
+   * and it was drawing on the far edge of all nine Arabic routes, opposite
+   * the text it belongs to. A no-op in English across all 21 call sites.
+   */
   .note-caution {
-    border-left: 2px solid var(--color-amber);
-    padding-left: 0.75rem;
+    border-inline-start: 2px solid var(--color-amber);
+    padding-inline-start: 0.75rem;
   }
 
   /* ----------------------------------------------------------- chips -- */
@@ -262,8 +318,30 @@ p {
   color: #ffffff;
 }
 
+/*
+ * The focus ring has to be visible on whatever it lands on, and a third of
+ * this site's links sit on navy: the header, the footer, and both home
+ * heroes. Blue on navy measures 2.32:1 - below the 3:1 a non-text indicator
+ * needs, and the worst case is the very first tab stop on every page, since
+ * the skip link paints its own navy chip over the navy header.
+ *
+ * Custom properties inherit, so `.on-navy` on each of those containers
+ * re-points the ring for everything inside it without any descendant
+ * knowing. White on navy measures 11.40:1, and 14.51:1 on the deep navy.
+ *
+ * An outline, not a box-shadow: outlines paint above box-shadow, and
+ * outline-offset would sit the ring on top of any halo anyway.
+ */
+:root {
+  --color-focus: var(--color-blue);
+}
+
+.on-navy {
+  --color-focus: #ffffff;
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-blue);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -313,6 +391,10 @@ section {
  * side of whichever language is being read.
  */
 .skip-link {
+  /* It paints its own navy chip and lives in the layout, outside the
+     header's .on-navy scope, so it declares its own ring. This is the first
+     tab stop on every page - the one that most has to be visible. */
+  --color-focus: #ffffff;
   position: absolute;
   inset-inline-start: 0.5rem;
   top: 0;

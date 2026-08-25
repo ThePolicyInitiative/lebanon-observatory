@@ -1,3 +1,4 @@
+import { YEAR_COLORS } from "@/lib/colors";
 import type { Locale } from "@/lib/vocab";
 
 /**
@@ -90,10 +91,19 @@ export default function ViewRanking({
         <ol className="mt-3 space-y-2">
           {top.map((r) => {
             const positive = r.value >= 0;
-            const color = r.signed
+            // The bar is a fill and the figure beside it is text, and one
+            // value cannot serve both: the old #2F8F6B and #BD5A46 measured
+            // 3.99:1 and 4.45:1 as 12px text on the white card. Fill takes
+            // the year/rust tokens; text takes their darker siblings.
+            const barColor = r.signed
               ? positive
-                ? "#2F8F6B"
-                : "#BD5A46"
+                ? YEAR_COLORS.y2026
+                : YEAR_COLORS.negative
+              : "var(--color-navy)";
+            const textColor = r.signed
+              ? positive
+                ? YEAR_COLORS.y2026Text
+                : YEAR_COLORS.negative
               : "var(--color-navy)";
             return (
               <li key={r.key}>
@@ -103,7 +113,7 @@ export default function ViewRanking({
                   </span>
                   <span
                     className="shrink-0 tabular-nums font-semibold"
-                    style={{ color }}
+                    style={{ color: textColor }}
                   >
                     {r.display ??
                       (r.signed && positive ? `+${r.value}` : r.value.toLocaleString("en-US"))}
@@ -115,7 +125,7 @@ export default function ViewRanking({
                   style={{
                     width: `${(Math.abs(r.value) / max) * 100}%`,
                     minWidth: 3,
-                    background: color,
+                    background: barColor,
                     opacity: 0.85,
                   }}
                 />

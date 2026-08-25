@@ -62,6 +62,7 @@ describe("the palette's two copies", () => {
       ["LAYER_COLORS.community", LAYER_COLORS.community, "color-magenta"],
       ["YEAR_COLORS.y2024", YEAR_COLORS.y2024, "color-y2024"],
       ["YEAR_COLORS.y2026", YEAR_COLORS.y2026, "color-y2026"],
+      ["YEAR_COLORS.y2024Text", YEAR_COLORS.y2024Text, "color-y2024-text"],
       ["YEAR_COLORS.y2026Text", YEAR_COLORS.y2026Text, "color-y2026-text"],
       ["YEAR_COLORS.negative", YEAR_COLORS.negative, "color-rust"],
       ["YEAR_COLORS.warning", YEAR_COLORS.warning, "color-amber"],
@@ -123,6 +124,9 @@ describe("colours that carry text", () => {
     ["rust on its chip tint", UI.rust, "#f7e9e5"],
     ["2026 green text on white", YEAR_COLORS.y2026Text, WHITE],
     ["2026 green text on its chip tint", YEAR_COLORS.y2026Text, "#e8f1ec"],
+    ["2024 blue text on white", YEAR_COLORS.y2024Text, WHITE],
+    ["2024 blue text on its chip tint", YEAR_COLORS.y2024Text, "#eef2f7"],
+    ["rust figure on the white card", YEAR_COLORS.negative, WHITE],
     ["white on the teal fill", WHITE, UI.teal],
     ["white on the navy fill", WHITE, UI.navy],
   ];
@@ -140,7 +144,23 @@ describe("colours that carry text", () => {
    * dark enough to carry its own text, the sibling would be dead weight -
    * this says so rather than leaving it to be discovered.
    */
-  it("still needs the separate green for text on the green tint", () => {
+  it("still needs the separate text siblings for both years", () => {
     expect(contrast(YEAR_COLORS.y2026, "#e8f1ec")).toBeLessThan(4.5);
+    expect(contrast(YEAR_COLORS.y2024, "#eef2f7")).toBeLessThan(4.5);
+  });
+
+  /**
+   * The focus ring is not text, so it answers to the 3:1 non-text threshold
+   * rather than 4.5:1 - but it has to clear that on every ground it can land
+   * on, and a third of this site's links sit on navy. The blue ring managed
+   * 2.32:1 there, which is why `.on-navy` re-points it to white.
+   */
+  it("keeps the focus ring visible on both grounds it lands on", () => {
+    const blue = token("color-blue");
+    expect(contrast(blue, WHITE)).toBeGreaterThanOrEqual(3);
+    expect(contrast(WHITE, token("color-navy"))).toBeGreaterThanOrEqual(3);
+    expect(contrast(WHITE, token("color-navy-deep"))).toBeGreaterThanOrEqual(3);
+    // The reason the override exists; if this ever passes, it can go.
+    expect(contrast(blue, token("color-navy"))).toBeLessThan(3);
   });
 });

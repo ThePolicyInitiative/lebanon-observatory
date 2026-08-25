@@ -30,7 +30,9 @@ export const LAYER_COLORS = {
 export const YEAR_COLORS = {
   y2024: "#58779B",
   y2026: "#28805F",
-  /** Text on the pale 2026-green tint; the fill green is short of 4.5:1 there. */
+  /** Text variants. Each year's fill colour is short of 4.5:1 as text on
+   *  its own pale chip tint and on white, so neither is asked to be both. */
+  y2024Text: "#516D8F",
   y2026Text: "#257759",
   negative: "#B04A37", // negative change / bottleneck
   warning: "#D69600", // financing or implementation warning

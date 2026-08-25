@@ -314,7 +314,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                 </span>
                 <span className="hidden shrink-0 gap-1.5 text-[11px] tabular-nums sm:flex">
                   {g.y24 > 0 && year !== 2026 ? (
-                    <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold text-[#58779B]">
+                    <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold text-[color:var(--color-y2024-text)]">
                       2024 × {year === "both" ? g.y24 : g.records.length}
                     </span>
                   ) : null}
@@ -343,7 +343,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                         <span
                           className={`rounded-sm px-1.5 py-0.5 ${
                             r.year === 2024
-                              ? "bg-[#EEF2F7] text-[#58779B]"
+                              ? "bg-[#EEF2F7] text-[color:var(--color-y2024-text)]"
                               : "bg-[#E8F1EC] text-[color:var(--color-y2026-text)]"
                           }`}
                         >
