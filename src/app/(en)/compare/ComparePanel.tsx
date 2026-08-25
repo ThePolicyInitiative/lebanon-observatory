@@ -82,7 +82,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "Four non-additive damage tracks, national scope, months of latency, internationally produced; a usable national baseline only in March 2025.",
       y2026:
-        "Bounded products in weeks, jointly produced with a Lebanese scientific institution (CNRS-L), plus a real-time national database - but covering two zones, with the Bekaa and the North unassessed at the cut-off.",
+        "Bounded products in weeks, jointly produced with a Lebanese scientific institution (CNRS-L), plus a real-time national database - but covering two zones, with the Bekaa and Baalbek-Hermel unassessed at the cut-off.",
       change: "The cleanest capability gain of any function; coverage was traded for speed.",
     },
     ar: {
@@ -90,7 +90,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "أربعة مسارات أضرار غير قابلة للجمع، بنطاق وطني، وبتأخّر شهور، ومن إنتاج دولي؛ ولم يتوفّر خط أساس وطني صالح للاستعمال قبل آذار 2025.",
       y2026:
-        "منتجات محدودة النطاق أُنجزت في أسابيع، بإنتاج مشترك مع مؤسسة علمية لبنانية (المجلس الوطني للبحوث العلمية)، مع قاعدة معطيات وطنية آنية - لكنها تغطّي منطقتين، وبقي البقاع والشمال بلا تقييم حتى تاريخ التوقف.",
+        "منتجات محدودة النطاق أُنجزت في أسابيع، بإنتاج مشترك مع مؤسسة علمية لبنانية (المجلس الوطني للبحوث العلمية)، مع قاعدة معطيات وطنية آنية - لكنها تغطّي منطقتين، وبقي البقاع وبعلبك-الهرمل بلا تقييم حتى تاريخ التوقف.",
       change: "أنظف مكسب في القدرة بين كل الوظائف؛ وقد بودلت التغطية بالسرعة.",
     },
   },

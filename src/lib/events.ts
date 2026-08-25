@@ -1,5 +1,6 @@
 import mapEvents from "@/data/map-events.json";
 import type { Year } from "./types";
+import type { Locale } from "./vocab";
 
 /** Traced episodes per locality - "what happened where", from the
  * the traced activity. */
@@ -9,13 +10,32 @@ export type MapEvent = {
   date?: string;
   kind: "official" | "municipal" | "ngo_international" | "community" | "context";
   text: string;
+  /** The same sentence in Arabic, claiming exactly what `text` claims. */
+  textAr?: string;
 };
 
 export type LocalityEvents = {
   name: string;
+  /** The locality's own name in Arabic. */
+  nameAr?: string;
   townNames?: string[];
   events: MapEvent[];
 };
+
+/**
+ * The episode sentence in the reader's language. These are the
+ * observatory's own editorial sentences, not quoted reporting, so the
+ * Arabic side shows the Arabic twin; the English text is the fallback if
+ * a twin is ever missing.
+ */
+export function eventText(e: MapEvent, locale: Locale): string {
+  return (locale === "ar" ? e.textAr : undefined) ?? e.text;
+}
+
+/** The locality heading in the reader's language, same rule. */
+export function localityName(l: LocalityEvents, locale: Locale): string {
+  return (locale === "ar" ? l.nameAr : undefined) ?? l.name;
+}
 
 export const LOCALITY_EVENTS = mapEvents.localities as LocalityEvents[];
 

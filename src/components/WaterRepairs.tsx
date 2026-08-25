@@ -41,9 +41,62 @@ const T = {
   },
 } as const;
 
+/**
+ * The classification labels are this site's own, not the utility's wording,
+ * so they are written here in both languages rather than left in English on
+ * the Arabic page. The town and district spellings are the ones the
+ * utility's own Arabic posts use.
+ */
+const DEPT_AR: Record<string, string> = {
+  Sidon: "صيدا",
+  "Establishment-wide": "على مستوى المؤسسة",
+  Nabatieh: "النبطية",
+  "Bint Jbeil": "بنت جبيل",
+  Zahrani: "الزهراني",
+  Tyre: "صور",
+  "Production Department": "دائرة الإنتاج",
+  Jezzine: "جزين",
+  "Wadi Jilo": "وادي جيلو",
+};
+
+const WORK_AR: Record<string, string> = {
+  "Line and network maintenance": "صيانة الخطوط والشبكات",
+  "Leak repair": "معالجة التسربات",
+  "Pumping stations": "محطات الضخّ",
+  "Wells and springs": "الآبار والينابيع",
+  "Power and generators": "الكهرباء والمولّدات",
+  "Reservoirs and tanks": "الخزانات والصهاريج",
+};
+
+const TOWN_AR: Record<string, string> = {
+  Qabrikha: "قبريخا",
+  "Safad Al-Battikh": "صفد البطيخ",
+  Tibnine: "تبنين",
+  Batoulay: "باتوليه",
+  Zebqine: "زبقين",
+  "Aain Baal": "عين بعال",
+  Baraachit: "برعشيت",
+  Barich: "باريش",
+  Bazouriyeh: "البازورية",
+  "Deir Aames": "دير عامص",
+  Jmaijmeh: "الجميجمة",
+  Srifa: "صريفا",
+  Yater: "ياطر",
+};
+
+const DISTRICT_AR: Record<string, string> = {
+  Marjaayoun: "مرجعيون",
+  "Bent Jbeil": "بنت جبيل",
+  Sour: "صور",
+};
+
 export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}) {
   const t = T[locale];
   const ar = locale === "ar";
+  /** Letter-spacing breaks connected Arabic script. */
+  const caps = ar ? "" : "uppercase tracking-wide";
+  const say = (table: Record<string, string>, key: string) =>
+    ar ? (table[key] ?? key) : key;
   const maxDept = Math.max(...slwe.departments.map((d) => d.posts));
   const maxWork = Math.max(...slwe.work.map((w) => w.posts));
   const restoredShare = Math.round((slwe.restoredCount / slwe.totalPosts) * 100);
@@ -57,7 +110,9 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
         <h2 id="water-repairs" className="text-xl font-semibold text-[color:var(--color-navy)]">
           {t.title}
         </h2>
-        <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
+        <span
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${caps}`}
+        >
           {t.badge}
         </span>
       </div>
@@ -106,16 +161,16 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
       <div className="mt-5 grid gap-6 lg:grid-cols-2">
         {/* Where the work is reported */}
         <div>
-          <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+          <h3 className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${caps}`}>
             {t.byDept}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.departments.map((d) => (
               <li key={d.name} className="flex items-center gap-2 text-[12px]">
                 <span className="w-36 shrink-0 truncate">
-                  {d.name}
+                  {say(DEPT_AR, d.name)}
                   {d.inArea ? (
-                    <span className="ml-1 text-[10px] font-semibold text-[#1F6B4E]">{t.southTag}</span>
+                    <span className="ms-1 text-[10px] font-semibold text-[#1F6B4E]">{t.southTag}</span>
                   ) : null}
                 </span>
                 <span
@@ -135,13 +190,13 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
         {/* What kind of work */}
         <div>
-          <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+          <h3 className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${caps}`}>
             {t.workKinds}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.work.map((w) => (
               <li key={w.label} className="flex items-center gap-2 text-[12px]">
-                <span className="w-40 shrink-0 truncate">{w.label}</span>
+                <span className="w-40 shrink-0 truncate">{say(WORK_AR, w.label)}</span>
                 <span
                   aria-hidden
                   className="h-2 rounded-sm bg-[#1B8295]"
@@ -159,24 +214,31 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Localities inside the area */}
       <div className="mt-5">
-        <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+        <h3 className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${caps}`}>
           {t.localities}
         </h3>
         <p className="mt-1 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
           {ar
-            ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها الملف. الدوائر الشمالية تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
+            ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها التتبّع. الدوائر الشمالية تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
             : `Counted across the posts of the three departments inside the area, which is the set listed below and the set the workbook carries. Northern departments also name southern places; those are in the ${slwe.southTownsNamed} above, not in this list.`}
         </p>
         <ul className="mt-2 flex flex-wrap gap-1.5">
-          {slwe.topSouthTowns.map((t) => (
+          {/* Named `town`, not `t`: the locale table is also called t, and a
+              shadowed lookup here printed the district in English on both
+              pages. */}
+          {slwe.topSouthTowns.map((town) => (
             <li
-              key={t.name}
+              key={town.name}
               className="chip"
-              title={`${t.district} district`}
+              title={
+                ar
+                  ? `قضاء ${say(DISTRICT_AR, town.district)}`
+                  : `${town.district} district`
+              }
             >
-              {t.name}
-              <span className="ml-1 tabular-nums text-[color:var(--color-text-secondary)]">
-                {t.posts}
+              {say(TOWN_AR, town.name)}
+              <span className="ms-1 tabular-nums text-[color:var(--color-text-secondary)]">
+                {town.posts}
               </span>
             </li>
           ))}
@@ -185,7 +247,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Every post from the departments inside the area */}
       <div className="mt-5">
-        <h3 className="text-[13px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+        <h3 className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${caps}`}>
           {ar
             ? `بكلماتها هي: كل المنشورات الـ${slwe.areaPosts.length} من الدوائر داخل المنطقة`
             : `In its own words: all ${slwe.areaPosts.length} posts from the departments inside the area`}
@@ -195,14 +257,16 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
             ? `بنت جبيل وصور ووادي جيلو كاملة، بلا انتقاء. أما الـ${slwe.totalPosts - slwe.areaPosts.length} منشوراً الباقية من الدوائر الشمالية فهي خارج منطقة هذا العمل.`
             : `Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining ${slwe.totalPosts - slwe.areaPosts.length} posts from the northern departments are outside this workbook's area.`}
         </p>
-        <ul className="mt-2 max-h-[28rem] space-y-2 overflow-y-auto pr-1">
+        <ul className="mt-2 max-h-[28rem] space-y-2 overflow-y-auto pe-1">
           {slwe.areaPosts.map((p) => (
             <li key={p.no} className="panel-sunken p-3">
-              <p className="flex flex-wrap items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
-                <span>{p.department}</span>
+              <p
+                className={`flex flex-wrap items-center gap-1.5 text-[10px] font-bold text-[color:var(--color-text-secondary)] ${caps}`}
+              >
+                <span>{say(DEPT_AR, p.department)}</span>
                 {p.towns ? (
                   <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 normal-case text-[#1F6B4E]">
-                    {p.towns}
+                    {say(TOWN_AR, p.towns)}
                   </span>
                 ) : null}
                 {p.restored ? (
@@ -232,7 +296,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
           </a>
           <span className="ms-2 text-[color:var(--color-text-secondary)]">
             {ar
-              ? "لم يحمل الملف المصدَّر روابط لكل منشور، فهذه الصفحة لا المنشور المفرد."
+              ? "لم يحمل ما جُمع روابط لكل منشور، فهذه الصفحة لا المنشور المفرد."
               : "The export carried no per-post links, so this is the page, not the single post."}
           </span>
         </p>

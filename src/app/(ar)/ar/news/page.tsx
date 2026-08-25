@@ -17,13 +17,9 @@ export const metadata: Metadata = {
  * so both languages read the same articles at the same moment.
  */
 export default function Page() {
+  // No opening passage: the English page carries none either.
   return (
-    <ArabicPageShell
-      title={AR.pages.news.title}
-      lede={AR.pages.news.lede}
-      point={AR.pages.news.point}
-      englishHref="/news"
-    >
+    <ArabicPageShell title={AR.pages.news.title} englishHref="/news">
       <section aria-labelledby="ar-news-explorer" className="mt-8">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2
@@ -42,10 +38,7 @@ export default function Page() {
           </Suspense>
         </div>
         <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          كل خبر يبقى بلغة ناشره ويحيل إليه، وأسماء المنابر تظهر كما تكتبها
-          هي. المقالات الإنجليزية والفرنسية تُعرض باتجاه كتابتها داخل الصفحة
-          العربية. والترشيح والبحث والتبويبات وتحليلات التغطية تعمل هنا
-          كاملة بالعربية، وتقرأ ما تقرؤه الصفحة الإنجليزية في اللحظة نفسها.
+          كل خبر يبقى بلغة ناشره ويحيل إليه.
         </p>
       </section>
     </ArabicPageShell>

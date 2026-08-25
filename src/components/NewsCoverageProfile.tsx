@@ -32,7 +32,7 @@ const AR_LABEL: Record<string, string> = {
   ngo: "منظمة غير حكومية",
   // languages
   ar: "العربية",
-  en: "الإنكليزية",
+  en: "الإنجليزية",
   fr: "الفرنسية",
   other: "لغات أخرى",
   // sectors, as tagging.ts names them

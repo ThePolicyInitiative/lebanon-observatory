@@ -88,8 +88,9 @@ export const MUNICIPAL_POWER_GAP = [
   { fn: "Finance, reconstruction and oversight power", y2024: 0, y2026: 0 },
 ];
 
-export const CAUTION_COUNTS =
-  "Counts measure traced actor-stage presence. They do not measure expenditure, effectiveness, beneficiaries, geographic coverage or completed output. The 2026 data also identifies some community and volunteer actors more granularly than the 2024 data.";
-
-export const CAUTION_MAP =
-  "Geography shows where activity was traced, not where damage or need was greatest. Regional groupings differ in size, population and reporting intensity; absence of a marker means absence of data, never absence of damage.";
+/*
+ * The two standing cautions used to live here as English-only constants.
+ * They now live once, in both languages, in `vocab.ts` as
+ * cautionCounts(locale) and cautionMap(locale) - a second copy here is
+ * how the site's most-repeated caveat ends up saying two things.
+ */

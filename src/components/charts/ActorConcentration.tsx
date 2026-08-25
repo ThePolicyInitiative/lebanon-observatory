@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { actors } from "@/lib/data-client";
 import { actorBase, actorLabel } from "@/lib/actor-names";
+// From the data-free module, not through ActorRegister: this component
+// renders inside a client tree, and the register module carries the whole
+// entry log with it.
+import { actorHref } from "@/app/(en)/actors/actor-anchor";
 import { cautionCounts, layers, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
@@ -45,9 +49,15 @@ function YearColumn({
 }) {
   const t = T[locale];
   const list = actors
-    .filter((a) => a.layer === layer && a.year === year)
+    // A list of who carries a layer is a list of who carries entries.
+    // One catalogued body (CDR in 2026) has none of its own because its
+    // 2026 activity is traced under the LEAP project-unit entries, and a
+    // zero-length bar beside its name reads as a claim that it did
+    // nothing rather than as an artefact of how the entries are named.
+    .filter((a) => a.layer === layer && a.year === year && a.recordCount > 0)
     .map((a) => ({
       id: a.id,
+      base: actorBase(a.name),
       name: actorLabel(actorBase(a.name), locale),
       count: a.recordCount,
     }))
@@ -72,9 +82,16 @@ function YearColumn({
   const Row = ({ a }: { a: (typeof list)[number] }) => (
     <li key={a.id}>
       <p className="flex items-baseline justify-between gap-2 text-[12.5px]">
-        <span className="min-w-0 truncate text-[color:var(--color-text)]" title={a.name}>
+        {/* A plain anchor, not next/link: this list sits on the actors page
+            itself, and a router navigation that changes only the fragment
+            never fires hashchange, so the register would not open. */}
+        <a
+          href={actorHref(a.base, locale)}
+          className="min-w-0 truncate text-[color:var(--color-text)] underline-offset-2 hover:underline"
+          title={a.name}
+        >
           {a.name}
-        </span>
+        </a>
         <span className="shrink-0 tabular-nums text-[color:var(--color-text-secondary)]">
           {a.count}
         </span>

@@ -2,6 +2,8 @@
 
 import { layerTotal } from "@/lib/data-client";
 import { actors } from "@/lib/data-client";
+import { actorBase, actorLabel } from "@/lib/actor-names";
+import { actorHref } from "./actor-anchor";
 import { useUrlState } from "@/lib/useUrlState";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import { layers, type Locale } from "@/lib/vocab";
@@ -81,10 +83,21 @@ function MandateEntry({ actor, locale }: { actor: ActorEntry; locale: Locale }) 
       ? (actor.mandateVsCapacityAr ?? actor.mandateVsCapacity!)
       : actor.mandateVsCapacity!;
   const s = split(text);
+  // The dictionary carries an Arabic name for every traced actor, so the
+  // card heading reads in the same language as the note under it.
+  const base = actorBase(actor.name);
   return (
     <li className="rounded-md border border-[color:var(--color-border)] p-3.5">
       <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
-        {actor.name.split(":")[0]}
+        {/* A plain anchor, not a Link: the register listens for hashchange,
+            and a router navigation whose only difference is the fragment
+            never fires one. */}
+        <a
+          href={actorHref(base, locale)}
+          className="text-inherit underline-offset-2 hover:underline"
+        >
+          {actorLabel(base, locale)}
+        </a>
         <span
           className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
           style={{ background: actor.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
@@ -156,6 +169,9 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
   const layerList = layers(locale);
   const meta = layerList.find((l) => l.id === layer)!;
   const govShift = GOVERNANCE_SHIFT;
+  /** Letter-spacing breaks connected Arabic script, so the Arabic page
+      keeps these headings unspaced and in their own case. */
+  const caps = locale === "ar" ? "" : "uppercase tracking-wide";
   const roving = useRovingRadio({
     count: layerList.length,
     activeIndex: layerList.findIndex((l) => l.id === layer),
@@ -215,13 +231,13 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
 
         <div className="grid gap-4 md:grid-cols-2">
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2024)" }}>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-y2024)]">
+            <h3 className={`text-sm font-bold text-[color:var(--color-y2024)] ${caps}`}>
               {t.profile2024}
             </h3>
             <p className="mt-2 text-sm leading-relaxed">{content.profile2024[locale]}</p>
           </section>
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2026)" }}>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-y2026)]">
+            <h3 className={`text-sm font-bold text-[color:var(--color-y2026)] ${caps}`}>
               {t.profile2026}
             </h3>
             <p className="mt-2 text-sm leading-relaxed">{content.profile2026[locale]}</p>
@@ -235,7 +251,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
           <p className="mt-2 text-sm leading-relaxed">{content.directChange[locale]}</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-teal)]">
+              <h4 className={`text-xs font-bold text-[color:var(--color-teal)] ${caps}`}>
                 {t.mainGains}
               </h4>
               <ul className="mt-2 space-y-1.5 text-sm">
@@ -248,7 +264,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-rust)]">
+              <h4 className={`text-xs font-bold text-[color:var(--color-rust)] ${caps}`}>
                 {t.mainLosses}
               </h4>
               <ul className="mt-2 space-y-1.5 text-sm">

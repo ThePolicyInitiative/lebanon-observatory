@@ -41,7 +41,6 @@
     "Ministry of Education and Higher Education / TVET schools": "وزارة التربية والتعليم العالي / مدارس التعليم المهني والتقني",
     "Ministry of Public Works and Transport field teams": "الفرق الميدانية لوزارة الأشغال العامة والنقل",
     "Ministry of Finance": "وزارة المالية",
-    "Water establishments (SLWE, BWE, BMLWE, NLWE)": "مؤسسات المياه (الجنوب، البقاع، بيروت وجبل لبنان، لبنان الشمالي)",
     "Ministry of Agriculture": "وزارة الزراعة",
     "Lebanese Armed Forces (LAF)": "الجيش اللبناني",
     "UNIFIL": "قوة الأمم المتحدة المؤقتة في لبنان (اليونيفيل)",
@@ -196,7 +195,8 @@
     "Truth Be Told": "Truth Be Told",
     "Food and More by Farah": "Food and More by Farah",
     "Live Love Bourj El Barajneh": "Live Love برج البراجنة",
-    "Local businesses and MSMEs": "الأعمال المحلية والمؤسسات الصغيرة والمتوسطة"
+    "Local businesses and MSMEs": "الأعمال المحلية والمؤسسات الصغيرة والمتوسطة",
+    "Water establishments (SLWE, BWE, BMLWE)": "مؤسسات المياه (الجنوب، البقاع، بيروت وجبل لبنان)"
   },
   "people": {
     "Abbas Hajj Hassan (Minister)": "عباس الحاج حسن (وزير)",

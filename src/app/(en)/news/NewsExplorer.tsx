@@ -96,8 +96,6 @@ const STAGE_OPTIONS = [
 /** Every reader-facing string on this module, in both languages. */
 const T = {
   en: {
-    disclosure:
-      "This feed aggregates coverage from selected global, Lebanese, humanitarian and official publishers. Every item names Lebanon or a Lebanese place: coverage of other countries' wars is filtered out, including where a Lebanese outlet published it. It is broad but not exhaustive. Headlines link to the original publishers; nothing here alters the confirmed analysis elsewhere on this site.",
     tabsAria: "News categories",
     search: "Search",
     searchPlaceholder: "e.g. compensation, rubble, LEAP…",
@@ -114,18 +112,6 @@ const T = {
     refresh: "Refresh",
     rateLimit: "Rate limit reached - please wait a few minutes and refresh.",
     httpError: (status: number) => `The news service returned an error (HTTP ${status}).`,
-    reporting: (up: number, total: number) => `${up} of ${total} providers reporting`,
-    updated: (when: string) => `Updated ${when}`,
-    showingLatest: (shown: number, total: number) =>
-      `showing the latest ${shown} of ${total} matched articles`,
-    matchedTotal: (total: number) => `${total} matched articles`,
-    someDown: (names: string, several: boolean) =>
-      `${names} unavailable - showing the last good results from ${several ? "those" : "it"}`,
-    everyProvider: "Every provider ▸",
-    hideProviders: "Hide providers ▾",
-    cachedAgo: (min: number) => ` (cached ${min} min ago)`,
-    live: " (live)",
-    providerDown: " (unavailable - showing last good data)",
     officialHeading: "Monitored official feeds & key trackers",
     officialBody:
       "Official updates are aggregated where public feeds exist; these institutional pages, project entries and data portals are monitored directly and linked here rather than scraped.",
@@ -144,17 +130,15 @@ const T = {
     whyLayers: (list: string) => `Involves actor layers: ${list}.`,
     whyScore: (score: number) =>
       `Automated relevance score: ${score}/100 (keyword-based, not a quality judgment).`,
+    srDirect: (name: string) => `(opens the article on ${name})`,
     viaGoogle: "via Google News",
     viaGoogleTitle: "This link opens through Google News, which then forwards to the publisher",
     srVia: (name: string) => `(opens via Google News, which forwards to ${name})`,
-    srDirect: (name: string) => `(opens the article on ${name})`,
     alsoReported: (n: number) => `Also reported by ${n} other outlet${n > 1 ? "s" : ""}.`,
     hide: "Hide",
     whyRelevant: "Why is this relevant?",
   },
   ar: {
-    disclosure:
-      "يجمّع هذا الشريط تغطية من ناشرين عالميين ولبنانيين وإنسانيين ورسميين مختارين. كل خبر هنا يسمّي لبنان أو مكاناً لبنانياً: تغطية حروب البلدان الأخرى مستبعَدة، ولو نشرتها وسيلة لبنانية. التغطية واسعة لا شاملة. العناوين تحيل إلى الناشرين الأصليين، ولا شيء هنا يغيّر التحليل المؤكَّد في بقية صفحات الموقع.",
     tabsAria: "فئات الأخبار",
     search: "بحث",
     searchPlaceholder: "مثلاً: تعويضات، أنقاض، LEAP…",
@@ -171,18 +155,6 @@ const T = {
     refresh: "تحديث",
     rateLimit: "بلغنا حدّ الطلبات - يُرجى الانتظار دقائق قليلة ثم التحديث.",
     httpError: (status: number) => `أعادت خدمة الأخبار خطأً (HTTP ${status}).`,
-    reporting: (up: number, total: number) => `${up} من ${total} مزوّداً يعمل`,
-    updated: (when: string) => `آخر تحديث ${when}`,
-    showingLatest: (shown: number, total: number) =>
-      `عرض أحدث ${shown} من أصل ${total} مقالاً مطابقاً`,
-    matchedTotal: (total: number) => `${total} مقالاً مطابقاً`,
-    someDown: (names: string, several: boolean) =>
-      `متعذّر حالياً: ${names} - تُعرض آخر النتائج الجيدة ${several ? "منها" : "منه"}`,
-    everyProvider: "كل المزوّدين ◂",
-    hideProviders: "إخفاء المزوّدين ▾",
-    cachedAgo: (min: number) => ` (مخزَّن قبل ${min} دقيقة)`,
-    live: " (مباشر)",
-    providerDown: " (متعذّر - تُعرض آخر نتائج جيدة)",
     officialHeading: "التغذيات الرسمية المرصودة وأبرز أدوات التتبّع",
     officialBody:
       "تُجمَّع المستجدات الرسمية حيث توجد تغذيات عامة؛ أما هذه الصفحات المؤسسية ومدخلات المشاريع وبوابات المعطيات فتُتابَع مباشرة وتُربَط هنا كما هي بدل كشطها.",
@@ -201,10 +173,10 @@ const T = {
     whyLayers: (list: string) => `يُشرك طبقات من الجهات: ${list}.`,
     whyScore: (score: number) =>
       `درجة الصلة الآلية: ${score}/100 (مبنية على الكلمات المفتاحية، لا حكماً على الجودة).`,
+    srDirect: (name: string) => `(يفتح المقال لدى ${name})`,
     viaGoogle: "عبر Google News",
     viaGoogleTitle: "يفتح هذا الرابط عبر Google News الذي يحوّل بدوره إلى الناشر",
     srVia: (name: string) => `(يفتح عبر Google News الذي يحوّل إلى ${name})`,
-    srDirect: (name: string) => `(يفتح المقال لدى ${name})`,
     alsoReported: (n: number) =>
       n === 1
         ? "أوردته أيضاً وسيلة أخرى واحدة."
@@ -299,11 +271,6 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
 
   return (
     <div>
-      {/* Disclosure */}
-      <p className="card p-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
-        {t.disclosure}
-      </p>
-
       {/* Tabs */}
       <div role="tablist" aria-label={t.tabsAria} className="mt-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)]">
         {TABS.map((tb, i) => {
@@ -414,65 +381,6 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
         >
           {t.refresh}
         </button>
-      </div>
-
-      {/* Status line. With a dozen-plus feeds the per-provider list is a wall
-          of text, so the headline is the count and the roll-call opens from
-          it. A provider that is down is named up front, because it means the
-          coverage below is partial. */}
-      <div className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
-        {data ? (
-          (() => {
-            const down = data.providers.filter((p) => !p.ok);
-            const up = data.providers.length - down.length;
-            return (
-              <details className="group/src">
-                <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-3 gap-y-1 [&::-webkit-details-marker]:hidden">
-                  <span className="inline-flex items-center gap-1.5">
-                    <span
-                      aria-hidden
-                      className={`h-2 w-2 rounded-full ${down.length === 0 ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
-                    />
-                    <span className="font-semibold">
-                      {t.reporting(up, data.providers.length)}
-                    </span>
-                  </span>
-                  <span>{t.updated(fmtDateTime(data.lastUpdated, locale))}</span>
-                  <span>
-                    {data.total > data.articles.length
-                      ? t.showingLatest(data.articles.length, data.total)
-                      : t.matchedTotal(data.total)}
-                  </span>
-                  {down.length > 0 ? (
-                    <span className="text-[color:var(--color-rust)]">
-                      {t.someDown(down.map((p) => p.name).join(locale === "ar" ? "، " : ", "), down.length > 1)}
-                    </span>
-                  ) : null}
-                  <span className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
-                    <span className="group-open/src:hidden">{t.everyProvider}</span>
-                    <span className="hidden group-open/src:inline">{t.hideProviders}</span>
-                  </span>
-                </summary>
-                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-                  {data.providers.map((p) => (
-                    <li key={p.name} className="inline-flex items-center gap-1">
-                      <span
-                        aria-hidden
-                        className={`h-2 w-2 rounded-full ${p.ok ? "bg-[color:var(--color-teal)]" : "bg-[color:var(--color-rust)]"}`}
-                      />
-                      {p.name}
-                      {p.ok
-                        ? p.fromCache && p.cacheAgeSeconds !== null
-                          ? t.cachedAgo(Math.round(p.cacheAgeSeconds / 60))
-                          : t.live
-                        : t.providerDown}
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            );
-          })()
-        ) : null}
       </div>
 
       {/* Official directory under Official tab */}

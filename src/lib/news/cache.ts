@@ -121,6 +121,45 @@ export async function cachedProvider(
 
 /* ----------------------------- Rate limiting ------------------------------ */
 
+/**
+ * How many hops between the reader and this server append to
+ * `x-forwarded-for`. Each hop appends the address it received the request
+ * from, so the reader's own address sits that many entries in from the right
+ * and everything further left is whatever the reader chose to send.
+ *
+ * One is the default and covers the usual deployment: a platform edge
+ * (Vercel, Netlify) or a single nginx doing `proxy_add_x_forwarded_for`.
+ * Two is right when a CDN sits in front of a proxy that also appends -
+ * leaving it at one there would key every reader behind an edge into the
+ * same bucket and hand them each other's 429s. Served directly by
+ * `next start` there is no appending hop at all: Next fills the header from
+ * the socket address only when the reader sends none, so a reader who sends
+ * their own keeps it and the limit is best-effort. One is still the least
+ * wrong setting there, which is why this floors at one.
+ */
+const TRUSTED_HOPS = Math.max(
+  1,
+  Math.trunc(Number(process.env.RATE_LIMIT_TRUSTED_HOPS)) || 1,
+);
+
+/**
+ * The bucket key for one reader, read from the `x-forwarded-for` value.
+ * Counting in from the right is what keeps the key out of the reader's
+ * control: entries they prepend themselves sit to the left of the ones the
+ * trusted hops appended, so they cannot rotate the key to mint fresh
+ * buckets. A header shorter than the configured hop count means the topology
+ * is not what was configured; the leftmost entry is the best available answer
+ * in that case.
+ */
+export function clientKey(forwarded: string | null): string {
+  const hops = (forwarded ?? "")
+    .split(",")
+    .map((h) => h.trim())
+    .filter(Boolean);
+  if (hops.length === 0) return "local";
+  return hops[Math.max(0, hops.length - TRUSTED_HOPS)];
+}
+
 const WINDOW_MS = 5 * 60 * 1000;
 const MAX_REQUESTS = 60;
 const hits = new Map<string, number[]>();

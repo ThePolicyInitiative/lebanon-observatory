@@ -118,11 +118,12 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
             <span className="group-open/more:hidden">{t.seeMore}</span>
             <span className="hidden group-open/more:inline">{t.seeLess}</span>
             <span aria-hidden className="text-[9px]">
-              <span className="group-open/more:hidden">▸</span>
+              {/* The closed marker points the way the reader is going. */}
+              <span className="group-open/more:hidden">{ar ? "◂" : "▸"}</span>
               <span className="hidden group-open/more:inline">▾</span>
             </span>
           </summary>
-          <p className="mt-1 border-l-2 border-[color:var(--color-border)] pl-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 border-s-2 border-[color:var(--color-border)] ps-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
             {say(u.detail, loc.detailAr)}
           </p>
         </details>
@@ -180,7 +181,11 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
         >
           {t.title}
         </h2>
-        <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
+        <span
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${
+            ar ? "" : "uppercase tracking-wide"
+          }`}
+        >
           {t.badge}
         </span>
       </div>
@@ -231,7 +236,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
                 ({g.items.length})
               </span>
               <span aria-hidden className="text-[color:var(--color-text-secondary)]">
-                <span className="group-open:hidden">▸</span>
+                <span className="group-open:hidden">{ar ? "◂" : "▸"}</span>
                 <span className="hidden group-open:inline">▾</span>
               </span>
             </summary>

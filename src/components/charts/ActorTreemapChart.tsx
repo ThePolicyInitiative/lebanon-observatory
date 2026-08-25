@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
+import { actorHref } from "@/app/(en)/actors/actor-anchor";
 import ChartFrame from "./ChartFrame";
 import { layers, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
@@ -47,7 +48,16 @@ export type TreemapYear = {
   layers: { id: ActorLayer; actors: [string, number][] }[];
 };
 
-export default function ActorTreemapChart({ data, locale = "en" }: { data: TreemapYear[]; locale?: Locale }) {
+export default function ActorTreemapChart({
+  data,
+  bases,
+  locale = "en",
+}: {
+  data: TreemapYear[];
+  /** Display label back to untranslated base, for the click-through. */
+  bases?: Record<string, string>;
+  locale?: Locale;
+}) {
   const t = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const [year, setYear] = useState<Year>(2026);
@@ -171,6 +181,18 @@ export default function ActorTreemapChart({ data, locale = "en" }: { data: Treem
           ariaLabel={t.chart(year)}
           onInit={(c) => {
             chartRef.current = c;
+          }}
+          onEvents={{
+            // A cell opens that actor in the register below. Assigning
+            // location rather than routing: the destination is a fragment
+            // on this same page, and a router navigation that changes only
+            // the fragment never fires hashchange, so the group would
+            // stay closed.
+            click: (p) => {
+              const name = (p as { name?: string }).name;
+              const base = name ? bases?.[name] : undefined;
+              if (base) window.location.href = actorHref(base, locale);
+            },
           }}
         />
         <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">

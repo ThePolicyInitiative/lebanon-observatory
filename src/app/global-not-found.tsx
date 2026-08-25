@@ -27,6 +27,7 @@ const EN_LINKS: [string, string][] = [
   ["/map", "Map"],
   ["/finance", "Finance & delivery"],
   ["/explorer", "Data explorer"],
+  ["/search", "Search"],
 ];
 
 const AR_LINKS: [string, string][] = [
@@ -36,6 +37,7 @@ const AR_LINKS: [string, string][] = [
   ["/ar/map", "الخريطة"],
   ["/ar/finance", "التمويل والإنجاز"],
   ["/ar/explorer", "المستكشف"],
+  ["/ar/search", "البحث"],
 ];
 
 function SectionLinks({ links }: { links: [string, string][] }) {

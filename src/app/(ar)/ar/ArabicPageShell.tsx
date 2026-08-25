@@ -17,8 +17,10 @@ export default function ArabicPageShell({
   children,
 }: {
   title: string;
-  lede: string;
-  point: string;
+  /** Both optional: a page whose English twin carries no opening passage
+   * must not grow one here, or the two languages stop matching. */
+  lede?: string;
+  point?: string;
   englishHref: string;
   figures?: { value: string; label: string }[];
   children?: ReactNode;
@@ -29,12 +31,16 @@ export default function ArabicPageShell({
         <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
           {title}
         </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          {lede}
-        </p>
-        <p className="note-caution mt-4 text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {point}
-        </p>
+        {lede ? (
+          <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+            {lede}
+          </p>
+        ) : null}
+        {point ? (
+          <p className="note-caution mt-4 text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            {point}
+          </p>
+        ) : null}
       </header>
 
       {figures && figures.length > 0 ? (
@@ -62,10 +68,12 @@ export default function ArabicPageShell({
           {AR.common.englishModules}
         </p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {/* hrefLang, not lang/dir: the English is the destination, while
+              the label itself is Arabic and has to lay out right-to-left
+              like its sibling - otherwise its arrow lands on the far side. */}
           <Link
             href={englishHref}
-            lang="en"
-            dir="ltr"
+            hrefLang="en"
             className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
           >
             {AR.common.openEnglish} ←

@@ -33,6 +33,7 @@ import districtDamage from "@/data/district-damage.json";
 import {
   eventsByTown,
   eventsFor,
+  eventText,
   EVENT_KIND_META,
   type MapEvent,
 } from "@/lib/events";
@@ -75,7 +76,7 @@ const PIN_T = {
     searchPlaceholder: "e.g. Aaintaroun (Bent Jbeil)",
     zoomReadout: (z: string) => `×${z} zoom`,
     mapAria: (year: number, occupation: boolean) =>
-      `Town-level map of Lebanon shaded by located traced activities for ${year}.${occupation ? " Hatched towns form the Blue Line border strip with traced Israeli occupation." : ""} Zoom with the buttons above the map; use the town search box for keyboard access to individual towns.`,
+      `Town-level map of Lebanon shaded by located traced activities for ${year}.${occupation ? " Hatched towns form the Blue Line border strip with traced Israeli occupation." : ""} Zoom with the wheel, drag or double-click; use the town search box for keyboard access to individual towns.`,
     baseTitle: (name: string, zone: string, v: number, year: number) =>
       `${name} - ${zone}: ${v} mentions (${year})`,
     area: (name: string, district: string) => `${name} · ${district} district`,
@@ -215,7 +216,7 @@ function EventsList({ events, locale = "en" }: { events: MapEvent[]; locale?: Lo
                   {fmtDate(e.date, locale)}:
                 </span>
               ) : null}
-              {e.text}
+              {eventText(e, locale)}
             </li>
           );
         })}
@@ -1564,7 +1565,7 @@ export default function SvgLebanonMap({
                     </>
                   ) : (
                     <>
-                      On the Blue Line border strip, where the sources show
+                      On the Blue Line border strip, where the reporting shows
                       occupied villages and the zone demarcated on 18 June 2026;
                       residents of occupied villages cannot return.
                     </>
@@ -1933,11 +1934,11 @@ export default function SvgLebanonMap({
                 <>
                   لم تُقيَّم بحلول تاريخ التوقف في 31 تموز 2026 سوى منطقتين:{" "}
                   <strong className="text-[color:var(--color-navy)]">جنوب الليطاني</strong>{" "}
-                  ({destruction.zones2026[0].assessedDamage}؛ 11,095 مبنى
+                  ({destruction.zones2026[0].assessedDamageAr}؛ 11,095 مبنى
                   مدمَّراً كلياً؛ ذكاء اصطناعي جغرافي بتدقيق مكتبي ومن دون
                   تثبيت ميداني) و
                   <strong className="text-[color:var(--color-navy)]">بيروت وجبل لبنان</strong>{" "}
-                  ({destruction.zones2026[1].assessedDamage}؛ بفحص ميداني).
+                  ({destruction.zones2026[1].assessedDamageAr}؛ بفحص ميداني).
                   المنتجان يختلفان في المنهجية ولا يجوز مقارنتهما ولا جمعهما.
                   والجغرافيا المقيَّمة ليست الجغرافيا المتضررة: فالتتبّع الوطني
                   الآني رصد ضربات عنيفة في عموم البلاد، ولم يكن للبقاع

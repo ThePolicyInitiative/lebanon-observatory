@@ -136,10 +136,10 @@ export default function HomePage() {
           <p className="mt-3 max-w-3xl text-[11px] leading-snug text-white/55">
             Two counts coexist by design: the charts on the compare and actors
             pages read the report-level actor-stage counts (343 for 2024; 360
-            for 2026, with the report&apos;s 363 recomputation flagged there),
-            while the explorer and the register list the finer underlying
-            entries counted here. An actor can carry several entries within one
-            stage.
+            for 2026, with the report&apos;s 363 recomputation flagged on the
+            compare page), while the explorer and the register list the finer
+            underlying entries counted here. An actor can carry several entries
+            within one stage.
           </p>
         </div>
       </section>

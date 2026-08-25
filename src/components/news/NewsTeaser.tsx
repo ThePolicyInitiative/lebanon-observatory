@@ -94,6 +94,10 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
         <article
           key={a.id}
           className="card p-3.5"
+          // Each item keeps its publisher's own direction, the way the
+          // full feed does: an English headline inside the Arabic page
+          // reads left to right, punctuation included.
+          dir={a.language === "ar" ? "rtl" : "ltr"}
         >
           <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
             {a.sourceName} · {fmtDateTime(a.publishedAt, locale)}

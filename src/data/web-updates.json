@@ -4,25 +4,6 @@
   "updates": [
     {
       "dateReported": "2026-08-11",
-      "actor": "KfW (German Development Bank) & UNRWA",
-      "layer": "ngo_international",
-      "sourceKind": "social",
-      "action": "A KfW delegation inspected reconstruction work in blocks 45 and 58 of the Nahr el-Bared camp and said it would support resolving the heritage question and secure the remaining financing to finish the project and return residents. This is the long-running camp reconstruction programme, separate from 2024 and 2026 war damage.",
-      "place": "Nahr el-Bared camp, north Lebanon",
-      "sourceName": "Facebook post (self-published)",
-      "sourceUrl": "https://www.facebook.com/share/p/1J98SVUsNb/",
-      "dateText": null,
-      "kind": "Reported earlier",
-      "southOfLitani": false,
-      "openedDirectly": true,
-      "caution": "",
-      "detail": "",
-      "actionAr": "عاين وفد من مصرف التنمية الألماني أعمال إعادة الإعمار في المربّعين 45 و58 من مخيم نهر البارد، وقال إنه سيدعم حلّ مسألة التراث ويؤمّن التمويل المتبقي لإنهاء المشروع وإعادة الأهالي. هذا برنامج إعادة إعمار المخيم الممتد منذ سنوات، وهو منفصل عن أضرار حربَي 2024 و2026.",
-      "placeAr": "مخيم نهر البارد، شمال لبنان",
-      "actorAr": "مصرف التنمية الألماني (KfW) والأونروا"
-    },
-    {
-      "dateReported": "2026-08-11",
       "actor": "UNDP & Ministry of Social Affairs (Haneen Sayed)",
       "layer": "ngo_international",
       "action": "Recognised 120 Ministry of Social Affairs coordinators and volunteers for supporting displaced families during the conflict - the coordination backbone of the shelter response.",

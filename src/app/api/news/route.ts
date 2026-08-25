@@ -8,7 +8,7 @@ import {
   newsApiConfigured,
 } from "@/lib/news/providers";
 import { RSS_FEEDS, fetchRssFeed } from "@/lib/news/rss";
-import { cachedProvider, rateLimited } from "@/lib/news/cache";
+import { cachedProvider, clientKey, rateLimited } from "@/lib/news/cache";
 import { dedupe, filterRelevant } from "@/lib/news/pipeline";
 import { sanitizeText } from "@/lib/news/tagging";
 
@@ -18,12 +18,11 @@ export const dynamic = "force-dynamic";
 const querySchema = newsQuerySchema;
 
 export async function GET(req: NextRequest) {
-  // Rightmost x-forwarded-for entry: appended by the nearest hop, so a
-  // client cannot rotate it to mint fresh rate-limit buckets the way it
-  // can with the leftmost entry. Served directly, Next fills the header
-  // from the socket address.
-  const forwarded = req.headers.get("x-forwarded-for");
-  const ip = forwarded?.split(",").at(-1)?.trim() || "local";
+  // Which x-forwarded-for entry identifies the reader depends on how many
+  // hops in front of this server append to the header, so the count is
+  // configurable and clientKey owns the arithmetic. Its default matches the
+  // common one-proxy topology; see RATE_LIMIT_TRUSTED_HOPS in .env.example.
+  const ip = clientKey(req.headers.get("x-forwarded-for"));
   if (rateLimited(ip)) {
     return NextResponse.json(
       { error: "Rate limit exceeded. Try again in a few minutes." },

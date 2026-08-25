@@ -1,5 +1,5 @@
 {
-  "note": "Location mentions in the actor-stage tracking, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach. A grouping can read zero: the north carried six community mentions in 2026 until each was traced back to a group's home address rather than a place it worked, and neither war reached those governorates.",
+  "note": "Location mentions in the actor-stage tracking, by regional grouping, actor layer and year. Values represent mentions in the traced data - where traced activity was concentrated - not damage severity, expenditure, service coverage or beneficiary reach. The north reads zero in both years because neither war reached those governorates: the mentions it once carried were national-scope phrases in an actor's remit, or a group's home address rather than a place it worked, and each was traced back and removed.",
   "regions": [
     {
       "id": "south_nabatieh",
@@ -80,7 +80,7 @@
       "north": {
         "official": 0,
         "municipal": 0,
-        "ngo_international": 1,
+        "ngo_international": 0,
         "community": 0
       },
       "camps_migrant": {

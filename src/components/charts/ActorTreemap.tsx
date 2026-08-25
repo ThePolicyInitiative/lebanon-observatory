@@ -34,12 +34,31 @@ function countYear(year: Year, locale: Locale): TreemapYear {
   };
 }
 
+/**
+ * The label a cell shows back to the untranslated base name, so a click
+ * can open that actor in the register. The cells carry display labels,
+ * and only the base resolves to an anchor.
+ */
+function baseByLabel(locale: Locale): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const r of roleRecords) {
+    const base = actorBase(r.actorName);
+    out[actorLabel(base, locale)] = base;
+  }
+  return out;
+}
+
 /** Built once per language, at module scope, not per render. */
 const DATA: Record<Locale, TreemapYear[]> = {
   en: [countYear(2024, "en"), countYear(2026, "en")],
   ar: [countYear(2024, "ar"), countYear(2026, "ar")],
 };
 
+const BASES: Record<Locale, Record<string, string>> = {
+  en: baseByLabel("en"),
+  ar: baseByLabel("ar"),
+};
+
 export default function ActorTreemap({ locale = "en" }: { locale?: Locale } = {}) {
-  return <ActorTreemapChart data={DATA[locale]} locale={locale} />;
+  return <ActorTreemapChart data={DATA[locale]} bases={BASES[locale]} locale={locale} />;
 }

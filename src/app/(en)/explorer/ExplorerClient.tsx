@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ResultProfile from "@/components/charts/ResultProfile";
 import Link from "next/link";
 import { actors, locations } from "@/lib/data-client";
@@ -25,6 +25,11 @@ import type { RoleRecord } from "@/lib/types";
  * from /entries/{id}.json - the same static-file pattern the change
  * heatmap uses with /cells/ - so the browser downloads narrative prose
  * one entry at a time instead of all 771 at once.
+ *
+ * The opened entry lives in the URL beside the filters, so a single
+ * traced entry can be sent to someone: /explorer?entry=r2026-12-3 and
+ * /ar/explorer?entry=r2026-12-3 both land on that entry's drawer, open,
+ * over whatever filter state the rest of the URL carries.
  */
 
 const FUNCTION_COLUMNS = [...new Set(slimRecords.map((r) => r.functionColumn))].sort();
@@ -58,6 +63,7 @@ const T = {
       `No entries match the current filters. Reset the filters to see all ${m} entries.`,
     showMore: (n: number) => `Show more (${n} remaining)`,
     dialogLabel: (name: string) => `entry detail for ${name}`,
+    entryRef: "Entry reference",
     close: "Close",
     loadingDetail: "Loading this entry…",
     loadFailed: "This entry could not be loaded.",
@@ -110,6 +116,7 @@ const T = {
       `لا مدخلات تطابق المرشّحات الحالية. أعد ضبط المرشّحات لعرض المدخلات كلها (${m}).`,
     showMore: (n: number) => `عرض المزيد (${n} متبقياً)`,
     dialogLabel: (name: string) => `تفصيل المدخل: ${name}`,
+    entryRef: "مرجع المدخل",
     close: "إغلاق",
     loadingDetail: "جارٍ تحميل هذا المدخل…",
     loadFailed: "تعذّر تحميل هذا المدخل.",
@@ -178,8 +185,20 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
     status: "all",
     region: "all",
     q: "",
+    // The opened entry, by its own id. Empty means no drawer.
+    entry: "",
   });
-  const [selected, setSelected] = useState<SlimRecord | null>(null);
+  /**
+   * A sent link arrives with its entry already chosen, so the drawer opens
+   * on the first paint rather than a frame later: the id in the URL is read
+   * once, as the initial selection. An id that no longer resolves simply
+   * yields no selection - a link that outlives an entry still lands on a
+   * working explorer rather than an error.
+   */
+  const [arrivedOn] = useState<SlimRecord | null>(
+    () => slimRecords.find((r) => r.id === get("entry")) ?? null,
+  );
+  const [selected, setSelected] = useState<SlimRecord | null>(arrivedOn);
   // null while the entry's full text is on its way from /entries/.
   const [detail, setDetail] = useState<RoleRecord | null>(null);
   const [detailFailed, setDetailFailed] = useState(false);
@@ -190,10 +209,9 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
   /** The control that opened the drawer, so closing can hand focus back. */
   const openerRef = useRef<HTMLElement | null>(null);
 
-  function loadDetail(id: string) {
+  /** The request half of loading an entry: nothing is set until it lands. */
+  const fetchDetail = useCallback((id: string) => {
     const seq = ++requestSeq.current;
-    setDetail(null);
-    setDetailFailed(false);
     fetch(`/entries/${id}.json`)
       .then((res) => {
         if (!res.ok) throw new Error(String(res.status));
@@ -205,12 +223,30 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
       .catch(() => {
         if (requestSeq.current === seq) setDetailFailed(true);
       });
+  }, []);
+
+  /** Clearing the previous entry's text and asking for the next one. */
+  function loadDetail(id: string) {
+    setDetail(null);
+    setDetailFailed(false);
+    fetchDetail(id);
   }
+
+  /**
+   * The one fetch no click starts: the entry a reader arrived holding, whose
+   * row is already the initial selection above.
+   */
+  useEffect(() => {
+    if (arrivedOn) fetchDetail(arrivedOn.id);
+  }, [arrivedOn, fetchDetail]);
 
   function open(r: SlimRecord, opener?: HTMLElement | null) {
     if (opener) openerRef.current = opener;
     setSelected(r);
     loadDetail(r.id);
+    // The opened entry joins the filters in the URL, so this exact drawer
+    // has an address that can be sent to someone.
+    set("entry", r.id);
   }
 
   function close() {
@@ -221,6 +257,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
     setSelected(null);
     setDetail(null);
     setDetailFailed(false);
+    set("entry", null);
     const opener = openerRef.current;
     openerRef.current = null;
     opener?.focus();
@@ -535,6 +572,14 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 <h3 className="mt-0.5 text-sm font-semibold text-[color:var(--color-navy)]">
                   {name(selected.actorName)}
                 </h3>
+                {/* The id in the address bar, printed once so an entry can
+                    be named in prose and found again from the name. */}
+                <p className="mt-1 text-[11px] text-[color:var(--color-text-secondary)]">
+                  {t.entryRef}:{" "}
+                  <span dir="ltr" className="font-mono">
+                    {selected.id}
+                  </span>
+                </p>
               </div>
               <button
                 ref={closeRef}

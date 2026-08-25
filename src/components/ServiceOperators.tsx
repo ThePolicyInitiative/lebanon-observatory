@@ -90,7 +90,11 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
         >
           {t.title}
         </h2>
-        <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a6200]">
+        <span
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${
+            ar ? "" : "uppercase tracking-wide"
+          }`}
+        >
           {t.badge}
         </span>
       </div>

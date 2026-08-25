@@ -97,8 +97,11 @@ export default function FinancePage() {
       </div>
 
       {/* LEAP components */}
-      <section className="mt-7 card p-3.5">
-        <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
+      <section aria-labelledby="leap-components" className="mt-7 card p-3.5">
+        <h2
+          id="leap-components"
+          className="text-base font-semibold text-[color:var(--color-navy)]"
+        >
           Inside the initial US$250 million
         </h2>
         <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
@@ -137,8 +140,11 @@ export default function FinancePage() {
       </section>
 
       {/* Procurement packages */}
-      <section className="mt-7">
-        <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
+      <section aria-labelledby="procurement-packages" className="mt-7">
+        <h2
+          id="procurement-packages"
+          className="text-base font-semibold text-[color:var(--color-navy)]"
+        >
           Procurement packages and their actual status
         </h2>
         <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
@@ -188,8 +194,11 @@ export default function FinancePage() {
       </section>
 
       {/* Adjacent flows */}
-      <section className="mt-7 card p-3.5">
-        <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
+      <section aria-labelledby="adjacent-flows" className="mt-7 card p-3.5">
+        <h2
+          id="adjacent-flows"
+          className="text-base font-semibold text-[color:var(--color-navy)]"
+        >
           Money that moved on parallel tracks - not reconstruction financing
         </h2>
         <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">

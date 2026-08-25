@@ -1,192 +1,490 @@
 {
-  "note": "Traced episodes per locality, drawn from the the traced activity. Each entry states what the reporting shows - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer.",
+  "note": "Traced episodes per locality, drawn from the the traced activity. Each entry states what the reporting shows - announced, reported or assessed - never more. Kinds follow the four actor layers, plus 'context' for conflict events that belong to no layer. Every locality name and episode text carries an Arabic twin (nameAr, textAr) saying exactly what the English says.",
   "localities": [
     {
       "name": "Nabatieh",
-      "townNames": ["Nabatieh Et-Tahta"],
+      "nameAr": "النبطية",
+      "townNames": [
+        "Nabatieh Et-Tahta"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-11-30", "kind": "community", "text": "Shop owners began repairing their stores the morning after the ceasefire took effect, working amid explicit unexploded-ordnance warnings." },
-        { "year": 2024, "date": "2024-12-27", "kind": "official", "text": "The Council for the South launched the response's first large rubble-clearance tender, with bids opening in January." },
-        { "year": 2024, "date": "2024-12-30", "kind": "community", "text": "Roughly 5,000 business owners staged the first major protest against the slowness of both official and parallel compensation." },
-        { "year": 2026, "date": "2026-06-18", "kind": "official", "text": "The Public Works Ministry's 'Reconnecting Lebanon' campaign reported road clearance and access restoration across Nabatieh and surrounding towns, partly with the army - officially reported, without published quantities." },
-        { "year": 2026, "date": "2026-07-04", "kind": "community", "text": "A citywide cleanup campaign joined ambulance crews, Civil Defense, scouts, municipal workers and residents; days earlier, ambulance volunteers had cleared the central mosque for Ashura on two days' notice." }
+        {
+          "year": 2024,
+          "date": "2024-11-30",
+          "kind": "community",
+          "text": "Shop owners began repairing their stores the morning after the ceasefire took effect, working amid explicit unexploded-ordnance warnings.",
+          "textAr": "بدأ أصحاب المحال إصلاح متاجرهم صباح اليوم التالي لبدء سريان وقف إطلاق النار، وسط تحذيرات صريحة من ذخائر غير منفجرة."
+        },
+        {
+          "year": 2024,
+          "date": "2024-12-27",
+          "kind": "official",
+          "text": "The Council for the South launched the response's first large rubble-clearance tender, with bids opening in January.",
+          "textAr": "أطلق مجلس الجنوب أول مناقصة كبيرة لرفع الأنقاض في الاستجابة، على أن تُفتح العروض في كانون الثاني."
+        },
+        {
+          "year": 2024,
+          "date": "2024-12-30",
+          "kind": "community",
+          "text": "Roughly 5,000 business owners staged the first major protest against the slowness of both official and parallel compensation.",
+          "textAr": "نظّم نحو 5,000 من أصحاب الأعمال أول احتجاج كبير على بطء التعويض الرسمي والموازي معاً."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-18",
+          "kind": "official",
+          "text": "The Public Works Ministry's 'Reconnecting Lebanon' campaign reported road clearance and access restoration across Nabatieh and surrounding towns, partly with the army - officially reported, without published quantities.",
+          "textAr": "أبلغت حملة «Reconnecting Lebanon» التابعة لوزارة الأشغال العامة عن فتح الطرق وإعادة تأمين الوصول في النبطية والبلدات المحيطة، بمشاركة الجيش جزئياً - إبلاغ رسمي من دون كميات منشورة."
+        },
+        {
+          "year": 2026,
+          "date": "2026-07-04",
+          "kind": "community",
+          "text": "A citywide cleanup campaign joined ambulance crews, Civil Defense, scouts, municipal workers and residents; days earlier, ambulance volunteers had cleared the central mosque for Ashura on two days' notice.",
+          "textAr": "جمعت حملة تنظيف على مستوى المدينة فرق الإسعاف والدفاع المدني والكشافة وعمال البلدية والأهالي؛ وقبل ذلك بأيام كان متطوعو الإسعاف قد نظّفوا المسجد الكبير لإحياء عاشوراء خلال مهلة يومين."
+        }
       ]
     },
     {
       "name": "Hanouiyeh",
-      "townNames": ["Hanaouay"],
+      "nameAr": "الحنية",
+      "townNames": [
+        "Hanaouay"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-11-28", "kind": "community", "text": "A returning family began clearing its butcher shop, with reported losses of about US$120,000 - self-financed recovery from the first days after the ceasefire." }
+        {
+          "year": 2024,
+          "date": "2024-11-28",
+          "kind": "community",
+          "text": "A returning family began clearing its butcher shop, with reported losses of about US$120,000 - self-financed recovery from the first days after the ceasefire.",
+          "textAr": "بدأت أسرة عائدة تنظيف ملحمتها، مع خسائر أُبلغ عنها بنحو 120,000 دولار - تعافٍ ذاتي التمويل منذ الأيام الأولى بعد وقف إطلاق النار."
+        }
       ]
     },
     {
       "name": "Shama",
-      "townNames": ["Chamaa"],
+      "nameAr": "شمع",
+      "townNames": [
+        "Chamaa"
+      ],
       "events": [
-        { "year": 2024, "kind": "community", "text": "The village financed collective solutions: prefabricated homes and a rebuilt husseiniya - recovery paid for from communal resources, not any public programme." }
+        {
+          "year": 2024,
+          "kind": "community",
+          "text": "The village financed collective solutions: prefabricated homes and a rebuilt husseiniya - recovery paid for from communal resources, not any public programme.",
+          "textAr": "موّلت القرية حلولاً جماعية: منازل جاهزة وحسينية أُعيد بناؤها - تعافٍ دُفع من موارد أهلية، لا من أي برنامج عام."
+        }
       ]
     },
     {
       "name": "Aitaroun (Aaitaroun)",
-      "townNames": ["Aaintaroun"],
+      "nameAr": "عيترون",
+      "townNames": [
+        "Aaintaroun"
+      ],
       "events": [
-        { "year": 2024, "kind": "community", "text": "The locally financed Aitaroun Recovery Project bought equipment and supported returns - about 200 families returned against a 500-family target." },
-        { "year": 2026, "date": "2026-06-22", "kind": "official", "text": "The UNDP–CNRS-L assessment traced 1,658 completely destroyed buildings - the worst cadaster south of the Litani, hit again after rebuilding attempts." }
+        {
+          "year": 2024,
+          "kind": "community",
+          "text": "The locally financed Aitaroun Recovery Project bought equipment and supported returns - about 200 families returned against a 500-family target.",
+          "textAr": "اشترى مشروع تعافي عيترون الممول محلياً معدات ودعم العودة - عادت نحو 200 أسرة مقابل هدف 500 أسرة."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-22",
+          "kind": "official",
+          "text": "The UNDP–CNRS-L assessment traced 1,658 completely destroyed buildings - the worst cadaster south of the Litani, hit again after rebuilding attempts.",
+          "textAr": "رصد تقييم UNDP–CNRS-L 1,658 مبنى مدمَّراً كلياً - أسوأ عقار جنوب الليطاني، أُصيب مجدداً بعد محاولات إعادة البناء."
+        }
       ]
     },
     {
       "name": "Meiss el Jabal (Meiss Ej Jabal)",
-      "townNames": ["Meiss Ej-Jabal"],
+      "nameAr": "ميس الجبل",
+      "townNames": [
+        "Meiss Ej-Jabal"
+      ],
       "events": [
-        { "year": 2024, "kind": "official", "text": "ISF patrols halted and fined self-financed rebuilding pending permits; work resumed after public controversy - regulation without a functioning state alternative." },
-        { "year": 2026, "date": "2026-06-22", "kind": "official", "text": "969 completely destroyed buildings traced in the UNDP–CNRS-L assessment - among the worst cadasters, levelled in both wars." }
+        {
+          "year": 2024,
+          "kind": "official",
+          "text": "ISF patrols halted and fined self-financed rebuilding pending permits; work resumed after public controversy - regulation without a functioning state alternative.",
+          "textAr": "أوقفت دوريات قوى الأمن الداخلي إعادة البناء الذاتية التمويل وغرّمتها بانتظار التراخيص؛ واستُؤنف العمل بعد جدل عام - تنظيم بلا بديل حكومي عامل."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-22",
+          "kind": "official",
+          "text": "969 completely destroyed buildings traced in the UNDP–CNRS-L assessment - among the worst cadasters, levelled in both wars.",
+          "textAr": "969 مبنى مدمَّراً كلياً رُصدت في تقييم UNDP–CNRS-L - من أسوأ العقارات، سُوّيت بالأرض في الحربين."
+        }
       ]
     },
     {
       "name": "Kfar Kila (Kfarkela)",
-      "townNames": ["Kfar Kila"],
+      "nameAr": "كفركلا",
+      "townNames": [
+        "Kfar Kila"
+      ],
       "events": [
-        { "year": 2024, "kind": "official", "text": "ISF patrols halted and fined self-financed rebuilding pending permits, before public controversy let work resume." },
-        { "year": 2026, "kind": "community", "text": "Participatory workshops traced return obstacles village by village, converting testimony into planning material." }
+        {
+          "year": 2024,
+          "kind": "official",
+          "text": "ISF patrols halted and fined self-financed rebuilding pending permits, before public controversy let work resume.",
+          "textAr": "أوقفت دوريات قوى الأمن الداخلي إعادة البناء الذاتية التمويل وغرّمتها بانتظار التراخيص، قبل أن يسمح جدل عام باستئناف العمل."
+        },
+        {
+          "year": 2026,
+          "kind": "community",
+          "text": "Participatory workshops traced return obstacles village by village, converting testimony into planning material.",
+          "textAr": "رصدت ورش تشاركية عوائق العودة قرية قرية، وحوّلت الشهادات إلى مادة تخطيطية."
+        }
       ]
     },
     {
       "name": "Shaqra",
-      "townNames": ["Chaqra"],
+      "nameAr": "شقرا",
+      "townNames": [
+        "Chaqra"
+      ],
       "events": [
-        { "year": 2024, "kind": "official", "text": "ISF patrols halted and fined self-financed rebuilding pending permits - one of three border villages where recovery was briefly criminalised." }
+        {
+          "year": 2024,
+          "kind": "official",
+          "text": "ISF patrols halted and fined self-financed rebuilding pending permits - one of three border villages where recovery was briefly criminalised.",
+          "textAr": "أوقفت دوريات قوى الأمن الداخلي إعادة البناء الذاتية التمويل وغرّمتها بانتظار التراخيص - إحدى ثلاث قرى حدودية جُرّم فيها التعافي لفترة قصيرة."
+        }
       ]
     },
     {
       "name": "Khiam",
-      "townNames": ["Khiyam Marjaayoun"],
+      "nameAr": "الخيام",
+      "townNames": [
+        "Khiyam Marjaayoun"
+      ],
       "events": [
-        { "year": 2024, "kind": "community", "text": "Reporting characterised parallel-track payments to residents (February 2025) - self-reported figures, treated as unaudited." }
+        {
+          "year": 2024,
+          "kind": "community",
+          "text": "Reporting characterised parallel-track payments to residents (February 2025) - self-reported figures, treated as unaudited.",
+          "textAr": "وصف الإبلاغ دفعات المسار الموازي للأهالي (شباط 2025) - أرقام ذاتية الإبلاغ، تُعامَل على أنها غير مدقَّقة."
+        }
       ]
     },
     {
       "name": "Taybe",
-      "townNames": ["Taybet Matjaayoun"],
+      "nameAr": "الطيبة",
+      "townNames": [
+        "Taybet Matjaayoun"
+      ],
       "events": [
-        { "year": 2026, "date": "2026-06-22", "kind": "official", "text": "824 completely destroyed buildings traced in the UNDP–CNRS-L assessment of the zone south of the Litani." }
+        {
+          "year": 2026,
+          "date": "2026-06-22",
+          "kind": "official",
+          "text": "824 completely destroyed buildings traced in the UNDP–CNRS-L assessment of the zone south of the Litani.",
+          "textAr": "824 مبنى مدمَّراً كلياً رُصدت في تقييم UNDP–CNRS-L لمنطقة جنوب الليطاني."
+        }
       ]
     },
     {
       "name": "Bint Jbeil (Bent Jbeil)",
-      "townNames": ["Bent Jbayl"],
+      "nameAr": "بنت جبيل",
+      "townNames": [
+        "Bent Jbayl"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-12-01", "kind": "ngo_international", "text": "Mercy Corps' radar model assessed damage across 34,490 buildings in the district - one of the four non-additive damage tracks." },
-        { "year": 2026, "date": "2026-02-27", "kind": "official", "text": "CDR published procurement package #1082 - supervision of road clearing and restoration in Marjeyoun, Sour and Bint Jbeil; still under evaluation at the 17 July portal check." },
-        { "year": 2026, "date": "2026-06-22", "kind": "official", "text": "1,076 completely destroyed buildings traced in the UNDP–CNRS-L assessment." }
+        {
+          "year": 2024,
+          "date": "2024-12-01",
+          "kind": "ngo_international",
+          "text": "Mercy Corps' radar model assessed damage across 34,490 buildings in the district - one of the four non-additive damage tracks.",
+          "textAr": "قيّم النموذج الراداري لـ Mercy Corps الأضرار في 34,490 مبنى في القضاء - أحد مسارات الأضرار الأربعة غير القابلة للجمع."
+        },
+        {
+          "year": 2026,
+          "date": "2026-02-27",
+          "kind": "official",
+          "text": "CDR published procurement package #1082 - supervision of road clearing and restoration in Marjeyoun, Sour and Bint Jbeil; still under evaluation at the 17 July portal check.",
+          "textAr": "نشر مجلس الإنماء والإعمار حزمة الشراء رقم 1082 - الإشراف على فتح الطرق وترميمها في مرجعيون وصور وبنت جبيل؛ وبقيت قيد التقييم عند مراجعة البوابة في 17 تموز."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-22",
+          "kind": "official",
+          "text": "1,076 completely destroyed buildings traced in the UNDP–CNRS-L assessment.",
+          "textAr": "1,076 مبنى مدمَّراً كلياً رُصدت في تقييم UNDP–CNRS-L."
+        }
       ]
     },
     {
       "name": "Marjeyoun",
+      "nameAr": "مرجعيون",
       "events": [
-        { "year": 2026, "date": "2026-02-27", "kind": "official", "text": "Covered by CDR procurement package #1082 (road-clearing and restoration supervision with Sour and Bint Jbeil) - published, extended, and unawarded at the 17 July portal check." }
+        {
+          "year": 2026,
+          "date": "2026-02-27",
+          "kind": "official",
+          "text": "Covered by CDR procurement package #1082 (road-clearing and restoration supervision with Sour and Bint Jbeil) - published, extended, and unawarded at the 17 July portal check.",
+          "textAr": "مشمولة بحزمة الشراء رقم 1082 لمجلس الإنماء والإعمار (الإشراف على فتح الطرق وترميمها مع صور وبنت جبيل) - منشورة ومُمدَّدة وغير مُرساة عند مراجعة البوابة في 17 تموز."
+        }
       ]
     },
     {
       "name": "Tyre (Sour)",
-      "townNames": ["Sour"],
+      "nameAr": "صور",
+      "townNames": [
+        "Sour"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-12-21", "kind": "community", "text": "Volunteer convoys from Saida arrived to help clear debris - solidarity moving along social networks, not programme logistics." },
-        { "year": 2026, "date": "2026-06-09", "kind": "context", "text": "A displacement order covered all of Tyre and its Palestinian camps - de-escalation without safety." },
-        { "year": 2026, "date": "2026-02-27", "kind": "official", "text": "Covered by CDR procurement package #1082 for road-clearing supervision; no award displayed at the 17 July portal check." }
+        {
+          "year": 2024,
+          "date": "2024-12-21",
+          "kind": "community",
+          "text": "Volunteer convoys from Saida arrived to help clear debris - solidarity moving along social networks, not programme logistics.",
+          "textAr": "وصلت قوافل متطوعين من صيدا للمساعدة في رفع الركام - تضامن يسير عبر شبكات اجتماعية، لا عبر لوجستيات برنامج."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-09",
+          "kind": "context",
+          "text": "A displacement order covered all of Tyre and its Palestinian camps - de-escalation without safety.",
+          "textAr": "شمل أمر نزوح مدينة صور كلها ومخيماتها الفلسطينية - خفض تصعيد بلا أمان."
+        },
+        {
+          "year": 2026,
+          "date": "2026-02-27",
+          "kind": "official",
+          "text": "Covered by CDR procurement package #1082 for road-clearing supervision; no award displayed at the 17 July portal check.",
+          "textAr": "مشمولة بحزمة الشراء رقم 1082 لمجلس الإنماء والإعمار للإشراف على فتح الطرق؛ ولم يُعرض أي إرساء عند مراجعة البوابة في 17 تموز."
+        }
       ]
     },
     {
       "name": "Saida (Sidon)",
-      "townNames": ["Saida El-Qadimeh", "Saida El-Oustani", "Saida Ed-Dekermane"],
+      "nameAr": "صيدا",
+      "townNames": [
+        "Saida El-Qadimeh",
+        "Saida El-Oustani",
+        "Saida Ed-Dekermane"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-12-21", "kind": "community", "text": "Volunteer convoys left Saida for Sour and Nabatieh in the ceasefire's first weeks." },
-        { "year": 2026, "kind": "community", "text": "A solidarity association ran a school shelter hosting about 650 families through the March displacement wave, then pivoted its volunteers to cleanup as returns began." }
+        {
+          "year": 2024,
+          "date": "2024-12-21",
+          "kind": "community",
+          "text": "Volunteer convoys left Saida for Sour and Nabatieh in the ceasefire's first weeks.",
+          "textAr": "غادرت قوافل متطوعين صيدا إلى صور والنبطية في الأسابيع الأولى بعد وقف إطلاق النار."
+        },
+        {
+          "year": 2026,
+          "kind": "community",
+          "text": "A solidarity association ran a school shelter hosting about 650 families through the March displacement wave, then pivoted its volunteers to cleanup as returns began.",
+          "textAr": "أدارت جمعية تضامنية مركز إيواء في مدرسة استضاف نحو 650 أسرة خلال موجة نزوح آذار، ثم حوّلت متطوعيها إلى التنظيف مع بدء العودة."
+        }
       ]
     },
     {
       "name": "Beirut (Karantina, Basta)",
-      "townNames": ["Medawar", "Marfaa"],
+      "nameAr": "بيروت (الكرنتينا، البسطة)",
+      "townNames": [
+        "Medawar",
+        "Marfaa"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-12-05", "kind": "community", "text": "Offre Joie volunteers cleared 600 truckloads of debris from Karantina in eight days; the group later restored 20 buildings on Mamoun Street in Basta." }
+        {
+          "year": 2024,
+          "date": "2024-12-05",
+          "kind": "community",
+          "text": "Offre Joie volunteers cleared 600 truckloads of debris from Karantina in eight days; the group later restored 20 buildings on Mamoun Street in Basta.",
+          "textAr": "رفع متطوعو Offre Joie 600 حمولة شاحنة من الركام من الكرنتينا في ثمانية أيام؛ ثم رمّمت المجموعة لاحقاً 20 مبنى في شارع المأمون في البسطة."
+        }
       ]
     },
     {
       "name": "Dahieh / southern suburbs (Baabda district)",
-      "townNames": ["Bourj El-Brajneh", "Haret Hreik", "Chiyah"],
+      "nameAr": "الضاحية الجنوبية (قضاء بعبدا)",
+      "townNames": [
+        "Bourj El-Brajneh",
+        "Haret Hreik",
+        "Chiyah"
+      ],
       "events": [
-        { "year": 2024, "date": "2024-12-15", "kind": "municipal", "text": "The ten-day municipal survey traced 16,000 damaged housing units in Baabda district - 63% reported completely damaged - the response's fastest damage assessments." },
-        { "year": 2024, "kind": "municipal", "text": "Cabinet assigned the southern-suburbs rubble clearance to the Union of Municipalities, which opened tenders and worked through the al-Bunyan contractor, with debris routed toward Costa Brava." },
-        { "year": 2026, "date": "2026-05-15", "kind": "municipal", "text": "The Dahieh municipal union continued supervising rubble operations with reported sorting arrangements - while the South waited." },
-        { "year": 2026, "date": "2026-06-08", "kind": "official", "text": "The UNDP–CNRS-L assessment traced 648,942 m³ of debris across Beirut–Mount Lebanon - 93% of it in Baabda district, the Dahieh belt hit in both wars." }
+        {
+          "year": 2024,
+          "date": "2024-12-15",
+          "kind": "municipal",
+          "text": "The ten-day municipal survey traced 16,000 damaged housing units in Baabda district - 63% reported completely damaged - the response's fastest damage assessments.",
+          "textAr": "رصد مسح البلديات الذي استمر عشرة أيام 16,000 وحدة سكنية متضررة في قضاء بعبدا - 63% منها أُبلغ عن تضررها كلياً - وهو أسرع تقييمات الأضرار في الاستجابة."
+        },
+        {
+          "year": 2024,
+          "kind": "municipal",
+          "text": "Cabinet assigned the southern-suburbs rubble clearance to the Union of Municipalities, which opened tenders and worked through the al-Bunyan contractor, with debris routed toward Costa Brava.",
+          "textAr": "أسند مجلس الوزراء رفع أنقاض الضاحية الجنوبية إلى اتحاد البلديات، الذي فتح مناقصات وعمل عبر متعهد «البنيان»، مع توجيه الركام نحو كوستابرافا."
+        },
+        {
+          "year": 2026,
+          "date": "2026-05-15",
+          "kind": "municipal",
+          "text": "The Dahieh municipal union continued supervising rubble operations with reported sorting arrangements - while the South waited.",
+          "textAr": "واصل اتحاد بلديات الضاحية الإشراف على عمليات الأنقاض مع ترتيبات فرز أُبلغ عنها - بينما بقي الجنوب ينتظر."
+        },
+        {
+          "year": 2026,
+          "date": "2026-06-08",
+          "kind": "official",
+          "text": "The UNDP–CNRS-L assessment traced 648,942 m³ of debris across Beirut–Mount Lebanon - 93% of it in Baabda district, the Dahieh belt hit in both wars.",
+          "textAr": "رصد تقييم UNDP–CNRS-L 648,942 متراً مكعباً من الركام في بيروت وجبل لبنان - 93% منها في قضاء بعبدا، حزام الضاحية الذي أُصيب في الحربين."
+        }
       ]
     },
     {
       "name": "Costa Brava landfill area",
+      "nameAr": "منطقة مطمر كوستابرافا",
       "events": [
-        { "year": 2024, "kind": "official", "text": "Part of the war rubble was transferred to the landfill's third cell for support and expansion use - the official disposal interface for the southern-suburbs clearance." }
+        {
+          "year": 2024,
+          "kind": "official",
+          "text": "Part of the war rubble was transferred to the landfill's third cell for support and expansion use - the official disposal interface for the southern-suburbs clearance.",
+          "textAr": "نُقل جزء من أنقاض الحرب إلى الخلية الثالثة في المطمر لاستخدامها في الدعم والتوسعة - الواجهة الرسمية للتخلص من أنقاض الضاحية الجنوبية."
+        }
       ]
     },
     {
       "name": "Dibbine",
-      "townNames": ["Dibbine"],
+      "nameAr": "دبين",
+      "townNames": [
+        "Dibbine"
+      ],
       "events": [
-        { "year": 2026, "date": "2026-06-05", "kind": "ngo_international", "text": "UNIFIL cleared debris and reopened streets after the withdrawal from the town." }
+        {
+          "year": 2026,
+          "date": "2026-06-05",
+          "kind": "ngo_international",
+          "text": "UNIFIL cleared debris and reopened streets after the withdrawal from the town.",
+          "textAr": "رفعت اليونيفيل الركام وأعادت فتح الشوارع بعد الانسحاب من البلدة."
+        }
       ]
     },
     {
       "name": "Chehabiyeh (Shahabiya)",
-      "townNames": ["Chehabiyeh"],
+      "nameAr": "الشهابية",
+      "townNames": [
+        "Chehabiyeh"
+      ],
       "events": [
-        { "year": 2026, "kind": "official", "text": "The South Lebanon Water Establishment patched the local network - emergency repair through existing chains, not programme works." }
+        {
+          "year": 2026,
+          "kind": "official",
+          "text": "The South Lebanon Water Establishment patched the local network - emergency repair through existing chains, not programme works.",
+          "textAr": "رمّمت مؤسسة مياه لبنان الجنوبي الشبكة المحلية - إصلاح طارئ عبر سلاسل قائمة، لا أشغال برنامج."
+        }
       ]
     },
     {
       "name": "Tayr Debba",
-      "townNames": ["Tayr Debbeh"],
+      "nameAr": "طير دبا",
+      "townNames": [
+        "Tayr Debbeh"
+      ],
       "events": [
-        { "year": 2026, "kind": "official", "text": "EDL restored electricity supply working with the municipality - small, local, budget-funded repair outside any published contract." }
+        {
+          "year": 2026,
+          "kind": "official",
+          "text": "EDL restored electricity supply working with the municipality - small, local, budget-funded repair outside any published contract.",
+          "textAr": "أعادت كهرباء لبنان التغذية بالتيار بالعمل مع البلدية - إصلاح صغير محلي ممول من الموازنة وخارج أي عقد منشور."
+        }
       ]
     },
     {
       "name": "Qana",
-      "townNames": ["Qana"],
+      "nameAr": "قانا",
+      "townNames": [
+        "Qana"
+      ],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - one of sixteen-plus localities lifting debris; quantities, destinations and completion not confirmable." }
+        {
+          "year": 2026,
+          "kind": "municipal",
+          "text": "The municipality publicly reported rubble clearance - one of sixteen-plus localities lifting debris; quantities, destinations and completion not confirmable.",
+          "textAr": "أبلغت البلدية علناً عن رفع الأنقاض - إحدى ست عشرة بلدة أو أكثر ترفع الركام؛ والكميات والوجهات والإنجاز لا يمكن تأكيدها."
+        }
       ]
     },
     {
       "name": "Chehour",
-      "townNames": ["Chehour"],
+      "nameAr": "شحور",
+      "townNames": [
+        "Chehour"
+      ],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
+        {
+          "year": 2026,
+          "kind": "municipal",
+          "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed.",
+          "textAr": "أبلغت البلدية علناً عن رفع الأنقاض - رُصد كما أُبلغ؛ والكميات لا يمكن تأكيدها."
+        }
       ]
     },
     {
       "name": "Tebnine",
-      "townNames": ["Tibnine"],
+      "nameAr": "تبنين",
+      "townNames": [
+        "Tibnine"
+      ],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
+        {
+          "year": 2026,
+          "kind": "municipal",
+          "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed.",
+          "textAr": "أبلغت البلدية علناً عن رفع الأنقاض - رُصد كما أُبلغ؛ والكميات لا يمكن تأكيدها."
+        }
       ]
     },
     {
       "name": "Majdal Selm",
-      "townNames": ["Majdel Selm"],
+      "nameAr": "مجدل سلم",
+      "townNames": [
+        "Majdel Selm"
+      ],
       "events": [
-        { "year": 2026, "kind": "municipal", "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed." }
+        {
+          "year": 2026,
+          "kind": "municipal",
+          "text": "The municipality publicly reported rubble clearance - traced as reported; quantities cannot be confirmed.",
+          "textAr": "أبلغت البلدية علناً عن رفع الأنقاض - رُصد كما أُبلغ؛ والكميات لا يمكن تأكيدها."
+        }
       ]
     },
     {
       "name": "Deir Qanoun el Nahr",
-      "townNames": ["Deir Qanoun En-Nahr"],
+      "nameAr": "دير قانون النهر",
+      "townNames": [
+        "Deir Qanoun En-Nahr"
+      ],
       "events": [
-        { "year": 2024, "kind": "ngo_international", "text": "Named in OCHA-coordinated humanitarian reporting as a locality of traced response activity." }
+        {
+          "year": 2024,
+          "kind": "ngo_international",
+          "text": "Named in OCHA-coordinated humanitarian reporting as a locality of traced response activity.",
+          "textAr": "سُمّيت في الإبلاغ الإنساني المنسَّق من OCHA بوصفها بلدة فيها نشاط استجابة مرصود."
+        }
       ]
     },
     {
       "name": "Baalbek",
-      "townNames": ["Baalbek"],
+      "nameAr": "بعلبك",
+      "townNames": [
+        "Baalbek"
+      ],
       "events": [
-        { "year": 2024, "kind": "official", "text": "Fell under the Higher Relief Commission's jurisdiction for damage claims and shelter coordination, alongside Mount Lebanon, Dahieh and the North." }
+        {
+          "year": 2024,
+          "kind": "official",
+          "text": "Fell under the Higher Relief Commission's jurisdiction for damage claims and shelter coordination, alongside Mount Lebanon and Dahieh.",
+          "textAr": "دخلت ضمن صلاحية الهيئة العليا للإغاثة في مطالبات الأضرار وتنسيق الإيواء، إلى جانب جبل لبنان والضاحية."
+        }
       ]
     }
   ]

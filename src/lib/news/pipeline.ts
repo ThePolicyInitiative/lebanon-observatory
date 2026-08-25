@@ -15,6 +15,24 @@ function publishesOnlyLebanon(domain: string): boolean {
 }
 
 /**
+ * Whether the item knows who published it.
+ *
+ * Feeds that carry no publisher name leave the fallback showing: a bare
+ * domain ("alghad.tv", "prezly.msf.org.uk"), a URL path fragment
+ * ("ar/media"), or the aggregator's own address. A card headed by one of
+ * those tells a reader nothing about who is making the claim, which is
+ * the one thing this page exists to attribute.
+ */
+export function hasPublisherName(name: string | null | undefined): boolean {
+  const s = (name ?? "").trim();
+  if (s.length < 2) return false;
+  if (s.includes("/")) return false;
+  if (/^www\./i.test(s)) return false;
+  if (/^[a-z0-9][a-z0-9-]*(\.[a-z0-9-]+)+$/i.test(s)) return false;
+  return true;
+}
+
+/**
  * Lebanon has to be the subject, not a mention.
  *
  * Two things used to let other people's wars through. A high
@@ -28,6 +46,13 @@ function publishesOnlyLebanon(domain: string): boolean {
 export function filterRelevant(articles: NewsArticle[], minScore: number): NewsArticle[] {
   return articles.filter((a) => {
     const text = `${a.title} ${a.description ?? ""}`;
+
+    // A card is only worth showing if it can say who wrote it. When a feed
+    // carries no publisher name the code falls back to the bare domain, so
+    // the card reads "alghad.tv" or "ar/media" - a fragment of plumbing
+    // where a masthead should be. Those go; the article behind them is
+    // reachable through its own publisher's feed if it matters.
+    if (!hasPublisherName(a.sourceName)) return false;
 
     // The headline is what the story is about. If it names another war
     // and does not name Lebanon, the story is set there.

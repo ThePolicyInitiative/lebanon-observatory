@@ -26,8 +26,14 @@ const T = {
     legend: "الخلية = مدخلات تضع الجهة في ذلك الفعل؛ الأغمق أكثر",
     actor: "الجهة",
     total: "المجموع",
-    actors: (n: number) => `${n} جهة`,
-    cell: (a: string, s: string, n: number) => `${a} - ${s}: ${n} مدخل`,
+    // Arabic counts agree with the noun: one, two, the 3-10 plural, then
+    // the singular again from 11 up.
+    actors: (n: number) =>
+      n === 1 ? "جهة واحدة" : n === 2 ? "جهتان" : n <= 10 ? `${n} جهات` : `${n} جهة`,
+    cell: (a: string, s: string, n: number) =>
+      `${a} - ${s}: ${
+        n === 1 ? "مدخل واحد" : n === 2 ? "مدخلان" : n <= 10 ? `${n} مدخلات` : `${n} مدخلاً`
+      }`,
   },
 } as const;
 
@@ -41,6 +47,8 @@ const T = {
 
 export type MatrixRow = {
   base: string;
+  /** The register anchor for this actor; the same in both languages. */
+  anchor: string;
   layer: ActorLayer;
   cells: number[];
   total: number;
@@ -69,7 +77,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
         <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
           <span
             aria-hidden
-            className="mr-2 inline-block h-3 w-3 rounded-sm align-baseline"
+            className="me-2 inline-block h-3 w-3 rounded-sm align-baseline"
             style={{ background: yearColor }}
           />
           {t.panel(year, shown)}
@@ -87,7 +95,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
             <tr>
               <th
                 scope="col"
-                className="sticky left-0 z-20 bg-white px-2 py-2 text-left font-semibold text-[color:var(--color-navy)]"
+                className="sticky start-0 z-20 bg-white px-2 py-2 text-start font-semibold text-[color:var(--color-navy)]"
               >
                 {t.actor}
               </th>
@@ -105,7 +113,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
               ))}
               <th
                 scope="col"
-                className="px-2 py-2 text-right font-semibold text-[color:var(--color-navy)]"
+                className="px-2 py-2 text-end font-semibold text-[color:var(--color-navy)]"
               >
                 {t.total}
               </th>
@@ -118,7 +126,9 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                   <th
                     colSpan={14}
                     scope="colgroup"
-                    className="sticky left-0 bg-[#F3F5F8] px-2 py-1.5 text-left text-[11px] font-bold uppercase tracking-wide"
+                    className={`sticky start-0 bg-[#F3F5F8] px-2 py-1.5 text-start text-[11px] font-bold ${
+                      locale === "ar" ? "" : "uppercase tracking-wide"
+                    }`}
                     style={{ color: g.meta.color }}
                   >
                     {g.meta.label} · {t.actors(g.rows.length)}
@@ -128,10 +138,20 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                   <tr key={r.base} className="border-t border-[#EDF0F4] hover:bg-[#F8FAFC]">
                     <th
                       scope="row"
-                      className="sticky left-0 max-w-[280px] truncate bg-white px-2 py-1 text-left font-medium text-[color:var(--color-text)]"
+                      className="sticky start-0 max-w-[280px] truncate bg-white px-2 py-1 text-start font-medium text-[color:var(--color-text)]"
                       title={r.base}
                     >
-                      {r.base}
+                      {/* The row name is the way into that actor's entries
+                          in the register below, on either language's page.
+                          A plain anchor, not a Link: the register listens for
+                          hashchange, and a router navigation whose only
+                          difference is the fragment never fires one. */}
+                      <a
+                        href={`${locale === "ar" ? "/ar" : ""}/actors#${r.anchor}`}
+                        className="text-inherit underline-offset-2 hover:underline"
+                      >
+                        {r.base}
+                      </a>
                     </th>
                     {r.cells.map((c, i) =>
                       c > 0 ? (
@@ -154,7 +174,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                         <td key={i} className="cell-empty" />
                       ),
                     )}
-                    <td className="px-2 py-1 text-right font-semibold tabular-nums text-[color:var(--color-navy)]">
+                    <td className="px-2 py-1 text-end font-semibold tabular-nums text-[color:var(--color-navy)]">
                       {r.total}
                     </td>
                   </tr>

@@ -9,7 +9,11 @@ export default defineConfig({
     },
   },
   test: {
-    include: ["tests/**/*.test.ts"],
+    // .tsx is collected for the two hook suites, which mount into jsdom.
+    // They ask for that environment with a `@vitest-environment jsdom`
+    // docblock of their own, so every other file stays in node and the
+    // run stays fast.
+    include: ["tests/**/*.test.{ts,tsx}"],
     environment: "node",
   },
 });

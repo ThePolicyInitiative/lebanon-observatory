@@ -238,16 +238,6 @@
     ]
   },
   {
-    "id": "cat2024-23",
-    "year": 2024,
-    "section": "3. Core Implementation Entities",
-    "mention": "North Lebanon Water Establishment",
-    "supports": "Service restoration and network rehabilitation",
-    "urls": [
-      "https://policy-practice.oxfam.org/resources/water-under-fire-a-preliminary-analysis-of-water-and-wastewater-system-damages-621664/"
-    ]
-  },
-  {
     "id": "cat2024-24",
     "year": 2024,
     "section": "3. Core Implementation Entities",
@@ -807,7 +797,7 @@
     "id": "cat2026-35",
     "year": 2026,
     "section": "5. Line Ministries & Operators",
-    "mention": "Water Establishments: SLWE, BWE, BMLWE, NLWE",
+    "mention": "Water Establishments: SLWE, BWE, BMLWE",
     "supports": "Operate water supply and wastewater systems",
     "urls": [
       "https://policy-practice.oxfam.org/resources/water-under-fire-a-preliminary-analysis-of-water-and-wastewater-system-damages-621664/",

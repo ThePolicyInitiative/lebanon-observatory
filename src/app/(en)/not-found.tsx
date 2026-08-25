@@ -18,6 +18,7 @@ export default function NotFound() {
           ["/map", "Map"],
           ["/finance", "Finance & delivery"],
           ["/explorer", "Data explorer"],
+          ["/search", "Search"],
         ].map(([href, label]) => (
           <li key={href}>
             <Link

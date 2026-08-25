@@ -253,7 +253,7 @@ export default function DamagePage() {
       <div className="mt-8">
         <Takeaways
           changed="Assessment became the state's cleanest capability gain: 2026 products arrived in weeks, jointly produced with a Lebanese scientific institution, methodologically explicit about their own limits."
-          unchanged="No single authoritative baseline exists for either war - the denominator every compensation system needs - and the Bekaa, Baalbek-Hermel and the North remained unassessed in 2026."
+          unchanged="No single authoritative baseline exists for either war - the denominator every compensation system needs - and the Bekaa and Baalbek-Hermel remained unassessed in 2026."
           matters="Data geography becomes financing geography: programmes fund what is measured, so unassessed areas enter any future instrument late and weakly. And the assessed 2026 damage (~US$1.75B in two zones) sits entirely outside the only financed programme's legal scope."
         />
       </div>

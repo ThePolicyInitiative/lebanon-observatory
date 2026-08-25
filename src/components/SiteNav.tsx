@@ -62,8 +62,12 @@ export default function SiteNav() {
             LR
           </span>
           <span className="leading-tight">
+            {/* The wordmark reads in the language of the page under it. It
+                was the one English run left standing over an otherwise
+                Arabic masthead, directly above the same name in Arabic in
+                the hero. */}
             <span className="block text-sm font-semibold text-white">
-              Lebanon Reconstruction Observatory
+              {isArabic ? AR.meta.title : "Lebanon Reconstruction Observatory"}
             </span>
             <span className="hidden text-[11px] text-white/60 sm:block">
               2024–2026

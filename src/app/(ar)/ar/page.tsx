@@ -4,8 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { regionLabel } from "@/lib/vocab";
-import { kpis, stageCounts, locations } from "@/lib/data";
-import { LAYER_META } from "@/lib/colors";
+import { kpis, locations } from "@/lib/data";
 import { GOV_PATHS } from "@/lib/geo";
 import InstitutionalStructures from "@/components/InstitutionalStructures";
 import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
@@ -25,14 +24,6 @@ export const metadata: Metadata = {
   // would otherwise append the same name to itself.
   title: { absolute: AR.meta.title },
   description: AR.meta.description,
-};
-
-/** Arabic actor-layer names, matched to the shared layer ids. */
-const LAYER_AR: Record<string, string> = {
-  official: "المؤسسات الرسمية",
-  ngo_international: "المنظمات الدولية وغير الحكومية",
-  municipal: "البلديات واتحاداتها",
-  community: "المجتمع المحلي والأهالي",
 };
 
 /** The numbered heading the English narrative uses, mirrored for Arabic. */
@@ -91,15 +82,6 @@ export default function ArabicPage() {
         t26: sum(locations.mentions["2026"][key]),
       };
     });
-
-  const layerTotals = LAYER_META.map((l) => ({
-    id: l.id,
-    color: l.color,
-    label: LAYER_AR[l.id] ?? l.label,
-    y24: stageCounts["2024"][l.id].reduce((a, b) => a + b, 0),
-    y26: stageCounts["2026"][l.id].reduce((a, b) => a + b, 0),
-  }));
-  const maxLayer = Math.max(...layerTotals.flatMap((t) => [t.y24, t.y26]));
 
   return (
     <div dir="rtl" lang="ar" className="text-right">
@@ -176,67 +158,17 @@ export default function ArabicPage() {
       {/* Reconstruction pulse - the same module the English home renders */}
       <ReconstructionPulse locale="ar" />
 
-      {/* Layer shift */}
-      <section className="mx-auto max-w-[1360px] px-4 py-8 sm:px-6">
-        <h2 className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl">
-          من ربح ومن خسر موقعه، 2024 ← 2026
-        </h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          {layerTotals.map((t) => {
-            const delta = t.y26 - t.y24;
-            return (
-              <div
-                key={t.id}
-                className="card p-3.5"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="flex items-center gap-2 text-sm font-semibold text-[color:var(--color-navy)]">
-                    <span
-                      aria-hidden
-                      className="h-3 w-3 rounded-sm"
-                      style={{ background: t.color }}
-                    />
-                    {t.label}
-                  </span>
-                  <span
-                    className="rounded-sm px-1.5 py-0.5 text-xs font-bold tabular-nums"
-                    style={{
-                      background: delta >= 0 ? "#E8F1EC" : "#F7E9E5",
-                      color: delta >= 0 ? "#1F6B4E" : "#BD5A46",
-                    }}
-                  >
-                    {delta >= 0 ? "+" : ""}
-                    {delta}
-                  </span>
-                </div>
-                {[
-                  { year: "2024", v: t.y24, color: "#58779B" },
-                  { year: "2026", v: t.y26, color: "#2F8F6B" },
-                ].map((row) => (
-                  <div key={row.year} className="mt-1.5 flex items-center gap-2">
-                    <span className="w-9 text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
-                      {row.year}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="h-2.5 rounded-sm"
-                      style={{
-                        width: `${Math.max(3, (row.v / maxLayer) * 80)}%`,
-                        background: row.color,
-                      }}
-                    />
-                    <span className="text-[12px] font-semibold tabular-nums">{row.v}</span>
-                  </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* KPIs */}
-      <section className="mx-auto max-w-[1360px] px-4 pb-12 sm:px-6">
-        <h2 className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl">
+      {/* KPIs. The per-layer shift that used to sit here is section 4's
+          subject and has no counterpart on the English home, so it is not
+          repeated ahead of it. */}
+      <section
+        aria-labelledby="ar-kpis"
+        className="mx-auto max-w-[1360px] px-4 pb-12 pt-8 sm:px-6"
+      >
+        <h2
+          id="ar-kpis"
+          className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"
+        >
           {AR.kpis.title}
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-loose text-[color:var(--color-text-secondary)]">

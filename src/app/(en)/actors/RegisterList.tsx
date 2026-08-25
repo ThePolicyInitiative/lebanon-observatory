@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { layers, stageLabel, statusLabel, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
@@ -35,9 +35,18 @@ const T = {
     bothYears: "السنتان",
     showing: (a: number, e: number) => [`تُعرض `, `${a}`, ` جهة بـ`, `${e}`, ` مدخلاً ضمن الترشيح الحالي.`] as const,
     where: "أين:",
-    seeMap: "على الخريطة →",
+    seeMap: "على الخريطة ←",
     none: "لا جهة تطابق الترشيح الحالي.",
-    stages: (n: number) => `${n} مرحلة`,
+    // Arabic counts agree with the noun: one, two, the 3-10 plural, then
+    // the singular again from 11 up.
+    stages: (n: number) =>
+      n === 1
+        ? "مرحلة واحدة"
+        : n === 2
+          ? "مرحلتان"
+          : n <= 10
+            ? `${n} مراحل`
+            : `${n} مرحلة`,
     roles: {
       finance: "تمويل",
       procurement: "شراء",
@@ -82,6 +91,8 @@ export type RegisterRecord = {
 
 export type RegisterGroup = {
   base: string;
+  /** actorAnchor() of the untranslated base name; the same in both languages. */
+  anchor: string;
   people: string;
   subtype: string;
   layer: ActorLayer;
@@ -97,6 +108,8 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
   const [layer, setLayer] = useState<"all" | ActorLayer>("all");
   const [year, setYear] = useState<"both" | Year>("both");
   const [open, setOpen] = useState<Set<string>>(new Set());
+  /** An anchor waiting for the group it names to be rendered and expanded. */
+  const pending = useRef<string | null>(null);
 
   const groups = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -138,14 +151,60 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
     onActivate: (i) => setYear(yearOptions[i]),
   });
 
-  function toggle(base: string) {
+  function toggle(anchor: string) {
+    const nowOpen = !open.has(anchor);
     setOpen((cur) => {
       const next = new Set(cur);
-      if (next.has(base)) next.delete(base);
-      else next.add(base);
+      if (next.has(anchor)) next.delete(anchor);
+      else next.add(anchor);
       return next;
     });
+    // Opening a group leaves a link to it in the address bar, so a reader
+    // who has found an actor can hand that actor to someone else.
+    const { pathname, search, hash } = window.location;
+    if (nowOpen) {
+      window.history.replaceState(null, "", `${pathname}${search}#${anchor}`);
+    } else if (hash.slice(1) === anchor) {
+      window.history.replaceState(null, "", `${pathname}${search}`);
+    }
   }
+
+  /**
+   * The hash names one actor group. On load and on any later hash change,
+   * that group opens and comes into view; the filters are cleared first,
+   * because a link from elsewhere must resolve whatever this page was
+   * showing before.
+   */
+  useEffect(() => {
+    const known = new Set(allGroups.map((g) => g.anchor));
+    function fromHash() {
+      const anchor = decodeURIComponent(window.location.hash.slice(1));
+      if (!anchor || !known.has(anchor)) return;
+      setQuery("");
+      setLayer("all");
+      setYear("both");
+      setOpen((cur) => (cur.has(anchor) ? cur : new Set(cur).add(anchor)));
+      pending.current = anchor;
+    }
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, [allGroups, pending]);
+
+  /**
+   * Scroll once the named group is actually on the page. A hash followed
+   * while a filter was hiding that actor resolves on the render after the
+   * filters are cleared, which is why this waits for the list to change
+   * rather than scrolling from the handler.
+   */
+  useEffect(() => {
+    const anchor = pending.current;
+    if (!anchor) return;
+    const el = document.getElementById(anchor);
+    if (!el) return;
+    pending.current = null;
+    el.scrollIntoView({ block: "start" });
+  }, [groups, open, pending]);
 
   return (
     <>
@@ -226,14 +285,18 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
       <ul className="mt-4 divide-y divide-[color:var(--color-border)] border-t border-[color:var(--color-border)]">
         {groups.map((g) => {
           const meta = layers(locale).find((l) => l.id === g.layer)!;
-          const isOpen = open.has(g.base);
+          const isOpen = open.has(g.anchor);
           return (
-            <li key={g.base}>
+            <li
+              key={g.base}
+              id={g.anchor}
+              className="scroll-mt-[calc(var(--header-h)+0.75rem)]"
+            >
               <button
                 type="button"
                 aria-expanded={isOpen}
-                onClick={() => toggle(g.base)}
-                className="flex min-h-12 w-full items-center gap-3 px-1 py-2.5 text-left hover:bg-[#F6F8FA]"
+                onClick={() => toggle(g.anchor)}
+                className="flex min-h-12 w-full items-center gap-3 px-1 py-2.5 text-start hover:bg-[#F6F8FA]"
               >
                 <span
                   aria-hidden
@@ -269,10 +332,14 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                 </span>
               </button>
               {isOpen ? (
-                <div className="space-y-3 px-1 pb-4 pl-5">
+                <div className="space-y-3 px-1 pb-4 ps-5">
                   {g.records.map((r) => (
                     <article key={r.id} className="panel-sunken p-3">
-                      <p className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wide">
+                      <p
+                        className={`flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold ${
+                          locale === "ar" ? "" : "uppercase tracking-wide"
+                        }`}
+                      >
                         <span
                           className={`rounded-sm px-1.5 py-0.5 ${
                             r.year === 2024
@@ -307,7 +374,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                           <span className="font-semibold">{t.where}</span>{" "}
                           {r.locationNames.join("; ")}{" "}
                           <Link
-                            href={`/map?year=${r.year}&layer=${g.layer}&stage=${r.stageNo}`}
+                            href={`${locale === "ar" ? "/ar" : ""}/map?year=${r.year}&layer=${g.layer}&stage=${r.stageNo}`}
                             className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
                           >
                             {t.seeMap}

@@ -1,5 +1,6 @@
 import { roleRecords } from "@/lib/data";
 import RegisterList, { type RegisterGroup } from "./RegisterList";
+import { actorAnchor, actorHref } from "./actor-anchor";
 import type { Locale } from "@/lib/vocab";
 import {
   actorBase,
@@ -8,6 +9,17 @@ import {
   peopleLabel,
   subtypeLabel,
 } from "@/lib/actor-names";
+
+/**
+ * The per-actor destination, re-exported for any surface that names an
+ * actor: actorHref(actorBase(name), locale) is /actors#actor-... in English
+ * and /ar/actors#actor-... in Arabic, and the register opens that group.
+ *
+ * Both live in ./actor-anchor, which carries no data. A client component
+ * must import them from there, not through this module, which pulls the
+ * whole of role-records.
+ */
+export { actorAnchor, actorHref };
 
 const HEAD = {
   en: {
@@ -55,6 +67,8 @@ function buildGroups(locale: Locale): RegisterGroup[] {
       const sorted = [...records].sort((a, b) => a.year - b.year || a.stageNo - b.stageNo);
       return {
         base: actorLabel(base, locale),
+        // Off the untranslated name, so both languages anchor alike.
+        anchor: actorAnchor(base),
         people: peopleLabel(people, locale),
         subtype: subtypeLabel(records[0].actorSubtype ?? "", locale),
         layer: records[0].actorLayer,

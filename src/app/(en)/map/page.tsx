@@ -39,9 +39,9 @@ export default function MapPage() {
         </h2>
         <p className="mt-2 text-[color:var(--color-text)]">
           The 2026 rapid assessments cover two zones - south of the Litani
-          (desk-validated) and Beirut–Mount Lebanon (field-checked) - while
-          the Bekaa, Baalbek-Hermel and the North had no equivalent assessment
-          by the cut-off. Merging these partial products into a single
+          (desk-validated) and Beirut-Mount Lebanon (field-checked) - while the
+          Bekaa and Baalbek-Hermel, which the war did reach, had no equivalent
+          assessment by the cut-off. Merging these partial products into a single
           national damage scale would manufacture a false comparison, so this
           observatory does not map damage estimates onto a shared legend. The
           zone-level figures, each with its comparability badge and
@@ -54,7 +54,7 @@ export default function MapPage() {
       <div className="mt-8">
         <Takeaways
           changed="Traced 2026 activity concentrated in the same southern arc and Dahieh belt as 2024, with international mentions spreading into camps and national-scale governance work."
-          unchanged="The Bekaa, Baalbek-Hermel and the North remained thinly traced in both years - and unassessed in 2026 - so data geography risks becoming financing geography."
+          unchanged="The Bekaa and Baalbek-Hermel remained thinly traced in both years - and unassessed in 2026 - so data geography risks becoming financing geography."
           matters="Programmes fund what is measured. Localities outside the assessed zones enter any future financing instrument late and weakly, replicating 2024's geographic inequality by a new mechanism."
         />
       </div>

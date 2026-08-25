@@ -1,7 +1,7 @@
 import { LAYER_COLORS } from "./colors";
 import { actorBase, actorLabel, subtypeLabel } from "./actor-names";
 import { layerLabel, stageLabel, statusLabel, type Locale } from "./vocab";
-import { eventsByTown, eventsFor } from "./events";
+import { eventsByTown, eventsFor, eventText } from "./events";
 import { matchLocations, type LocationIndex } from "./geo-match";
 import type { SlimRecord } from "./map-records";
 import type { Year } from "./types";
@@ -216,8 +216,8 @@ export function buildPins({
         layer: ev.kind === "context" ? "context" : ev.kind,
         color: ev.kind === "context" ? CONTEXT_COLOR : layerColor(ev.kind),
         title: ev.kind === "context" ? t.context : t.episode,
-        detail: ev.text,
-        body: ev.text,
+        detail: eventText(ev, locale),
+        body: eventText(ev, locale),
         layerLabel: ev.kind === "context" ? t.context : layerLabel(ev.kind, locale),
         subtype: "",
         year,

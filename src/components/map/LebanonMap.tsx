@@ -25,7 +25,13 @@ import {
   type GeoFeature,
 } from "@/lib/geo";
 import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
-import { LOCALITY_EVENTS, eventsFor, EVENT_KIND_META } from "@/lib/events";
+import {
+  LOCALITY_EVENTS,
+  eventsFor,
+  eventText,
+  localityName,
+  EVENT_KIND_META,
+} from "@/lib/events";
 import { fmtDate } from "@/lib/format";
 import { buildPins, clampToLand, layerColor, pinOutline } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
@@ -787,7 +793,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 className="rounded-md border border-[color:var(--color-border)] p-3.5"
               >
                 <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
-                  {l.name}
+                  {localityName(l, locale)}
                 </h4>
                 <ul className="mt-2 space-y-2">
                   {eventsFor(l, year).map((e, i) => {
@@ -805,7 +811,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                             {fmtDate(e.date, locale)}:
                           </span>
                         ) : null}
-                        {e.text}
+                        {eventText(e, locale)}
                       </li>
                     );
                   })}

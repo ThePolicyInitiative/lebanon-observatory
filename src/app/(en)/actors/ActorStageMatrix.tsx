@@ -3,6 +3,7 @@ import MatrixTables, { type MatrixRow, type YearMatrixData } from "./MatrixTable
 import type { Year } from "@/lib/types";
 import type { Locale } from "@/lib/vocab";
 import { actorBase, actorLabel } from "@/lib/actor-names";
+import { actorAnchor } from "./actor-anchor";
 
 const HEAD = {
   en: {
@@ -29,10 +30,13 @@ function buildYear(year: Year, locale: Locale): MatrixRow[] {
   const byBase = new Map<string, MatrixRow>();
   for (const r of roleRecords) {
     if (r.year !== year) continue;
-    const base = actorLabel(actorBase(r.actorName), locale);
+    const raw = actorBase(r.actorName);
+    const base = actorLabel(raw, locale);
     if (!byBase.has(base)) {
       byBase.set(base, {
         base,
+        // The row name links into the register's group for that actor.
+        anchor: actorAnchor(raw),
         layer: r.actorLayer,
         cells: Array.from({ length: 12 }, () => 0),
         total: 0,

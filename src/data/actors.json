@@ -2019,7 +2019,7 @@
   {
     "id": "a2026-82",
     "year": 2026,
-    "name": "Water establishments (SLWE, BWE, BMLWE, NLWE)",
+    "name": "Water establishments (SLWE, BWE, BMLWE)",
     "layer": "official",
     "subtype": "Water and public utilities",
     "mandateVsCapacity": null,
