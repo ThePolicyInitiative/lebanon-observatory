@@ -20,6 +20,8 @@ const NAV_ITEMS = [
   { path: "/finance", label: "Finance", ar: AR.nav.finance },
   { path: "/news", label: "Live updates", ar: AR.nav.news },
   { path: "/explorer", label: "Explorer", ar: AR.nav.explorer },
+  { path: "/search", label: "Search", ar: "بحث" },
+  { path: "/about", label: "About", ar: "عن المرصد" },
 ];
 
 /** "/compare" becomes "/ar/compare"; "/" becomes "/ar". */

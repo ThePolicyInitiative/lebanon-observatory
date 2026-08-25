@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import ArabicPageShell from "../ArabicPageShell";
 import NewsExplorer from "@/app/(en)/news/NewsExplorer";
+import CoverageHistory from "@/components/CoverageHistory";
 
 export const metadata: Metadata = {
   title: AR.pages.news.title,
@@ -16,7 +17,13 @@ export const metadata: Metadata = {
  * directory and the coverage analytics all run here over the same endpoint,
  * so both languages read the same articles at the same moment.
  */
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = await searchParams;
+  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
   // No opening passage: the English page carries none either.
   return (
     <ArabicPageShell title={AR.pages.news.title} englishHref="/news">
@@ -41,6 +48,7 @@ export default function Page() {
           كل خبر يبقى بلغة ناشره ويحيل إليه.
         </p>
       </section>
+      <CoverageHistory locale="ar" year={one(params.hy)} kind={one(params.hk)} />
     </ArabicPageShell>
   );
 }
