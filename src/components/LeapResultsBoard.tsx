@@ -22,16 +22,16 @@ const STATUS_EDGE: Record<string, string> = {
 
 const T = {
   en: {
-    title: "Promises with dates: LEAP targets versus disclosed results",
+    title: "What LEAP promised by when - and what it has reported so far",
     sub: (d: string) =>
-      `The project's own results framework against the ${d} disclosure. Targets assume full US$1 billion framework financing.`,
+      `Each card is one indicator the project set for itself: the target, its deadline, and the figure the project disclosed on ${d}. Targets assume the full US$1 billion framework is financed. A rust edge marks a disclosed zero or a missed date; an amber edge marks a step still in process; grey is a baseline figure.`,
     target: "Target:",
     result: "June 2026:",
   },
   ar: {
-    title: "وعود بمواعيد: أهداف LEAP مقابل النتائج المعلنة",
+    title: "ما وعد به LEAP وموعده - وما أعلنه حتى الآن",
     sub: (d: string) =>
-      `إطار نتائج المشروع نفسه مقابل ما أُعلن في ${d}. الأهداف تفترض تمويلاً كاملاً للإطار البالغ مليار دولار.`,
+      `كل بطاقة مؤشر واحد وضعه المشروع لنفسه: الهدف، وموعده، والرقم الذي أعلنه المشروع في ${d}. الأهداف تفترض تمويل الإطار الكامل البالغ مليار دولار. الحافة الصدئة تعني صفراً معلناً أو موعداً فات؛ والكهرمانية خطوة لا تزال قيد الإجراء؛ والرمادية رقم أساس.`,
     target: "الهدف:",
     result: "حزيران 2026:",
   },

@@ -17,8 +17,6 @@ export {
   changeFor,
   yearTotal,
   layerTotal,
-  ROLE_MIX_GROUPS,
-  roleMixFor,
   MUNICIPAL_POWER_GAP,
   locations,
   kpis,

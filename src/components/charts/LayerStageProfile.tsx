@@ -59,7 +59,7 @@ export default function LayerStageProfile({
         <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">{t.sub}</p>
       </figcaption>
 
-      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[color:var(--color-text-secondary)]">
         <span className="flex items-center gap-1.5">
           <span aria-hidden className="h-2.5 w-4 rounded-sm bg-[color:var(--color-y2024)]" />
           {t.y24}
@@ -79,8 +79,8 @@ export default function LayerStageProfile({
           const v26 = b[i] ?? 0;
           const delta = v26 - v24;
           return (
-            <li key={label} className="grid grid-cols-[7.5rem_1fr_2.5rem] items-center gap-2">
-              <span className="truncate text-[11.5px] text-[color:var(--color-text)]" title={label}>
+            <li key={label} className="grid grid-cols-[9.5rem_1fr_2.5rem] items-center gap-2">
+              <span className="text-[12.5px] leading-snug text-[color:var(--color-text)]">
                 <span className="tabular-nums text-[color:var(--color-text-secondary)]">
                   {i + 1}.
                 </span>{" "}
@@ -101,14 +101,14 @@ export default function LayerStageProfile({
                         background: row.color,
                       }}
                     />
-                    <span className="text-[10.5px] tabular-nums text-[color:var(--color-text-secondary)]">
+                    <span className="text-[11.5px] tabular-nums text-[color:var(--color-text-secondary)]">
                       {row.v}
                     </span>
                   </span>
                 ))}
               </span>
               <span
-                className={`justify-self-end rounded-sm px-1 py-0.5 text-[10.5px] font-bold tabular-nums ${
+                className={`justify-self-end rounded-sm px-1 py-0.5 text-[11.5px] font-bold tabular-nums ${
                   delta > 0
                     ? "bg-[#E8F1EC] text-[#1F6B4E]"
                     : delta < 0

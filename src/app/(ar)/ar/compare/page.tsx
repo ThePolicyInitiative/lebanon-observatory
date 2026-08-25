@@ -7,7 +7,6 @@ import ComparePanel from "@/app/(en)/compare/ComparePanel";
 import StageCompositionChart from "@/components/charts/StageCompositionChart";
 import LayerSlopeChart from "@/components/charts/LayerSlopeChart";
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
-import RoleMixChart from "@/components/charts/RoleMixChart";
 import ThreeStreams from "@/components/ThreeStreams";
 import DisplacementCycle from "@/components/DisplacementCycle";
 import Takeaways from "@/components/Takeaways";
@@ -137,7 +136,6 @@ export default function Page() {
         {/* The standing counts caution prints once, on YearHeatmaps. */}
         <YearHeatmaps locale="ar" />
         <StageCompositionChart showCaveat={false} locale="ar" />
-        <RoleMixChart showCaveat={false} locale="ar" />
       </div>
 
       {/* The delivery the system proved, twice */}

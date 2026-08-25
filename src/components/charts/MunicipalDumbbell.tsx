@@ -84,7 +84,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         name: t.axisName,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: 11.5, color: "#3D4C5E" },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -94,7 +94,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         position: ar ? "right" : "left",
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
-        axisLabel: { fontSize: 11.5, width: 210, overflow: "break" },
+        axisLabel: { fontSize: 12, color: "#3D4C5E", width: 210, overflow: "break" },
       },
       series: [
         // Connector segments drawn as a custom series

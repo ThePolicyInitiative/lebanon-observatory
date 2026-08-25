@@ -7,7 +7,6 @@ import { locations } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
 import LebanonMap from "@/components/map/LebanonMap";
-import YearChoropleths from "@/components/map/YearChoropleths";
 import RegionalComposition from "@/components/map/RegionalComposition";
 import { layers, regionLabel } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
@@ -70,10 +69,6 @@ export default function Page() {
           </Suspense>
         </div>
       </section>
-
-      <div className="mt-7">
-        <YearChoropleths locale="ar" />
-      </div>
 
       <div className="mt-7">
         {/* The standing geography caution is already printed above the map. */}

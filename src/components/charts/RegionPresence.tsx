@@ -56,7 +56,18 @@ export default function RegionPresence({
         <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">{t.sub}</p>
       </figcaption>
 
-      <ul className="mt-4 space-y-2.5">
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[color:var(--color-text-secondary)]">
+        <span className="flex items-center gap-1.5">
+          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-[color:var(--color-y2024)]" />
+          2024
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-[color:var(--color-y2026)]" />
+          2026
+        </span>
+      </p>
+
+      <ul className="mt-3 space-y-2.5">
         {rows.map((r) => (
           <li key={r.id}>
             <p className="flex items-baseline justify-between gap-2 text-[12.5px]">

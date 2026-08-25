@@ -42,7 +42,7 @@ const T = {
       "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Hover a cell for its value, or click it for the entries behind that change.",
     tipChange: "Change",
     tipClick: "Click for underlying data",
-    visualMapText: ["gain (teal)", "contraction (rust)"],
+    visualMapText: ["more traced in 2026", "fewer traced in 2026"],
     description:
       "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9).",
     tableCaption: "Change in traced actor-stage presence, 2026 minus 2024.",
@@ -65,7 +65,7 @@ const T = {
       "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
     tipChange: "التغيّر",
     tipClick: "انقر لعرض ما وراء الخلية",
-    visualMapText: ["كسب (أزرق مخضرّ)", "انكماش (صدئ)"],
+    visualMapText: ["حضور أكبر في 2026", "حضور أقل في 2026"],
     description:
       "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع طبقات فاعلة واثنتي عشرة مرحلة من سلسلة القيمة. أكبر المكاسب إغاثة المجتمع المحلي (+35) وتنسيقه (+25)؛ وأعمق الانكماشات تمويل المجتمع المحلي (-11) ورفع الأنقاض لديه (-9).",
     tableCaption: "التغيّر في الحضور المرصود بين الجهات والمراحل، 2026 ناقص 2024.",
@@ -247,7 +247,7 @@ export default function ChangeHeatmap({
     const ls = layers(locale);
     const stageNames = stageList(locale);
     return {
-      grid: { left: 210, right: 20, top: 10, bottom: 90 },
+      grid: { left: 120, right: 20, top: 10, bottom: 90 },
       tooltip: {
         formatter: (p) => {
           const { value } = p as unknown as { value: [number, number, number] };
@@ -262,16 +262,17 @@ export default function ChangeHeatmap({
         type: "category",
         data: stageShortList(locale),
         position: "bottom",
-        axisLabel: { rotate: 38, fontSize: 10.5 },
+        axisLabel: { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 },
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
       },
       yAxis: {
         type: "category",
-        data: ls.map((l) => l.label),
+        // Short layer names: the full ones ate a third of the plot width.
+        data: ls.map((l) => l.short),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
-        axisLabel: { fontSize: 11.5 },
+        axisLabel: { fontSize: 11.5, color: "#3D4C5E" },
       },
       visualMap: {
         show: true,

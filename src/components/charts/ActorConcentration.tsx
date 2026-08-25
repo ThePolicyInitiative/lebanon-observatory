@@ -91,11 +91,11 @@ function YearColumn({
     <div>
       <h4 className="flex flex-wrap items-baseline gap-x-2 text-sm font-semibold text-[color:var(--color-navy)]">
         {year}
-        <span className="text-[11px] font-normal text-[color:var(--color-text-secondary)]">
+        <span className="text-[12px] font-normal text-[color:var(--color-text-secondary)]">
           {t.actors(list.length)}
         </span>
       </h4>
-      <p className="mt-0.5 text-[11px] text-[color:var(--color-text-secondary)]">
+      <p className="mt-0.5 text-[12px] text-[color:var(--color-text-secondary)]">
         {t.top(headN, headShare)}
       </p>
       <ul className="mt-2.5 space-y-2">
@@ -144,7 +144,7 @@ export default function ActorConcentration({
       </div>
       <p className="mt-3 text-xs">
         <Link
-          href={locale === "ar" ? `/explorer?layer=${layer}` : `/explorer?layer=${layer}`}
+          href={locale === "ar" ? `/ar/explorer?layer=${layer}` : `/explorer?layer=${layer}`}
           className="text-[color:var(--color-blue)] underline underline-offset-2"
         >
           {t.explorer}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Suspense } from "react";
 import LebanonMap from "@/components/map/LebanonMap";
-import YearChoropleths from "@/components/map/YearChoropleths";
 import RegionalComposition from "@/components/map/RegionalComposition";
 import Takeaways from "@/components/Takeaways";
 import { localeAlternates } from "@/lib/i18n";
@@ -27,10 +26,6 @@ export default function MapPage() {
         <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
           <LebanonMap />
         </Suspense>
-      </div>
-
-      <div className="mt-7">
-        <YearChoropleths />
       </div>
 
       <div className="mt-7">

@@ -91,14 +91,21 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
 
   const ar = locale === "ar";
   const option = useMemo<EChartsOption>(() => {
+    // Alternate each track's labels above and below its line: with every
+    // label sitting on top, neighbouring names overprinted each other.
+    const seenPerTrack = new Map<number, number>();
     const data = timeline.map((e) => {
       const s = STATUS_STYLE[e.status];
+      const trackIndex = TRACKS.findIndex((t) => t.id === e.track);
+      const nth = seenPerTrack.get(trackIndex) ?? 0;
+      seenPerTrack.set(trackIndex, nth + 1);
       return {
-        value: [e.date, TRACKS.findIndex((t) => t.id === e.track)],
+        value: [e.date, trackIndex],
         name: ar ? e.labelAr : e.label,
         itemStyle: { color: s.color },
         symbol: s.symbol,
         symbolSize: e.status === "context" ? 9 : 13,
+        label: { position: nth % 2 === 0 ? ("top" as const) : ("bottom" as const) },
         eventDetail: ar ? e.detailAr : e.detail,
         eventStatus: ar ? s.labelAr : s.label,
         eventDate: e.date,
@@ -150,16 +157,19 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
         {
           type: "scatter",
           data,
+          // Alternating per-point positions above; anything that still
+          // collides is hidden rather than overprinted - the tooltip and
+          // the description carry every name.
           labelLayout: { hideOverlap: true },
           label: {
             show: true,
             position: "top",
-            distance: 6,
+            distance: 7,
             fontSize: 9.5,
             color: "#667588",
             formatter: (p) => {
               const name = (p as { name: string }).name;
-              return name.length > 34 ? `${name.slice(0, 33)}…` : name;
+              return name.length > 28 ? `${name.slice(0, 27)}…` : name;
             },
           },
         },

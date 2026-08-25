@@ -25,15 +25,15 @@ function days(a: string, b: string): number {
 
 const T = {
   en: {
-    days: (n: number) => `${n} days from cabinet request to 1.65% disbursed`,
-    sub: "Elapsed time between each LEAP milestone, drawn to scale. Every institutional step - approval, signing, ratification, effectiveness - consumed months while destruction accumulated.",
+    days: (n: number) => `How long the money took: ${n} days, step by step`,
+    sub: "The full official path of the LEAP reconstruction loan, drawn to scale. It starts on 17 December 2024, when the cabinet asked the World Bank to assess the damage, and ends on 29 June 2026, by which point US$4.13 million of the US$250 million loan - 1.65% - had actually been paid out. Each coloured segment is the wait between two official steps, and every step - approval, signing, ratification, effectiveness - consumed months while destruction accumulated.",
     caveat: "Milestone dates from the tracked timeline; the 2026 war began on 2 March 2026, four days after LEAP became effective. Elapsed time measures institutional sequence, not fault: each step has its own legal prerequisites.",
     days_: (n: number) => `${n} days`,
     bar: (n: number) => `Proportional bar of ${n} days across six milestone intervals`,
   },
   ar: {
-    days: (n: number) => `${n} يوماً من طلب مجلس الوزراء إلى دفع 1.65%`,
-    sub: "الزمن المنقضي بين كل محطة من محطات LEAP، مرسوماً بالمقياس. كل خطوة مؤسسية - الإقرار والتوقيع والإبرام والنفاذ - استهلكت شهوراً بينما كان الدمار يتراكم.",
+    days: (n: number) => `كم استغرق المال: ${n} يوماً، خطوةً خطوة`,
+    sub: "المسار الرسمي الكامل لقرض LEAP لإعادة الإعمار، مرسوماً بالمقياس. يبدأ في 17 كانون الأول 2024 حين طلب مجلس الوزراء من البنك الدولي تقييم الأضرار، وينتهي في 29 حزيران 2026 وقد دُفع فعلياً 4.13 ملايين دولار من قرض الـ250 مليوناً، أي 1.65%. كل مقطع ملوَّن هو الانتظار بين خطوتين رسميتين، وكل خطوة - الإقرار والتوقيع والإبرام والنفاذ - استهلكت شهوراً بينما كان الدمار يتراكم.",
     caveat: "تواريخ المحطات من الجدول الزمني المتتبَّع؛ وحرب 2026 بدأت في 2 آذار 2026، أي بعد أربعة أيام من نفاذ LEAP. الزمن المنقضي يقيس التسلسل المؤسسي لا الخطأ: لكل خطوة شروطها القانونية المسبقة.",
     days_: (n: number) => `${n} يوماً`,
     bar: (n: number) => `شريط متناسب يمثّل ${n} يوماً موزّعة على ستة فواصل بين المحطات`,

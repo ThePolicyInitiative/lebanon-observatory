@@ -68,7 +68,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
         data: stageShortList(locale),
         inverse: ar,
         axisLabel: showXLabels
-          ? { rotate: 38, fontSize: 10 }
+          ? { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 }
           : { show: false },
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
@@ -80,7 +80,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
         position: ar ? ("right" as const) : ("left" as const),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: "#DCE3EA" } },
-        axisLabel: { fontSize: 10.5 },
+        axisLabel: { fontSize: 11, color: "#3D4C5E" },
       },
     });
     const ax1 = mkAxis(0, false);
@@ -97,12 +97,12 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
           ],
       grid: ar
         ? [
-            { left: 90, right: 130, top: 30, height: 175 },
-            { left: 90, right: 130, top: 270, height: 175 },
+            { left: 120, right: 130, top: 30, height: 175 },
+            { left: 120, right: 130, top: 270, height: 175 },
           ]
         : [
-            { left: 130, right: 90, top: 30, height: 175 },
-            { left: 130, right: 90, top: 270, height: 175 },
+            { left: 130, right: 120, top: 30, height: 175 },
+            { left: 130, right: 120, top: 270, height: 175 },
           ],
       tooltip: {
         formatter: (p) => {
@@ -114,38 +114,24 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
           return `<strong>${stageList(locale)[si]}</strong><br/>${layers(locale)[li].label}<br/>${params.seriesName}: <strong>${v}</strong> ${tr.tracedActors}`;
         },
       },
-      visualMap: [
-        {
-          type: "continuous",
-          seriesIndex: 0,
-          min: 0,
-          max: maxVal,
-          calculable: false,
-          orient: "vertical",
-          ...(ar ? { left: 10 } : { right: 10 }),
-          top: 40,
-          itemHeight: 130,
-          itemWidth: 12,
-          text: [String(maxVal), "0"],
-          textStyle: { fontSize: 10 },
-          inRange: { color: ["#F2F5F8", "#58779B", "#20344D"] },
-        },
-        {
-          type: "continuous",
-          seriesIndex: 1,
-          min: 0,
-          max: maxVal,
-          calculable: false,
-          orient: "vertical",
-          ...(ar ? { left: 10 } : { right: 10 }),
-          top: 280,
-          itemHeight: 130,
-          itemWidth: 12,
-          text: [String(maxVal), "0"],
-          textStyle: { fontSize: 10 },
-          inRange: { color: ["#F1F6F3", "#2F8F6B", "#1B4A38"] },
-        },
-      ],
+      // One legend, one ramp, both panels: the whole point of stacking the
+      // two years is that the same colour means the same count in both, so
+      // the panels can be compared cell against cell.
+      visualMap: {
+        type: "continuous",
+        seriesIndex: [0, 1],
+        min: 0,
+        max: maxVal,
+        calculable: false,
+        orient: "vertical",
+        ...(ar ? { left: 6 } : { right: 6 }),
+        top: "middle",
+        itemHeight: 170,
+        itemWidth: 14,
+        text: [`${maxVal} ${tr.tracedActors}`, "0"],
+        textStyle: { fontSize: 10.5 },
+        inRange: { color: ["#F2F5F8", "#7A93B0", "#173B63"] },
+      },
       xAxis: [ax1.x, ax2.x],
       yAxis: [ax1.y, ax2.y],
       series: [

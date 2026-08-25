@@ -79,27 +79,6 @@ export function yearTotal(year: Year): number {
   );
 }
 
-/** Stage groupings used by the actor role-mix comparison. */
-export const ROLE_MIX_GROUPS: { id: string; label: string; stages: number[] }[] = [
-  { id: "governance", label: "Governance & assessment (stages 1–4)", stages: [0, 1, 2, 3] },
-  { id: "works", label: "Works delivery (stages 5–8)", stages: [4, 5, 6, 7] },
-  { id: "recovery", label: "Return & recovery (stages 9–11)", stages: [8, 9, 10] },
-  { id: "oversight", label: "Oversight (stage 12)", stages: [11] },
-];
-
-export function roleMixFor(year: Year, layer: ActorLayer) {
-  const counts = countsFor(year, layer);
-  const total = counts.reduce((s, v) => s + v, 0);
-  return ROLE_MIX_GROUPS.map((g) => {
-    const value = g.stages.reduce((s, i) => s + counts[i], 0);
-    return {
-      group: g.label,
-      value,
-      pct: total === 0 ? 0 : (value / total) * 100,
-    };
-  });
-}
-
 /** Municipal power-gap module (grouped functional values). */
 export const MUNICIPAL_POWER_GAP = [
   { fn: "Coordination and reporting", y2024: 6, y2026: 3 },
