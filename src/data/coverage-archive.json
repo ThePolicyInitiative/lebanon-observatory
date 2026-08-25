@@ -11,6 +11,7 @@
       "title": "Gulf between Hezbollah and Lebanese state grows wider as Israeli occupation continues",
       "date": "2026-08-25",
       "focus": "State authority, Hezbollah welfare networks, reconstruction, Israeli occupation/attacks",
+      "focusAr": "سلطة الدولة، شبكات الرعاية التابعة لحزب الله، إعادة الإعمار، الاحتلال والغارات الإسرائيلية",
       "url": "https://www.theguardian.com/world/2026/aug/25/gulf-between-hezbollah-and-lebanese-state-grows-wider-as-israeli-occupation-continues"
     },
     {
@@ -22,6 +23,7 @@
       "title": "Renewed Conflict Derails Lebanon's Fragile Economic Recovery",
       "date": "2026-08-21",
       "focus": "2026 GDP contraction, inflation, tourism, displacement, fiscal pressure, reconstruction needs",
+      "focusAr": "انكماش الناتج المحلي 2026، التضخم، السياحة، النزوح، الضغط المالي، احتياجات إعادة الإعمار",
       "url": "https://www.worldbank.org/en/news/press-release/2026/08/21/renewed-conflict-derails-lebanon-s-fragile-economic-recovery"
     },
     {
@@ -33,6 +35,7 @@
       "title": "Canadian official condemns Israel's 'unlawful invasion' and announces new aid to Lebanon",
       "date": "2026-08-20",
       "focus": "Diplomacy, aid, casualties, displacement, sovereignty",
+      "focusAr": "الدبلوماسية، المساعدات، الضحايا، النزوح، السيادة",
       "url": "https://apnews.com/article/8787e292cb3948ad5868a142ee63c93f"
     },
     {
@@ -44,6 +47,7 @@
       "title": "Lebanon Economic Monitor: Summer 2026 - A Conflict-Torn Economy",
       "date": "2026-08-20",
       "focus": "Macroeconomic consequences, tourism, consumption, conflict shock, medium-term growth",
+      "focusAr": "التبعات على الاقتصاد الكلي، السياحة، الاستهلاك، صدمة الحرب، النمو في المدى المتوسط",
       "url": "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099613508202629849"
     },
     {
@@ -55,6 +59,7 @@
       "title": "الرئيس سلام يعقد اجتماعاً خُصّص لمتابعة إعادة الإعمار في مدينة النبطية",
       "date": "2026-08-14",
       "focus": "Nabatieh reconstruction, infrastructure, public services, priority projects, coordination",
+      "focusAr": "إعادة إعمار النبطية، البنى التحتية، الخدمات العامة، المشاريع ذات الأولوية، التنسيق",
       "url": "https://www.pcm.gov.lb/arabic/subpg.aspx?pageid=27413"
     },
     {
@@ -66,6 +71,7 @@
       "title": "Dismantling of Unexploded Missiles and Aerial Bombs Left Behind by Israeli Aggression",
       "date": "2026-08-09",
       "focus": "Unexploded missiles, aerial bombs, return safety, Marjaayoun/Nabatieh villages",
+      "focusAr": "صواريخ غير منفجرة، قنابل جوية، سلامة العودة، قرى مرجعيون والنبطية",
       "url": "https://www.army.gov.lb/en/content/dismantling-unexploded-missiles-and-aerial-bombs-left-behind-israeli-aggression"
     },
     {
@@ -77,6 +83,7 @@
       "title": "We Are The People of The South",
       "date": "2026-08-06",
       "focus": "Nabatieh return, damaged homes, local economy, family losses, reconstruction",
+      "focusAr": "العودة إلى النبطية، المنازل المتضررة، الاقتصاد المحلي، خسائر العائلات، إعادة الإعمار",
       "url": "https://beirut-today.com/2026/08/06/we-are-the-people-of-the-south/"
     },
     {
@@ -88,6 +95,7 @@
       "title": "Conflict With Hezbollah in Lebanon",
       "date": "2026-08-03",
       "focus": "Status, background, displacement, Israeli ground invasion, US relevance",
+      "focusAr": "الوضع القائم، الخلفية، النزوح، الاجتياح البري الإسرائيلي، صلته بالولايات المتحدة",
       "url": "https://www.cfr.org/global-conflict-tracker/conflict/political-instability-lebanon"
     },
     {
@@ -99,6 +107,7 @@
       "title": "Feature: Homecoming to Zawtar al-Gharbiyah",
       "date": "2026-07-30",
       "focus": "Destroyed homes, rubble, municipal survey, Lebanese army, UXO clearance",
+      "focusAr": "منازل مدمَّرة، أنقاض، مسح بلدي، الجيش اللبناني، إزالة الذخائر غير المنفجرة",
       "url": "https://english.news.cn/20260730/93ca911d722442b68b18ee8cc131c5a9/c.html"
     },
     {
@@ -110,6 +119,7 @@
       "title": "This Lebanese couple is among those returning to shattered homes under US-brokered deal with Israel",
       "date": "2026-07-29",
       "focus": "Pilot zones, debris, damaged homes, Zawtar al-Gharbieh, Lebanese army clearing",
+      "focusAr": "مناطق تجريبية، ركام، منازل متضررة، زوطر الغربية، إزالة يقوم بها الجيش اللبناني",
       "url": "https://www.washingtonpost.com/world/2026/07/29/lebanon-israel-zawtar-pilot-zones-talks-rome-hezbollah/125a0b4a-8b0b-11f1-8912-d71e69d679d7_story.html"
     },
     {
@@ -121,6 +131,7 @@
       "title": "الرئيس سلام: الجنوبيون ليسوا وحدهم والدولة عائدة معهم وإليهم",
       "date": "2026-07-23",
       "focus": "Return facilitation, road opening, debris removal, basic services, temporary housing",
+      "focusAr": "تيسير العودة، فتح الطرق، رفع الركام، الخدمات الأساسية، سكن مؤقت",
       "url": "https://pcm.gov.lb/arabic/subpg.aspx?pageid=27342"
     },
     {
@@ -132,6 +143,7 @@
       "title": "Hezbollah",
       "date": "2026-07-20",
       "focus": "Hezbollah structure, post-2023 conflict, negotiations, displacement",
+      "focusAr": "بنية حزب الله، ما بعد حرب 2023، المفاوضات، النزوح",
       "url": "https://www.everycrsreport.com/files/2026-07-20_IF11617_713455f65bfd7ebc7dac2dc805c8e51521d670a1.html"
     },
     {
@@ -143,6 +155,7 @@
       "title": "The Search for Urban Recovery in Lebanon",
       "date": "2026-07-20",
       "focus": "People-centered recovery, heritage-led reconstruction, place-specific planning, social relations",
+      "focusAr": "تعافٍ محوره الناس، إعادة إعمار بقيادة التراث، تخطيط خاص بكل مكان، العلاقات الاجتماعية",
       "url": "https://beiruturbanlab.com/en/Details/3080"
     },
     {
@@ -154,6 +167,7 @@
       "title": "Achieving a Permanent End to the Israel-Lebanon Conflict",
       "date": "2026-07-15",
       "focus": "Trilateral framework, Hezbollah disarmament, sovereignty, US roadmap",
+      "focusAr": "إطار ثلاثي، نزع سلاح حزب الله، السيادة، خارطة الطريق الأميركية",
       "url": "https://mei.edu/ar/publication/achieving-a-permanent-end-to-the-israel-lebanon-conflict/"
     },
     {
@@ -165,6 +179,7 @@
       "title": "Can Lebanon's Social Protection System Withstand Wartime Shocks?",
       "date": "2026-07-15",
       "focus": "Household income, displacement costs, poverty risk, social protection, reconstruction burden",
+      "focusAr": "دخل الأسر، كلفة النزوح، خطر الفقر، الحماية الاجتماعية، عبء إعادة الإعمار",
       "url": "https://www.lcps-lebanon.org/en/articles/details/6048/can-lebanon%E2%80%99s-social-protection-system-withstand-wartime-shocks"
     },
     {
@@ -176,6 +191,7 @@
       "title": "Achieving a Permanent End to the Israel-Lebanon Conflict",
       "date": "2026-07-15",
       "focus": "Trilateral Framework, sovereignty, peace, Hezbollah disarmament, security guarantees",
+      "focusAr": "الإطار الثلاثي، السيادة، السلام، نزع سلاح حزب الله، الضمانات الأمنية",
       "url": "https://mei.edu/ar/publication/achieving-a-permanent-end-to-the-israel-lebanon-conflict/"
     },
     {
@@ -187,6 +203,7 @@
       "title": "How a push to disarm Hezbollah is deepening divisions in Lebanon and raising fears of civil war",
       "date": "2026-07-09",
       "focus": "Disarmament, Israeli withdrawal, Lebanese political divisions",
+      "focusAr": "نزع السلاح، الانسحاب الإسرائيلي، الانقسامات السياسية اللبنانية",
       "url": "https://www.washingtonpost.com/world/2026/07/09/lebanon-israel-hezbollah-iran/f2357a7c-7b86-11f1-b194-f872dd4ec5aa_story.html"
     },
     {
@@ -198,6 +215,7 @@
       "title": "Minister Dr. Fadi Makki Conducts Southern Lebanon Tour to Assess Damage and Advance Recovery Efforts",
       "date": "2026-07-09",
       "focus": "Damage assessment, public infrastructure, residential areas, recovery priorities, Nabatieh/Habboush",
+      "focusAr": "تقييم الأضرار، البنى التحتية العامة، المناطق السكنية، أولويات التعافي، النبطية وحبوش",
       "url": "https://omsar.gov.lb/en/minister-dr-fadi-makki-conducts-southern-lebanon-tour-to-assess-damage-and-advance-recovery-efforts/"
     },
     {
@@ -209,6 +227,7 @@
       "title": "Rasamny joins expanded meeting on Southern recovery and reconstruction",
       "date": "2026-07-08",
       "focus": "Rubble removal, roads, municipalities, temporary housing, recovery cost, international assistance",
+      "focusAr": "رفع الأنقاض، الطرق، البلديات، السكن المؤقت، كلفة التعافي، المساعدة الدولية",
       "url": "https://www.mtv.com.lb/en/news/1715136"
     },
     {
@@ -220,6 +239,7 @@
       "title": "Ministers review south Lebanon return, reconstruction efforts",
       "date": "2026-07-06",
       "focus": "Return of displaced, local services, rubble removal, education, preliminary direct cost",
+      "focusAr": "عودة النازحين، الخدمات المحلية، رفع الأنقاض، التعليم، الكلفة المباشرة الأولية",
       "url": "https://www.mtv.com.lb/en/news/1714272"
     },
     {
@@ -231,6 +251,7 @@
       "title": "الرئيس سلام يعقد الاجتماع الوزاري الدوري",
       "date": "2026-07-06",
       "focus": "Return, municipalities, education, road opening, rubble removal, direct war cost",
+      "focusAr": "العودة، البلديات، التعليم، فتح الطرق، رفع الأنقاض، الكلفة المباشرة للحرب",
       "url": "https://www.pcm.gov.lb/arabic/subpg.aspx?pageid=27294"
     },
     {
@@ -242,6 +263,7 @@
       "title": "Ministers promise reconstruction during south Lebanon tour, contingent on funding",
       "date": "2026-07-05",
       "focus": "Damage tour, funding conditions, business owners, families, Nabatieh/South Lebanon",
+      "focusAr": "جولة على الأضرار، شروط التمويل، أصحاب الأعمال، العائلات، النبطية وجنوب لبنان",
       "url": "https://today.lorientlejour.com/article/1540243/two-ministers-promise-reconstruction-during-southern-lebanon-tour-contingent-on-funding.html"
     },
     {
@@ -253,6 +275,7 @@
       "title": "بين 17 أيار و26 يونيو.. اتفاقا لبنان وإسرائيل وشبح الحرب الأهلية",
       "date": "2026-07-01",
       "focus": "Framework agreement, Israeli withdrawal, Hezbollah disarmament, civil-war risk",
+      "focusAr": "الاتفاق الإطاري، الانسحاب الإسرائيلي، نزع سلاح حزب الله، خطر الحرب الأهلية",
       "url": "https://www.aljazeera.net/news/2026/7/1/17-%D8%A3%D9%8A%D8%A7%D8%B1-%D8%A3%D9%88-26-%D9%8A%D9%88%D9%86%D9%8A%D9%88-%D8%A7%D8%AA%D9%81%D8%A7%D9%82%D8%A7-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%88%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84"
     },
     {
@@ -264,6 +287,7 @@
       "title": "Psychological toll mounts as Lebanese villages erased by Israel's war",
       "date": "2026-07-01",
       "focus": "Psychological impact, erased villages, displacement, identity, destroyed homes",
+      "focusAr": "الأثر النفسي، قرى مُحيت، النزوح، الهوية، منازل مدمَّرة",
       "url": "https://www.aljazeera.com/news/2026/7/1/psychological-toll-mounts-as-lebanese-villages-erased-by-israels-war"
     },
     {
@@ -275,6 +299,7 @@
       "title": "Israel-Hezbollah conflict 2026 and UK response",
       "date": "2026-06-25",
       "focus": "Conflict history, ceasefire talks, humanitarian situation, UK response",
+      "focusAr": "تاريخ النزاع، محادثات وقف إطلاق النار، الوضع الإنساني، الموقف البريطاني",
       "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10887/"
     },
     {
@@ -286,6 +311,7 @@
       "title": "Lebanon in the Shadow of the U.S.-Iran MOU: Risks and Opportunities",
       "date": "2026-06-24",
       "focus": "US-Iran diplomacy, Lebanese sovereignty, Hezbollah arms, Israeli withdrawal",
+      "focusAr": "الدبلوماسية الأميركية الإيرانية، السيادة اللبنانية، سلاح حزب الله، الانسحاب الإسرائيلي",
       "url": "https://www.csis.org/analysis/lebanon-shadow-us-iran-mou-risks-and-opportunities"
     },
     {
@@ -297,6 +323,7 @@
       "title": "Standard Operating Procedures for Post Disaster Rubble Management 2025",
       "date": "2026-06-23",
       "focus": "Debris preprocessing, processing, recycling, hazardous materials, quarry rehabilitation",
+      "focusAr": "المعالجة الأولية للركام، المعالجة، إعادة التدوير، المواد الخطرة، تأهيل المقالع",
       "url": "https://moe.gov.lb/%D8%A7%D9%84%D8%A7%D8%B9%D9%84%D8%A7%D9%86%D8%A7%D8%AA/%D8%A7%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA-%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B1%D9%83%D8%A7%D9%85-%D9%88%D8%A7%D9%84%D8%A7%D9%86%D9%82%D8%A7%D8%B6-%D9%81%D9%8A-%D9%85%D8%B1%D8%AD%D9%84%D8%A9-%D9%85%D8%A7-%D8%A8%D8%B9%D8%AF-%D8%A7%D9%84%D9%83%D9%88.aspx?lang=en-us"
     },
     {
@@ -308,6 +335,7 @@
       "title": "UNDP's Aliko: Building Damage in South Lebanon Surpasses $1.38 Billion",
       "date": "2026-06-23",
       "focus": "UNDP/CNRS-L building damage, South Lebanon governorates, reconstruction needs",
+      "focusAr": "أضرار الأبنية بحسب البرنامج الإنمائي والمجلس الوطني للبحوث العلمية، محافظات الجنوب، احتياجات إعادة الإعمار",
       "url": "https://www.mtv.com.lb/en/news/1710067"
     },
     {
@@ -319,6 +347,7 @@
       "title": "الهدن المتدحرجة بين حزب الله وإسرائيل.. محطات تهدئة في حرب لا تنتهي",
       "date": "2026-06-19",
       "focus": "Rolling ceasefires, managed escalation, drones, assassinations, multi-front war",
+      "focusAr": "هدنات متتالية، تصعيد مُدار، مسيّرات، اغتيالات، حرب متعددة الجبهات",
       "url": "https://www.aljazeera.net/news/2026/6/19/%D8%A7%D9%84%D9%87%D8%AF%D9%86-%D8%A7%D9%84%D9%85%D8%AA%D8%AF%D8%AD%D8%B1%D8%AC%D8%A9-%D9%81%D9%8A-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%AD%D8%B1%D8%A8-%D8%AA%D8%AA%D9%88%D9%82%D9%81-%D8%AE%D9%85%D8%B3"
     },
     {
@@ -330,6 +359,7 @@
       "title": "تقييم علمي للأضرار والخسائر الزراعية في المناطق المتضررة من الحرب في جنوب لبنان",
       "date": "2026-06-17",
       "focus": "Direct damage, production losses, affected hectares, food security, rural livelihoods",
+      "focusAr": "أضرار مباشرة، خسائر في الإنتاج، هكتارات متضررة، الأمن الغذائي، سبل العيش الريفية",
       "url": "https://www.agriculture.gov.lb/Media/News/2026/%D8%AA%D9%82%D9%8A%D9%8A%D9%85-%D8%B9%D9%84%D9%85%D9%8A-%D9%84%D9%84%D8%A7%D8%B6%D8%B1%D8%A7%D8%B1-%D9%88%D8%A7%D9%84%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84"
     },
     {
@@ -341,6 +371,7 @@
       "title": "Families return to shattered towns as fragile ceasefire holds in Lebanon",
       "date": "2026-06-16",
       "focus": "Return, destroyed homes, belongings, displaced families, ceasefire uncertainty",
+      "focusAr": "العودة، منازل مدمَّرة، الممتلكات، عائلات نازحة، هشاشة وقف إطلاق النار",
       "url": "https://www.aljazeera.com/gallery/2026/6/16/families-return-to-shattered-towns-as-fragile-ceasefire-holds-in-lebanon"
     },
     {
@@ -352,6 +383,7 @@
       "title": "We want to be 100% sure: war-weary Lebanese greet truce with caution",
       "date": "2026-06-15",
       "focus": "Return to destroyed homes, rubble, occupied villages, uncertainty, reconstruction delay",
+      "focusAr": "العودة إلى منازل مدمَّرة، الأنقاض، قرى محتلة، الغموض، تأخّر إعادة الإعمار",
       "url": "https://www.theguardian.com/world/2026/jun/15/war-weary-lebanese-ceasefire-caution"
     },
     {
@@ -363,6 +395,7 @@
       "title": "Nabatieh: A Situational Analysis",
       "date": "2026-06-15",
       "focus": "Nabatieh, urban form, governance, war impact, reconstruction, municipal planning",
+      "focusAr": "النبطية، الشكل العمراني، الحوكمة، أثر الحرب، إعادة الإعمار، التخطيط البلدي",
       "url": "https://www.thepolicyinitiative.org/article/details/1507/nabatieh-a-situational-analysis"
     },
     {
@@ -374,6 +407,7 @@
       "title": "The State, Hezbollah and War: Lebanon's Enduring Political Impasse",
       "date": "2026-06-14",
       "focus": "Lebanese state, Hezbollah, Israel-Lebanon negotiations",
+      "focusAr": "الدولة اللبنانية، حزب الله، المفاوضات اللبنانية الإسرائيلية",
       "url": "https://studies.aljazeera.net/en/policy-briefs/state-hezbollah-and-war-lebanons-enduring-political-impasse"
     },
     {
@@ -385,6 +419,7 @@
       "title": "The State, Hezbollah and War: Lebanon's Enduring Political Impasse",
       "date": "2026-06-14",
       "focus": "State authority, Hezbollah weapons, Israel-Lebanon framework, disarmament, regional conflict",
+      "focusAr": "سلطة الدولة، سلاح حزب الله، الإطار اللبناني الإسرائيلي، نزع السلاح، النزاع الإقليمي",
       "url": "https://studies.aljazeera.net/en/policy-briefs/state-hezbollah-and-war-lebanons-enduring-political-impasse"
     },
     {
@@ -396,6 +431,7 @@
       "title": "الكل بانتظار تفاصيل بند لبنان في الاتفاق الإيراني - الأميركي",
       "date": "2026-06-13",
       "focus": "US-Iran talks, Lebanon clause, Hezbollah-Amal expectations, Israeli freedom of action",
+      "focusAr": "المحادثات الأميركية الإيرانية، البند اللبناني، توقعات حزب الله وحركة أمل، حرية الحركة الإسرائيلية",
       "url": "https://www.al-akhbar.com/NewspaperArticles/lebanon/895649"
     },
     {
@@ -407,6 +443,7 @@
       "title": "الاستعصاء اللبناني بين إسرائيل وإيران",
       "date": "2026-06-12",
       "focus": "Israel-Iran-Hezbollah linkage, ceasefire, Lebanese casualties, Hezbollah options",
+      "focusAr": "الترابط بين إسرائيل وإيران وحزب الله، وقف إطلاق النار، الضحايا اللبنانيون، خيارات حزب الله",
       "url": "https://www.annahar.com/articles/annahar-writers/319237/%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%B9%D8%B5%D8%A7-%D8%A7%D9%84%D9%84%D8%A8%D9%86%D8%A7%D9%86%D9%8A-%D8%A8%D9%8A%D9%86-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%88%D8%A5%D9%8A%D8%B1%D8%A7%D9%86"
     },
     {
@@ -418,6 +455,7 @@
       "title": "مواجهة إيران وإسرائيل في لبنان.. وحدة مسار أم انفصال؟",
       "date": "2026-06-10",
       "focus": "Iran-Israel confrontation, Lebanon negotiations, Hezbollah, US mediation",
+      "focusAr": "المواجهة الإيرانية الإسرائيلية، المفاوضات اللبنانية، حزب الله، الوساطة الأميركية",
       "url": "https://www.almodon.com/politics/2026/06/10/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86-%D9%88-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%81%D9%8A-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%88%D8%AD%D8%AF%D8%A9-%D9%85%D8%B3%D8%A7%D8%B1-%D8%A3%D9%85-%D8%A7%D9%86%D9%81%D8%B5%D8%A7%D9%84"
     },
     {
@@ -429,6 +467,7 @@
       "title": "Rapid Damage Assessment Estimates Over US$365 Million in Building Damage Across Beirut and Mount Lebanon",
       "date": "2026-06-09",
       "focus": "Building damage, debris volume, Beirut southern suburbs, GeoAI, field checks",
+      "focusAr": "أضرار الأبنية، حجم الركام، الضاحية الجنوبية لبيروت، الذكاء الاصطناعي الجغرافي، فحوص ميدانية",
       "url": "https://www.undp.org/lebanon/press-releases/rapid-damage-assessment-estimates-over-us365-million-building-damage-across-beirut-and-mount-lebanon"
     },
     {
@@ -440,6 +479,7 @@
       "title": "Fresh strikes on Tyre kill eight, as UN puts Lebanon destruction bill at $365 million, and rising",
       "date": "2026-06-09",
       "focus": "Tyre strikes, UNDP damage assessment, Beirut and Mount Lebanon, debris",
+      "focusAr": "غارات على صور، تقييم أضرار البرنامج الإنمائي، بيروت وجبل لبنان، الركام",
       "url": "https://www.globalissues.org/news/2026/06/09/43254"
     },
     {
@@ -451,6 +491,7 @@
       "title": "Leveraging agricultural loss and damage data for post-conflict recovery: FAO's 2023-2024 assessment in Lebanon",
       "date": "2026-06-09",
       "focus": "Remote sensing, agricultural losses, district targeting, recovery planning",
+      "focusAr": "الاستشعار عن بعد، الخسائر الزراعية، استهداف الأقضية، تخطيط التعافي",
       "url": "https://www.preventionweb.net/resource/case-study/leveraging-agricultural-loss-and-damage-data-post-conflict-recovery-faos-2023"
     },
     {
@@ -462,6 +503,7 @@
       "title": "Lebanon between war and statehood: Shrinking the space for Hezbollah",
       "date": "2026-06-08",
       "focus": "Lebanese state capacity, Hezbollah's political base, US role",
+      "focusAr": "قدرة الدولة اللبنانية، القاعدة السياسية لحزب الله، الدور الأميركي",
       "url": "https://www.brookings.edu/articles/lebanon-between-war-and-statehood-shrinking-the-space-for-hezbollah/"
     },
     {
@@ -473,6 +515,7 @@
       "title": "Building-Level Damage Assessment: Beirut and Mount Lebanon",
       "date": "2026-06-08",
       "focus": "Remote sensing, GeoAI, damaged buildings, rubble volume, field checks",
+      "focusAr": "الاستشعار عن بعد، الذكاء الاصطناعي الجغرافي، أبنية متضررة، حجم الأنقاض، فحوص ميدانية",
       "url": "https://www.undp.org/lebanon/publications/building-level-damage-assessment-beirut-and-mount-lebanon"
     },
     {
@@ -484,6 +527,7 @@
       "title": "هل تطبق إسرائيل إستراتيجية الشتات على حاضنة حزب الله بلبنان؟",
       "date": "2026-06-05",
       "focus": "Displacement strategy, southern Lebanon, Hezbollah social base, buffer zone",
+      "focusAr": "استراتيجية التهجير، جنوب لبنان، القاعدة الاجتماعية لحزب الله، المنطقة العازلة",
       "url": "https://www.aljazeera.net/politics/2026/6/5/%D9%87%D9%84-%D8%AA%D8%B7%D8%A8%D9%82-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%A5%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%AA%D8%A7%D8%AA-%D8%B9%D9%84%D9%89"
     },
     {
@@ -495,6 +539,7 @@
       "title": "قتال حزب الله: اختبار التكيّف في مواجهة إسرائيل",
       "date": "2026-06-02",
       "focus": "Hezbollah adaptation, communications, attrition, post-2024 lessons",
+      "focusAr": "تكيّف حزب الله، الاتصالات، الاستنزاف، دروس ما بعد 2024",
       "url": "https://www.al-akhbar.com/news/lebanon/894324"
     },
     {
@@ -506,6 +551,7 @@
       "title": "Nabatieh: A Situational Analysis",
       "date": "2026-06-01",
       "focus": "Nabatieh history, displacement, governance, urban form, 2024 war impact, reconstruction initiatives",
+      "focusAr": "تاريخ النبطية، النزوح، الحوكمة، الشكل العمراني، أثر حرب 2024، مبادرات إعادة الإعمار",
       "url": "https://www.beiruturbanlab.com/en/Details/3077/"
     },
     {
@@ -517,6 +563,7 @@
       "title": "لماذا تتصاعد الغارات الإسرائيلية على لبنان؟ وأين موقع بيروت في صفقة واشنطن وطهران؟",
       "date": "2026-05-26",
       "focus": "Israeli raids, drones, diplomacy, US-Iran deal, Lebanese strategic deadlock",
+      "focusAr": "الغارات الإسرائيلية، المسيّرات، الدبلوماسية، الاتفاق الأميركي الإيراني، الجمود الاستراتيجي اللبناني",
       "url": "https://www.aljazeera.net/news/2026/5/26/%D8%AA%D8%B5%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D8%BA%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%84%D8%A8%D9%86%D8%A7%D9%86"
     },
     {
@@ -528,6 +575,7 @@
       "title": "Biodiversity in Crisis, Documenting Environmental Damage in Times of War",
       "date": "2026-05-22",
       "focus": "Forests, valleys, wildlife habitat, soil contamination, natural heritage, accountability",
+      "focusAr": "الغابات، الأودية، موائل الحياة البرية، تلوّث التربة، التراث الطبيعي، المساءلة",
       "url": "https://www.aub.edu.lb/natureconservation/news/Pages/Biodiversity-in-Crisis%2C-Documenting-Environmental-Damage-in-Times-of-War.aspx"
     },
     {
@@ -539,6 +587,7 @@
       "title": "لبنان يطلق برنامجاً بقيمة 32 مليون يورو للمناطق المتضررة من النزاع",
       "date": "2026-05-19",
       "focus": "EU/Denmark/France funding, South Lebanon, Bekaa, local authorities, agriculture, jobs",
+      "focusAr": "تمويل من الاتحاد الأوروبي والدنمارك وفرنسا، جنوب لبنان، البقاع، السلطات المحلية، الزراعة، فرص العمل",
       "url": "https://www.pcm.gov.lb/arabic/subpg.aspx?pageid=27164"
     },
     {
@@ -550,6 +599,7 @@
       "title": "Lebanon's Dual Security Structure and the Conflict with Israel",
       "date": "2026-05-18",
       "focus": "Lebanese Armed Forces, Hezbollah parallel security structure, state capacity",
+      "focusAr": "الجيش اللبناني، البنية الأمنية الموازية لحزب الله، قدرة الدولة",
       "url": "https://bisi.org.uk/reports/lebanons-dual-security-structure-and-the-conflict-with-israel"
     },
     {
@@ -561,6 +611,7 @@
       "title": "لبنان بين الدولة والحزب.. من يفاوض ومن يقرر الحرب؟",
       "date": "2026-05-18",
       "focus": "State authority, Hezbollah, negotiations, sovereignty, sectarian politics",
+      "focusAr": "سلطة الدولة، حزب الله، المفاوضات، السيادة، السياسة الطائفية",
       "url": "https://www.aljazeera.net/amp/politics/2026/5/18/%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D8%AD%D8%B2%D8%A8-%D9%85%D9%86-%D9%8A%D9%81%D8%A7%D9%88%D8%B6-%D9%88%D9%85%D9%86"
     },
     {
@@ -572,6 +623,7 @@
       "title": "War worsens Lebanon's economic crisis with job losses, price gouging and slow business",
       "date": "2026-05-15",
       "focus": "Job losses, inflation, business collapse, restaurants, markets, displacement",
+      "focusAr": "فقدان الوظائف، التضخم، انهيار الأعمال، المطاعم، الأسواق، النزوح",
       "url": "https://www.washingtonpost.com/business/2026/05/15/lebanon-israel-war-economy-crisis-hezbollah/089dfae4-5014-11f1-97e7-22c6c29ff0d8_story.html"
     },
     {
@@ -583,6 +635,7 @@
       "title": "Nabatieh Built and Natural Environment Database",
       "date": "2026-04-28",
       "focus": "Nabatieh, built environment, natural environment, heritage, social infrastructure, recovery layers",
+      "focusAr": "النبطية، البيئة المبنية، البيئة الطبيعية، التراث، البنية الاجتماعية، طبقات التعافي",
       "url": "https://www.beiruturbanlab.com/en/Details/3075/"
     },
     {
@@ -594,6 +647,7 @@
       "title": "Lebanese return to rubble in Beirut suburbs after ceasefire",
       "date": "2026-04-18",
       "focus": "Rubble, debris clearing, damaged buildings, displaced residents, southern suburbs",
+      "focusAr": "الأنقاض، إزالة الركام، أبنية متضررة، سكان نازحون، الضاحية الجنوبية",
       "url": "https://www.reutersconnect.com/item/lebanese-return-to-rubble-in-beirut-suburbs-after-ceasefire/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBMzU2NjE4MDQyMDI2UlAx"
     },
     {
@@ -605,6 +659,7 @@
       "title": "As Residents Return, Hidden Explosives Turn Homecomings into High-Risk Journeys",
       "date": "2026-04-17",
       "focus": "Landmines, cluster munitions, UXO, return safety, farms and homes",
+      "focusAr": "الألغام، الذخائر العنقودية، الذخائر غير المنفجرة، سلامة العودة، المزارع والمنازل",
       "url": "https://nhrclb.org/en/archives/6658"
     },
     {
@@ -616,6 +671,7 @@
       "title": "التقرير الثالث حول تأثير الاعتداءات على القطاع الزراعي في لبنان",
       "date": "2026-04-17",
       "focus": "Affected agricultural land, farmer displacement, crop losses, greenhouses, tobacco and vegetables",
+      "focusAr": "أراضٍ زراعية متضررة، نزوح المزارعين، خسائر المحاصيل، البيوت البلاستيكية، التبغ والخضار",
       "url": "https://www.agriculture.gov.lb/Media/News/2026/%D8%A7%D9%84%D8%AA%D9%82%D8%B1%D9%8A%D8%B1-%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB-%D8%AD%D9%88%D9%84-%D8%AA%D8%A7%D8%AB%D9%8A%D8%B1-%D8%A7%D9%84%D8%A7%D8%B9%D8%AA%D8%AF%D8%A7%D8%A1%D8%A7%D8%AA-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%B2"
     },
     {
@@ -627,6 +683,7 @@
       "title": "Iran, Hizballah, and Lebanon's Future",
       "date": "2026-04-10",
       "focus": "Iran influence, Hezbollah weapons, sovereignty, war-and-peace decisions",
+      "focusAr": "النفوذ الإيراني، سلاح حزب الله، السيادة، قرار الحرب والسلم",
       "url": "https://mei.edu/events/iran-hizballah-and-lebanons-future/"
     },
     {
@@ -638,6 +695,7 @@
       "title": "Israel's war with Hezbollah in Lebanon: one month on",
       "date": "2026-04-03",
       "focus": "War chronology, displacement, buffer zone, historical background",
+      "focusAr": "تسلسل الحرب، النزوح، المنطقة العازلة، الخلفية التاريخية",
       "url": "https://www.osw.waw.pl/en/publikacje/analyses/2026-04-03/israels-war-hezbollah-lebanon-one-month"
     },
     {
@@ -649,6 +707,7 @@
       "title": "تحقيق التعافي بالبيانات: المنصة الوطنية اللبنانية لرصد الأضرار والاحتياجات خلال الحرب",
       "date": "2026-03-31",
       "focus": "National damage monitoring platform, RDNA, recovery tracking, reconstruction impact",
+      "focusAr": "منصة وطنية لرصد الأضرار، تقييم RDNA، تتبّع التعافي، أثر إعادة الإعمار",
       "url": "https://ncne.gov.lb/%D8%AA%D8%AD%D9%82%D9%8A%D9%82-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%81%D9%8A-%D8%A8%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D9%88%D8%B7%D9%86/"
     },
     {
@@ -660,6 +719,7 @@
       "title": "Any Israeli occupation of southern Lebanon will work to Hezbollah's advantage",
       "date": "2026-03-25",
       "focus": "Occupation, displacement, Hezbollah adaptation, Lebanese government limits",
+      "focusAr": "الاحتلال، النزوح، تكيّف حزب الله، حدود الحكومة اللبنانية",
       "url": "https://www.chathamhouse.org/2026/03/any-israeli-occupation-southern-lebanon-will-work-hezbollahs-advantage"
     },
     {
@@ -671,6 +731,7 @@
       "title": "Government-Designated Shelters in Lebanon's 2024 Displacement Crisis",
       "date": "2026-03-24",
       "focus": "Internal displacement, public schools as shelters, hybrid governance, emergency response, post-ceasefire renting",
+      "focusAr": "النزوح الداخلي، المدارس الرسمية مراكز إيواء، حوكمة هجينة، الاستجابة الطارئة، الاستئجار بعد وقف إطلاق النار",
       "url": "https://beiruturbanlab.com/en/Details/3074"
     },
     {
@@ -682,6 +743,7 @@
       "title": "What Is Israel Trying to Accomplish in Lebanon?",
       "date": "2026-03-19",
       "focus": "Israeli objectives, ground operations, casualties, displacement",
+      "focusAr": "الأهداف الإسرائيلية، العمليات البرية، الضحايا، النزوح",
       "url": "https://www.csis.org/analysis/what-israel-trying-accomplish-lebanon"
     },
     {
@@ -693,6 +755,7 @@
       "title": "US Leadership Can Dislodge Iran from Lebanon",
       "date": "2026-03-12",
       "focus": "US support, LAF, Hezbollah disarmament, Iran influence, state sovereignty",
+      "focusAr": "الدعم الأميركي، الجيش اللبناني، نزع سلاح حزب الله، النفوذ الإيراني، سيادة الدولة",
       "url": "https://mei.edu/policymemo/us-leadership-can-dislodge-iran-from-lebanon/"
     },
     {
@@ -704,6 +767,7 @@
       "title": "Dispatch from Beirut: Is this Hezbollah's 'last war' with Israel?",
       "date": "2026-03-11",
       "focus": "Hezbollah decision-making, Iran linkage, fighters, escalation logic",
+      "focusAr": "صنع القرار في حزب الله، الارتباط بإيران، المقاتلون، منطق التصعيد",
       "url": "https://www.atlanticcouncil.org/dispatches/dispatch-from-beirut-is-this-hezbollahs-last-war-with-israel/"
     },
     {
@@ -715,6 +779,7 @@
       "title": "Dispatch from Beirut: Is this Hezbollah's 'last war' with Israel?",
       "date": "2026-03-11",
       "focus": "Hezbollah strategy, Beirut politics, war narratives, future escalation",
+      "focusAr": "استراتيجية حزب الله، السياسة في بيروت، سرديات الحرب، التصعيد المقبل",
       "url": "https://www.atlanticcouncil.org/dispatches/dispatch-from-beirut-is-this-hezbollahs-last-war-with-israel/"
     },
     {
@@ -726,6 +791,7 @@
       "title": "الوزيرة كرامي أصدرت تعميما حول ضمان استمرارية التعليم في ظل الظروف الاستثنائية",
       "date": "2026-03-09",
       "focus": "War displacement, school closures, shelters, remote learning, continuity of education",
+      "focusAr": "النزوح بفعل الحرب، إقفال المدارس، مراكز الإيواء، التعلّم عن بعد، استمرارية التعليم",
       "url": "https://mehe.gov.lb/ar/media-center/news/%D8%A7%D9%84%D9%88%D8%B2%D9%8A%D8%B1%D8%A9-%D9%83%D8%B1%D8%A7%D9%85%D9%8A-%D8%A3%D8%B5%D8%AF%D8%B1%D8%AA-%D8%AA%D8%B9%D9%85%D9%8A%D9%85%D8%A7-%D8%AD%D9%88%D9%84-%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D8%B3%D8%AA%D9%85%D8%B1%D8%A7%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D9%81%D9%8A-%D8%B8%D9%84-%D8%A7%D9%84%D8%B8%D8%B1%D9%88%D9%81-%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9"
     },
     {
@@ -737,6 +803,7 @@
       "title": "اجتماع اداري برئاسة وزيرة التربية استجابة للازمة الناتجة عن الاعتداءات الاسرائيلية",
       "date": "2026-03-07",
       "focus": "Schools as shelters, displaced students, building safety, education regions, crisis management",
+      "focusAr": "المدارس مراكز إيواء، الطلاب النازحون، سلامة الأبنية، مناطق تربوية، إدارة الأزمة",
       "url": "https://www.mehe.gov.lb/ar/media-center/news/%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9-%D8%A7%D8%AF%D8%A7%D8%B1%D9%8A-%D8%A8%D8%B1%D8%A6%D8%A7%D8%B3%D8%A9-%D9%88%D8%B2%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AC%D8%A7%D8%A8%D8%A9-%D9%84%D9%84%D8%A7%D8%B2%D9%85%D8%A9-%D8%A7%D9%84%D9%86%D8%A7%D8%AA%D8%AC%D8%A9-%D8%B9%D9%86-%D8%A7%D9%84%D8%A7%D8%B9%D8%AA%D8%AF%D8%A7%D8%A1%D8%A7%D8%AA"
     },
     {
@@ -748,6 +815,7 @@
       "title": "Lebanon Conflict Scenario | March 2026",
       "date": "2026-03-04",
       "focus": "Humanitarian, security, and economic escalation scenarios",
+      "focusAr": "سيناريوهات التصعيد الإنساني والأمني والاقتصادي",
       "url": "https://mercycorps.org.lb/lebanon-conflict-scenario-march-2026/"
     },
     {
@@ -759,6 +827,7 @@
       "title": "How Lebanon's authorities can keep the Iran war from engulfing the country",
       "date": "2026-03-02",
       "focus": "State authority, Hezbollah disarmament, escalation management, Lebanese institutions",
+      "focusAr": "سلطة الدولة، نزع سلاح حزب الله، إدارة التصعيد، المؤسسات اللبنانية",
       "url": "https://mei.edu/ar/commentary/how-lebanons-authorities-can-keep-the-iran-war-from-engulfing-the-country/"
     },
     {
@@ -770,6 +839,7 @@
       "title": "هل تنفّذ إسرائيل ما لا يستطيع لبنان تنفيذه؟",
       "date": "2026-02-17",
       "focus": "Israeli goals, Lebanese state weakness, Hezbollah disarmament pressure",
+      "focusAr": "الأهداف الإسرائيلية، ضعف الدولة اللبنانية، الضغط لنزع سلاح حزب الله",
       "url": "https://www.annahar.com/lebanon/278570/%D9%87%D9%84-%D8%AA%D9%86%D9%81%D8%B0-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%85%D8%A7-%D9%84%D8%A7-%D9%8A%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%AA%D9%86%D9%81%D9%8A%D8%B0%D9%87"
     },
     {
@@ -781,6 +851,7 @@
       "title": "Lebanon Emergency Assistance Project: Frequently Asked Questions",
       "date": "2026-02-17",
       "focus": "LEAP components, rubble treatment, funding gap, governance, CDR implementation",
+      "focusAr": "مكوّنات مشروع LEAP، معالجة الأنقاض، فجوة التمويل، الحوكمة، التنفيذ عبر مجلس الإنماء والإعمار",
       "url": "https://www.worldbank.org/en/news/factsheet/2026/02/17/lebanon-emergency-assistance-project-frequently-asked-questions"
     },
     {
@@ -792,6 +863,7 @@
       "title": "Salam, on 2nd day in south Lebanon villages, pledges infrastructure rehabilitation",
       "date": "2026-02-08",
       "focus": "Kfar Kila, Kfar Shuba, roads, telecommunications, return, state presence",
+      "focusAr": "كفركلا، كفرشوبا، الطرق، الاتصالات، العودة، حضور الدولة",
       "url": "https://today.lorientlejour.com/article/1494290/salam-on-2nd-day-in-south-lebanon-villages-pledges-infrastructure-rehabilitation-.html"
     },
     {
@@ -803,6 +875,7 @@
       "title": "Salam, on 2nd day in south Lebanon villages, pledges infrastructure rehabilitation",
       "date": "2026-02-08",
       "focus": "Prime minister tour, Kfar Kila, Kfar Shuba, infrastructure rehabilitation, government commitment",
+      "focusAr": "جولة رئيس الحكومة، كفركلا، كفرشوبا، تأهيل البنى التحتية، التزام الحكومة",
       "url": "https://www.lorientlejour.com/article/1494290/salam-on-2nd-day-in-south-lebanon-villages-pledges-infrastructure-rehabilitation-.html"
     },
     {
@@ -814,6 +887,7 @@
       "title": "Salam warmly welcomed in the south, pledges reconstruction",
       "date": "2026-02-07",
       "focus": "Reconstruction pledges, World Bank/AFD/EU funding, roads, water, schools, agriculture",
+      "focusAr": "تعهدات إعادة الإعمار، تمويل البنك الدولي والوكالة الفرنسية والاتحاد الأوروبي، الطرق، المياه، المدارس، الزراعة",
       "url": "https://today.lorientlejour.com/article/1494201/salam-from-southern-lebanon-reconstruction-is-a-commitment-we-will-continue-to-uphold.html"
     },
     {
@@ -825,6 +899,7 @@
       "title": "مجلس الوزراء اقرّ منهجية إعادة الاعمار",
       "date": "2026-01-30",
       "focus": "Reconstruction methodology, damage audits, partial/full rebuilding, emergency risk unit, digital platform",
+      "focusAr": "منهجية إعادة الإعمار، تدقيق الأضرار، إعادة بناء جزئية أو كاملة، وحدة المخاطر الطارئة، منصة رقمية",
       "url": "https://www.pcm.gov.lb/arabic/subpg.aspx?pageid=26770"
     },
     {
@@ -836,6 +911,7 @@
       "title": "Khiam's Greek Catholic church, damaged by wars, awaiting reconstruction",
       "date": "2025-12-19",
       "focus": "Khiam, religious heritage, demolition, church reconstruction, South Council, municipality",
+      "focusAr": "الخيام، التراث الديني، الهدم، إعادة بناء الكنيسة، مجلس الجنوب، البلدية",
       "url": "https://today.lorientlejour.com/article/1489074/khiams-greek-catholic-church-damaged-by-wars-awaiting-reconstruction.html"
     },
     {
@@ -847,6 +923,7 @@
       "title": "Finance committee allocates more funds for reconstruction, Fadlallah says",
       "date": "2025-12-10",
       "focus": "2026 budget, reconstruction credits, CDR, Council for the South, High Relief Commission",
+      "focusAr": "موازنة 2026، اعتمادات إعادة الإعمار، مجلس الإنماء والإعمار، مجلس الجنوب، الهيئة العليا للإغاثة",
       "url": "https://today.lorientlejour.com/article/1487988/finance-committee-allocates-more-funds-for-reconstruction-fadlallah-says.html"
     },
     {
@@ -858,6 +935,7 @@
       "title": "How the 2024 War Reordered Veto Power and Produced Only Selective Reform",
       "date": "2025-11-26",
       "focus": "Hezbollah veto power, donor conditionality, banking reform, selective reform, reconstruction leverage",
+      "focusAr": "حق النقض لدى حزب الله، شروط المانحين، إصلاح المصارف، إصلاح انتقائي، إعادة الإعمار ورقةَ ضغط",
       "url": "https://www.thepolicyinitiative.org/article/details/490/how-the-2024-war-reordered-veto-power-and-produced-only-selective-reform?lang=en"
     },
     {
@@ -869,6 +947,7 @@
       "title": "الضاحية الجنوبية تنتظر إعادة إعمارها: أمل بحلّ سياسي يرفع الفيتو الإسرائيلي",
       "date": "2025-11-21",
       "focus": "Dahieh reconstruction, legal obstacles, infrastructure, resident return, urban planning",
+      "focusAr": "إعادة إعمار الضاحية، العوائق القانونية، البنى التحتية، عودة السكان، التخطيط المدني",
       "url": "https://daraj.media/%D8%A7%D9%84%D8%B6%D8%A7%D8%AD%D9%8A%D8%A9-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A%D8%A9-%D8%AA%D9%86%D8%AA%D8%B8%D8%B1-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A5%D8%B9%D9%85%D8%A7%D8%B1%D9%87%D8%A7/"
     },
     {
@@ -880,6 +959,7 @@
       "title": "HI disposes unexploded ordnance in Bekaa Valley",
       "date": "2025-11-17",
       "focus": "UXO, rubble surveys, Bekaa villages, risk education, safe return",
+      "focusAr": "الذخائر غير المنفجرة، مسوح الأنقاض، قرى البقاع، التوعية على المخاطر، العودة الآمنة",
       "url": "https://www.hi.org/en/news/hi-disposes-unexploded-ordnance-in-bekaa-valley"
     },
     {
@@ -891,6 +971,7 @@
       "title": "خفّة حكومية في ملف إعادة الإعمار",
       "date": "2025-11-17",
       "focus": "Government compensation mechanism, Hezbollah payments, Jihad al-Bina, shelter allowances",
+      "focusAr": "آلية التعويض الحكومية، مدفوعات حزب الله، جهاد البناء، بدلات الإيواء",
       "url": "https://www.al-akhbar.com/lebanon/868286"
     },
     {
@@ -902,6 +983,7 @@
       "title": "Beyond Security Fixes: Toward a sovereignty-based reform pact in Lebanon",
       "date": "2025-11-06",
       "focus": "Sovereignty, reform pact, IMF, ceasefire instability, displaced communities, state rebuilding",
+      "focusAr": "السيادة، ميثاق الإصلاح، صندوق النقد الدولي، هشاشة وقف إطلاق النار، المجتمعات النازحة، إعادة بناء الدولة",
       "url": "https://www.thepolicyinitiative.org/article/details/486/beyond-security-fixes-toward-a-sovereignty-based-reform-pact-in-lebanon?lang=en&src=init"
     },
     {
@@ -913,6 +995,7 @@
       "title": "بين تحديث حجم الأضرار والتعقيدات الأمنية... الإعمار مؤجل",
       "date": "2025-10-26",
       "focus": "Updated damage estimates, security complications, delayed reconstruction, RDNA limitations",
+      "focusAr": "تقديرات أضرار محدَّثة، تعقيدات أمنية، تأخّر إعادة الإعمار، حدود تقييم RDNA",
       "url": "https://www.almodon.com/economy/2025/10/26/%D8%A8%D9%8A%D9%86-%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB-%D8%AD%D8%AC%D9%85-%D8%A7%D9%84%D8%A3%D8%B6%D8%B1%D8%A7%D8%B1-%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%82%D9%8A%D8%AF%D8%A7%D8%AA-%D8%A7%D9%84%D8%A3%D9%85%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D9%85%D8%A4%D8%AC%D9%84"
     },
     {
@@ -924,6 +1007,7 @@
       "title": "Security Without Legitimacy: The limits of sovereignty from above",
       "date": "2025-10-21",
       "focus": "Sovereignty, defense strategy, Hezbollah weapons, state legitimacy, economic reform",
+      "focusAr": "السيادة، الاستراتيجية الدفاعية، سلاح حزب الله، شرعية الدولة، الإصلاح الاقتصادي",
       "url": "https://www.thepolicyinitiative.org/article/details/480/security-without-legitimacy-the-limits-of-sovereignty-from-above"
     },
     {
@@ -935,6 +1019,7 @@
       "title": "جنوب لبنان: بين واقع الإعمار الممنوع وهواجس إسرائيل الكبرى",
       "date": "2025-10-20",
       "focus": "Blocked reconstruction, strikes on equipment, civilian infrastructure, economic pressure",
+      "focusAr": "إعادة إعمار معطَّلة، غارات على المعدات، البنى التحتية المدنية، الضغط الاقتصادي",
       "url": "https://www.almodon.com/politics/2025/10/20/%D8%AC%D9%86%D9%88%D8%A8-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%A8%D9%8A%D9%86-%D9%88%D8%A7%D9%82%D8%B9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A7%D9%84%D9%85%D9%85%D9%86%D9%88%D8%B9-%D9%88%D9%87%D9%88%D8%A7%D8%AC%D8%B3-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%A7%D9%84%D9%83%D8%A8%D8%B1%D9%89"
     },
     {
@@ -946,6 +1031,7 @@
       "title": "مخاوف من خطّة إسرائيلية لإفراغ الجنوب.. وخنقه اقتصاديًّا",
       "date": "2025-10-18",
       "focus": "Civilian industry, reconstruction equipment, water infrastructure, economic pressure",
+      "focusAr": "الصناعة المدنية، معدات إعادة الإعمار، البنى التحتية المائية، الضغط الاقتصادي",
       "url": "https://www.mtv.com.lb/news/%D9%85%D8%AD%D9%84%D9%8A%D8%A7%D8%AA/1621531/%D9%85%D8%AE%D8%A7%D9%88%D9%81-%D9%85%D9%86-%D8%AE%D8%B7-%D8%A9-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%84%D8%A5%D9%81%D8%B1%D8%A7%D8%BA-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8---%D9%88%D8%AE%D9%86%D9%82%D9%87-%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A--%D8%A7"
     },
     {
@@ -957,6 +1043,7 @@
       "title": "Salam's Government First 100 Days: Early signals and structural constraints",
       "date": "2025-09-22",
       "focus": "Reconstruction needs, IMF reform, social protection, cabinet priorities, governance constraints",
+      "focusAr": "احتياجات إعادة الإعمار، إصلاح صندوق النقد الدولي، الحماية الاجتماعية، أولويات الحكومة، قيود الحوكمة",
       "url": "https://www.thepolicyinitiative.org/article/details/1483/salam%E2%80%99s-government-first-100-days-early-signals-and-structural-constraints?lang=en&src=init"
     },
     {
@@ -968,6 +1055,7 @@
       "title": "One Hundred Days of Nawaf Salam's Cabinet: Governing between momentum and veto",
       "date": "2025-09-22",
       "focus": "Government momentum, veto players, reconstruction needs, $14bn damages, reform sequencing",
+      "focusAr": "زخم الحكومة، أصحاب حق النقض، احتياجات إعادة الإعمار، أضرار بـ14 مليار دولار، تسلسل الإصلاح",
       "url": "https://www.thepolicyinitiative.org/article/details/472/one-hundred-days-of-nawaf-salams-cabinet-governing-between-momentum-and-veto"
     },
     {
@@ -979,6 +1067,7 @@
       "title": "Reconstructing Lebanon's Sovereignty: A national imperative",
       "date": "2025-08-28",
       "focus": "Sovereign reconstruction, state legitimacy, donor capture, South Lebanon, community participation",
+      "focusAr": "إعادة إعمار سيادية، شرعية الدولة، هيمنة المانحين، جنوب لبنان، مشاركة المجتمع المحلي",
       "url": "https://www.thepolicyinitiative.org/article/details/468/reconstructing-lebanon%E2%80%99s-sovereignty-a-national-imperative"
     },
     {
@@ -990,6 +1079,7 @@
       "title": "Finance Minister signs $250 million World Bank reconstruction loan",
       "date": "2025-08-26",
       "focus": "World Bank loan, 500 unsafe buildings, Iraq/French contributions, infrastructure",
+      "focusAr": "قرض البنك الدولي، 500 مبنى غير آمن، مساهمات عراقية وفرنسية، البنى التحتية",
       "url": "https://today.lorientlejour.com/article/1475030/finance-minister-signs-250-million-world-bank-reconstruction-loan.html"
     },
     {
@@ -1001,6 +1091,7 @@
       "title": "Yassine Jaber et la BM signent le prêt de 250 millions pour la reconstruction",
       "date": "2025-08-26",
       "focus": "World Bank loan, credits for buildings, Iraq/French funding, roads/water/electricity/health",
+      "focusAr": "قرض البنك الدولي، اعتمادات للأبنية، تمويل عراقي وفرنسي، الطرق والمياه والكهرباء والصحة",
       "url": "https://www.lorientlejour.com/article/1475004/yassine-jaber-et-la-bm-signent-le-pret-de-250-millions-pour-la-reconstruction.html"
     },
     {
@@ -1012,6 +1103,7 @@
       "title": "Jaber annonce 335 millions de dollars pour les infrastructures endommagées par la guerre",
       "date": "2025-08-19",
       "focus": "Infrastructure funds, southern suburbs buildings, Iraqi donation, Treasury funds",
+      "focusAr": "أموال البنى التحتية، أبنية الضاحية الجنوبية، هبة عراقية، أموال الخزينة",
       "url": "https://www.lorientlejour.com/article/1474196/jaber-annonce-335-millions-de-dollars-pour-les-infrastructures-endommagees-par-la-guerre.html"
     },
     {
@@ -1023,6 +1115,7 @@
       "title": "Lebanon's Sovereignty Battle Isn't Just Over Arms",
       "date": "2025-08-19",
       "focus": "Hezbollah disarmament, LAF, cabinet decision, state fragility, sovereignty from below",
+      "focusAr": "نزع سلاح حزب الله، الجيش اللبناني، قرار مجلس الوزراء، هشاشة الدولة، السيادة من الأسفل",
       "url": "https://www.thepolicyinitiative.org/article/details/466/lebanon%E2%80%99s-sovereignty-battle-isn%E2%80%99t-just-over-arms?lang=en&src=init"
     },
     {
@@ -1034,6 +1127,7 @@
       "title": "إعمار الجنوب: ممنوع حتى إشعار سياسي",
       "date": "2025-07-26",
       "focus": "South Lebanon reconstruction, Hezbollah compensation, Council for the South, political conditions",
+      "focusAr": "إعادة إعمار جنوب لبنان، تعويضات حزب الله، مجلس الجنوب، الشروط السياسية",
       "url": "https://www.almodon.com/politics/2025/07/26/%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8-%D9%85%D9%85%D9%86%D9%88%D8%B9-%D8%AD%D8%AA%D9%89-%D8%A5%D8%B4%D8%B9%D8%A7%D8%B1-%D8%B3%D9%8A%D8%A7%D8%B3%D9%8A"
     },
     {
@@ -1045,6 +1139,7 @@
       "title": "The UN calls for urgent recovery to prevent prolonged crisis in Lebanon",
       "date": "2025-07-24",
       "focus": "MSMEs, buildings damaged, displacement, human development, livelihoods, recovery priorities",
+      "focusAr": "المؤسسات المتناهية الصغر والصغيرة والمتوسطة، أبنية متضررة، النزوح، التنمية البشرية، سبل العيش، أولويات التعافي",
       "url": "https://www.undp.org/lebanon/press-releases/un-calls-urgent-recovery-prevent-prolonged-crisis-lebanon"
     },
     {
@@ -1056,6 +1151,7 @@
       "title": "The socioeconomic impacts of the 2024 war on Lebanon",
       "date": "2025-07-24",
       "focus": "Infrastructure, economy, human/social costs, macroeconomic effects, policy recommendations",
+      "focusAr": "البنى التحتية، الاقتصاد، الكلفة البشرية والاجتماعية، الآثار على الاقتصاد الكلي، توصيات السياسات",
       "url": "https://www.undp.org/lebanon/publications/socioeconomic-impacts-2024-war-lebanon"
     },
     {
@@ -1067,6 +1163,7 @@
       "title": "Resilience in Action: Refugee-Led Organizations Respond to Crisis in Lebanon",
       "date": "2025-07-21",
       "focus": "Refugee-led organizations, displacement, Nabatieh, aid delivery, excluded populations",
+      "focusAr": "منظمات يقودها اللاجئون، النزوح، النبطية، إيصال المساعدات، الفئات المستبعَدة",
       "url": "https://soas.lau.edu.lb/news/2025/07/resilience-in-action-refugee-led-organizations-respond-to-crisis.php"
     },
     {
@@ -1078,6 +1175,7 @@
       "title": "Lebanon: New US$250 Million Project to Kickstart the Recovery and Reconstruction in Conflict-Affected Areas",
       "date": "2025-06-25",
       "focus": "LEAP, rubble management, public infrastructure, lifeline services, reconstruction financing",
+      "focusAr": "مشروع LEAP، إدارة الأنقاض، البنى التحتية العامة، الخدمات الحيوية، تمويل إعادة الإعمار",
       "url": "https://www.worldbank.org/en/news/press-release/2025/06/25/lebanon-new-us-250-million-project-to-kickstart-the-recovery-and-reconstruction-in-conflict-affected-areas"
     },
     {
@@ -1089,6 +1187,7 @@
       "title": "Food insecurity in Lebanon returns to near pre-conflict levels - but gains remain fragile",
       "date": "2025-06-13",
       "focus": "Food insecurity recovery, damaged agricultural infrastructure, funding gaps, vulnerable districts",
+      "focusAr": "التعافي من انعدام الأمن الغذائي، بنى زراعية متضررة، فجوات التمويل، الأقضية الأكثر هشاشة",
       "url": "https://www.fao.org/neareast/news/details/food-insecurity-in-lebanon-returns-to-near-pre-conflict-levels---but-gains-remain-fragile--new-report-shows/"
     },
     {
@@ -1100,6 +1199,7 @@
       "title": "A War Without a State: Lebanon's response to the 2024 Israeli war",
       "date": "2025-06-12",
       "focus": "State capacity, emergency response, donor dependence, disaster planning, institutional failure",
+      "focusAr": "قدرة الدولة، الاستجابة الطارئة، الاعتماد على المانحين، التخطيط للكوارث، الإخفاق المؤسسي",
       "url": "https://www.thepolicyinitiative.org/article/details/462/a-war-without-a-state-lebanons-response-to-the-2024-israeli-war?lang=en&src=init"
     },
     {
@@ -1111,6 +1211,7 @@
       "title": "بالأرقام: إحصاء أولي يرصد أضرار الغارات في بيروت",
       "date": "2025-06-06",
       "focus": "Dahieh, buildings, residential units, cars, businesses, damage by neighborhood",
+      "focusAr": "الضاحية، الأبنية، الوحدات السكنية، السيارات، الأعمال، الأضرار حياً حياً",
       "url": "https://www.mtv.com.lb/news/1580680?ocid=Nabd_App"
     },
     {
@@ -1122,6 +1223,7 @@
       "title": "South of the Litani River Area: Pathways to Recovery and Reconstruction Amid Uncertainty",
       "date": "2025-05-15",
       "focus": "South Litani recovery, territorial planning, agriculture, heritage, infrastructure, return",
+      "focusAr": "التعافي جنوب الليطاني، التخطيط الترابي، الزراعة، التراث، البنى التحتية، العودة",
       "url": "https://www.lcps-lebanon.org/en/articles/details/4901/south-of-the-litani-river-area-pathways-to-recovery-and-reconstruction-amid-uncertainty"
     },
     {
@@ -1133,6 +1235,7 @@
       "title": "White Phosphorus, Displacement and the Precarity of Return to South Lebanon",
       "date": "2025-05-13",
       "focus": "White phosphorus, displacement, food security, livelihoods, return risks",
+      "focusAr": "الفوسفور الأبيض، النزوح، الأمن الغذائي، سبل العيش، مخاطر العودة",
       "url": "https://soas.lau.edu.lb/news/2025/05/white-phosphorus-displacement-and-the-precarity-of-return-to-sou.php?articletype=ims_post"
     },
     {
@@ -1144,6 +1247,7 @@
       "title": "Rebuilding Hope: Lebanon's Journey toward Sustainable Recovery through Debris Management",
       "date": "2025-05-07",
       "focus": "Debris management, environmental hazards, circular economy, local rebuilding",
+      "focusAr": "إدارة الركام، المخاطر البيئية، الاقتصاد الدائري، إعادة البناء المحلية",
       "url": "https://unsdg.un.org/latest/stories/rebuilding-hope-lebanon%E2%80%99s-journey-toward-sustainable-recovery-through-debris"
     },
     {
@@ -1155,6 +1259,7 @@
       "title": "Rebuilding Hope: Lebanon's Journey toward Sustainable Recovery through Debris Management",
       "date": "2025-04-30",
       "focus": "Debris taskforce, rubble hazards, recycling/reuse, sustainable recovery",
+      "focusAr": "فريق عمل الركام، مخاطر الأنقاض، إعادة التدوير والاستعمال، تعافٍ مستدام",
       "url": "https://lebanon.un.org/en/293523-rebuilding-hope-lebanon%E2%80%99s-journey-toward-sustainable-recovery-through-debris-management"
     },
     {
@@ -1166,6 +1271,7 @@
       "title": "Reconstruction: face aux exigences de la communauté internationale, le Hezbollah à court d'options",
       "date": "2025-04-30",
       "focus": "Hezbollah, internal resources, donor requirements, state responsibility",
+      "focusAr": "حزب الله، الموارد الداخلية، متطلبات المانحين، مسؤولية الدولة",
       "url": "https://www.lorientlejour.com/article/1458035/reconstruction-face-aux-exigences-de-la-communaute-internationale-le-hezbollah-a-court-doptions.html"
     },
     {
@@ -1177,6 +1283,7 @@
       "title": "FAO and Ministry of Agriculture Launch the Lebanon Agricultural Damage and Loss Assessment Report",
       "date": "2025-04-16",
       "focus": "Agricultural damage, crops, livestock, fisheries, forestry, recovery needs",
+      "focusAr": "الأضرار الزراعية، المحاصيل، الثروة الحيوانية، الثروة السمكية، الحراج، احتياجات التعافي",
       "url": "https://www.fao.org/neareast/news/details/fao-and-ministry-of-agriculture-launch-the-lebanon-agricultural-damage-and-loss-assessment-report/en"
     },
     {
@@ -1188,6 +1295,7 @@
       "title": "Salam: Plan underway with World Bank to rebuild South",
       "date": "2025-04-04",
       "focus": "World Bank plan, southern villages, infrastructure, mayors, return",
+      "focusAr": "خطة البنك الدولي، القرى الجنوبية، البنى التحتية، رؤساء البلديات، العودة",
       "url": "https://today.lorientlejour.com/article/1454657/salam-plan-underway-with-world-bank-to-rebuild-south.html"
     },
     {
@@ -1199,6 +1307,7 @@
       "title": "إعادة الإعمار لم تبدأ والتمويل غير متوافر... ياسين للنهار: 100 م2 بـ40 ألف دولار",
       "date": "2025-03-14",
       "focus": "Funding gap, destroyed housing units, prefabricated homes, reconstruction costs",
+      "focusAr": "فجوة التمويل، وحدات سكنية مدمَّرة، منازل جاهزة، كلفة إعادة الإعمار",
       "url": "https://www.annahar.com/lebanon/201661/%D9%8A%D8%A7%D8%B3%D9%8A%D9%86-%D9%84%D9%80%D8%A7%D9%84%D9%86%D9%87%D8%A7%D8%B1-100-%D9%852-%D8%A8%D9%8040-%D8%A3%D9%84%D9%81-%D8%AF%D9%88%D9%84%D8%A7%D8%B1"
     },
     {
@@ -1210,6 +1319,7 @@
       "title": "14 مليار دولار... تكلفة الحرب الإسرائيلية على لبنان",
       "date": "2025-03-08",
       "focus": "World Bank RDNA, recovery needs, housing, trade, industry, tourism, public/private financing",
+      "focusAr": "تقييم RDNA للبنك الدولي، احتياجات التعافي، الإسكان، التجارة، الصناعة، السياحة، التمويل العام والخاص",
       "url": "https://www.mtv.com.lb/news/1554743"
     },
     {
@@ -1221,6 +1331,7 @@
       "title": "Lebanon's Recovery and Reconstruction Needs Estimated at US$11 Billion",
       "date": "2025-03-07",
       "focus": "Recovery needs, financing split, housing damage, GDP impact, debris sectors",
+      "focusAr": "احتياجات التعافي، توزّع التمويل، أضرار الإسكان، الأثر على الناتج المحلي، قطاعات الركام",
       "url": "https://www.worldbank.org/en/news/press-release/2025/03/07/lebanon-s-recovery-and-reconstruction-needs-estimated-at-us-11-billion"
     },
     {
@@ -1232,6 +1343,7 @@
       "title": "It will take $11 billion to rebuild Lebanon after the war, says World Bank",
       "date": "2025-03-07",
       "focus": "RDNA, reconstruction cost, GDP contraction, housing and sector needs",
+      "focusAr": "تقييم RDNA، كلفة إعادة الإعمار، انكماش الناتج المحلي، احتياجات الإسكان والقطاعات",
       "url": "https://today.lorientlejour.com/article/1450782/it-will-take-11-billion-to-rebuild-lebanon-after-the-war-says-world-bank.html"
     },
     {
@@ -1243,6 +1355,7 @@
       "title": "La reconstruction des zones sinistrées au Liban, avant ou après les réformes ?",
       "date": "2025-02-27",
       "focus": "Donor conditionality, reforms, Hezbollah disarmament, reconstruction sequencing",
+      "focusAr": "شروط المانحين، الإصلاحات، نزع سلاح حزب الله، تسلسل إعادة الإعمار",
       "url": "https://www.lorientlejour.com/article/1449129/la-reconstruction-des-zones-sinistrees-avant-ou-apres-les-reformes-.html"
     },
     {
@@ -1254,6 +1367,7 @@
       "title": "La guerre Hezbollah-Israël coûterait la bagatelle de 14 milliards de dollars",
       "date": "2025-02-20",
       "focus": "US$14B cost estimate, reconstruction fund, donor finance, basic services",
+      "focusAr": "تقدير الكلفة بـ14 مليار دولار، صندوق إعادة الإعمار، تمويل المانحين، الخدمات الأساسية",
       "url": "https://www.lorientlejour.com/article/1448632/la-guerre-hezbollah-israel-couterait-la-bagatelle-de-14-milliards-de-dollars.html"
     },
     {
@@ -1265,6 +1379,7 @@
       "title": "Hezbollah money is at the heart of Lebanon's reconstruction",
       "date": "2025-02-19",
       "focus": "Hezbollah aid, Jihad al-Bina, state absence, funding routes, reconstruction politics",
+      "focusAr": "مساعدات حزب الله، جهاد البناء، غياب الدولة، مسارات التمويل، سياسات إعادة الإعمار",
       "url": "https://www.lemonde.fr/en/international/article/2025/02/19/hezbollah-money-is-at-the-heart-of-lebanon-s-reconstruction_6738313_4.html"
     },
     {
@@ -1276,6 +1391,7 @@
       "title": "UNDP and the Republic of Korea increase support to South Lebanon communities affected by recent conflict",
       "date": "2025-02-10",
       "focus": "South Lebanon livelihoods, basic services, local authorities, businesses and homes",
+      "focusAr": "سبل العيش في جنوب لبنان، الخدمات الأساسية، السلطات المحلية، الأعمال والمنازل",
       "url": "https://www.undp.org/lebanon/press-releases/undp-and-republic-korea-increase-support-south-lebanon-communities-affected-recent-conflict"
     },
     {
@@ -1287,6 +1403,7 @@
       "title": "Reconstruction: Hamiyé assure la mise en place du mécanisme d'évaluation",
       "date": "2025-02-07",
       "focus": "Damage evaluation mechanism, debris clearance funds, housing aid, World Bank project",
+      "focusAr": "آلية تقييم الأضرار، أموال إزالة الركام، مساعدات الإسكان، مشروع البنك الدولي",
       "url": "https://www.lorientlejour.com/article/1446897/reconstruction-hamiye-assure-la-mise-en-place-du-mecanisme-devaluation-au-prochain-gouvernement-de-prendre-la-releve.html"
     },
     {
@@ -1298,6 +1415,7 @@
       "title": "University of Balamand Collaborates on Comprehensive Assessment of Post-Conflict Damage in Lebanon",
       "date": "2025-02-03",
       "focus": "Satellite imagery, affected units, debris quantities, South, Nabatieh, Bekaa, Baalbek-Hermel",
+      "focusAr": "صور الأقمار الاصطناعية، الوحدات المتضررة، كميات الركام، الجنوب، النبطية، البقاع، بعلبك-الهرمل",
       "url": "https://www.balamand.edu.lb/news/Allnews/Pages/Details.aspx?FilterField1=ID&FilterValue1=589"
     },
     {
@@ -1309,6 +1427,7 @@
       "title": "جنوب لبنان: المطلوب حكومة تنتزع حق العودة",
       "date": "2025-01-27",
       "focus": "Right of return, border villages, destroyed homes, state role, reconstruction",
+      "focusAr": "حق العودة، القرى الحدودية، منازل مدمَّرة، دور الدولة، إعادة الإعمار",
       "url": "https://daraj.media/%D8%AC%D9%86%D9%88%D8%A8-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D8%B7%D9%84%D9%88%D8%A8-%D8%AD%D9%83%D9%88%D9%85%D8%A9-%D8%AA%D9%86%D8%AA%D8%B2%D8%B9-%D8%AD%D9%82-%D8%A7%D9%84%D8%B9%D9%88/"
     },
     {
@@ -1320,6 +1439,7 @@
       "title": "الجنوبيون بمهبّ الحزب وأمل: يرممون المنازل من جيوبهم!",
       "date": "2025-01-24",
       "focus": "Slow inspections, compensation doubts, Council for the South, out-of-pocket repairs",
+      "focusAr": "بطء الكشوفات، الشك في التعويض، مجلس الجنوب، ترميم على النفقة الخاصة",
       "url": "https://www.almodon.com/society/2025/01/24/%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A%D9%88%D9%86-%D8%A8%D9%85%D9%87%D8%A8%D9%91-%D8%A7%D9%84%D8%AD%D8%B2%D8%A8-%D9%88%D8%A3%D9%85%D9%84-%D9%8A%D8%B1%D9%85%D9%85%D9%88%D9%86-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B2%D9%84-%D9%85%D9%86-%D8%AC%D9%8A%D9%88%D8%A8%D9%87%D9%85"
     },
     {
@@ -1331,6 +1451,7 @@
       "title": "Aid delays spark frustration two months after cease-fire",
       "date": "2025-01-24",
       "focus": "Compensation delays, Hezbollah reconstruction arm, destroyed units, displacement frustration",
+      "focusAr": "تأخّر التعويضات، ذراع إعادة الإعمار لدى حزب الله، وحدات مدمَّرة، إحباط النازحين",
       "url": "https://today.lorientlejour.com/article/1444877/aid-delays-spark-frustration-two-months-after-cease-fire.html"
     },
     {
@@ -1342,6 +1463,7 @@
       "title": "Hezbollah paid $400 million in aid to 140,000 people: Al-Akhbar",
       "date": "2025-01-23",
       "focus": "Hezbollah aid, Jihad al-Bina, housing restoration, beneficiaries",
+      "focusAr": "مساعدات حزب الله، جهاد البناء، ترميم المساكن، المستفيدون",
       "url": "https://today.lorientlejour.com/article/1444744/hezbollah-paid-400-million-in-aid-to-140000-people-al-akhbar.html"
     },
     {
@@ -1353,6 +1475,7 @@
       "title": "From Crisis to Recovery: Local Authorities Confronting Post-War Realities in Lebanon Rapid Impact Assessment",
       "date": "2025-01-22",
       "focus": "Municipal damage, displacement, infrastructure, businesses, initial recovery needs",
+      "focusAr": "أضرار بلدية، النزوح، البنى التحتية، الأعمال، احتياجات التعافي الأولية",
       "url": "https://www.undp.org/arab-states/publications/crisis-recovery-local-authorities-confronting-post-war-realities-lebanon-rapid-impact-assessment"
     },
     {
@@ -1364,6 +1487,7 @@
       "title": "Food insecurity deepens in Lebanon following conflict, new report shows",
       "date": "2025-01-22",
       "focus": "Food insecurity, livelihoods, farmers, displaced people, markets, humanitarian assistance",
+      "focusAr": "انعدام الأمن الغذائي، سبل العيش، المزارعون، النازحون، الأسواق، المساعدة الإنسانية",
       "url": "https://www.fao.org/newsroom/detail/food-insecurity-deepens-in-lebanon-following-conflict--new-report-shows/"
     },
     {
@@ -1375,6 +1499,7 @@
       "title": "The Impact of the Israeli War on Lebanon: A Postponed Environmental Catastrophe",
       "date": "2025-01-21",
       "focus": "Forests, pastures, river ecosystems, phosphorus, pollutants, air and soil contamination",
+      "focusAr": "الغابات، المراعي، النظم البيئية النهرية، الفوسفور، الملوّثات، تلوّث الهواء والتربة",
       "url": "https://daraj.media/en/the-impact-of-the-israeli-war-on-lebanon-a-postponed-environmental-catastrophe/"
     },
     {
@@ -1386,6 +1511,7 @@
       "title": "Israel's Demolition and Displacement Strategy in Lebanon: Scorched Earth Policy as a Tool of War",
       "date": "2025-01-09",
       "focus": "Demolition, displacement, village destruction, right to development, social consequences",
+      "focusAr": "الهدم، النزوح، تدمير القرى، الحق في التنمية، التبعات الاجتماعية",
       "url": "https://daraj.media/en/israels-demolition-and-displacement-strategy-in-lebanon-scorched-earth-policy-as-a-tool-of-war/"
     },
     {
@@ -1397,6 +1523,7 @@
       "title": "In photos: A look back at the war in Lebanon in 2024",
       "date": "2024-12-31",
       "focus": "Casualties, destroyed homes, displacement, Baalbeck, South Lebanon, Beirut southern suburbs",
+      "focusAr": "الضحايا، منازل مدمَّرة، النزوح، بعلبك، جنوب لبنان، الضاحية الجنوبية لبيروت",
       "url": "https://today.lorientlejour.com/multimedia/1441732/in-pictures-a-look-back-at-the-war-in-lebanon-in-2024.html"
     },
     {
@@ -1408,6 +1535,7 @@
       "title": "لبنان في عام 2024: الحرب الأفظع والمجهول المستمر",
       "date": "2024-12-26",
       "focus": "2024 chronology, September escalation, Nasrallah, ground invasion, ceasefire",
+      "focusAr": "تسلسل أحداث 2024، تصعيد أيلول، نصر الله، الاجتياح البري، وقف إطلاق النار",
       "url": "https://www.almodon.com/amp/politics/2024/12/26/%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%81%D9%8A-%D8%B9%D8%A7%D9%85-2024-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%A3%D9%81%D8%B8%D8%B9-%D9%88%D8%A7%D9%84%D9%85%D8%AC%D9%87%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%85%D8%B1"
     },
     {
@@ -1419,6 +1547,7 @@
       "title": "اقتراح قانون للانضمام إلى المحكمة الدولية الجنائية: فوائد ومحاذير وعوائق",
       "date": "2024-12-26",
       "focus": "ICC accession, Israeli crimes, accountability, war crimes, parliamentary proposal",
+      "focusAr": "الانضمام إلى المحكمة الجنائية الدولية، الجرائم الإسرائيلية، المساءلة، جرائم الحرب، اقتراح نيابي",
       "url": "https://legal-agenda.com/%D8%A7%D9%82%D8%AA%D8%B1%D8%A7%D8%AD-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D9%84%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85-%D8%A5%D9%84%D9%89-%D8%A7%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9-%D8%A7%D9%84%D8%AF/"
     },
     {
@@ -1430,6 +1559,7 @@
       "title": "بدعة حرية الحركة لإسرائيل في لبنان: تشويه لحق الدفاع عن النفس",
       "date": "2024-12-24",
       "focus": "Ceasefire violations, Israeli freedom of movement claim, self-defense, Lebanese sovereignty, 1701",
+      "focusAr": "خروق وقف إطلاق النار، ادعاء حرية الحركة الإسرائيلية، الدفاع عن النفس، السيادة اللبنانية، القرار 1701",
       "url": "https://legal-agenda.com/%D8%A8%D8%AF%D8%B9%D8%A9-%D8%AD%D8%B1%D9%91%D9%8A%D8%A9-%D8%A7%D9%84%D8%AD%D8%B1%D9%83%D8%A9-%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%81%D9%8A-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%AA/"
     },
     {
@@ -1441,6 +1571,7 @@
       "title": "مشروع قانون إعادة الإعمار يكرّر إخفاقات الماضي: ليس بإعمار المباني فقط نحيي بلدات مدمّرة",
       "date": "2024-12-23",
       "focus": "Draft reconstruction law, damage survey, rubble removal, property and urban recovery, South Lebanon",
+      "focusAr": "مشروع قانون إعادة الإعمار، مسح الأضرار، رفع الأنقاض، التعافي العقاري والعمراني، جنوب لبنان",
       "url": "https://legal-agenda.com/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D9%8A%D9%83%D8%B1%D9%91%D8%B1-%D8%A5%D8%AE%D9%81%D8%A7%D9%82/"
     },
     {
@@ -1452,6 +1583,7 @@
       "title": "Launch of the Rapid Needs Assessment on the impact of conflict on agriculture in Lebanon",
       "date": "2024-12-19",
       "focus": "Agricultural households, displacement, livelihoods, access to land, emergency support",
+      "focusAr": "الأسر الزراعية، النزوح، سبل العيش، الوصول إلى الأرض، الدعم الطارئ",
       "url": "https://www.fao.org/lebanon/news/detail/launch-of-the-rapid-needs-assessment--on-the-impact-of-conflict-on-agriculture-in-lebanon/en"
     },
     {
@@ -1463,6 +1595,7 @@
       "title": "Echoes of War",
       "date": "2024-12-17",
       "focus": "IDP settlement, Hamra, housing access, neighborhood transformation, displacement anxiety",
+      "focusAr": "استقرار النازحين، الحمرا، الوصول إلى السكن، تحوّل الأحياء، قلق النزوح",
       "url": "https://beiruturbanlab.com/en/Details/2022"
     },
     {
@@ -1474,6 +1607,7 @@
       "title": "Lebanon's Economic Contraction Deepens, Highlighting Critical Need for Reforms and Key Investments",
       "date": "2024-12-10",
       "focus": "GDP contraction, consumption, net exports, tourism, reform needs",
+      "focusAr": "انكماش الناتج المحلي، الاستهلاك، صافي الصادرات، السياحة، الحاجة إلى الإصلاح",
       "url": "https://www.worldbank.org/en/news/press-release/2024/12/10/lebanon-s-economic-contraction-deepens-highlighting-critical-need-for-reforms-and-key-investments"
     },
     {
@@ -1485,6 +1619,7 @@
       "title": "حكومة المقالع تستعين بالحرب لمضاعفة جرائمها: إعادة الإعمار بـ 'البلطجة'؟",
       "date": "2024-12-10",
       "focus": "Quarries, cement supply, reconstruction materials, environmental governance, cabinet decision",
+      "focusAr": "المقالع، تأمين الإسمنت، مواد إعادة الإعمار، الحوكمة البيئية، قرار مجلس الوزراء",
       "url": "https://legal-agenda.com/%D8%AD%D9%83%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%84%D8%B9-%D8%AA%D8%B3%D8%AA%D8%B9%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D9%84%D9%85%D8%B6%D8%A7%D8%B9%D9%81%D8%A9-%D8%AC/"
     },
     {
@@ -1496,6 +1631,7 @@
       "title": "Strikes and Vital Sites in Dahiya: Health and Educational Facilities",
       "date": "2024-12-09",
       "focus": "Dahiya, health facilities, educational facilities, announced strikes, lethal range, forced displacement",
+      "focusAr": "الضاحية، المرافق الصحية، المرافق التعليمية، غارات مُعلنة، مدى الفتك، التهجير القسري",
       "url": "https://beiruturbanlab.com/en/Details/2017"
     },
     {
@@ -1507,6 +1643,7 @@
       "title": "إعادة الإعمار بين التمويل الحكومي وتكفّل حزب الله",
       "date": "2024-12-07",
       "focus": "Damage inspection, South Council, Hezbollah, reconstruction financing, material prices",
+      "focusAr": "الكشف على الأضرار، مجلس الجنوب، حزب الله، تمويل إعادة الإعمار، أسعار المواد",
       "url": "https://www.annahar.com/lebanon/177996/%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84%D8%AA%D9%85%D9%88%D9%8A%D9%84-%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D9%8A-%D9%88%D8%AA%D9%83%D9%81%D9%84-%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87"
     },
     {
@@ -1518,6 +1655,7 @@
       "title": "وقف النار في لبنان: الردع الهش والمخاطر المحتملة",
       "date": "2024-12-03",
       "focus": "Ceasefire, deterrence, UNSCR 1701, monitoring committee, Hezbollah withdrawal, Israel risks",
+      "focusAr": "وقف إطلاق النار، الردع، القرار 1701، لجنة المراقبة، انسحاب حزب الله، المخاطر الإسرائيلية",
       "url": "https://studies.aljazeera.net/en/node/6089"
     },
     {
@@ -1529,6 +1667,7 @@
       "title": "Assessment of Damages in Lebanon",
       "date": "2024-12-02",
       "focus": "Residential destruction, buffer zone, compensation bill, return barriers",
+      "focusAr": "تدمير المساكن، المنطقة العازلة، فاتورة التعويضات، عوائق العودة",
       "url": "https://mercycorps.org.lb/assessment-of-damages-in-lebanon/"
     },
     {
@@ -1540,6 +1679,7 @@
       "title": "Hezbollah-Israel War: The Day After",
       "date": "2024-12-02",
       "focus": "Foreign aid safeguards, reconstruction transparency, public policy, accountability",
+      "focusAr": "ضمانات المساعدات الخارجية، شفافية إعادة الإعمار، السياسات العامة، المساءلة",
       "url": "https://news.lau.edu.lb/2024/hezbollah-israel-war-the-day-after.php"
     },
     {
@@ -1551,6 +1691,7 @@
       "title": "To survive after ceasefire, rebuild Lebanon for all its citizens",
       "date": "2024-12-02",
       "focus": "Reconstruction governance, citizenship, state legitimacy, collective identity, patronage risks",
+      "focusAr": "حوكمة إعادة الإعمار، المواطنة، شرعية الدولة، الهوية الجماعية، مخاطر الزبائنية",
       "url": "https://beiruturbanlab.com/en/Details/2021/to-survive-after-ceasefire%2C-rebuild-lebanon-for-all-its-citizens"
     },
     {
@@ -1562,6 +1703,7 @@
       "title": "ترتيبات الحكومة بشأن وقف الأعمال الحربية: لماذا لا يتم إعلان حالة الطوارئ؟",
       "date": "2024-11-29",
       "focus": "Ceasefire arrangements, emergency powers, army deployment, South Litani, state response",
+      "focusAr": "ترتيبات وقف إطلاق النار، الصلاحيات الاستثنائية، انتشار الجيش، جنوب الليطاني، استجابة الدولة",
       "url": "https://legal-agenda.com/%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9-%D8%A8%D8%B4%D8%A3%D9%86-%D9%88%D9%82%D9%81-%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%AD/"
     },
     {
@@ -1573,6 +1715,7 @@
       "title": "Ensuring Citizen Safety as Ceasefire Takes Effect",
       "date": "2024-11-27",
       "focus": "Ceasefire, return warnings, front-line villages, unexploded ordnance, citizen safety",
+      "focusAr": "وقف إطلاق النار، تحذيرات من العودة، قرى الخط الأمامي، الذخائر غير المنفجرة، سلامة المواطنين",
       "url": "https://army.gov.lb/en/content/ensuring-citizen-safety-ceasefire-takes-effect"
     },
     {
@@ -1584,6 +1727,7 @@
       "title": "Homeless in the City of the 44 Thousand Empty Homes...",
       "date": "2024-11-21",
       "focus": "Vacant housing, emergency shelters, public schools, displaced families, right to housing",
+      "focusAr": "المساكن الشاغرة، مراكز الإيواء الطارئة، المدارس الرسمية، العائلات النازحة، الحق في السكن",
       "url": "https://beiruturbanlab.com/en/Details/2013"
     },
     {
@@ -1595,6 +1739,7 @@
       "title": "Not Collateral Damage but a Deliberate Act of Cultural Erasure",
       "date": "2024-11-20",
       "focus": "Cultural heritage, Baalbek, Tyre, Nabatieh souk, vernacular villages, intangible heritage",
+      "focusAr": "التراث الثقافي، بعلبك، صور، سوق النبطية، القرى التقليدية، التراث غير المادي",
       "url": "https://www.beiruturbanlab.com/en/Details/2015/not-collateral-damage-but-a-deliberate-act-of-cultural-erasure"
     },
     {
@@ -1606,6 +1751,7 @@
       "title": "Plus de 630 millions de dollars de degats immobiliers seulement dans la banlieue sud de Beyrouth, selon Jihad el-Bina'",
       "date": "2024-11-19",
       "focus": "Damage values, residential units, debris, Dahieh, South Lebanon, Bekaa",
+      "focusAr": "قيم الأضرار، الوحدات السكنية، الركام، الضاحية، جنوب لبنان، البقاع",
       "url": "https://www.lorientlejour.com/article/1436100/plus-de-630-millions-de-dollars-de-degats-immobiliers-seulement-dans-la-banlieue-sud-de-beyrouth-selon-jihad-al-binaa.html"
     },
     {
@@ -1617,6 +1763,7 @@
       "title": "Mapping Israeli Announced Strikes on Lebanon",
       "date": "2024-11-19",
       "focus": "Dahiya, Tyre, Baalbek, evacuation threats, urbicide, destroyed buildings",
+      "focusAr": "الضاحية، صور، بعلبك، تهديدات الإخلاء، تدمير العمران، أبنية مدمَّرة",
       "url": "https://beiruturbanlab.com/en/Details/2011/mapping-israeli-announced-strikes-on-lebanon"
     },
     {
@@ -1628,6 +1775,7 @@
       "title": "لجان الإحصاء في جهاد البناء: 2.9 مليار دولار كلفة أولية لإعادة الإعمار منها 630 مليوناً للضاحية",
       "date": "2024-11-15",
       "focus": "Jihad el-Bina survey, destroyed units, Dahieh, reconstruction cost",
+      "focusAr": "مسح جهاد البناء، الوحدات المدمَّرة، الضاحية، كلفة إعادة الإعمار",
       "url": "https://www.al-akhbar.com/lebanon/1830/%D9%84%D8%AC%D8%A7%D9%86-%D8%A7%D9%84%D8%A5%D8%AD%D8%B5%D8%A7%D8%A1-%D9%81%D9%8A-%D8%AC%D9%87%D8%A7%D8%AF-%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1--2-9-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AF%D9%88%D9%84%D8%A7%D8%B1-%D9%83%D9%84%D9%81%D8%A9-%D8%A3%D9%88%D9%84%D9%8A%D8%A9-%D9%84%D8%A5%D8%B9%D8%A7"
     },
     {
@@ -1639,6 +1787,7 @@
       "title": "القرار 1701: إدخال الجمل في خرم إبرة",
       "date": "2024-11-14",
       "focus": "Resolution 1701, ceasefire obstacles, destroyed border villages, return of residents",
+      "focusAr": "القرار 1701، عقبات وقف إطلاق النار، قرى حدودية مدمَّرة، عودة الأهالي",
       "url": "https://www.al-akhbar.com/lebanon/1764/%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1-1701--%D8%A5%D8%AF%D8%AE%D8%A7%D9%84-%D8%A7%D9%84%D8%AC%D9%85%D9%84-%D9%81%D9%8A-%D8%AE%D8%B1%D9%85-%D8%A5%D8%A8%D8%B1%D8%A9"
     },
     {
@@ -1650,6 +1799,7 @@
       "title": "New World Bank Report Assesses Impact of Conflict on Lebanon's Economy and Key Sectors",
       "date": "2024-11-14",
       "focus": "Physical damages, economic losses, jobs, housing, commerce, agriculture",
+      "focusAr": "الأضرار المادية، الخسائر الاقتصادية، الوظائف، الإسكان، التجارة، الزراعة",
       "url": "https://www.worldbank.org/en/news/press-release/2024/11/14/new-world-bank-report-assesses-impact-of-conflict-on-lebanon-s-economy-and-key-sectors"
     },
     {
@@ -1661,6 +1811,7 @@
       "title": "Les pertes économiques liées à la guerre au Liban ont dépassé les cinq milliards de dollars",
       "date": "2024-11-14",
       "focus": "World Bank DaLA, housing damage, commerce, agriculture, tourism",
+      "focusAr": "تقييم الأضرار والخسائر للبنك الدولي، أضرار الإسكان، التجارة، الزراعة، السياحة",
       "url": "https://www.lorientlejour.com/article/1435526/conflit-au-liban-pres-de-100000-logements-endommages-en-un-an-banque-mondiale.html"
     },
     {
@@ -1672,6 +1823,7 @@
       "title": "Towards a Sustainable Day After: Managing Demolition Rubble in the Aftermath of the 2024 Lebanon Conflict",
       "date": "2024-11-10",
       "focus": "Construction and demolition waste, debris recycling, governance, reconstruction",
+      "focusAr": "نفايات البناء والهدم، إعادة تدوير الركام، الحوكمة، إعادة الإعمار",
       "url": "https://scholarworks.aub.edu.lb/handle/10938/34835?show=full"
     },
     {
@@ -1683,6 +1835,7 @@
       "title": "Extensive damage in the Rafic Hariri University Campus - Hadath following Israeli aggression",
       "date": "2024-11-07",
       "focus": "Hadath campus, laboratories, civilian buildings, distance learning, university infrastructure",
+      "focusAr": "حرم الحدث، المختبرات، أبنية مدنية، التعلّم عن بعد، البنى التحتية الجامعية",
       "url": "https://ul.edu.lb/en/extensive-damage-rafic-hariri-university-campus-hadath-following-israeli-aggression"
     },
     {
@@ -1694,6 +1847,7 @@
       "title": "The death toll in Lebanon crosses 3,000 in the 13-month Israel-Hezbollah war, Health Ministry says",
       "date": "2024-11-04",
       "focus": "Casualties, displacement, ground invasion, humanitarian context",
+      "focusAr": "الضحايا، النزوح، الاجتياح البري، السياق الإنساني",
       "url": "https://apnews.com/article/798b846237a24ed37490ea29bd4e3aba"
     },
     {
@@ -1705,6 +1859,7 @@
       "title": "Mapping One Month of Announced Strikes in South Beirut (September 27 - November 4, 2024)",
       "date": "2024-10-29",
       "focus": "South Beirut, Dahiya, evacuation orders, destroyed buildings, urbicide, psychological warfare",
+      "focusAr": "بيروت الجنوبية، الضاحية، أوامر الإخلاء، أبنية مدمَّرة، تدمير العمران، الحرب النفسية",
       "url": "https://beiruturbanlab.com/en/Details/2009"
     },
     {
@@ -1716,6 +1871,7 @@
       "title": "Israel and Lebanese Hezbollah: Conflict and Escalation",
       "date": "2024-10-25",
       "focus": "Escalation chronology, casualties, displacement, US policy",
+      "focusAr": "تسلسل التصعيد، الضحايا، النزوح، السياسة الأميركية",
       "url": "https://www.everycrsreport.com/reports/IF12770.html"
     },
     {
@@ -1727,6 +1883,7 @@
       "title": "Abiad Submits a Report Documenting 55 Enemy Attacks on Hospitals and 201 on Emergency Services",
       "date": "2024-10-25",
       "focus": "Hospitals, emergency services, health workers, legal accountability, war-crime reporting",
+      "focusAr": "المستشفيات، خدمات الطوارئ، العاملون الصحيون، المساءلة القانونية، الإبلاغ عن جرائم الحرب",
       "url": "https://www.moph.gov.lb/ar/DynamicPages/index/127/76220/abiad-submits-a-report-documenting-55-enemy-attacks-on-hospitals-and-201-on-emergency-services"
     },
     {
@@ -1738,6 +1895,7 @@
       "title": "إسرائيل تستهدف مستشفيات ضاحية بيروت: إخراج مستشفيي الساحل وبهمن من الخدمة وإلحاق الضرر بثلاثة أخرى",
       "date": "2024-10-24",
       "focus": "Hospitals, Dahiya, Sahel, Bahman, Rafik Hariri hospital vicinity, health infrastructure",
+      "focusAr": "المستشفيات، الضاحية، مستشفى الساحل، مستشفى بهمن، محيط مستشفى رفيق الحريري، البنى التحتية الصحية",
       "url": "https://legal-agenda.com/%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%AA%D8%B3%D8%AA%D9%87%D8%AF%D9%81-%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%8A%D8%A7%D8%AA-%D8%B6%D8%A7%D8%AD%D9%8A%D8%A9-%D8%A8%D9%8A%D8%B1%D9%88%D8%AA-%D8%A5/"
     },
     {
@@ -1749,6 +1907,7 @@
       "title": "Explosive Triangle: Israel, Iran, and Hezbollah in Lebanon",
       "date": "2024-10-23",
       "focus": "Iran-Hezbollah-Israel triangle, Lebanon sovereignty, diplomacy",
+      "focusAr": "مثلث إيران وحزب الله وإسرائيل، السيادة اللبنانية، الدبلوماسية",
       "url": "https://carnegieendowment.org/events/2024/10/explosive-triangle-israel-iran-and-hezbollah-in-lebanon/"
     },
     {
@@ -1760,6 +1919,7 @@
       "title": "When War Threatens Cultural Heritage",
       "date": "2024-10-18",
       "focus": "Archaeological sites, Tyre, Baalbek, South Lebanon, Beqaa, cultural heritage protection",
+      "focusAr": "المواقع الأثرية، صور، بعلبك، جنوب لبنان، البقاع، حماية التراث الثقافي",
       "url": "https://aub.edu.lb/communications/aub%40work/Pages/28/When-War-Threatens-Cultural-Heritage.aspx"
     },
     {
@@ -1771,6 +1931,7 @@
       "title": "تقرير لجنة الطوارئ ال 21: النسبة الأكبر للنازحين في جبل لبنان وبيروت",
       "date": "2024-10-17",
       "focus": "Airstrikes, displacement, casualties, shelters, government response",
+      "focusAr": "الغارات الجوية، النزوح، الضحايا، مراكز الإيواء، استجابة الحكومة",
       "url": "https://nna-leb.gov.lb/ar/%D9%85%D8%AA%D9%81%D8%B1%D9%82%D8%A7%D8%AA/730947/%D8%AA%D9%82%D8%B1%D9%8A%D8%B1-%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D8%B7%D9%88%D8%A7%D8%B1%D8%A6-%D8%A7%D9%84-21-%D8%A7%D9%84%D9%86%D8%B3%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%83%D8%A8%D8%B1-%D9%84%D9%84%D9%86%D8%A7%D8%B2%D8%AD%D9%8A%D9%86-%D9%81%D9%8A"
     },
     {
@@ -1782,6 +1943,7 @@
       "title": "The LAU Mobile Clinics Deliver Healthcare and Renewed Hope to Lebanon's Displaced",
       "date": "2024-10-14",
       "focus": "Mobile clinics, displaced families, primary care, medicines, hygiene kits, shelters",
+      "focusAr": "عيادات متنقلة، عائلات نازحة، الرعاية الأولية، الأدوية، حقائب النظافة، مراكز الإيواء",
       "url": "https://news.lau.edu.lb/2024/the-lau-mobile-clinics-deliver-healthcare-and-renewed-hope-to-lebanons-displaced.php"
     },
     {
@@ -1793,6 +1955,7 @@
       "title": "The Hezbollah-Israel Conflict: Strategic Calculus, Regional Fallout, and Prospects for Resolution",
       "date": "2024-10-14",
       "focus": "Hezbollah strategy, regional fallout, displacement, ceasefire prospects, humanitarian crisis",
+      "focusAr": "استراتيجية حزب الله، التداعيات الإقليمية، النزوح، آفاق وقف إطلاق النار، الأزمة الإنسانية",
       "url": "https://carnegieendowment.org/middle-east/events/2024/10/the-evolving-hezbollah-israel-conflict"
     },
     {
@@ -1804,6 +1967,7 @@
       "title": "L'Opération 7e jour face à la guerre du Liban",
       "date": "2024-10-09",
       "focus": "Displaced families, shelters, medical support, food and hygiene needs, student volunteers",
+      "focusAr": "العائلات النازحة، مراكز الإيواء، الدعم الطبي، حاجات الغذاء والنظافة، متطوعون طلاب",
       "url": "https://www.usj.edu.lb/news.php?id=15216"
     },
     {
@@ -1815,6 +1979,7 @@
       "title": "The Risks of Further Escalation in the Middle East",
       "date": "2024-10-07",
       "focus": "Regional escalation, Hezbollah, Iran, Lebanon ground operation",
+      "focusAr": "التصعيد الإقليمي، حزب الله، إيران، العملية البرية في لبنان",
       "url": "https://www.belfercenter.org/research-analysis/event-recording-risks-further-escalation-middle-east"
     },
     {
@@ -1826,6 +1991,7 @@
       "title": "Can UN Resolution 1701 help end the Hezbollah-Israel fight?",
       "date": "2024-10-04",
       "focus": "UNSCR 1701, UNIFIL, diplomacy, ceasefire mechanics",
+      "focusAr": "القرار 1701، اليونيفيل، الدبلوماسية، آليات وقف إطلاق النار",
       "url": "https://amp.dw.com/en/can-un-resolution-1701-help-end-the-hezbollah-israel-fight/a-70407207"
     },
     {
@@ -1837,6 +2003,7 @@
       "title": "Israel's Assault on Lebanon, Sept. 2024",
       "date": "2024-10-04",
       "focus": "National escalation, displacement, strike data, misinformation, solidarity initiatives",
+      "focusAr": "تصعيد وطني، النزوح، معطيات الغارات، التضليل، مبادرات التضامن",
       "url": "https://beiruturbanlab.com/en/Details/2007/israel%E2%80%99s-assault-on-lebanon%2C-sept-2024"
     },
     {
@@ -1848,6 +2015,7 @@
       "title": "Israeli escalation in Lebanon: A new turn in a long war",
       "date": "2024-10-03",
       "focus": "Pager/walkie-talkie attacks, Israeli escalation, Hezbollah, Gaza linkage",
+      "focusAr": "هجمات أجهزة النداء وأجهزة الاتصال، التصعيد الإسرائيلي، حزب الله، الارتباط بغزة",
       "url": "https://studies.aljazeera.net/en/policy-briefs/israeli-escalation-lebanon-new-turn-long-war"
     },
     {
@@ -1859,6 +2027,7 @@
       "title": "Lebanese civilians increasingly become victims of escalating Israel-Hezbollah conflict",
       "date": "2024-10-03",
       "focus": "Civilian casualties, medical workers, Beirut strikes",
+      "focusAr": "ضحايا مدنيون، العاملون الطبيون، غارات على بيروت",
       "url": "https://www.pbs.org/newshour/show/lebanese-civilians-increasingly-become-victims-of-escalating-israel-hezbollah-conflict"
     },
     {
@@ -1870,6 +2039,7 @@
       "title": "Israel vs. Hezbollah in Lebanon: a timeline",
       "date": "2024-10-01",
       "focus": "Historical timeline, September escalation, ground incursions",
+      "focusAr": "جدول زمني تاريخي، تصعيد أيلول، التوغّلات البرية",
       "url": "https://amp.dw.com/en/israel-vs-hezbollah-in-lebanon-a-timeline/a-69880525"
     },
     {
@@ -1881,6 +2051,7 @@
       "title": "بلومبيرغ: هكذا تنزلق إسرائيل وحزب الله شيئا فشيئا نحو حرب شاملة",
       "date": "2024-09-29",
       "focus": "Satellite fire data, ACLED, escalation geography, casualties, displacement",
+      "focusAr": "معطيات الحرائق من الأقمار الاصطناعية، مشروع ACLED، جغرافيا التصعيد، الضحايا، النزوح",
       "url": "https://www.aljazeera.net/politics/2024/9/29/%D8%A8%D9%84%D9%88%D9%85%D8%A8%D9%8A%D8%B1%D8%BA-%D9%86%D8%B8%D8%B1%D8%A9-%D9%85%D8%B9%D9%85%D9%82%D8%A9-%D8%A7%D9%84%D9%82%D8%B5%D9%81-%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A"
     },
     {
@@ -1892,6 +2063,7 @@
       "title": "Israel Has Assassinated the Secretary General of Hezbollah, Hassan Nasrallah",
       "date": "2024-09-29",
       "focus": "Nasrallah assassination, Hezbollah leadership, Beirut southern suburbs, escalation",
+      "focusAr": "اغتيال نصر الله، قيادة حزب الله، الضاحية الجنوبية لبيروت، التصعيد",
       "url": "https://carnegieendowment.org/middle-east/diwan/2024/09/israel-has-assassinated-the-secretary-general-of-hezbollah-hassan-nasrallah?center=middle-east"
     },
     {
@@ -1903,6 +2075,7 @@
       "title": "Hezbollah leader Hassan Nasrallah transformed the militant group into a potent regional force",
       "date": "2024-09-28",
       "focus": "Nasrallah, Hezbollah evolution, 2006 war, 2024 escalation",
+      "focusAr": "نصر الله، تطوّر حزب الله، حرب 2006، تصعيد 2024",
       "url": "https://apnews.com/article/2da3789a02fd4e2e88511a7f59174d19"
     },
     {
@@ -1914,6 +2087,7 @@
       "title": "Abiad Details the Medical Facilities Provided to the Displaced and Ensuring Communication on 1214 and 1787",
       "date": "2024-09-28",
       "focus": "Casualty toll, displaced health services, mobile teams, primary health centers, cancer and dialysis referrals",
+      "focusAr": "حصيلة الضحايا، خدمات صحية نازحة، فرق متنقلة، مراكز الرعاية الأولية، إحالات السرطان وغسيل الكلى",
       "url": "https://www.moph.gov.lb/en/Pages/127/75673/"
     },
     {
@@ -1925,6 +2099,7 @@
       "title": "Government-Designated Shelters in Lebanon",
       "date": "2024-09-27",
       "focus": "Public schools, technical institutes, shelter centers, displaced families, crisis committee data",
+      "focusAr": "المدارس الرسمية، المعاهد الفنية، مراكز الإيواء، العائلات النازحة، معطيات لجنة الأزمة",
       "url": "https://beiruturbanlab.com/en/Details/2005"
     },
     {
@@ -1936,6 +2111,7 @@
       "title": "Israel's and Hezbollah's Default Option: Keep Fighting",
       "date": "2024-09-26",
       "focus": "Ceasefire incentives, escalation control, Hezbollah political risk, US leverage",
+      "focusAr": "حوافز وقف إطلاق النار، ضبط التصعيد، المخاطر السياسية على حزب الله، النفوذ الأميركي",
       "url": "https://carnegieendowment.org/emissary/2024/09/israel-hezbollah-lebanon-options-fighting-ceasefire"
     },
     {
@@ -1947,6 +2123,7 @@
       "title": "حزب الله وإسرائيل.. حرب شاملة أم مواجهة محسوبة",
       "date": "2024-09-25",
       "focus": "Pager attacks, Israeli objectives, Hezbollah response options, deterrence",
+      "focusAr": "هجمات أجهزة النداء، الأهداف الإسرائيلية، خيارات ردّ حزب الله، الردع",
       "url": "https://www.aljazeera.net/politics/2024/9/25/%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87-%D9%88%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%AA%D9%88%D8%A7%D8%B2%D9%86-%D8%A7%D9%84%D8%B1%D8%AF%D8%B9-%D8%A3%D9%85-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9"
     },
     {
@@ -1958,6 +2135,7 @@
       "title": "Israel-Hezbollah Escalation",
       "date": "2024-09-24",
       "focus": "September 2024 strikes, Lebanese opinion, Hezbollah and Israel",
+      "focusAr": "غارات أيلول 2024، الرأي العام اللبناني، حزب الله وإسرائيل",
       "url": "https://www.csis.org/analysis/israel-hezbollah-escalation"
     },
     {
@@ -1969,6 +2147,7 @@
       "title": "Escalation in Lebanon: What is Israel trying to achieve?",
       "date": "2024-09-24",
       "focus": "Israeli objectives, northern residents, Hezbollah weapons",
+      "focusAr": "الأهداف الإسرائيلية، سكان الشمال الإسرائيلي، سلاح حزب الله",
       "url": "https://amp.dw.com/en/escalation-in-lebanon-what-is-israel-trying-to-achieve/a-70312958"
     },
     {
@@ -1980,6 +2159,7 @@
       "title": "Israel-Hezbollah Escalation",
       "date": "2024-09-24",
       "focus": "Lebanese public attitudes, Hezbollah, US pressure, escalation dynamics",
+      "focusAr": "مواقف الرأي العام اللبناني، حزب الله، الضغط الأميركي، ديناميات التصعيد",
       "url": "https://www.csis.org/analysis/israel-hezbollah-escalation"
     },
     {
@@ -1991,6 +2171,7 @@
       "title": "Hizbullah on the back foot in spiralling conflict with Israel",
       "date": "2024-09-24",
       "focus": "Hezbollah military response, Israeli air campaign, command-and-control, ground-war risk",
+      "focusAr": "الردّ العسكري لحزب الله، الحملة الجوية الإسرائيلية، القيادة والسيطرة، خطر الحرب البرية",
       "url": "https://www.iiss.org/online-analysis/online-analysis/2024/09/hizbullah-on-the-back-foot-in-spiralling-conflict-with-israel/"
     },
     {
@@ -2002,6 +2183,7 @@
       "title": "Middle East experts discuss what's behind the escalating Israel-Hezbollah conflict",
       "date": "2024-09-23",
       "focus": "Israeli operation, civilian harm, escalation logic",
+      "focusAr": "العملية الإسرائيلية، الأذى بالمدنيين، منطق التصعيد",
       "url": "https://www.pbs.org/newshour/show/middle-east-experts-discuss-whats-behind-the-escalating-israel-hezbollah-conflict"
     },
     {
@@ -2013,6 +2195,7 @@
       "title": "Israel and Hezbollah Are Escalating Toward Catastrophe",
       "date": "2024-09-23",
       "focus": "Escalation traps, US diplomacy, wider-war risk",
+      "focusAr": "مصائد التصعيد، الدبلوماسية الأميركية، خطر اتساع الحرب",
       "url": "https://www.washingtoninstitute.org/policy-analysis/israel-and-hezbollah-are-escalating-toward-catastrophe"
     },
     {
@@ -2024,6 +2207,7 @@
       "title": "تصعيد الجبهات وتغيير المعادلات",
       "date": "2024-09-20",
       "focus": "Pager attacks, multi-front escalation, Iran-Israel dynamics",
+      "focusAr": "هجمات أجهزة النداء، تصعيد متعدد الجبهات، الديناميات الإيرانية الإسرائيلية",
       "url": "https://www.annahar.com/makalat/annahar-alarabi-authors/241284/%D8%AA%D8%B5%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AC%D8%A8%D9%87%D8%A7%D8%AA-%D9%88%D8%AA%D8%BA%D9%8A%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A7%D8%AA"
     },
     {
@@ -2035,6 +2219,7 @@
       "title": "Mapping Escalation Along Lebanon's Southern Border Since October 7",
       "date": "2024-09-13",
       "focus": "South Lebanon border, ACLED data, strike frequency, distance from border, asymmetry",
+      "focusAr": "حدود جنوب لبنان، معطيات ACLED، وتيرة الغارات، البعد عن الحدود، اللاتماثل",
       "url": "https://beiruturbanlab.com/en/Details/1958/escalation-along-lebanon"
     },
     {
@@ -2046,6 +2231,7 @@
       "title": "Another One-Day War? What the Latest Hezbollah-Israel Clash Reveals About Deterrence and Escalation",
       "date": "2024-08-27",
       "focus": "Deterrence, escalation management, August exchange",
+      "focusAr": "الردع، إدارة التصعيد، تبادل آب",
       "url": "https://www.washingtoninstitute.org/policy-analysis/another-one-day-war-what-latest-hezbollah-israel-clash-reveals-about-deterrence-and"
     },
     {
@@ -2057,6 +2243,7 @@
       "title": "How Israel and Hezbollah stepped back from the brink of all-out war",
       "date": "2024-08-26",
       "focus": "August exchange, deterrence, diplomacy, risk management",
+      "focusAr": "تبادل آب، الردع، الدبلوماسية، إدارة المخاطر",
       "url": "https://www.washingtonpost.com/world/2024/08/26/israel-hezbollah-lebanon-war-gaza/"
     },
     {
@@ -2068,6 +2255,7 @@
       "title": "Inside the southern Lebanon border area laid to waste as Israel, Hezbollah trade fire",
       "date": "2024-08-09",
       "focus": "Civilian infrastructure, southern Lebanon, displacement",
+      "focusAr": "البنى التحتية المدنية، جنوب لبنان، النزوح",
       "url": "https://www.pbs.org/newshour/show/inside-the-southern-lebanon-border-area-laid-to-waste-as-israel-hezbollah-trade-fire"
     },
     {
@@ -2079,6 +2267,7 @@
       "title": "L'État prêt à financer la reconstruction du Liban-Sud ?",
       "date": "2024-08-07",
       "focus": "State financing, budget surplus, South Lebanon reconstruction, displacement",
+      "focusAr": "تمويل الدولة، فائض الموازنة، إعادة إعمار جنوب لبنان، النزوح",
       "url": "https://www.lorientlejour.com/article/1422926/letat-pret-a-financer-la-reconstruction-du-liban-sud-.html"
     },
     {
@@ -2090,6 +2279,7 @@
       "title": "Is the Lebanese government ready to finance the south's reconstruction?",
       "date": "2024-08-07",
       "focus": "Government financing, budget surplus, BDL, South Lebanon reconstruction",
+      "focusAr": "التمويل الحكومي، فائض الموازنة، مصرف لبنان، إعادة إعمار جنوب لبنان",
       "url": "https://today.lorientlejour.com/article/1423030/is-the-lebanese-government-ready-to-finance-the-souths-reconstruction.html"
     },
     {
@@ -2101,6 +2291,7 @@
       "title": "Israel's strikes in Iran and Lebanon don't hurt Hamas and Hezbollah much",
       "date": "2024-07-31",
       "focus": "Fuad Shukr strike, Beirut, Iran, Axis of Resistance, wider-war risk",
+      "focusAr": "غارة فؤاد شكر، بيروت، إيران، محور المقاومة، خطر اتساع الحرب",
       "url": "https://www.chathamhouse.org/2024/07/israels-strikes-iran-and-lebanon-dont-hurt-hamas-and-hezbollah-much"
     },
     {
@@ -2112,6 +2303,7 @@
       "title": "Hezbollah-Israël: une guerre pour qui et pour quoi ?",
       "date": "2024-07-30",
       "focus": "Lebanese agency, Hezbollah/Iran/Israel calculations, domestic paralysis",
+      "focusAr": "الفاعلية اللبنانية، حسابات حزب الله وإيران وإسرائيل، الشلل الداخلي",
       "url": "https://www.lorientlejour.com/article/1421955/hezbollah-israel-une-guerre-pour-qui-et-pour-quoi--2.html"
     },
     {
@@ -2123,6 +2315,7 @@
       "title": "The Lebanese Front: Assessing the Threat of All-Out War",
       "date": "2024-07-10",
       "focus": "Threat of all-out war, Israeli objectives, US constraints, Hezbollah response",
+      "focusAr": "خطر الحرب الشاملة، الأهداف الإسرائيلية، القيود الأميركية، ردّ حزب الله",
       "url": "https://studies.aljazeera.net/en/policy-briefs/lebanese-front-assessing-threat-all-out-war"
     },
     {
@@ -2134,6 +2327,7 @@
       "title": "The Lebanese Front: Assessing the Threat of All-Out War",
       "date": "2024-07-10",
       "focus": "All-out war risk, Israeli calculus, Hezbollah deterrence, US diplomacy, regional spillover",
+      "focusAr": "خطر الحرب الشاملة، الحساب الإسرائيلي، ردع حزب الله، الدبلوماسية الأميركية، الامتداد الإقليمي",
       "url": "https://studies.aljazeera.net/en/policy-briefs/lebanese-front-assessing-threat-all-out-war"
     },
     {
@@ -2145,6 +2339,7 @@
       "title": "Hezbollah-Israel Escalation: Prospects for War",
       "date": "2024-07-02",
       "focus": "War prospects, US policy, Israeli and Hezbollah calculations",
+      "focusAr": "احتمالات الحرب، السياسة الأميركية، حسابات إسرائيل وحزب الله",
       "url": "https://www.washingtoninstitute.org/policy-analysis/hezbollah-israel-escalation-prospects-war"
     },
     {
@@ -2156,6 +2351,7 @@
       "title": "L'impact de la guerre au Sud du Liban sur la santé mentale",
       "date": "2024-07-02",
       "focus": "Trauma, displacement, unemployment, access to care, family stress",
+      "focusAr": "الصدمة النفسية، النزوح، البطالة، الوصول إلى الرعاية، ضغوط العائلة",
       "url": "https://usj.edu.lb/blog/inst/article.php?id=258"
     },
     {
@@ -2167,6 +2363,7 @@
       "title": "Securing Lebanon to Prevent a Larger Hezbollah-Israel War and Wider Escalation",
       "date": "2024-07-01",
       "focus": "US diplomacy, governance vacuum, Iran influence, border stabilization, de-escalation",
+      "focusAr": "الدبلوماسية الأميركية، الفراغ في الحكم، النفوذ الإيراني، تثبيت الحدود، خفض التصعيد",
       "url": "https://mei.edu/ar/commentary/securing-lebanon-prevent-larger-hezbollah-israel-war-and-wider-escalation/"
     },
     {
@@ -2178,6 +2375,7 @@
       "title": "الجبهة اللبنانية: تقييم نذر الحرب الشاملة",
       "date": "2024-06-26",
       "focus": "All-out war risk, Israeli initiative, US opposition, Hezbollah readiness",
+      "focusAr": "خطر الحرب الشاملة، المبادرة الإسرائيلية، الاعتراض الأميركي، جهوزية حزب الله",
       "url": "https://studies.aljazeera.net/ar/article/5955"
     },
     {
@@ -2189,6 +2387,7 @@
       "title": "Quwwat al-Fajr and Hezbollah: Unlikely Allies Against Israel",
       "date": "2024-06-11",
       "focus": "Lebanese Sunni factions, Hezbollah-Hamas coordination, domestic politics",
+      "focusAr": "القوى السنّية اللبنانية، التنسيق بين حزب الله وحماس، السياسة الداخلية",
       "url": "https://carnegieendowment.org/sada/2024/06/quwwat-al-fajr-and-hezbollah-unlikely-allies-against-israel"
     },
     {
@@ -2200,6 +2399,7 @@
       "title": "Are Lebanon's Hezbollah and Israel about to go to war?",
       "date": "2024-06-07",
       "focus": "Border clashes, escalation risks, Hezbollah background",
+      "focusAr": "اشتباكات حدودية، مخاطر التصعيد، خلفية عن حزب الله",
       "url": "https://www.aljazeera.com/features/2024/6/7/explainer-are-lebanon-and-israel-on-the-cusp-of-war"
     },
     {
@@ -2211,6 +2411,7 @@
       "title": "حزب الله وإسرائيل على حافة الحرب أم التسوية؟ خبراء يجيبون",
       "date": "2024-06-06",
       "focus": "War scenarios, weapons, displacement, diplomatic track",
+      "focusAr": "سيناريوهات الحرب، الأسلحة، النزوح، المسار الدبلوماسي",
       "url": "https://www.aljazeera.net/politics/2024/6/6/%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87-%D9%88%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%B9%D9%84%D9%89-%D8%AD%D8%A7%D9%81%D8%A9-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D8%A3%D9%85"
     },
     {
@@ -2222,6 +2423,7 @@
       "title": "حزب الله وإسرائيل: حرب محتومة؟",
       "date": "2024-06-05",
       "focus": "All-out war risk, Israeli politics, Gaza linkage, Lebanese divisions",
+      "focusAr": "خطر الحرب الشاملة، السياسة الإسرائيلية، الارتباط بغزة، الانقسامات اللبنانية",
       "url": "https://www.annahar.com/makalat/annahar-alarabi-authors/223625/%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87-%D9%88%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%AD%D8%B1%D8%A8-%D9%85%D8%AD%D8%AA%D9%88%D9%85%D8%A9"
     },
     {
@@ -2233,6 +2435,7 @@
       "title": "Bilan de sept mois de guerre : 1,5 milliard de dollars de degats et plus de 350 morts",
       "date": "2024-05-08",
       "focus": "South Council estimates, infrastructure, roads, services, casualties",
+      "focusAr": "تقديرات مجلس الجنوب، البنى التحتية، الطرق، الخدمات، الضحايا",
       "url": "https://www.lorientlejour.com/article/1413092/bilan-de-sept-mois-de-guerre-15-milliard-de-dollars-de-degats-et-plus-de-350-morts.html"
     },
     {
@@ -2244,6 +2447,7 @@
       "title": "كيف يتعلّم أولاد المناطق الحدودية؟ وهل امتحان واحد لكل لبنان حل مناسب لهم؟",
       "date": "2024-05-07",
       "focus": "Border-area schools, displaced students, exams, education disruption, South Lebanon",
+      "focusAr": "مدارس المنطقة الحدودية، الطلاب النازحون، الامتحانات، تعطّل التعليم، جنوب لبنان",
       "url": "https://legal-agenda.com/%D9%83%D9%8A%D9%81-%D9%8A%D8%AA%D8%B9%D9%84%D9%91%D9%85-%D8%A3%D9%88%D9%84%D8%A7%D8%AF-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%A7%D9%84%D8%AD%D8%AF%D9%88%D8%AF%D9%8A%D9%91%D8%A9%D8%9F-%D9%88/"
     },
     {
@@ -2255,6 +2459,7 @@
       "title": "المواجهة بين حزب الله وإسرائيل في المعادلة الإقليمية والجيوسياسية الكبرى",
       "date": "2024-04-30",
       "focus": "Regional geopolitics, Hezbollah strategy, Israeli strategy, Iran, United States",
+      "focusAr": "الجيوسياسة الإقليمية، استراتيجية حزب الله، الاستراتيجية الإسرائيلية، إيران، الولايات المتحدة",
       "url": "https://studies.aljazeera.net/ar/article/5912"
     },
     {
@@ -2266,6 +2471,7 @@
       "title": "Choukran... qui ? le casse-tete de la reconstruction du Liban-Sud",
       "date": "2024-04-20",
       "focus": "South Lebanon reconstruction, funding gap, Gulf donors, government capacity",
+      "focusAr": "إعادة إعمار جنوب لبنان، فجوة التمويل، المانحون الخليجيون، قدرة الحكومة",
       "url": "https://www.lorientlejour.com/article/1409258/-choukran-qui-le-casse-tete-de-la-reconstruction-du-liban-sud.html"
     },
     {
@@ -2277,6 +2483,7 @@
       "title": "تقرير المرصد القضائي: كانون الثاني-آذار 2024",
       "date": "2024-04-08",
       "focus": "Southern courts, Nabatieh, Marjayoun, Bint Jbeil, displacement, access to justice",
+      "focusAr": "محاكم الجنوب، النبطية، مرجعيون، بنت جبيل، النزوح، الوصول إلى العدالة",
       "url": "https://legal-agenda.com/%D8%AA%D9%82%D8%B1%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%B1%D8%B5%D8%AF-%D8%A7%D9%84%D9%82%D8%B6%D8%A7%D8%A6%D9%8A-%D9%83%D8%A7%D9%86%D9%88%D9%86-%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A-%D8%A2%D8%B0%D8%A7/"
     },
     {
@@ -2288,6 +2495,7 @@
       "title": "مآلات نصف عام من حرب مصغرة بين إسرائيل وحزب الله",
       "date": "2024-04-04",
       "focus": "Six-month assessment, border villages, displacement, military balance",
+      "focusAr": "تقييم بعد ستة أشهر، القرى الحدودية، النزوح، التوازن العسكري",
       "url": "https://www.aljazeera.net/amp/politics/2024/4/4/4-%D8%A3%D8%B3%D8%A6%D9%84%D8%A9-%D8%AD%D9%88%D9%84-%D9%86%D8%B5%D9%81-%D8%B9%D8%A7%D9%85-%D9%85%D9%86-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D8%A8%D9%8A%D9%86"
     },
     {
@@ -2299,6 +2507,7 @@
       "title": "حرب إسرائيليّة مفتوحة ضد حزب الله... استنزاف لبنان ولا عودة لما قبل طوفان الأقصى؟",
       "date": "2024-03-30",
       "focus": "War of attrition, southern villages, Israeli objectives, Resolution 1701",
+      "focusAr": "حرب الاستنزاف، القرى الجنوبية، الأهداف الإسرائيلية، القرار 1701",
       "url": "https://www.annahar.com/makalat/annahar-alarabi-authors/212643/%D8%AD%D8%B1%D8%A8-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%85%D9%81%D8%AA%D9%88%D8%AD%D8%A9-%D8%B6%D8%AF-%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87-%D8%A7%D8%B3%D8%AA%D9%86%D8%B2%D8%A7%D9%81-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%88%D9%84%D8%A7-%D8%B9%D9%88%D8%AF%D8%A9-%D9%84%D9%85%D8%A7-%D9%82%D8%A8%D9%84-%D8%B7%D9%88%D9%81%D8%A7%D9%86-%D8%A7%D9%84%D8%A3%D9%82%D8%B5%D9%89"
     },
     {
@@ -2310,6 +2519,7 @@
       "title": "The Coming Conflict with Hezbollah",
       "date": "2024-03-21",
       "focus": "Strike data, Hezbollah arsenal, UNSCR 1701, war scenarios, US policy options",
+      "focusAr": "معطيات الغارات، ترسانة حزب الله، القرار 1701، سيناريوهات الحرب، خيارات السياسة الأميركية",
       "url": "https://www.csis.org/analysis/coming-conflict-hezbollah"
     },
     {
@@ -2321,6 +2531,7 @@
       "title": "وزير الزراعة: القطاع الزراعي تعرض لخسائر كبيرة نتيجة الاعتداءات الإسرائيلية في الجنوب",
       "date": "2024-03-19",
       "focus": "White phosphorus, fires, burned land, olive trees, livestock, beehives, greenhouses",
+      "focusAr": "الفوسفور الأبيض، الحرائق، أراضٍ محروقة، أشجار الزيتون، الثروة الحيوانية، خلايا النحل، البيوت البلاستيكية",
       "url": "https://www.agriculture.gov.lb/Media/News/2024/%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A-%D8%AA%D8%B9%D8%B1%D8%B6-%D9%84%D8%AE%D8%B3%D8%A7%D9%8A%D8%B1-%D9%83%D8%A8%D9%8A%D8%B1%D8%A9-%D9%86%D8%AA%D9%8A%D8%AC"
     },
     {
@@ -2332,6 +2543,7 @@
       "title": "Israel and Hezbollah: What you need to know about the risks of a total war in Lebanon",
       "date": "2024-02-29",
       "focus": "Total war risk, Israeli objectives, diplomatic negotiations",
+      "focusAr": "خطر الحرب الشاملة، الأهداف الإسرائيلية، المفاوضات الدبلوماسية",
       "url": "https://today.lorientlejour.com/article/1369804/israel-and-hezbollah-what-you-need-to-know-about-the-risks-of-a-total-war-in-lebanon.html"
     },
     {
@@ -2343,6 +2555,7 @@
       "title": "معالجة دائمة لأضرار العدوان الإسرائيلي؟ مبادرة تشريعية تحتاج إلى تطوير وتعميق",
       "date": "2024-02-23",
       "focus": "Permanent reconstruction law, damaged buildings, Israeli aggression, 2006 legal precedent, state preparedness",
+      "focusAr": "قانون دائم لإعادة الإعمار، الأبنية المتضررة، العدوان الإسرائيلي، السابقة القانونية لعام 2006، جهوزية الدولة",
       "url": "https://legal-agenda.com/%D9%85%D8%B9%D8%A7%D9%84%D8%AC%D8%A9-%D8%AF%D8%A7%D8%A6%D9%85%D8%A9-%D9%84%D8%A3%D8%B6%D8%B1%D8%A7%D8%B1-%D8%A7%D9%84%D8%B9%D8%AF%D9%88%D8%A7%D9%86-%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A/"
     },
     {
@@ -2354,6 +2567,7 @@
       "title": "Economic Impact of the War in Lebanon: Real and potential losses",
       "date": "2024-02-12",
       "focus": "Displacement, tourism, agriculture, environment, border villages, economic loss scenarios",
+      "focusAr": "النزوح، السياحة، الزراعة، البيئة، القرى الحدودية، سيناريوهات الخسارة الاقتصادية",
       "url": "https://www.thepolicyinitiative.org/article/details/352/economic-impact-of-the-war-in-lebanon-real-and-potential-losses?lang=en"
     },
     {
@@ -2365,6 +2579,7 @@
       "title": "Hezbollah announces it started paying compensation for damaged houses in border south villages",
       "date": "2024-01-31",
       "focus": "Compensation, border villages, damage assessment, return of residents",
+      "focusAr": "التعويضات، القرى الحدودية، تقييم الأضرار، عودة الأهالي",
       "url": "https://today.lorientlejour.com/article/1358750/hezbollah-announces-it-started-paying-compensation-for-damaged-houses-in-border-south-villages.html"
     },
     {
@@ -2376,6 +2591,7 @@
       "title": "In Brief: The Conflict Between Israel and Hizballah",
       "date": "2024-01-17",
       "focus": "Escalation scenarios, Hezbollah strategy, regional spillover",
+      "focusAr": "سيناريوهات التصعيد، استراتيجية حزب الله، الامتداد الإقليمي",
       "url": "https://warontherocks.com/in-brief-the-conflict-between-israel-and-hizballah/"
     },
     {
@@ -2387,6 +2603,7 @@
       "title": "Hezbollah and the Axis of Resistance in 2024",
       "date": "2024-01-16",
       "focus": "Hezbollah history, Iran, axis of resistance, Gaza war spillover",
+      "focusAr": "تاريخ حزب الله، إيران، محور المقاومة، امتداد حرب غزة",
       "url": "https://www.brookings.edu/articles/hezbollah-and-the-axis-of-resistance-in-2024/"
     },
     {
@@ -2398,6 +2615,7 @@
       "title": "Hizbullah walks a tightrope amid sharp tensions with Israel",
       "date": "2024-01-11",
       "focus": "Border tension, Hezbollah restraint, US deterrence, risk of regional war",
+      "focusAr": "التوتر الحدودي، ضبط النفس لدى حزب الله، الردع الأميركي، خطر حرب إقليمية",
       "url": "https://www.iiss.org/online-analysis/online-analysis/2024/01/hizbullah-walks-a-tightrope-amid-sharp-tensions-with-israel/"
     },
     {
@@ -2409,6 +2627,7 @@
       "title": "جبهة لبنان نحو الأخطر: انتقام نوعي متبادل بين إسرائيل وحزب الله",
       "date": "2024-01-10",
       "focus": "Israeli media readings, assassinations, Meron, Safed, escalation risk",
+      "focusAr": "قراءات الإعلام الإسرائيلي، الاغتيالات، ميرون، صفد، خطر التصعيد",
       "url": "https://www.almodon.com/media/2024/01/10/%D8%AC%D8%A8%D9%87%D8%A9-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%86%D8%AD%D9%88-%D8%A7%D9%84%D8%A3%D8%AE%D8%B7%D8%B1%D8%A7%D9%86%D8%AA%D9%82%D8%A7%D9%85-%D9%86%D9%88%D8%B9%D9%8A-%D9%85%D9%8F%D8%AA%D8%A8%D8%A7%D8%AF%D9%84%D8%A8%D9%8A%D9%86-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%88%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87"
     },
     {
@@ -2420,6 +2639,7 @@
       "title": "What could a new war between Hezbollah and Israel look like?",
       "date": "2024-01-10",
       "focus": "Scenario analysis, experts, Hezbollah-Israel military balance",
+      "focusAr": "تحليل السيناريوهات، الخبراء، التوازن العسكري بين حزب الله وإسرائيل",
       "url": "https://today.lorientlejour.com/article/1363840/what-could-a-new-war-between-hezbollah-and-israel-look-like.html"
     },
     {
@@ -2431,6 +2651,7 @@
       "title": "Hezbollah's shift to attrition offers Iran a lasting tool to pressure Israel and the US",
       "date": null,
       "focus": "Tactics, drones, attrition, attack patterns, Iran linkage",
+      "focusAr": "التكتيكات، المسيّرات، الاستنزاف، أنماط الهجوم، الارتباط بإيران",
       "url": "https://acleddata.com/report/hezbollahs-shift-attrition-offers-iran-lasting-tool-pressure-israel-and-us"
     },
     {
@@ -2442,6 +2663,7 @@
       "title": "The Death of Nasrallah and the Fate of Lebanon",
       "date": null,
       "focus": "Nasrallah, Hezbollah strategy, Israeli attrition campaign, Lebanon's fate",
+      "focusAr": "نصر الله، استراتيجية حزب الله، حملة الاستنزاف الإسرائيلية، مصير لبنان",
       "url": "https://doi.org/10.1080/00396338.2024.2432192"
     },
     {
@@ -2453,6 +2675,7 @@
       "title": "في سياق الحرب على إيران: لبنان بين الحزب والدولة",
       "date": null,
       "focus": "Lebanese state vs Hezbollah, Iran war context, Israeli campaign, legitimacy",
+      "focusAr": "الدولة اللبنانية مقابل حزب الله، سياق الحرب مع إيران، الحملة الإسرائيلية، الشرعية",
       "url": "https://studies.aljazeera.net/ar/article/6536"
     },
     {
@@ -2464,6 +2687,7 @@
       "title": "Lebanon Rapid Damage and Needs Assessment (RDNA)",
       "date": null,
       "focus": "Damage, losses, recovery needs, environment and debris management, macroeconomic impact",
+      "focusAr": "الأضرار، الخسائر، احتياجات التعافي، البيئة وإدارة الركام، الأثر على الاقتصاد الكلي",
       "url": "https://recovery.preventionweb.net/publication/documents-and-publications/lebanon-rapid-damage-and-needs-assessment-rdna"
     },
     {
@@ -2475,6 +2699,7 @@
       "title": "Lebanon Interim Damage and Loss Assessment (DaLA): assessment report",
       "date": null,
       "focus": "US$8.5B damage/loss estimate, displacement, jobs, housing units, sector losses",
+      "focusAr": "تقدير أضرار وخسائر بـ8.5 مليار دولار، النزوح، الوظائف، الوحدات السكنية، خسائر القطاعات",
       "url": "https://recovery.preventionweb.net/publication/documents-and-publications/lebanon-interim-damage-and-loss-assessment-dala-assessment"
     },
     {
@@ -2486,6 +2711,7 @@
       "title": "Lebanon - Building destruction and debris quantities assessment",
       "date": null,
       "focus": "Satellite imagery, destroyed buildings, debris quantities, South and Nabatiyeh",
+      "focusAr": "صور الأقمار الاصطناعية، أبنية مدمَّرة، كميات الركام، الجنوب والنبطية",
       "url": "https://unhabitat.org/lebanon-building-destruction-and-debris-quantities-assessment"
     },
     {
@@ -2497,6 +2723,7 @@
       "title": "Rapid assessment of the impact of the war on private-sector workers and enterprises in Lebanon",
       "date": null,
       "focus": "Workers, enterprises, income, business operations, recovery prospects",
+      "focusAr": "العمال، المؤسسات، الدخل، تشغيل الأعمال، آفاق التعافي",
       "url": "https://researchrepository.ilo.org/esploro/outputs/report/Rapid-assessment-of-the-impact-of/995660052402676"
     },
     {
@@ -2508,6 +2735,7 @@
       "title": "حزب الله يُفنّد ملفّ إعادة الإعمار في جنوب لبنان... متى يبدأ بدفع التعويضات للمتضررين؟",
       "date": null,
       "focus": "Hezbollah engineering teams, damage claims, compensation rooms, shelter/furniture allowance",
+      "focusAr": "فرق حزب الله الهندسية، مطالبات الأضرار، غرف التعويض، بدل الإيواء والفرش",
       "url": "https://www.annahar.com/lebanon/politics/182226/%D8%AD%D8%B2%D8%A8-%D8%A7%D9%84%D9%84%D9%87-%D9%8A%D9%81%D9%86%D8%AF-%D9%85%D9%84%D9%81-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D9%81%D9%8A-%D8%AC%D9%86%D9%88%D8%A8-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%85%D8%AA%D9%89-%D9%8A%D8%A8%D8%AF%D8%A3-%D8%A8%D8%AF%D9%81%D8%B9-%D8%A7%D9%84%D8%AA%D8%B9%D9%88%D9%8A%D8%B6%D8%A7%D8%AA-%D9%84%D9%84%D9%85%D8%AA%D8%B6%D8%B1%D8%B1%D9%8A%D9%86"
     },
     {
@@ -2519,6 +2747,7 @@
       "title": "خطة الإعمار: الكلفة 11 مليار دولار لا تمويل باستثناء مساعدة الـ250 مليوناً!",
       "date": null,
       "focus": "Government reconstruction framework, aid applications, funding gap, World Bank loan",
+      "focusAr": "إطار إعادة الإعمار الحكومي، طلبات المساعدة، فجوة التمويل، قرض البنك الدولي",
       "url": "https://www.annahar.com/lebanon/275122/%D8%AE%D8%B7%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A7%D9%84%D9%83%D9%84%D9%81%D8%A9-11-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AF%D9%88%D9%84%D8%A7%D8%B1-%D9%84%D8%A7-%D8%AA%D9%85%D9%88%D9%8A%D9%84-%D8%A8%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9-%D8%A7%D9%84%D9%80250-%D9%85%D9%84%D9%8A%D9%88%D9%86%D8%A7"
     },
     {
@@ -2530,6 +2759,7 @@
       "title": "FAO emergency and resilience publications on Lebanon",
       "date": null,
       "focus": "Agriculture, cropland, forests, crop categories, rapid needs, resilience plan",
+      "focusAr": "الزراعة، الأراضي المزروعة، الغابات، أصناف المحاصيل، الحاجات السريعة، خطة الصمود",
       "url": "https://www.fao.org/emergencies/resources-repository/publications/LBN/1/"
     },
     {
@@ -2541,6 +2771,7 @@
       "title": "خسائر لبنان من الحرب: 235 ألف وحدة بكلفة 5 مليارات دولار!",
       "date": null,
       "focus": "South Council damage survey, destroyed/damaged units, schools, compensation status",
+      "focusAr": "مسح أضرار مجلس الجنوب، وحدات مدمَّرة ومتضررة، المدارس، وضع التعويضات",
       "url": "https://www.annahar.com/lebanon/politics/249911/%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D9%85%D9%86-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-235-%D8%A3%D9%84%D9%81-%D9%88%D8%AD%D8%AF%D8%A9-%D8%A8%D9%83%D9%84%D9%81%D8%A9-5-%D9%85%D9%84%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AF%D9%88%D9%84%D8%A7%D8%B1"
     },
     {
@@ -2552,6 +2783,7 @@
       "title": "1081 وحدة سكنية دمّرتها إسرائيل يومياً في لبنان خلال 5 أسابيع",
       "date": null,
       "focus": "Housing destruction, reconstruction costs, rubble removal, direct and economic losses",
+      "focusAr": "تدمير المساكن، كلفة إعادة الإعمار، رفع الأنقاض، الخسائر المباشرة والاقتصادية",
       "url": "https://www.annahar.com/investigations/300333/1081-%D9%88%D8%AD%D8%AF%D8%A9-%D8%B3%D9%83%D9%86%D9%8A%D8%A9-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-%D8%AF%D9%85%D8%B1%D8%AA%D9%87%D8%A7-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D9%81%D9%8A-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%A3%D8%B1%D9%82%D8%A7%D9%85-%D8%AA%D9%83%D8%B4%D9%81-%D8%AD%D8%AC%D9%85-%D8%A7%D9%84%D8%AF%D9%85%D8%A7%D8%B1-%D9%81%D9%8A-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%B3%D9%83%D8%A7%D9%86%D9%8A"
     },
     {
@@ -2563,6 +2795,7 @@
       "title": "حرب مفتوحة: النهار توثق الدمار والمعاناة في جنوب لبنان",
       "date": null,
       "focus": "Destroyed villages, uprooted olive trees, cultural loss, South Lebanon suffering",
+      "focusAr": "قرى مدمَّرة، أشجار زيتون مقتلعة، الخسارة الثقافية، معاناة جنوب لبنان",
       "url": "https://www.annahar.com/southoflebanon/index.html"
     },
     {
@@ -2574,6 +2807,7 @@
       "title": "هل بدأت ورشة إعادة إعمار القرى الجنوبية؟",
       "date": null,
       "focus": "Municipalities, rubble removal, water networks, roads, return rates, South Council",
+      "focusAr": "البلديات، رفع الأنقاض، شبكات المياه، الطرق، نسب العودة، مجلس الجنوب",
       "url": "https://www.al-akhbar.com/NewspaperArticles/lebanon/901142/%D9%87%D9%84-%D8%A8%D8%AF%D8%A3%D8%AA-%D9%88%D8%B1%D8%B4%D8%A9-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A7%D9%84%D9%82%D8%B1%D9%89-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A%D8%A9"
     },
     {
@@ -2585,6 +2819,7 @@
       "title": "جنوب لبنان: الزراعة تحت النار... خسائر ميدانية جسيمة وتهديد متصاعد للأمن الغذائي",
       "date": null,
       "focus": "Agriculture losses, olive season, food security, recovery needs, South and Bekaa",
+      "focusAr": "الخسائر الزراعية، موسم الزيتون، الأمن الغذائي، احتياجات التعافي، الجنوب والبقاع",
       "url": "https://daraj.media/%D8%AC%D9%86%D9%88%D8%A8-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9-%D8%AA%D8%AD%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D8%B1-%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1-%D9%85/"
     },
     {
@@ -2596,6 +2831,7 @@
       "title": "The 2024 Israeli War on Lebanon: A Devastating Blow to Agriculture and the Environment",
       "date": null,
       "focus": "Burned areas, satellite analysis, agriculture, irrigation, olive harvest, food security",
+      "focusAr": "المساحات المحروقة، تحليل الأقمار الاصطناعية، الزراعة، الري، قطاف الزيتون، الأمن الغذائي",
       "url": "https://www.aub.edu.lb/fafs/news/Pages/2024_The-2024-Israeli-War-on-Lebanon-A-Devastating-Blow-to-Agriculture-and-the-Environment.aspx"
     },
     {
@@ -2607,6 +2843,7 @@
       "title": "Post-War Construction Demolition Wastes Recycling and Reusing in Sustainable Practices",
       "date": null,
       "focus": "Construction rubble, debris reuse, South Lebanon, Bekaa, Beirut southern suburbs, community recovery",
+      "focusAr": "ركام البناء، إعادة استعمال الركام، جنوب لبنان، البقاع، الضاحية الجنوبية لبيروت، تعافي المجتمعات",
       "url": "https://scholarworks.aub.edu.lb/items/12c82aeb-7e45-4295-b9d5-1cd258e94ab7"
     },
     {
@@ -2618,6 +2855,7 @@
       "title": "Souks du Sud-Liban: mutations économiques et sociales jusqu'à la guerre de 2024",
       "date": null,
       "focus": "Nabatieh souk, Bint Jbeil, local commerce, partial reconstruction, municipal revenues",
+      "focusAr": "سوق النبطية، بنت جبيل، التجارة المحلية، إعادة إعمار جزئية، إيرادات البلديات",
       "url": "https://usj.edu.lb/blog/inst/article.php?id=570"
     },
     {
@@ -2629,6 +2867,7 @@
       "title": "Lebanon Emergency Response: Lebanese Red Cross Responding Across Lebanon",
       "date": null,
       "focus": "Ambulance patients, blood units, primary healthcare, relief items, water, PSS sessions",
+      "focusAr": "مرضى نُقلوا بالإسعاف، وحدات دم، الرعاية الصحية الأولية، مواد إغاثية، المياه، جلسات دعم نفسي اجتماعي",
       "url": "https://www.redcross.org.lb/"
     },
     {
@@ -2640,6 +2879,7 @@
       "title": "الرئيس ميقاتي يرأس جلسة لمجلس الوزراء",
       "date": null,
       "focus": "Emergency committee, displacement, shelters, aid distribution, government response",
+      "focusAr": "لجنة الطوارئ، النزوح، مراكز الإيواء، توزيع المساعدات، استجابة الحكومة",
       "url": "https://pcm.gov.lb/arabic/subpg.aspx?pageid=24904"
     },
     {
@@ -2651,6 +2891,7 @@
       "title": "الرئيس عون ترأس اجتماعاً تنسيقياً بين مختلف الوزارات والهيئات المعنية بمتابعة تداعيات الحرب الإسرائيلية على لبنان",
       "date": null,
       "focus": "War impacts, reporting, ministries, humanitarian/social/economic/infrastructure data, reconstruction",
+      "focusAr": "آثار الحرب، الإبلاغ، الوزارات، معطيات إنسانية واجتماعية واقتصادية وعن البنى التحتية، إعادة الإعمار",
       "url": "https://www.presidency.gov.lb/media/news/1169"
     },
     {
@@ -2662,6 +2903,7 @@
       "title": "One Year Since the Escalation of Hostilities Across Lebanon",
       "date": null,
       "focus": "Ceasefire violations, displacement, medical teams, civilian infrastructure, South Lebanon",
+      "focusAr": "خروق وقف إطلاق النار، النزوح، الفرق الطبية، البنى التحتية المدنية، جنوب لبنان",
       "url": "https://www.cldh-lebanon.org/OurBlog/Artical/2204?lang=en"
     },
     {
@@ -2673,6 +2915,7 @@
       "title": "Escalation of Attacks and Protection Risks in Lebanon",
       "date": null,
       "focus": "Civilian infrastructure, displacement, medical and civil defense services, ceasefire obligations, IHL",
+      "focusAr": "البنى التحتية المدنية، النزوح، الخدمات الطبية وخدمات الدفاع المدني، التزامات وقف إطلاق النار، القانون الدولي الإنساني",
       "url": "https://www.cldh-lebanon.org/OurBlog/Artical/2217?lang=en"
     },
     {
@@ -2684,6 +2927,7 @@
       "title": "Managing the rubble from the fall 2024 Israel-Hezbollah war: A blueprint for sustainable reconstruction in Lebanon",
       "date": null,
       "focus": "Rubble management, recycling, hazardous materials, reconstruction strategy, socio-economic impact",
+      "focusAr": "إدارة الأنقاض، إعادة التدوير، المواد الخطرة، استراتيجية إعادة الإعمار، الأثر الاجتماعي الاقتصادي",
       "url": "https://www.researchgate.net/publication/393052697_Managing_the_rubble_from_the_fall_2024_Israel-Hezbollah_war_A_blueprint_for_sustainable_reconstruction_in_Lebanon"
     },
     {
@@ -2695,6 +2939,7 @@
       "title": "Lebanon Is Washington's Next Win",
       "date": null,
       "focus": "US strategy, Hezbollah, state authority, post-ceasefire implementation, Iran influence",
+      "focusAr": "الاستراتيجية الأميركية، حزب الله، سلطة الدولة، التنفيذ بعد وقف إطلاق النار، النفوذ الإيراني",
       "url": "https://mei.edu/publication/lebanon-is-washingtons-next-win/"
     },
     {
@@ -2706,6 +2951,7 @@
       "title": "Escalating to War between Israel, Hezbollah, and Iran",
       "date": null,
       "focus": "Attack trends, displacement, strike depth, Iran escalation, regional war risk",
+      "focusAr": "اتجاهات الهجمات، النزوح، عمق الغارات، التصعيد الإيراني، خطر الحرب الإقليمية",
       "url": "https://www.csis.org/analysis/escalating-war-between-israel-hezbollah-and-iran"
     },
     {
@@ -2717,6 +2963,7 @@
       "title": "The Aftermath of October 7: Regional Conflict in the Middle East",
       "date": null,
       "focus": "Regional conflict chronology, Lebanon theater, Hezbollah-Israel conflict, Iran-Israel escalation",
+      "focusAr": "تسلسل النزاع الإقليمي، الساحة اللبنانية، النزاع بين حزب الله وإسرائيل، التصعيد الإيراني الإسرائيلي",
       "url": "https://www.csis.org/analysis/aftermath-october-7-regional-conflict-middle-east"
     },
     {
@@ -2728,6 +2975,7 @@
       "title": "Lebanon and Israel Talks: Empowering Diplomacy Over Open-Ended Conflict",
       "date": null,
       "focus": "Lebanon-Israel talks, LAF credibility, Israeli compliance, diplomacy, Hezbollah narrative",
+      "focusAr": "المحادثات اللبنانية الإسرائيلية، مصداقية الجيش اللبناني، الالتزام الإسرائيلي، الدبلوماسية، سردية حزب الله",
       "url": "https://www.csis.org/analysis/lebanon-and-israel-talks-empowering-diplomacy-over-open-ended-conflict"
     },
     {
@@ -2739,6 +2987,7 @@
       "title": "Israel's position a year after the Hamas-led attacks of 7 October",
       "date": null,
       "focus": "Hezbollah capabilities, Nasrallah assassination, Israel strategy, regional military balance",
+      "focusAr": "قدرات حزب الله، اغتيال نصر الله، الاستراتيجية الإسرائيلية، التوازن العسكري الإقليمي",
       "url": "https://www.iiss.org/publications/strategic-comments/2024/10/israels-position-a-year-after-the-hamas-led-attacks-of-7-october/"
     },
     {
@@ -2750,6 +2999,7 @@
       "title": "Q&A: Behind the data on the Israel-Hezbollah war",
       "date": null,
       "focus": "Airstrikes, ground operations, civilians, Hezbollah attacks, conflict trajectory",
+      "focusAr": "الغارات الجوية، العمليات البرية، المدنيون، هجمات حزب الله، مسار النزاع",
       "url": "https://acleddata.com/qa/qa-behind-data-israel-hezbollah-war"
     },
     {
@@ -2761,6 +3011,7 @@
       "title": "Hezbollah's shift to attrition offers Iran a lasting tool to pressure Israel and the US",
       "date": null,
       "focus": "Attrition strategy, drones, FPV drones, buffer zone, Hezbollah attacks, Israeli forces",
+      "focusAr": "استراتيجية الاستنزاف، المسيّرات، المسيّرات الانتحارية، المنطقة العازلة، هجمات حزب الله، القوات الإسرائيلية",
       "url": "https://acleddata.com/report/hezbollahs-shift-attrition-offers-iran-lasting-tool-pressure-israel-and-us"
     },
     {
@@ -2772,6 +3023,7 @@
       "title": "Is Israel also at war with the Lebanese state?",
       "date": null,
       "focus": "LAF, General Security, ISF, state authority, attacks on Lebanese security forces",
+      "focusAr": "الجيش اللبناني، الأمن العام، قوى الأمن الداخلي، سلطة الدولة، الاعتداءات على الأجهزة الأمنية اللبنانية",
       "url": "https://acleddata.com/expert-comment/israel-also-war-lebanese-state"
     },
     {
@@ -2783,6 +3035,7 @@
       "title": "Middle East Overview: September 2024 - Expanding Israeli operations in Lebanon and the escalation of the Middle East crisis",
       "date": null,
       "focus": "Airstrikes, Nasrallah killing, conflict exposure, fatalities, displacement",
+      "focusAr": "الغارات الجوية، اغتيال نصر الله، التعرّض للنزاع، الوفيات، النزوح",
       "url": "https://acleddata.com/update/middle-east-overview-september-2024-expanding-israeli-operations-lebanon-and-escalation"
     },
     {
@@ -2794,6 +3047,7 @@
       "title": "Middle East Overview: July 2026",
       "date": null,
       "focus": "Ceasefire fragility, Israeli strikes, Hezbollah attacks, Wadi Saluki, diplomatic talks",
+      "focusAr": "هشاشة وقف إطلاق النار، الغارات الإسرائيلية، هجمات حزب الله، وادي السلوقي، المحادثات الدبلوماسية",
       "url": "https://acleddata.com/update/middle-east-overview-july-2026"
     },
     {
@@ -2805,6 +3059,7 @@
       "title": "Pieces in motion: Rebalancing power in a new Levantine order",
       "date": null,
       "focus": "Lebanon, Hezbollah weakening, ceasefire implementation, regional reordering, state authority",
+      "focusAr": "لبنان، إضعاف حزب الله، تنفيذ وقف إطلاق النار، إعادة ترتيب إقليمية، سلطة الدولة",
       "url": "https://ecfr.eu/publication/pieces-in-motion-rebalancing-power-in-a-new-levantine-order/"
     },
     {
@@ -2816,6 +3071,7 @@
       "title": "The Gaza crisis: Mapping the Middle East's shifting battle lines",
       "date": null,
       "focus": "Lebanon front, Hezbollah-Israel escalation, displacement, regional conflict mapping",
+      "focusAr": "الجبهة اللبنانية، التصعيد بين حزب الله وإسرائيل، النزوح، رسم خرائط النزاع الإقليمي",
       "url": "https://ecfr.eu/special/the-gaza-crisis-mapping-the-middle-easts-shifting-battle-lines/"
     },
     {
@@ -2827,6 +3083,7 @@
       "title": "دِيَارِي المُلقاة رُكاماً: العنف البيئي الإسرائيلي كوسيلة لإحكام السيطرة على الأرض في جنوب لبنان",
       "date": null,
       "focus": "Rubble, domicide, environmental violence, housing destruction, South Lebanon, control of land",
+      "focusAr": "الأنقاض، تدمير المساكن، العنف البيئي، هدم المنازل، جنوب لبنان، السيطرة على الأرض",
       "url": "https://legal-agenda.com/%D8%AF%D9%90%D9%8A%D9%8E%D8%A7%D8%B1%D9%90%D9%8A-%D8%A7%D9%84%D9%85%D9%8F%D9%84%D9%82%D8%A7%D8%A9-%D8%B1%D9%8F%D9%83%D8%A7%D9%85%D8%A7%D9%8B-%D8%A7%D9%84%D8%B9%D9%86%D9%81-%D8%A7%D9%84%D8%A8%D9%8A/"
     },
     {
@@ -2838,7 +3095,9 @@
       "title": "إبادة منازل، إبادة حضرية وإبادة بيئية: تقرير لوزارة البيئة ومجلس البحوث يوثّق الأثر البيئي لعدوان 2023-2025",
       "date": null,
       "focus": "Domicide, urbicide, ecocide, CNRS-L, Ministry of Environment, housing units, agriculture, soil, water",
+      "focusAr": "تدمير المساكن، تدمير العمران، التدمير البيئي، المجلس الوطني للبحوث العلمية، وزارة البيئة، الوحدات السكنية، الزراعة، التربة، المياه",
       "url": "https://legal-agenda.com/%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D9%85%D9%86%D8%A7%D8%B2%D9%84%D8%8C-%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D8%AD%D8%B6%D8%B1%D9%8A%D8%A9-%D9%88%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D8%A8%D9%8A%D8%A6%D9%8A%D8%A9/"
     }
-  ]
+  ],
+  "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
 }
