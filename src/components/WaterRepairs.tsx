@@ -16,7 +16,9 @@ const T = {
   en: {
     title: "One utility, line by line",
     badge: "Self-published · not in the tracking",
-    posts: "repair posts, translated",
+    // Only the 125 area posts are carried and translated; this tile counts
+    // all 597, so it must not claim translation of them.
+    posts: "repair posts counted",
     south: "from the three departments south of the Litani",
     restored: "end with supply restored to subscribers",
     byDept: "By water department",
@@ -127,11 +129,12 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
           </>
         ) : (
           <>
-            The {slwe.actor} publishes each repair it makes. {slwe.totalPosts} of those posts,
-            translated and grouped here, are the finest-grained account of restoration work
-            anywhere in this site - a burst pipe in one village, a pumping line, a 63 mm
-            distribution main. None of it is confirmed, and none of it enters the counts. It is
-            worth reading anyway, because the formal tracking has no instrument this small.
+            The {slwe.actor} publishes each repair it makes. {slwe.totalPosts} of those posts are
+            counted and grouped here, and the {slwe.areaPosts.length} from the departments inside
+            the area are carried below in full, translated. They are the finest-grained account of
+            restoration work anywhere in this site - a burst pipe in one village, a pumping line, a
+            63 mm distribution main. None of it is confirmed, and none of it enters the counts. It
+            is worth reading anyway, because the formal tracking has no instrument this small.
           </>
         )}
       </p>

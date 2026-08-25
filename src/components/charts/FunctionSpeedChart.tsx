@@ -115,7 +115,7 @@ const ITEMS: {
 
 const T = {
   en: {
-    title: "Relief moves in days; procedure moves in quarters; reconstruction moves in years",
+    title: "Relief moves in days; the financing and procurement chain moves in quarters and years",
     sub: "Elapsed time of traced conversions, 2024–2026. Blue: emergency functions running on standing assets and rehearsed routines. Rust: programme functions stacking novel institutions, external rules and serial gates.",
     emergency: "Emergency functions",
     programme: "Programme functions",
@@ -127,7 +127,7 @@ const T = {
     alt: "Bar chart contrasting the speed of emergency functions with programme functions",
   },
   ar: {
-    title: "الإغاثة تتحرك بالأيام، والإجراء بالفصول، وإعادة الإعمار بالسنوات",
+    title: "الإغاثة تتحرك بالأيام، وسلسلة التمويل والشراء بالفصول والسنوات",
     sub: "الزمن المنقضي للتحوّلات المرصودة، 2024-2026. الأزرق: وظائف طوارئ تعمل على أصول قائمة وروتين مُجرَّب. الخمري: وظائف برنامجية تكدّس مؤسسات جديدة وقواعد خارجية وبوابات متتالية.",
     emergency: "وظائف الطوارئ",
     programme: "الوظائف البرنامجية",

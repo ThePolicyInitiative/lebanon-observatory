@@ -2,7 +2,7 @@
   "note": "Compensation is tracked with one confirmation standard for every actor: a ministry's announcement, a council's statement and a party's payment claim are all treated as self-reported until independently confirmed. No state compensation payment was confirmed by the 31 July 2026 cut-off; absence of confirmed payment is a bounded claim - payments not publicly reported by that date, not payments proven never to have occurred.",
   "stateTrack": {
     "label": "State track",
-    "status2024": "Registration without rules: municipalities, the Council for the South and the Higher Relief Commission compiled damage submissions that were preliminary registrations, not approved claims. No state compensation reached anyone in 2024.",
+    "status2024": "Registration without rules: municipalities, the Council for the South and the Higher Relief Commission compiled damage submissions that were preliminary registrations, not approved claims. No state compensation payment was publicly reported in 2024.",
     "instruments": [
       {
         "id": "law22",
@@ -34,13 +34,13 @@
     "status2026": "A formula without money is a queue-formation device: no payment start date was identified, implementation was stated to depend on financing, and no consolidated tally of claims submitted, approved or paid exists publicly. The territorial split re-empowers the two legacy institutions the project chain's design implicitly criticised, under rules and disclosure weaker than the project's. Missing throughout: unified valuation, appeals, tenant protection, funded general compensation.",
     "confirmedPayments": "None confirmed by 31 July 2026",
     "labelAr": "المسار الحكومي",
-    "status2024Ar": "تسجيل بلا قواعد: جمعت البلديات ومجلس الجنوب والهيئة العليا للإغاثة إفادات أضرار كانت تسجيلاً أولياً لا مطالبات مُقرّة. لم يصل أي تعويض حكومي إلى أحد في 2024.",
+    "status2024Ar": "تسجيل بلا قواعد: جمعت البلديات ومجلس الجنوب والهيئة العليا للإغاثة إفادات أضرار كانت تسجيلاً أولياً لا مطالبات مُقرّة. ولم يُعلَن عن أي دفعة تعويض حكومية في 2024.",
     "status2026Ar": "صيغة بلا مال هي أداة لتشكيل طابور: لم يُحدَّد تاريخ لبدء الدفع، وقيل إن التنفيذ يتوقف على التمويل، ولا توجد علناً أي حصيلة مجمّعة للطلبات المقدَّمة أو المقبولة أو المدفوعة. والتقسيم الجغرافي يعيد تمكين المؤسستين القديمتين اللتين انتقدهما تصميم سلسلة المشروع ضمناً، بقواعد وإفصاح أضعف من قواعد المشروع. والغائب طوال الوقت: تقييم موحّد، وآلية اعتراض، وحماية للمستأجرين، وتعويض عام مموَّل.",
     "confirmedPaymentsAr": "لا دفعة مؤكَّدة حتى 31 تموز 2026"
   },
   "parallelTrack": {
     "label": "Parallel track (Hezbollah / Jihad al-Binaa)",
-    "status2024": "The country's largest operating compensation system and its least accountable one: rapid damage assessment through Jihad al-Binaa, cash lump sums and rent support that moved faster than any public instrument, reaching scale while the state was still designing forms.",
+    "status2024": "The only compensation track reporting payments in 2024, and the least accountable one: rapid damage assessment through Jihad al-Binaa, cash lump sums and rent support that moved faster than any public instrument - all of it self-reported - while the state was still designing forms.",
     "instruments": [
       {
         "id": "lump-sums",
@@ -72,11 +72,11 @@
     "status2026": "Continued presence without 2024-visibility payment reporting, beside a state framework formally occupying the space it had monopolised. Three explanations fit the thinner entry and cannot be separated on this data: genuinely reduced flows; reduced announcement incentives once a public benchmark existed; and reporting displacement toward the formal track. This analysis asserts neither growth nor collapse.",
     "confirmedPayments": "Reported only; unauditable in both years",
     "labelAr": "المسار الموازي (حزب الله / جهاد البناء)",
-    "status2024Ar": "أكبر نظام تعويض عامل في البلد وأقلّه خضوعاً للمساءلة: تقييم أضرار سريع عبر جهاد البناء، ومبالغ نقدية مقطوعة ودعم إيجار تحرّكت أسرع من أي أداة عامة، وبلغت حجماً كبيراً بينما كانت الدولة ما زالت تصمّم الاستمارات.",
+    "status2024Ar": "المسار الوحيد الذي أعلن دفعات في 2024، وأقلّها خضوعاً للمساءلة: تقييم أضرار سريع عبر جهاد البناء، ومبالغ نقدية مقطوعة ودعم إيجار تحرّكت أسرع من أي أداة عامة - وكل ذلك بإفادة ذاتية - بينما كانت الدولة ما زالت تصمّم الاستمارات.",
     "status2026Ar": "استمرار حضور من دون إعلان دفعات بوضوح 2024، إلى جانب إطار حكومي يحتل رسمياً المساحة التي كان يحتكرها. ثلاثة تفسيرات تلائم هذا الحضور الأنحف ولا يمكن الفصل بينها بهذه المعطيات: تدفّقات أقل فعلاً؛ وحوافز إعلان أقل بعد وجود مرجع عام؛ وانتقال الإعلان نحو المسار الرسمي. ولا يؤكد هذا التحليل نمواً ولا انهياراً.",
     "confirmedPaymentsAr": "معلَنة فقط؛ يتعذّر تدقيقها في السنتين"
   },
-  "distributionalFinding": "In both years, compensation actually received by households came from savings, remittances and reported parallel cash - none of it publicly accountable. Speed and rules traded off perfectly: the parallel track paid in weeks precisely because it had no public rules, appeals or audit, while the state track had rules in draft and no money. Payments outside public frameworks set loyalty and spatial priorities no parliament reviewed; by 30 December 2024, Nabatieh's businesses were protesting both tracks' slowness at once.",
+  "distributionalFinding": "In both years, compensation actually received by households came from savings, remittances and reported parallel cash - none of it publicly accountable. The two tracks differed on speed and on rules at once: reported parallel payments moved in weeks with no public rules, appeals or audit, while the state track had rules in draft and no money. Payments outside public frameworks set loyalty and spatial priorities no parliament reviewed; by 30 December 2024, Nabatieh's businesses were protesting both tracks' slowness at once.",
   "sourceIds": [
     "S9",
     "S34",
@@ -86,5 +86,5 @@
     "S17"
   ],
   "noteAr": "تُتابَع التعويضات بمعيار تأكيد واحد لكل الجهات: إعلان وزارة، وبيان مجلس، وادّعاء دفع من حزب، تُعامَل كلها كإفادة ذاتية إلى أن تؤكدها جهة مستقلة. لم تُؤكَّد أي دفعة تعويض حكومية حتى تاريخ التوقف في 31 تموز 2026؛ وغياب الدفع المؤكَّد ادّعاء محدود - أي دفعات لم تُعلَن علناً حتى ذلك التاريخ، لا دفعات ثبت أنها لم تحصل قط.",
-  "distributionalFindingAr": "في السنتين، جاء التعويض الذي تلقّته الأسر فعلاً من المدّخرات والتحويلات والنقد الموازي المعلَن - ولا شيء منه خاضع للمساءلة العامة. وتبادلت السرعة والقواعد المواقع تماماً: دفع المسار الموازي خلال أسابيع لأنه بلا قواعد عامة ولا اعتراض ولا تدقيق، فيما كان للمسار الحكومي قواعد في المسودة ولا مال. والدفعات خارج الأطر العامة رسمت أولويات ولاء وأولويات مكانية لم يراجعها أي برلمان؛ وبحلول 30 كانون الأول 2024 كان تجّار النبطية يحتجّون على بطء المسارين معاً."
+  "distributionalFindingAr": "في السنتين، جاء التعويض الذي تلقّته الأسر فعلاً من المدّخرات والتحويلات والنقد الموازي المعلَن - ولا شيء منه خاضع للمساءلة العامة. واختلف المساران في السرعة وفي القواعد معاً: تحرّكت الدفعات المعلَنة في المسار الموازي خلال أسابيع بلا قواعد عامة ولا اعتراض ولا تدقيق، فيما كان للمسار الحكومي قواعد في المسودة ولا مال. والدفعات خارج الأطر العامة رسمت أولويات ولاء وأولويات مكانية لم يراجعها أي برلمان؛ وبحلول 30 كانون الأول 2024 كان تجّار النبطية يحتجّون على بطء المسارين معاً."
 }

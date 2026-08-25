@@ -285,8 +285,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Costa Brava landfill cell and infrastructure interface. Controls the official disposal, reuse, landfill, or infrastructure interface. Location: the Costa Brava landfill / Beirut coastal landfill area. Part of rubble transferred to Costa Brava third cell for support/expansion use. Moves, receives, places, or reuses debris through the identified disposal route. Location: the Costa Brava landfill / Beirut coastal landfill area.",
-    "actionAr": "خلية مطمر كوستا برافا وواجهة البنية التحتية. يتحكّم بالواجهة الرسمية للتخلّص أو إعادة الاستخدام أو الطمر أو البنية التحتية. الموقع: مطمر كوستا برافا / منطقة المطمر الساحلي في بيروت. نُقل جزء من الأنقاض إلى الخلية الثالثة في كوستا برافا لاستخدامات الدعم/التوسعة. ينقل الركام أو يستقبله أو يضعه أو يعيد استخدامه عبر مسار التخلّص المحدَّد. الموقع: مطمر كوستا برافا / منطقة المطمر الساحلي في بيروت."
+    "action": "Costa Brava landfill cell and infrastructure interface. Controls the official disposal, reuse, landfill, or infrastructure interface. Location: the Costa Brava landfill / Beirut coastal landfill area. Part of rubble transferred to Costa Brava third cell for support/expansion use. Moves, receives, places, or reuses debris through the identified disposal route.",
+    "actionAr": "خلية مطمر كوستا برافا وواجهة البنية التحتية. يتحكّم بالواجهة الرسمية للتخلّص أو إعادة الاستخدام أو الطمر أو البنية التحتية. الموقع: مطمر كوستا برافا / منطقة المطمر الساحلي في بيروت. نُقل جزء من الأنقاض إلى الخلية الثالثة في كوستا برافا لاستخدامات الدعم/التوسعة. ينقل الركام أو يستقبله أو يضعه أو يعيد استخدامه عبر مسار التخلّص المحدَّد."
   },
   {
     "id": "r2024-7-11",
@@ -331,8 +331,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Costa Brava landfill cell and infrastructure interface. Coordinates environmental safeguards with public works, disposal sites, or recovery actors. Part of rubble transferred to Costa Brava third cell for support/expansion use. Coordinates environmental safeguards with public works, disposal sites, or recovery actors. Location: the Costa Brava landfill / Beirut coastal landfill area.",
-    "actionAr": "خلية مطمر كوستا برافا وواجهة البنية التحتية. ينسّق الضمانات البيئية مع الأشغال العامة أو مواقع التخلّص أو جهات التعافي. نُقل جزء من الأنقاض إلى الخلية الثالثة في كوستا برافا لاستخدامات الدعم/التوسعة. ينسّق الضمانات البيئية مع الأشغال العامة أو مواقع التخلّص أو جهات التعافي. الموقع: مطمر كوستا برافا / منطقة المطمر الساحلي في بيروت."
+    "action": "Costa Brava landfill cell and infrastructure interface. Coordinates environmental safeguards with public works, disposal sites, or recovery actors. Part of rubble transferred to Costa Brava third cell for support/expansion use. Location: the Costa Brava landfill / Beirut coastal landfill area.",
+    "actionAr": "خلية مطمر كوستا برافا وواجهة البنية التحتية. ينسّق الضمانات البيئية مع الأشغال العامة أو مواقع التخلّص أو جهات التعافي. نُقل جزء من الأنقاض إلى الخلية الثالثة في كوستا برافا لاستخدامات الدعم/التوسعة. الموقع: مطمر كوستا برافا / منطقة المطمر الساحلي في بيروت."
   },
   {
     "id": "r2024-7-24",
@@ -789,7 +789,7 @@
     "implementationStatus": "underway",
     "comparability": "qualified",
     "action": "Coordinates shelter sites, return pathways, local intake, or household support.jurisdiction for Mount Lebanon, Dahieh and Baalbek in Al Jazeera account. Coordinates shelter sites, return pathways, local intake, or household support.",
-    "actionAr": "تنسّق مواقع الإيواء أو مسارات العودة أو الاستقبال المحلي أو دعم الأسر. اختصاصها يشمل جبل لبنان والضاحية الجنوبية وبعلبك بحسب رواية الجزيرة. تنسّق مواقع الإيواء أو مسارات العودة أو الاستقبال المحلي أو دعم الأسر."
+    "actionAr": "تنسّق مواقع الإيواء أو مسارات العودة أو الاستقبال المحلي أو دعم الأسر. اختصاصها يشمل جبل لبنان والضاحية الجنوبية وبعلبك بحسب رواية الجزيرة."
   },
   {
     "id": "r2024-11-24",
@@ -1521,8 +1521,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Minister announced cabinet approval and implementation channels for debris removal and surveys. Coordinates clearing with municipalities, contractors, roads, or public authorities. Public works channel and emergency works context. Coordinates clearing with municipalities, contractors, roads, or public authorities. Road clearance and infrastructure debris removal coordinated with the UN Debris Task Force.",
-    "actionAr": "أعلن الوزير عن موافقة مجلس الوزراء وعن قنوات التنفيذ الخاصة بإزالة الركام والمسوحات. تنسّق أعمال الإزالة مع البلديات أو المتعهّدين أو الطرق أو السلطات العامة. قناة الأشغال العامة وسياق الأشغال الطارئة. تنسّق أعمال الإزالة مع البلديات أو المتعهّدين أو الطرق أو السلطات العامة. نُسِّقت أعمال فتح الطرق وإزالة ركام البنية التحتية مع فريق الأمم المتحدة لعمل الركام."
+    "action": "Minister announced cabinet approval and implementation channels for debris removal and surveys. Coordinates clearing with municipalities, contractors, roads, or public authorities. Public works channel and emergency works context. Road clearance and infrastructure debris removal coordinated with the UN Debris Task Force.",
+    "actionAr": "أعلن الوزير عن موافقة مجلس الوزراء وعن قنوات التنفيذ الخاصة بإزالة الركام والمسوحات. تنسّق أعمال الإزالة مع البلديات أو المتعهّدين أو الطرق أو السلطات العامة. قناة الأشغال العامة وسياق الأشغال الطارئة. نُسِّقت أعمال فتح الطرق وإزالة ركام البنية التحتية مع فريق الأمم المتحدة لعمل الركام."
   },
   {
     "id": "r2024-20-24",
@@ -1540,8 +1540,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Minister announced cabinet approval and implementation channels for debris removal and surveys. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Public works channel and emergency works context. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites.",
-    "actionAr": "أعلن الوزير عن موافقة مجلس الوزراء وعن قنوات التنفيذ الخاصة بإزالة الركام والمسوحات. تجمع الجهات الفاعلة أو توجّهها أو تربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. قناة الأشغال العامة وسياق الأشغال الطارئة. تجمع الجهات الفاعلة أو توجّهها أو تربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع."
+    "action": "Minister announced cabinet approval and implementation channels for debris removal and surveys. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Public works channel and emergency works context.",
+    "actionAr": "أعلن الوزير عن موافقة مجلس الوزراء وعن قنوات التنفيذ الخاصة بإزالة الركام والمسوحات. تجمع الجهات الفاعلة أو توجّهها أو تربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. قناة الأشغال العامة وسياق الأشغال الطارئة."
   },
   {
     "id": "r2024-20-33",
@@ -1749,8 +1749,8 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation. Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation.",
-    "actionAr": "تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها. تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها."
+    "action": "Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation.",
+    "actionAr": "تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها."
   },
   {
     "id": "r2024-23-3",
@@ -2276,8 +2276,8 @@
     ],
     "implementationStatus": "procurement",
     "comparability": "qualified",
-    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Runs the tendering, offer opening, contracting, or award-management step. Location: the southern suburbs of Beirut / Dahieh. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified. Runs the tendering, offer opening, contracting, or award-management step.",
-    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. يتولّى خطوة المناقصة أو فضّ العروض أو التعاقد أو إدارة الترسية. الموقع: الضاحية الجنوبية لبيروت. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا. يتولّى خطوة المناقصة أو فضّ العروض أو التعاقد أو إدارة الترسية."
+    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Runs the tendering, offer opening, contracting, or award-management step. Location: the southern suburbs of Beirut / Dahieh. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified.",
+    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. يتولّى خطوة المناقصة أو فضّ العروض أو التعاقد أو إدارة الترسية. الموقع: الضاحية الجنوبية لبيروت. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا."
   },
   {
     "id": "r2024-30-8",
@@ -2328,8 +2328,8 @@
     ],
     "implementationStatus": "procurement",
     "comparability": "qualified",
-    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies. Location: the southern suburbs of Beirut / Dahieh. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies.",
-    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة. الموقع: الضاحية الجنوبية لبيروت. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة."
+    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies. Location: the southern suburbs of Beirut / Dahieh. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified.",
+    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة. الموقع: الضاحية الجنوبية لبيروت. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا."
   },
   {
     "id": "r2024-30-23",
@@ -2380,8 +2380,8 @@
     ],
     "implementationStatus": "procurement",
     "comparability": "qualified",
-    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites.",
-    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع."
+    "action": "Cabinet assigned southern-suburbs rubble clearance; Union opened tenders and managed local scope. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Opened offers, worked through al-Bunyan contractor; Costa Brava route identified.",
+    "actionAr": "أسند مجلس الوزراء رفع الأنقاض في الضاحية الجنوبية؛ وفتح الاتحاد المناقصات وأدار النطاق المحلي. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. فتح العروض وعمل عبر المتعهّد شركة البنيان؛ وجرى تحديد مسار كوستا برافا."
   },
   {
     "id": "r2024-31-4",
@@ -3899,8 +3899,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "First-response and relief infrastructure, though mostly in practice rather than by mandate. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Ambulance, blood, PHC, relief items, water and preparedness. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites.",
-    "actionAr": "بنية للاستجابة الأولى والإغاثة، وإن كان ذلك عملياً غالباً لا بموجب تفويض. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. خدمات الإسعاف والدم والرعاية الصحية الأولية ومواد الإغاثة والمياه والجهوزية. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع."
+    "action": "First-response and relief infrastructure, though mostly in practice rather than by mandate. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Ambulance, blood, PHC, relief items, water and preparedness.",
+    "actionAr": "بنية للاستجابة الأولى والإغاثة، وإن كان ذلك عملياً غالباً لا بموجب تفويض. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. خدمات الإسعاف والدم والرعاية الصحية الأولية ومواد الإغاثة والمياه والجهوزية."
   },
   {
     "id": "r2024-50-13",
@@ -4451,8 +4451,8 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "Frames debris handling through environmental risk, recycling choices, landfill expansion and cement-market interests. Critical analysis of rubble, cement, procurement and safeguards. Challenges environmental risk, disposal practice, procurement opacity, or unsustainable recovery choices. Frames debris handling through environmental risk, recycling choices, landfill expansion and cement-market interests.",
-    "actionAr": "يؤطّر التعامل مع الركام من زاوية المخاطر البيئية وخيارات إعادة التدوير وتوسيع المطامر ومصالح سوق الإسمنت. تحليل نقدي للأنقاض والإسمنت والشراء والضمانات. يعترض على المخاطر البيئية أو ممارسات التخلّص أو غموض الشراء أو خيارات التعافي غير المستدامة. يؤطّر التعامل مع الركام من زاوية المخاطر البيئية وخيارات إعادة التدوير وتوسيع المطامر ومصالح سوق الإسمنت."
+    "action": "Frames debris handling through environmental risk, recycling choices, landfill expansion and cement-market interests. Critical analysis of rubble, cement, procurement and safeguards. Challenges environmental risk, disposal practice, procurement opacity, or unsustainable recovery choices.",
+    "actionAr": "يؤطّر التعامل مع الركام من زاوية المخاطر البيئية وخيارات إعادة التدوير وتوسيع المطامر ومصالح سوق الإسمنت. تحليل نقدي للأنقاض والإسمنت والشراء والضمانات. يعترض على المخاطر البيئية أو ممارسات التخلّص أو غموض الشراء أو خيارات التعافي غير المستدامة."
   },
   {
     "id": "r2024-58-25",
@@ -4480,8 +4480,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Adds a critical governance lens on reconstruction, property rights, public interest and participatory planning. Critical analysis of rubble, cement, procurement and safeguards. Monitors, critiques, audits, or questions transparency, procurement, safeguards, or accountability. Adds a critical governance lens on reconstruction, property rights, public interest and participatory planning. Critique of the Exemptions and Reconstruction Law (July 2025) as no substitute for a comprehensive national plan; advocacy for transparent and participatory reconstruction planning; monitoring of urban recovery practice.",
-    "actionAr": "يضيف عدسة حوكمة نقدية على إعادة الإعمار وحقوق الملكية والمصلحة العامة والتخطيط التشاركي. تحليل نقدي للأنقاض والإسمنت والشراء والضمانات. يراقب أو ينتقد أو يدقّق أو يطرح تساؤلات حول الشفافية أو الشراء أو الضمانات أو المساءلة. يضيف عدسة حوكمة نقدية على إعادة الإعمار وحقوق الملكية والمصلحة العامة والتخطيط التشاركي. نقد قانون الإعفاءات وإعادة الإعمار (تموز 2025) باعتباره لا يغني عن خطة وطنية شاملة؛ مناصرة لتخطيط شفاف وتشاركي لإعادة الإعمار؛ رصد ممارسات التعافي العمراني."
+    "action": "Adds a critical governance lens on reconstruction, property rights, public interest and participatory planning. Critical analysis of rubble, cement, procurement and safeguards. Monitors, critiques, audits, or questions transparency, procurement, safeguards, or accountability. Critique of the Exemptions and Reconstruction Law (July 2025) as no substitute for a comprehensive national plan; advocacy for transparent and participatory reconstruction planning; monitoring of urban recovery practice.",
+    "actionAr": "يضيف عدسة حوكمة نقدية على إعادة الإعمار وحقوق الملكية والمصلحة العامة والتخطيط التشاركي. تحليل نقدي للأنقاض والإسمنت والشراء والضمانات. يراقب أو ينتقد أو يدقّق أو يطرح تساؤلات حول الشفافية أو الشراء أو الضمانات أو المساءلة. نقد قانون الإعفاءات وإعادة الإعمار (تموز 2025) باعتباره لا يغني عن خطة وطنية شاملة؛ مناصرة لتخطيط شفاف وتشاركي لإعادة الإعمار؛ رصد ممارسات التعافي العمراني."
   },
   {
     "id": "r2024-58-32",
@@ -4509,8 +4509,8 @@
     ],
     "implementationStatus": "procurement",
     "comparability": "qualified",
-    "action": "Questions how tenders, costs, disposal routes and recyclable materials are accounted for in public rubble management. Questions how tenders, costs, disposal routes and recyclable materials are accounted for in public rubble management.",
-    "actionAr": "يطرح تساؤلات حول كيفية احتساب المناقصات والتكاليف ومسارات التخلّص والمواد القابلة لإعادة التدوير في الإدارة العامة للأنقاض. يطرح تساؤلات حول كيفية احتساب المناقصات والتكاليف ومسارات التخلّص والمواد القابلة لإعادة التدوير في الإدارة العامة للأنقاض."
+    "action": "Questions how tenders, costs, disposal routes and recyclable materials are accounted for in public rubble management.",
+    "actionAr": "يطرح تساؤلات حول كيفية احتساب المناقصات والتكاليف ومسارات التخلّص والمواد القابلة لإعادة التدوير في الإدارة العامة للأنقاض."
   },
   {
     "id": "r2024-59-5",
@@ -5754,7 +5754,7 @@
     "implementationStatus": "not_verified",
     "comparability": "qualified",
     "action": "Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational evide. identified through hotline/social channels; useful as operational lead data but needs confirmation. Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational data.",
-    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة عبر الخطوط الساخنة/قنوات التواصل؛ مفيدة كبيانات خيوط عملياتية لكنها تحتاج إلى تأكيد. تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة."
+    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة عبر الخطوط الساخنة/قنوات التواصل؛ مفيدة كبيانات خيوط عملياتية لكنها تحتاج إلى تأكيد."
   },
   {
     "id": "r2024-79-22",
@@ -5777,7 +5777,7 @@
     "implementationStatus": "not_verified",
     "comparability": "qualified",
     "action": "Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational evide. identified as emergency/safety support, with direct confirmation needed. Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational data.",
-    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة كدعم للطوارئ/السلامة، مع الحاجة إلى تأكيد مباشر. تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة."
+    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة كدعم للطوارئ/السلامة، مع الحاجة إلى تأكيد مباشر."
   },
   {
     "id": "r2024-79-24",
@@ -5800,7 +5800,7 @@
     "implementationStatus": "not_verified",
     "comparability": "qualified",
     "action": "Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational evide. identified as coordinating support, but direct confirmation is needed. Union/municipal social posts identify hotlines and municipal-police entries channels; use as weak operational data.",
-    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة كجهة منسِّقة للدعم، لكن التأكيد المباشر مطلوب. تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة."
+    "actionAr": "تُظهر منشورات الاتحاد/البلديات على مواقع التواصل قنوات الخطوط الساخنة ومدخلات الشرطة البلدية؛ تُستخدم كبيانات عملياتية ضعيفة. محدَّدة كجهة منسِّقة للدعم، لكن التأكيد المباشر مطلوب."
   },
   {
     "id": "r2024-80-8",
@@ -5882,8 +5882,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Contributed scientific, remote-sensing or technical data used in damage understanding and recovery decision-making. names Beirut in the 2026 damage-assessment work. In practice, technical data and scientific assessment supported the damage baseline used by national and international actors. names Beirut in the 2026 damage-assessment work. Partner to the World Bank on the RDNA; satellite-imagery analysis with field-survey validation; comprehensive environmental damage assessment (soil contamination, air quality, marine and terrestrial ecosystems), published as the Post-War Environmental Recovery Report (2025).",
-    "actionAr": "أسهم ببيانات علمية أو تقنية أو ببيانات استشعار عن بعد استُخدمت في فهم الأضرار وصنع قرارات التعافي. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. عملياً، دعمت البيانات التقنية والتقييم العلمي خط الأساس للأضرار الذي اعتمدته جهات وطنية ودولية. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. شريك للبنك الدولي في RDNA؛ تحليل صور الأقمار الاصطناعية مع تثبيت بمسوح ميدانية؛ تقييم شامل للأضرار البيئية (تلوّث التربة، جودة الهواء، النظم البيئية البحرية والبرية)، صدر بعنوان تقرير التعافي البيئي لما بعد الحرب (2025)."
+    "action": "Contributed scientific, remote-sensing or technical data used in damage understanding and recovery decision-making. names Beirut in the 2026 damage-assessment work. In practice, technical data and scientific assessment supported the damage baseline used by national and international actors. Partner to the World Bank on the RDNA; satellite-imagery analysis with field-survey validation; comprehensive environmental damage assessment (soil contamination, air quality, marine and terrestrial ecosystems), published as the Post-War Environmental Recovery Report (2025).",
+    "actionAr": "أسهم ببيانات علمية أو تقنية أو ببيانات استشعار عن بعد استُخدمت في فهم الأضرار وصنع قرارات التعافي. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. عملياً، دعمت البيانات التقنية والتقييم العلمي خط الأساس للأضرار الذي اعتمدته جهات وطنية ودولية. شريك للبنك الدولي في RDNA؛ تحليل صور الأقمار الاصطناعية مع تثبيت بمسوح ميدانية؛ تقييم شامل للأضرار البيئية (تلوّث التربة، جودة الهواء، النظم البيئية البحرية والبرية)، صدر بعنوان تقرير التعافي البيئي لما بعد الحرب (2025)."
   },
   {
     "id": "r2024-81-6",
@@ -5908,8 +5908,8 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "Supported the damage-data chain alongside UNDP, World Bank assessment work and national/local entries. names Beirut in the 2026 damage-assessment work. The data role complemented local surveys, RDNA analysis and sectoral damage entries. names Beirut in the 2026 damage-assessment work. Technical expertise on debris quantification, feeding the UN Debris Task Force.",
-    "actionAr": "دعم سلسلة بيانات الأضرار إلى جانب برنامج الأمم المتحدة الإنمائي وأعمال التقييم لدى البنك الدولي والمدخلات الوطنية/المحلية. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. وقد كمّل دور البيانات المسوح المحلية وتحليل RDNA ومدخلات الأضرار القطاعية. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. خبرة تقنية في تقدير كميات الركام، ترفد فريق الأمم المتحدة لعمل الركام."
+    "action": "Supported the damage-data chain alongside UNDP, World Bank assessment work and national/local entries. names Beirut in the 2026 damage-assessment work. The data role complemented local surveys, RDNA analysis and sectoral damage entries. Technical expertise on debris quantification, feeding the UN Debris Task Force.",
+    "actionAr": "دعم سلسلة بيانات الأضرار إلى جانب برنامج الأمم المتحدة الإنمائي وأعمال التقييم لدى البنك الدولي والمدخلات الوطنية/المحلية. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. وقد كمّل دور البيانات المسوح المحلية وتحليل RDNA ومدخلات الأضرار القطاعية. خبرة تقنية في تقدير كميات الركام، ترفد فريق الأمم المتحدة لعمل الركام."
   },
   {
     "id": "r2024-82-5",
@@ -7813,8 +7813,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Expected/continuing formal responsibility for southern rubble and surveys. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Regional role and procurement preparation in southern areas. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites.",
-    "actionAr": "مسؤولية رسمية متوقعة/مستمرة عن الأنقاض والمسوحات في الجنوب. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. دور إقليمي وتحضير للشراء في المناطق الجنوبية. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع."
+    "action": "Expected/continuing formal responsibility for southern rubble and surveys. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Regional role and procurement preparation in southern areas.",
+    "actionAr": "مسؤولية رسمية متوقعة/مستمرة عن الأنقاض والمسوحات في الجنوب. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. دور إقليمي وتحضير للشراء في المناطق الجنوبية."
   },
   {
     "id": "r2026-9-6",
@@ -8714,8 +8714,8 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation. Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation.",
-    "actionAr": "تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها. تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها."
+    "action": "Caveat: MoSA's traced emergency role covers shelter registration, coordination and cash assistance; it is separate from engineering damage valuation and per-unit property compensation. Unless a formal decision assigns MoSA a property-compensation mandate, it should not be listed as the authority for valuing or paying war-damage compensation.",
+    "actionAr": "تنبيه: يغطي الدور الطارئ المرصود لوزارة الشؤون الاجتماعية تسجيل الإيواء والتنسيق والمساعدة النقدية؛ وهو منفصل عن التقدير الهندسي للأضرار وعن التعويض العقاري لكل وحدة على حدة. وما لم يُسنِد قرار رسمي إلى وزارة الشؤون الاجتماعية تفويضاً بالتعويض العقاري، فلا ينبغي إدراجها بوصفها الجهة المخوّلة تقدير تعويضات أضرار الحرب أو دفعها."
   },
   {
     "id": "r2026-19-33",
@@ -8809,8 +8809,8 @@
     ],
     "implementationStatus": "formal_mandate",
     "comparability": "qualified",
-    "action": "Formal procurement-law/public entries relevance. Formal procurement-law/public entries relevance.",
-    "actionAr": "صلة رسمية بقانون الشراء والمدخلات العامة. صلة رسمية بقانون الشراء والمدخلات العامة."
+    "action": "Formal procurement-law/public entries relevance.",
+    "actionAr": "صلة رسمية بقانون الشراء والمدخلات العامة."
   },
   {
     "id": "r2026-21-23",
@@ -8989,8 +8989,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "2024 cabinet authority identified as still active in 2026; Union delegation met PM. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies. Managed rubble clearance and aid to returning residents with associations/volunteers. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies. Location: the southern suburbs of Beirut / Dahieh.",
-    "actionAr": "صلاحية من مجلس الوزراء عام 2024 حُدِّدت بوصفها لا تزال سارية في 2026؛ وفد من الاتحاد التقى رئيس الحكومة. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة. أدار رفع الأنقاض والمساعدة للأهالي العائدين مع جمعيات ومتطوّعين. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة. الموقع: الضاحية الجنوبية لبيروت."
+    "action": "2024 cabinet authority identified as still active in 2026; Union delegation met PM. Coordinates the disposal/reuse route with sites, landfills, contractors, or public bodies. Managed rubble clearance and aid to returning residents with associations/volunteers. Location: the southern suburbs of Beirut / Dahieh.",
+    "actionAr": "صلاحية من مجلس الوزراء عام 2024 حُدِّدت بوصفها لا تزال سارية في 2026؛ وفد من الاتحاد التقى رئيس الحكومة. ينسّق مسار التخلّص/إعادة الاستخدام مع المواقع أو المطامر أو المتعهّدين أو الهيئات العامة. أدار رفع الأنقاض والمساعدة للأهالي العائدين مع جمعيات ومتطوّعين. الموقع: الضاحية الجنوبية لبيروت."
   },
   {
     "id": "r2026-23-11",
@@ -9067,8 +9067,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "2024 cabinet authority identified as still active in 2026; Union delegation met PM. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Managed rubble clearance and aid to returning residents with associations/volunteers. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Location: the southern suburbs of Beirut / Dahieh.",
-    "actionAr": "صلاحية من مجلس الوزراء عام 2024 حُدِّدت بوصفها لا تزال سارية في 2026؛ وفد من الاتحاد التقى رئيس الحكومة. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. أدار رفع الأنقاض والمساعدة للأهالي العائدين مع جمعيات ومتطوّعين. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. الموقع: الضاحية الجنوبية لبيروت."
+    "action": "2024 cabinet authority identified as still active in 2026; Union delegation met PM. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Managed rubble clearance and aid to returning residents with associations/volunteers. Location: the southern suburbs of Beirut / Dahieh.",
+    "actionAr": "صلاحية من مجلس الوزراء عام 2024 حُدِّدت بوصفها لا تزال سارية في 2026؛ وفد من الاتحاد التقى رئيس الحكومة. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. أدار رفع الأنقاض والمساعدة للأهالي العائدين مع جمعيات ومتطوّعين. الموقع: الضاحية الجنوبية لبيروت."
   },
   {
     "id": "r2026-24-4",
@@ -9944,7 +9944,7 @@
     "implementationStatus": "underway",
     "comparability": "qualified",
     "action": "Dedicated teams supporting shelters and displaced families. Supports relief delivery through supplies, services, programs, or partner assistance.Shelter teams/support for displaced families. Supports relief delivery through supplies, services, programs, or partner assistance.",
-    "actionAr": "فرق مخصّصة تدعم مراكز الإيواء والأسر النازحة. تدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء. فرق إيواء/دعم للأسر النازحة. تدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء."
+    "actionAr": "فرق مخصّصة تدعم مراكز الإيواء والأسر النازحة. تدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء. فرق إيواء/دعم للأسر النازحة."
   },
   {
     "id": "r2026-31-13",
@@ -9970,8 +9970,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Dedicated teams supporting shelters and displaced families. Supports health or protection through services, supplies, referrals, or partner programs. Shelter teams/support for displaced families. Supports health or protection through services, supplies, referrals, or partner programs.",
-    "actionAr": "فرق مخصّصة تدعم مراكز الإيواء والأسر النازحة. تدعم الصحة أو الحماية عبر الخدمات أو الإمدادات أو الإحالات أو برامج الشركاء. فرق إيواء/دعم للأسر النازحة. تدعم الصحة أو الحماية عبر الخدمات أو الإمدادات أو الإحالات أو برامج الشركاء."
+    "action": "Dedicated teams supporting shelters and displaced families. Supports health or protection through services, supplies, referrals, or partner programs. Shelter teams/support for displaced families.",
+    "actionAr": "فرق مخصّصة تدعم مراكز الإيواء والأسر النازحة. تدعم الصحة أو الحماية عبر الخدمات أو الإمدادات أو الإحالات أو برامج الشركاء. فرق إيواء/دعم للأسر النازحة."
   },
   {
     "id": "r2026-31-22",
@@ -10769,8 +10769,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Official response data across ambulance, blood, PHC, relief and water. Supports relief delivery through supplies, services, programs, or partner assistance. Ambulance, SAR, blood, PHC, medications, relief, water and PSS/awareness data. Supports relief delivery through supplies, services, programs, or partner assistance.",
-    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية. يدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء."
+    "action": "Official response data across ambulance, blood, PHC, relief and water. Supports relief delivery through supplies, services, programs, or partner assistance. Ambulance, SAR, blood, PHC, medications, relief, water and PSS/awareness data.",
+    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يدعم إيصال الإغاثة عبر الإمدادات أو الخدمات أو البرامج أو مساعدة الشركاء. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية."
   },
   {
     "id": "r2026-40-13",
@@ -10808,7 +10808,7 @@
     "implementationStatus": "underway",
     "comparability": "qualified",
     "action": "Official response data across ambulance, blood, PHC, relief and water. Supports clean water, hygiene kits, shelter water systems, or sanitation needs.Ambulance, SAR, blood, PHC, medications, relief, water and PSS/awareness data. Supports clean water, hygiene kits, shelter water systems, or sanitation needs.",
-    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يدعم المياه النظيفة أو حقائب النظافة أو شبكات المياه في مراكز الإيواء أو احتياجات الصرف الصحي. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية. يدعم المياه النظيفة أو حقائب النظافة أو شبكات المياه في مراكز الإيواء أو احتياجات الصرف الصحي."
+    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يدعم المياه النظيفة أو حقائب النظافة أو شبكات المياه في مراكز الإيواء أو احتياجات الصرف الصحي. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية."
   },
   {
     "id": "r2026-40-22",
@@ -10826,8 +10826,8 @@
     ],
     "implementationStatus": "underway",
     "comparability": "qualified",
-    "action": "Official response data across ambulance, blood, PHC, relief and water. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Ambulance, SAR, blood, PHC, medications, relief, water and PSS/awareness data. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites.",
-    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع."
+    "action": "Official response data across ambulance, blood, PHC, relief and water. Convenes, routes, or links actors across public authorities, NGOs, donors, municipalities, and sites. Ambulance, SAR, blood, PHC, medications, relief, water and PSS/awareness data.",
+    "actionAr": "بيانات الاستجابة الرسمية عبر الإسعاف والدم والرعاية الصحية الأولية والإغاثة والمياه. يجمع الجهات الفاعلة أو يوجّهها أو يربط بينها عبر السلطات العامة والمنظمات غير الحكومية والمانحين والبلديات والمواقع. بيانات الإسعاف والبحث والإنقاذ والدم والرعاية الصحية الأولية والأدوية والإغاثة والمياه والدعم النفسي الاجتماعي/التوعية."
   },
   {
     "id": "r2026-40-33",
@@ -13758,7 +13758,7 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "Represent the public water establishments named in for service restoration and network continuity. Water establishments are the practical public operators for water network repair and service continuity.",
+    "action": "Represent the public water establishments named for service restoration and network continuity. Water establishments are the practical public operators for water network repair and service continuity.",
     "actionAr": "تمثّل مؤسسات المياه العامة المسمّاة لاستعادة الخدمات واستمرارية الشبكة. مؤسسات المياه هي المشغّلون العامّون العمليون لإصلاح شبكات المياه واستمرارية الخدمة."
   },
   {
@@ -14229,8 +14229,8 @@
     ],
     "implementationStatus": "not_verified",
     "comparability": "qualified",
-    "action": "The relationship complements UNDP/CNRS-L assessment work and cadastral-level damage mapping. names Beirut in the 2026 damage-assessment work. Complements field surveys and UNDP/CNRS-L damage assessment work. names Beirut in the 2026 damage-assessment work.",
-    "actionAr": "تكمّل هذه العلاقة أعمال التقييم المشتركة بين برنامج الأمم المتحدة الإنمائي والمجلس الوطني للبحوث العلمية ورسم خرائط الأضرار على المستوى العقاري. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. وتكمّل المسوح الميدانية وأعمال تقييم الأضرار لبرنامج الأمم المتحدة الإنمائي والمجلس الوطني للبحوث العلمية. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026."
+    "action": "The relationship complements UNDP/CNRS-L assessment work and cadastral-level damage mapping. names Beirut in the 2026 damage-assessment work. Complements field surveys and UNDP/CNRS-L damage assessment work.",
+    "actionAr": "تكمّل هذه العلاقة أعمال التقييم المشتركة بين برنامج الأمم المتحدة الإنمائي والمجلس الوطني للبحوث العلمية ورسم خرائط الأضرار على المستوى العقاري. تُذكر بيروت في أعمال تقييم الأضرار لعام 2026. وتكمّل المسوح الميدانية وأعمال تقييم الأضرار لبرنامج الأمم المتحدة الإنمائي والمجلس الوطني للبحوث العلمية."
   },
   {
     "id": "r2026-91-23",

@@ -183,13 +183,13 @@ export default function ArabicPage() {
 
       {/* The narrative sequence, in the same seven steps as the English side */}
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 pb-16 sm:px-6">
-        <section aria-label={AR.home.emergency.title}>
+        <section id="emergency-2024" aria-label={AR.home.emergency.title}>
           <SectionHeading index={AR.home.emergency.n} title={AR.home.emergency.title}>
             <Body>{AR.home.emergency.body}</Body>
           </SectionHeading>
         </section>
 
-        <section aria-label={AR.home.middle.title}>
+        <section id="implementation-middle" aria-label={AR.home.middle.title}>
           <SectionHeading index={AR.home.middle.n} title={AR.home.middle.title}>
             <Body>{AR.home.middle.body}</Body>
           </SectionHeading>
@@ -207,7 +207,7 @@ export default function ArabicPage() {
           </div>
         </section>
 
-        <section aria-label={AR.home.roles.title}>
+        <section id="role-shift" aria-label={AR.home.roles.title}>
           <SectionHeading index={AR.home.roles.n} title={AR.home.roles.title}>
             <Body>{AR.home.roles.body}</Body>
           </SectionHeading>
@@ -220,14 +220,14 @@ export default function ArabicPage() {
           <Onward href="/ar/actors">{AR.home.roles.link}</Onward>
         </section>
 
-        <section aria-label={AR.home.finance.title}>
+        <section id="finance-delivery" aria-label={AR.home.finance.title}>
           <SectionHeading index={AR.home.finance.n} title={AR.home.finance.title}>
             <Body>{AR.home.finance.body}</Body>
           </SectionHeading>
           <Onward href="/ar/finance">{AR.home.finance.link}</Onward>
         </section>
 
-        <section aria-label={AR.home.geography.title}>
+        <section id="geography" aria-label={AR.home.geography.title}>
           <SectionHeading index={AR.home.geography.n} title={AR.home.geography.title}>
             <Body>{AR.home.geography.body}</Body>
           </SectionHeading>
@@ -272,7 +272,7 @@ export default function ArabicPage() {
           </p>
         </section>
 
-        <section aria-label={AR.home.news.title}>
+        <section id="latest-news" aria-label={AR.home.news.title}>
           <SectionHeading index={AR.home.news.n} title={AR.home.news.title}>
             <Body>{AR.home.news.body}</Body>
           </SectionHeading>

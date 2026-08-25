@@ -179,7 +179,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
   });
 
   return (
-    <div>
+    <div id="actor-layers">
       <div
         role="tablist"
         aria-label={t.tablist}

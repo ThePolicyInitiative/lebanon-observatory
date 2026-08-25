@@ -75,7 +75,7 @@ export default function Page() {
         <RegionalComposition locale="ar" showCaveat={false} />
       </div>
 
-      <section className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
+      <section id="no-national-layer" className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
         <h2 className="text-sm font-semibold text-[color:var(--color-navy)]">
           لماذا لا توجد طبقة أضرار وطنية
         </h2>

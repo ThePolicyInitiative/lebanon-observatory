@@ -6,7 +6,9 @@ import { layers, type Locale } from "@/lib/vocab";
 const T = {
   en: {
     title: "Reported beyond the tracking",
-    badge: "Web-sourced · not in the tracking",
+    // The heading and the lede below both state the quarantine already;
+    // this badge names where the entries came from, and nothing else.
+    badge: "Web-sourced",
     institutional: "Institutional publisher",
     press: "Press report",
     social: "Social post - self-published",
@@ -18,7 +20,7 @@ const T = {
   },
   ar: {
     title: "مرصود خارج التتبّع",
-    badge: "من مراجع إلكترونية · خارج التتبّع",
+    badge: "من مراجع إلكترونية",
     institutional: "مرجع مؤسسي",
     press: "تقرير صحفي",
     social: "منشور اجتماعي - ذاتي النشر",
@@ -32,7 +34,7 @@ const T = {
 
 /**
  * Actors and actions reported by external web sources, beyond what the
- * the tracking itself carries. Deliberately quarantined: nothing here enters
+ * tracking itself carries. Deliberately quarantined: nothing here enters
  * the counts, matrices or maps - each entry states only what its linked
  * source reports, with the source named beside it and a caution where the
  * claim needs one.

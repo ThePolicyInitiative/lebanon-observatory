@@ -20,7 +20,10 @@ export default function ArabicPageShell({
   /** Both optional: a page whose English twin carries no opening passage
    * must not grow one here, or the two languages stop matching. */
   lede?: string;
-  point?: string;
+  /** A node, not a string: the English cautions carry links inline, and an
+   * Arabic caution that cannot hold them ends up repeating itself further
+   * down the page to put the links somewhere. */
+  point?: ReactNode;
   englishHref: string;
   figures?: { value: string; label: string }[];
   children?: ReactNode;

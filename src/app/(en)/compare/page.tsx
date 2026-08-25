@@ -61,6 +61,7 @@ export default function ComparePage() {
       {/* Year summaries */}
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         <section
+          id="summary-2024"
           aria-label="2024 summary"
           className="rounded-md border-t-4 bg-white p-5"
           style={{ borderTopColor: "var(--color-y2024)" }}
@@ -78,6 +79,7 @@ export default function ComparePage() {
           </ul>
         </section>
         <section
+          id="summary-2026"
           aria-label="2026 summary"
           className="rounded-md border-t-4 bg-white p-5"
           style={{ borderTopColor: "var(--color-y2026)" }}
@@ -132,7 +134,7 @@ export default function ComparePage() {
         <Takeaways
           changed="Authority, finance and procurement acquired named owners inside a formal project perimeter; assessment was partially repatriated to Lebanese institutions; the emergency system improved at its own task."
           unchanged="Municipal fiscal authority, confirmed physical output and confirmed compensation: zero movement in all three. Households and communities continued to absorb the cost of every week of delay."
-          matters="A system that is more coherent on paper but unchanged at its bottom is unstable: the amber dimensions - finance, procurement, oversight - will resolve toward delivery or toward procedure within the next reporting cycle, and the tracking now exists to hold each conversion to a date."
+          matters="A system that is more coherent on paper but unchanged at its bottom is unstable: the amber dimensions - finance, procurement, oversight - are the ones the next reporting cycle can settle, toward delivery or toward procedure, and the tracking now exists to hold each conversion to a date."
         />
       </div>
     </div>

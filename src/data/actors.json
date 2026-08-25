@@ -1212,7 +1212,8 @@
     "name": "Council for Development and Reconstruction (CDR)",
     "layer": "official",
     "subtype": "Public authorities",
-    "mandateVsCapacity": null,
+    "mandateVsCapacity": "On paper: the national reconstruction body, named in the 2026 catalogue. In practice: its 2026 work is traced under the LEAP Project Management Unit seated inside it, so this row carries no traced entries of its own - the only catalogued actor in either year that does not.",
+    "mandateVsCapacityAr": "على الورق: الهيئة الوطنية لإعادة الإعمار، ومسمّاة في كتالوج 2026. عملياً: يُرصد عملها في 2026 تحت وحدة إدارة مشروع LEAP القائمة داخلها، فلا يحمل هذا الصف أي مدخل متتبَّع خاص به - وهو الجهة المُدرَجة الوحيدة في السنتين التي لا تحمل مدخلاً.",
     "recordCount": 0,
     "sourceIds": [
       "cat2026-21",

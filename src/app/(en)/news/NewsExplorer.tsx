@@ -110,7 +110,7 @@ const T = {
     resetFilters: "Reset filters",
     refresh: "Refresh",
     rateLimit: "Rate limit reached - please wait a few minutes and refresh.",
-    httpError: (status: number) => `The news service returned an error (HTTP ${status}).`,
+    httpError: "The news service did not answer. Nothing is wrong with your connection to this site.",
     officialHeading: "Monitored official feeds & key trackers",
     officialBody:
       "Official updates are aggregated where public feeds exist; these institutional pages, project entries and data portals are monitored directly and linked here rather than scraped.",
@@ -153,7 +153,7 @@ const T = {
     resetFilters: "إعادة ضبط الترشيح",
     refresh: "تحديث",
     rateLimit: "بلغنا حدّ الطلبات - يُرجى الانتظار دقائق قليلة ثم التحديث.",
-    httpError: (status: number) => `أعادت خدمة الأخبار خطأً (HTTP ${status}).`,
+    httpError: "لم تستجب خدمة الأخبار. ولا خلل في اتصالك بهذا الموقع.",
     officialHeading: "التغذيات الرسمية المرصودة وأبرز أدوات التتبّع",
     officialBody:
       "تُجمَّع المستجدات الرسمية حيث توجد تغذيات عامة؛ أما هذه الصفحات المؤسسية ومدخلات المشاريع وبوابات المعطيات فتُتابَع مباشرة وتُربَط هنا كما هي بدل كشطها.",
@@ -233,7 +233,12 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
     fetch(url)
       .then(async (r) => {
         if (r.status === 429) throw new Error(t.rateLimit);
-        if (!r.ok) throw new Error(t.httpError(r.status));
+        if (!r.ok) {
+          // The status code belongs in the console, where someone can act
+          // on it - not in a sentence aimed at a reader of the site.
+          console.warn(`news endpoint returned HTTP ${r.status}`);
+          throw new Error(t.httpError);
+        }
         return (await r.json()) as NewsResponse;
       })
       .then((d) => {

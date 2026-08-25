@@ -100,8 +100,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "وفّرت المنظمات الدولية معطيات الاستجابة وجانباً كبيراً من قدرتها على الإنجاز: هيمنة في التقييم (13 من 37 جهة مرصودة)، وقوة في التمويل الإنساني (12) والإغاثة (11)، وغياب عن الشراء والرقابة. أحلّت الوكالات نفسها بامتياز محل وظائف الدولة التشغيلية، ولم تحلّ إطلاقاً محل وظائفها السياسية.",
     },
     profile2026: {
-      en: "International involvement shifted from assessment and humanitarian support toward operational governance around the formal project, including procurement rules, disclosure, safeguards, supervision, grievance handling and third-party monitoring - first-ever traced presence in procurement and oversight cells.",
-      ar: "انتقل الانخراط الدولي من التقييم والدعم الإنساني نحو حوكمة تشغيلية حول المشروع الرسمي، تشمل قواعد الشراء والإفصاح والضمانات والإشراف ومعالجة الشكاوى ورقابة الطرف الثالث - أول حضور مرصود على الإطلاق في خانتي الشراء والرقابة.",
+      en: "International involvement shifted from assessment and humanitarian support toward operational governance around the formal project, including procurement rules, disclosure, safeguards, supervision, grievance handling and third-party monitoring - their first traced presence in procurement and oversight cells across the two years.",
+      ar: "انتقل الانخراط الدولي من التقييم والدعم الإنساني نحو حوكمة تشغيلية حول المشروع الرسمي، تشمل قواعد الشراء والإفصاح والضمانات والإشراف ومعالجة الشكاوى ورقابة الطرف الثالث - وهو أول حضور مرصود لها في خانتي الشراء والرقابة عبر السنتين.",
     },
     directChange: {
       en: "Traced breadth grew moderately while placement changed decisively: fewer assessment presences (the function partially repatriated to CNRS-L), more governance presences around the financed chain.",

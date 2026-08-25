@@ -202,6 +202,21 @@ const chartAnchor = (id, component, pages) => ({
 });
 
 /**
+ * The three actors modules carry their own ids, and both locale pages render
+ * the same components, so one check pair serves each side: the page still
+ * mounts the component, and the component still carries the id.
+ */
+const ACTORS_MODULE = (file) => ["src", "app", "(en)", "actors", `${file}.tsx`];
+const actorAnchorFor = (id, component) => ({
+  id,
+  checks: [
+    [EN_PAGE("/actors"), `<${component}`],
+    [AR_PAGE("/actors"), `<${component}`],
+    [ACTORS_MODULE(component), `id="${id}"`],
+  ],
+});
+
+/**
  * The indicator board. It is rendered by the two home pages and nowhere
  * else, so every indicator target points here rather than at the finance
  * page, which never reads kpis.json.
@@ -249,12 +264,42 @@ const PAGES = [
         enAnchor: { id: "structures" },
         arAnchor: { id: "structures" },
       },
-      { en: "The 2024 emergency system", ar: "نظام الطوارئ في 2024" },
-      { en: "The missing implementation middle", ar: "الوسط التنفيذي الغائب" },
-      { en: "Who gained and lost roles", ar: "من ربح ومن خسر موقعه" },
-      { en: "Finance versus delivery", ar: "التمويل مقابل الإنجاز" },
-      { en: "Geography of traced activity", ar: "جغرافيا النشاط المرصود" },
-      { en: "Latest news and official updates", ar: "آخر المستجدات والبيانات الرسمية" },
+      {
+        en: "The 2024 emergency system",
+        ar: "نظام الطوارئ في 2024",
+        enAnchor: { id: "emergency-2024" },
+        arAnchor: { id: "emergency-2024" },
+      },
+      {
+        en: "The missing implementation middle",
+        ar: "الوسط التنفيذي الغائب",
+        enAnchor: { id: "implementation-middle" },
+        arAnchor: { id: "implementation-middle" },
+      },
+      {
+        en: "Who gained and lost roles",
+        ar: "من ربح ومن خسر موقعه",
+        enAnchor: { id: "role-shift" },
+        arAnchor: { id: "role-shift" },
+      },
+      {
+        en: "Finance versus delivery",
+        ar: "التمويل مقابل الإنجاز",
+        enAnchor: { id: "finance-delivery" },
+        arAnchor: { id: "finance-delivery" },
+      },
+      {
+        en: "Geography of traced activity",
+        ar: "جغرافيا النشاط المرصود",
+        enAnchor: { id: "geography" },
+        arAnchor: { id: "geography" },
+      },
+      {
+        en: "Latest news and official updates",
+        ar: "آخر المستجدات والبيانات الرسمية",
+        enAnchor: { id: "latest-news" },
+        arAnchor: { id: "latest-news" },
+      },
     ],
   },
   {
@@ -266,8 +311,18 @@ const PAGES = [
     arDesc:
       "النظامان جنباً إلى جنب: الصلاحية والتنسيق والتمويل والتقييم والشراء والتنفيذ وصلاحيات البلديات والرقابة.",
     headings: [
-      { en: "2024: emergency substitution", ar: "2024: إحلال في الطوارئ" },
-      { en: "2026: programmed architecture", ar: "2026: بنية مبرمَجة" },
+      {
+        en: "2024: emergency substitution",
+        ar: "2024: إحلال في الطوارئ",
+        enAnchor: { id: "summary-2024" },
+        arAnchor: { id: "summary-2024" },
+      },
+      {
+        en: "2026: programmed architecture",
+        ar: "2026: بنية مبرمَجة",
+        enAnchor: { id: "summary-2026" },
+        arAnchor: { id: "summary-2026" },
+      },
     ],
   },
   {
@@ -279,9 +334,24 @@ const PAGES = [
     arDesc:
       "أربع طبقات - المؤسسات الرسمية والمنظمات الدولية وغير الحكومية والبلديات ومبادرات المجتمع المحلي - بملامح كل منها في السنتين، مع السجل الكامل لمن فعل ماذا.",
     headings: [
-      { en: "Who did what - the full register", ar: "من فعل ماذا - السجل الكامل" },
-      { en: "The four layers, layer by layer", ar: "الطبقات الأربع، طبقةً طبقة" },
-      { en: "Actors by stage", ar: "الجهات بحسب المرحلة" },
+      {
+        en: "Who did what - the full register",
+        ar: "من فعل ماذا - السجل الكامل",
+        enAnchor: actorAnchorFor("actor-register", "ActorRegister"),
+        arAnchor: actorAnchorFor("actor-register", "ActorRegister"),
+      },
+      {
+        en: "The four layers, layer by layer",
+        ar: "الطبقات الأربع، طبقةً طبقة",
+        enAnchor: actorAnchorFor("actor-layers", "ActorTabs"),
+        arAnchor: actorAnchorFor("actor-layers", "ActorTabs"),
+      },
+      {
+        en: "Actors by stage",
+        ar: "الجهات بحسب المرحلة",
+        enAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
+        arAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
+      },
     ],
   },
   {
@@ -335,6 +405,8 @@ const PAGES = [
       {
         en: "Why there is no national damage layer",
         ar: "لماذا لا توجد طبقة أضرار وطنية",
+        enAnchor: { id: "no-national-layer" },
+        arAnchor: { id: "no-national-layer" },
       },
       {
         en: "Place mentions, grouping by grouping",
@@ -675,7 +747,10 @@ export function buildIndex() {
 
   return {
     index: {
-      note: "Every target the site's own search can reach, in both languages. Built by scripts/build-search-index.mjs from the data it reads and the page table it carries; the live news feed and the full text of each traced entry are searched on their own pages, not here.",
+      // Read by anyone who opens this file directly, so it describes what
+      // the file IS. How it gets built is a fact about this repository,
+      // not about the data, and stays here in the source.
+      note: "Every target the site's own search can reach, in both languages. The live news feed and the full text of each traced entry are searched on their own pages, not here.",
       counts,
       items,
     },

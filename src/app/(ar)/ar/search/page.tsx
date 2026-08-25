@@ -22,7 +22,27 @@ export default function Page() {
     <ArabicPageShell
       title="ابحث في المرصد"
       lede="حقل واحد على الموقع كله: كل صفحة من صفحات التحليل وأقسامها، وكل جهة فاعلة متتبَّعة في السجل، والبلدات المسمّاة والتجمّعات الإقليمية، ومراحل سلسلة القيمة الاثنتي عشرة، وطبقات الجهات الأربع، والمؤشرات والمحطات الزمنية. العربية والإنجليزية تبلغان الوجهة نفسها، فالاستعلام بأيّ منهما يجدها."
-      point="يبحث هذا الحقل في صفحات المرصد نفسها. وهو لا يبلغ شريط المستجدات المباشر، ولا يقرأ النص الكامل لكل مدخل متتبَّع - ولكلٍّ منهما بحثه على صفحته."
+      point={
+        <>
+          يبحث هذا الحقل في صفحات المرصد نفسها. وهو لا يبلغ شريط المستجدات
+          المباشر، ولا يقرأ النص الكامل لكل مدخل متتبَّع - ولكلٍّ منهما بحثه على
+          صفحته:{" "}
+          <Link
+            href="/ar/explorer"
+            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          >
+            مستكشف المدخلات
+          </Link>{" "}
+          و
+          <Link
+            href="/ar/news"
+            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          >
+            صفحة المستجدات
+          </Link>
+          .
+        </>
+      }
       englishHref="/search"
     >
       <section aria-labelledby="ar-search" className="mt-8">
@@ -34,24 +54,6 @@ export default function Page() {
         >
           <SiteSearch locale="ar" />
         </Suspense>
-        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          للبحث داخل المدخلات المتتبَّعة نفسها أو داخل التغطية المنشورة، لكل
-          منهما صفحته:{" "}
-          <Link
-            href="/ar/explorer"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-          >
-            مستكشف المدخلات
-          </Link>{" "}
-          و{" "}
-          <Link
-            href="/ar/news"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-          >
-            صفحة المستجدات
-          </Link>
-          .
-        </p>
       </section>
     </ArabicPageShell>
   );

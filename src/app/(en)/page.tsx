@@ -89,7 +89,7 @@ export default function HomePage() {
             financed reconstruction programme. By 2026, Lebanon had established
             a more formal project architecture linking government direction,
             external finance, public implementation, contractors, procurement
-            and monitoring. The chain became clearer-but finance remained
+            and monitoring. The chain became clearer - but finance remained
             limited, municipalities did not gain meaningful authority, and
             completed physical reconstruction lagged behind institutional
             preparation.
@@ -118,7 +118,7 @@ export default function HomePage() {
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
             {[
               ["771", "traced entries in the tracking (357 for 2024; 414 for 2026)"],
-              ["105 → 130", "actors across the four layers, 2024 → 2026"],
+              ["105 → 130", "actors catalogued across the four layers, 2024 → 2026; 129 of the 130 carry traced entries"],
               ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
               ["0", "works contracts awarded, confirmed completed outputs and confirmed compensation payments by the cut-off"],
             ].map(([n, label]) => (
@@ -171,7 +171,7 @@ export default function HomePage() {
 
       {/* Narrative sequence */}
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 pb-16 sm:px-6">
-        <section aria-label="The 2024 emergency system">
+        <section id="emergency-2024" aria-label="The 2024 emergency system">
           <SectionHeading index={1} title="The 2024 emergency system">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               A war of national scale hit a state with no head of state, no
@@ -187,7 +187,7 @@ export default function HomePage() {
           </SectionHeading>
         </section>
 
-        <section aria-label="The missing implementation middle">
+        <section id="implementation-middle" aria-label="The missing implementation middle">
           <SectionHeading index={2} title="The missing implementation middle">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               The 2024 chain broke at two conversion points: data into
@@ -219,7 +219,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section aria-label="Who gained and lost roles">
+        <section id="role-shift" aria-label="Who gained and lost roles">
           <SectionHeading index={4} title="Who gained and lost roles">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               The system rotated rather than grew. Official institutions
@@ -248,7 +248,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section aria-label="Finance versus delivery">
+        <section id="finance-delivery" aria-label="Finance versus delivery">
           <SectionHeading index={5} title="Finance versus delivery">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               Institutional architecture advanced faster than money and
@@ -269,7 +269,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section aria-label="Geography of traced activity">
+        <section id="geography" aria-label="Geography of traced activity">
           <SectionHeading index={6} title="Geography of traced activity">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               Traced activity concentrated along the southern arc and the
@@ -315,12 +315,12 @@ export default function HomePage() {
               href="/damage"
               className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
             >
-              Examine the damage assessments itself →
+              Examine the damage assessments →
             </Link>
           </p>
         </section>
 
-        <section aria-label="Latest news and official updates">
+        <section id="latest-news" aria-label="Latest news and official updates">
           <SectionHeading index={7} title="Latest news and official updates">
             <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
               This feed aggregates relevant coverage from selected global,
