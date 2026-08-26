@@ -161,6 +161,15 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     view: "entries",
   });
   const year = (get("year") === "2024" ? 2024 : 2026) as Year;
+  /**
+   * The live year, readable from handlers that were registered once.
+   * The GL map's governorate popup is bound inside a one-shot load
+   * callback, so anything it closes over is frozen at that render.
+   */
+  const yearRef = useRef(year);
+  useEffect(() => {
+    yearRef.current = year;
+  }, [year]);
   const viewParam = get("view");
   const mapView: MapView =
     viewParam === "change" || viewParam === "damage" || viewParam === "survey"
@@ -496,9 +505,17 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 : "";
             const dirAttr = locale === "ar" ? ` dir="rtl"` : "";
             const zoneName = (zoneId && regionLabel(zoneId, locale)) || zoneLabel;
-            const m = zoneId ? mentionsFor(Number(get("year") || 2026) as Year, zoneId) : null;
+            // yearRef, not get("year"): this handler is registered once,
+            // inside the one-shot load callback, so it closes over that
+            // render's get and keeps answering with the year that was
+            // showing when the map loaded. Reading the URL rather than
+            // the prop looked like a way to stay current and was not -
+            // the closure is what is frozen, not the value. A ref is read
+            // at click time, so it survives the one-shot registration.
+            const popupYear = yearRef.current;
+            const m = zoneId ? mentionsFor(popupYear, zoneId) : null;
             const html = m
-              ? `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong><br/>${esc(t.tracedMentions(String(get("year") || 2026)))}<br/>` +
+              ? `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong><br/>${esc(t.tracedMentions(String(popupYear)))}<br/>` +
                 layers(locale).map(
                   (l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}: <strong>${m[l.id]}</strong>`,
                 ).join("<br/>") +
@@ -548,6 +565,16 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       disposed = true;
       mapRef.current?.remove();
       mapRef.current = null;
+      // The map is gone, so the session state that described it has to go
+      // too. Leaving mapReady true meant that on a second visit every
+      // dependency of the pin effect was identical to the first - the
+      // filters untouched, the locale the same, the zoom back at its
+      // configured default - so React had no reason to re-run it, and the
+      // localities source stayed at the empty collection it is created
+      // with. The reader got boundaries and no pins, with no error to
+      // explain it, until they happened to touch a filter.
+      mapReadyRef.current = false;
+      setMapReady(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [renderMode]);
