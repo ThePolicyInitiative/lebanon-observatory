@@ -6,7 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import districtDamage from "@/data/district-damage.json";
-import { CHART } from "@/lib/colors";
+import { CHART, UI } from "@/lib/colors";
 
 /**
  * Municipality-reported damaged housing units by district, from the
@@ -100,7 +100,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
           type: "bar",
           data: cats.map((d) => ({
             value: d.units,
-            itemStyle: { color: d.completeShare ? "#8F3F2F" : "#BD5A46", borderRadius: 2 },
+            itemStyle: { color: d.completeShare ? "#8F3F2F" : UI.rust, borderRadius: 2 },
           })),
           barMaxWidth: 20,
           label: {

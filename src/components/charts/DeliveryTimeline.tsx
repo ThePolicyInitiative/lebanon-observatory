@@ -7,7 +7,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { timeline } from "@/lib/data-client";
 import { fmtDate } from "@/lib/format";
-import { CHART } from "@/lib/colors";
+import { CHART, UI } from "@/lib/colors";
 
 const TRACKS = [
   { id: "conflict", label: "Conflict", labelAr: "الحرب" },
@@ -22,7 +22,7 @@ const STATUS_STYLE: Record<
   { color: string; symbol: string; label: string; labelAr: string }
 > = {
   completed: {
-    color: "#1B8295",
+    color: UI.teal,
     symbol: "circle",
     label: "Milestone reached",
     labelAr: "محطة بلغت",
@@ -34,7 +34,7 @@ const STATUS_STYLE: Record<
     labelAr: "مسار جارٍ",
   },
   not_verified: {
-    color: "#BD5A46",
+    color: UI.rust,
     symbol: "emptyCircle",
     label: "Not confirmed / unpaid",
     labelAr: "غير مؤكَّد أو غير مدفوع",

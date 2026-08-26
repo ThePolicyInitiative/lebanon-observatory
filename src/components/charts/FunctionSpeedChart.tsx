@@ -5,7 +5,7 @@ import type { Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { CHART } from "@/lib/colors";
+import { CHART, UI } from "@/lib/colors";
 
 /**
  * Speed is an architecture, not a temperament: fast functions have
@@ -209,7 +209,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
           stack: "t",
           barMaxWidth: 13,
           data: rows.map((i) => (i.emergency ? { value: null } : { value: i.days })),
-          itemStyle: { color: "#BD5A46", borderRadius: 2 },
+          itemStyle: { color: UI.rust, borderRadius: 2 },
           label: {
             show: true,
             position: ar ? "left" : "right",

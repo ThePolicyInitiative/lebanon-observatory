@@ -1,7 +1,7 @@
 import { financeFunnel } from "@/lib/data-client";
 import { fmtUsd, fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
-import { CHART } from "@/lib/colors";
+import { CHART, UI } from "@/lib/colors";
 
 /**
  * Visual 9 - Financing coverage. Nested horizontal bars comparing assessed
@@ -52,7 +52,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
   const barColor: Record<string, string> = {
     need: "#173B63",
     framework: "#2E74B5",
-    approved: "#1B8295",
+    approved: UI.teal,
     disbursed: "#D69600",
   };
 

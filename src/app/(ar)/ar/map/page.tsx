@@ -10,6 +10,7 @@ import LebanonMap from "@/components/map/LebanonMap";
 import RegionalComposition from "@/components/map/RegionalComposition";
 import { layers, regionLabel } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
+import { YEAR_COLORS } from "@/lib/colors";
 
 export const metadata: Metadata = {
   title: AR.pages.map.title,
@@ -124,7 +125,7 @@ export default function Page() {
               <div className="mt-2 space-y-1">
                 {[
                   { year: "2024", v: r.y24, color: "#58779B" },
-                  { year: "2026", v: r.y26, color: "#2F8F6B" },
+                  { year: "2026", v: r.y26, color: YEAR_COLORS.y2026 },
                 ].map((row) => (
                   <div key={row.year} className="flex items-center gap-2 text-[11.5px]">
                     <span className="w-10 shrink-0 tabular-nums text-[color:var(--color-text-secondary)]">

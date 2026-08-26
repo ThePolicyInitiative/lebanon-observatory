@@ -1,5 +1,6 @@
 import slwe from "@/data/slwe-posts.json";
 import type { Locale } from "@/lib/vocab";
+import { YEAR_COLORS } from "@/lib/colors";
 
 /**
  * One utility's own account of its repair work, from its public posts.
@@ -181,7 +182,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
                   className="h-2 rounded-sm"
                   style={{
                     width: `${Math.max(4, (d.posts / maxDept) * 60)}%`,
-                    background: d.inArea ? "#2F8F6B" : "#58779B",
+                    background: d.inArea ? YEAR_COLORS.y2026 : YEAR_COLORS.y2024,
                     opacity: 0.8,
                   }}
                 />
@@ -202,7 +203,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
                 <span className="w-40 shrink-0 truncate">{say(WORK_AR, w.label)}</span>
                 <span
                   aria-hidden
-                  className="h-2 rounded-sm bg-[#1B8295]"
+                  className="h-2 rounded-sm bg-[color:var(--color-teal)]"
                   style={{ width: `${Math.max(4, (w.posts / maxWork) * 55)}%`, opacity: 0.75 }}
                 />
                 <span className="tabular-nums font-semibold">{w.posts}</span>

@@ -1,6 +1,7 @@
 import humanToll from "@/data/human-toll.json";
 import type { Locale } from "@/lib/vocab";
 import { fmtDate } from "@/lib/format";
+import { UI } from "@/lib/colors";
 
 /**
  * The human toll of the two wars, kept in separate panels: different
@@ -104,7 +105,7 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
           asOfLabel={tr.asOf}
           title={tr.war2026}
           asOf={humanToll.war2026.asOf}
-          accent="#BD5A46"
+          accent={UI.rust}
           items={humanToll.war2026.items}
           locale={locale}
         />

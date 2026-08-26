@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { CHART, VALENCE } from "@/lib/colors";
+import { CHART, UI, VALENCE } from "@/lib/colors";
 import { changeFor, countsFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -302,7 +302,7 @@ export default function ChangeHeatmap({
           // Cells are unlabelled. The change is in the tooltip, in the
           // figure's description and in the drawer a click opens.
           label: { show: false },
-          itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
+          itemStyle: { borderColor: UI.surface, borderWidth: 2 },
           emphasis: {
             itemStyle: { borderColor: "#173B63", borderWidth: 2 },
           },

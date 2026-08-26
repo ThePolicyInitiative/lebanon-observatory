@@ -8,6 +8,7 @@ import ChartFrame from "./ChartFrame";
 import { layers, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
+import { YEAR_COLORS } from "@/lib/colors";
 
 const T = {
   en: {
@@ -169,7 +170,7 @@ export default function ActorTreemapChart({
               className={`min-h-9 px-4 text-sm ${
                 year === y ? "font-semibold text-white" : "text-[color:var(--color-text-secondary)]"
               }`}
-              style={year === y ? { background: y === 2024 ? "#58779B" : "#2F8F6B" } : undefined}
+              style={year === y ? { background: y === 2024 ? YEAR_COLORS.y2024 : YEAR_COLORS.y2026 } : undefined}
             >
               {y}
             </button>

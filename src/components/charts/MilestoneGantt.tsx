@@ -2,6 +2,7 @@
 
 import ChartFrame from "./ChartFrame";
 import type { Locale } from "@/lib/vocab";
+import { UI, YEAR_COLORS } from "@/lib/colors";
 
 /**
  * The road from cabinet request to 1.65% disbursed: elapsed days between
@@ -17,7 +18,7 @@ const MILESTONES: { date: string; label: string; labelAr: string }[] = [
   { date: "2026-06-29", label: "US$4.13M disbursed (1.65%)", labelAr: "دفع 4.13 مليون دولار (1.65%)" },
 ];
 
-const SEGMENT_COLORS = ["#58779B", "#6E8AA8", "#8496AF", "#9AA9BD", "#B0BCCB", "#BD5A46"];
+const SEGMENT_COLORS = [YEAR_COLORS.y2024, "#6E8AA8", "#8496AF", "#9AA9BD", "#B0BCCB", UI.rust];
 
 function days(a: string, b: string): number {
   return Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000);

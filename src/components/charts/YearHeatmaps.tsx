@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { CHART, LAYER_META, YEAR_COLORS } from "@/lib/colors";
+import { CHART, LAYER_META, UI, YEAR_COLORS } from "@/lib/colors";
 import { countsFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -142,7 +142,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
           yAxisIndex: 0,
           data: data2024,
           label: { show: false },
-          itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
+          itemStyle: { borderColor: UI.surface, borderWidth: 2 },
         },
         {
           name: "2026",
@@ -151,7 +151,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
           yAxisIndex: 1,
           data: data2026,
           label: { show: false },
-          itemStyle: { borderColor: "#FAFAF7", borderWidth: 2 },
+          itemStyle: { borderColor: UI.surface, borderWidth: 2 },
         },
       ],
     };

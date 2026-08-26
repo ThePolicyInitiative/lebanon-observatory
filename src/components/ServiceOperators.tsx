@@ -1,5 +1,6 @@
 import ops from "@/data/service-operators.json";
 import type { Locale } from "@/lib/vocab";
+import { UI, YEAR_COLORS } from "@/lib/colors";
 
 const T = {
   en: {
@@ -68,10 +69,10 @@ function Expandable({ text, className = "", labels }: { text: string; className?
 }
 
 const SERVICE_TONE: Record<string, string> = {
-  Electricity: "#D69600",
-  Telecommunications: "#1B8295",
-  "Irrigation and hydropower": "#2F8F6B",
-  "Roads and bridges": "#A34F7C",
+  Electricity: UI.amber,
+  Telecommunications: UI.teal,
+  "Irrigation and hydropower": YEAR_COLORS.y2026,
+  "Roads and bridges": UI.magenta,
 };
 
 export default function ServiceOperators({ locale = "en" }: { locale?: Locale } = {}) {

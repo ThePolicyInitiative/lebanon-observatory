@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CHART, LAYER_META } from "@/lib/colors";
+import { CHART, LAYER_META, UI, VALENCE } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import type { SlimRecord } from "@/lib/map-records";
 import {
@@ -876,12 +876,12 @@ export default function SvgLebanonMap({
       if (view === "change" && !unnamed) {
         const e = change.byDistrict.get(t.district) ?? { y24: 0, y26: 0 };
         const delta = e.y26 - e.y24;
-        fill = delta >= 0 ? "#2F8F6B" : "#BD5A46";
+        fill = delta >= 0 ? VALENCE.good : VALENCE.bad;
         opacity = 0.06 + (Math.abs(delta) / change.maxAbs) * 0.72;
         hoverText = tr.hoverChange(t.name, t.district, e.y24, e.y26);
       } else if (view === "survey" && !unnamed) {
         const s = SURVEY_BY_DISTRICT.get(t.district);
-        fill = "#BD5A46";
+        fill = UI.rust;
         opacity = s ? 0.12 + (s.units / SURVEY_MAX) * 0.75 : 0.05;
         hoverText = s
           ? tr.hoverSurvey(t.name, t.district, s.units.toLocaleString("en-US"), s.completeShare ?? undefined)
@@ -1036,7 +1036,7 @@ export default function SvgLebanonMap({
                   patternUnits="userSpaceOnUse"
                 >
                   <rect width="7" height="7" fill="transparent" />
-                  <line x1="0" y1="0" x2="0" y2="7" stroke="#BD5A46" strokeWidth="2.2" strokeOpacity="0.55" />
+                  <line x1="0" y1="0" x2="0" y2="7" stroke={UI.rust} strokeWidth="2.2" strokeOpacity="0.55" />
                 </pattern>
               </defs>
 
@@ -1118,7 +1118,7 @@ export default function SvgLebanonMap({
                 <path
                   d={stripOutline}
                   fill="none"
-                  stroke="#BD5A46"
+                  stroke={UI.rust}
                   strokeWidth={1.4}
                   strokeOpacity={0.85}
                   vectorEffect="non-scaling-stroke"
@@ -1370,7 +1370,7 @@ export default function SvgLebanonMap({
                           }
                         }}
                       >
-                        <circle r={r} fill="#BD5A46" fillOpacity={0.75} stroke="#FFFFFF" strokeWidth={1.4} />
+                        <circle r={r} fill={UI.rust} fillOpacity={0.75} stroke="#FFFFFF" strokeWidth={1.4} />
                         <text
                           y={3.2}
                           fontSize={8.5}
@@ -1405,7 +1405,7 @@ export default function SvgLebanonMap({
                         pointerEvents="none"
                         aria-hidden
                       >
-                        <circle r={9} fill="#BD5A46" fillOpacity={0.55} stroke="#FFFFFF" strokeWidth={1.4} />
+                        <circle r={9} fill={UI.rust} fillOpacity={0.55} stroke="#FFFFFF" strokeWidth={1.4} />
                         <text
                           y={16}
                           fontSize={9.5}
@@ -1843,11 +1843,11 @@ export default function SvgLebanonMap({
             ) : view === "change" ? (
               <>
                 <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#2F8F6B", opacity: 0.7 }} />
+                  <span aria-hidden className="h-2.5 w-4" style={{ background: VALENCE.good, opacity: 0.7 }} />
                   {tr.changeMorePins}
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <span aria-hidden className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: 0.7 }} />
+                  <span aria-hidden className="h-2.5 w-4" style={{ background: VALENCE.bad, opacity: 0.7 }} />
                   {tr.changeFewerPins(change.maxAbs)}
                 </li>
               </>
@@ -1855,7 +1855,7 @@ export default function SvgLebanonMap({
               <li className="flex items-center gap-1.5">
                 <span className="flex items-center gap-0.5" aria-hidden>
                   {[0.15, 0.4, 0.65, 0.9].map((o) => (
-                    <span key={o} className="h-2.5 w-4" style={{ background: "#BD5A46", opacity: o }} />
+                    <span key={o} className="h-2.5 w-4" style={{ background: UI.rust, opacity: o }} />
                   ))}
                 </span>
                 {tr.surveyLegend(SURVEY_MAX.toLocaleString("en-US"))}
@@ -1865,7 +1865,7 @@ export default function SvgLebanonMap({
                 <span
                   aria-hidden
                   className="flex h-4 w-4 items-center justify-center rounded-full text-[8px] font-bold text-white"
-                  style={{ background: "#BD5A46" }}
+                  style={{ background: UI.rust }}
                 >
                   n
                 </span>
@@ -1876,7 +1876,7 @@ export default function SvgLebanonMap({
               <>
                 <li className="flex items-center gap-1.5">
                   <svg width="16" height="12" aria-hidden>
-                    <rect width="16" height="12" fill="url(#occupied-hatch)" stroke="#BD5A46" strokeOpacity="0.7" />
+                    <rect width="16" height="12" fill="url(#occupied-hatch)" stroke={UI.rust} strokeOpacity="0.7" />
                   </svg>
                   {tr.stripLegend}
                 </li>
@@ -1888,7 +1888,7 @@ export default function SvgLebanonMap({
                       width="14"
                       height="10"
                       fill="none"
-                      stroke="#BD5A46"
+                      stroke={UI.rust}
                       strokeOpacity="0.65"
                       strokeDasharray="3 2"
                     />

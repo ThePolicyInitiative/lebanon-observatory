@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { roleRecords, stageCounts, finance } from "@/lib/data";
 import { stageLabel, statusLabel, type Locale } from "@/lib/vocab";
+import { YEAR_COLORS } from "@/lib/colors";
 
 /**
  * The reconstruction pulse: what the sources show on the physical
@@ -128,7 +129,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                   </p>
                   {[
                     { year: "2024", v: c.y24, color: "#58779B" },
-                    { year: "2026", v: c.y26, color: "#2F8F6B" },
+                    { year: "2026", v: c.y26, color: YEAR_COLORS.y2026 },
                   ].map((row) => (
                     <div key={row.year} className="mt-1 flex items-center gap-2">
                       <span className="w-9 text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">

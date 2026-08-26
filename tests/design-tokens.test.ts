@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { LAYER_COLORS, UI, VALENCE, YEAR_COLORS } from "@/lib/colors";
+import { rel, srcFiles } from "./source-tree";
 
 /**
  * The palette exists twice, and this is what holds the two copies together.
@@ -66,6 +67,7 @@ describe("the palette's two copies", () => {
       ["YEAR_COLORS.negative", YEAR_COLORS.negative, "color-rust"],
       ["YEAR_COLORS.warning", YEAR_COLORS.warning, "color-amber"],
       ["UI.background", UI.background, "color-bg"],
+      ["UI.surface", UI.surface, "color-surface"],
       ["UI.navy", UI.navy, "color-navy"],
       ["UI.blue", UI.blue, "color-blue"],
       ["UI.teal", UI.teal, "color-teal"],
@@ -85,19 +87,44 @@ describe("the palette's two copies", () => {
   });
 
   /**
-   * The values these three replaced. They are barred by value rather than by
-   * name because the failure mode was a literal pasted into a component, not
-   * an import - and a literal is invisible to the type system.
+   * The values the palette replaced, barred by value across the whole of
+   * src/** rather than by name inside three objects.
+   *
+   * By name is not enough, and this test learned that the hard way: it
+   * originally inspected only the three exported objects, passed, and left
+   * 82 occurrences of those same six values pasted into components where no
+   * import and no type could see them. A literal is invisible to the type
+   * system, which is exactly why it needs a test rather than a convention.
+   *
+   * Comments are stripped before the scan so the explanation in colors.ts -
+   * which necessarily quotes the values it is explaining - stays legal. That
+   * is the only exemption, and it is syntactic rather than a list of blessed
+   * files, so it cannot quietly grow into one.
    */
-  it("keeps the retired low-contrast values out of the palette", () => {
-    const retired = ["#1b8295", "#bd5a46", "#2f8f6b", "#fafaf7", "#263645", "#667588"];
-    const live = [
-      ...Object.values(LAYER_COLORS),
-      ...Object.values(YEAR_COLORS),
-      ...Object.values(UI),
-    ].map(lower);
+  it("keeps the retired values out of every source file", () => {
+    const retired: Record<string, string> = {
+      "#1b8295": "old teal - use UI.teal / --color-teal",
+      "#bd5a46": "old rust - use UI.rust / --color-rust",
+      "#2f8f6b": "old 2026 green - use YEAR_COLORS.y2026 / VALENCE.good",
+      "#fafaf7": "old warm background - use UI.surface or UI.background",
+      "#263645": "old text - use CHART.text / UI.text",
+      "#667588": "old secondary text - use CHART.label / UI.textSecondary",
+      "#dce3ea": "old axis grey - use CHART.axis / UI.border",
+    };
+    const pattern = new RegExp(Object.keys(retired).join("|"), "gi");
 
-    expect(live.filter((c) => retired.includes(c))).toEqual([]);
+    const offenders: string[] = [];
+    for (const file of srcFiles()) {
+      const code = readFileSync(file, "utf8")
+        .replace(/\/\*[\s\S]*?\*\//g, "") // block comments
+        .replace(/^\s*\/\/.*$/gm, ""); // line comments
+      code.split(/\r?\n/).forEach((line, i) => {
+        for (const hit of line.match(pattern) ?? []) {
+          offenders.push(`${rel(file)}:${i + 1}  ${hit} - ${retired[hit.toLowerCase()]}`);
+        }
+      });
+    }
+    expect(offenders).toEqual([]);
   });
 });
 

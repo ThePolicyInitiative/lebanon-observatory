@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
-import { CHART, LAYER_META } from "@/lib/colors";
+import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
 import {
@@ -370,7 +370,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             type: "fill",
             source: "towns",
             filter: ["in", "adm3_name", ...stripTowns],
-            paint: { "fill-color": "#BD5A46", "fill-opacity": 0.32 },
+            paint: { "fill-color": UI.rust, "fill-opacity": 0.32 },
             layout: { visibility: "none" },
           });
           map.addLayer({
@@ -379,7 +379,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             source: "districts",
             filter: ["in", "shapeName", "Sour", "Bent Jbail", "Marjaayoun", "Hasbaya"],
             paint: {
-              "line-color": "#BD5A46",
+              "line-color": UI.rust,
               "line-width": 1.4,
               "line-dasharray": [2, 1.5],
             },

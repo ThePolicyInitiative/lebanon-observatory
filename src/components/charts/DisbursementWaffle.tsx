@@ -2,6 +2,7 @@
 
 import ChartFrame from "./ChartFrame";
 import type { Locale } from "@/lib/vocab";
+import { UI } from "@/lib/colors";
 
 /**
  * Waffle of the approved LEAP loan: 100 cells of US$2.5 million each.
@@ -70,10 +71,10 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
                 className="aspect-square rounded-[2px]"
                 style={
                   fillShare >= 1
-                    ? { background: "#BD5A46" }
+                    ? { background: UI.rust }
                     : fillShare > 0
                       ? {
-                          background: `linear-gradient(90deg, #BD5A46 ${fillShare * 100}%, #E3E9EF ${fillShare * 100}%)`,
+                          background: `linear-gradient(90deg, ${UI.rust} ${fillShare * 100}%, #E3E9EF ${fillShare * 100}%)`,
                         }
                       : { background: "#E3E9EF" }
                 }
@@ -83,7 +84,7 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
         </div>
         <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
           <span className="flex items-center gap-1.5">
-            <span aria-hidden className="h-2.5 w-2.5 rounded-[2px]" style={{ background: "#BD5A46" }} />
+            <span aria-hidden className="h-2.5 w-2.5 rounded-[2px]" style={{ background: UI.rust }} />
             {tr.legendDisbursed}
           </span>
           <span className="flex items-center gap-1.5">

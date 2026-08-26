@@ -6,7 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import sectorsJson from "@/data/sectors.json";
-import { CHART } from "@/lib/colors";
+import { CHART, UI } from "@/lib/colors";
 
 /** Sector damage, losses and needs - three distinct economic categories,
  * shown side by side and never summed. Nulls are "not stated", not zero. */
@@ -98,7 +98,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
       series: [
         mk(T[locale].damage, "damage", "#2E74B5"),
         mk(T[locale].losses, "losses", "#8FB4D9"),
-        mk(T[locale].needs, "needs", "#BD5A46"),
+        mk(T[locale].needs, "needs", UI.rust),
       ],
     };
   }, [rows, locale]);

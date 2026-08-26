@@ -75,6 +75,8 @@ export const VALENCE = {
  */
 export const UI = {
   background: "#EAEFF4",
+  /** What a card is, and therefore what a figure inside one sits on. */
+  surface: "#FFFFFF",
   navy: "#173B63",
   blue: "#2E74B5",
   teal: "#177384",

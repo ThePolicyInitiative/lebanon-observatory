@@ -3,6 +3,7 @@
 import { Fragment, useState } from "react";
 import { layers, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
+import { YEAR_COLORS } from "@/lib/colors";
 
 const T = {
   en: {
@@ -61,7 +62,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
   const STAGES = stageList(locale);
   const STAGE_SHORT = stageShortList(locale);
   const q = query.trim().toLowerCase();
-  const yearColor = year === 2024 ? "#58779B" : "#2F8F6B";
+  const yearColor = year === 2024 ? YEAR_COLORS.y2024 : YEAR_COLORS.y2026;
   const groups = layers(locale).map((meta) => ({
     meta,
     rows: rows
