@@ -103,7 +103,7 @@ const T = {
 export default function DisplacementCycle({ locale = "en" }: { locale?: Locale } = {}) {
   const tr = T[locale];
   return (
-    <figure className="card p-3.5 sm:p-4">
+    <figure className="card">
       <figcaption>
         <h3 className="text-base font-semibold text-navy">
           {tr.title}

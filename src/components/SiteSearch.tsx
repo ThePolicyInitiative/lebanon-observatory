@@ -226,7 +226,7 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
           </div>
         ) : !typed ? (
           /* Empty state: what a query can reach, and how much of each. */
-          <div className="card p-3.5">
+          <div className="card">
             <p className="text-[13px] font-semibold text-navy">
               {t.scope}
             </p>
@@ -279,6 +279,10 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
                             <Link
                               data-hit=""
                               href={hrefOf(item, locale)}
+                              /* A result row, not a panel: tighter than a
+                                 card and indented on the inline start. The
+                                 one place that overrides .card's padding,
+                                 and the reason the override exists. */
                               className="card card-interactive block p-2.5 ps-3"
                             >
                               <span className="block text-sm font-medium text-navy">

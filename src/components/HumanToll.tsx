@@ -35,7 +35,7 @@ function Panel({
 }) {
   const ar = locale === "ar";
   return (
-    <div className="card p-3.5 sm:p-4">
+    <div className="card">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 pb-2" style={{ borderColor: accent }}>
         <h3 className="text-base font-semibold text-navy">{title}</h3>
         <span className="text-[11px] font-medium text-text-secondary">

@@ -48,7 +48,7 @@ export default function RegionPresence({
   const max = Math.max(1, ...rows.flatMap((r) => [r.v24, r.v26]));
 
   return (
-    <figure className="card p-3.5 sm:p-4">
+    <figure className="card">
       <figcaption>
         <h3 className="text-base font-semibold text-navy">
           {t.title}

@@ -45,7 +45,7 @@ export default function Page() {
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {destruction.tracks2024.map((t) => (
-            <article key={t.id} className="flex flex-col card p-3.5">
+            <article key={t.id} className="flex flex-col card">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold leading-snug text-navy">
                   {t.labelAr}
@@ -77,7 +77,7 @@ export default function Page() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-3.5">
+        <div className="mt-4 card">
           <h3 className="text-sm font-semibold text-navy">ركام 2024</h3>
           <p className="mt-1 figure-number text-lg text-navy">
             {destruction.debris2024.headlineAr}
@@ -109,7 +109,7 @@ export default function Page() {
         </p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {destruction.zones2026.map((z) => (
-            <article key={z.id} className="flex flex-col card p-3.5">
+            <article key={z.id} className="flex flex-col card">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h3 className="text-sm font-semibold text-navy">
                   {z.labelAr}

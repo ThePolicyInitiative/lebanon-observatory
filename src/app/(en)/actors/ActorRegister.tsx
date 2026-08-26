@@ -107,7 +107,7 @@ const ALL_GROUPS: Record<Locale, RegisterGroup[]> = {
 export default function ActorRegister({ locale = "en" }: { locale?: Locale } = {}) {
   const h = HEAD[locale];
   return (
-    <section aria-labelledby="actor-register" className="card p-3.5 sm:p-4">
+    <section aria-labelledby="actor-register" className="card">
       <h2 id="actor-register" className="text-xl font-semibold text-navy">
         {h.title}
       </h2>

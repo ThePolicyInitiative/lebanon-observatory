@@ -39,7 +39,7 @@ export default function ArabicPageShell({
       point={point}
       figures={figures}
       after={
-        <div className="mt-8 card p-3.5 sm:p-4">
+        <div className="mt-8 card">
           <p className="text-[13px] leading-relaxed text-text">
             {AR.common.figuresNote}
           </p>

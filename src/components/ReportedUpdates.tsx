@@ -70,7 +70,7 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
     (ar ? (arabic ?? english) : english) ?? "";
   const meta = layers(locale).find((l) => l.id === u.layer);
   return (
-    <li className="card p-3.5">
+    <li className="card">
       <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
         {meta ? (
           <span

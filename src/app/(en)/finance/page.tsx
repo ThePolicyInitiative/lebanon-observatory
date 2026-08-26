@@ -70,7 +70,7 @@ export default function FinancePage() {
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
-          <li key={c.n} className="card p-3.5">
+          <li key={c.n} className="card">
             <p className="text-xs font-bold uppercase tracking-widest text-teal">
               {c.n}. {c.label}
             </p>
@@ -97,7 +97,7 @@ export default function FinancePage() {
       </div>
 
       {/* LEAP components */}
-      <section aria-labelledby="leap-components" className="mt-7 card p-3.5">
+      <section aria-labelledby="leap-components" className="mt-7 card">
         <h2
           id="leap-components"
           className="text-xl font-semibold text-navy"
@@ -156,7 +156,7 @@ export default function FinancePage() {
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="card p-3.5">
+            <article key={p.id} className="card">
               <h3 className="text-sm font-semibold leading-snug text-navy">
                 {p.label}
               </h3>
@@ -181,7 +181,7 @@ export default function FinancePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-3.5 text-sm">
+        <div className="mt-4 card text-sm">
           <p>
             <span className="font-semibold text-navy">
               Reform targets quantify the mountain:
@@ -199,7 +199,7 @@ export default function FinancePage() {
       </section>
 
       {/* Adjacent flows */}
-      <section aria-labelledby="adjacent-flows" className="mt-7 card p-3.5">
+      <section aria-labelledby="adjacent-flows" className="mt-7 card">
         <h2
           id="adjacent-flows"
           className="text-xl font-semibold text-navy"

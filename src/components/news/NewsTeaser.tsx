@@ -53,7 +53,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
 
   if (error) {
     return (
-      <p className="card p-3.5 text-sm text-text-secondary">
+      <p className="card text-sm text-text-secondary">
         {t.unavailable}{" "}
         <Link href={t.href} className="underline underline-offset-2">
           {t.open}
@@ -78,7 +78,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
 
   if (articles.length === 0) {
     return (
-      <p className="card p-3.5 text-sm text-text-secondary">
+      <p className="card text-sm text-text-secondary">
         {t.empty}{" "}
         <Link href={t.href} className="underline underline-offset-2">
           {t.open}
@@ -93,7 +93,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
       {articles.map((a) => (
         <article
           key={a.id}
-          className="card p-3.5"
+          className="card"
           // Each item keeps its publisher's own direction, the way the
           // full feed does: an English headline inside the Arabic page
           // reads left to right, punctuation included.

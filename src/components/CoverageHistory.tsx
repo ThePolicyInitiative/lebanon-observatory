@@ -196,7 +196,7 @@ export default function CoverageHistory({
                 // The newest year opens, and any narrowed view opens whole:
                 // a reader who filtered has already said what they want.
                 open={yi === 0 || activeYear !== null || activeKind !== null}
-                className="card p-3.5 sm:p-4"
+                className="card"
               >
                 <summary className="cursor-pointer list-none text-sm font-semibold text-navy [&::-webkit-details-marker]:hidden">
                   {t.yearHeading(y, inYear.length)}

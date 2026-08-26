@@ -147,7 +147,7 @@ export default function NewsAnalytics({
       <p className="mt-1 max-w-3xl text-xs text-text-secondary">
         {t.sub}
       </p>
-      <div className="mt-4 card p-3.5">
+      <div className="mt-4 card">
         <h3 className="text-sm font-semibold text-navy">
           {volume ? t.volumeTitleGdelt : t.volumeTitleLocal}
         </h3>

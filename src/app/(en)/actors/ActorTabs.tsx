@@ -131,7 +131,7 @@ function MandateVsCapacity({ layer, locale }: { layer: ActorLayer; locale: Local
   if (entries.length === 0) return null;
 
   return (
-    <section className="card p-3.5">
+    <section className="card">
       <h3 className="text-sm font-semibold text-navy">
         {t.onPaperHeading}
       </h3>
@@ -251,7 +251,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
           </section>
         </div>
 
-        <section className="card p-3.5">
+        <section className="card">
           <h3 className="text-sm font-semibold text-navy">
             {t.directChange}
           </h3>
@@ -301,7 +301,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               subtitle={CHANGE_CHARTS.ngo_international.subtitle[locale]}
               description={CHANGE_CHARTS.ngo_international.description[locale]}
             />
-            <figure className="card p-3.5">
+            <figure className="card">
               <figcaption className="text-sm font-semibold text-navy">
                 {govShift.heading[locale]}
               </figcaption>
@@ -356,13 +356,13 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         ) : null}
 
         <section className="grid gap-4 lg:grid-cols-2">
-          <div className="card p-3.5">
+          <div className="card">
             <h3 className="text-sm font-semibold text-navy">
               {t.mandateVsAction}
             </h3>
             <p className="mt-2 text-sm leading-relaxed">{content.mandateVsAction[locale]}</p>
           </div>
-          <div className="card p-3.5">
+          <div className="card">
             <h3 className="text-sm font-semibold text-navy">
               {t.chainRoles}
             </h3>

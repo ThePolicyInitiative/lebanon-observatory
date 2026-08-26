@@ -63,7 +63,7 @@ export default function DamagePage() {
           {destruction.tracks2024.map((t) => (
             <article
               key={t.id}
-              className="flex flex-col card p-3.5"
+              className="flex flex-col card"
             >
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-sm font-semibold leading-snug text-navy">
@@ -98,7 +98,7 @@ export default function DamagePage() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-3.5">
+        <div className="mt-4 card">
           <h3 className="text-sm font-semibold text-navy">
             2024 debris
           </h3>

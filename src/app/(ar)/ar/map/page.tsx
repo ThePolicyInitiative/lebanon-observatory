@@ -82,7 +82,7 @@ export default function Page() {
         <RegionalComposition locale="ar" showCaveat={false} />
       </div>
 
-      <section id="no-national-layer" className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
+      <section id="no-national-layer" className="mt-8 max-w-3xl card text-sm leading-relaxed">
         <h2 className="text-xl font-semibold text-navy">
           لماذا لا توجد طبقة أضرار وطنية
         </h2>
@@ -114,7 +114,7 @@ export default function Page() {
         </p>
         <ul className="mt-4 space-y-2">
           {rows.map((r) => (
-            <li key={r.id} className="card p-3.5">
+            <li key={r.id} className="card">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <span className="text-[13px] font-semibold text-navy">
                   {r.label}

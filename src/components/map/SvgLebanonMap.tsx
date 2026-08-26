@@ -1489,7 +1489,7 @@ export default function SvgLebanonMap({
         {openPin ? (
           <aside
             aria-live="polite"
-            className="card border-s-4 p-4"
+            className="card border-s-4"
             style={{ borderInlineStartColor: openPin.color }}
           >
             <div className="flex items-start justify-between gap-3">
@@ -1554,7 +1554,7 @@ export default function SvgLebanonMap({
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (
-          <aside aria-live="polite" className="card p-3.5">
+          <aside aria-live="polite" className="card">
             <>
               <h3 className="text-sm font-semibold text-navy">
                 {selectedArea ? `${selectedArea} · ` : ""}

@@ -249,7 +249,7 @@ export default function HomePage() {
               concentrated, not damage severity or beneficiary reach.
             </p>
           </SectionHeading>
-          <div className="mt-6 overflow-x-auto card p-3.5">
+          <div className="mt-6 overflow-x-auto card">
             <table className="min-w-full border-collapse text-sm tabular-nums">
               <caption className="pb-2 text-left text-xs text-text-secondary">
                 Total location mentions in the tracking by regional

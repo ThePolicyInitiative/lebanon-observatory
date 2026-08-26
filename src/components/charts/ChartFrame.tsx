@@ -42,7 +42,7 @@ export default function ChartFrame({
     <figure
       id={id}
       aria-describedby={description ? `${id}-desc` : undefined}
-      className="card card-interactive p-4 sm:p-5"
+      className="card card-interactive"
     >
       <figcaption>
         {/* 17px was the only one on the site, and being off-scale is how it

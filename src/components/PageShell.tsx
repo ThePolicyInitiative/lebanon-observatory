@@ -72,7 +72,7 @@ export default function PageShell({
       {figures && figures.length > 0 ? (
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {figures.map((f) => (
-            <li key={f.label} className="card p-3.5">
+            <li key={f.label} className="card">
               <p className="figure-number text-2xl text-navy">
                 {f.value}
               </p>

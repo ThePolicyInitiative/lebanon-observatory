@@ -36,7 +36,7 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
               {s.points.map((p) => (
                 <li
                   key={p.slice(0, 24)}
-                  className="card p-3.5 text-sm leading-relaxed text-text"
+                  className="card text-sm leading-relaxed text-text"
                 >
                   {p}
                 </li>
@@ -46,7 +46,7 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
         </section>
       ))}
 
-      <section aria-labelledby="about-contact" className="card p-3.5 sm:p-4">
+      <section aria-labelledby="about-contact" className="card">
         <h2
           id="about-contact"
           className="text-xl font-semibold text-navy"

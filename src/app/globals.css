@@ -422,11 +422,27 @@ p {
 
   /* -------------------------------------------------------- surfaces -- */
 
+  /*
+   * A card brings its own padding now. It did not, so all seventy-two call
+   * sites brought their own and had drifted into six recipes: p-3.5, p-3.5
+   * sm:p-4, p-4, p-4 sm:p-5, p-5 sm:p-6 and one p-2.5 ps-3. Cards sit beside
+   * each other on /finance and /actors, so the difference showed.
+   *
+   * 0.875rem because that is what the site already does: 64 of the 72 used
+   * 14px on a phone and 46 used it everywhere. This is the existing value
+   * written down once, not a new one imposed.
+   *
+   * A call site that genuinely needs different padding still overrides it,
+   * because these classes sit in @layer components and a utility beats
+   * them - which is exactly the opt-out that was broken before the layer
+   * was added.
+   */
   .card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
+    padding: 0.875rem;
   }
 
   .card-interactive {

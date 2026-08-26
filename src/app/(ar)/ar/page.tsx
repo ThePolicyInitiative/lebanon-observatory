@@ -174,7 +174,7 @@ export default function ArabicPage() {
           <SectionHeading index={AR.home.geography.n} title={AR.home.geography.title}>
             <Body locale="ar">{AR.home.geography.body}</Body>
           </SectionHeading>
-          <div className="mt-6 overflow-x-auto card p-3.5">
+          <div className="mt-6 overflow-x-auto card">
             <table className="min-w-full border-collapse text-sm tabular-nums">
               <caption className="pb-2 text-start text-xs text-text-secondary">
                 {AR.home.geography.tableCaption}

@@ -37,7 +37,7 @@ export default function KpiCard({
   const ar = locale === "ar";
   const t = T[locale];
   return (
-    <article className="card card-interactive flex flex-col p-4">
+    <article className="card card-interactive flex flex-col">
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-sans text-[12.5px] font-medium leading-snug text-text-secondary">
           {ar ? kpi.labelAr ?? kpi.label : kpi.label}

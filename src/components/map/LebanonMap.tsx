@@ -760,7 +760,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               const m = mentionsFor(year, r.id);
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
               return (
-                <section key={r.id} className="card p-3.5">
+                <section key={r.id} className="card">
                   <h3 className="text-sm font-semibold text-navy">
                     {regionLabel(r.id, locale)}
                   </h3>
@@ -792,7 +792,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       {(
         <section
           aria-label={t.happenedAria(year)}
-          className="mt-6 card p-3.5 sm:p-4"
+          className="mt-6 card"
         >
           <h3 className="text-base font-semibold text-navy">
             {t.happenedHead(year)}

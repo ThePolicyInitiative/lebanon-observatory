@@ -69,7 +69,7 @@ export default function DebrisTiles({ locale = "en" }: { locale?: Locale } = {})
   ];
 
   return (
-    <figure className="card card-interactive p-4 sm:p-5">
+    <figure className="card card-interactive">
       <figcaption>
         <h3 className="text-base font-semibold text-navy">
           {tr.title}

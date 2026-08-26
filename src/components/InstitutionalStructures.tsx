@@ -511,7 +511,7 @@ const MISSING_2024: BoxSpec = {
 function Map2024({ locale }: { locale: Locale }) {
   const NAVY = "#173B63";
   return (
-    <figure className="card p-3.5 sm:p-4">
+    <figure className="card">
       <figcaption className="border-b-2 border-navy pb-3">
         <h3 className="text-lg font-bold text-navy sm:text-xl">
           {say(locale, HEAD_2024.title)}
@@ -1053,7 +1053,7 @@ const GAP_2026: L = {
 function Map2026({ locale }: { locale: Locale }) {
   const GREEN = "#2F6B4F";
   return (
-    <figure className="card p-3.5 sm:p-4">
+    <figure className="card">
       <figcaption className="border-b-2 border-[#2F6B4F] pb-3">
         <h3 className="text-lg font-bold text-[#24543E] sm:text-xl">
           {say(locale, HEAD_2026.title)}

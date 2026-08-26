@@ -120,7 +120,7 @@ export default function ResultProfile({
     .sort((a, b) => b.value - a.value);
 
   return (
-    <figure className="card p-3.5">
+    <figure className="card">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-xl font-semibold text-navy">
           {t.title}

@@ -92,7 +92,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
       className="mx-auto max-w-[1360px] px-4 pt-12 sm:px-6"
     >
       <div
-        className={`card p-5 sm:p-6 ${
+        className={`card ${
           ar
             ? "border-r-4 border-r-navy"
             : "border-l-4 border-l-navy"

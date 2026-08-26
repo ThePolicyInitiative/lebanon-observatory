@@ -107,7 +107,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
 
       <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {ops.operators.map((o) => (
-          <article key={o.id} className="card p-3.5">
+          <article key={o.id} className="card">
             <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
               <span
                 className="rounded-sm px-1.5 py-0.5 font-semibold text-white"

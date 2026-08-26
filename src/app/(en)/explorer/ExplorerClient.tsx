@@ -526,7 +526,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               <button
                 type="button"
                 onClick={(e) => open(r, e.currentTarget)}
-                className="w-full card p-3.5 text-start"
+                className="w-full card text-start"
               >
                 <p className="flex items-center justify-between gap-2 text-[11px] text-text-secondary">
                   <span className="inline-flex items-center gap-1.5">
@@ -550,7 +550,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="card p-3.5 text-sm text-text-secondary">
+          <p className="card text-sm text-text-secondary">
             {t.empty(TOTAL)}
           </p>
         ) : null}

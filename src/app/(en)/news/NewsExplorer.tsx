@@ -389,7 +389,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Official directory under Official tab */}
       {tab === "official" ? (
-        <div className="mt-4 card p-3.5">
+        <div className="mt-4 card">
           <h3 className="text-sm font-semibold text-navy">
             {t.officialHeading}
           </h3>
@@ -445,7 +445,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
             </button>
           </div>
         ) : articles.length === 0 ? (
-          <div className="card p-3.5 text-sm text-text-secondary">
+          <div className="card text-sm text-text-secondary">
             {t.noMatch}
           </div>
         ) : (
@@ -513,7 +513,7 @@ function NewsCard({
   whyRelevant.push(t.whyScore(a.relevanceScore));
 
   return (
-    <article className="flex h-full flex-col card p-3.5" dir={a.language === "ar" ? "rtl" : "ltr"}>
+    <article className="flex h-full flex-col card" dir={a.language === "ar" ? "rtl" : "ltr"}>
       <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-text-secondary" dir={chrome}>
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>

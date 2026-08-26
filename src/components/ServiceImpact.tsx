@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/vocab";
 export default function ServiceImpact({ locale = "en" }: { locale?: Locale } = {}) {
   const ar = locale === "ar";
   return (
-    <figure className="card card-interactive p-4 sm:p-5">
+    <figure className="card card-interactive">
       <figcaption>
         <h3 className="text-base font-semibold text-navy">
           {ar

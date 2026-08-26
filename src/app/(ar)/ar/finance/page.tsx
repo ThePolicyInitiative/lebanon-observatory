@@ -76,7 +76,7 @@ export default function Page() {
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
-          <li key={c.n} className="card p-3.5">
+          <li key={c.n} className="card">
             <p className="text-xs font-bold uppercase tracking-widest text-teal">
               {c.n}. {c.label}
             </p>
@@ -103,7 +103,7 @@ export default function Page() {
       </div>
 
       {/* LEAP components, in full */}
-      <section aria-labelledby="ar-leap" className="mt-7 card p-3.5">
+      <section aria-labelledby="ar-leap" className="mt-7 card">
         <h2
           id="ar-leap"
           className="text-xl font-semibold text-navy"
@@ -161,7 +161,7 @@ export default function Page() {
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="card p-3.5">
+            <article key={p.id} className="card">
               <h3 className="text-sm font-semibold leading-snug text-navy">
                 {p.labelAr}
               </h3>
@@ -184,7 +184,7 @@ export default function Page() {
             </article>
           ))}
         </div>
-        <div className="mt-4 card p-3.5 text-sm">
+        <div className="mt-4 card text-sm">
           <p>
             <span className="font-semibold text-navy">
               أهداف الإصلاح تقيس حجم الجبل:
@@ -202,7 +202,7 @@ export default function Page() {
       </section>
 
       {/* Adjacent flows */}
-      <section aria-labelledby="ar-adjacent" className="mt-7 card p-3.5">
+      <section aria-labelledby="ar-adjacent" className="mt-7 card">
         <h2
           id="ar-adjacent"
           className="text-xl font-semibold text-navy"

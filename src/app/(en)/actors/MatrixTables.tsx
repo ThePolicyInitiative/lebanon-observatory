@@ -73,7 +73,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
   const maxCell = Math.max(1, ...rows.flatMap((r) => r.cells));
 
   return (
-    <figure className="card p-3.5 sm:p-4">
+    <figure className="card">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-base font-semibold text-navy">
           <span

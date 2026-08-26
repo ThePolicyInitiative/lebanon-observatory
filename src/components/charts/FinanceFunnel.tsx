@@ -59,7 +59,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
   return (
     <figure
       id="finance-funnel"
-      className="card p-3.5 sm:p-4"
+      className="card"
     >
       <figcaption>
         <h3 className="text-base font-semibold text-navy">

@@ -43,7 +43,7 @@ export default function LeapResultsBoard({ locale = "en" }: { locale?: Locale } 
   const footnotes = ar ? leapResults.footnotesAr : leapResults.footnotes;
 
   return (
-    <figure className="card card-interactive p-4 sm:p-5">
+    <figure className="card card-interactive">
       <figcaption>
         <h3 className="text-base font-semibold text-navy">
           {tr.title}
