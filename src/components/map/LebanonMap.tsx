@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
-import { STATUSES_IN_USE, slimRecords } from "@/lib/map-records";
+import { COMPARABILITY_IN_USE, STATUSES_IN_USE, slimRecords } from "@/lib/map-records";
 import {
   cautionMap,
   comparabilityLabel,
@@ -294,8 +294,21 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       slimRecords.filter((r) => {
         if (layerFilter !== "all" && r.actorLayer !== layerFilter) return false;
         if (stageFilter !== "all" && String(r.stageNo) !== stageFilter) return false;
-        if (statusFilter !== "all" && r.implementationStatus !== statusFilter) return false;
-        if (comparabilityFilter !== "all" && r.comparability !== comparabilityFilter) return false;
+        // A value nothing carries is not offered in the control, so it can
+        // only arrive from an old link - and acting on it would empty the
+        // map with no control left to undo it. Treated as no filter.
+        if (
+          statusFilter !== "all" &&
+          STATUSES_IN_USE.has(statusFilter) &&
+          r.implementationStatus !== statusFilter
+        )
+          return false;
+        if (
+          comparabilityFilter !== "all" &&
+          COMPARABILITY_IN_USE.has(comparabilityFilter) &&
+          r.comparability !== comparabilityFilter
+        )
+          return false;
         return true;
       }),
     [layerFilter, stageFilter, statusFilter, comparabilityFilter],
@@ -1003,17 +1016,23 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 ))}
             </select>
           </div>
-          <div>
-            <label htmlFor="map-comp" className="block text-[11px] font-semibold text-text-secondary">
-              {t.comparability}
-            </label>
-            <select id="map-comp" className={`mt-1 ${selectCls}`} value={comparabilityFilter} onChange={(e) => set("comparability", e.target.value)}>
-              <option value="all">{t.all}</option>
-              {(["direct", "qualified", "not_comparable", "context_only"] as const).map((k) => (
-                <option key={k} value={k}>{comparabilityLabel(k, locale)}</option>
-              ))}
-            </select>
-          </div>
+          {/* Only worth offering while there is more than one grade to
+              choose between. See COMPARABILITY_IN_USE. */}
+          {COMPARABILITY_IN_USE.size > 1 ? (
+            <div>
+              <label htmlFor="map-comp" className="block text-[11px] font-semibold text-text-secondary">
+                {t.comparability}
+              </label>
+              <select id="map-comp" className={`mt-1 ${selectCls}`} value={comparabilityFilter} onChange={(e) => set("comparability", e.target.value)}>
+                <option value="all">{t.all}</option>
+                {(["direct", "qualified", "not_comparable", "context_only"] as const)
+                  .filter((k) => COMPARABILITY_IN_USE.has(k))
+                  .map((k) => (
+                    <option key={k} value={k}>{comparabilityLabel(k, locale)}</option>
+                  ))}
+              </select>
+            </div>
+          ) : null}
           <button
             type="button"
             onClick={reset}

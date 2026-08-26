@@ -52,3 +52,23 @@ export const slimRecords = roleRecordsSlimJson as SlimRecord[];
 export const STATUSES_IN_USE: ReadonlySet<string> = new Set(
   slimRecords.map((r) => r.implementationStatus).filter(Boolean),
 );
+
+/**
+ * The comparability grades any entry actually carries.
+ *
+ * The same problem as the statuses above, in its sharpest form: the map's
+ * comparability control offered four grades, and every one of the 771
+ * entries is "qualified". Three of the four therefore removed every entry
+ * pin in both years, leaving the episode pins - which the filter does not
+ * touch - still on the map. So the map stayed populated while the
+ * reader's selection had quietly emptied it, which is worse than looking
+ * broken: it looks like an answer.
+ *
+ * The fourth grade selects everything, so the control cannot discriminate
+ * at all. The map hides it while that is true and brings it back the day
+ * a second grade appears, which is why this is derived rather than a
+ * decision written down once.
+ */
+export const COMPARABILITY_IN_USE: ReadonlySet<string> = new Set(
+  slimRecords.map((r) => r.comparability).filter(Boolean),
+);
