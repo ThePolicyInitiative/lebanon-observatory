@@ -30,10 +30,10 @@ export default function AboutPage() {
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {t.figures.map((f) => (
           <li key={f.label} className="card p-3.5">
-            <p className="figure-number text-2xl text-[color:var(--color-navy)]">
+            <p className="figure-number text-2xl text-navy">
               {f.value}
             </p>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-1 text-[12.5px] leading-relaxed text-text-secondary">
               {f.label}
             </p>
           </li>
@@ -49,7 +49,7 @@ export default function AboutPage() {
         <Link
           href="/ar/about"
           hrefLang="ar"
-          className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          className="font-medium text-blue underline-offset-2 hover:underline"
         >
           {t.crossLink} (<span lang="ar">{ABOUT.ar.title}</span>) →
         </Link>

@@ -47,7 +47,7 @@ function SectionLinks({ links }: { links: [string, string][] }) {
         <li key={href}>
           <Link
             href={href}
-            className="inline-flex min-h-11 items-center rounded-md border border-[color:var(--color-border)] bg-white px-4 text-[color:var(--color-navy)] hover:border-[color:var(--color-navy)]"
+            className="inline-flex min-h-11 items-center rounded-md border border-border bg-white px-4 text-navy hover:border-navy"
           >
             {label}
           </Link>
@@ -75,11 +75,11 @@ export default function GlobalNotFound() {
           <section aria-labelledby="nf-en" className="text-center">
             <h1
               id="nf-en"
-              className="text-xl font-bold text-[color:var(--color-navy)]"
+              className="text-xl font-bold text-navy"
             >
               Page not found
             </h1>
-            <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">
+            <p className="mt-3 text-sm text-text-secondary">
               The page you requested does not exist. The observatory&apos;s main
               sections are linked below.
             </p>
@@ -88,7 +88,7 @@ export default function GlobalNotFound() {
 
           <hr
             aria-hidden
-            className="mx-auto my-10 max-w-[420px] border-[color:var(--color-border)]"
+            className="mx-auto my-10 max-w-[420px] border-border"
           />
 
           <section
@@ -99,11 +99,11 @@ export default function GlobalNotFound() {
           >
             <h1
               id="nf-ar"
-              className="text-xl font-bold text-[color:var(--color-navy)]"
+              className="text-xl font-bold text-navy"
             >
               الصفحة غير موجودة
             </h1>
-            <p className="mt-3 text-sm leading-loose text-[color:var(--color-text-secondary)]">
+            <p className="mt-3 text-sm leading-loose text-text-secondary">
               الصفحة المطلوبة غير موجودة. أقسام المرصد الرئيسية في الروابط أدناه.
             </p>
             <SectionLinks links={AR_LINKS} />

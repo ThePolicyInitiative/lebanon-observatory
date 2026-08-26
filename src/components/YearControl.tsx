@@ -52,7 +52,7 @@ export default function YearControl({
       <div
         role="radiogroup"
         aria-label={t.group}
-        className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
+        className="inline-flex overflow-hidden rounded-md border border-border bg-white"
       >
         {positions.map((p, i) => {
           const active = mode === p.id;
@@ -68,7 +68,7 @@ export default function YearControl({
               className={`min-h-11 px-4 text-sm transition-colors duration-150 ${
                 active
                   ? "font-semibold text-white"
-                  : "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+                  : "text-text-secondary hover:text-navy"
               }`}
               style={
                 active
@@ -82,12 +82,12 @@ export default function YearControl({
         })}
       </div>
       {withChange ? (
-        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-[color:var(--color-text)]">
+        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-text">
           <input
             type="checkbox"
             checked={mode === "change"}
             onChange={(e) => onChange(e.target.checked ? "change" : "side")}
-            className="h-4 w-4 accent-[color:var(--color-rust)]"
+            className="h-4 w-4 accent-rust"
           />
           {t.showChange}
         </label>

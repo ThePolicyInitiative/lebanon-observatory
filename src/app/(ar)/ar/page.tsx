@@ -43,7 +43,7 @@ export default function ArabicPage() {
   return (
     <div dir="rtl" lang="ar" className="text-right">
       {/* Hero */}
-      <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-[color:var(--color-navy)] bg-[linear-gradient(200deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
+      <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(200deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
         <svg
           aria-hidden
           viewBox="0 0 620 860"
@@ -62,7 +62,7 @@ export default function ArabicPage() {
           ))}
         </svg>
         <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
-          <p className="text-sm font-semibold tracking-widest text-[color:var(--color-amber)]">
+          <p className="text-sm font-semibold tracking-widest text-amber">
             {AR.hero.eyebrow}
           </p>
           <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
@@ -74,7 +74,7 @@ export default function ArabicPage() {
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/ar/map"
-              className="inline-flex min-h-11 items-center rounded-md bg-[color:var(--color-amber)] px-5 text-sm font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
+              className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-sm font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
             >
               {AR.hero.ctaMap}
             </Link>
@@ -110,11 +110,11 @@ export default function ArabicPage() {
       >
         <h2
           id="ar-kpis"
-          className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"
+          className="text-xl font-semibold text-navy sm:text-2xl"
         >
           {AR.kpis.title}
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-loose text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 max-w-3xl text-sm leading-loose text-text-secondary">
           {AR.kpis.lede}
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -176,24 +176,24 @@ export default function ArabicPage() {
           </SectionHeading>
           <div className="mt-6 overflow-x-auto card p-3.5">
             <table className="min-w-full border-collapse text-sm tabular-nums">
-              <caption className="pb-2 text-start text-xs text-[color:var(--color-text-secondary)]">
+              <caption className="pb-2 text-start text-xs text-text-secondary">
                 {AR.home.geography.tableCaption}
               </caption>
               <thead>
                 <tr>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-start font-semibold text-[color:var(--color-navy)]">
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-start font-semibold text-navy">
                     {AR.home.geography.region}
                   </th>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">2024</th>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">2026</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">2024</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">2026</th>
                 </tr>
               </thead>
               <tbody>
                 {regionRows.map((r) => (
-                  <tr key={r.label} className="odd:bg-[color:var(--color-bg)]">
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">{r.label}</td>
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">{r.t24}</td>
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">{r.t26}</td>
+                  <tr key={r.label} className="odd:bg-bg">
+                    <td className="border-b border-border px-2 py-1.5">{r.label}</td>
+                    <td className="border-b border-border px-2 py-1.5 text-end">{r.t24}</td>
+                    <td className="border-b border-border px-2 py-1.5 text-end">{r.t26}</td>
                   </tr>
                 ))}
               </tbody>
@@ -202,13 +202,13 @@ export default function ArabicPage() {
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <Link
               href="/ar/map"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.home.geography.openMap} ←
             </Link>
             <Link
               href="/ar/damage"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.home.geography.openDamage} ←
             </Link>
@@ -226,9 +226,9 @@ export default function ArabicPage() {
 
         <section
           aria-label={AR.home.conclusion.slice(0, 40)}
-          className="rounded-md border-r-4 border-[color:var(--color-navy)] bg-white p-6"
+          className="rounded-md border-r-4 border-navy bg-white p-6"
         >
-          <blockquote className="editorial-quote max-w-4xl text-lg leading-loose text-[color:var(--color-navy)]">
+          <blockquote className="editorial-quote max-w-4xl text-lg leading-loose text-navy">
             {AR.home.conclusion}
           </blockquote>
         </section>
@@ -236,13 +236,13 @@ export default function ArabicPage() {
 
       {/* Cross-locale notice */}
       <section className="mx-auto max-w-[1360px] px-4 pb-16 sm:px-6">
-        <p className="rounded-md border-r-4 border-[color:var(--color-amber)] bg-white p-4 text-sm leading-loose text-[color:var(--color-text-secondary)]">
+        <p className="rounded-md border-r-4 border-amber bg-white p-4 text-sm leading-loose text-text-secondary">
           {AR.notice}{" "}
           <Link
             href="/"
             lang="en"
             dir="ltr"
-            className="font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-semibold text-blue underline-offset-2 hover:underline"
           >
             {AR.nav.english}
           </Link>

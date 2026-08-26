@@ -144,7 +144,8 @@ const T = {
   },
 } as const;
 
-export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
+export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
 
   const ar = locale === "ar";

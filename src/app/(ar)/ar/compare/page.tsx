@@ -82,13 +82,13 @@ export default function Page() {
           className="rounded-md border-t-4 bg-white p-5"
           style={{ borderTopColor: "var(--color-y2024)" }}
         >
-          <h2 className="text-lg font-semibold text-[color:var(--color-navy)]">
+          <h2 className="text-lg font-semibold text-navy">
             2024: إحلال في الطوارئ
           </h2>
-          <ul className="mt-3 space-y-1.5 text-sm text-[color:var(--color-text)]">
+          <ul className="mt-3 space-y-1.5 text-sm text-text">
             {SUMMARY_2024.map((s) => (
               <li key={s} className="flex gap-2">
-                <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-y2024)]" />
+                <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-y2024" />
                 {s}
               </li>
             ))}
@@ -100,13 +100,13 @@ export default function Page() {
           className="rounded-md border-t-4 bg-white p-5"
           style={{ borderTopColor: "var(--color-y2026)" }}
         >
-          <h2 className="text-lg font-semibold text-[color:var(--color-navy)]">
+          <h2 className="text-lg font-semibold text-navy">
             2026: بنية مبرمَجة
           </h2>
-          <ul className="mt-3 space-y-1.5 text-sm text-[color:var(--color-text)]">
+          <ul className="mt-3 space-y-1.5 text-sm text-text">
             {SUMMARY_2026.map((s) => (
               <li key={s} className="flex gap-2">
-                <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-y2026)]" />
+                <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-y2026" />
                 {s}
               </li>
             ))}
@@ -117,9 +117,9 @@ export default function Page() {
       {/* Comparative conclusion */}
       <section
         aria-label="الخلاصة المقارِنة"
-        className="mt-7 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6"
+        className="mt-7 rounded-md border-s-4 border-navy bg-white p-6"
       >
-        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
+        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-navy">
           لم يكن التحوّل من إنجاز خارج الدولة إلى إنجاز داخلها. كان من إحلال
           مفكّك إلى سلسلة مشروع مُدارة مركزياً، اكتسبت فيها المؤسسات الوطنية
           والتمويل الخارجي والمتعهّدون أدواراً أوضح، فيما بقيت البلديات

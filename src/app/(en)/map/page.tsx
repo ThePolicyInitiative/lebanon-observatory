@@ -46,10 +46,10 @@ export default function MapPage() {
       </div>
 
       <section id="no-national-layer" className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
-        <h2 className="text-xl font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-xl font-semibold text-navy">
           Why there is no national damage layer
         </h2>
-        <p className="mt-2 text-[color:var(--color-text)]">
+        <p className="mt-2 text-text">
           The 2026 rapid assessments cover two zones - south of the Litani
           (desk-validated) and Beirut-Mount Lebanon (field-checked) - while the
           Bekaa and Baalbek-Hermel, which the war did reach, had no equivalent

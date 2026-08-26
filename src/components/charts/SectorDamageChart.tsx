@@ -42,7 +42,8 @@ const T = {
   },
 } as const;
 
-export default function SectorDamageChart({ locale = "en" }: { locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
+export default function SectorDamageChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const chartRef = useRef<ECharts | null>(null);
   const rows = sectorsJson.sectors.filter(
     (s) => s.damage !== null || s.losses !== null || s.needs !== null,
   );

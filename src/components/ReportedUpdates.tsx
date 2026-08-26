@@ -42,8 +42,8 @@ const T = {
 
 /** Colour by source kind; the wording comes from the locale table above. */
 const SOURCE_KIND_CLS: Record<string, string> = {
-  institutional: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  press: "bg-[#EEF2F7] text-[color:var(--color-navy)]",
+  institutional: "bg-[#E8F1F3] text-teal",
+  press: "bg-[#EEF2F7] text-navy",
   social: "bg-[#FAF3E3] text-[#8a6200]",
 };
 
@@ -83,7 +83,7 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
         {u.sourceKind ? (
           <span
             className={`rounded-sm px-1.5 py-0.5 font-semibold ${
-              SOURCE_KIND_CLS[u.sourceKind] ?? "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]"
+              SOURCE_KIND_CLS[u.sourceKind] ?? "bg-[#F2F2EF] text-text-secondary"
             }`}
           >
             {(t as Record<string, string>)[u.sourceKind] ?? u.sourceKind}
@@ -95,28 +95,28 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
           </span>
         ) : null}
         {u.dateReported ? (
-          <span className="font-semibold tabular-nums text-[color:var(--color-text-secondary)]">
+          <span className="font-semibold tabular-nums text-text-secondary">
             {fmtDate(u.dateReported, locale)}
           </span>
         ) : u.dateText ? (
-          <span className="font-semibold text-[color:var(--color-text-secondary)]">
+          <span className="font-semibold text-text-secondary">
             {say(u.dateText, loc.dateTextAr)}
           </span>
         ) : (
-          <span className="text-[color:var(--color-text-secondary)]">{t.noDate}</span>
+          <span className="text-text-secondary">{t.noDate}</span>
         )}
       </p>
-      <p className="mt-1.5 text-sm font-semibold text-[color:var(--color-navy)]">
+      <p className="mt-1.5 text-sm font-semibold text-navy">
         {say(u.actor, loc.actorAr)}
       </p>
-      <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">
+      <p className="mt-1 text-[13px] leading-relaxed text-text">
         {say(u.action, loc.actionAr)}
       </p>
       {/* Named group: the card sits inside the layer disclosure, so an
           unnamed group-open would follow that one instead of this. */}
       {u.detail ? (
         <details className="group/more mt-1.5">
-          <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-[11px] font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline [&::-webkit-details-marker]:hidden">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-[11px] font-semibold text-blue underline-offset-2 hover:underline [&::-webkit-details-marker]:hidden">
             <span className="group-open/more:hidden">{t.seeMore}</span>
             <span className="hidden group-open/more:inline">{t.seeLess}</span>
             <span aria-hidden className="text-[9px]">
@@ -125,28 +125,28 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
               <span className="hidden group-open/more:inline">▾</span>
             </span>
           </summary>
-          <p className="mt-1 border-s-2 border-[color:var(--color-border)] ps-2.5 text-[12px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 border-s-2 border-border ps-2.5 text-[12px] leading-relaxed text-text-secondary">
             {say(u.detail, loc.detailAr)}
           </p>
         </details>
       ) : null}
       {u.place ? (
-        <p className="mt-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
+        <p className="mt-1.5 text-[11px] text-text-secondary">
           <span className="font-semibold">{t.where}</span>{" "}
           {say(u.place, loc.placeAr)}
         </p>
       ) : null}
       {u.caution ? (
-        <p className="note-caution mt-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="note-caution mt-2 text-[11px] leading-relaxed text-text-secondary">
           {say(u.caution, loc.cautionAr)}
         </p>
       ) : null}
-      <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px]">
+      <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-[11px]">
         <a
           href={u.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+          className="font-medium text-blue underline-offset-2 hover:underline"
         >
           {u.sourceName} ↗
         </a>
@@ -174,12 +174,12 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
   return (
     <section
       aria-labelledby="reported-updates"
-      className="rounded-md border border-dashed border-[color:var(--color-border)] bg-[#FBFCFD] p-4 sm:p-6"
+      className="rounded-md border border-dashed border-border bg-[#FBFCFD] p-4 sm:p-6"
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2
           id="reported-updates"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           {t.title}
         </h2>
@@ -193,14 +193,14 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       </div>
       {ar ? (
         <>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
             {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
             والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
             الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مراجعها - لم تُقارَن بالتتبّع ولا تدخل
             في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه. اتبع كل رابط
             لتحكم على المرجع بنفسك.
           </p>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
+          <p className="mt-2 prose-measure text-sm leading-relaxed text-text">
             مجموعة المجتمع المحلي هي الأكبر، وتلك هي الخلاصة: في القرى الجنوبية، العمل الظاهر
             فعلياً يقوم به الأهالي والجمعيات القروية والمجموعات الشبابية والبلديات، وعلى نفقتهم
             الخاصة في معظمه.
@@ -208,7 +208,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
         </>
       ) : (
         <>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
             {updates.length} actors and actions found in open web coverage in English, Arabic and
             French (gathered {fmtDate(webUpdates.gatheredOn)}), {south} of them in the area between
             the Litani and the Blue Line. These are reported claims, quoted with their publishers - they
@@ -216,7 +216,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
             Each entry says how much checking sits behind it. Follow each link to judge it
             yourself.
           </p>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text)]">
+          <p className="mt-2 prose-measure text-sm leading-relaxed text-text">
             The community group is the largest, and that is the finding: in the southern villages the
             work that is actually visible is being done by residents, village associations, youth
             groups and municipalities, largely at their own cost.
@@ -227,17 +227,17 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       <div className="mt-5 space-y-4">
         {groups.map((g, i) => (
           <details key={g.id} open={i === 0} className="group">
-            <summary className="flex cursor-pointer items-center gap-2 rounded-sm py-1 text-sm font-semibold text-[color:var(--color-navy)]">
+            <summary className="flex cursor-pointer items-center gap-2 rounded-sm py-1 text-sm font-semibold text-navy">
               <span
                 aria-hidden
                 className="h-2.5 w-2.5 shrink-0 rounded-sm"
                 style={{ background: g.color }}
               />
               {g.label}
-              <span className="font-normal text-[color:var(--color-text-secondary)]">
+              <span className="font-normal text-text-secondary">
                 ({g.items.length})
               </span>
-              <span aria-hidden className="text-[color:var(--color-text-secondary)]">
+              <span aria-hidden className="text-text-secondary">
                 <span className="group-open:hidden">{ar ? "◂" : "▸"}</span>
                 <span className="hidden group-open:inline">▾</span>
               </span>

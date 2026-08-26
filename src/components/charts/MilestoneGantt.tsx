@@ -84,7 +84,7 @@ export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = 
             </div>
           ))}
         </div>
-        <ol className="mt-3 space-y-1 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+        <ol className="mt-3 space-y-1 text-xs leading-relaxed text-text-secondary">
           {segments.map((s, i) => (
             <li key={s.to.date} className="flex items-baseline gap-2">
               <span
@@ -93,7 +93,7 @@ export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = 
                 style={{ background: SEGMENT_COLORS[i] }}
               />
               <span>
-                <strong className="text-[color:var(--color-navy)]">{tr.days_(s.days)}</strong>{" "}
+                <strong className="text-navy">{tr.days_(s.days)}</strong>{" "}
                 - {name(s.from)} → {name(s.to)}{" "}
                 <span className="tabular-nums">({s.to.date})</span>
               </span>

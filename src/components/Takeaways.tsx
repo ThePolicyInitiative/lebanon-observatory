@@ -25,26 +25,26 @@ export default function Takeaways({
       className="grid gap-4 card p-3.5 md:grid-cols-3"
     >
       <div>
-        <h2 className="text-sm font-semibold text-[color:var(--color-teal)]">
+        <h2 className="text-sm font-semibold text-teal">
           {t.changed}
         </h2>
-        <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--color-text)]">
+        <p className="mt-1.5 text-sm leading-relaxed text-text">
           {changed}
         </p>
       </div>
       <div>
-        <h2 className="text-sm font-semibold text-[color:var(--color-rust)]">
+        <h2 className="text-sm font-semibold text-rust">
           {t.unchanged}
         </h2>
-        <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--color-text)]">
+        <p className="mt-1.5 text-sm leading-relaxed text-text">
           {unchanged}
         </p>
       </div>
       <div>
-        <h2 className="text-sm font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-sm font-semibold text-navy">
           {t.matters}
         </h2>
-        <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--color-text)]">
+        <p className="mt-1.5 text-sm leading-relaxed text-text">
           {matters}
         </p>
       </div>

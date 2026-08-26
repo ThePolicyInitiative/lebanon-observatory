@@ -75,7 +75,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
   return (
     <figure className="card p-3.5 sm:p-4">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           <span
             aria-hidden
             className="me-2 inline-block h-3 w-3 rounded-sm align-baseline"
@@ -83,11 +83,11 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
           />
           {t.panel(year, shown)}
         </h3>
-        <span className="text-[11px] text-[color:var(--color-text-secondary)]">
+        <span className="text-[11px] text-text-secondary">
           {t.legend}
         </span>
       </figcaption>
-      <div className="mt-3 max-h-[70vh] overflow-auto rounded-md border border-[color:var(--color-border)]">
+      <div className="mt-3 max-h-[70vh] overflow-auto rounded-md border border-border">
         <table className="min-w-[860px] border-collapse text-[12px]">
           {/* The heading above the table is in a figcaption, which does not
               name the table itself for a screen reader. */}
@@ -96,7 +96,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
             <tr>
               <th
                 scope="col"
-                className="sticky start-0 z-20 bg-white px-2 py-2 text-start font-semibold text-[color:var(--color-navy)]"
+                className="sticky start-0 z-20 bg-white px-2 py-2 text-start font-semibold text-navy"
               >
                 {t.actor}
               </th>
@@ -104,17 +104,17 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                 <th
                   key={s}
                   scope="col"
-                  className="min-w-[58px] px-1 py-2 text-center align-bottom font-semibold leading-tight text-[color:var(--color-text-secondary)]"
+                  className="min-w-[58px] px-1 py-2 text-center align-bottom font-semibold leading-tight text-text-secondary"
                 >
                   <abbr title={`${i + 1}. ${STAGES[i]}`} className="no-underline">
-                    <span className="block tabular-nums text-[color:var(--color-navy)]">{i + 1}</span>
+                    <span className="block tabular-nums text-navy">{i + 1}</span>
                     <span className="block text-[9.5px] font-medium">{s}</span>
                   </abbr>
                 </th>
               ))}
               <th
                 scope="col"
-                className="px-2 py-2 text-end font-semibold text-[color:var(--color-navy)]"
+                className="px-2 py-2 text-end font-semibold text-navy"
               >
                 {t.total}
               </th>
@@ -139,7 +139,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                   <tr key={r.base} className="border-t border-[#EDF0F4] hover:bg-[#F8FAFC]">
                     <th
                       scope="row"
-                      className="sticky start-0 max-w-[280px] truncate bg-white px-2 py-1 text-start font-medium text-[color:var(--color-text)]"
+                      className="sticky start-0 max-w-[280px] truncate bg-white px-2 py-1 text-start font-medium text-text"
                       title={r.base}
                     >
                       {/* The row name is the way into that actor's entries
@@ -175,7 +175,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                         <td key={i} className="cell-empty" />
                       ),
                     )}
-                    <td className="px-2 py-1 text-end font-semibold tabular-nums text-[color:var(--color-navy)]">
+                    <td className="px-2 py-1 text-end font-semibold tabular-nums text-navy">
                       {r.total}
                     </td>
                   </tr>
@@ -197,7 +197,7 @@ export default function MatrixTables({ matrices, locale = "en" }: { matrices: Ye
       <div className="mt-3 max-w-xs">
         <label
           htmlFor="matrix-search"
-          className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]"
+          className="block text-[11px] font-semibold text-text-secondary"
         >
           {t.filter}
         </label>
@@ -207,7 +207,7 @@ export default function MatrixTables({ matrices, locale = "en" }: { matrices: Ye
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.placeholder}
-          className="mt-1 min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
+          className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm"
         />
       </div>
       <div className="mt-4 space-y-6">

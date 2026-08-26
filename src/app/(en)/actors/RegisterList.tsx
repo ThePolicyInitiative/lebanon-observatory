@@ -68,13 +68,13 @@ const T = {
 const STATUS_CHIP: Record<string, string> = {
   underway: "bg-[#E8F1EC] text-[#1F6B4E]",
   completed: "bg-[#E8F1EC] text-[#1F6B4E]",
-  procurement: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  financing_committed: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  financing_disbursed: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  formal_mandate: "bg-[#EEF2F7] text-[color:var(--color-navy)]",
+  procurement: "bg-[#E8F1F3] text-teal",
+  financing_committed: "bg-[#E8F1F3] text-teal",
+  financing_disbursed: "bg-[#E8F1F3] text-teal",
+  formal_mandate: "bg-[#EEF2F7] text-navy",
   announced: "bg-[#FAF3E3] text-[#8a6200]",
   planned: "bg-[#FAF3E3] text-[#8a6200]",
-  not_verified: "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]",
+  not_verified: "bg-[#F2F2EF] text-text-secondary",
 };
 
 export type RegisterRecord = {
@@ -214,7 +214,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         <div className="min-w-56 flex-1 sm:max-w-xs">
           <label
             htmlFor="register-search"
-            className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]"
+            className="block text-[11px] font-semibold text-text-secondary"
           >
             {t.search}
           </label>
@@ -224,7 +224,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="mt-1 min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
+            className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm"
           />
         </div>
         <div role="radiogroup" aria-label={t.layerFilter} className="flex flex-wrap gap-1.5">
@@ -239,8 +239,8 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                 onClick={() => setLayer(l.id as "all" | ActorLayer)}
                 className={`inline-flex min-h-9 items-center gap-1.5 rounded-md border px-2.5 text-xs font-medium transition-colors ${
                   layer === l.id
-                    ? "border-[color:var(--color-navy)] bg-[color:var(--color-navy)] text-white"
-                    : "border-[color:var(--color-border)] bg-white text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+                    ? "border-navy bg-navy text-white"
+                    : "border-border bg-white text-text-secondary hover:text-navy"
                 }`}
               >
                 <span aria-hidden className="h-2 w-2 rounded-sm" style={{ background: l.color }} />
@@ -252,7 +252,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         <div
           role="radiogroup"
           aria-label={t.yearFilter}
-          className="inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white"
+          className="inline-flex overflow-hidden rounded-md border border-border bg-white"
         >
           {yearOptions.map((y, i) => (
             <button
@@ -264,8 +264,8 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
               onClick={() => setYear(y)}
               className={`min-h-9 px-3 text-xs font-medium ${
                 year === y
-                  ? "bg-[color:var(--color-navy)] text-white"
-                  : "text-[color:var(--color-text-secondary)]"
+                  ? "bg-navy text-white"
+                  : "text-text-secondary"
               }`}
             >
               {y === "both" ? t.bothYears : y}
@@ -274,16 +274,16 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         </div>
       </div>
 
-      <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 text-xs text-text-secondary">
         {t.showing(groups.length, shownRecords)[0]}
-        <strong className="text-[color:var(--color-navy)]">{groups.length}</strong>
+        <strong className="text-navy">{groups.length}</strong>
         {t.showing(groups.length, shownRecords)[2]}
-        <strong className="text-[color:var(--color-navy)]">{shownRecords}</strong>
+        <strong className="text-navy">{shownRecords}</strong>
         {t.showing(groups.length, shownRecords)[4]}
       </p>
 
       {/* Register */}
-      <ul className="mt-4 divide-y divide-[color:var(--color-border)] border-t border-[color:var(--color-border)]">
+      <ul className="mt-4 divide-y divide-border border-t border-border">
         {groups.map((g) => {
           const meta = layers(locale).find((l) => l.id === g.layer)!;
           const isOpen = open.has(g.anchor);
@@ -305,30 +305,30 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                   style={{ background: meta.color }}
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-[color:var(--color-navy)]">
+                  <span className="block truncate text-sm font-semibold text-navy">
                     {g.base}
                   </span>
-                  <span className="block truncate text-[11px] text-[color:var(--color-text-secondary)]">
+                  <span className="block truncate text-[11px] text-text-secondary">
                     {g.people ? `${g.people} · ` : ""}
                     {g.subtype}
                   </span>
                 </span>
                 <span className="hidden shrink-0 gap-1.5 text-[11px] tabular-nums sm:flex">
                   {g.y24 > 0 && year !== 2026 ? (
-                    <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold text-[color:var(--color-y2024-text)]">
+                    <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold text-y2024-text">
                       2024 × {year === "both" ? g.y24 : g.records.length}
                     </span>
                   ) : null}
                   {g.y26 > 0 && year !== 2024 ? (
-                    <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[color:var(--color-y2026)]">
+                    <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-y2026">
                       2026 × {year === "both" ? g.y26 : g.records.length}
                     </span>
                   ) : null}
-                  <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[color:var(--color-text-secondary)]">
+                  <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-text-secondary">
                     {t.stages(g.stages)}
                   </span>
                 </span>
-                <span aria-hidden className="shrink-0 text-[color:var(--color-text-secondary)]">
+                <span aria-hidden className="shrink-0 text-text-secondary">
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
@@ -344,39 +344,39 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                         <span
                           className={`rounded-sm px-1.5 py-0.5 ${
                             r.year === 2024
-                              ? "bg-[#EEF2F7] text-[color:var(--color-y2024-text)]"
-                              : "bg-[#E8F1EC] text-[color:var(--color-y2026)]"
+                              ? "bg-[#EEF2F7] text-y2024-text"
+                              : "bg-[#E8F1EC] text-y2026"
                           }`}
                         >
                           {r.year}
                         </span>
-                        <span className="rounded-sm bg-white px-1.5 py-0.5 text-[color:var(--color-navy)] ring-1 ring-[color:var(--color-border)]">
+                        <span className="rounded-sm bg-white px-1.5 py-0.5 text-navy ring-1 ring-border">
                           {r.stageNo}. {stageLabel(r.stageNo, locale)}
                         </span>
                         <span
-                          className={`rounded-sm px-1.5 py-0.5 ${STATUS_CHIP[r.implementationStatus] ?? "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]"}`}
+                          className={`rounded-sm px-1.5 py-0.5 ${STATUS_CHIP[r.implementationStatus] ?? "bg-[#F2F2EF] text-text-secondary"}`}
                         >
                           {statusLabel(r.implementationStatus, locale)}
                         </span>
                         {r.roles.map((key) => (
                           <span
                             key={key}
-                            className="rounded-sm bg-[#F4EAF0] px-1.5 py-0.5 text-[color:var(--color-magenta)]"
+                            className="rounded-sm bg-[#F4EAF0] px-1.5 py-0.5 text-magenta"
                           >
                             {t.roles[key] ?? key}
                           </span>
                         ))}
                       </p>
-                      <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-[color:var(--color-text)]">
+                      <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-text">
                         {r.action}
                       </p>
                       {r.locationNames.length > 0 ? (
-                        <p className="mt-2 text-[11px] text-[color:var(--color-text-secondary)]">
+                        <p className="mt-2 text-[11px] text-text-secondary">
                           <span className="font-semibold">{t.where}</span>{" "}
                           {r.locationNames.join("; ")}{" "}
                           <Link
                             href={`${locale === "ar" ? "/ar" : ""}/map?year=${r.year}&layer=${g.layer}&stage=${r.stageNo}`}
-                            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                            className="font-medium text-blue underline-offset-2 hover:underline"
                           >
                             {t.seeMap}
                           </Link>
@@ -391,7 +391,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         })}
       </ul>
       {groups.length === 0 ? (
-        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-text-secondary">
           {t.none}
         </p>
       ) : null}

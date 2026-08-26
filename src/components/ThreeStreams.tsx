@@ -111,10 +111,10 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
   return (
     <figure className="card p-3.5 sm:p-4">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
@@ -125,7 +125,7 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
             <section
               key={s.n}
               aria-label={`${tr.stream(s.n)}: ${c.title}`}
-              className="flex flex-col rounded-md border border-[color:var(--color-border)]"
+              className="flex flex-col rounded-md border border-border"
             >
               <header
                 className="flex items-center justify-between gap-2 rounded-t-md px-3.5 py-2.5"
@@ -147,7 +147,7 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
                   </li>
                 ))}
               </ul>
-              <p className="px-3.5 pt-2.5 text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+              <p className="px-3.5 pt-2.5 text-[13px] leading-relaxed text-text-secondary">
                 {c.verdict}
               </p>
               <p className="px-3.5 py-3">
@@ -162,7 +162,7 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
           );
         })}
       </div>
-      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
         {tr.caveat}
       </p>
     </figure>

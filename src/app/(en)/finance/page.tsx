@@ -71,7 +71,7 @@ export default function FinancePage() {
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
           <li key={c.n} className="card p-3.5">
-            <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
+            <p className="text-xs font-bold uppercase tracking-widest text-teal">
               {c.n}. {c.label}
             </p>
             <p className="mt-1.5 text-sm leading-relaxed">{c.text}</p>
@@ -100,11 +100,11 @@ export default function FinancePage() {
       <section aria-labelledby="leap-components" className="mt-7 card p-3.5">
         <h2
           id="leap-components"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           Inside the initial US$250 million
         </h2>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           Appraisal allocations. The reconstruction-works subcomponent
           deliberately received nothing initially - works need preparation
           first - leaving the US$750 million framework gap to partners.
@@ -114,24 +114,24 @@ export default function FinancePage() {
             <caption className="sr-only">LEAP component allocations</caption>
             <thead>
               <tr>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-left font-semibold text-[color:var(--color-navy)]">Component</th>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">Initial financing</th>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">Appraised (full framework)</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-left font-semibold text-navy">Component</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-right font-semibold text-navy">Initial financing</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-right font-semibold text-navy">Appraised (full framework)</th>
               </tr>
             </thead>
             <tbody>
               {finance.leapComponents.map((c) => (
-                <tr key={c.label} className="odd:bg-[color:var(--color-bg)]">
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">
+                <tr key={c.label} className="odd:bg-bg">
+                  <td className="border-b border-border px-2 py-1.5">
                     {c.label}
                     {"note" in c && c.note ? (
-                      <span className="block text-[11px] text-[color:var(--color-text-secondary)]">{c.note}</span>
+                      <span className="block text-[11px] text-text-secondary">{c.note}</span>
                     ) : null}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">
+                  <td className="border-b border-border px-2 py-1.5 text-right">
                     {c.initialUsd > 0 ? fmtUsd(c.initialUsd) : "-"}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">{fmtUsd(c.appraisedUsd)}</td>
+                  <td className="border-b border-border px-2 py-1.5 text-right">{fmtUsd(c.appraisedUsd)}</td>
                 </tr>
               ))}
             </tbody>
@@ -143,11 +143,11 @@ export default function FinancePage() {
       <section aria-labelledby="procurement-packages" className="mt-7">
         <h2
           id="procurement-packages"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           Procurement packages and their actual status
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
           Statuses as displayed on the CDR procurement portal at the 17 July
           2026 check. Extensions and evaluation periods are normal under Bank
           rules and abnormal against Lebanese need. The sharpest signal is
@@ -157,10 +157,10 @@ export default function FinancePage() {
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
             <article key={p.id} className="card p-3.5">
-              <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
+              <h3 className="text-sm font-semibold leading-snug text-navy">
                 {p.label}
               </h3>
-              <dl className="mt-2 space-y-1 text-xs text-[color:var(--color-text-secondary)]">
+              <dl className="mt-2 space-y-1 text-xs text-text-secondary">
                 <div className="flex gap-1.5">
                   <dt className="font-semibold">Published:</dt>
                   <dd>{fmtDate(p.published)}</dd>
@@ -183,7 +183,7 @@ export default function FinancePage() {
         </div>
         <div className="mt-4 card p-3.5 text-sm">
           <p>
-            <span className="font-semibold text-[color:var(--color-navy)]">
+            <span className="font-semibold text-navy">
               Reform targets quantify the mountain:
             </span>{" "}
             baseline{" "}
@@ -202,22 +202,22 @@ export default function FinancePage() {
       <section aria-labelledby="adjacent-flows" className="mt-7 card p-3.5">
         <h2
           id="adjacent-flows"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           Money that moved on parallel tracks - not reconstruction financing
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
           These flows are real money for other purposes and must not be
           conflated with the reconstruction programme.
         </p>
         <ul className="mt-4 space-y-2.5">
           {finance.adjacentFlows.map((f) => (
-            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-[color:var(--color-border)] pb-2.5 text-sm last:border-b-0">
+            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-sm last:border-b-0">
               <span>
                 <span className="font-medium">{f.label}.</span>{" "}
-                <span className="text-[color:var(--color-text-secondary)]">{f.note}</span>
+                <span className="text-text-secondary">{f.note}</span>
               </span>
-              <span className="tabular-nums font-semibold text-[color:var(--color-navy)]">
+              <span className="tabular-nums font-semibold text-navy">
                 {"display" in f && f.display ? f.display : fmtUsd(f.amountUsd)}
               </span>
             </li>
@@ -241,8 +241,8 @@ export default function FinancePage() {
       </div>
 
       {/* Core statement */}
-      <section className="mt-7 rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6">
-        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
+      <section className="mt-7 rounded-md border-l-4 border-navy bg-white p-6">
+        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-navy">
           Institutional architecture advanced faster than money and physical
           delivery. Procurement under way is a process milestone, not data
           of completed reconstruction.

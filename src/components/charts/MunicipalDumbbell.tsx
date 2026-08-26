@@ -50,7 +50,8 @@ const FN_AR: Record<string, string> = {
  * Visual 5 - Municipal power gap. Dumbbell chart comparing grouped
  * municipal functional presence in 2024 and 2026.
  */
-export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale } = {}) {  const t = T[locale];
+export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale } = {}) {
+  const t = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const rows = [...MUNICIPAL_POWER_GAP].reverse();
@@ -180,7 +181,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
           }}
         />
       </ChartFrame>
-      <p className="mt-3 rounded-md border-s-4 border-[color:var(--color-rust)] bg-white p-4 text-sm font-medium leading-relaxed text-[color:var(--color-text)]">
+      <p className="mt-3 rounded-md border-s-4 border-rust bg-white p-4 text-sm font-medium leading-relaxed text-text">
         {t.note}
       </p>
     </div>

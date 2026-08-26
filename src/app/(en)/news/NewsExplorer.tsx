@@ -265,7 +265,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
   }, [data, tab]);
 
   const inputCls =
-    "min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm";
+    "min-h-11 rounded-md border border-border bg-white px-2.5 text-sm";
 
   const roving = useRovingRadio({
     count: TABS.length,
@@ -276,7 +276,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
   return (
     <div>
       {/* Tabs */}
-      <div role="tablist" aria-label={t.tabsAria} className="mt-4 flex flex-wrap gap-1 border-b border-[color:var(--color-border)]">
+      <div role="tablist" aria-label={t.tabsAria} className="mt-4 flex flex-wrap gap-1 border-b border-border">
         {TABS.map((tb, i) => {
           const active = tb.id === tab;
           return (
@@ -290,8 +290,8 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
               onClick={() => set("tab", tb.id)}
               className={`min-h-11 rounded-t-md border-b-2 px-3.5 text-sm transition-colors duration-150 ${
                 active
-                  ? "border-[color:var(--color-navy)] font-semibold text-[color:var(--color-navy)]"
-                  : "border-transparent text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+                  ? "border-navy font-semibold text-navy"
+                  : "border-transparent text-text-secondary hover:text-navy"
               }`}
             >
               {tb[locale]}
@@ -303,7 +303,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
       {/* Filters */}
       <div className="mt-4 flex flex-wrap items-end gap-3">
         <div className="min-w-[200px] flex-1">
-          <label htmlFor="news-q" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+          <label htmlFor="news-q" className="block text-[11px] font-semibold text-text-secondary">
             {t.search}
           </label>
           <input
@@ -319,15 +319,15 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           />
         </div>
         <div>
-          <label htmlFor="news-from" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.from}</label>
+          <label htmlFor="news-from" className="block text-[11px] font-semibold text-text-secondary">{t.from}</label>
           <input id="news-from" type="date" value={get("from")} onChange={(e) => set("from", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-to" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.to}</label>
+          <label htmlFor="news-to" className="block text-[11px] font-semibold text-text-secondary">{t.to}</label>
           <input id="news-to" type="date" value={get("to")} onChange={(e) => set("to", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-lang" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.language}</label>
+          <label htmlFor="news-lang" className="block text-[11px] font-semibold text-text-secondary">{t.language}</label>
           <select id="news-lang" value={get("language")} onChange={(e) => set("language", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {(["en", "ar", "fr", "other"] as const).map((code) => (
@@ -336,7 +336,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-loc" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.location}</label>
+          <label htmlFor="news-loc" className="block text-[11px] font-semibold text-text-secondary">{t.location}</label>
           <select id="news-loc" value={get("location")} onChange={(e) => set("location", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {LOCATION_OPTIONS.map((s) => (
@@ -345,7 +345,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-sector" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.sector}</label>
+          <label htmlFor="news-sector" className="block text-[11px] font-semibold text-text-secondary">{t.sector}</label>
           <select id="news-sector" value={get("sector")} onChange={(e) => set("sector", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {SECTOR_OPTIONS.map((s) => (
@@ -354,7 +354,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.stage}</label>
+          <label htmlFor="news-stage" className="block text-[11px] font-semibold text-text-secondary">{t.stage}</label>
           <select id="news-stage" value={get("stage")} onChange={(e) => set("stage", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {STAGE_OPTIONS.map((s) => (
@@ -367,21 +367,21 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
             type="checkbox"
             checked={get("relevant") === "1"}
             onChange={(e) => set("relevant", e.target.checked ? "1" : "0")}
-            className="h-4 w-4 accent-[color:var(--color-navy)]"
+            className="h-4 w-4 accent-navy"
           />
           {t.onlyRelevant}
         </label>
         <button
           type="button"
           onClick={reset}
-          className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)]"
+          className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary"
         >
           {t.resetFilters}
         </button>
         <button
           type="button"
           onClick={() => setRefreshTick((n) => n + 1)}
-          className="min-h-11 rounded-md border border-[color:var(--color-navy)] bg-white px-3 text-sm font-medium text-[color:var(--color-navy)]"
+          className="min-h-11 rounded-md border border-navy bg-white px-3 text-sm font-medium text-navy"
         >
           {t.refresh}
         </button>
@@ -390,21 +390,21 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
       {/* Official directory under Official tab */}
       {tab === "official" ? (
         <div className="mt-4 card p-3.5">
-          <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+          <h3 className="text-sm font-semibold text-navy">
             {t.officialHeading}
           </h3>
-          <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 text-xs text-text-secondary">
             {t.officialBody}
           </p>
           {[...new Set(OFFICIAL_DIRECTORY.map((o) => o.group))].map((group) => (
             <div key={group} className="mt-3">
-              <h4 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-teal)]">
+              <h4 className="text-[11px] font-bold uppercase tracking-wide text-teal">
                 {locale === "ar" ? (GROUP_AR[group] ?? group) : group}
               </h4>
               <ul className="mt-1 grid gap-1 text-sm sm:grid-cols-2">
                 {OFFICIAL_DIRECTORY.filter((o) => o.group === group).map((o) => (
                   <li key={o.url}>
-                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-[color:var(--color-blue)] underline-offset-2 hover:underline" dir="ltr">
+                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-blue underline-offset-2 hover:underline" dir="ltr">
                       {o.name} ↗
                     </a>
                   </li>
@@ -426,26 +426,26 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
         {loading ? (
           <div className="grid gap-3 md:grid-cols-2" aria-busy="true" aria-label={t.loadingNews}>
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-36 animate-pulse rounded-md border border-[color:var(--color-border)] bg-white" />
+              <div key={i} className="h-36 animate-pulse rounded-md border border-border bg-white" />
             ))}
           </div>
         ) : error ? (
-          <div className="rounded-md border border-[color:var(--color-rust)] bg-white p-5 text-sm">
-            <p className="font-semibold text-[color:var(--color-rust)]">{t.liveUnavailable}</p>
-            <p className="mt-1 text-[color:var(--color-text-secondary)]">{error}</p>
-            <p className="mt-2 text-[color:var(--color-text-secondary)]">
+          <div className="rounded-md border border-rust bg-white p-5 text-sm">
+            <p className="font-semibold text-rust">{t.liveUnavailable}</p>
+            <p className="mt-1 text-text-secondary">{error}</p>
+            <p className="mt-2 text-text-secondary">
               {t.unaffected}
             </p>
             <button
               type="button"
               onClick={() => setRefreshTick((n) => n + 1)}
-              className="mt-3 min-h-11 rounded-md border border-[color:var(--color-navy)] px-4 text-sm font-medium text-[color:var(--color-navy)]"
+              className="mt-3 min-h-11 rounded-md border border-navy px-4 text-sm font-medium text-navy"
             >
               {t.tryAgain}
             </button>
           </div>
         ) : articles.length === 0 ? (
-          <div className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
+          <div className="card p-3.5 text-sm text-text-secondary">
             {t.noMatch}
           </div>
         ) : (
@@ -467,7 +467,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
                 <button
                   type="button"
                   onClick={() => setVisibleCount((c) => c + 25)}
-                  className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-5 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
+                  className="min-h-11 rounded-md border border-border bg-white px-5 text-sm text-text-secondary hover:border-navy hover:text-navy"
                 >
                   {t.showMore(articles.length - visibleCount)}
                 </button>
@@ -514,11 +514,11 @@ function NewsCard({
 
   return (
     <article className="flex h-full flex-col card p-3.5" dir={a.language === "ar" ? "rtl" : "ltr"}>
-      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]" dir={chrome}>
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-text-secondary" dir={chrome}>
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>
         <span>{fmtDateTime(a.publishedAt, locale)}</span>
-        <span className="rounded-sm border border-[color:var(--color-border)] px-1 py-0.5">{LANG_BADGE[locale][a.language] ?? a.language}</span>
+        <span className="rounded-sm border border-border px-1 py-0.5">{LANG_BADGE[locale][a.language] ?? a.language}</span>
         <span className="rounded-sm bg-[#EEF2F7] px-1 py-0.5 capitalize">{locale === "ar" ? (SOURCE_TYPE_AR[a.sourceType] ?? a.sourceType) : a.sourceType}</span>
         {/* Google hands out an opaque redirect instead of the article URL,
             so the reader is told where the link actually goes. */}
@@ -531,7 +531,7 @@ function NewsCard({
           </span>
         ) : null}
       </p>
-      <h3 className="mt-1.5 text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
+      <h3 className="mt-1.5 text-sm font-semibold leading-snug text-navy">
         <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
           {a.title} <span aria-hidden dir="ltr">↗</span>
           <span className="sr-only">
@@ -540,12 +540,12 @@ function NewsCard({
         </a>
       </h3>
       {a.description ? (
-        <p className="mt-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">{a.description}</p>
+        <p className="mt-1.5 text-xs leading-relaxed text-text-secondary">{a.description}</p>
       ) : null}
       {(a.valueChainStages.length > 0 || a.locations.length > 0) && (
         <ul className="mt-2 flex flex-wrap gap-1" dir={chrome}>
           {[...a.valueChainStages.slice(0, 2), ...a.locations.slice(0, 2)].map((tag) => (
-            <li key={tag} className="rounded-sm bg-[color:var(--color-bg)] px-1.5 py-0.5 text-[10.5px] text-[color:var(--color-text-secondary)]">
+            <li key={tag} className="rounded-sm bg-bg px-1.5 py-0.5 text-[10.5px] text-text-secondary">
               {label(tag)}
             </li>
           ))}
@@ -553,7 +553,7 @@ function NewsCard({
       )}
       <div className="mt-auto pt-2" dir={chrome}>
         {typeof a.relatedCount === "number" && a.relatedCount > 0 ? (
-          <p className="text-[11px] text-[color:var(--color-text-secondary)]">
+          <p className="text-[11px] text-text-secondary">
             {t.alsoReported(a.relatedCount)}
           </p>
         ) : null}
@@ -561,12 +561,12 @@ function NewsCard({
           type="button"
           onClick={onToggle}
           aria-expanded={expanded}
-          className="mt-1 min-h-8 text-[11px] text-[color:var(--color-blue)] underline decoration-dotted underline-offset-2"
+          className="mt-1 min-h-8 text-[11px] text-blue underline decoration-dotted underline-offset-2"
         >
           {expanded ? t.hide : t.whyRelevant}
         </button>
         {expanded ? (
-          <ul className="mt-1.5 space-y-1 border-s-2 border-[color:var(--color-border)] ps-2.5 text-[11px] text-[color:var(--color-text-secondary)]">
+          <ul className="mt-1.5 space-y-1 border-s-2 border-border ps-2.5 text-[11px] text-text-secondary">
             {whyRelevant.map((w) => (
               <li key={w}>{w}</li>
             ))}

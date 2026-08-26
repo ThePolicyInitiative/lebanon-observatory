@@ -50,19 +50,19 @@ export default function RegionPresence({
   return (
     <figure className="card p-3.5 sm:p-4">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">{t.sub}</p>
+        <p className="mt-1 text-sm text-text-secondary">{t.sub}</p>
       </figcaption>
 
-      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-text-secondary">
         <span className="flex items-center gap-1.5">
-          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-[color:var(--color-y2024)]" />
+          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2024" />
           2024
         </span>
         <span className="flex items-center gap-1.5">
-          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-[color:var(--color-y2026)]" />
+          <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2026" />
           2026
         </span>
       </p>
@@ -71,16 +71,16 @@ export default function RegionPresence({
         {rows.map((r) => (
           <li key={r.id}>
             <p className="flex items-baseline justify-between gap-2 text-[12.5px]">
-              <span className="text-[color:var(--color-text)]">
+              <span className="text-text">
                 {r.label}
                 {!r.mappable ? (
-                  <span className="ms-1.5 text-[10.5px] text-[color:var(--color-text-secondary)]">
+                  <span className="ms-1.5 text-[10.5px] text-text-secondary">
                     ({t.unmappable})
                   </span>
                 ) : null}
               </span>
-              <span className="shrink-0 tabular-nums text-[color:var(--color-text-secondary)]">
-                {r.v24} → <strong className="text-[color:var(--color-navy)]">{r.v26}</strong>
+              <span className="shrink-0 tabular-nums text-text-secondary">
+                {r.v24} → <strong className="text-navy">{r.v26}</strong>
               </span>
             </p>
             <span className="mt-1 block space-y-[3px]">
@@ -105,7 +105,7 @@ export default function RegionPresence({
       </ul>
 
       {showCaveat ? (
-        <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
           {cautionMap(locale)}
         </p>
       ) : null}

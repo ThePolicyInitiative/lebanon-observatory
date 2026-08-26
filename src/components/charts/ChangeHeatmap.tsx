@@ -98,7 +98,8 @@ const T = {
 export default function ChangeHeatmap({
   locale = "en",
   showCaveat = true,
-}: { locale?: Locale; showCaveat?: boolean } = {}) {  const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
+}: { locale?: Locale; showCaveat?: boolean } = {}) {
+  const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
   // null while the cell's entries are on their way from /cells/.
   const [records, setRecords] = useState<CellEntry[] | null>(null);
   const requestSeq = useRef(0);
@@ -385,13 +386,13 @@ export default function ChangeHeatmap({
           onKeyDown={trapTab}
         >
           <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white shadow-xl">
-            <div className="flex items-start justify-between gap-3 border-b border-[color:var(--color-border)] p-4">
+            <div className="flex items-start justify-between gap-3 border-b border-border p-4">
               <div>
-                <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+                <h3 className="text-sm font-semibold text-navy">
                   {layerMeta.find((l) => l.id === cell.layer)?.label} ·{" "}
                   {stages[cell.stageNo - 1]}
                 </h3>
-                <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
+                <p className="mt-0.5 text-xs text-text-secondary">
                   {t.drawerCounts(
                     countsFor(2024, cell.layer)[cell.stageNo - 1],
                     countsFor(2026, cell.layer)[cell.stageNo - 1],
@@ -403,7 +404,7 @@ export default function ChangeHeatmap({
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="min-h-11 min-w-11 rounded border border-[color:var(--color-border)] text-sm"
+                className="min-h-11 min-w-11 rounded border border-border text-sm"
               >
                 <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
@@ -411,11 +412,11 @@ export default function ChangeHeatmap({
             </div>
             <div className="flex-1 overflow-y-auto p-4">
               {records === null ? (
-                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                <p className="text-sm text-text-secondary">
                   {t.loading}
                 </p>
               ) : records.length === 0 ? (
-                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                <p className="text-sm text-text-secondary">
                   {t.empty}
                 </p>
               ) : (
@@ -423,10 +424,10 @@ export default function ChangeHeatmap({
                   {records.map((r) => (
                     <li
                       key={r.id}
-                      className="rounded border border-[color:var(--color-border)] p-3"
+                      className="rounded border border-border p-3"
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm font-semibold text-[color:var(--color-navy)]">
+                        <p className="text-sm font-semibold text-navy">
                           {r.actorName}
                         </p>
                         <span
@@ -441,7 +442,7 @@ export default function ChangeHeatmap({
                           {r.year}
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
+                      <p className="mt-1 text-xs text-text-secondary">
                         {r.functionColumn} ·{" "}
                         {statusLabel(r.implementationStatus, locale)}
                         {(() => {
@@ -454,7 +455,7 @@ export default function ChangeHeatmap({
                             : "";
                         })()}
                       </p>
-                      <p className="mt-2 text-xs leading-relaxed text-[color:var(--color-text)]">
+                      <p className="mt-2 text-xs leading-relaxed text-text">
                         {locale === "ar" && r.summaryAr ? r.summaryAr : r.summary}
                       </p>
                     </li>

@@ -87,7 +87,8 @@ const T = {
   },
 } as const;
 
-export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
+export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
 
   const ar = locale === "ar";
@@ -223,10 +224,10 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
               <span
                 className={`rounded-sm px-2.5 py-1.5 font-medium ${
                   step.status === "done"
-                    ? "bg-[#E8F1F3] text-[color:var(--color-teal)]"
+                    ? "bg-[#E8F1F3] text-teal"
                     : step.status === "partial"
                       ? "bg-[#FAF3E3] text-[#8a6200]"
-                      : "border border-dashed border-[color:var(--color-rust)] text-[color:var(--color-rust)]"
+                      : "border border-dashed border-rust text-rust"
                 }`}
               >
                 {step.label}
@@ -235,7 +236,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
                 </span>
               </span>
               {i < arr.length - 1 ? (
-                <span aria-hidden className="text-[color:var(--color-text-secondary)]">
+                <span aria-hidden className="text-text-secondary">
                   {ar ? "←" : "→"}
                 </span>
               ) : null}

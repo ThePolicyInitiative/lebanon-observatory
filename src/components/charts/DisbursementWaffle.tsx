@@ -95,7 +95,7 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
             );
           })}
         </div>
-        <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-text-secondary">
           <span className="flex items-center gap-1.5">
             {/* The swatch takes the cell's outline too. A legend that does
                 not look like the mark it names stops being a legend. */}

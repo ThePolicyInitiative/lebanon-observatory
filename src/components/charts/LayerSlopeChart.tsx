@@ -29,7 +29,8 @@ const T = {
   },
 } as const;
 
-export default function LayerSlopeChart({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
+export default function LayerSlopeChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
 
   const totals = useMemo(

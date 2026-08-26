@@ -58,7 +58,7 @@ function Expandable({ text, className = "", labels }: { text: string; className?
         className={`cursor-pointer list-none [&::-webkit-details-marker]:hidden ${className}`}
       >
         {head}{" "}
-        <span className="whitespace-nowrap font-semibold text-[color:var(--color-blue)] underline-offset-2 hover:underline">
+        <span className="whitespace-nowrap font-semibold text-blue underline-offset-2 hover:underline">
           <span className="group-open/exp:hidden">{labels.more}</span>
           <span className="hidden group-open/exp:inline">{labels.less}</span>
         </span>
@@ -82,12 +82,12 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
   return (
     <section
       aria-labelledby="service-operators"
-      className="rounded-md border border-dashed border-[color:var(--color-border)] bg-[#FBFCFD] p-4 sm:p-6"
+      className="rounded-md border border-dashed border-border bg-[#FBFCFD] p-4 sm:p-6"
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2
           id="service-operators"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           {t.title}
         </h2>
@@ -99,7 +99,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
           {t.badge}
         </span>
       </div>
-      <p className="mt-2 prose-measure text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
         {ar
           ? "الكهرباء والاتصالات والري والطرق، كما يصف المشغّلون أنفسهم إعادتها إلى الخدمة. الدقة هنا هي نفسها في منشورات مؤسسة المياه، والوضع نفسه: غير مؤكَّد، وخارج كل أعداد هذا الموقع. وهي هنا لأن هذه الروايات تسمّي المحطة والخط والجسر والتاريخ، بينما يتوقف كل تقييم عند حدود القطاع."
           : "Electricity, telecoms, irrigation and roads, as the operators themselves describe restoring them. This is the same granularity as the water utility's own posts and the same standing: unconfirmed, and in none of this site's counts. It is here because these accounts name the substation, the line, the bridge and the date, where every assessment stops at the sector."}
@@ -121,10 +121,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                 </span>
               ) : null}
             </p>
-            <h3 className="mt-2 text-sm font-semibold text-[color:var(--color-navy)]">
+            <h3 className="mt-2 text-sm font-semibold text-navy">
               {ar ? (o.nameAr ?? o.name) : o.name}
             </h3>
-            <p className="mt-0.5 text-[13px] font-medium italic text-[color:var(--color-text-secondary)]">
+            <p className="mt-0.5 text-[13px] font-medium italic text-text-secondary">
               {ar ? (o.headlineAr ?? o.headline) : o.headline}
             </p>
 
@@ -136,11 +136,11 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                   <Expandable
                     labels={labels}
                     text={ar ? (i.whatAr ?? i.what) : i.what}
-                    className="text-[12.5px] leading-relaxed text-[color:var(--color-text)]"
+                    className="text-[12.5px] leading-relaxed text-text"
                   />
-                  <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
+                  <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-secondary">
                     {figure ? (
-                      <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold tabular-nums text-[color:var(--color-navy)]">
+                      <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold tabular-nums text-navy">
                         {figure}
                       </span>
                     ) : null}
@@ -149,7 +149,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                       {ar ? (i.whereAr ?? i.where) : i.where}
                     </span>
                   </p>
-                  <p className="mt-0.5 text-[11px] text-[color:var(--color-text-secondary)]">
+                  <p className="mt-0.5 text-[11px] text-text-secondary">
                     <span className="font-semibold">{t.when}</span>{" "}
                     {ar ? (i.dateAr ?? i.date) : i.date}
                   </p>
@@ -162,15 +162,15 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
               <Expandable
                 labels={labels}
                 text={ar ? (o.constraintAr ?? o.constraint) : o.constraint}
-                className="text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]"
+                className="text-[11.5px] leading-relaxed text-text-secondary"
               />
             </div>
-            <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px]">
+            <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-[11px]">
               <a
                 href={o.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                className="font-medium text-blue underline-offset-2 hover:underline"
               >
                 {o.sourceName} ↗
               </a>
@@ -180,11 +180,11 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       </div>
 
       {/* The finding two ministries state independently */}
-      <div className="mt-4 rounded-md border-2 border-[color:var(--color-rust)] bg-[#FBF3F0] p-4">
-        <h3 className="text-sm font-bold text-[color:var(--color-rust)]">
+      <div className="mt-4 rounded-md border-2 border-rust bg-[#FBF3F0] p-4">
+        <h3 className="text-sm font-bold text-rust">
           {ar ? ops.crossCutting.titleAr : ops.crossCutting.title}
         </h3>
-        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-[color:var(--color-text)]">
+        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-text">
           {ar ? ops.crossCutting.textAr : ops.crossCutting.text}
         </p>
         <p className="mt-2 text-[11px]">
@@ -192,7 +192,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
             href={ops.crossCutting.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             {ops.crossCutting.sourceName} ↗
           </a>
@@ -200,11 +200,11 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       </div>
 
       {/* The date every timeline on this page runs into */}
-      <div className="mt-4 rounded-md border-2 border-[color:var(--color-navy)] bg-[#EEF2F7] p-4">
-        <h3 className="text-sm font-bold text-[color:var(--color-navy)]">
+      <div className="mt-4 rounded-md border-2 border-navy bg-[#EEF2F7] p-4">
+        <h3 className="text-sm font-bold text-navy">
           {ar ? ops.horizon.titleAr : ops.horizon.title}
         </h3>
-        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-[color:var(--color-text)]">
+        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-text">
           {ar ? ops.horizon.textAr : ops.horizon.text}
         </p>
         <p className="mt-2 text-[11px]">
@@ -212,23 +212,23 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
             href={ops.horizon.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             {ops.horizon.sourceName} ↗
           </a>
         </p>
       </div>
 
-      <details className="mt-4 rounded-md border border-dashed border-[color:var(--color-border)] bg-white p-3">
-        <summary className="cursor-pointer text-[12px] font-bold text-[color:var(--color-navy)]">
+      <details className="mt-4 rounded-md border border-dashed border-border bg-white p-3">
+        <summary className="cursor-pointer text-[12px] font-bold text-navy">
           {t.howToRead} ({ops.caveats.length})
         </summary>
-        <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-text-secondary">
           {(ar ? ops.caveatsAr : ops.caveats).map((c) => (
             <li key={c.slice(0, 30)} className="flex gap-2">
               <span
                 aria-hidden
-                className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-rust)]"
+                className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-rust"
               />
               <span>{c}</span>
             </li>

@@ -77,11 +77,11 @@ const T = {
 } as const;
 
 const KIND_CHIP: Record<string, string> = {
-  news: "bg-[#EEF2F7] text-[color:var(--color-navy)]",
-  research: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  official: "bg-[#F4EAF0] text-[color:var(--color-magenta)]",
+  news: "bg-[#EEF2F7] text-navy",
+  research: "bg-[#E8F1F3] text-teal",
+  official: "bg-[#F4EAF0] text-magenta",
   assessment: "bg-[#FAF3E3] text-[#8a6200]",
-  rights: "bg-[#F7E9E5] text-[color:var(--color-rust)]",
+  rights: "bg-[#F7E9E5] text-rust",
 };
 
 const ITEMS = archive.items as Item[];
@@ -125,8 +125,8 @@ export default function CoverageHistory({
       aria-current={on ? "true" : undefined}
       className={`inline-flex min-h-8 items-center rounded-md border px-2.5 text-xs transition-colors ${
         on
-          ? "border-[color:var(--color-navy)] bg-[color:var(--color-navy)] font-semibold text-white"
-          : "border-[color:var(--color-border)] bg-white text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+          ? "border-navy bg-navy font-semibold text-white"
+          : "border-border bg-white text-text-secondary hover:text-navy"
       }`}
     >
       {label}
@@ -138,16 +138,16 @@ export default function CoverageHistory({
   // the section itself and the block has no accessible name.
   return (
     <section aria-labelledby="coverage-history-heading" id="coverage-history" className="mt-10 scroll-mt-[calc(var(--header-h)+1rem)]">
-      <h2 id="coverage-history-heading" className="text-xl font-semibold text-[color:var(--color-navy)]">
+      <h2 id="coverage-history-heading" className="text-xl font-semibold text-navy">
         {t.heading}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
         {t.lede}
       </p>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+          <span className="text-[11px] font-semibold text-text-secondary">
             {t.filterYear}
           </span>
           {chip(t.all, activeYear === null, href(base, null, activeKind))}
@@ -156,7 +156,7 @@ export default function CoverageHistory({
           )}
         </span>
         <span className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+          <span className="text-[11px] font-semibold text-text-secondary">
             {t.filterKind}
           </span>
           {chip(t.all, activeKind === null, href(base, activeYear, null))}
@@ -171,19 +171,19 @@ export default function CoverageHistory({
         {activeYear || activeKind ? (
           <a
             href={href(base, null, null)}
-            className="text-xs font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="text-xs font-medium text-blue underline-offset-2 hover:underline"
           >
             {t.clear}
           </a>
         ) : null}
       </div>
 
-      <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 text-xs text-text-secondary">
         {t.showing(shown.length, ITEMS.length)}
       </p>
 
       {shown.length === 0 ? (
-        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-text-secondary">
           {t.none}
         </p>
       ) : (
@@ -198,7 +198,7 @@ export default function CoverageHistory({
                 open={yi === 0 || activeYear !== null || activeKind !== null}
                 className="card p-3.5 sm:p-4"
               >
-                <summary className="cursor-pointer list-none text-sm font-semibold text-[color:var(--color-navy)] [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-navy [&::-webkit-details-marker]:hidden">
                   {t.yearHeading(y, inYear.length)}
                 </summary>
                 <ul className="mt-3 space-y-3">
@@ -206,9 +206,9 @@ export default function CoverageHistory({
                     <li
                       key={item.id}
                       dir={item.language === "ar" ? "rtl" : "ltr"}
-                      className="border-s-2 border-[color:var(--color-border)] ps-3"
+                      className="border-s-2 border-border ps-3"
                     >
-                      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
+                      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-secondary">
                         <span className="tabular-nums">
                           {item.date ? fmtDate(item.date, locale) : t.undated}
                         </span>
@@ -220,7 +220,7 @@ export default function CoverageHistory({
                           {t.kinds[item.kind] ?? item.kind}
                         </span>
                       </p>
-                      <h4 className="mt-1 text-[13.5px] font-semibold leading-snug text-[color:var(--color-navy)]">
+                      <h4 className="mt-1 text-[13.5px] font-semibold leading-snug text-navy">
                         <a
                           href={item.url}
                           target="_blank"
@@ -231,7 +231,7 @@ export default function CoverageHistory({
                           <span className="sr-only">{t.opens(item.publisher)}</span>
                         </a>
                       </h4>
-                      <p className="mt-1 text-xs leading-relaxed text-[color:var(--color-text)]">
+                      <p className="mt-1 text-xs leading-relaxed text-text">
                         {locale === "ar" ? (item.focusAr ?? item.focus) : item.focus}
                       </p>
                     </li>

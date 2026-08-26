@@ -37,7 +37,8 @@ const T = {
   },
 } as const;
 
-export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
+export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const chartRef = useRef<ECharts | null>(null);
   const zone = destruction.zones2026.find((z) => z.id === "south-litani")!;
   const rows = zone.worstCadasters;
   const cadasterName = (c: { name: string; nameAr?: string }) =>

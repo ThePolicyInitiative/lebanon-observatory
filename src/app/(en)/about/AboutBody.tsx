@@ -19,14 +19,14 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
         <section key={s.id} aria-labelledby={`about-${s.id}`}>
           <h2
             id={`about-${s.id}`}
-            className="text-xl font-semibold text-[color:var(--color-navy)]"
+            className="text-xl font-semibold text-navy"
           >
             {s.heading}
           </h2>
           {s.body?.map((p) => (
             <p
               key={p.slice(0, 24)}
-              className="mt-2.5 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]"
+              className="mt-2.5 max-w-3xl text-sm leading-relaxed text-text-secondary"
             >
               {p}
             </p>
@@ -36,7 +36,7 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
               {s.points.map((p) => (
                 <li
                   key={p.slice(0, 24)}
-                  className="card p-3.5 text-sm leading-relaxed text-[color:var(--color-text)]"
+                  className="card p-3.5 text-sm leading-relaxed text-text"
                 >
                   {p}
                 </li>
@@ -49,13 +49,13 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
       <section aria-labelledby="about-contact" className="card p-3.5 sm:p-4">
         <h2
           id="about-contact"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           {t.contact.heading}
         </h2>
         {CONTACT_EMAIL ? (
           <>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
               {t.contact.body}
             </p>
             <p className="mt-2 text-sm font-semibold">
@@ -63,17 +63,17 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
                 href={`mailto:${CONTACT_EMAIL}`}
                 lang="en"
                 dir="ltr"
-                className="inline-block text-[color:var(--color-blue)] underline underline-offset-2"
+                className="inline-block text-blue underline underline-offset-2"
               >
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <p className="mt-2.5 max-w-3xl text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-2.5 max-w-3xl text-[13px] leading-relaxed text-text-secondary">
               {t.contact.note}
             </p>
           </>
         ) : (
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
             {t.contact.none}
           </p>
         )}

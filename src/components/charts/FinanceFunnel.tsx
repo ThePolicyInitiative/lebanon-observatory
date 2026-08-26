@@ -62,10 +62,10 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
       className="card p-3.5 sm:p-4"
     >
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
@@ -76,11 +76,11 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
           return (
             <div key={b.id}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                <span className="text-[13px] font-medium text-[color:var(--color-text)]">
+                <span className="text-[13px] font-medium text-text">
                   {locale === "ar" ? b.labelAr : b.label}
                 </span>
-                <span className="text-[13px] tabular-nums text-[color:var(--color-text-secondary)]">
-                  <strong className="text-[color:var(--color-navy)]">
+                <span className="text-[13px] tabular-nums text-text-secondary">
+                  <strong className="text-navy">
                     {fmtUsd(b.amountUsd, locale)}
                   </strong>
                   {typeof b.pctOfNeed === "number"
@@ -104,7 +104,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
       </div>
 
       <div className="mt-6 panel-sunken p-4">
-        <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
+        <h4 className="text-sm font-semibold text-navy">
           {tr.magnified}
         </h4>
         <div
@@ -113,7 +113,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
           aria-label={tr.magnifiedAlt}
         >
           <div
-            className="h-full bg-[color:var(--color-amber)]"
+            className="h-full bg-amber"
             style={{ width: "1.65%", minWidth: "3px" }}
           />
           {/* The undisbursed remainder is 98.35% of this bar and measured
@@ -125,11 +125,11 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
             style={{ borderInlineEnd: `1px solid ${UI.outlineQuiet}` }}
           />
         </div>
-        <div className="mt-2 flex flex-wrap justify-between gap-2 text-xs tabular-nums text-[color:var(--color-text-secondary)]">
+        <div className="mt-2 flex flex-wrap justify-between gap-2 text-xs tabular-nums text-text-secondary">
           <span>
             <span
               aria-hidden
-              className="me-1 inline-block h-2.5 w-2.5 rounded-sm bg-[color:var(--color-amber)]"
+              className="me-1 inline-block h-2.5 w-2.5 rounded-sm bg-amber"
             />
             {tr.disbursed} <strong>1.65%</strong> {tr.disbursedNote}
           </span>
@@ -150,17 +150,17 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
             key={z.id}
             className="flex flex-wrap items-baseline gap-x-2 text-[13px]"
           >
-            <span className="font-medium text-[color:var(--color-rust)]">
+            <span className="font-medium text-rust">
               {locale === "ar" ? z.labelAr : z.label}:
             </span>
-            <span className="text-[color:var(--color-text-secondary)]">
+            <span className="text-text-secondary">
               {locale === "ar" ? z.noteAr : z.note}
             </span>
           </li>
         ))}
       </ul>
 
-      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
         {tr.caveat}
       </p>
     </figure>

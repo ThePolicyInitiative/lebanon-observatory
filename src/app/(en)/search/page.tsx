@@ -42,14 +42,14 @@ export default function SearchPage() {
           traced entry - each of those carries its own search on its own page:{" "}
           <Link
             href="/explorer"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             the explorer
           </Link>{" "}
           and{" "}
           <Link
             href="/news"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             the news page
           </Link>

@@ -62,10 +62,10 @@ export default function Page() {
       {/* The full interactive map, the same module the English page
           mounts, in Arabic. */}
       <section aria-labelledby="ar-interactive" className="mt-7">
-        <h2 id="ar-interactive" className="text-xl font-semibold text-[color:var(--color-navy)]">
+        <h2 id="ar-interactive" className="text-xl font-semibold text-navy">
           أين تركّز النشاط المرصود
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
           دبّوس واحد لكل مدخل متتبَّع، موضوع في البلدة التي يسمّيها الإبلاغ.
           رشّح بالسنة وطبقة الجهات والمرحلة وحالة التنفيذ، وابحث عن بلدة
           لتقريب الخريطة إليها.
@@ -83,10 +83,10 @@ export default function Page() {
       </div>
 
       <section id="no-national-layer" className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
-        <h2 className="text-xl font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-xl font-semibold text-navy">
           لماذا لا توجد طبقة أضرار وطنية
         </h2>
-        <p className="mt-2 text-[color:var(--color-text)]">
+        <p className="mt-2 text-text">
           تغطي التقييمات السريعة لعام 2026 منطقتين اثنتين - جنوب الليطاني
           (بتدقيق مكتبي) وبيروت-جبل لبنان (بفحص ميداني) - بينما لم يكن
           للبقاع وبعلبك-الهرمل، وقد بلغتهما الحرب، أي تقييم مواز بحلول
@@ -105,10 +105,10 @@ export default function Page() {
       {/* The regional bar list stays as a reading complement below the
           interactive map: the same totals, glanceable without a pointer. */}
       <section aria-labelledby="ar-regions" className="mt-8">
-        <h2 id="ar-regions" className="text-xl font-semibold text-[color:var(--color-navy)]">
+        <h2 id="ar-regions" className="text-xl font-semibold text-navy">
           الإشارات إلى الأماكن، تجمّعاً بتجمّع
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
           كل مدخل قد يسمّي مكاناً واحداً أو أكثر. ما يظهر هنا هو عدد الإشارات، لا حجم
           العمل ولا شدّة الضرر.
         </p>
@@ -116,15 +116,15 @@ export default function Page() {
           {rows.map((r) => (
             <li key={r.id} className="card p-3.5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <span className="text-[13px] font-semibold text-[color:var(--color-navy)]">
+                <span className="text-[13px] font-semibold text-navy">
                   {r.label}
                   {!r.mappable ? (
-                    <span className="ms-2 rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--color-text-secondary)]">
+                    <span className="ms-2 rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[10px] font-semibold text-text-secondary">
                       خارج الخريطة
                     </span>
                   ) : null}
                 </span>
-                <span className="text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
+                <span className="text-[11px] tabular-nums text-text-secondary">
                   2024: {r.y24} · 2026: {r.y26}
                 </span>
               </div>
@@ -134,7 +134,7 @@ export default function Page() {
                   { year: "2026", v: r.y26, color: YEAR_COLORS.y2026 },
                 ].map((row) => (
                   <div key={row.year} className="flex items-center gap-2 text-[11.5px]">
-                    <span className="w-10 shrink-0 tabular-nums text-[color:var(--color-text-secondary)]">
+                    <span className="w-10 shrink-0 tabular-nums text-text-secondary">
                       {row.year}
                     </span>
                     <span
@@ -151,7 +151,7 @@ export default function Page() {
                   {r.byLayer26
                     .filter((l) => l.n > 0)
                     .map((l) => (
-                      <li key={l.id} className="chip bg-[color:var(--color-bg)]">
+                      <li key={l.id} className="chip bg-bg">
                         <span aria-hidden className="h-2 w-2 rounded-sm" style={{ background: l.color }} />
                         {l.short}
                         <span className="ms-1 tabular-nums font-bold">{l.n}</span>
@@ -162,7 +162,7 @@ export default function Page() {
             </li>
           ))}
         </ul>
-        <p className="mt-3 note-caution text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="mt-3 note-caution text-[12.5px] leading-relaxed text-text-secondary">
           التجمّعات تختلف في المساحة والسكان وكثافة التغطية، فلا تُقارن أعدادها ببعضها
           مباشرة. والتجمّعات الثلاثة الأخيرة لا يمكن ردّها إلى محافظة واحدة، فتُعرض
           منفصلة بدل أن تُخترع لها مواقع على الخريطة.

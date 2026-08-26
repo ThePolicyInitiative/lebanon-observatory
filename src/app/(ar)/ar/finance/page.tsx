@@ -77,7 +77,7 @@ export default function Page() {
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
           <li key={c.n} className="card p-3.5">
-            <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
+            <p className="text-xs font-bold uppercase tracking-widest text-teal">
               {c.n}. {c.label}
             </p>
             <p className="mt-1.5 text-sm leading-relaxed">{c.text}</p>
@@ -106,11 +106,11 @@ export default function Page() {
       <section aria-labelledby="ar-leap" className="mt-7 card p-3.5">
         <h2
           id="ar-leap"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           داخل الـ250 مليون دولار الأولى
         </h2>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           مخصّصات التقييم. أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد -
           فالأشغال تحتاج تحضيراً أولاً - وهو ما يترك فجوة الـ750 مليون دولار في
           الإطار للشركاء.
@@ -120,24 +120,24 @@ export default function Page() {
             <caption className="sr-only">مخصّصات مكوّنات LEAP</caption>
             <thead>
               <tr>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-start font-semibold text-[color:var(--color-navy)]">المكوّن</th>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">التمويل الأولي</th>
-                <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-end font-semibold text-[color:var(--color-navy)]">المقدَّر (الإطار الكامل)</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-start font-semibold text-navy">المكوّن</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">التمويل الأولي</th>
+                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">المقدَّر (الإطار الكامل)</th>
               </tr>
             </thead>
             <tbody>
               {finance.leapComponents.map((c) => (
-                <tr key={c.label} className="odd:bg-[color:var(--color-bg)]">
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">
+                <tr key={c.label} className="odd:bg-bg">
+                  <td className="border-b border-border px-2 py-1.5">
                     {c.labelAr}
                     {"noteAr" in c && c.noteAr ? (
-                      <span className="block text-[11px] text-[color:var(--color-text-secondary)]">{c.noteAr}</span>
+                      <span className="block text-[11px] text-text-secondary">{c.noteAr}</span>
                     ) : null}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">
+                  <td className="border-b border-border px-2 py-1.5 text-end">
                     {c.initialUsd > 0 ? fmtUsd(c.initialUsd, "ar") : "-"}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-end">{fmtUsd(c.appraisedUsd, "ar")}</td>
+                  <td className="border-b border-border px-2 py-1.5 text-end">{fmtUsd(c.appraisedUsd, "ar")}</td>
                 </tr>
               ))}
             </tbody>
@@ -149,11 +149,11 @@ export default function Page() {
       <section aria-labelledby="ar-procurement" className="mt-7">
         <h2
           id="ar-procurement"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           حزم الشراء وحالتها الفعلية
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
           الحالات كما كانت معروضة على بوابة الشراء في مجلس الإنماء والإعمار عند
           المراجعة في 17 تموز 2026. التمديدات وفترات التقييم أمر عادي بقواعد البنك
           الدولي، وغير عادي أمام الاحتياج اللبناني. وأحدّ إشارة هنا انعكاسية: جهة
@@ -162,10 +162,10 @@ export default function Page() {
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
             <article key={p.id} className="card p-3.5">
-              <h3 className="text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
+              <h3 className="text-sm font-semibold leading-snug text-navy">
                 {p.labelAr}
               </h3>
-              <dl className="mt-2 space-y-1 text-xs text-[color:var(--color-text-secondary)]">
+              <dl className="mt-2 space-y-1 text-xs text-text-secondary">
                 <div className="flex gap-1.5">
                   <dt className="font-semibold">نُشرت:</dt>
                   <dd>{fmtDate(p.published, "ar")}</dd>
@@ -186,7 +186,7 @@ export default function Page() {
         </div>
         <div className="mt-4 card p-3.5 text-sm">
           <p>
-            <span className="font-semibold text-[color:var(--color-navy)]">
+            <span className="font-semibold text-navy">
               أهداف الإصلاح تقيس حجم الجبل:
             </span>{" "}
             خط أساس{" "}
@@ -205,21 +205,21 @@ export default function Page() {
       <section aria-labelledby="ar-adjacent" className="mt-7 card p-3.5">
         <h2
           id="ar-adjacent"
-          className="text-xl font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-navy"
         >
           مال تحرّك على مسارات موازية - وليس تمويل إعادة إعمار
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
           هذه تدفّقات مال حقيقي لأغراض أخرى، ولا يجوز خلطها ببرنامج إعادة الإعمار.
         </p>
         <ul className="mt-4 space-y-2.5">
           {finance.adjacentFlows.map((f) => (
-            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-[color:var(--color-border)] pb-2.5 text-sm last:border-b-0">
+            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-sm last:border-b-0">
               <span>
                 <span className="font-medium">{f.labelAr}.</span>{" "}
-                <span className="text-[color:var(--color-text-secondary)]">{f.noteAr}</span>
+                <span className="text-text-secondary">{f.noteAr}</span>
               </span>
-              <span className="tabular-nums font-semibold text-[color:var(--color-navy)]">
+              <span className="tabular-nums font-semibold text-navy">
                 {"displayAr" in f && f.displayAr ? f.displayAr : fmtUsd(f.amountUsd, "ar")}
               </span>
             </li>
@@ -243,8 +243,8 @@ export default function Page() {
       </div>
 
       {/* Core statement */}
-      <section className="mt-7 rounded-md border-s-4 border-[color:var(--color-navy)] bg-white p-6">
-        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
+      <section className="mt-7 rounded-md border-s-4 border-navy bg-white p-6">
+        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-navy">
           تقدّمت البنية المؤسسية أسرع من المال ومن الإنجاز المادي. والشراء الجاري
           محطة إجرائية، لا معطى عن إعادة إعمار مكتملة.
         </blockquote>

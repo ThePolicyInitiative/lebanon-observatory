@@ -54,7 +54,8 @@ export default function NewsAnalytics({
 }: {
   articles: NewsArticle[];
   locale?: Locale;
-}) {  const t = T[locale];
+}) {
+  const t = T[locale];
   const [volume, setVolume] = useState<VolumeResponse | null>(null);
 
   useEffect(() => {
@@ -140,14 +141,14 @@ export default function NewsAnalytics({
 
   return (
     <section aria-label={t.sectionAria}>
-      <h2 className="text-lg font-semibold text-[color:var(--color-navy)]">
+      <h2 className="text-lg font-semibold text-navy">
         {t.title}
       </h2>
-      <p className="mt-1 max-w-3xl text-xs text-[color:var(--color-text-secondary)]">
+      <p className="mt-1 max-w-3xl text-xs text-text-secondary">
         {t.sub}
       </p>
       <div className="mt-4 card p-3.5">
-        <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-sm font-semibold text-navy">
           {volume ? t.volumeTitleGdelt : t.volumeTitleLocal}
         </h3>
         <EChart

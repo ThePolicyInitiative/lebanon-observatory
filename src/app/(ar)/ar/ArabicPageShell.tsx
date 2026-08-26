@@ -40,10 +40,10 @@ export default function ArabicPageShell({
       figures={figures}
       after={
         <div className="mt-8 card p-3.5 sm:p-4">
-          <p className="text-[13px] leading-relaxed text-[color:var(--color-text)]">
+          <p className="text-[13px] leading-relaxed text-text">
             {AR.common.figuresNote}
           </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
             {AR.common.englishModules}
           </p>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
@@ -53,13 +53,13 @@ export default function ArabicPageShell({
             <Link
               href={englishHref}
               hrefLang="en"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.common.openEnglish} ←
             </Link>
             <Link
               href="/ar"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.common.backToArabicHome} ←
             </Link>

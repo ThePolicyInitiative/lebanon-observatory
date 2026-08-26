@@ -45,7 +45,8 @@ const T = {
   },
 } as const;
 
-export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
+export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const components = finance.leapComponents as Component[];
 

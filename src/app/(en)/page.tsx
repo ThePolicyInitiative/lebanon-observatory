@@ -38,7 +38,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-[color:var(--color-navy)] bg-[linear-gradient(160deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
+      <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(160deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
         <svg
           aria-hidden
           viewBox="0 0 620 860"
@@ -57,7 +57,7 @@ export default function HomePage() {
           ))}
         </svg>
         <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[color:var(--color-amber)]">
+          <p className="text-sm font-semibold uppercase tracking-widest text-amber">
             Lebanon Reconstruction Observatory
           </p>
           <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
@@ -77,7 +77,7 @@ export default function HomePage() {
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/compare"
-              className="inline-flex min-h-11 items-center rounded-md bg-[color:var(--color-amber)] px-5 text-sm font-semibold text-[#2a1e00] transition-colors duration-150 hover:bg-[#e8ab1a]"
+              className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-sm font-semibold text-[#2a1e00] transition-colors duration-150 hover:bg-[#e8ab1a]"
             >
               Explore the 2024–2026 shift
             </Link>
@@ -123,11 +123,11 @@ export default function HomePage() {
       >
         <h2
           id="kpi-heading"
-          className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"
+          className="text-xl font-semibold text-navy sm:text-2xl"
         >
           Key indicators - each dated, scoped and typed
         </h2>
-        <p className="mt-2 max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 max-w-3xl text-sm text-text-secondary">
           Needs, frameworks, commitments and disbursements are different
           objects. The US$1 billion LEAP framework is not equivalent to the
           US$11 billion national need, and disbursement is not delivery.
@@ -143,7 +143,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 pb-16 sm:px-6">
         <section id="emergency-2024" aria-label="The 2024 emergency system">
           <SectionHeading index={1} title="The 2024 emergency system">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               A war of national scale hit a state with no head of state, no
               empowered cabinet and no money. Coordination and data
               production remained genuinely public functions - the emergency
@@ -159,7 +159,7 @@ export default function HomePage() {
 
         <section id="implementation-middle" aria-label="The missing implementation middle">
           <SectionHeading index={2} title="The missing implementation middle">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               The 2024 chain broke at two conversion points: data into
               finance, and finance into contracts. Traced public
               procurement for the entire year consisted essentially of one
@@ -173,7 +173,7 @@ export default function HomePage() {
 
         <section id="structures" aria-label="The command structures, 2024 and 2026">
           <SectionHeading index={3} title="The command structures, side by side">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               The report&apos;s two structure diagrams, validated against the
               tracking and rebuilt here: the 2024 emergency system that
               coordinated without a financed delivery vehicle, and the 2026
@@ -191,7 +191,7 @@ export default function HomePage() {
 
         <section id="role-shift" aria-label="Who gained and lost roles">
           <SectionHeading index={4} title="Who gained and lost roles">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               The system rotated rather than grew. Official institutions
               consolidated into programmed reconstruction and grew in
               procurement and oversight cells that were thin before.
@@ -211,7 +211,7 @@ export default function HomePage() {
           <p className="mt-3 text-sm">
             <Link
               href="/actors"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Explore each actor layer in depth →
             </Link>
@@ -220,7 +220,7 @@ export default function HomePage() {
 
         <section id="finance-delivery" aria-label="Finance versus delivery">
           <SectionHeading index={5} title="Finance versus delivery">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               Institutional architecture advanced faster than money and
               physical delivery. Procurement under way is a process milestone,
               not data of completed reconstruction.
@@ -232,7 +232,7 @@ export default function HomePage() {
           <p className="mt-3 text-sm">
             <Link
               href="/finance"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Full finance and delivery analysis →
             </Link>
@@ -241,7 +241,7 @@ export default function HomePage() {
 
         <section id="geography" aria-label="Geography of traced activity">
           <SectionHeading index={6} title="Geography of traced activity">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               Traced activity concentrated along the southern arc and the
               Dahieh belt in both years, while assessment coverage - and
               therefore future financing eligibility - remained uneven.
@@ -251,23 +251,23 @@ export default function HomePage() {
           </SectionHeading>
           <div className="mt-6 overflow-x-auto card p-3.5">
             <table className="min-w-full border-collapse text-sm tabular-nums">
-              <caption className="pb-2 text-left text-xs text-[color:var(--color-text-secondary)]">
+              <caption className="pb-2 text-left text-xs text-text-secondary">
                 Total location mentions in the tracking by regional
                 grouping (all actor layers).
               </caption>
               <thead>
                 <tr>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-left font-semibold text-[color:var(--color-navy)]">Region</th>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">2024</th>
-                  <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2 py-1.5 text-right font-semibold text-[color:var(--color-navy)]">2026</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-left font-semibold text-navy">Region</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-right font-semibold text-navy">2024</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-right font-semibold text-navy">2026</th>
                 </tr>
               </thead>
               <tbody>
                 {regionRows.map((r) => (
-                  <tr key={r.label} className="odd:bg-[color:var(--color-bg)]">
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5">{r.label}</td>
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">{r.t24}</td>
-                    <td className="border-b border-[color:var(--color-border)] px-2 py-1.5 text-right">{r.t26}</td>
+                  <tr key={r.label} className="odd:bg-bg">
+                    <td className="border-b border-border px-2 py-1.5">{r.label}</td>
+                    <td className="border-b border-border px-2 py-1.5 text-right">{r.t24}</td>
+                    <td className="border-b border-border px-2 py-1.5 text-right">{r.t26}</td>
                   </tr>
                 ))}
               </tbody>
@@ -276,14 +276,14 @@ export default function HomePage() {
           <p className="mt-3 text-sm">
             <Link
               href="/map"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Open the interactive map →
             </Link>{" "}
             ·{" "}
             <Link
               href="/damage"
-              className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+              className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Examine the damage assessments →
             </Link>
@@ -292,7 +292,7 @@ export default function HomePage() {
 
         <section id="latest-news" aria-label="Latest news and official updates">
           <SectionHeading index={7} title="Latest news and official updates">
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-3 text-sm leading-relaxed text-text">
               This feed aggregates relevant coverage from selected global,
               Lebanese, humanitarian and official publishers. It is broad but not
               exhaustive, and it is kept strictly separate from the confirmed
@@ -307,9 +307,9 @@ export default function HomePage() {
         {/* Central conclusion */}
         <section
           aria-label="Central conclusion"
-          className="rounded-md border-l-4 border-[color:var(--color-navy)] bg-white p-6"
+          className="rounded-md border-l-4 border-navy bg-white p-6"
         >
-          <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-[color:var(--color-navy)]">
+          <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-navy">
             Between 2024 and 2026, Lebanon moved from fragmented emergency
             substitution to a more formal, externally financed and centrally
             managed project architecture. The change clarified national,

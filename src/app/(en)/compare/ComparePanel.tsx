@@ -253,7 +253,7 @@ const KIND_BADGE: Record<
   gain: {
     label: "Formalised / improved",
     labelAr: "رُسّم أو تحسّن",
-    cls: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
+    cls: "bg-[#E8F1F3] text-teal",
   },
   partial: {
     label: "Built, not yet delivering",
@@ -263,12 +263,12 @@ const KIND_BADGE: Record<
   none: {
     label: "No material change",
     labelAr: "لا تغيّر جوهري",
-    cls: "bg-[#F7E9E5] text-[color:var(--color-rust)]",
+    cls: "bg-[#F7E9E5] text-rust",
   },
   redirected: {
     label: "Redirected",
     labelAr: "أُعيد توجيهه",
-    cls: "bg-[#F4EAF0] text-[color:var(--color-magenta)]",
+    cls: "bg-[#F4EAF0] text-magenta",
   },
 };
 
@@ -301,7 +301,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
 
   return (
     <div>
-      <div className="sticky top-[var(--header-h)] z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
+      <div className="sticky top-[var(--header-h)] z-40 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
         <YearControl
           mode={mode}
           onChange={(m) => set("view", m)}
@@ -316,10 +316,10 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
           comparison's own shape is visible. */}
       <figure className="mt-6 card p-3.5 sm:p-4">
         <figcaption>
-          <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+          <h3 className="text-base font-semibold text-navy">
             {t.overview}
           </h3>
-          <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 text-sm text-text-secondary">
             {t.overviewSub}
           </p>
         </figcaption>
@@ -356,11 +356,11 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
                   <span style={{ color: KIND_COLOR[kind] }}>
                     {ar ? KIND_BADGE[kind].labelAr : KIND_BADGE[kind].label}
                   </span>
-                  <span className="tabular-nums text-[color:var(--color-text-secondary)]">
+                  <span className="tabular-nums text-text-secondary">
                     {t.of(list.length, DIMENSIONS.length)}
                   </span>
                 </p>
-                <p className="mt-0.5 ps-4 leading-snug text-[color:var(--color-text-secondary)]">
+                <p className="mt-0.5 ps-4 leading-snug text-text-secondary">
                   {list.map((d) => d[locale].label).join(" · ")}
                 </p>
               </li>
@@ -377,10 +377,10 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
             <section
               key={d.id}
               aria-label={c.label}
-              className="rounded-md border border-[color:var(--color-border)] bg-white"
+              className="rounded-md border border-border bg-white"
             >
-              <header className="flex flex-wrap items-center justify-between gap-2 border-b border-[color:var(--color-border)] px-4 py-2.5">
-                <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+              <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-2.5">
+                <h3 className="text-sm font-semibold text-navy">
                   {c.label}
                 </h3>
                 <span className="flex items-center gap-2.5">
@@ -435,29 +435,29 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
                 }`}
               >
                 {(mode === "2024" || mode === "side" || mode === "change") && (
-                  <div className="border-b border-[color:var(--color-border)] p-4 md:border-b-0 md:border-e">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2024)]">
+                  <div className="border-b border-border p-4 md:border-b-0 md:border-e">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-y2024">
                       2024
                     </p>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-[color:var(--color-text)]">
+                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-text">
                       {c.y2024}
                     </p>
                   </div>
                 )}
                 {(mode === "2026" || mode === "side" || mode === "change") && (
                   <div className="p-4">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2026)]">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-y2026">
                       2026
                     </p>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-[color:var(--color-text)]">
+                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-text">
                       {c.y2026}
                     </p>
                   </div>
                 )}
               </div>
               {mode === "change" ? (
-                <p className="border-t border-dashed border-[color:var(--color-border)] px-4 py-3 text-[13px] leading-relaxed">
-                  <span className="font-semibold text-[color:var(--color-rust)]">
+                <p className="border-t border-dashed border-border px-4 py-3 text-[13px] leading-relaxed">
+                  <span className="font-semibold text-rust">
                     {t.change}
                   </span>
                   {c.change}

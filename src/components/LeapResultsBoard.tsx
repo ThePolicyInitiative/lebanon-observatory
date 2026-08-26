@@ -45,10 +45,10 @@ export default function LeapResultsBoard({ locale = "en" }: { locale?: Locale } 
   return (
     <figure className="card card-interactive p-4 sm:p-5">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {tr.sub(fmtDate(leapResults.asOf, locale))}
         </p>
       </figcaption>
@@ -61,18 +61,18 @@ export default function LeapResultsBoard({ locale = "en" }: { locale?: Locale } 
               className="panel-sunken border-s-2 p-3"
               style={{ borderInlineStartColor: STATUS_EDGE[row.status] ?? "#8FA1B5" }}
             >
-              <p className="text-[13px] font-semibold text-[color:var(--color-navy)]">
+              <p className="text-[13px] font-semibold text-navy">
                 {ar ? row.indicatorAr : row.indicator}
               </p>
-              <p className="mt-1.5 text-xs text-[color:var(--color-text-secondary)]">
-                <span className="font-semibold text-[color:var(--color-text)]">
+              <p className="mt-1.5 text-xs text-text-secondary">
+                <span className="font-semibold text-text">
                   {tr.target}
                 </span>{" "}
                 {ar ? row.targetAr : row.target}
                 {deadline !== "-" ? ` (${deadline})` : ""}
               </p>
-              <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
-                <span className="font-semibold text-[color:var(--color-text)]">
+              <p className="mt-0.5 text-xs text-text-secondary">
+                <span className="font-semibold text-text">
                   {tr.result}
                 </span>{" "}
                 {ar ? row.resultJune2026Ar : row.resultJune2026}
@@ -85,7 +85,7 @@ export default function LeapResultsBoard({ locale = "en" }: { locale?: Locale } 
         {footnotes.map((f) => (
           <p
             key={f.slice(0, 24)}
-            className="note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]"
+            className="note-caution text-xs leading-relaxed text-text-secondary"
           >
             {f}
           </p>

@@ -105,10 +105,10 @@ export default function DisplacementCycle({ locale = "en" }: { locale?: Locale }
   return (
     <figure className="card p-3.5 sm:p-4">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
@@ -118,19 +118,19 @@ export default function DisplacementCycle({ locale = "en" }: { locale?: Locale }
           <caption className="sr-only">{tr.caption}</caption>
           <thead>
             <tr>
-              <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-start font-semibold text-[color:var(--color-navy)]">{tr.metric}</th>
-              <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-start font-semibold" style={{ color: "var(--color-y2024)" }}>{tr.cycle2024}</th>
-              <th scope="col" className="border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-start font-semibold" style={{ color: "var(--color-y2026)" }}>{tr.cycle2026}</th>
+              <th scope="col" className="border-b-2 border-border px-2.5 py-2 text-start font-semibold text-navy">{tr.metric}</th>
+              <th scope="col" className="border-b-2 border-border px-2.5 py-2 text-start font-semibold" style={{ color: "var(--color-y2024)" }}>{tr.cycle2024}</th>
+              <th scope="col" className="border-b-2 border-border px-2.5 py-2 text-start font-semibold" style={{ color: "var(--color-y2026)" }}>{tr.cycle2026}</th>
             </tr>
           </thead>
           <tbody>
             {ROWS.map((row) => {
               const r = row[locale];
               return (
-                <tr key={r.metric} className="odd:bg-[color:var(--color-bg)] align-top">
-                  <th scope="row" className="border-b border-[color:var(--color-border)] px-2.5 py-2 text-start font-medium">{r.metric}</th>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{r.y2024}</td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{r.y2026}</td>
+                <tr key={r.metric} className="odd:bg-bg align-top">
+                  <th scope="row" className="border-b border-border px-2.5 py-2 text-start font-medium">{r.metric}</th>
+                  <td className="border-b border-border px-2.5 py-2">{r.y2024}</td>
+                  <td className="border-b border-border px-2.5 py-2">{r.y2026}</td>
                 </tr>
               );
             })}

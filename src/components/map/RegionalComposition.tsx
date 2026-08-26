@@ -41,7 +41,8 @@ const T = {
 export default function RegionalComposition({
   showCaveat = true,
   locale = "en",
-}: { showCaveat?: boolean; locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
+}: { showCaveat?: boolean; locale?: Locale } = {}) {
+  const chartRef = useRef<ECharts | null>(null);
   const t = T[locale];
 
   const regions = locations.regions;

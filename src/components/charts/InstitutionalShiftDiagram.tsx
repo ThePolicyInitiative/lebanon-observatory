@@ -157,10 +157,10 @@ export default function InstitutionalShiftDiagram({
   return (
     <figure className="card p-3.5 sm:p-4">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {t.sub}
         </p>
       </figcaption>
@@ -185,7 +185,7 @@ export default function InstitutionalShiftDiagram({
             <section
               key={row.dimension}
               aria-label={row.dimension}
-              className="rounded-md border border-[color:var(--color-border)]"
+              className="rounded-md border border-border"
             >
               <header
                 className="flex flex-wrap items-center justify-between gap-2 rounded-t-md px-3 py-2"
@@ -203,25 +203,25 @@ export default function InstitutionalShiftDiagram({
               </header>
               <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr]">
                 <div className="p-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2024)]">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2024">
                     2024
                   </p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">
+                  <p className="mt-1 text-[13px] leading-relaxed text-text">
                     {row.y2024}
                   </p>
                 </div>
                 <div
                   aria-hidden
-                  className="hidden items-center px-1 text-xl text-[color:var(--color-text-secondary)] md:flex"
+                  className="hidden items-center px-1 text-xl text-text-secondary md:flex"
                 >
                   <span className="rtl:hidden">→</span>
                   <span className="hidden rtl:inline">←</span>
                 </div>
                 <div className="p-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-y2026)]">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2026">
                     2026
                   </p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-[color:var(--color-text)]">
+                  <p className="mt-1 text-[13px] leading-relaxed text-text">
                     {row.y2026}
                   </p>
                 </div>

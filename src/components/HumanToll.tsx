@@ -37,8 +37,8 @@ function Panel({
   return (
     <div className="card p-3.5 sm:p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 pb-2" style={{ borderColor: accent }}>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">{title}</h3>
-        <span className="text-[11px] font-medium text-[color:var(--color-text-secondary)]">
+        <h3 className="text-base font-semibold text-navy">{title}</h3>
+        <span className="text-[11px] font-medium text-text-secondary">
           {asOfLabel} {fmtDate(asOf, locale)}
         </span>
       </div>
@@ -52,13 +52,13 @@ function Panel({
               {ar ? (i.valueAr ?? i.value) : i.value}
             </p>
             <div>
-              <p className="text-[13px] font-semibold text-[color:var(--color-text)]">
+              <p className="text-[13px] font-semibold text-text">
                 {ar ? i.labelAr : i.label}
               </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+              <p className="mt-0.5 text-xs leading-relaxed text-text-secondary">
                 {ar ? i.detailAr : i.detail}
               </p>
-              <p className="mt-0.5 text-[10.5px] font-medium text-[color:var(--color-text-secondary)]">
+              <p className="mt-0.5 text-[10.5px] font-medium text-text-secondary">
                 {ar ? i.reporterAr : i.reporter}
               </p>
             </div>
@@ -94,10 +94,10 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
   const tr = T[locale];
   return (
     <section aria-labelledby="human-toll">
-      <h2 id="human-toll" className="text-xl font-semibold text-[color:var(--color-navy)]">
+      <h2 id="human-toll" className="text-xl font-semibold text-navy">
         {tr.heading}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
         {tr.lede}
       </p>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -118,7 +118,7 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
           locale={locale}
         />
       </div>
-      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
         {tr.caution}
       </p>
     </section>

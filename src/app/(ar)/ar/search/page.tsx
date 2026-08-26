@@ -29,14 +29,14 @@ export default function Page() {
           صفحته:{" "}
           <Link
             href="/ar/explorer"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             مستكشف المدخلات
           </Link>{" "}
           و
           <Link
             href="/ar/news"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+            className="font-medium text-blue underline-offset-2 hover:underline"
           >
             صفحة المستجدات
           </Link>

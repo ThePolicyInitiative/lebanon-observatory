@@ -50,7 +50,7 @@ export default function ChartFrame({
             scale's h3 step and stays below the 20px an h2 now takes. */}
         <h3 className="text-lg font-semibold">{title}</h3>
         {subtitle ? (
-          <p className="prose-measure mt-1.5 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+          <p className="prose-measure mt-1.5 text-sm leading-relaxed text-text-secondary">
             {subtitle}
           </p>
         ) : null}
@@ -62,7 +62,7 @@ export default function ChartFrame({
       ) : null}
       <div className="mt-3">{children}</div>
       {caveat ? (
-        <p className="note-caution prose-measure mt-4 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="note-caution prose-measure mt-4 text-xs leading-relaxed text-text-secondary">
           {caveat}
         </p>
       ) : null}

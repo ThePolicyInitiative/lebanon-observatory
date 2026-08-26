@@ -31,7 +31,7 @@ export default async function Page({
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2
             id="ar-news-explorer"
-            className="text-xl font-semibold text-[color:var(--color-navy)]"
+            className="text-xl font-semibold text-navy"
           >
             آخر ما نُشر
           </h2>
@@ -44,7 +44,7 @@ export default async function Page({
             <NewsExplorer locale="ar" />
           </Suspense>
         </div>
-        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-text-secondary">
           كل خبر يبقى بلغة ناشره ويحيل إليه.
         </p>
       </section>

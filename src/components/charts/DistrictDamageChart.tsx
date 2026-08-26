@@ -58,7 +58,8 @@ const TR = {
   },
 } as const;
 
-export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
+export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale } = {}) {
+  const chartRef = useRef<ECharts | null>(null);
   const rows = districtDamage.districts;
   const t = districtDamage.totals;
 
@@ -150,23 +151,23 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
           ].map((x) => (
             <div
               key={x.label}
-              className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg)] p-3"
+              className="rounded-md border border-border bg-bg p-3"
             >
-              <p className="text-lg font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
+              <p className="text-lg font-bold tabular-nums tracking-tight text-navy">
                 {x.v.toLocaleString("en-US")}
               </p>
-              <p className="text-[11px] font-semibold text-[color:var(--color-text)]">
+              <p className="text-[11px] font-semibold text-text">
                 {x.label}
               </p>
               {x.note ? (
-                <p className="mt-0.5 text-[10.5px] text-[color:var(--color-text-secondary)]">
+                <p className="mt-0.5 text-[10.5px] text-text-secondary">
                   {x.note}
                 </p>
               ) : null}
             </div>
           ))}
         </div>
-        <p className="mt-2 text-[11px] text-[color:var(--color-text-secondary)]">
+        <p className="mt-2 text-[11px] text-text-secondary">
           {tr.total(t.reportedAssets.toLocaleString("en-US"))}
         </p>
       </div>

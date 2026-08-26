@@ -193,8 +193,8 @@ export function eventKindLabel(kind: MapEvent["kind"], locale: Locale): string {
 function EventsList({ events, locale = "en" }: { events: MapEvent[]; locale?: Locale }) {
   if (events.length === 0) return null;
   return (
-    <div className="mt-3 border-t border-dashed border-[color:var(--color-border)] pt-2.5">
-      <h4 className="text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+    <div className="mt-3 border-t border-dashed border-border pt-2.5">
+      <h4 className="text-xs font-bold uppercase tracking-wide text-text-secondary">
         {PIN_T[locale].happenedHere}
       </h4>
       <ul className="mt-1.5 space-y-2">
@@ -209,7 +209,7 @@ function EventsList({ events, locale = "en" }: { events: MapEvent[]; locale?: Lo
                 {eventKindLabel(e.kind, locale)}
               </span>
               {e.date ? (
-                <span className="me-1 font-semibold text-[color:var(--color-navy)]">
+                <span className="me-1 font-semibold text-navy">
                   {fmtDate(e.date, locale)}:
                 </span>
               ) : null}
@@ -967,14 +967,14 @@ export default function SvgLebanonMap({
   return (
     <div>
       {note ? (
-        <p className="mb-2 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-xs text-[color:var(--color-text-secondary)]">
+        <p className="mb-2 rounded-md border border-border bg-white px-3 py-2 text-xs text-text-secondary">
           {note}
         </p>
       ) : null}
 
       {/* Town search */}
       <div className="mb-3">
-        <label htmlFor="town-search" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+        <label htmlFor="town-search" className="block text-[11px] font-semibold text-text-secondary">
           {tr.findTown(towns ? townNames.length.toLocaleString("en-US") : tr.loading)}
         </label>
         <input
@@ -985,7 +985,7 @@ export default function SvgLebanonMap({
           onChange={(e) => onSearch(e.target.value)}
           placeholder={tr.searchPlaceholder}
           disabled={!towns}
-          className="mt-1 min-h-11 w-full max-w-md rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm"
+          className="mt-1 min-h-11 w-full max-w-md rounded-md border border-border bg-white px-2.5 text-sm"
         />
         <datalist id="town-list">
           {townNames.map((n) => (
@@ -999,7 +999,7 @@ export default function SvgLebanonMap({
           drag, pinch or double-click, with the overview button in the
           corner to recentre. The zoom factor still reads out, because it
           is the one thing those gestures do not tell you. */}
-      <p className="mb-2 text-end text-xs tabular-nums text-[color:var(--color-text-secondary)]">
+      <p className="mb-2 text-end text-xs tabular-nums text-text-secondary">
         {tr.zoomReadout((VIEW_W / vb.w).toFixed(1))}
       </p>
 
@@ -1269,7 +1269,7 @@ export default function SvgLebanonMap({
                         tabIndex={0}
                         role="button"
                         aria-label={label}
-                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-[color:var(--color-blue)]"
+                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
                         onClick={() => {
                           setOpenPin(pin);
                           selectTown(pin.town);
@@ -1447,7 +1447,7 @@ export default function SvgLebanonMap({
               </g>
             </svg>
             {hover ? (
-              <div className="pointer-events-none absolute left-2 top-2 max-w-[75%] rounded-sm bg-white/95 px-2 py-1 text-[11px] font-medium text-[color:var(--color-text)] shadow-sm">
+              <div className="pointer-events-none absolute left-2 top-2 max-w-[75%] rounded-sm bg-white/95 px-2 py-1 text-[11px] font-medium text-text shadow-sm">
                 {hover}
               </div>
             ) : null}
@@ -1455,7 +1455,7 @@ export default function SvgLebanonMap({
               <button
                 type="button"
                 aria-label={tr.overviewAria}
-                className="absolute right-2 top-2 rounded-sm border border-[color:var(--color-border)] bg-white/90 p-0.5 shadow-sm"
+                className="absolute right-2 top-2 rounded-sm border border-border bg-white/90 p-0.5 shadow-sm"
                 onClick={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const cx = ((e.clientX - rect.left) / rect.width) * VIEW_W;
@@ -1494,12 +1494,12 @@ export default function SvgLebanonMap({
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-text-secondary">
                   {openPin.kind === "episode" ? tr.episodeAt : tr.entryAt}{" "}
                   {openPin.townName}
                   {openPin.district ? ` · ${openPin.district}` : ""} · {openPin.year}
                 </p>
-                <h3 className="mt-1 text-sm font-semibold text-[color:var(--color-navy)]">
+                <h3 className="mt-1 text-sm font-semibold text-navy">
                   {openPin.title}
                 </h3>
               </div>
@@ -1507,7 +1507,7 @@ export default function SvgLebanonMap({
                 type="button"
                 onClick={() => setOpenPin(null)}
                 aria-label={tr.close}
-                className="shrink-0 rounded-sm px-1.5 text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-navy)]"
+                className="shrink-0 rounded-sm px-1.5 text-text-secondary hover:text-navy"
               >
                 ×
               </button>
@@ -1520,25 +1520,25 @@ export default function SvgLebanonMap({
                 {openPin.layerLabel}
               </span>
               {openPin.subtype ? (
-                <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-[color:var(--color-text-secondary)]">
+                <span className="rounded-sm bg-[#F2F2EF] px-1.5 py-0.5 text-text-secondary">
                   {openPin.subtype}
                 </span>
               ) : null}
               {openPin.date ? (
-                <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 tabular-nums text-[color:var(--color-navy)]">
+                <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 tabular-nums text-navy">
                   {fmtDate(openPin.date, locale)}
                 </span>
               ) : null}
             </p>
             {openPin.kind === "entry" ? (
-              <p className="mt-2 text-[11.5px] text-[color:var(--color-text-secondary)]">
+              <p className="mt-2 text-[11.5px] text-text-secondary">
                 {openPin.detail}
               </p>
             ) : null}
-            <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-[color:var(--color-text)]">
+            <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-text">
               {openPin.body}
             </p>
-            <p className="mt-2.5 border-t border-dashed border-[color:var(--color-border)] pt-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-2.5 border-t border-dashed border-border pt-2 text-[11px] leading-relaxed text-text-secondary">
               {tr.pinNote}
             </p>
           </aside>
@@ -1556,12 +1556,12 @@ export default function SvgLebanonMap({
         {selectedZone && zoneMentions ? (
           <aside aria-live="polite" className="card p-3.5">
             <>
-              <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+              <h3 className="text-sm font-semibold text-navy">
                 {selectedArea ? `${selectedArea} · ` : ""}
                 {regionLabel(selectedZone, locale)} · {year}
               </h3>
               {selectedOccupation === "strip" ? (
-                <p className="mt-1.5 rounded-sm bg-[#F7E9E5] px-2 py-1 text-xs font-medium text-[color:var(--color-rust)]">
+                <p className="mt-1.5 rounded-sm bg-[#F7E9E5] px-2 py-1 text-xs font-medium text-rust">
                   {locale === "ar" ? (
                     <>
                       على شريط الخط الأزرق الحدودي، حيث يُظهر الإبلاغ قرى
@@ -1577,7 +1577,7 @@ export default function SvgLebanonMap({
                   )}
                 </p>
               ) : selectedOccupation === "district" ? (
-                <p className="mt-1.5 rounded-sm bg-[#FBF3EC] px-2 py-1 text-xs text-[color:var(--color-rust)]">
+                <p className="mt-1.5 rounded-sm bg-[#FBF3EC] px-2 py-1 text-xs text-rust">
                   {locale === "ar" ? (
                     <>
                       في قضاء يضم شريطه الحدودي مناطق محتلة إسرائيلياً
@@ -1597,7 +1597,7 @@ export default function SvgLebanonMap({
                   <p className="mt-2 rounded-sm bg-[#F7E9E5] px-2.5 py-2 text-xs leading-relaxed">
                     {locale === "ar" ? (
                       <>
-                        <strong className="text-[color:var(--color-rust)]">
+                        <strong className="text-rust">
                           {anchor.destroyed.toLocaleString("en-US")} مبنى مدمَّراً
                           كلياً
                         </strong>{" "}
@@ -1608,7 +1608,7 @@ export default function SvgLebanonMap({
                       </>
                     ) : (
                       <>
-                        <strong className="text-[color:var(--color-rust)]">
+                        <strong className="text-rust">
                           {anchor.destroyed.toLocaleString("en-US")} buildings completely
                           destroyed
                         </strong>{" "}
@@ -1628,7 +1628,7 @@ export default function SvgLebanonMap({
                   <p className="mt-2 rounded-sm bg-[#F7E9E5] px-2.5 py-2 text-xs leading-relaxed">
                     {locale === "ar" ? (
                       <>
-                        <strong className="text-[color:var(--color-rust)]">
+                        <strong className="text-rust">
                           {s.units.toLocaleString("en-US")} وحدة سكنية
                         </strong>{" "}
                         أُبلغ عن تضرّرها في {s.name} في مسح البلديات في كانون
@@ -1638,7 +1638,7 @@ export default function SvgLebanonMap({
                       </>
                     ) : (
                       <>
-                        <strong className="text-[color:var(--color-rust)]">
+                        <strong className="text-rust">
                           {s.units.toLocaleString("en-US")} housing units
                         </strong>{" "}
                         reported damaged in {s.name} in the December 2024 municipal
@@ -1656,11 +1656,11 @@ export default function SvgLebanonMap({
                   {locale === "ar" ? (
                     <>
                       المدخلات المحدَّدة الموقع في قضاء {selectedDistrict}: من{" "}
-                      <strong className="text-[color:var(--color-navy)]">
+                      <strong className="text-navy">
                         {(change.byDistrict.get(selectedDistrict)?.y24 ?? 0).toLocaleString("en-US")}
                       </strong>{" "}
                       في 2024 إلى{" "}
-                      <strong className="text-[color:var(--color-navy)]">
+                      <strong className="text-navy">
                         {(change.byDistrict.get(selectedDistrict)?.y26 ?? 0).toLocaleString("en-US")}
                       </strong>{" "}
                       في 2026 ضمن الترشيح الحالي.
@@ -1668,11 +1668,11 @@ export default function SvgLebanonMap({
                   ) : (
                     <>
                       Located entries in {selectedDistrict} district:{" "}
-                      <strong className="text-[color:var(--color-navy)]">
+                      <strong className="text-navy">
                         {(change.byDistrict.get(selectedDistrict)?.y24 ?? 0).toLocaleString("en-US")}
                       </strong>{" "}
                       in 2024 →{" "}
-                      <strong className="text-[color:var(--color-navy)]">
+                      <strong className="text-navy">
                         {(change.byDistrict.get(selectedDistrict)?.y26 ?? 0).toLocaleString("en-US")}
                       </strong>{" "}
                       in 2026 under the current filters.
@@ -1685,7 +1685,7 @@ export default function SvgLebanonMap({
                   <p>
                     {locale === "ar" ? (
                       <>
-                        <span className="font-semibold text-[color:var(--color-navy)]">
+                        <span className="font-semibold text-navy">
                           {selectedDistrictRecords.length}
                         </span>{" "}
                         نشاطاً مرصوداً يحدد موقع عمل في قضاء {selectedDistrict}{" "}
@@ -1693,7 +1693,7 @@ export default function SvgLebanonMap({
                         {selectedTownRecords.length > 0 ? (
                           <>
                             {" "}-{" "}
-                            <span className="font-semibold text-[color:var(--color-navy)]">
+                            <span className="font-semibold text-navy">
                               {selectedTownRecords.length}
                             </span>{" "}
                             منها يسمّي {selectedTownName} مباشرة
@@ -1703,7 +1703,7 @@ export default function SvgLebanonMap({
                       </>
                     ) : (
                       <>
-                        <span className="font-semibold text-[color:var(--color-navy)]">
+                        <span className="font-semibold text-navy">
                           {selectedDistrictRecords.length}
                         </span>{" "}
                         traced activity{selectedDistrictRecords.length === 1 ? "" : "s"} locate
@@ -1711,7 +1711,7 @@ export default function SvgLebanonMap({
                         {selectedTownRecords.length > 0 ? (
                           <>
                             {" "}-{" "}
-                            <span className="font-semibold text-[color:var(--color-navy)]">
+                            <span className="font-semibold text-navy">
                               {selectedTownRecords.length}
                             </span>{" "}
                             name{selectedTownRecords.length === 1 ? "s" : ""} {selectedTownName}{" "}
@@ -1776,7 +1776,7 @@ export default function SvgLebanonMap({
                                   />
                                 ))}
                               </div>
-                              <p className="mt-0.5 text-[10px] text-[color:var(--color-text-secondary)]">
+                              <p className="mt-0.5 text-[10px] text-text-secondary">
                                 {tr.stagesCaption(stageCounts.filter((c) => c > 0).length)}
                               </p>
                               <p className="sr-only">
@@ -1799,7 +1799,7 @@ export default function SvgLebanonMap({
                   })()}
                 </div>
               ) : null}
-              <p className="mt-1 text-xs text-[color:var(--color-text-secondary)]">
+              <p className="mt-1 text-xs text-text-secondary">
                 {tr.zoneScaleNote}
               </p>
               <ul className="mt-3 space-y-1.5 text-sm">
@@ -1813,19 +1813,19 @@ export default function SvgLebanonMap({
                   </li>
                 ))}
               </ul>
-              <p className="mt-3 text-xs text-[color:var(--color-text-secondary)]">
+              <p className="mt-3 text-xs text-text-secondary">
                 {tr.mentionsCaution}
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
                 <Link
                   href={locale === "ar" ? "/ar/actors" : "/actors#actor-register"}
-                  className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                  className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.whoLink}
                 </Link>
                 <Link
                   href={locale === "ar" ? "/ar/explorer" : "/explorer"}
-                  className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                  className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.explorerLink}
                 </Link>
@@ -1836,7 +1836,7 @@ export default function SvgLebanonMap({
         ) : null}
 
           {/* Map legend */}
-          <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-[color:var(--color-text-secondary)]">
+          <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-text-secondary">
             {/* Colour meaning lives in the key; this row carries the count. */}
             {view === "entries" ? (
               <li>{tr.pinCount(entryPins.length, placePoints.length)}</li>
@@ -1899,7 +1899,7 @@ export default function SvgLebanonMap({
             ) : null}
           </ul>
           {view === "survey" ? (
-            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-1.5 rounded-md border border-border bg-white px-3 py-2 text-[11px] leading-relaxed text-text-secondary">
               {locale === "ar" ? (
                 <>
                   تصريح بلدي، لا تقييم هندسي:{" "}
@@ -1934,15 +1934,15 @@ export default function SvgLebanonMap({
             </p>
           ) : null}
           {view === "damage" ? (
-            <p className="mt-1.5 rounded-md border border-[color:var(--color-border)] bg-white px-3 py-2 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-1.5 rounded-md border border-border bg-white px-3 py-2 text-[11px] leading-relaxed text-text-secondary">
               {locale === "ar" ? (
                 <>
                   لم تُقيَّم بحلول تاريخ التوقف في 31 تموز 2026 سوى منطقتين:{" "}
-                  <strong className="text-[color:var(--color-navy)]">جنوب الليطاني</strong>{" "}
+                  <strong className="text-navy">جنوب الليطاني</strong>{" "}
                   ({destruction.zones2026[0].assessedDamageAr}؛ 11,095 مبنى
                   مدمَّراً كلياً؛ ذكاء اصطناعي جغرافي بتدقيق مكتبي ومن دون
                   تثبيت ميداني) و
-                  <strong className="text-[color:var(--color-navy)]">بيروت وجبل لبنان</strong>{" "}
+                  <strong className="text-navy">بيروت وجبل لبنان</strong>{" "}
                   ({destruction.zones2026[1].assessedDamageAr}؛ بفحص ميداني).
                   المنتجان يختلفان في المنهجية ولا يجوز مقارنتهما ولا جمعهما.
                   والجغرافيا المقيَّمة ليست الجغرافيا المتضررة: فالتتبّع الوطني
@@ -1952,11 +1952,11 @@ export default function SvgLebanonMap({
               ) : (
                 <>
                   Only two zones were assessed by the 31 July 2026 cut-off:{" "}
-                  <strong className="text-[color:var(--color-navy)]">South of the Litani</strong>{" "}
+                  <strong className="text-navy">South of the Litani</strong>{" "}
                   ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
                   completely destroyed; desk-validated GeoAI, no field
                   confirmation) and{" "}
-                  <strong className="text-[color:var(--color-navy)]">Beirut &amp; Mount Lebanon</strong>{" "}
+                  <strong className="text-navy">Beirut &amp; Mount Lebanon</strong>{" "}
                   ({destruction.zones2026[1].assessedDamage}; field-checked). The
                   two products differ in method and must not be compared or
                   summed. Assessed geography is not damaged geography: the

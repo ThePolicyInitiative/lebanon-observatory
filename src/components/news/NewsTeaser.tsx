@@ -53,7 +53,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
 
   if (error) {
     return (
-      <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
+      <p className="card p-3.5 text-sm text-text-secondary">
         {t.unavailable}{" "}
         <Link href={t.href} className="underline underline-offset-2">
           {t.open}
@@ -69,7 +69,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
         {[0, 1, 2, 3].map((i) => (
           <div
             key={i}
-            className="h-28 animate-pulse rounded-md border border-[color:var(--color-border)] bg-white"
+            className="h-28 animate-pulse rounded-md border border-border bg-white"
           />
         ))}
       </div>
@@ -78,7 +78,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
 
   if (articles.length === 0) {
     return (
-      <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
+      <p className="card p-3.5 text-sm text-text-secondary">
         {t.empty}{" "}
         <Link href={t.href} className="underline underline-offset-2">
           {t.open}
@@ -99,10 +99,10 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
           // reads left to right, punctuation included.
           dir={a.language === "ar" ? "rtl" : "ltr"}
         >
-          <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+          <p className="text-[11px] uppercase tracking-wide text-text-secondary">
             {a.sourceName} · {fmtDateTime(a.publishedAt, locale)}
           </p>
-          <h3 className="mt-1 text-sm font-semibold leading-snug text-[color:var(--color-navy)]">
+          <h3 className="mt-1 text-sm font-semibold leading-snug text-navy">
             <a
               href={a.url}
               target="_blank"
@@ -113,7 +113,7 @@ export default function NewsTeaser({ locale = "en" }: { locale?: Locale } = {}) 
             </a>
           </h3>
           {a.description ? (
-            <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-text-secondary">
               {a.description}
             </p>
           ) : null}

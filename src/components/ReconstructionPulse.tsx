@@ -15,9 +15,9 @@ const CHAIN_STAGE_NOS = [6, 7, 8, 9]; // Rubble clearance → Shelter and return
 const STATUS_ORDER = ["underway", "procurement", "formal_mandate", "not_verified"];
 const STATUS_CHIP: Record<string, string> = {
   underway: "bg-[#E8F1EC] text-[#1F6B4E]",
-  procurement: "bg-[#E8F1F3] text-[color:var(--color-teal)]",
-  formal_mandate: "bg-[#EEF2F7] text-[color:var(--color-navy)]",
-  not_verified: "bg-[#F2F2EF] text-[color:var(--color-text-secondary)]",
+  procurement: "bg-[#E8F1F3] text-teal",
+  formal_mandate: "bg-[#EEF2F7] text-navy",
+  not_verified: "bg-[#F2F2EF] text-text-secondary",
 };
 
 /** The procurement portal's status wording, rendered in Arabic. */
@@ -94,18 +94,18 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
       <div
         className={`card p-5 sm:p-6 ${
           ar
-            ? "border-r-4 border-r-[color:var(--color-navy)]"
-            : "border-l-4 border-l-[color:var(--color-navy)]"
+            ? "border-r-4 border-r-navy"
+            : "border-l-4 border-l-navy"
         }`}
       >
         <h2
           id="recon-pulse"
-          className="text-xl font-semibold text-[color:var(--color-navy)] sm:text-2xl"
+          className="text-xl font-semibold text-navy sm:text-2xl"
         >
           {t.title}
         </h2>
         <p
-          className={`mt-2 max-w-3xl text-sm text-[color:var(--color-text-secondary)] ${
+          className={`mt-2 max-w-3xl text-sm text-text-secondary ${
             ar ? "leading-loose" : "leading-relaxed"
           }`}
         >
@@ -115,7 +115,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Traced presence on the physical chain */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+              className={`text-[13px] font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
@@ -124,7 +124,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
             <ul className="mt-3 space-y-3">
               {chainTotals.map((c) => (
                 <li key={c.stage}>
-                  <p className="text-[13px] font-medium text-[color:var(--color-text)]">
+                  <p className="text-[13px] font-medium text-text">
                     {c.stage}
                   </p>
                   {[
@@ -132,7 +132,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                     { year: "2026", v: c.y26, color: YEAR_COLORS.y2026 },
                   ].map((row) => (
                     <div key={row.year} className="mt-1 flex items-center gap-2">
-                      <span className="w-9 text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
+                      <span className="w-9 text-[11px] tabular-nums text-text-secondary">
                         {row.year}
                       </span>
                       <span
@@ -154,7 +154,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Status honesty */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+              className={`text-[13px] font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
@@ -168,13 +168,13 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                   >
                     {s.label}
                   </span>
-                  <span className="tabular-nums text-sm font-semibold text-[color:var(--color-navy)]">
+                  <span className="tabular-nums text-sm font-semibold text-navy">
                     {s.count}
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-3 text-xs leading-relaxed text-text-secondary">
               {t.statusHonesty}
             </p>
           </div>
@@ -182,19 +182,19 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Procurement pipeline */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-[color:var(--color-text-secondary)] ${
+              className={`text-[13px] font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
               {t.pipeline}
             </h3>
-            <p className="mt-3 text-3xl font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
+            <p className="mt-3 text-3xl font-bold tabular-nums tracking-tight text-navy">
               {packages.length}
-              <span className="ms-2 align-middle text-sm font-medium text-[color:var(--color-text-secondary)]">
+              <span className="ms-2 align-middle text-sm font-medium text-text-secondary">
                 {t.packages}
               </span>
             </p>
-            <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+            <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-text-secondary">
               {packages.slice(0, 3).map((p) => {
                 const label = ar ? p.labelAr ?? p.label : p.label;
                 const status = ar
@@ -202,7 +202,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                   : p.statusAtCheck;
                 return (
                   <li key={p.id}>
-                    <span className="font-medium text-[color:var(--color-text)]">
+                    <span className="font-medium text-text">
                       {label.split(" - ")[1] ?? label}
                     </span>{" "}
                     - {status}
@@ -210,19 +210,19 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                 );
               })}
             </ul>
-            <p className="mt-3 rounded-sm bg-[#F7E9E5] px-2.5 py-1.5 text-xs font-medium text-[color:var(--color-rust)]">
+            <p className="mt-3 rounded-sm bg-[#F7E9E5] px-2.5 py-1.5 text-xs font-medium text-rust">
               {t.zeroContracts}
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
               <Link
                 href={`${base}/finance`}
-                className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                className="font-medium text-blue underline-offset-2 hover:underline"
               >
                 {t.financeLink}
               </Link>
               <Link
                 href={`${base}/map`}
-                className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
+                className="font-medium text-blue underline-offset-2 hover:underline"
               >
                 {t.mapLink}
               </Link>

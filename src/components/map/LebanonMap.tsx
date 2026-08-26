@@ -604,7 +604,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
    * claimed a row of its own. Filling a grid column instead lets them pair.
    */
   const selectCls =
-    "min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm text-[color:var(--color-text)]";
+    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm text-text";
 
   const yearOptions = ["2024", "2026"] as const;
   const yearRoving = useRovingRadio({
@@ -625,13 +625,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         a reader sets a filter and then wants the map, not the controls.
         Above sm it pins as before, with a cap so it can never do this again.
       */}
-      <div className="z-40 -mx-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:sticky sm:top-[var(--header-h)] sm:max-h-[40vh] sm:overflow-y-auto sm:px-6">
+      <div className="z-40 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:sticky sm:top-[var(--header-h)] sm:max-h-[40vh] sm:overflow-y-auto sm:px-6">
         <div className="grid grid-cols-2 items-end gap-3 sm:flex sm:flex-wrap">
           <div>
-            <label htmlFor="map-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+            <label htmlFor="map-year" className="block text-[11px] font-semibold text-text-secondary">
               {t.year}
             </label>
-            <div className="mt-1 inline-flex overflow-hidden rounded-md border border-[color:var(--color-border)] bg-white" role="radiogroup" aria-label={t.mapYear}>
+            <div className="mt-1 inline-flex overflow-hidden rounded-md border border-border bg-white" role="radiogroup" aria-label={t.mapYear}>
               {yearOptions.map((y, i) => (
                 <button
                   key={y}
@@ -641,7 +641,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                   {...yearRoving.itemProps(i)}
                   onClick={() => set("year", y)}
                   className={`min-h-11 px-4 text-sm ${
-                    String(year) === y ? "font-semibold text-white" : "text-[color:var(--color-text-secondary)]"
+                    String(year) === y ? "font-semibold text-white" : "text-text-secondary"
                   }`}
                   style={
                     String(year) === y
@@ -655,7 +655,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </div>
           </div>
           <div>
-            <label htmlFor="map-layer" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+            <label htmlFor="map-layer" className="block text-[11px] font-semibold text-text-secondary">
               {t.actorLayer}
             </label>
             <select id="map-layer" className={`mt-1 ${selectCls}`} value={layerFilter} onChange={(e) => set("layer", e.target.value)}>
@@ -666,7 +666,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </select>
           </div>
           <div>
-            <label htmlFor="map-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+            <label htmlFor="map-stage" className="block text-[11px] font-semibold text-text-secondary">
               {t.stage}
             </label>
             <select id="map-stage" className={`mt-1 ${selectCls}`} value={stageFilter} onChange={(e) => set("stage", e.target.value)}>
@@ -677,7 +677,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </select>
           </div>
           <div>
-            <label htmlFor="map-status" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+            <label htmlFor="map-status" className="block text-[11px] font-semibold text-text-secondary">
               {t.status}
             </label>
             <select id="map-status" className={`mt-1 ${selectCls}`} value={statusFilter} onChange={(e) => set("status", e.target.value)}>
@@ -688,7 +688,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </select>
           </div>
           <div>
-            <label htmlFor="map-comp" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">
+            <label htmlFor="map-comp" className="block text-[11px] font-semibold text-text-secondary">
               {t.comparability}
             </label>
             <select id="map-comp" className={`mt-1 ${selectCls}`} value={comparabilityFilter} onChange={(e) => set("comparability", e.target.value)}>
@@ -701,7 +701,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           <button
             type="button"
             onClick={reset}
-            className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
+            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
           >
             {t.reset}
           </button>
@@ -715,14 +715,14 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               }
             }}
             aria-pressed={renderMode === "gl"}
-            className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
+            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
           >
             {renderMode === "gl" ? t.backToVector : t.glOptIn}
           </button>
         </div>
       </div>
 
-      <p className="mt-4 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-4 note-caution text-xs leading-relaxed text-text-secondary">
         {cautionMap(locale)}
       </p>
 
@@ -740,7 +740,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               locale={locale}
             />
           ) : (
-            <div dir="ltr" className="overflow-hidden rounded-md border border-[color:var(--color-border)]">
+            <div dir="ltr" className="overflow-hidden rounded-md border border-border">
               <div
                 ref={containerRef}
                 className="h-[560px] sm:h-[760px]"
@@ -761,12 +761,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
               return (
                 <section key={r.id} className="card p-3.5">
-                  <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">
+                  <h3 className="text-sm font-semibold text-navy">
                     {regionLabel(r.id, locale)}
                   </h3>
-                  <p className="mt-2 text-lg font-semibold tabular-nums text-[color:var(--color-navy)]">
+                  <p className="mt-2 text-lg font-semibold tabular-nums text-navy">
                     {total}{" "}
-                    <span className="text-xs font-normal text-[color:var(--color-text-secondary)]">
+                    <span className="text-xs font-normal text-text-secondary">
                       {t.mentionsIn(year)}
                     </span>
                   </p>
@@ -794,19 +794,19 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           aria-label={t.happenedAria(year)}
           className="mt-6 card p-3.5 sm:p-4"
         >
-          <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+          <h3 className="text-base font-semibold text-navy">
             {t.happenedHead(year)}
           </h3>
-          <p className="mt-1 max-w-3xl text-xs text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 max-w-3xl text-xs text-text-secondary">
             {t.happenedSub}
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {LOCALITY_EVENTS.filter((l) => l.events.some((e) => e.year === year)).map((l) => (
               <article
                 key={l.name}
-                className="rounded-md border border-[color:var(--color-border)] p-3.5"
+                className="rounded-md border border-border p-3.5"
               >
-                <h4 className="text-sm font-semibold text-[color:var(--color-navy)]">
+                <h4 className="text-sm font-semibold text-navy">
                   {localityName(l, locale)}
                 </h4>
                 <ul className="mt-2 space-y-2">
@@ -821,7 +821,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                           {eventKindLabel(e.kind, locale)}
                         </span>
                         {e.date ? (
-                          <span className="me-1 font-semibold text-[color:var(--color-navy)]">
+                          <span className="me-1 font-semibold text-navy">
                             {fmtDate(e.date, locale)}:
                           </span>
                         ) : null}

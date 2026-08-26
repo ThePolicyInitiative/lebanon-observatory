@@ -45,7 +45,8 @@ export default function DivergingChangeChart({
   subtitle: string;
   description: string;
   locale?: Locale;
-}) {  const t = T[locale];
+}) {
+  const t = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const change = changeFor(layer);

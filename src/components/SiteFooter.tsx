@@ -39,7 +39,7 @@ export default function SiteFooter() {
   const f = ABOUT_FOOTER[locale];
 
   return (
-    <footer className="on-navy mt-16 border-t border-[#0e2542] bg-[color:var(--color-navy)]">
+    <footer className="on-navy mt-16 border-t border-[#0e2542] bg-navy">
       <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
         <nav aria-label={CHROME[locale].footerNav}>
           <p className="text-xs font-semibold uppercase tracking-wide text-white/60">

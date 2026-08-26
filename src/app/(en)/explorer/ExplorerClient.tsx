@@ -355,9 +355,9 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
     ar && r.locationNamesAr?.length ? r.locationNamesAr : r.locationNames;
 
   const selectCls =
-    "min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white px-2.5 text-sm";
+    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm";
   const headingCls =
-    "text-xs font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]";
+    "text-xs font-bold uppercase tracking-wide text-text-secondary";
 
   return (
     <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
@@ -369,13 +369,13 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         aria-label={t.filtersAria}
         className="lg:sticky lg:top-[var(--header-h)] lg:max-h-[calc(100dvh-var(--header-h))] lg:self-start lg:overflow-y-auto lg:overscroll-contain"
       >
-        <details className="rounded-md border border-[color:var(--color-border)] bg-white lg:open:pb-4" open>
-          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[color:var(--color-navy)]">
+        <details className="rounded-md border border-border bg-white lg:open:pb-4" open>
+          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy">
             {t.filtersSummary(filtered.length, TOTAL)}
           </summary>
           <div className="space-y-3 px-4 pb-4">
             <div>
-              <label htmlFor="ex-q" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.search}</label>
+              <label htmlFor="ex-q" className="block text-[11px] font-semibold text-text-secondary">{t.search}</label>
               <input
                 id="ex-q"
                 type="search"
@@ -387,7 +387,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               />
             </div>
             <div>
-              <label htmlFor="ex-year" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.year}</label>
+              <label htmlFor="ex-year" className="block text-[11px] font-semibold text-text-secondary">{t.year}</label>
               <select id="ex-year" className={selectCls} value={get("year")} onChange={(e) => set("year", e.target.value)}>
                 <option value="all">{t.bothYears}</option>
                 <option value="2024">2024</option>
@@ -395,7 +395,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-layer" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.layer}</label>
+              <label htmlFor="ex-layer" className="block text-[11px] font-semibold text-text-secondary">{t.layer}</label>
               <select id="ex-layer" className={selectCls} value={get("layer")} onChange={(e) => set("layer", e.target.value)}>
                 <option value="all">{t.allLayers}</option>
                 {layerMeta.map((l) => (
@@ -404,7 +404,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-stage" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.stage}</label>
+              <label htmlFor="ex-stage" className="block text-[11px] font-semibold text-text-secondary">{t.stage}</label>
               <select id="ex-stage" className={selectCls} value={get("stage")} onChange={(e) => set("stage", e.target.value)}>
                 <option value="all">{t.allStages}</option>
                 {stages.map((s, i) => (
@@ -413,7 +413,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.fn}</label>
+              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-text-secondary">{t.fn}</label>
               <select id="ex-fn" className={selectCls} value={get("fn")} onChange={(e) => set("fn", e.target.value)}>
                 <option value="all">{t.allFns}</option>
                 {FUNCTION_COLUMNS.map((f) => (
@@ -422,7 +422,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-status" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.status}</label>
+              <label htmlFor="ex-status" className="block text-[11px] font-semibold text-text-secondary">{t.status}</label>
               <select id="ex-status" className={selectCls} value={get("status")} onChange={(e) => set("status", e.target.value)}>
                 <option value="all">{t.allStatuses}</option>
                 {statusList(locale).map(([k, v]) => (
@@ -431,7 +431,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-region" className="block text-[11px] font-semibold text-[color:var(--color-text-secondary)]">{t.region}</label>
+              <label htmlFor="ex-region" className="block text-[11px] font-semibold text-text-secondary">{t.region}</label>
               <select id="ex-region" className={selectCls} value={get("region")} onChange={(e) => set("region", e.target.value)}>
                 <option value="all">{t.allRegions}</option>
                 {locations.regions.map((r) => (
@@ -440,7 +440,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div className="pt-1">
-              <button type="button" onClick={reset} className="min-h-11 w-full rounded-md border border-[color:var(--color-border)] bg-white text-sm text-[color:var(--color-text-secondary)]">
+              <button type="button" onClick={reset} className="min-h-11 w-full rounded-md border border-border bg-white text-sm text-text-secondary">
                 {t.reset}
               </button>
             </div>
@@ -463,13 +463,13 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         </div>
 
         {/* Desktop table */}
-        <div className="hidden overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-white md:block">
+        <div className="hidden overflow-x-auto rounded-md border border-border bg-white md:block">
           <table className="min-w-full border-collapse text-[13px]">
             <caption className="sr-only">{t.tableCaption}</caption>
             <thead>
               <tr>
                 {t.headers.map((h) => (
-                  <th key={h} scope="col" className="whitespace-nowrap border-b-2 border-[color:var(--color-border)] px-2.5 py-2 text-start font-semibold text-[color:var(--color-navy)]">
+                  <th key={h} scope="col" className="whitespace-nowrap border-b-2 border-border px-2.5 py-2 text-start font-semibold text-navy">
                     {h}
                   </th>
                 ))}
@@ -479,10 +479,10 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               {filtered.slice(0, visible).map((r) => (
                 <tr
                   key={r.id}
-                  className="cursor-pointer odd:bg-[color:var(--color-bg)] hover:bg-[#EEF2F7]"
+                  className="cursor-pointer odd:bg-bg hover:bg-[#EEF2F7]"
                   onClick={(e) => open(r, e.currentTarget.querySelector("button"))}
                 >
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2 tabular-nums">
+                  <td className="border-b border-border px-2.5 py-2 tabular-nums">
                     <span
                       className="rounded-sm px-1.5 py-0.5 text-[10.5px] font-semibold text-white"
                       style={{ background: r.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
@@ -490,29 +490,29 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                       {r.year}
                     </span>
                   </td>
-                  <td className="max-w-[220px] border-b border-[color:var(--color-border)] px-2.5 py-2">
+                  <td className="max-w-[220px] border-b border-border px-2.5 py-2">
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); open(r, e.currentTarget); }}
-                      className="text-start font-medium text-[color:var(--color-navy)] underline-offset-2 hover:underline"
+                      className="text-start font-medium text-navy underline-offset-2 hover:underline"
                     >
                       {name(r.actorName.split(":")[0])}
                     </button>
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">
+                  <td className="border-b border-border px-2.5 py-2">
                     <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                       <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: layerMeta.find((l) => l.id === r.actorLayer)?.color }} />
                       {layerMeta.find((l) => l.id === r.actorLayer)?.short}
                     </span>
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">{stageLabel(r.stageNo, locale)}</td>
-                  <td className="max-w-[160px] border-b border-[color:var(--color-border)] px-2.5 py-2 text-[color:var(--color-text-secondary)]">
+                  <td className="border-b border-border px-2.5 py-2">{stageLabel(r.stageNo, locale)}</td>
+                  <td className="max-w-[160px] border-b border-border px-2.5 py-2 text-text-secondary">
                     {locsFor(r).slice(0, 2).join(t.joiner) || "-"}
                   </td>
-                  <td className="border-b border-[color:var(--color-border)] px-2.5 py-2">
+                  <td className="border-b border-border px-2.5 py-2">
                     {ar ? <span lang="en" dir="ltr">{r.functionColumn}</span> : r.functionColumn}
                   </td>
-                  <td className="whitespace-nowrap border-b border-[color:var(--color-border)] px-2.5 py-2">{statusLabel(r.implementationStatus, locale)}</td>
+                  <td className="whitespace-nowrap border-b border-border px-2.5 py-2">{statusLabel(r.implementationStatus, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -528,7 +528,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 onClick={(e) => open(r, e.currentTarget)}
                 className="w-full card p-3.5 text-start"
               >
-                <p className="flex items-center justify-between gap-2 text-[11px] text-[color:var(--color-text-secondary)]">
+                <p className="flex items-center justify-between gap-2 text-[11px] text-text-secondary">
                   <span className="inline-flex items-center gap-1.5">
                     <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: layerMeta.find((l) => l.id === r.actorLayer)?.color }} />
                     {layerMeta.find((l) => l.id === r.actorLayer)?.short}
@@ -540,8 +540,8 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                     {r.year}
                   </span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-[color:var(--color-navy)]">{name(r.actorName.split(":")[0])}</p>
-                <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
+                <p className="mt-1 text-sm font-semibold text-navy">{name(r.actorName.split(":")[0])}</p>
+                <p className="mt-0.5 text-xs text-text-secondary">
                   {stageLabel(r.stageNo, locale)} · {ar ? <span lang="en" dir="ltr">{r.functionColumn}</span> : r.functionColumn} · {statusLabel(r.implementationStatus, locale)}
                 </p>
               </button>
@@ -550,7 +550,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="card p-3.5 text-sm text-[color:var(--color-text-secondary)]">
+          <p className="card p-3.5 text-sm text-text-secondary">
             {t.empty(TOTAL)}
           </p>
         ) : null}
@@ -560,7 +560,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
             <button
               type="button"
               onClick={() => setVisible((v) => v + 100)}
-              className="min-h-11 rounded-md border border-[color:var(--color-border)] bg-white px-5 text-sm text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-navy)] hover:text-[color:var(--color-navy)]"
+              className="min-h-11 rounded-md border border-border bg-white px-5 text-sm text-text-secondary hover:border-navy hover:text-navy"
             >
               {t.showMore(filtered.length - visible)}
             </button>
@@ -578,18 +578,18 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
           onCancel={(e) => { e.preventDefault(); close(); }}
           onClick={(e) => { if (e.target === e.currentTarget) close(); }}
         >
-          <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white text-[color:var(--color-text)] shadow-xl">
-            <div className="flex items-start justify-between gap-3 border-b border-[color:var(--color-border)] p-4">
+          <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white text-text shadow-xl">
+            <div className="flex items-start justify-between gap-3 border-b border-border p-4">
               <div>
-                <p className="text-[11px] uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                <p className="text-[11px] uppercase tracking-wide text-text-secondary">
                   {layerMeta.find((l) => l.id === selected.actorLayer)?.label} · {selected.year} · {stageLabel(selected.stageNo, locale)}
                 </p>
-                <h3 className="mt-0.5 text-sm font-semibold text-[color:var(--color-navy)]">
+                <h3 className="mt-0.5 text-sm font-semibold text-navy">
                   {name(selected.actorName)}
                 </h3>
                 {/* The id in the address bar, printed once so an entry can
                     be named in prose and found again from the name. */}
-                <p className="mt-1 text-[11px] text-[color:var(--color-text-secondary)]">
+                <p className="mt-1 text-[11px] text-text-secondary">
                   {t.entryRef}:{" "}
                   <span dir="ltr" className="font-mono">
                     {selected.id}
@@ -600,7 +600,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="min-h-11 min-w-11 rounded border border-[color:var(--color-border)] text-sm"
+                className="min-h-11 min-w-11 rounded border border-border text-sm"
               >
                 <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
@@ -612,22 +612,22 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                   passages twice. It stays in the data, where the search
                   filter still reads it. */}
               {detailFailed ? (
-                <section className="rounded-md bg-[color:var(--color-bg)] p-3">
-                  <p className="text-[13px] text-[color:var(--color-text-secondary)]">{t.loadFailed}</p>
+                <section className="rounded-md bg-bg p-3">
+                  <p className="text-[13px] text-text-secondary">{t.loadFailed}</p>
                   <button
                     type="button"
                     onClick={() => loadDetail(selected.id)}
-                    className="mt-2 min-h-9 rounded-md border border-[color:var(--color-border)] bg-white px-3 text-[13px] text-[color:var(--color-navy)]"
+                    className="mt-2 min-h-9 rounded-md border border-border bg-white px-3 text-[13px] text-navy"
                   >
                     {t.retry}
                   </button>
                 </section>
               ) : !detail ? (
                 <div aria-busy="true" aria-label={t.loadingDetail} className="space-y-2">
-                  <p className="text-[13px] text-[color:var(--color-text-secondary)]">{t.loadingDetail}</p>
-                  <div className="h-4 w-3/4 animate-pulse rounded bg-[color:var(--color-bg)]" />
-                  <div className="h-4 w-full animate-pulse rounded bg-[color:var(--color-bg)]" />
-                  <div className="h-4 w-2/3 animate-pulse rounded bg-[color:var(--color-bg)]" />
+                  <p className="text-[13px] text-text-secondary">{t.loadingDetail}</p>
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-bg" />
+                  <div className="h-4 w-full animate-pulse rounded bg-bg" />
+                  <div className="h-4 w-2/3 animate-pulse rounded bg-bg" />
                 </div>
               ) : (
                 <>
@@ -645,19 +645,19 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                   ) : null}
                   <dl className="grid grid-cols-2 gap-3 text-[13px]">
                     <div>
-                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.statusLabel}</dt>
+                      <dt className="font-semibold text-text-secondary">{t.statusLabel}</dt>
                       <dd>{statusLabel(detail.implementationStatus, locale)}</dd>
                     </div>
                     <div>
-                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.comparability}</dt>
+                      <dt className="font-semibold text-text-secondary">{t.comparability}</dt>
                       <dd>{comparabilityLabel(detail.comparability, locale)}</dd>
                     </div>
                     <div>
-                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.fnColumn}</dt>
+                      <dt className="font-semibold text-text-secondary">{t.fnColumn}</dt>
                       <dd>{ar ? <span lang="en" dir="ltr">{detail.functionColumn}</span> : detail.functionColumn}</dd>
                     </div>
                     <div>
-                      <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.locationsLabel}</dt>
+                      <dt className="font-semibold text-text-secondary">{t.locationsLabel}</dt>
                       <dd>
                         {ar && detail.locationNamesAr?.length
                           ? detail.locationNamesAr.join(t.joiner)
@@ -666,31 +666,31 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                     </div>
                     {detail.regions.length > 0 ? (
                       <div>
-                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.regionsLabel}</dt>
+                        <dt className="font-semibold text-text-secondary">{t.regionsLabel}</dt>
                         <dd>{detail.regions.map((id) => regionLabel(id, locale)).join(t.joiner)}</dd>
                       </div>
                     ) : null}
                     {detail.financingRole ? (
                       <div>
-                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.financeRole}</dt>
+                        <dt className="font-semibold text-text-secondary">{t.financeRole}</dt>
                         <dd>{ar ? <span lang="en" dir="ltr">{detail.financingRole}</span> : detail.financingRole}</dd>
                       </div>
                     ) : null}
                     {detail.procurementRole ? (
                       <div>
-                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.procurementRole}</dt>
+                        <dt className="font-semibold text-text-secondary">{t.procurementRole}</dt>
                         <dd>{ar ? <span lang="en" dir="ltr">{detail.procurementRole}</span> : detail.procurementRole}</dd>
                       </div>
                     ) : null}
                     {detail.implementationRole ? (
                       <div>
-                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.implementationRole}</dt>
+                        <dt className="font-semibold text-text-secondary">{t.implementationRole}</dt>
                         <dd>{ar ? <span lang="en" dir="ltr">{detail.implementationRole}</span> : detail.implementationRole}</dd>
                       </div>
                     ) : null}
                     {detail.oversightRole ? (
                       <div>
-                        <dt className="font-semibold text-[color:var(--color-text-secondary)]">{t.oversightRole}</dt>
+                        <dt className="font-semibold text-text-secondary">{t.oversightRole}</dt>
                         <dd>{ar ? <span lang="en" dir="ltr">{detail.oversightRole}</span> : detail.oversightRole}</dd>
                       </div>
                     ) : null}
@@ -708,7 +708,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                                 href={c.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[color:var(--color-blue)] underline underline-offset-2"
+                                className="text-blue underline underline-offset-2"
                               >
                                 {c.label} <span aria-hidden dir="ltr">↗</span>
                               </a>
@@ -721,7 +721,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                     </section>
                   ) : null}
                   {mvc ? (
-                    <section className="rounded-md bg-[color:var(--color-bg)] p-3">
+                    <section className="rounded-md bg-bg p-3">
                       <h4 className={headingCls}>{t.onPaper}</h4>
                       <EntryText
                         en={actorEntry?.mandateVsCapacity}
@@ -732,7 +732,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                     </section>
                   ) : null}
                   <section>
-                    <p className="text-xs text-[color:var(--color-text-secondary)]">{t.confirmNote}</p>
+                    <p className="text-xs text-text-secondary">{t.confirmNote}</p>
                   </section>
                 </>
               )}
@@ -745,7 +745,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                         <button
                           type="button"
                           onClick={() => open(r)}
-                          className="rounded-sm bg-[color:var(--color-bg)] px-2 py-1 text-xs hover:bg-[#EEF2F7]"
+                          className="rounded-sm bg-bg px-2 py-1 text-xs hover:bg-[#EEF2F7]"
                         >
                           {stageLabel(r.stageNo, locale)}
                         </button>
@@ -758,7 +758,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 <section>
                   <h4 className={headingCls}>{t.relatedActors}</h4>
                   <p
-                    className="mt-1 text-[13px] text-[color:var(--color-text-secondary)]"
+                    className="mt-1 text-[13px] text-text-secondary"
                     {...(ar ? { lang: "en", dir: "ltr" as const } : {})}
                   >
                     {relatedActorNames.join("; ")}
@@ -770,7 +770,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 <p className="mt-1 text-[13px]">
                   <Link
                     href={`${ar ? "/ar" : ""}/news?stage=${encodeURIComponent(selected.stage)}`}
-                    className="text-[color:var(--color-blue)] underline underline-offset-2"
+                    className="text-blue underline underline-offset-2"
                   >
                     {t.openCoverage(stageLabel(selected.stageNo, locale))}
                   </Link>

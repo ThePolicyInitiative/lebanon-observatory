@@ -71,10 +71,10 @@ export default function DebrisTiles({ locale = "en" }: { locale?: Locale } = {})
   return (
     <figure className="card card-interactive p-4 sm:p-5">
       <figcaption>
-        <h3 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h3 className="text-base font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+        <p className="mt-1 text-sm text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
@@ -84,19 +84,19 @@ export default function DebrisTiles({ locale = "en" }: { locale?: Locale } = {})
             key={t.title}
             className="panel-sunken p-4"
           >
-            <p className="text-2xl font-bold tabular-nums tracking-tight text-[color:var(--color-navy)]">
+            <p className="text-2xl font-bold tabular-nums tracking-tight text-navy">
               {t.figure}
             </p>
-            <p className="mt-0.5 text-[13px] font-semibold text-[color:var(--color-text)]">
+            <p className="mt-0.5 text-[13px] font-semibold text-text">
               {t.title}
             </p>
-            <p className="mt-2 border-t border-dashed border-[color:var(--color-border)] pt-1.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+            <p className="mt-2 border-t border-dashed border-border pt-1.5 text-[11px] leading-relaxed text-text-secondary">
               {t.method}
             </p>
           </div>
         ))}
       </div>
-      <p className="mt-3 note-caution text-xs leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
         {tr.caveat}
       </p>
     </figure>

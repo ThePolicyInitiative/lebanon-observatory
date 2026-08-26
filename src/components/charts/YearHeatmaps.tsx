@@ -37,7 +37,8 @@ const T = {
  * scale. Cells are unlabelled: the value is in the tooltip and in the
  * figure's description, which is what a reader without the colours gets.
  */
-export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
+export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}) {
+  const tr = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
 

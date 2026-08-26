@@ -31,10 +31,10 @@ export default function MapLegend({
   const t = T[locale];
   return (
     <div
-      className={`rounded-md border border-[color:var(--color-border)] bg-white/95 p-3 text-[11px] leading-snug ${className}`}
+      className={`rounded-md border border-border bg-white/95 p-3 text-[11px] leading-snug ${className}`}
     >
-      <p className="font-semibold text-[color:var(--color-navy)]">{t.heading}</p>
-      <p className="mt-1.5 text-[color:var(--color-text-secondary)]">{t.pins}</p>
+      <p className="font-semibold text-navy">{t.heading}</p>
+      <p className="mt-1.5 text-text-secondary">{t.pins}</p>
       <ul className="mt-1 grid gap-x-3 gap-y-1 sm:grid-cols-2">
         {layers(locale).map((l) => (
           <li key={l.id} className="flex items-center gap-1.5">
@@ -43,7 +43,7 @@ export default function MapLegend({
               className="h-2.5 w-2.5 shrink-0 rounded-full ring-1 ring-white"
               style={{ background: l.color }}
             />
-            <span className="text-[color:var(--color-text)]">{l.short}</span>
+            <span className="text-text">{l.short}</span>
           </li>
         ))}
       </ul>

@@ -80,13 +80,13 @@ export default function ViewRanking({
   return (
     <figure className="card p-3.5">
       <figcaption>
-        <h3 className="text-sm font-semibold text-[color:var(--color-navy)]">{head}</h3>
-        <p className="mt-0.5 text-[11px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        <h3 className="text-sm font-semibold text-navy">{head}</h3>
+        <p className="mt-0.5 text-[11px] leading-relaxed text-text-secondary">
           {sub}
         </p>
       </figcaption>
       {top.length === 0 ? (
-        <p className="mt-3 text-[12px] text-[color:var(--color-text-secondary)]">{t.empty}</p>
+        <p className="mt-3 text-[12px] text-text-secondary">{t.empty}</p>
       ) : (
         <ol className="mt-3 space-y-2">
           {top.map((r) => {
@@ -106,7 +106,7 @@ export default function ViewRanking({
             return (
               <li key={r.key}>
                 <p className="flex items-baseline justify-between gap-2 text-[12px]">
-                  <span className="min-w-0 truncate text-[color:var(--color-text)]" title={r.label}>
+                  <span className="min-w-0 truncate text-text" title={r.label}>
                     {r.label}
                   </span>
                   <span
@@ -128,7 +128,7 @@ export default function ViewRanking({
                   }}
                 />
                 {r.note ? (
-                  <p className="mt-0.5 text-[10.5px] leading-snug text-[color:var(--color-text-secondary)]">
+                  <p className="mt-0.5 text-[10.5px] leading-snug text-text-secondary">
                     {r.note}
                   </p>
                 ) : null}

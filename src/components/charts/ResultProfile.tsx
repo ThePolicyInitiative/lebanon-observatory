@@ -59,10 +59,10 @@ function Bars({
       {items.map((i) => (
         <li key={i.key}>
           <p className="flex items-baseline justify-between gap-2 text-[11.5px]">
-            <span className="min-w-0 truncate text-[color:var(--color-text)]" title={i.label}>
+            <span className="min-w-0 truncate text-text" title={i.label}>
               {i.label}
             </span>
-            <span className="shrink-0 tabular-nums text-[color:var(--color-text-secondary)]">
+            <span className="shrink-0 tabular-nums text-text-secondary">
               {i.value}
               {total > 0 ? (
                 <span className="ms-1 text-[10px]">
@@ -122,23 +122,23 @@ export default function ResultProfile({
   return (
     <figure className="card p-3.5">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-xl font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-xl font-semibold text-navy">
           {t.title}
         </h2>
-        <span className="text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">
+        <span className="text-[11px] tabular-nums text-text-secondary">
           {t.rows(total)}
         </span>
       </figcaption>
-      <p className="mt-1 text-[11.5px] leading-relaxed text-[color:var(--color-text-secondary)]">
+      <p className="mt-1 text-[11.5px] leading-relaxed text-text-secondary">
         {t.sub}
       </p>
 
       {total === 0 ? (
-        <p className="mt-3 text-[12.5px] text-[color:var(--color-text-secondary)]">{t.empty}</p>
+        <p className="mt-3 text-[12.5px] text-text-secondary">{t.empty}</p>
       ) : (
         <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
               {t.byYear}
             </h3>
             <Bars
@@ -153,7 +153,7 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
               {t.byLayer}
             </h3>
             <Bars
@@ -168,7 +168,7 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
               {t.byStage}
             </h3>
             <ul className="mt-2 space-y-1">
@@ -177,17 +177,17 @@ export default function ResultProfile({
                 return (
                   <li key={label} className="flex items-center gap-1.5 text-[10.5px]">
                     <span
-                      className="w-16 shrink-0 truncate text-[color:var(--color-text-secondary)]"
+                      className="w-16 shrink-0 truncate text-text-secondary"
                       title={label}
                     >
                       {label}
                     </span>
                     <span
                       aria-hidden
-                      className="h-2 rounded-sm bg-[color:var(--color-navy)]"
+                      className="h-2 rounded-sm bg-navy"
                       style={{ width: `${(v / stageMax) * 60}%`, minWidth: v > 0 ? 3 : 0 }}
                     />
-                    <span className="tabular-nums text-[color:var(--color-text-secondary)]">
+                    <span className="tabular-nums text-text-secondary">
                       {v || ""}
                     </span>
                   </li>
@@ -197,7 +197,7 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
               {t.byStatus}
             </h3>
             <Bars total={total} items={statusItems} />

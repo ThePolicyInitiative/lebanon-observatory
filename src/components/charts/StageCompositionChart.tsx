@@ -58,7 +58,8 @@ const T = {
 export default function StageCompositionChart({
   showCaveat = true,
   locale = "en",
-}: { showCaveat?: boolean; locale?: Locale } = {}) {  const tr = T[locale];
+}: { showCaveat?: boolean; locale?: Locale } = {}) {
+  const tr = T[locale];
   const ar = locale === "ar";
   const LAYER_META = layers(locale);
   const STAGES = stageList(locale);
@@ -209,7 +210,7 @@ export default function StageCompositionChart({
             checked={percent}
             onChange={(e) => setPercent(e.target.checked)}
             disabled={mode === "change"}
-            className="h-4 w-4 accent-[color:var(--color-navy)]"
+            className="h-4 w-4 accent-navy"
           />
           {tr.percentToggle}
         </label>
@@ -242,7 +243,7 @@ export default function StageCompositionChart({
           }}
         />
         {mode === "side" ? (
-          <p className="mt-1 text-[11px] text-[color:var(--color-text-secondary)]">
+          <p className="mt-1 text-[11px] text-text-secondary">
             {tr.upper}
             <span
               className="rounded-sm px-1 font-semibold text-white"

@@ -51,7 +51,7 @@ export default function SiteNav() {
       : "/ar";
 
   return (
-    <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0e2542] bg-[color:var(--color-navy)]/[0.97] backdrop-blur-sm">
+    <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0e2542] bg-navy/[0.97] backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1360px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
         <Link
           href={isArabic ? "/ar" : "/"}
@@ -59,7 +59,7 @@ export default function SiteNav() {
         >
           <span
             aria-hidden
-            className="grid h-8 w-8 place-items-center rounded bg-[color:var(--color-amber)] text-sm font-bold text-[color:var(--color-navy)]"
+            className="grid h-8 w-8 place-items-center rounded bg-amber text-sm font-bold text-navy"
           >
             LR
           </span>
@@ -91,7 +91,7 @@ export default function SiteNav() {
                     aria-current={active ? "page" : undefined}
                     className={`inline-flex min-h-11 items-center rounded px-2.5 text-[13px] transition-colors duration-150 ${
                       active
-                        ? "font-semibold text-white underline decoration-[color:var(--color-amber)] decoration-2 underline-offset-8"
+                        ? "font-semibold text-white underline decoration-amber decoration-2 underline-offset-8"
                         : "text-white/70 hover:text-white"
                     }`}
                   >
@@ -128,7 +128,7 @@ export default function SiteNav() {
         <nav
           id="mobile-nav"
           aria-label={chrome.primaryNavMobile}
-          className="border-t border-white/15 bg-[color:var(--color-navy)] xl:hidden"
+          className="border-t border-white/15 bg-navy xl:hidden"
         >
           {/* Ten 44px rows plus padding is 522px of sticky element, and the
               hamburger stays active all the way to xl - so a phone in
