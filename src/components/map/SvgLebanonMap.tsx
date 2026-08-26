@@ -419,11 +419,28 @@ export default function SvgLebanonMap({
 
         // Boundaries dissolved from these same polygons, so outlines sit
         // exactly on the areas they enclose.
+        /*
+         * NOT isUnnamedArea here, and the difference is the whole point of
+         * the distinction.
+         *
+         * `isUnnamedArea` answers "may I print this as a place name?" - and
+         * for the 65 polygons called "Litige" the answer is no. But this
+         * loop is not labelling anything: it dissolves polygon boundaries
+         * into the district and governorate outlines, and those polygons
+         * are real land in fifteen districts. Excluding them left the
+         * outlines drawn from an incomplete set, with holes where disputed
+         * areas sit. Geometry takes every polygon; only the labels are
+         * choosy.
+         *
+         * "Conflict" alone stays excluded, as it was before: those slivers
+         * are contested between districts, so dissolving them into one
+         * would assert an attribution the boundary data does not make.
+         */
         const groupBy = (key: (f: GeoFeature) => string) => {
           const m = new Map<string, GeoFeature[]>();
           for (const f of gj.features) {
             const n = String(f.properties.adm3_name ?? "");
-            if (!n || isUnnamedArea(n)) continue;
+            if (!n || n === "Conflict") continue;
             const g = key(f);
             if (!g) continue;
             if (!m.has(g)) m.set(g, []);
