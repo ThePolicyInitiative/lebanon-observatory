@@ -52,6 +52,7 @@ import {
   type Pin,
 } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
+import { labelBox, packLabels } from "@/lib/map-labels";
 import MapLegend from "./MapLegend";
 import ViewRanking, { type RankRow } from "./ViewRanking";
 
@@ -1049,39 +1050,69 @@ export default function SvgLebanonMap({
   }, [view, placePoints, change, damageAnchors, tr]);
 
   /** Top points labelled even at national zoom (skipping city labels). */
-  const topPlaceNames = useMemo(() => {
-    const cityPoints = CITY_LABELS.map((c) => projectPoint(c.lon, c.lat));
-    return new Set(
-      placePoints
-        .filter(
-          (p) =>
-            !cityPoints.some(
-              (c) => Math.hypot(c.x - p.town.cx, c.y - p.town.cy) < 14,
-            ),
-        )
-        .slice(0, 6)
-        .map((p) => p.town.name),
-    );
-  }, [placePoints]);
-
   /**
-   * Zoomed label set: greedy collision avoidance, highest traced
-   * volume first, so the dense south cluster stays readable.
+   * Which town names get printed, at whatever zoom the reader is at.
+   *
+   * There were two rules before, and the map used whichever the zoom
+   * selected. The national one took the six busiest towns with no test
+   * between them at all, so on a phone seven of the thirteen strings on
+   * screen overlapped another - "Tayr Debbeh 12" across "Chehour 8",
+   * "Qana 8" across "Tibnine 8". The zoomed one did avoid collisions, but
+   * only against other town labels: the city and district labels are
+   * drawn unconditionally and were invisible to it, so "Nabatieh" printed
+   * straight through "Nabatieh Et-Tahta 22" at every zoom to the deepest.
+   *
+   * One rule now, and it measures boxes rather than distances between
+   * centres. A place name is far wider than it is tall, so a radius is
+   * the wrong shape to reserve for it: two labels a comfortable radius
+   * apart still overlap if they run towards each other. The labels that
+   * are drawn unconditionally claim their boxes first, which is both
+   * correct and free, and the town labels fill what is left in order of
+   * traced volume. How many fit falls out of the geometry.
    */
-  const declutteredLabels = useMemo(() => {
-    const accepted: { x: number; y: number }[] = [];
-    const set = new Set<string>();
-    const minDist = 22 * k;
-    for (const p of placePoints) {
-      if (
-        accepted.some((a) => Math.hypot(a.x - p.town.cx, a.y - p.town.cy) < minDist)
-      )
-        continue;
-      accepted.push({ x: p.town.cx, y: p.town.cy });
-      set.add(p.town.name);
+  const visibleLabels = useMemo(() => {
+    // Drawn at every zoom, so they are the first claimants.
+    const cityPoints = CITY_LABELS.map((c) => ({ ...c, ...projectPoint(c.lon, c.lat) }));
+    const reserved = cityPoints.map((c) =>
+      labelBox(c.x + 4.5 * k, c.y - 3.5 * k, c.name, 10.5 * k),
+    );
+    reserved.push(
+      labelBox(LITANI_LABEL_ANCHOR.x, LITANI_LABEL_ANCHOR.y - 4 * k, "Litani", 9.5 * k),
+    );
+    // District labels appear only when zoomed out past this point.
+    if (zoom <= 0.55) {
+      for (const l of DISTRICT_LABELS) {
+        reserved.push(labelBox(l.x, l.y, l.label, 9.5 * k, "middle"));
+      }
     }
-    return set;
-  }, [placePoints, k]);
+
+    const candidates = placePoints
+      // A town the city labels already name would print the same place
+      // twice over. That is a fact about the names, not about the zoom,
+      // so the distance here stays in ground units and is not scaled.
+      .filter(
+        (p) =>
+          !cityPoints.some((c) => Math.hypot(c.x - p.town.cx, c.y - p.town.cy) < 14),
+      )
+      .map((p) => {
+        const a = anchorOf(p.town);
+        const cluster = clusterByTown.get(p.town.name);
+        const reach = cluster
+          ? PIN_R + Math.sqrt(cluster.count) * 1.3
+          : fanRadius(p.total, fitSpacing(p.total, a.room / k, PIN_SPACING));
+        return {
+          key: p.town.name,
+          box: labelBox(
+            a.x + (reach + 5) * k,
+            a.y + 3 * k,
+            `${p.town.name} ${p.total}`,
+            9.5 * k,
+          ),
+        };
+      });
+
+    return packLabels(candidates, reserved);
+  }, [placePoints, k, zoom, anchorOf, clusterByTown]);
 
   /** Town fills - memoized so zoom/pan and hover don't re-diff 1,600 paths. */
   const townLayer = useMemo(() => {
@@ -1631,11 +1662,7 @@ export default function SvgLebanonMap({
               {view === "entries"
                 ? placePoints.map((p) => {
                     const t = p.town;
-                    const showLabel =
-                      zoom <= 0.5
-                        ? declutteredLabels.has(t.name)
-                        : topPlaceNames.has(t.name);
-                    if (!showLabel) return null;
+                    if (!visibleLabels.has(t.name)) return null;
                     // The label clears whatever the town actually drew:
                     // the fitted fan, or the single marker that replaced
                     // it where the fan would not have been legible.
