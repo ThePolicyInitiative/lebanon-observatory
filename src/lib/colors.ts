@@ -29,13 +29,30 @@ export const LAYER_COLORS = {
 
 export const YEAR_COLORS = {
   y2024: "#58779B",
-  y2026: "#28805F",
-  /** Text variants. Each year's fill colour is short of 4.5:1 as text on
-   *  its own pale chip tint and on white, so neither is asked to be both. */
+  y2026: "#175C3F",
+  /**
+   * The blue is 4.13:1 as text on its own #eef2f7 chip, so it takes a
+   * darker sibling. The green needs none: at 7.96:1 on white and 6.91:1 on
+   * its tint it carries text itself. The asymmetry is in the colours, not
+   * in the rule.
+   */
   y2024Text: "#516D8F",
-  y2026Text: "#257759",
   negative: "#B04A37", // negative change / bottleneck
   warning: "#D69600", // financing or implementation warning
+} as const;
+
+/**
+ * Direction of change, named apart from the years it borrows from.
+ *
+ * Teal used to mean both "NGO/international actor" and "this went up", and
+ * both appeared on /actors - one colour answering two questions on a single
+ * page. Teal is identity only now. On this site positive always means grew
+ * from 2024 to 2026, so `good` is the 2026 colour and the year controls have
+ * already taught the reader that association.
+ */
+export const VALENCE = {
+  good: YEAR_COLORS.y2026,
+  bad: YEAR_COLORS.negative,
 } as const;
 
 export const UI = {

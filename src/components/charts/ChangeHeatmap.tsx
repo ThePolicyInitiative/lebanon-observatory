@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
+import { VALENCE } from "@/lib/colors";
 import { changeFor, countsFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -288,7 +289,10 @@ export default function ChangeHeatmap({
         text: [...tt.visualMapText],
         textStyle: { fontSize: 10 },
         inRange: {
-          color: ["#BD5A46", "#E4B3A7", "#FFFFFF", "#9CC7CE", "#1B8295"],
+          // Diverging on valence. The positive end was the identity teal,
+          // which the actor charts use for the NGO/international layer; it
+          // is the growth green now, with a pale tint of each between.
+          color: [VALENCE.bad, "#E4B3A7", "#FFFFFF", "#A8CBBB", VALENCE.good],
         },
       },
       series: [

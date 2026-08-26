@@ -1,4 +1,4 @@
-import { YEAR_COLORS } from "@/lib/colors";
+import { VALENCE } from "@/lib/colors";
 import type { Locale } from "@/lib/vocab";
 
 /**
@@ -91,19 +91,17 @@ export default function ViewRanking({
         <ol className="mt-3 space-y-2">
           {top.map((r) => {
             const positive = r.value >= 0;
-            // The bar is a fill and the figure beside it is text, and one
-            // value cannot serve both: the old #2F8F6B and #BD5A46 measured
-            // 3.99:1 and 4.45:1 as 12px text on the white card. Fill takes
-            // the year/rust tokens; text takes their darker siblings.
-            const barColor = r.signed
+            /*
+             * One value for the bar and the figure beside it. It took two
+             * for a while, because the old greens and rusts measured 3.99:1
+             * and 4.45:1 as 12px text on the white card and could not be
+             * asked to do both jobs. The darkened growth green clears
+             * 7.96:1 and the rust 5.41:1, so the split is no longer earned.
+             */
+            const color = r.signed
               ? positive
-                ? YEAR_COLORS.y2026
-                : YEAR_COLORS.negative
-              : "var(--color-navy)";
-            const textColor = r.signed
-              ? positive
-                ? YEAR_COLORS.y2026Text
-                : YEAR_COLORS.negative
+                ? VALENCE.good
+                : VALENCE.bad
               : "var(--color-navy)";
             return (
               <li key={r.key}>
@@ -113,7 +111,7 @@ export default function ViewRanking({
                   </span>
                   <span
                     className="shrink-0 tabular-nums font-semibold"
-                    style={{ color: textColor }}
+                    style={{ color }}
                   >
                     {r.display ??
                       (r.signed && positive ? `+${r.value}` : r.value.toLocaleString("en-US"))}
@@ -125,7 +123,7 @@ export default function ViewRanking({
                   style={{
                     width: `${(Math.abs(r.value) / max) * 100}%`,
                     minWidth: 3,
-                    background: barColor,
+                    background: color,
                     opacity: 0.85,
                   }}
                 />

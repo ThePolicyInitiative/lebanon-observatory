@@ -319,7 +319,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                     </span>
                   ) : null}
                   {g.y26 > 0 && year !== 2024 ? (
-                    <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[color:var(--color-y2026-text)]">
+                    <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[color:var(--color-y2026)]">
                       2026 × {year === "both" ? g.y26 : g.records.length}
                     </span>
                   ) : null}
@@ -344,7 +344,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                           className={`rounded-sm px-1.5 py-0.5 ${
                             r.year === 2024
                               ? "bg-[#EEF2F7] text-[color:var(--color-y2024-text)]"
-                              : "bg-[#E8F1EC] text-[color:var(--color-y2026-text)]"
+                              : "bg-[#E8F1EC] text-[color:var(--color-y2026)]"
                           }`}
                         >
                           {r.year}

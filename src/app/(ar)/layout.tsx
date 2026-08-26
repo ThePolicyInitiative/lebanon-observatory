@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { IBM_Plex_Sans_Arabic, Inter, Source_Serif_4 } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import "../globals.css";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -11,11 +11,12 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
+/*
+ * No serif here. The Latin serif carries no Arabic glyphs, and since Plex
+ * Arabic covers Latin too, it could not even paint the digits and acronyms
+ * inside an Arabic heading - so this tree was downloading a face it had no
+ * way of showing. globals.css names it nowhere under [dir="rtl"].
+ */
 
 /**
  * The Arabic text face. globals.css prepends this variable to the sans
@@ -81,7 +82,7 @@ export default function ArabicRootLayout({ children }: { children: ReactNode }) 
     <html
       lang="ar"
       dir="rtl"
-      className={`${inter.variable} ${sourceSerif.variable} ${plexArabic.variable} h-full antialiased`}
+      className={`${inter.variable} ${plexArabic.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">

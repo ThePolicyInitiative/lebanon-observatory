@@ -69,27 +69,52 @@
   --color-border: #dbe3ec;
   --color-border-strong: #c3cfdd;
 
-  --color-y2024: #58779b;
-  --color-y2026: #28805f;
-
   /*
-   * An accent does two jobs: it fills a swatch, and it colours the label
-   * sitting on that swatch's pale tint. A fill only has to be
-   * distinguishable; text has to clear 4.5:1 against its own background.
-   * Teal and rust manage both - 4.79:1 on #e8f1f3 and 4.57:1 on #f7e9e5 -
-   * but the 2026 green reaches only 4.20:1 on its own #e8f1ec tint, so
-   * text on the green tint takes a darker sibling: 4.72:1 there, 5.44:1 on
-   * white, and 4.70:1 on the page ground.
+   * THE YEAR PAIR. This is the site's core comparison, and for most of its
+   * life the two colours were isoluminant: #58779b and the old #28805f
+   * measured 1.04:1 against each other, so every 2024-vs-2026 chart, chip
+   * and control separated by hue alone. In greyscale, in a printout, or to
+   * a reader who does not distinguish blue from green, the whole comparison
+   * collapsed into one flat tone.
+   *
+   * The green now carries a real lightness step: 1.72:1 against the blue.
+   * That is not the 3:1 a non-text indicator wants - two data colours
+   * cannot both stay in the same family and reach it - but it is a visible
+   * difference where there was none, and the pair still reads as a pair.
+   *
+   * A side effect worth naming: at 7.96:1 on white and 6.91:1 on its own
+   * #e8f1ec chip tint, the green no longer needs the separate text sibling
+   * it had. One value serves both jobs honestly now, so the sibling is
+   * gone. The blue still needs its own, below - the pair is asymmetric
+   * because the colours are, not because the rule differs.
    */
-  --color-y2026-text: #257759;
+  --color-y2024: #58779b;
+  --color-y2026: #175c3f;
 
   /*
-   * The 2024 sibling, for the same reason and found the same way: #58779b
-   * printed on its own #eef2f7 chip measures 4.13:1. This is 4.75:1 there
-   * and 5.34:1 on white. The pair now behaves consistently - each year has
-   * a fill and a text value, and neither is asked to be both.
+   * The 2024 sibling: #58779b printed on its own #eef2f7 chip measures
+   * 4.13:1. This is 4.75:1 there and 5.34:1 on white.
    */
   --color-y2024-text: #516d8f;
+
+  /*
+   * VALENCE, which is not identity. Teal used to mean two unrelated things:
+   * the NGO/international actor layer, and "this went up" - and both
+   * appeared on /actors, so the same colour answered two questions on one
+   * page. Teal is now identity only.
+   *
+   * Direction of change borrows the year colours instead, and that is not a
+   * third meaning bolted on: on this site "positive" always means grew from
+   * 2024 to 2026, so good IS the 2026 colour and the reader is already
+   * being taught it by every year control on the site. Rust stays negative.
+   *
+   * Named separately from the year tokens even though they resolve to the
+   * same values, because a chart asking "did this rise" is asking something
+   * different from a chart labelling a year, and the day one of them needs
+   * to move, only one should.
+   */
+  --color-good: var(--color-y2026);
+  --color-bad: var(--color-rust);
 
   /* One elevation ramp, used everywhere. */
   --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);
@@ -125,15 +150,29 @@ body {
 
 /* ---------------------------------------------------------------- type -- */
 
+/*
+ * The serif is for the page title and the pull quotes. Nothing else.
+ *
+ * It used to run on h1, h2 and h3, but heading sizes had collapsed toward
+ * body size - h2 runs from 14px to 30px across the site, h3 from 12.5px to
+ * 18px - so most serif on the page appeared at 14-17px, where a reader does
+ * not register it as a voice, only as a slight inconsistency against the
+ * sans beside it. KpiCard had already opted out on its own. At that size a
+ * serif is not doing the job a serif is for.
+ *
+ * Restricted to h1, it lands once per page at a size that can carry it, and
+ * every other heading is unambiguously the sans. `.editorial-quote` keeps
+ * it too - the quotes are the other place the voice is meant to change.
+ */
 h1,
 h2,
 h3 {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   text-wrap: balance;
   color: var(--color-navy);
 }
 
 h1 {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   letter-spacing: -0.022em;
   line-height: 1.1;
 }
@@ -168,11 +207,26 @@ body [dir="rtl"] {
  * negative Latin tracking above is neutralised - Arabic script joins its
  * letters and must never be tightened.
  */
+/*
+ * The Arabic page title is a sans, and says so.
+ *
+ * It used to name the Latin serif as a second choice, which was always
+ * unreachable: IBM Plex Sans Arabic covers Latin as well as Arabic, so the
+ * digits and acronyms inside an Arabic heading resolve in it and the
+ * fallback never gets a character. Naming a face that cannot paint invites
+ * someone to keep loading it - so the Arabic tree no longer mentions the
+ * serif anywhere, and (ar)/layout.tsx no longer downloads it.
+ */
+[dir="rtl"] h1 {
+  font-family: var(--font-sans-arabic), var(--font-sans), Inter, "Segoe UI", system-ui,
+    sans-serif;
+}
+
+/* h2 and h3 are the sans now and inherit the Arabic stack from body; all
+   three still need the Latin tracking neutralised. */
 [dir="rtl"] h1,
 [dir="rtl"] h2,
 [dir="rtl"] h3 {
-  font-family: var(--font-sans-arabic), var(--font-serif), Georgia, "Times New Roman",
-    serif;
   letter-spacing: 0;
 }
 

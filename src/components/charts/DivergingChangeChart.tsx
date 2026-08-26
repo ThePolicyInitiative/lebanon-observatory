@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
+import { VALENCE } from "@/lib/colors";
 import { countsFor, changeFor } from "@/lib/data-client";
 import { cautionCounts, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
@@ -98,7 +99,9 @@ export default function DivergingChangeChart({
           data: sorted.map((d) => ({
             value: d.value,
             itemStyle: {
-              color: d.value >= 0 ? "#1B8295" : "#BD5A46",
+              // Valence, not identity: teal here meant "went up" while the
+              // same teal on this page means the NGO/international layer.
+              color: d.value >= 0 ? VALENCE.good : VALENCE.bad,
               borderRadius: 2,
             },
           })),

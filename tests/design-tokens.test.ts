@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { LAYER_COLORS, UI, YEAR_COLORS } from "@/lib/colors";
+import { LAYER_COLORS, UI, VALENCE, YEAR_COLORS } from "@/lib/colors";
 
 /**
  * The palette exists twice, and this is what holds the two copies together.
@@ -63,7 +63,6 @@ describe("the palette's two copies", () => {
       ["YEAR_COLORS.y2024", YEAR_COLORS.y2024, "color-y2024"],
       ["YEAR_COLORS.y2026", YEAR_COLORS.y2026, "color-y2026"],
       ["YEAR_COLORS.y2024Text", YEAR_COLORS.y2024Text, "color-y2024-text"],
-      ["YEAR_COLORS.y2026Text", YEAR_COLORS.y2026Text, "color-y2026-text"],
       ["YEAR_COLORS.negative", YEAR_COLORS.negative, "color-rust"],
       ["YEAR_COLORS.warning", YEAR_COLORS.warning, "color-amber"],
       ["UI.background", UI.background, "color-bg"],
@@ -122,8 +121,8 @@ describe("colours that carry text", () => {
     ["teal on its chip tint", UI.teal, "#e8f1f3"],
     ["rust on white", UI.rust, WHITE],
     ["rust on its chip tint", UI.rust, "#f7e9e5"],
-    ["2026 green text on white", YEAR_COLORS.y2026Text, WHITE],
-    ["2026 green text on its chip tint", YEAR_COLORS.y2026Text, "#e8f1ec"],
+    ["2026 green on white", YEAR_COLORS.y2026, WHITE],
+    ["2026 green on its chip tint", YEAR_COLORS.y2026, "#e8f1ec"],
     ["2024 blue text on white", YEAR_COLORS.y2024Text, WHITE],
     ["2024 blue text on its chip tint", YEAR_COLORS.y2024Text, "#eef2f7"],
     ["rust figure on the white card", YEAR_COLORS.negative, WHITE],
@@ -144,9 +143,39 @@ describe("colours that carry text", () => {
    * dark enough to carry its own text, the sibling would be dead weight -
    * this says so rather than leaving it to be discovered.
    */
-  it("still needs the separate text siblings for both years", () => {
-    expect(contrast(YEAR_COLORS.y2026, "#e8f1ec")).toBeLessThan(4.5);
+  /**
+   * The blue still cannot carry its own label; the darkened green can, which
+   * is why only one sibling is left. If the blue ever moves dark enough to
+   * pass on its own tint, its sibling can go the same way the green's did.
+   */
+  it("needs a text sibling for the blue and not for the green", () => {
     expect(contrast(YEAR_COLORS.y2024, "#eef2f7")).toBeLessThan(4.5);
+    expect(contrast(YEAR_COLORS.y2026, "#e8f1ec")).toBeGreaterThanOrEqual(4.5);
+  });
+
+  /**
+   * The reason the green was darkened. The year pair is the site's core
+   * comparison and the two colours used to be isoluminant at 1.04:1, so it
+   * separated by hue alone - gone in greyscale, in print, and for a reader
+   * who does not distinguish blue from green.
+   *
+   * Two data colours in the same family cannot reach the 3:1 a non-text
+   * indicator wants without one of them ceasing to look like itself, so
+   * this asserts a real step rather than a compliant one.
+   */
+  it("keeps a lightness step between the two years", () => {
+    expect(contrast(YEAR_COLORS.y2024, YEAR_COLORS.y2026)).toBeGreaterThanOrEqual(1.6);
+  });
+
+  /**
+   * Teal is identity - the NGO/international actor layer - and nothing else.
+   * It used to mean "this went up" as well, on pages where both readings
+   * were visible at once.
+   */
+  it("keeps valence off the identity colours", () => {
+    const identity = Object.values(LAYER_COLORS).map(lower);
+    expect(identity).not.toContain(lower(VALENCE.good));
+    expect(identity).not.toContain(lower(VALENCE.bad));
   });
 
   /**

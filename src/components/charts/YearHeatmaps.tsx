@@ -89,11 +89,11 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
       title: ar
         ? [
             { text: "2024", right: 130, top: 6, textStyle: { fontSize: 13, fontWeight: 700, color: "#58779B" } },
-            { text: "2026", right: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: YEAR_COLORS.y2026Text } },
+            { text: "2026", right: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: YEAR_COLORS.y2026 } },
           ]
         : [
             { text: "2024", left: 130, top: 6, textStyle: { fontSize: 13, fontWeight: 700, color: "#58779B" } },
-            { text: "2026", left: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: YEAR_COLORS.y2026Text } },
+            { text: "2026", left: 130, top: 246, textStyle: { fontSize: 13, fontWeight: 700, color: YEAR_COLORS.y2026 } },
           ],
       grid: ar
         ? [
