@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AR, localeAlternates } from "@/lib/i18n";
@@ -12,6 +11,7 @@ import KpiCard from "@/components/KpiCard";
 import ReconstructionPulse from "@/components/ReconstructionPulse";
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
+import { Body, GlanceFigures, Onward, SectionHeading } from "@/components/HomeNarrative";
 
 /** Below the fold and carrying the full data text for its drawer. */
 const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"), {
@@ -25,49 +25,6 @@ export const metadata: Metadata = {
   title: { absolute: AR.meta.title },
   description: AR.meta.description,
 };
-
-/** The numbered heading the English narrative uses, mirrored for Arabic. */
-function SectionHeading({
-  index,
-  title,
-  children,
-}: {
-  index: number;
-  title: string;
-  children?: ReactNode;
-}) {
-  return (
-    <div className="prose-measure">
-      <p className="flex items-center gap-2.5 font-sans text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
-        {String(index).padStart(2, "0")}
-        <span aria-hidden className="h-px w-8 bg-[color:var(--color-amber)]" />
-      </p>
-      <h2 className="mt-2 text-[26px] font-semibold sm:text-[30px]">{title}</h2>
-      {children}
-    </div>
-  );
-}
-
-function Body({ children }: { children: ReactNode }) {
-  return (
-    <p className="mt-3 text-sm leading-loose text-[color:var(--color-text)]">
-      {children}
-    </p>
-  );
-}
-
-function Onward({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <p className="mt-3 text-sm">
-      <Link
-        href={href}
-        className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-      >
-        {children} ←
-      </Link>
-    </p>
-  );
-}
 
 export default function ArabicPage() {
   const regionRows = locations.regions
@@ -134,21 +91,7 @@ export default function ArabicPage() {
               {AR.hero.ctaNews}
             </Link>
           </div>
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
-            {AR.glance.map(([n, label]) => (
-              <div key={label}>
-                <dt className="sr-only">{label}</dt>
-                <dd>
-                  <span className="block text-2xl font-semibold tabular-nums text-white">
-                    {n}
-                  </span>
-                  <span className="mt-1 block text-[11px] leading-relaxed text-white/65">
-                    {label}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <GlanceFigures items={AR.glance} />
           <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-white/55">
             {AR.glanceNote}
           </p>
@@ -185,19 +128,19 @@ export default function ArabicPage() {
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 pb-16 sm:px-6">
         <section id="emergency-2024" aria-label={AR.home.emergency.title}>
           <SectionHeading index={AR.home.emergency.n} title={AR.home.emergency.title}>
-            <Body>{AR.home.emergency.body}</Body>
+            <Body locale="ar">{AR.home.emergency.body}</Body>
           </SectionHeading>
         </section>
 
         <section id="implementation-middle" aria-label={AR.home.middle.title}>
           <SectionHeading index={AR.home.middle.n} title={AR.home.middle.title}>
-            <Body>{AR.home.middle.body}</Body>
+            <Body locale="ar">{AR.home.middle.body}</Body>
           </SectionHeading>
         </section>
 
         <section id="structures" aria-label={AR.home.structures.title}>
           <SectionHeading index={AR.home.structures.n} title={AR.home.structures.title}>
-            <Body>{AR.home.structures.body}</Body>
+            <Body locale="ar">{AR.home.structures.body}</Body>
           </SectionHeading>
           <div className="mt-6">
             <InstitutionalStructures locale="ar" />
@@ -209,7 +152,7 @@ export default function ArabicPage() {
 
         <section id="role-shift" aria-label={AR.home.roles.title}>
           <SectionHeading index={AR.home.roles.n} title={AR.home.roles.title}>
-            <Body>{AR.home.roles.body}</Body>
+            <Body locale="ar">{AR.home.roles.body}</Body>
           </SectionHeading>
           <div className="mt-6 space-y-6">
             {/* The standing counts caution prints once per page, on the
@@ -217,19 +160,19 @@ export default function ArabicPage() {
             <YearHeatmaps locale="ar" />
             <ChangeHeatmap locale="ar" showCaveat={false} />
           </div>
-          <Onward href="/ar/actors">{AR.home.roles.link}</Onward>
+          <Onward locale="ar" href="/ar/actors">{AR.home.roles.link}</Onward>
         </section>
 
         <section id="finance-delivery" aria-label={AR.home.finance.title}>
           <SectionHeading index={AR.home.finance.n} title={AR.home.finance.title}>
-            <Body>{AR.home.finance.body}</Body>
+            <Body locale="ar">{AR.home.finance.body}</Body>
           </SectionHeading>
-          <Onward href="/ar/finance">{AR.home.finance.link}</Onward>
+          <Onward locale="ar" href="/ar/finance">{AR.home.finance.link}</Onward>
         </section>
 
         <section id="geography" aria-label={AR.home.geography.title}>
           <SectionHeading index={AR.home.geography.n} title={AR.home.geography.title}>
-            <Body>{AR.home.geography.body}</Body>
+            <Body locale="ar">{AR.home.geography.body}</Body>
           </SectionHeading>
           <div className="mt-6 overflow-x-auto card p-3.5">
             <table className="min-w-full border-collapse text-sm tabular-nums">
@@ -274,7 +217,7 @@ export default function ArabicPage() {
 
         <section id="latest-news" aria-label={AR.home.news.title}>
           <SectionHeading index={AR.home.news.n} title={AR.home.news.title}>
-            <Body>{AR.home.news.body}</Body>
+            <Body locale="ar">{AR.home.news.body}</Body>
           </SectionHeading>
           <div className="mt-6">
             <NewsTeaser locale="ar" />

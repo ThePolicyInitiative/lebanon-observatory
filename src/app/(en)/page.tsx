@@ -12,6 +12,7 @@ const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"),
 });
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
+import { GlanceFigures, SectionHeading } from "@/components/HomeNarrative";
 import { kpis, locations } from "@/lib/data";
 import { GOV_PATHS } from "@/lib/geo";
 import { localeAlternates } from "@/lib/i18n";
@@ -22,27 +23,6 @@ export const metadata: Metadata = {
   description:
     "From emergency substitution to programmed reconstruction: how Lebanon's post-war reconstruction system changed between 2024 and 2026.",
 };
-
-function SectionHeading({
-  index,
-  title,
-  children,
-}: {
-  index: number;
-  title: string;
-  children?: React.ReactNode;
-}) {
-  return (
-    <div className="prose-measure">
-      <p className="flex items-center gap-2.5 font-sans text-xs font-bold uppercase tracking-widest text-[color:var(--color-teal)]">
-        {String(index).padStart(2, "0")}
-        <span aria-hidden className="h-px w-8 bg-[color:var(--color-amber)]" />
-      </p>
-      <h2 className="mt-2 text-[26px] font-semibold sm:text-[30px]">{title}</h2>
-      {children}
-    </div>
-  );
-}
 
 export default function HomePage() {
   const regionRows = locations.regions
@@ -115,24 +95,14 @@ export default function HomePage() {
             </Link>
           </div>
           {/* At a glance */}
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
-            {[
+          <GlanceFigures
+            items={[
               ["771", "traced entries in the tracking (357 for 2024; 414 for 2026)"],
               ["105 → 130", "actors catalogued across the four layers, 2024 → 2026; 129 of the 130 carry traced entries"],
               ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
               ["0", "works contracts awarded, confirmed completed outputs and confirmed compensation payments by the cut-off"],
-            ].map(([n, label]) => (
-              <div key={label}>
-                <dt className="sr-only">{label}</dt>
-                <dd>
-                  <span className="figure-number block text-[27px] text-white">{n}</span>
-                  <span className="mt-1.5 block text-[11px] leading-snug text-white/65">
-                    {label}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
+            ]}
+          />
           <p className="mt-3 max-w-3xl text-[11px] leading-snug text-white/55">
             Two counts coexist by design: the charts on the compare and actors
             pages read the report-level actor-stage counts (343 for 2024; 360
