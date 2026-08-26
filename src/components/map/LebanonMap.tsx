@@ -39,6 +39,7 @@ import {
 import { fmtDate } from "@/lib/format";
 import {
   buildPins,
+  chipBackground,
   clampToLand,
   degreesPerPixel,
   fanSpacing,
@@ -132,6 +133,8 @@ const T = {
       `${n} traced entries here, closer together than they can be drawn apart at this zoom. Zoom in for a pin on each.`,
     pinListHeading: (n: number) =>
       `Every marker on the map as a list - ${n} in all. Selecting one brings it into view and opens what is traced there.`,
+    filterStatus: (n: number, year: number) =>
+      `${n} traced ${n === 1 ? "entry" : "entries"} in ${year} match the filters now set.`,
     mentionsIn: (year: number) => `mentions in ${year}`,
     happenedAria: (year: number) => `Traced episodes in ${year}`,
     happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
@@ -165,6 +168,8 @@ const T = {
       `${n} مدخلاً مرصوداً هنا، أقرب بعضها إلى بعض من أن تُرسم متفرّقة عند هذا التكبير. قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
     pinListHeading: (n: number) =>
       `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
+    filterStatus: (n: number, year: number) =>
+      `${n} مدخلاً مرصوداً في ${year} تطابق المرشّحات المضبوطة الآن.`,
     mentionsIn: (year: number) => `إشارة في ${year}`,
     happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
     happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
@@ -224,8 +229,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   const [glIndex, setGlIndex] = useState<LocationIndex | null>(null);
   /** The dynamically imported MapLibre module, once the map has loaded. */
   const maplibreRef = useRef<typeof import("maplibre-gl") | null>(null);
-  /** The popup opened from the focusable list, so a second open replaces it. */
-  const listPopupRef = useRef<{ remove: () => void } | null>(null);
+  /**
+   * The one popup the map may have open. Every place that opens one goes
+   * through this, so opening a second closes the first rather than
+   * stacking it and leaving the reader to dismiss both.
+   */
+  const popupRef = useRef<{ remove: () => void } | null>(null);
   /** Land test from the town polygons, in lon/lat. */
   const [glLand, setGlLand] = useState<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -519,6 +528,20 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           });
 
           map.on("click", "gov-fill", (e: MapLayerMouseEvent) => {
+            // A pin belongs to the pin. MapLibre's per-layer click
+            // handlers are independent map-level listeners, each running
+            // its own hit test, so nothing stops both from firing on one
+            // click - and the governorate fill covers the whole country,
+            // which puts it under 196 of the 200 pins. Every pin click was
+            // opening its entry popup and a governorate popup underneath
+            // it at the same point, so the reader had to dismiss a second
+            // popup they never asked for.
+            if (
+              map.getLayer("locality-hit") &&
+              map.queryRenderedFeatures(e.point, { layers: ["locality-hit"] }).length
+            ) {
+              return;
+            }
             const f = e.features?.[0];
             if (!f) return;
             const zoneId = f.properties?.zoneId as string;
@@ -551,7 +574,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 ).join("<br/>") +
                 `<br/><em style="color:${CHART.label}">${esc(t.popupCaution)}</em></div>`
               : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
-            new maplibregl.Popup({ closeButton: true })
+            popupRef.current?.remove();
+            popupRef.current = new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)
               .setHTML(html)
               .addTo(map);
@@ -567,7 +591,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             const f = e.features?.[0];
             if (!f) return;
             const html = f.properties?.popupHtml as string;
-            new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
+            popupRef.current?.remove();
+            popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
               .setLngLat(e.lngLat)
               .setHTML(html)
               .addTo(map);
@@ -760,7 +785,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry} · ${esc(pin.townName)}` +
                 `${pin.district ? ` · ${esc(pin.district)}` : ""} · ${year}</span>` +
                 `<br/><strong>${esc(pin.title)}</strong>` +
-                `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : layerColor(pin.layer)};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
+                `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : chipBackground(layerColor(pin.layer))};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
                 `${pin.date ? ` <span style="font-size:10.5px;color:${CHART.label}">${esc(fmtDate(pin.date, locale))}</span>` : ""}` +
                 (pin.kind === "entry"
                   ? `<br/><span style="font-size:11px;color:${CHART.label}">${esc(pin.detail)}</span>`
@@ -790,8 +815,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       center: [lon, lat],
       zoom: f.properties.label ? Math.max(map.getZoom(), 11) : Math.max(map.getZoom(), 13),
     });
-    listPopupRef.current?.remove();
-    listPopupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
+    popupRef.current?.remove();
+    popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
       .setLngLat([lon, lat])
       .setHTML(f.properties.popupHtml)
       .addTo(map);
@@ -953,6 +978,21 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
 
       <p className="mt-4 note-caution text-xs leading-relaxed text-text-secondary">
         {cautionMap(locale)}
+      </p>
+
+      {/*
+       * Always mounted, and outside the branch that swaps the two maps.
+       *
+       * A live region only announces changes made to a region that was
+       * already there when the page settled - mount the region and its
+       * text together and the text is just part of the initial render,
+       * which is silent. The map's only result count was doing exactly
+       * that, and it lived inside the vector map, so in pan-and-zoom mode
+       * there was no count at all. Changing a filter said nothing in
+       * either mode.
+       */}
+      <p role="status" className="sr-only">
+        {t.filterStatus(filteredRecords.length, year)}
       </p>
 
       {(

@@ -43,6 +43,7 @@ import { fmtDate } from "@/lib/format";
 import { layers, regionLabel, stageList, type Locale } from "@/lib/vocab";
 import {
   buildPins,
+  chipBackground,
   clampToLand,
   fanRadius,
   fitSpacing,
@@ -1765,11 +1766,28 @@ export default function SvgLebanonMap({
         </div>
 
         <div className="space-y-4">
+        {/*
+         * One live region, mounted from the start.
+         *
+         * The two panels below carried aria-live themselves, and both
+         * appear only once something is selected - so the region and its
+         * text arrived in the same commit, which is an initial render and
+         * is silent. Selecting a pin announced nothing at all. This sits
+         * here empty and is filled on selection, which is a mutation and
+         * does announce; the panels no longer claim to be live regions,
+         * so a reader moving from one pin to the next hears it once.
+         */}
+        <p role="status" aria-live="polite" className="sr-only">
+          {openPin
+            ? `${openPin.title} · ${openPin.townName}${openPin.district ? ` · ${openPin.district}` : ""}`
+            : selectedZone && zoneMentions
+              ? regionLabel(selectedZone, locale)
+              : ""}
+        </p>
         {/* The opened pin, above everything else: it is what the reader
             just asked for, and one pin is one traced entry. */}
         {openPin ? (
           <aside
-            aria-live="polite"
             className="card border-s-4"
             style={{ borderInlineStartColor: openPin.color }}
             // Escape closes it from anywhere inside, which is what a
@@ -1814,7 +1832,7 @@ export default function SvgLebanonMap({
             <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wide">
               <span
                 className="rounded-sm px-1.5 py-0.5 text-white"
-                style={{ background: openPin.color }}
+                style={{ background: chipBackground(openPin.color) }}
               >
                 {openPin.layerLabel}
               </span>
@@ -1853,7 +1871,7 @@ export default function SvgLebanonMap({
         {/* Detail panel: rendered only once a town or zone is picked,
             so nothing empty sits under the map. */}
         {selectedZone && zoneMentions ? (
-          <aside aria-live="polite" className="card">
+          <aside className="card">
             <>
               <h3 className="text-sm font-semibold text-navy">
                 {selectedArea ? `${selectedArea} · ` : ""}

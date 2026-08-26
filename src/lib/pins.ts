@@ -253,6 +253,38 @@ export function pinOutline(color: string): string {
   return `#${[ch(1), ch(3), ch(5)].map((v) => v.toString(16).padStart(2, "0")).join("")}`;
 }
 
+/** WCAG relative luminance of a #rrggbb colour. */
+function luminance(hex: string): number {
+  const channel = (i: number) => {
+    const v = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * channel(1) + 0.7152 * channel(3) + 0.0722 * channel(5);
+}
+
+/** Contrast ratio of white text on this colour. */
+export function contrastWithWhite(hex: string): number {
+  return 1.05 / (luminance(hex) + 0.05);
+}
+
+/**
+ * What a layer chip paints behind its white label.
+ *
+ * The chip carries the layer's own colour, which is the site's identity
+ * for that layer everywhere else, so it is kept wherever it can carry
+ * white text. Municipal amber cannot: #FFFFFF on #D69600 measures 2.55:1
+ * against the 4.5:1 that text needs, and the chip is set at 10.5px, which
+ * is not large text by any reading. The other three layers pass between
+ * 5.29:1 and 11.40:1 and are left exactly as they are.
+ *
+ * Where the colour fails, the chip takes the darkened form of that same
+ * colour - the one the pin outline already uses - so the layer is still
+ * recognisably itself rather than swapped for some other hue.
+ */
+export function chipBackground(color: string): string {
+  return contrastWithWhite(color) >= 4.5 ? color : pinOutline(color);
+}
+
 /**
  * Every pin for one year: one per entry naming a town, one per traced
  * episode. `spacing` is in the caller's units. Towns are resolved through
