@@ -203,6 +203,42 @@ export function layerColor(layer: string): string {
 }
 
 /**
+ * Places the tracking names as a remit, not as somewhere anything was
+ * traced - so no pin is drawn on them.
+ *
+ * A pin is a claim. It says the reporting placed this piece of work in
+ * this town, and the caveat under the map only softens that to "in this
+ * town rather than at this address". It never softens it to "an official
+ * whose remit includes this town sat on a committee in Beirut".
+ *
+ * Baalbek is named seven times and every one of them is scope. The Higher
+ * Relief Commission's Secretary-General carries "jurisdiction for Mount
+ * Lebanon, Dahieh and Baalbek"; the Directorate General of Customs lists
+ * Beirut, Dahieh, the Bekaa, Baalbek and Mount Lebanon against entries
+ * that read "named as GEC participant" and "participated in the
+ * Government Emergency Committee"; and the one traced episode says the
+ * town "fell under the Higher Relief Commission's jurisdiction for damage
+ * claims". Not one of them puts an action in Baalbek.
+ *
+ * This is the rule the alias table already states for Tripoli - a city
+ * that appears only as a group's address earns no marker, because a
+ * marker would say work happened somewhere nothing was traced. Tripoli is
+ * caught there because it needs an alias to be found at all. Baalbek is a
+ * cadastral town name, so the mechanical tier reaches it unaided and the
+ * alias-level guard never sees it.
+ *
+ * Baalbek district's surveyed damage is a separate matter and a real one:
+ * 10,274 units, which the survey view still shades. Damage to the
+ * district is not traced activity in the town, and the two views should
+ * not be made to say each other's sentence.
+ *
+ * tests/jurisdiction-places.test.ts re-reads the tracking and fails if any
+ * name here ever gains an entry that is genuinely located, so this cannot
+ * quietly outlive the data that justified it.
+ */
+export const JURISDICTION_ONLY_PLACES = new Set(["Baalbek"]);
+
+/**
  * A pin's outline: its own colour at 55% brightness.
  *
  * A white outline separates pins from each other but leaves the pin
@@ -256,6 +292,7 @@ export function buildPins({
     const m = matchLocations(index, r.locationNames ?? []);
     for (const town of m.towns) {
       if (town === "Conflict") continue;
+      if (JURISDICTION_ONLY_PLACES.has(town)) continue;
       push(town, {
         id: `${r.id}@${town}`,
         kind: "entry",
@@ -280,6 +317,7 @@ export function buildPins({
 
   for (const [town, entry] of eventsByTown) {
     if (town === "Conflict") continue;
+    if (JURISDICTION_ONLY_PLACES.has(town)) continue;
     for (const [i, ev] of eventsFor(entry, year).entries()) {
       push(town, {
         id: `ep-${town}-${year}-${i}`,

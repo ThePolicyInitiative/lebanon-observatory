@@ -133,10 +133,14 @@ describe("boundary projection", () => {
   });
 
   it("projects every city label inside the viewBox", () => {
-    expect(CITY_LABELS.length).toBeGreaterThanOrEqual(6);
+    expect(CITY_LABELS.length).toBeGreaterThanOrEqual(5);
     // No northern city is labelled: the map shows where the war and the
     // reconstruction were traced, and neither reached the north.
     expect(CITY_LABELS.map((c) => c.name)).not.toContain("Tripoli");
+    // Zahle went for the same reason once it was looked at: every label
+    // draws a filled dot, and the tracking says nothing about Zahle at
+    // all. tests/jurisdiction-places.test.ts holds that rule generally.
+    expect(CITY_LABELS.map((c) => c.name)).not.toContain("Zahle");
     for (const c of CITY_LABELS) {
       const { x, y } = projectPoint(c.lon, c.lat);
       expect(x).toBeGreaterThan(0);

@@ -644,12 +644,20 @@ export const LITANI_PATHS: string[] = LITANI_SEGMENTS.map(
  * precision). Northern cities are not among them: this is a map of where
  * the war and the reconstruction were traced, and labelling Tripoli on it
  * invites the reader to look for something there that never happened.
+ *
+ * Zahle went for the same reason. It was carried here as Bekaa
+ * orientation, but it appears in no part of the tracking - no entry, no
+ * traced episode, no surveyed damage - and each of these labels draws a
+ * filled dot, which at a glance is another mark on a map whose marks mean
+ * something happened. Baalbek stays: its district carries 10,274
+ * surveyed damaged units, which the survey view shades. It draws no pin,
+ * because every mention of the town itself is jurisdiction rather than
+ * located activity - see JURISDICTION_ONLY_PLACES.
  */
 export const CITY_LABELS: { name: string; lon: number; lat: number }[] = [
   { name: "Beirut", lon: 35.5018, lat: 33.8938 },
   { name: "Saida", lon: 35.3758, lat: 33.5606 },
   { name: "Tyre", lon: 35.2038, lat: 33.2705 },
   { name: "Nabatieh", lon: 35.4836, lat: 33.3772 },
-  { name: "Zahle", lon: 35.902, lat: 33.8463 },
   { name: "Baalbek", lon: 36.2181, lat: 34.0058 },
 ];

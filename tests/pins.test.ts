@@ -6,6 +6,7 @@ import {
   clampToLand,
   fanOffset,
   fanRadius,
+  JURISDICTION_ONLY_PLACES,
   layerColor,
   pinOutline,
 } from "@/lib/pins";
@@ -55,7 +56,10 @@ describe("map pins", () => {
       for (const r of slimRecords) {
         if (r.year !== year) continue;
         for (const t of matchLocations(index, r.locationNames ?? []).towns)
-          if (t !== "Conflict") expected++;
+          // Conflict is unnamed area; the jurisdiction-only places are
+          // named as an official's remit rather than as somewhere
+          // anything was traced, so they draw no pin either.
+          if (t !== "Conflict" && !JURISDICTION_ONLY_PLACES.has(t)) expected++;
       }
       const pins = [...pinsFor(year).values()].flat();
       const entryPins = pins.filter((p) => p.kind === "entry");
