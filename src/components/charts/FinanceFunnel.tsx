@@ -116,7 +116,14 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
             className="h-full bg-[color:var(--color-amber)]"
             style={{ width: "1.65%", minWidth: "3px" }}
           />
-          <div className="h-full flex-1 bg-[#E8ECF1]" />
+          {/* The undisbursed remainder is 98.35% of this bar and measured
+              1.19:1 against the card - so the magnified strip showed a thin
+              amber mark against nothing, and the nothing was the point. An
+              outline gives it an edge without raising its voice. */}
+          <div
+            className="h-full flex-1 bg-[#E8ECF1]"
+            style={{ borderInlineEnd: `1px solid ${UI.outlineQuiet}` }}
+          />
         </div>
         <div className="mt-2 flex flex-wrap justify-between gap-2 text-xs tabular-nums text-[color:var(--color-text-secondary)]">
           <span>
@@ -130,6 +137,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
             <span
               aria-hidden
               className="me-1 inline-block h-2.5 w-2.5 rounded-sm bg-[#E8ECF1]"
+              style={{ border: `1px solid ${UI.outlineQuiet}` }}
             />
             {tr.notDisbursed} <strong>98.35%</strong>
           </span>

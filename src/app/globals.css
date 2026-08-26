@@ -128,6 +128,24 @@
   --color-caution-text: #8a6200;
 
   /*
+   * The outline that makes a pale fill countable.
+   *
+   * Some marks have to stay quiet and still be seen: the disbursement
+   * waffle's unfilled cells and the finance funnel's undisbursed remainder
+   * are the gap between committed and paid, which is the whole finding, and
+   * they measured 1.22:1 and 1.19:1 against the card - invisible. Darkening
+   * the fills would have shouted; an outline does not.
+   *
+   * Sized against the palest fill it encloses rather than against the card,
+   * which is the harder constraint and the one that was missed first:
+   * 3.02:1 on #e3e9ef, 3.11:1 on #e8ecf1, 3.69:1 on white, 3.19:1 on the
+   * page ground. --color-text-muted looked close enough at 3.08:1 on white
+   * but fell to 2.52:1 against the fill it was outlining, so this is its own
+   * token rather than a text colour borrowed for a shape.
+   */
+  --color-outline-quiet: #7b8696;
+
+  /*
    * THE TYPE SCALE. Eight steps, in place of the twenty-two distinct
    * font-size values the pages had grown - fifteen of them hand-typed
    * bracket sizes, eleven of them crammed between 8px and 13.5px, where the

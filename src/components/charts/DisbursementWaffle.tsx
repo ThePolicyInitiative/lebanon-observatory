@@ -51,7 +51,7 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
         rows: [
           ["Approved loan (IBRD-98410)", "250,000,000", "100%"],
           ["Disbursed", "4,130,000", "1.65%"],
-          ["Undisbursed", "245,880,000", "98.35%"],
+          ["Undisbursed", "245,870,000", "98.35%"],
         ],
       }}
     >
@@ -69,26 +69,49 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
                 key={i}
                 aria-hidden
                 className="aspect-square rounded-[2px]"
-                style={
-                  fillShare >= 1
-                    ? { background: UI.rust }
-                    : fillShare > 0
-                      ? {
-                          background: `linear-gradient(90deg, ${UI.rust} ${fillShare * 100}%, #E3E9EF ${fillShare * 100}%)`,
-                        }
-                      : { background: "#E3E9EF" }
-                }
+                /*
+                 * Every cell is outlined, including the empty ones, and the
+                 * empty ones are the reason.
+                 *
+                 * This figure says 1.65% disbursed. Its fill measured 1.22:1
+                 * against the white card - invisible - so a reader saw two
+                 * rust squares floating in space and no denominator. The
+                 * ninety-eight cells that are NOT filled are the finding;
+                 * they have to be countable.
+                 *
+                 * An outline rather than a darker fill, so the figure keeps
+                 * the quiet register the rest of the site holds.
+                 */
+                style={{
+                  border: `1px solid ${UI.outlineQuiet}`,
+                  background:
+                    fillShare >= 1
+                      ? UI.rust
+                      : fillShare > 0
+                        ? `linear-gradient(90deg, ${UI.rust} ${fillShare * 100}%, #E3E9EF ${fillShare * 100}%)`
+                        : "#E3E9EF",
+                }}
               />
             );
           })}
         </div>
         <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[color:var(--color-text-secondary)]">
           <span className="flex items-center gap-1.5">
-            <span aria-hidden className="h-2.5 w-2.5 rounded-[2px]" style={{ background: UI.rust }} />
+            {/* The swatch takes the cell's outline too. A legend that does
+                not look like the mark it names stops being a legend. */}
+            <span
+              aria-hidden
+              className="h-2.5 w-2.5 rounded-[2px]"
+              style={{ background: UI.rust, border: `1px solid ${UI.outlineQuiet}` }}
+            />
             {tr.legendDisbursed}
           </span>
           <span className="flex items-center gap-1.5">
-            <span aria-hidden className="h-2.5 w-2.5 rounded-[2px]" style={{ background: "#E3E9EF" }} />
+            <span
+              aria-hidden
+              className="h-2.5 w-2.5 rounded-[2px]"
+              style={{ background: "#E3E9EF", border: `1px solid ${UI.outlineQuiet}` }}
+            />
             {tr.legendUndisbursed}
           </span>
         </p>

@@ -292,7 +292,12 @@ export default function ChangeHeatmap({
           // Diverging on valence. The positive end was the identity teal,
           // which the actor charts use for the NGO/international layer; it
           // is the growth green now, with a pale tint of each between.
-          color: [VALENCE.bad, "#E4B3A7", "#FFFFFF", "#A8CBBB", VALENCE.good],
+          /* The centre stop was #FFFFFF, the same as the card behind it, so
+             a cell that changed by zero was indistinguishable from no cell
+             at all - and "no change" is a finding here, not an absence.
+             The sunken surface keeps it the quietest stop while still
+             being a cell. */
+          color: [VALENCE.bad, "#E4B3A7", UI.surfaceSunken, "#A8CBBB", VALENCE.good],
         },
       },
       series: [

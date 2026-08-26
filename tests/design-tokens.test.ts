@@ -68,6 +68,7 @@ describe("the palette's two copies", () => {
       ["YEAR_COLORS.warning", YEAR_COLORS.warning, "color-amber"],
       ["UI.background", UI.background, "color-bg"],
       ["UI.surface", UI.surface, "color-surface"],
+      ["UI.surfaceSunken", UI.surfaceSunken, "color-surface-sunken"],
       ["UI.navy", UI.navy, "color-navy"],
       ["UI.blue", UI.blue, "color-blue"],
       ["UI.teal", UI.teal, "color-teal"],
@@ -76,6 +77,8 @@ describe("the palette's two copies", () => {
       ["UI.rust", UI.rust, "color-rust"],
       ["UI.text", UI.text, "color-text"],
       ["UI.textSecondary", UI.textSecondary, "color-text-secondary"],
+      ["UI.textMuted", UI.textMuted, "color-text-muted"],
+      ["UI.outlineQuiet", UI.outlineQuiet, "color-outline-quiet"],
       ["UI.border", UI.border, "color-border"],
     ];
 
@@ -211,6 +214,30 @@ describe("colours that carry text", () => {
    * on, and a third of this site's links sit on navy. The blue ring managed
    * 2.32:1 there, which is why `.on-navy` re-points it to white.
    */
+  /**
+   * WCAG 1.4.11: a graphic you need to see to understand the content has to
+   * clear 3:1. Two figures depended on marks that did not - the disbursement
+   * waffle's unfilled cells at 1.22:1 and the finance funnel's undisbursed
+   * remainder at 1.19:1 - and in both cases the invisible mark WAS the
+   * finding: the gap between committed and paid.
+   *
+   * They stay pale, because the brief is a quiet one. What carries them is
+   * an outline, and this is what holds that outline above the threshold.
+   */
+  it("keeps the outline on pale chart fills above the graphic threshold", () => {
+    // Against the fills it encloses - the harder constraint, and the one
+    // that ruled out reusing --color-text-muted, which clears 3:1 on white
+    // but falls to 2.52:1 on the waffle cell it would have been outlining.
+    for (const fill of ["#e3e9ef", "#e8ecf1"]) {
+      expect(contrast(UI.outlineQuiet, fill)).toBeGreaterThanOrEqual(3);
+      // And why an outline is needed at all: the fill cannot carry itself.
+      expect(contrast(fill, WHITE)).toBeLessThan(3);
+    }
+    // Against the surfaces the outlined mark sits on.
+    expect(contrast(UI.outlineQuiet, WHITE)).toBeGreaterThanOrEqual(3);
+    expect(contrast(UI.outlineQuiet, UI.background)).toBeGreaterThanOrEqual(3);
+  });
+
   it("keeps the focus ring visible on both grounds it lands on", () => {
     const blue = token("color-blue");
     expect(contrast(blue, WHITE)).toBeGreaterThanOrEqual(3);
