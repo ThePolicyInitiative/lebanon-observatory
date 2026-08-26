@@ -122,23 +122,12 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
       title={tr.title}
       subtitle={tr.sub}
       caveat={tr.caveat}
-      chartRef={chartRef}
       description={components
         .map(
           (c) =>
             `${locale === "ar" ? c.shortAr : c.label.split("(")[0].trim()}: ${tr.unit(c.initialUsd / 1e6)} / ${tr.unit(c.appraisedUsd / 1e6)}`,
         )
         .join("; ")}
-      table={{
-        caption: tr.axis,
-        headers: ["Component", tr.initial, tr.appraised, "Note"],
-        rows: components.map((c) => [
-          locale === "ar" ? c.labelAr : c.label,
-          c.initialUsd / 1e6,
-          c.appraisedUsd / 1e6,
-          c.note ?? "",
-        ]),
-      }}
     >
       <EChart
         option={option}

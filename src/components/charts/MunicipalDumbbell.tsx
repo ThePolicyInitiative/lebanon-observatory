@@ -163,14 +163,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         title={t.title}
         subtitle={t.subtitle}
         caveat={cautionCounts(locale)}
-        sourceIds={["S-TRACKING"]}
-        chartRef={chartRef}
         description={t.description}
-        table={{
-          caption: t.tableCaption,
-          headers: [...t.tableHeaders],
-          rows: MUNICIPAL_POWER_GAP.map((r) => [fnLabel(r.fn), r.y2024, r.y2026]),
-        }}
       >
         <EChart
           option={option}

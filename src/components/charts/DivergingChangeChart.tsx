@@ -126,14 +126,7 @@ export default function DivergingChangeChart({
       title={title}
       subtitle={subtitle}
       caveat={cautionCounts(locale)}
-      sourceIds={["S-TRACKING"]}
-      chartRef={chartRef}
       description={description}
-      table={{
-        caption: t.tableCaption(title),
-        headers: [...t.tableHeaders],
-        rows: sorted.map((d) => [d.stage, d.y24, d.y26, signed(d.value)]),
-      }}
     >
       <EChart
         option={option}

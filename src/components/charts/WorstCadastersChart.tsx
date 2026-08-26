@@ -100,15 +100,9 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
       title={T[locale].title}
       subtitle={T[locale].sub}
       caveat={T[locale].caveat}
-      chartRef={chartRef}
       description={`${T[locale].desc}: ${rows
         .map((r) => `${cadasterName(r)} ${r.destroyed.toLocaleString("en-US")}`)
         .join("; ")} ${T[locale].unit}.`}
-      table={{
-        caption: T[locale].tableCaption,
-        headers: [...T[locale].headers],
-        rows: rows.map((r) => [cadasterName(r), r.destroyed.toLocaleString("en-US")]),
-      }}
     >
       <EChart
         option={option}

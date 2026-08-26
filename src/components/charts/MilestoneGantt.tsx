@@ -58,11 +58,6 @@ export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = 
       subtitle={tr.sub}
       caveat={tr.caveat}
       description={`${segments.map((s) => `${name(s.from)} → ${name(s.to)}: ${tr.days_(s.days)}`).join("; ")}. ${tr.days_(totalDays)}.`}
-      table={{
-        caption: "Elapsed days between LEAP milestones.",
-        headers: ["From", "To", "Date reached", "Days elapsed"],
-        rows: segments.map((s) => [name(s.from), name(s.to), s.to.date, s.days]),
-      }}
     >
       <div>
         <div

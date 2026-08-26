@@ -229,19 +229,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
       title={tr.title}
       subtitle={tr.sub}
       caveat={tr.caveat}
-      sourceIds={["S4", "S2", "S20", "S47", "S1", "S45", "S19"]}
-      chartRef={chartRef}
       description={tr.description}
-      table={{
-        caption: tr.axis,
-        headers: ["Conversion", "Elapsed", "Category", "Note"],
-        rows: ITEMS.map((i) => [
-          ar ? i.labelAr : i.label,
-          ar ? i.displayAr : i.display,
-          i.emergency ? tr.emergency : tr.programme,
-          ar ? i.noteAr : i.note,
-        ]),
-      }}
     >
       <EChart
         option={option}

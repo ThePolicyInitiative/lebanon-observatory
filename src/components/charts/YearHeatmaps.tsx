@@ -173,16 +173,10 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
       title={tr.title}
       subtitle={tr.sub}
       caveat={cautionCounts(locale)}
-      chartRef={chartRef}
       description={tableRows
         .filter((r) => Number(r[2]) > 0 || Number(r[3]) > 0)
         .map((r) => `${r[0]} · ${r[1]}: 2024 ${r[2]}, 2026 ${r[3]}`)
         .join("; ")}
-      table={{
-        caption: tr.alt,
-        headers: ["Actor layer", "Stage", "2024", "2026"],
-        rows: tableRows,
-      }}
     >
       <EChart
         option={option}

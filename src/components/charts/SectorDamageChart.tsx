@@ -110,8 +110,6 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
       title={T[locale].title}
       subtitle={T[locale].sub}
       caveat={T[locale].caveat}
-      sourceIds={["S4", "S29"]}
-      chartRef={chartRef}
       description={`${T[locale].desc}: ${rows
         .map(
           (s) =>
@@ -120,17 +118,6 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
               .join(", ")}`,
         )
         .join("; ")}.`}
-      table={{
-        caption: T[locale].tableCaption,
-        headers: [...T[locale].headers],
-        rows: sectorsJson.sectors.map((s) => [
-          locale === "ar" ? (s.labelAr ?? s.label) : s.label,
-          s.damage ?? "-",
-          s.losses ?? "-",
-          s.needs ?? "-",
-          locale === "ar" ? (s.detailAr ?? s.detail) : s.detail,
-        ]),
-      }}
     >
       <EChart
         option={option}

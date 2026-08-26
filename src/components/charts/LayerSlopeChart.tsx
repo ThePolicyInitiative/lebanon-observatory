@@ -107,20 +107,9 @@ export default function LayerSlopeChart({ locale = "en" }: { locale?: Locale } =
       title={tr.title}
       subtitle={tr.sub}
       caveat={tr.caveat}
-      chartRef={chartRef}
       description={totals
         .map((t) => `${t.label}: ${t.y24} → ${t.y26}`)
         .join("; ")}
-      table={{
-        caption: tr.axis,
-        headers: ["Actor layer", "2024", "2026", "Change"],
-        rows: totals.map((t) => [
-          t.label,
-          t.y24,
-          t.y26,
-          `${t.y26 - t.y24 >= 0 ? "+" : ""}${t.y26 - t.y24}`,
-        ]),
-      }}
     >
       <EChart
         option={option}

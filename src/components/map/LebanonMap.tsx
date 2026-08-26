@@ -90,8 +90,13 @@ const T = {
     reset: "Reset all filters",
     backToVector: "Back to vector map",
     glOptIn: "Pan & zoom (GL) map",
+    /* No longer points at a table view. That view was removed by design -
+       ChartFrame still says so where it refuses the prop - so this had been
+       sending a screen-reader user to something that does not exist. The
+       vector map, which this one replaces and the control above returns to,
+       is the alternative that does. */
     glAria: (year: number) =>
-      `Map of Lebanon showing traced role concentration by governorate zone for ${year}. Use the table view for a keyboard-accessible alternative; the map itself supports keyboard panning and zooming when focused.`,
+      `Map of Lebanon showing traced role concentration by governorate zone for ${year}. It supports keyboard panning and zooming when focused. The vector map it replaces, reachable from the control above, names each region and district as text.`,
     districtOf: (district: string) => `${district} district`,
     tracedMentions: (year: string) => `Traced mentions, ${year}:`,
     popupCaution: "Mentions in the tracking - not damage severity or coverage.",
@@ -120,7 +125,7 @@ const T = {
     backToVector: "عودة إلى الخريطة المتجهة",
     glOptIn: "خريطة تحريك وتقريب (GL)",
     glAria: (year: number) =>
-      `خريطة للبنان تُظهر تركّز الأدوار المرصودة بحسب مناطق المحافظات لسنة ${year}. استخدم عرض الجدول بديلاً ميسّراً للوحة المفاتيح؛ والخريطة نفسها تدعم التحريك والتقريب بلوحة المفاتيح عند التركيز عليها.`,
+      `خريطة للبنان تُظهر تركّز الأدوار المرصودة بحسب مناطق المحافظات لسنة ${year}. تدعم التحريك والتقريب بلوحة المفاتيح عند التركيز عليها. والخريطة المتجهة التي حلّت هذه محلّها، ويمكن العودة إليها من الزر أعلاه، تسمّي كل منطقة وقضاء نصاً.`,
     districtOf: (district: string) => `قضاء ${district}`,
     tracedMentions: (year: string) => `الإشارات المرصودة، ${year}:`,
     popupCaution: "إشارات في التتبّع - لا شدّة الضرر ولا التغطية.",

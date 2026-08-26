@@ -148,7 +148,6 @@ export default function ActorTreemapChart({
       title={t.title}
       subtitle={t.sub(year)}
       caveat={t.caveat}
-      chartRef={chartRef}
       description={`Treemap of traced actors in ${year}: ${layerTotals
         .map((l) => `${l.label} ${l.total} mentions across ${l.actors} actors`)
         .join("; ")}.`}

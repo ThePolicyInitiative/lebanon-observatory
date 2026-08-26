@@ -1,34 +1,31 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { ECharts } from "echarts";
-
-export type TableSpec = {
-  caption: string;
-  headers: string[];
-  rows: (string | number)[][];
-};
 
 type Props = {
   id: string;
   title: string;
   subtitle?: string;
   caveat?: string;
-  /** Accepted and IGNORED: on-page source chips were removed by design. */
-  sourceIds?: string[];
-  /** Accepted and IGNORED: the on-page table view was removed by design.
-   * Editing a table spec at a call site changes nothing a reader sees. */
-  table?: TableSpec;
   children: ReactNode;
-  /** Accepted and IGNORED: the frame no longer drives the chart instance. */
-  chartRef?: React.MutableRefObject<ECharts | null>;
   description?: string;
 };
 
 /**
- * Shared frame for every analytical visual: title hierarchy, caveat and
- * a screen-reader description. Table/export/copy-link controls were
- * removed deliberately and must not return.
+ * Shared frame for every analytical visual: title hierarchy, caveat and a
+ * screen-reader description. The table view, the on-page source chips and
+ * the export controls were removed deliberately and must not return.
+ *
+ * That last sentence used to be enforced by three props named `table`,
+ * `sourceIds` and `chartRef`, each accepted, documented as IGNORED, and
+ * destructured out of existence. A comment is not an enforcement: fourteen
+ * charts went on passing 104 lines of hand-maintained table data that
+ * nothing rendered and nothing tested, and the disbursement waffle's copy
+ * had drifted to a figure ten thousand dollars out before anyone looked.
+ *
+ * The props are gone, so passing one is now a type error - which is what
+ * the comment had been trying to be. Charts keep their own chartRef; it was
+ * only the handing of it to this frame that did nothing.
  */
 export default function ChartFrame({
   id,

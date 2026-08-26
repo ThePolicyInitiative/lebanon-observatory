@@ -124,7 +124,6 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
       title={tr.title}
       subtitle={tr.sub(rows[0].units)}
       caveat={locale === "ar" ? tr.caveat : districtDamage.caveats.join(" ")}
-      chartRef={chartRef}
       description={`${tr.desc}: ${rows
         .map((d) => `${districtName(d)} ${d.units.toLocaleString("en-US")}`)
         .join("; ")}.`}

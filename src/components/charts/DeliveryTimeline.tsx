@@ -186,23 +186,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
         title={tr.title}
         subtitle={tr.sub}
         caveat={tr.caveat}
-        sourceIds={["S4", "S2", "S20", "S47", "S1", "S7"]}
-        chartRef={chartRef}
         description={tr.description}
-        table={{
-          caption: tr.chainHead,
-          headers: ["Date", "Track", "Milestone", "Status", "Detail"],
-          rows: timeline.map((e) => [
-            fmtDate(e.date, locale),
-            (() => {
-              const t = TRACKS.find((x) => x.id === e.track);
-              return t ? (ar ? t.labelAr : t.label) : e.track;
-            })(),
-            ar ? e.labelAr : e.label,
-            ar ? STATUS_STYLE[e.status].labelAr : STATUS_STYLE[e.status].label,
-            ar ? e.detailAr : e.detail,
-          ]),
-        }}
       >
         <EChart
           option={option}

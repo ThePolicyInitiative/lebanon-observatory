@@ -45,15 +45,6 @@ export default function DisbursementWaffle({ locale = "en" }: { locale?: Locale 
       subtitle={tr.sub}
       caveat={tr.caveat}
       description={tr.description}
-      table={{
-        caption: "Approved versus disbursed LEAP financing, 29 June 2026.",
-        headers: ["Measure", "US$", "Share of loan"],
-        rows: [
-          ["Approved loan (IBRD-98410)", "250,000,000", "100%"],
-          ["Disbursed", "4,130,000", "1.65%"],
-          ["Undisbursed", "245,870,000", "98.35%"],
-        ],
-      }}
     >
       <div>
         <div

@@ -222,17 +222,10 @@ export default function StageCompositionChart({
           mode === "side" ? tr.side : mode === "change" ? tr.change : tr.one(mode)
         }
         caveat={showCaveat ? cautionCounts(locale) : undefined}
-        sourceIds={["S-TRACKING"]}
-        chartRef={chartRef}
         description={tableRows
           .filter((r) => Number(r[2]) > 0 || Number(r[3]) > 0)
           .map((r) => `${r[0]} - ${r[1]}: 2024 ${r[2]}, 2026 ${r[3]}`)
           .join("; ")}
-        table={{
-          caption: tr.alt,
-          headers: ["Stage", "Actor layer", "2024", "2026", "Change"],
-          rows: tableRows,
-        }}
       >
         <EChart
           option={option}

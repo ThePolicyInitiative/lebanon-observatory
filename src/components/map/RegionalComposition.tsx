@@ -99,35 +99,13 @@ export default function RegionalComposition({
     };
   }, [regions, layerMeta, locale, t]);
 
-  const tableRows = regions.flatMap((r) =>
-    ([2024, 2026] as Year[]).map((year) => {
-      const y = locations.mentions[String(year) as "2024" | "2026"];
-      const m = y[r.id as keyof typeof y] as Record<ActorLayer, number>;
-      return [
-        regionLabel(r.id, locale),
-        year,
-        m?.official ?? 0,
-        m?.municipal ?? 0,
-        m?.ngo_international ?? 0,
-        m?.community ?? 0,
-      ];
-    }),
-  );
-
   return (
     <ChartFrame
       id="regional-composition"
       title={t.title}
       subtitle={t.subtitle}
       caveat={showCaveat ? cautionMap(locale) : undefined}
-      sourceIds={["S-TRACKING"]}
-      chartRef={chartRef}
       description={t.description}
-      table={{
-        caption: t.tableCaption,
-        headers: [...t.headers],
-        rows: tableRows,
-      }}
     >
       <EChart
         option={option}

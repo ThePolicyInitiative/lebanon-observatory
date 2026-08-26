@@ -317,16 +317,6 @@ export default function ChangeHeatmap({
     };
   }, [maxAbs, data, locale]);
 
-  const tableRows = layerMeta.flatMap((layer) =>
-    stages.map((stage, i) => [
-      layer.label,
-      stage,
-      countsFor(2024, layer.id)[i],
-      countsFor(2026, layer.id)[i],
-      signed(changeFor(layer.id)[i]),
-    ]),
-  );
-
   return (
     <div className="relative">
       <ChartFrame
@@ -334,14 +324,7 @@ export default function ChangeHeatmap({
         title={t.title}
         subtitle={t.subtitle}
         caveat={showCaveat ? cautionCounts(locale) : undefined}
-        sourceIds={["S-TRACKING"]}
-        chartRef={chartRef}
         description={t.description}
-        table={{
-          caption: t.tableCaption,
-          headers: [...t.tableHeaders],
-          rows: tableRows,
-        }}
       >
         <div
           ref={chartWrapRef}
