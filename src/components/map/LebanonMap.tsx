@@ -135,6 +135,10 @@ const T = {
       `Every marker on the map as a list - ${n} in all. Selecting one brings it into view and opens what is traced there.`,
     filterStatus: (n: number, year: number) =>
       `${n} traced ${n === 1 ? "entry" : "entries"} in ${year} match the filters now set.`,
+    creditBoundaries: "Boundaries: OCHA Lebanon COD administrative boundaries",
+    creditLitani: "Litani centreline © OpenStreetMap contributors (ODbL)",
+    fellBack:
+      "The pan-and-zoom map could not start, so the vector map is shown instead. It carries the same entries and names each region and district as text.",
     mentionsIn: (year: number) => `mentions in ${year}`,
     happenedAria: (year: number) => `Traced episodes in ${year}`,
     happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
@@ -170,6 +174,10 @@ const T = {
       `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
     filterStatus: (n: number, year: number) =>
       `${n} مدخلاً مرصوداً في ${year} تطابق المرشّحات المضبوطة الآن.`,
+    creditBoundaries: "الحدود: حدود لبنان الإدارية من بيانات OCHA COD",
+    creditLitani: "مجرى نهر الليطاني © مساهمو OpenStreetMap (ODbL)",
+    fellBack:
+      "تعذّر تشغيل خريطة التقريب والتحريك، فعُرضت الخريطة المتجهة بدلاً منها. وهي تحمل المدخلات نفسها وتسمّي كل منطقة وقضاء نصّاً.",
     mentionsIn: (year: number) => `إشارة في ${year}`,
     happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
     happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
@@ -243,6 +251,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   const popupOpenerRef = useRef<HTMLButtonElement | null>(null);
   /** Land test from the town polygons, in lon/lat. */
   const [glLand, setGlLand] = useState<LandIndex | null>(null);
+  /**
+   * Whether the vector map is showing because the pan-and-zoom one could
+   * not start, rather than because the reader chose it. The substitution
+   * used to be silent, which left the toggle asserting one thing and the
+   * page showing another.
+   */
+  const [fellBack, setFellBack] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const mapReadyRef = useRef(false);
   /**
@@ -346,10 +361,23 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           attributionControl: false,
         });
         mapRef.current = map;
-        // No custom credit line on the map face. The control stays so that
-        // a configured basemap style can still carry its own provider
-        // attribution, which its terms require.
-        map.addControl(new maplibregl.AttributionControl({ compact: true }));
+        // The credits for what this map actually draws.
+        //
+        // The control was added bare, and MapLibre hides it entirely when
+        // no source declares an attribution - which none of these do,
+        // being local GeoJSON. So the map drew OCHA COD boundaries and an
+        // OpenStreetMap centreline with no credit anywhere on its face and
+        // no way to reach one. The Litani geometry is ODbL, where
+        // attribution is a licence term rather than a courtesy.
+        //
+        // A configured basemap style still contributes its own provider
+        // line alongside these.
+        map.addControl(
+          new maplibregl.AttributionControl({
+            compact: true,
+            customAttribution: [t.creditBoundaries, t.creditLitani],
+          }),
+        );
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
         map.addControl(new maplibregl.FullscreenControl(), "top-right");
         map.keyboard.enable();
@@ -622,6 +650,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           setMapReady(true);
         });
       } catch {
+        // Involuntary: say so rather than quietly showing the other map.
+        setFellBack(true);
         setRenderMode("svg");
       }
     }
@@ -655,6 +685,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       timer = setTimeout(() => {
         if (cancelled || mapReadyRef.current) return;
         if (document.visibilityState === "visible") {
+          setFellBack(true);
           setRenderMode("svg");
         } else {
           arm(); // hidden tabs pause rendering; keep waiting
@@ -993,6 +1024,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           <button
             type="button"
             onClick={() => {
+              // A deliberate switch is not a failure; clear the notice.
+              setFellBack(false);
               if (renderMode === "gl") {
                 setRenderMode("svg");
               } else if (webglAvailable()) {
@@ -1025,6 +1058,14 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       <p role="status" className="sr-only">
         {t.filterStatus(filteredRecords.length, year)}
       </p>
+
+      {/* Visible as well as announced: a reader who asked for the
+          pan-and-zoom map and got the other one is owed the reason. */}
+      {fellBack && renderMode === "svg" ? (
+        <p role="status" className="note-caution mt-3 text-meta">
+          {t.fellBack}
+        </p>
+      ) : null}
 
       {(
         <div className={`mt-4 grid gap-4 ${renderMode === "gl" ? "lg:grid-cols-[2fr_1fr]" : ""}`}>
