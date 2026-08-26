@@ -28,3 +28,27 @@ export type SlimRecord = Pick<
 };
 
 export const slimRecords = roleRecordsSlimJson as SlimRecord[];
+
+/**
+ * The implementation statuses entries actually carry.
+ *
+ * The shared vocabulary names nine, because it has to be able to label
+ * whatever the data holds. Only four occur: not_verified (404), underway
+ * (301), formal_mandate (54) and procurement (12). The filters were built
+ * from the vocabulary, so a reader could select "Completed output",
+ * "Announced", "Planned", "Finance committed" or "Finance disbursed" and
+ * get an empty list every time.
+ *
+ * "Completed output" is the sharpest of those. This site's central finding
+ * is that there was none by the cut-off - so offering it as a filter
+ * suggested a populated category and then returned nothing, which reads as
+ * a broken control rather than as the finding it actually is. The finding
+ * belongs in the analysis, where it is stated plainly; it does not belong
+ * in a dropdown that looks like it failed.
+ *
+ * Derived rather than listed, so a status appears in the filters the day an
+ * entry carries it and disappears the day none does.
+ */
+export const STATUSES_IN_USE: ReadonlySet<string> = new Set(
+  slimRecords.map((r) => r.implementationStatus).filter(Boolean),
+);

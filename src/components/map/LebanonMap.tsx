@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
-import { slimRecords } from "@/lib/map-records";
+import { STATUSES_IN_USE, slimRecords } from "@/lib/map-records";
 import {
   cautionMap,
   comparabilityLabel,
@@ -687,9 +687,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </label>
             <select id="map-status" className={`mt-1 ${selectCls}`} value={statusFilter} onChange={(e) => set("status", e.target.value)}>
               <option value="all">{t.allStatuses}</option>
-              {statusList(locale).map(([k, v]) => (
-                <option key={k} value={k}>{v}</option>
-              ))}
+              {/* Only statuses entries carry - see STATUSES_IN_USE. */}
+              {statusList(locale)
+                .filter(([k]) => STATUSES_IN_USE.has(k))
+                .map(([k, v]) => (
+                  <option key={k} value={k}>{v}</option>
+                ))}
             </select>
           </div>
           <div>

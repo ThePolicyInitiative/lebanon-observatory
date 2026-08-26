@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ResultProfile from "@/components/charts/ResultProfile";
 import Link from "next/link";
 import { actors, locations } from "@/lib/data-client";
-import { slimRecords, type SlimRecord } from "@/lib/map-records";
+import { STATUSES_IN_USE, slimRecords, type SlimRecord } from "@/lib/map-records";
 import {
   comparabilityLabel,
   layers,
@@ -425,9 +425,14 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               <label htmlFor="ex-status" className="block text-[11px] font-semibold text-text-secondary">{t.status}</label>
               <select id="ex-status" className={selectCls} value={get("status")} onChange={(e) => set("status", e.target.value)}>
                 <option value="all">{t.allStatuses}</option>
-                {statusList(locale).map(([k, v]) => (
-                  <option key={k} value={k}>{v}</option>
-                ))}
+                {/* Only statuses entries carry: five of the vocabulary's
+                    nine occur nowhere in the data, so offering them meant
+                    a control that always returned nothing. */}
+                {statusList(locale)
+                  .filter(([k]) => STATUSES_IN_USE.has(k))
+                  .map(([k, v]) => (
+                    <option key={k} value={k}>{v}</option>
+                  ))}
               </select>
             </div>
             <div>
