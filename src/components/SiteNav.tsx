@@ -20,9 +20,26 @@ const NAV_ITEMS = [
   { path: "/finance", label: "Finance", ar: AR.nav.finance },
   { path: "/news", label: "Live updates", ar: AR.nav.news },
   { path: "/explorer", label: "Explorer", ar: AR.nav.explorer },
-  { path: "/search", label: "Search", ar: "بحث" },
-  { path: "/about", label: "About", ar: "عن المرصد" },
 ];
+
+/**
+ * Every route that exists in both languages - which is not the same list as
+ * the tabs above, and the difference matters.
+ *
+ * The language toggle sends a reader to the same page in the other
+ * language, and falls back to that language's home when there is no
+ * counterpart. It used to decide that from NAV_ITEMS, so a route's presence
+ * in the tab bar silently determined whether its reader could cross
+ * languages: /search and /about existed on both sides but were not tabs, so
+ * the toggle dropped anyone reading them back to the home page, and the
+ * search page grew a hand-written Arabic link to work around it.
+ *
+ * Two lists, because they answer two questions. What belongs in the tab bar
+ * is an editorial decision about the argument's shape; what exists in both
+ * languages is a fact about the routes. /search and /about are reachable
+ * from the footer, which carries both.
+ */
+const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/about"];
 
 /** "/compare" becomes "/ar/compare"; "/" becomes "/ar". */
 export function localisedHref(path: string, arabic: boolean): string {
@@ -41,7 +58,7 @@ export default function SiteNav() {
    * cross over; anything else falls back to that language's home.
    */
   const basePath = isArabic ? pathname.replace(/^\/ar/, "") || "/" : pathname;
-  const known = NAV_ITEMS.some((i) => i.path === basePath);
+  const known = BILINGUAL_ROUTES.includes(basePath);
   const counterpart = isArabic
     ? known
       ? basePath
