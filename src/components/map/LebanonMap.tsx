@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
@@ -27,9 +27,10 @@ import {
   unnamedAreaFilter,
   type GeoFeature,
 } from "@/lib/geo";
-import { buildLocationIndex, type LocationIndex } from "@/lib/geo-match";
+import { buildLocationIndex, matchLocations, type LocationIndex } from "@/lib/geo-match";
 import {
   LOCALITY_EVENTS,
+  eventsByTown,
   eventsFor,
   eventText,
   localityName,
@@ -49,6 +50,24 @@ import {
 /** The drawn radius of one pin, and the gap two of them need to read apart. */
 const GL_PIN_RADIUS = 6;
 const GL_MIN_SEPARATION = 2 * GL_PIN_RADIUS + 1.2;
+
+/** One marker on the pan-and-zoom map: a pin, or a town's counted cluster. */
+type GlFeature = {
+  type: "Feature";
+  geometry: { type: "Point"; coordinates: [number, number] };
+  properties: {
+    name: string;
+    /** Plain text for the focusable list, which has no HTML to read. */
+    ariaLabel: string;
+    radius: number;
+    color: string;
+    strokeColor: string;
+    strokeWidth: number;
+    popupHtml: string;
+    /** Present on clusters only: the count drawn inside the marker. */
+    label?: string;
+  };
+};
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { eventKindLabel, type MapView } from "./SvgLebanonMap";
@@ -111,6 +130,8 @@ const T = {
       "One pin, one traced entry - placed in the town the reporting names, not at an address.",
     clusterNote: (n: number) =>
       `${n} traced entries here, closer together than they can be drawn apart at this zoom. Zoom in for a pin on each.`,
+    pinListHeading: (n: number) =>
+      `Every marker on the map as a list - ${n} in all. Selecting one brings it into view and opens what is traced there.`,
     mentionsIn: (year: number) => `mentions in ${year}`,
     happenedAria: (year: number) => `Traced episodes in ${year}`,
     happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
@@ -142,6 +163,8 @@ const T = {
       "دبّوس واحد لمدخل مرصود واحد - موضوع في البلدة التي يسمّيها الإبلاغ، لا على عنوان بعينه.",
     clusterNote: (n: number) =>
       `${n} مدخلاً مرصوداً هنا، أقرب بعضها إلى بعض من أن تُرسم متفرّقة عند هذا التكبير. قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
+    pinListHeading: (n: number) =>
+      `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
     mentionsIn: (year: number) => `إشارة في ${year}`,
     happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
     happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
@@ -182,8 +205,14 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
 
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
-  /** Town centroids + place-name index, set once the GL map loads its data. */
-  const glTownsRef = useRef<
+  /**
+   * Town centroids and the place-name index, set once the GL map loads
+   * its data. State rather than refs: the markers are now worked out
+   * during render so that they can also be listed as elements, and a ref
+   * read during render is neither pure nor a reason to re-render when it
+   * finally fills.
+   */
+  const [glTowns, setGlTowns] = useState<
     {
       name: string;
       district: string;
@@ -192,15 +221,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       feature: GeoFeature;
     }[] | null
   >(null);
-  const glIndexRef = useRef<LocationIndex | null>(null);
-  /**
-   * Pin anchors, worked out the first time a town needs one and kept.
-   * The pole of inaccessibility costs a grid search per town, and only the
-   * thirty-odd towns the tracking names ever ask for it.
-   */
-  const glAnchorRef = useRef(new Map<string, { lon: number; lat: number; room: number }>());
+  const [glIndex, setGlIndex] = useState<LocationIndex | null>(null);
+  /** The dynamically imported MapLibre module, once the map has loaded. */
+  const maplibreRef = useRef<typeof import("maplibre-gl") | null>(null);
+  /** The popup opened from the focusable list, so a second open replaces it. */
+  const listPopupRef = useRef<{ remove: () => void } | null>(null);
   /** Land test from the town polygons, in lon/lat. */
-  const glLandRef = useRef<LandIndex | null>(null);
+  const [glLand, setGlLand] = useState<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const mapReadyRef = useRef(false);
   /**
@@ -271,6 +298,9 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         // library only loads when a reader opts into pan-and-zoom.
         const maplibregl = await import("maplibre-gl");
         if (disposed || !containerRef.current) return;
+        // Kept so the focusable pin list can open the same popups the
+        // pointer handlers do, without importing the library twice.
+        maplibreRef.current = maplibregl;
         const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL;
         const map = new maplibregl.Map({
           container: containerRef.current,
@@ -355,11 +385,11 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             feature: f,
             ...featureCentroidLonLat(f),
           }));
-          glTownsRef.current = townList;
-          glIndexRef.current = buildLocationIndex(townList);
+          setGlTowns(townList);
+          setGlIndex(buildLocationIndex(townList));
           // A cell of 0.02 degrees is roughly 2 km - a few polygons per
           // bucket, so a pin ray-casts a handful of rings, not 1,640.
-          glLandRef.current = buildLandIndex(towns.features as GeoFeature[], 0.02);
+          setGlLand(buildLandIndex(towns.features as GeoFeature[], 0.02));
           map.addLayer({
             id: "town-fill",
             type: "fill",
@@ -603,47 +633,52 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     };
   }, [renderMode, mapReady]);
 
-  // Update choropleth + points when filters change.
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !mapReady) return;
-
-    // The ground is neutral: one pin per entry already carries the
-    // quantity, so shading the land by that same quantity said it twice
-    // and set a colour ramp against the pins' own colours.
-    if (map.getLayer("gov-fill")) {
-      map.setPaintProperty("gov-fill", "fill-color", "#E1E7EE");
-      map.setPaintProperty("gov-fill", "fill-opacity", 0.9);
+  /**
+   * The fan anchor for every town the tracking can reach.
+   *
+   * The pole of inaccessibility is a grid search per town - about 1.2 ms,
+   * and 1.9 seconds if run over the whole cadastre - so it is worked out
+   * for the thirty-odd towns that can carry a marker and no others. The
+   * set does not depend on the filters: a town filtered out of view still
+   * has the same anchor when it comes back, so this survives every filter
+   * and zoom change and is recomputed only when the boundaries load.
+   */
+  const glAnchors = useMemo(() => {
+    const m = new Map<string, { lon: number; lat: number; room: number }>();
+    if (!glTowns || !glIndex) return m;
+    const byName = new Map(glTowns.map((t) => [t.name, t] as const));
+    const needed = new Set<string>();
+    for (const r of slimRecords)
+      for (const town of matchLocations(glIndex, r.locationNames ?? []).towns) needed.add(town);
+    for (const [town] of eventsByTown) needed.add(town);
+    for (const name of needed) {
+      const town = byName.get(name);
+      if (!town) continue;
+      const a = featureAnchorLonLat(town.feature);
+      // A degenerate polygon leaves no room at all; fall back to the
+      // centroid the rest of the map already uses.
+      m.set(name, a.room > 0 ? a : { lon: town.lon, lat: town.lat, room: 0 });
     }
-    for (const layerId of ["occupied-fill", "occupied-line"]) {
-      if (map.getLayer(layerId)) {
-        map.setLayoutProperty(layerId, "visibility", year === 2026 ? "visible" : "none");
-      }
-    }
+    return m;
+  }, [glTowns, glIndex]);
 
-
-    // One pin per traced entry, fanned around the town the reporting names.
-    const geoTowns = glTownsRef.current;
-    const idx = glIndexRef.current;
-    const features: unknown[] = [];
+  /**
+   * Every marker the map draws, as GeoJSON features.
+   *
+   * Built here rather than inside the effect that uploads them, because
+   * the same list is also rendered as a focusable list beside the canvas.
+   * Pins are drawn into WebGL and have no DOM node of their own, so
+   * without that list there is nothing for a keyboard reader to reach and
+   * no way to open a single one of them.
+   *
+   */
+  const glFeatures = useMemo<GlFeature[]>(() => {
+    const geoTowns = glTowns;
+    const idx = glIndex;
+    const features: GlFeature[] = [];
     if (geoTowns && idx) {
-      const byName = new Map(geoTowns.map((t) => [t.name, t] as const));
       const district = new Map(geoTowns.map((t) => [t.name, t.district] as const));
-
-      /** The town's pin anchor, computed once and kept. */
-      const anchorFor = (name: string) => {
-        const cached = glAnchorRef.current.get(name);
-        if (cached) return cached;
-        const town = byName.get(name);
-        if (!town) return null;
-        const a = featureAnchorLonLat(town.feature);
-        // A degenerate polygon would give no room at all; fall back to the
-        // centroid the rest of the map already uses.
-        const anchor =
-          a.room > 0 ? a : { lon: town.lon, lat: town.lat, room: 0 };
-        glAnchorRef.current.set(name, anchor);
-        return anchor;
-      };
+      const anchorFor = (name: string) => glAnchors.get(name) ?? null;
 
       const grouped = buildPins({
         entries: filteredRecords,
@@ -678,6 +713,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             properties: {
               name,
               label: String(pins.length),
+              ariaLabel: `${name}${district ? `, ${district}` : ""} - ${t.clusterNote(pins.length)}`,
               radius: GL_PIN_RADIUS + Math.sqrt(pins.length) * 1.6,
               color: "#FFFFFF",
               strokeColor: UI.outlineQuiet,
@@ -696,7 +732,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         const lonScale = 1 / Math.max(0.2, Math.cos((anchor.lat * Math.PI) / 180));
         for (const pin of pins) {
           // The spiral knows nothing about the coast; keep the pin ashore.
-          const land = glLandRef.current;
+          const land = glLand;
           const moved = clampToLand(anchor.lon, anchor.lat, pin.dx * lonScale, pin.dy, (x, y) =>
             land ? isOnLandIndexed(land, x, y) : isOnLand(x, y),
           );
@@ -708,7 +744,11 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             },
             properties: {
               name,
-              radius: 6,
+              ariaLabel:
+                `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry}: ` +
+                `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""}` +
+                `${pin.kind === "entry" ? ` · ${pin.detail}` : ""}`,
+              radius: GL_PIN_RADIUS,
               // An episode is a ring, an entry a solid dot - the same
               // distinction the vector map draws.
               color: pin.kind === "episode" ? "#FFFFFF" : pin.color,
@@ -732,14 +772,57 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         }
       }
     }
+    return features;
+  }, [glTowns, glIndex, glLand, glAnchors, filteredRecords, year, locale, t, glZoom]);
+
+  /**
+   * Open one marker from the focusable list: bring it into view and show
+   * the same popup a pointer click would have opened.
+   */
+  const openGlFeature = useCallback((f: GlFeature) => {
+    const map = mapRef.current;
+    const maplibregl = maplibreRef.current;
+    if (!map || !maplibregl) return;
+    const [lon, lat] = f.geometry.coordinates;
+    // A cluster is a whole town; a pin is one entry, so go in far enough
+    // that its fan has opened and the pin means what it says.
+    map.easeTo({
+      center: [lon, lat],
+      zoom: f.properties.label ? Math.max(map.getZoom(), 11) : Math.max(map.getZoom(), 13),
+    });
+    listPopupRef.current?.remove();
+    listPopupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
+      .setLngLat([lon, lat])
+      .setHTML(f.properties.popupHtml)
+      .addTo(map);
+  }, []);
+
+  // Paint the ground, then hand the markers to the source.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady) return;
+
+    // The ground is neutral: one pin per entry already carries the
+    // quantity, so shading the land by that same quantity said it twice
+    // and set a colour ramp against the pins' own colours.
+    if (map.getLayer("gov-fill")) {
+      map.setPaintProperty("gov-fill", "fill-color", "#E1E7EE");
+      map.setPaintProperty("gov-fill", "fill-opacity", 0.9);
+    }
+    for (const layerId of ["occupied-fill", "occupied-line"]) {
+      if (map.getLayer(layerId)) {
+        map.setLayoutProperty(layerId, "visibility", year === 2026 ? "visible" : "none");
+      }
+    }
+
     const src = map.getSource("localities");
     if (src && "setData" in src) {
       (src as unknown as { setData: (d: unknown) => void }).setData({
         type: "FeatureCollection",
-        features,
+        features: glFeatures,
       });
     }
-  }, [mapReady, filteredRecords, year, locale, t, glZoom]);
+  }, [mapReady, glFeatures, year]);
 
   /*
    * `w-full` matters on a phone: a bare <select> is sized by its longest
@@ -913,6 +996,27 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 className="h-[560px] sm:h-[760px]"
                 aria-label={t.glAria(year)}
               />
+              {/*
+               * The same markers, as something a keyboard can reach.
+               *
+               * Pins are drawn into the WebGL canvas, so none of them is
+               * an element: nothing takes focus, and the only thing that
+               * opened one was a pointer click. This list is the map's
+               * content in the one form that can be tabbed through and
+               * read aloud. Selecting an item moves the map to it and
+               * opens the same popup the pointer would have.
+               */}
+              <nav aria-label={t.pinListHeading(glFeatures.length)} className="sr-only">
+                <ul>
+                  {glFeatures.map((f, i) => (
+                    <li key={`${f.properties.name}-${i}`}>
+                      <button type="button" onClick={() => openGlFeature(f)}>
+                        {f.properties.ariaLabel}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           )}
 
