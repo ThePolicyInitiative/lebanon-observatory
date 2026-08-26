@@ -122,7 +122,7 @@ export default function ResultProfile({
   return (
     <figure className="card p-3.5">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-base font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-xl font-semibold text-[color:var(--color-navy)]">
           {t.title}
         </h2>
         <span className="text-[11px] tabular-nums text-[color:var(--color-text-secondary)]">

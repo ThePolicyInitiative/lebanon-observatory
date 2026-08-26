@@ -83,7 +83,7 @@ export default function Page() {
       </div>
 
       <section id="no-national-layer" className="mt-8 max-w-3xl card p-3.5 text-sm leading-relaxed">
-        <h2 className="text-sm font-semibold text-[color:var(--color-navy)]">
+        <h2 className="text-xl font-semibold text-[color:var(--color-navy)]">
           لماذا لا توجد طبقة أضرار وطنية
         </h2>
         <p className="mt-2 text-[color:var(--color-text)]">
@@ -130,7 +130,7 @@ export default function Page() {
               </div>
               <div className="mt-2 space-y-1">
                 {[
-                  { year: "2024", v: r.y24, color: "#58779B" },
+                  { year: "2024", v: r.y24, color: YEAR_COLORS.y2024 },
                   { year: "2026", v: r.y26, color: YEAR_COLORS.y2026 },
                 ].map((row) => (
                   <div key={row.year} className="flex items-center gap-2 text-[11.5px]">

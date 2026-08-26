@@ -45,7 +45,10 @@ export default function ChartFrame({
       className="card card-interactive p-4 sm:p-5"
     >
       <figcaption>
-        <h3 className="text-[17px] font-semibold sm:text-lg">{title}</h3>
+        {/* 17px was the only one on the site, and being off-scale is how it
+            ended up above the 16px section h2s it sits under. text-lg is the
+            scale's h3 step and stays below the 20px an h2 now takes. */}
+        <h3 className="text-lg font-semibold">{title}</h3>
         {subtitle ? (
           <p className="prose-measure mt-1.5 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
             {subtitle}

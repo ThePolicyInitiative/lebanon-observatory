@@ -106,7 +106,7 @@ export default function Page() {
       <section aria-labelledby="ar-leap" className="mt-7 card p-3.5">
         <h2
           id="ar-leap"
-          className="text-base font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-[color:var(--color-navy)]"
         >
           داخل الـ250 مليون دولار الأولى
         </h2>
@@ -149,7 +149,7 @@ export default function Page() {
       <section aria-labelledby="ar-procurement" className="mt-7">
         <h2
           id="ar-procurement"
-          className="text-base font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-[color:var(--color-navy)]"
         >
           حزم الشراء وحالتها الفعلية
         </h2>
@@ -205,7 +205,7 @@ export default function Page() {
       <section aria-labelledby="ar-adjacent" className="mt-7 card p-3.5">
         <h2
           id="ar-adjacent"
-          className="text-base font-semibold text-[color:var(--color-navy)]"
+          className="text-xl font-semibold text-[color:var(--color-navy)]"
         >
           مال تحرّك على مسارات موازية - وليس تمويل إعادة إعمار
         </h2>
