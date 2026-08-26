@@ -142,6 +142,26 @@ export function namesOtherTheatre(text: string): boolean {
   return OTHER_THEATRES.some((m) => t.includes(m));
 }
 
+/**
+ * Is this article about the war or the reconstruction at all?
+ *
+ * Naming Lebanon is not a subject. The score gives 30 for a Lebanon marker
+ * and 5 for each broad term, and the default bar is 35 - so one incidental
+ * word cleared it. An education ministry's routine call to register pupils
+ * for the school year scored exactly 35 and appeared in a feed about a war:
+ * Lebanese, plus one broad word, plus nothing else. It carried no
+ * value-chain stage, because there was none to carry.
+ *
+ * So the requirement is stated rather than left to emerge from a threshold:
+ * either a core reconstruction term, or at least two broad ones. One broad
+ * term is a coincidence; two is a subject.
+ */
+export function hasReconstructionSubject(text: string): boolean {
+  const t = ` ${text.toLowerCase()} `;
+  if (RECONSTRUCTION_CORE.some((k) => t.includes(k))) return true;
+  return RECONSTRUCTION_BROAD.filter((k) => t.includes(k)).length >= 2;
+}
+
 export function scoreRelevance(text: string): number {
   const t = ` ${text.toLowerCase()} `;
   let score = 0;

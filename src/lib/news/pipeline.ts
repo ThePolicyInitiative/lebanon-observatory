@@ -1,6 +1,6 @@
 import "server-only";
 import type { NewsArticle } from "@/lib/types";
-import { isLebanonPrimary, namesOtherTheatre, normaliseTitle } from "./tagging";
+import { hasReconstructionSubject, isLebanonPrimary, namesOtherTheatre, normaliseTitle } from "./tagging";
 
 /** Relevance filtering and cross-provider deduplication. */
 
@@ -62,6 +62,11 @@ export function filterRelevant(articles: NewsArticle[], minScore: number): NewsA
     // only ever writes about Lebanon, where "the southern villages" needs
     // no country attached.
     if (!isLebanonPrimary(text) && !publishesOnlyLebanon(a.sourceDomain)) return false;
+
+    // And it has to be about the war or the reconstruction, not merely
+    // Lebanese. Without this, a Lebanon marker plus one incidental broad
+    // word scores exactly the default bar of 35 and comes through.
+    if (!hasReconstructionSubject(text)) return false;
 
     return a.relevanceScore >= minScore;
   });
