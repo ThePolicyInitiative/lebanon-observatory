@@ -43,14 +43,20 @@ export default function Page() {
   return (
     <ArabicPageShell
       title={AR.pages.map.title}
-      lede={AR.pages.map.lede}
-      point={AR.pages.map.point}
       englishHref="/map"
+      /*
+       * No lede and no point here, and both were deliberate removals. Each
+       * restated the standing geography caution that the map module prints
+       * directly below them, so this page opened by saying one thing three
+       * times - and its English twin says it once, inside the map.
+       *
+       * The fourth figure went with them: "168 towns south of the Litani"
+       * appeared on no English page and no data file supports it.
+       */
       figures={[
         { value: String(locations.regions.length), label: "تجمّع إقليمي في التتبّع" },
         { value: String(mappable.length), label: "منها يمكن وضعه على الخريطة" },
         { value: String(notMappable.length), label: "يُعرض منفصلاً لتعذّر توطينه" },
-        { value: "168", label: "بلدة جنوب الليطاني ضمن نطاق العمل" },
       ]}
     >
       {/* The full interactive map, the same module the English page

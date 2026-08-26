@@ -11,6 +11,7 @@ import Takeaways from "@/components/Takeaways";
 import { finance } from "@/lib/data";
 import { fmtUsd, fmtDate } from "@/lib/format";
 import { localeAlternates } from "@/lib/i18n";
+import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/finance"),
@@ -54,18 +55,17 @@ const CONCEPTS = [
 
 export default function FinancePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Finance and delivery
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+    <PageShell
+      title="Finance and delivery"
+      lede={
+        <>
           Six concepts that public debate routinely merges, kept separate here
           because merging them is how &ldquo;reconstruction is happening&rdquo;
           and &ldquo;reconstruction has not begun&rdquo; are both sincerely
           said.
-        </p>
-      </header>
+        </>
+      }
+    >
 
       {/* Six concepts */}
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -256,6 +256,6 @@ export default function FinancePage() {
           matters="Every safeguard that protects money slows it, and households experience only the funnel's bottom. Financing credibility now depends on visible conversion - first works award, first compensation payment, first confirmed output - each of which is specific, owned and checkable."
         />
       </div>
-    </div>
+    </PageShell>
   );
 }

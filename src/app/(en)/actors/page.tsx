@@ -15,6 +15,7 @@ import WaterRepairs from "@/components/WaterRepairs";
 import ServiceOperators from "@/components/ServiceOperators";
 import Takeaways from "@/components/Takeaways";
 import { localeAlternates } from "@/lib/i18n";
+import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/actors"),
@@ -25,19 +26,18 @@ export const metadata: Metadata = {
 
 export default function ActorsPage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Actor layers
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+    <PageShell
+      title="Actor layers"
+      lede={
+        <>
           Four principal layers are used throughout this observatory. The
           NGO-and-international layer spans actors with very different
           authority - a UN agency, a multilateral lender and a local NGO are
           not equivalents; expand the named-actor lists and subtypes to see
           the differences.
-        </p>
-      </header>
+        </>
+      }
+    >
       <div className="mt-6">
         <Suspense fallback={<div className="h-24 animate-pulse rounded-md bg-white" />}>
           <ActorTabs />
@@ -68,6 +68,6 @@ export default function ActorsPage() {
           matters="Role clarity without resource transfer reproduces the 2024 cost distribution: whoever stands downstream of the missing function pays for it - in labour, savings, care capacity and risk."
         />
       </div>
-    </div>
+    </PageShell>
   );
 }

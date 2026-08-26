@@ -3,6 +3,7 @@ import Link from "next/link";
 import AboutBody from "./AboutBody";
 import { ABOUT } from "@/lib/about-content";
 import { localeAlternates } from "@/lib/i18n";
+import PageShell from "@/components/PageShell";
 
 const t = ABOUT.en;
 
@@ -20,18 +21,11 @@ export const metadata: Metadata = {
  */
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          {t.title}
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
-          {t.lede}
-        </p>
-        <p className="note-caution mt-4 text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
-          {t.point}
-        </p>
-      </header>
+    <PageShell
+      title={t.title}
+      lede={t.lede}
+      point={t.point}
+    >
 
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {t.figures.map((f) => (
@@ -60,6 +54,6 @@ export default function AboutPage() {
           {t.crossLink} (<span lang="ar">{ABOUT.ar.title}</span>) →
         </Link>
       </p>
-    </div>
+    </PageShell>
   );
 }

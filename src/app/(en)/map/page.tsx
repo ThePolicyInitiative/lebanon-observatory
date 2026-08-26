@@ -3,7 +3,9 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { Suspense } from "react";
 import LebanonMap from "@/components/map/LebanonMap";
 import RegionalComposition from "@/components/map/RegionalComposition";
+import PageShell from "@/components/PageShell";
 import Takeaways from "@/components/Takeaways";
+import { locations } from "@/lib/data-client";
 import { localeAlternates } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -14,14 +16,24 @@ export const metadata: Metadata = {
 };
 
 export default function MapPage() {
-  return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Where traced activity concentrated
-        </h1>
-      </header>
+  /*
+   * The same three figures the Arabic page has carried alone, from the same
+   * data. They say what the map can and cannot show, which is the first
+   * thing a reader needs from it - there was no reason only one language
+   * got them.
+   */
+  const mappable = locations.regions.filter((r) => r.mappable).length;
+  const notMappable = locations.regions.length - mappable;
 
+  return (
+    <PageShell
+      title="Where traced activity concentrated"
+      figures={[
+        { value: String(locations.regions.length), label: "regional groupings in the tracking" },
+        { value: String(mappable), label: "of them can be placed on the map" },
+        { value: String(notMappable), label: "shown separately - they cannot be located" },
+      ]}
+    >
       <div className="mt-6">
         <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
           <LebanonMap />
@@ -58,6 +70,6 @@ export default function MapPage() {
           matters="Programmes fund what is measured. Localities outside the assessed zones enter any future financing instrument late and weakly, replicating 2024's geographic inequality by a new mechanism."
         />
       </div>
-    </div>
+    </PageShell>
   );
 }

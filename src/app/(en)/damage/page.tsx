@@ -10,6 +10,7 @@ import Takeaways from "@/components/Takeaways";
 import destruction from "@/data/destruction.json";
 import { fmtDate } from "@/lib/format";
 import { localeAlternates } from "@/lib/i18n";
+import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/damage"),
@@ -31,12 +32,10 @@ const COMPARABILITY_BADGE: Record<string, { label: string; cls: string }> = {
 
 export default function DamagePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          The damage assessments - kept honest
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+    <PageShell
+      title="The damage assessments - kept honest"
+      lede={
+        <>
           No single building count exists for the 2024 war, and no national
           assessment existed for the 2026 war by the cut-off. This
           page presents every major damage estimate side by side with its
@@ -45,8 +44,9 @@ export default function DamagePage() {
           it delayed a single authoritative baseline for compensation, which
           every claims system needs, while giving the response its fastest
           early data.
-        </p>
-      </header>
+        </>
+      }
+    >
 
       {/* Four 2024 tracks */}
       <section aria-labelledby="tracks-2024" className="mt-7">
@@ -257,6 +257,6 @@ export default function DamagePage() {
           matters="Data geography becomes financing geography: programmes fund what is measured, so unassessed areas enter any future instrument late and weakly. And the assessed 2026 damage (~US$1.75B in two zones) sits entirely outside the only financed programme's legal scope."
         />
       </div>
-    </div>
+    </PageShell>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import PageShell from "@/components/PageShell";
 import SiteSearch from "@/components/SiteSearch";
 import { localeAlternates } from "@/lib/i18n";
 
@@ -18,32 +19,24 @@ export const metadata: Metadata = {
  */
 export default function SearchPage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Search the observatory
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+    <PageShell
+      title="Search the observatory"
+      lede={
+        <>
           One field over the whole site: every page of the analysis and its
           sections, every traced actor in the register, the named localities
           and the regional groupings, the twelve value-chain stages, the four
           actor layers, the indicators and the milestones. Arabic and English
           reach the same target, so a query in either language finds it.
-        </p>
-        {/* The header's language switch crosses over only on the routes it
-            lists, and this one is not among them, so the Arabic twin of
-            this page is linked here rather than left unreachable. */}
-        <p className="mt-3 text-sm">
-          <Link
-            href="/ar/search"
-            hrefLang="ar"
-            lang="ar"
-            className="font-medium text-[color:var(--color-blue)] underline-offset-2 hover:underline"
-          >
-            ابحث بالعربية
-          </Link>
-        </p>
-        <p className="note-caution mt-4 max-w-3xl text-[13px] leading-relaxed text-[color:var(--color-text-secondary)]">
+        </>
+      }
+      /* The Arabic link that used to sit here has gone. It existed because
+         the header's language switch is derived from the nav list and this
+         route was not on it - which stopped being true when /search and
+         /about were added. The switch now resolves /ar/search itself, so
+         the paragraph was pointing at the same place twice. */
+      point={
+        <>
           This searches the observatory&apos;s own surfaces. It does not reach
           the live news feed, and it does not read the full text of every
           traced entry - each of those carries its own search on its own page:{" "}
@@ -61,8 +54,9 @@ export default function SearchPage() {
             the news page
           </Link>
           .
-        </p>
-      </header>
+        </>
+      }
+    >
 
       <div className="mt-6">
         <Suspense
@@ -71,6 +65,6 @@ export default function SearchPage() {
           <SiteSearch />
         </Suspense>
       </div>
-    </div>
+    </PageShell>
   );
 }

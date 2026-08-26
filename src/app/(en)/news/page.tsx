@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import NewsExplorer from "./NewsExplorer";
 import CoverageHistory from "@/components/CoverageHistory";
+import PageShell from "@/components/PageShell";
 import { localeAlternates } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -21,12 +22,7 @@ export default async function NewsPage({
   const params = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Live news and official updates
-        </h1>
-      </header>
+    <PageShell title="Live news and official updates">
       {/* The heading is for the reader who arrives on the anchor and for
           anyone navigating by headings; the explorer prints its own
           controls immediately below it. */}
@@ -39,6 +35,6 @@ export default async function NewsPage({
         </Suspense>
       </section>
       <CoverageHistory year={one(params.hy)} kind={one(params.hk)} />
-    </div>
+    </PageShell>
   );
 }

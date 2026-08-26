@@ -8,6 +8,7 @@ import ThreeStreams from "@/components/ThreeStreams";
 import DisplacementCycle from "@/components/DisplacementCycle";
 import Takeaways from "@/components/Takeaways";
 import { localeAlternates } from "@/lib/i18n";
+import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/compare"),
@@ -40,17 +41,16 @@ const SUMMARY_2026 = [
 
 export default function ComparePage() {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-[color:var(--color-navy)] sm:text-3xl">
-          Compare 2024 and 2026
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+    <PageShell
+      title="Compare 2024 and 2026"
+      lede={
+        <>
           Eleven dimensions of the reconstruction system, stated analytically
           rather than generically. Use the control to view either year alone,
           side by side, or with the change stated explicitly.
-        </p>
-      </header>
+        </>
+      }
+    >
 
       <div className="mt-6">
         <Suspense fallback={<div className="h-24 animate-pulse rounded-md bg-white" />}>
@@ -137,6 +137,6 @@ export default function ComparePage() {
           matters="A system that is more coherent on paper but unchanged at its bottom is unstable: the amber dimensions - finance, procurement, oversight - are the ones the next reporting cycle can settle, toward delivery or toward procedure, and the tracking now exists to hold each conversion to a date."
         />
       </div>
-    </div>
+    </PageShell>
   );
 }
