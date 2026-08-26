@@ -7,6 +7,7 @@ import ChartFrame from "./ChartFrame";
 import { CHART, UI, VALENCE } from "@/lib/colors";
 import { changeFor, countsFor } from "@/lib/data-client";
 import {
+  HEATMAP_STAGES,
   cautionCounts,
   layers,
   stageList,
@@ -41,12 +42,12 @@ const T = {
   en: {
     title: "Direct change in traced presence, 2026 minus 2024",
     subtitle:
-      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Hover a cell for its value, or click it for the entries behind that change.",
+      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Strategy and coordination is left out: nearly every actor touches it, so its column set the top of the ramp and flattened the rest. Hover a cell for its value, or click it for the entries behind that change.",
     tipChange: "Change",
     tipClick: "Click for underlying data",
     visualMapText: ["more traced in 2026", "fewer traced in 2026"],
     description:
-      "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and twelve value-chain stages. The largest gains are community relief (+35) and community coordination (+25); the deepest contractions are community finance (−11) and community rubble clearance (−9).",
+      "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and eleven value-chain stages; strategy and coordination is left out. The largest gains are community relief (+35) and community shelter and return (+7); the deepest contractions are community finance (−11) and community rubble clearance (−9).",
     tableCaption: "Change in traced actor-stage presence, 2026 minus 2024.",
     tableHeaders: ["Actor layer", "Stage", "2024", "2026", "Change"],
     chartAria: "Heatmap of change in traced actor presence by layer and stage",
@@ -64,12 +65,12 @@ const T = {
   ar: {
     title: "التغيّر المباشر في الحضور المرصود، 2026 ناقص 2024",
     subtitle:
-      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
+      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فكان عمودها يحدّد أعلى المقياس ويُسطّح ما عداه. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
     tipChange: "التغيّر",
     tipClick: "انقر لعرض ما وراء الخلية",
     visualMapText: ["حضور أكبر في 2026", "حضور أقل في 2026"],
     description:
-      "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع طبقات فاعلة واثنتي عشرة مرحلة من سلسلة القيمة. أكبر المكاسب إغاثة المجتمع المحلي (+35) وتنسيقه (+25)؛ وأعمق الانكماشات تمويل المجتمع المحلي (-11) ورفع الأنقاض لديه (-9).",
+      "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع طبقات فاعلة وإحدى عشرة مرحلة من سلسلة القيمة، مع إخراج مرحلة الاستراتيجية والتنسيق. أكبر المكاسب إغاثة المجتمع المحلي (+35) وإيواؤه وعودته (+7)؛ وأعمق الانكماشات تمويل المجتمع المحلي (-11) ورفع الأنقاض لديه (-9).",
     tableCaption: "التغيّر في الحضور المرصود بين الجهات والمراحل، 2026 ناقص 2024.",
     tableHeaders: ["طبقة الجهة", "المرحلة", "2024", "2026", "التغيّر"],
     chartAria: "خريطة حرارية للتغيّر في الحضور المرصود للجهات بحسب الطبقة والمرحلة",
@@ -180,10 +181,10 @@ export default function ChangeHeatmap({
       chart.dispatchAction({
         type: "downplay",
         seriesIndex: 0,
-        dataIndex: prev.li * 12 + prev.si,
+        dataIndex: prev.li * HEATMAP_STAGES.length + prev.si,
       });
     }
-    const dataIndex = li * 12 + si;
+    const dataIndex = li * HEATMAP_STAGES.length + si;
     chart.dispatchAction({ type: "highlight", seriesIndex: 0, dataIndex });
     chart.dispatchAction({ type: "showTip", seriesIndex: 0, dataIndex });
   }
@@ -210,7 +211,7 @@ export default function ChangeHeatmap({
         break;
       case "Enter":
         e.preventDefault();
-        openCell(layerMeta[li].id, si + 1);
+        openCell(layerMeta[li].id, HEATMAP_STAGES[si] + 1);
         return;
       default:
         return;
@@ -225,7 +226,7 @@ export default function ChangeHeatmap({
     const chart = chartRef.current;
     if (!chart) return;
     const { si, li } = focusedCell.current;
-    chart.dispatchAction({ type: "downplay", seriesIndex: 0, dataIndex: li * 12 + si });
+    chart.dispatchAction({ type: "downplay", seriesIndex: 0, dataIndex: li * HEATMAP_STAGES.length + si });
     chart.dispatchAction({ type: "hideTip" });
   }
 
@@ -234,9 +235,8 @@ export default function ChangeHeatmap({
     const ls = layers("en");
     for (let li = 0; li < ls.length; li++) {
       const change = changeFor(ls[li].id);
-      for (let si = 0; si < 12; si++) {
-        cells.push([si, li, change[si]]);
-      }
+      // x is the drawn position; HEATMAP_STAGES[x] is the stage it means.
+      HEATMAP_STAGES.forEach((stageIdx, x) => cells.push([x, li, change[stageIdx]]));
     }
     return {
       data: cells,
@@ -253,7 +253,9 @@ export default function ChangeHeatmap({
       tooltip: {
         formatter: (p) => {
           const { value } = p as unknown as { value: [number, number, number] };
-          const [si, li, v] = value;
+          const [x, li, v] = value;
+          // x is the drawn position; map it back to the stage it stands for.
+          const si = HEATMAP_STAGES[x];
           const layer = ls[li];
           const y24 = countsFor(2024, layer.id)[si];
           const y26 = countsFor(2026, layer.id)[si];
@@ -262,7 +264,7 @@ export default function ChangeHeatmap({
       },
       xAxis: {
         type: "category",
-        data: stageShortList(locale),
+        data: HEATMAP_STAGES.map((i) => stageShortList(locale)[i]),
         position: "bottom",
         axisLabel: { rotate: 30, fontSize: chartText(locale).tick, color: "#3D4C5E", margin: 10 },
         axisTick: { show: false },
@@ -346,7 +348,7 @@ export default function ChangeHeatmap({
                 const params = p as { value?: [number, number, number] };
                 if (!params.value) return;
                 const [si, li] = params.value;
-                openCell(layerMeta[li].id, si + 1);
+                openCell(layerMeta[li].id, HEATMAP_STAGES[si] + 1);
               },
             }}
           />

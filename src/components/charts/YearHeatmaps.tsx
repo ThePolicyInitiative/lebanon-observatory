@@ -7,6 +7,7 @@ import ChartFrame from "./ChartFrame";
 import { CHART, LAYER_META, UI, YEAR_COLORS } from "@/lib/colors";
 import { countsFor } from "@/lib/data-client";
 import {
+  HEATMAP_STAGES,
   cautionCounts,
   layers,
   stageList,
@@ -19,21 +20,22 @@ import { chartText } from "@/lib/chart-style";
 const T = {
   en: {
     title: "Heat maps of traced presence: 2024 and 2026",
-    sub: "Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Hover a cell for its value; the counts behind the whole figure are in its description.",
+    sub: "Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Strategy and coordination is left out: nearly every actor touches it, so its column set the top of the ramp and flattened the rest. Hover a cell for its value; the counts behind the whole figure are in its description.",
     tracedActors: "traced actors",
     alt: "Heat maps of traced actor-stage presence for 2024 and 2026",
   },
   ar: {
     title: "خرائط حرارية للحضور المرصود: 2024 و2026",
-    sub: "كل لوحة تُظهر الجهات المرصودة بحسب الطبقة والمرحلة في سنة واحدة، على مقياس واحد مشترك (كلما دكن اللون زاد عدد الجهات المرصودة). مرِّر فوق خانة لترى قيمتها؛ والأعداد خلف الشكل كله واردة في وصفه.",
+    sub: "كل لوحة تُظهر الجهات المرصودة بحسب الطبقة والمرحلة في سنة واحدة، على مقياس واحد مشترك (كلما دكن اللون زاد عدد الجهات المرصودة). ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فكان عمودها يحدّد أعلى المقياس ويُسطّح ما عداه. مرِّر فوق خانة لترى قيمتها؛ والأعداد خلف الشكل كله واردة في وصفه.",
     tracedActors: "جهة مرصودة",
     alt: "خرائط حرارية للحضور المرصود للجهات في المراحل، 2024 و2026",
   },
 } as const;
 
+
 /**
  * Matrix heat maps of traced actor-stage presence for 2024 and 2026:
- * four actor layers by twelve value-chain stages per year, on one shared
+ * four actor layers by eleven value-chain stages per year, on one shared
  * scale. Cells are unlabelled: the value is in the tooltip and in the
  * figure's description, which is what a reader without the colours gets.
  */
@@ -47,7 +49,8 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
       const cells: [number, number, number][] = [];
       for (let li = 0; li < LAYER_META.length; li++) {
         const counts = countsFor(year, LAYER_META[li].id);
-        for (let si = 0; si < 12; si++) cells.push([si, li, counts[si]]);
+        // x is the position in the drawn axis, not the stage number.
+        HEATMAP_STAGES.forEach((stageIdx, x) => cells.push([x, li, counts[stageIdx]]));
       }
       return cells;
     };
@@ -66,7 +69,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
       x: {
         gridIndex,
         type: "category" as const,
-        data: stageShortList(locale),
+        data: HEATMAP_STAGES.map((i) => stageShortList(locale)[i]),
         inverse: ar,
         axisLabel: showXLabels
           ? { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 }
@@ -111,8 +114,10 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
             value: [number, number, number];
             seriesName: string;
           };
-          const [si, li, v] = params.value;
-          return `<strong>${stageList(locale)[si]}</strong><br/>${layers(locale)[li].label}<br/>${params.seriesName}: <strong>${v}</strong> ${tr.tracedActors}`;
+          const [x, li, v] = params.value;
+          // x is the axis position; map it back to the stage it stands for.
+          const stage = stageList(locale)[HEATMAP_STAGES[x]];
+          return `<strong>${stage}</strong><br/>${layers(locale)[li].label}<br/>${params.seriesName}: <strong>${v}</strong> ${tr.tracedActors}`;
         },
       },
       // One legend, one ramp, both panels: the whole point of stacking the
@@ -158,10 +163,12 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
     };
   }, [data2024, data2026, maxVal, locale, ar, tr]);
 
+  // The same stages the panels draw, so the description a reader without
+  // the colours gets is the figure and not a different one.
   const tableRows = layers(locale).flatMap((layer) =>
-    stageList(locale).map((stage, i) => [
+    HEATMAP_STAGES.map((i) => [
       layer.label,
-      stage,
+      stageList(locale)[i],
       countsFor(2024, layer.id)[i],
       countsFor(2026, layer.id)[i],
     ]),

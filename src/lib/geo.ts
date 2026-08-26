@@ -12,7 +12,27 @@ import litaniJson from "@/data/litani.json";
  */
 
 export const VIEW_W = 620;
-export const VIEW_H = 860;
+/**
+ * The projection box.
+ *
+ * VIEW_H is the exact height the country occupies at the scale the width
+ * decides, plus the padding - not a round number chosen by eye. It was
+ * 860, which left the projection width-bound with 78 units of empty
+ * ground below the southern border against 18 above it: Lebanon hung from
+ * the top of the frame, and the scale bar, anchored to the bottom of the
+ * viewBox, floated some 68 units clear of the map it measured.
+ *
+ * 800 is the fit. The country draws 763.98 units tall at scale_x, so
+ * 763.98 + 2 x PAD rounds up to 800, and the padding comes out an even
+ * 18/18. Every projected coordinate is unchanged, because the width still
+ * binds: scale_y at this height is 464.856 against scale_x's 464.845.
+ *
+ * That margin is one hundredth of a unit, and at VIEW_H 799 the height
+ * would bind instead and every coordinate on the map would shift. The
+ * assumption is asserted in tests/geo.test.ts rather than left to be
+ * rediscovered.
+ */
+export const VIEW_H = 800;
 const PAD = 18;
 
 export type GeoFeature = {
@@ -622,6 +642,37 @@ export function dissolveBoundary(features: GeoFeature[]): string {
 
 /** Raw Litani segments (lon/lat), for the GL map. © OpenStreetMap contributors. */
 export const LITANI_SEGMENTS = litaniJson.segments as [number, number][][];
+
+/**
+ * Where the word "Litani" belongs: on the river, in projected units.
+ *
+ * Derived from the drawn geometry rather than written down beside it. A
+ * hardcoded lon/lat missed the line by 23.5 units - about 5.6 km - and
+ * printed the label over the town of Jibchit; a coordinate copied by hand
+ * has no way of noticing when the geometry it describes moves.
+ *
+ * The midpoint of the longest segment is used, which puts the label on
+ * the river's most legible stretch rather than at an end where it would
+ * collide with the frame or with the boundary labels.
+ */
+export const LITANI_LABEL_ANCHOR: { x: number; y: number } = (() => {
+  let best: [number, number][] = [];
+  let bestLen = -1;
+  for (const seg of LITANI_SEGMENTS) {
+    if (seg.length < 2) continue;
+    let len = 0;
+    for (let i = 1; i < seg.length; i++) {
+      len += Math.hypot(seg[i][0] - seg[i - 1][0], seg[i][1] - seg[i - 1][1]);
+    }
+    if (len > bestLen) {
+      bestLen = len;
+      best = seg;
+    }
+  }
+  if (best.length === 0) return projectPoint(35.44, 33.365);
+  const [lon, lat] = best[Math.floor(best.length / 2)];
+  return projectPoint(lon, lat);
+})();
 
 /**
  * The Litani river as SVG path strings - the analytical boundary the

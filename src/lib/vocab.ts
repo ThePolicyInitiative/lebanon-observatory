@@ -119,6 +119,24 @@ export function stageList(locale: Locale): string[] {
   return locale === "ar" ? STAGES_AR : STAGES;
 }
 
+/**
+ * The stages the two heat maps draw: all of them except strategy and
+ * coordination, which is index 0.
+ *
+ * Strategy is the stage nearly every actor touches - convening, routing,
+ * linking - so its column ran far darker than any other and set the top of
+ * a ramp the remaining eleven then shared. Everything else was pressed
+ * into the pale end, and the figures answered "who coordinates" when the
+ * question they exist for is where traced presence actually sits along the
+ * chain. Dropping the column lets the ramp span the work.
+ *
+ * Held here rather than in either chart so the two cannot disagree about
+ * which stages they are showing. The stage is not hidden from the
+ * tracking: the register, the explorer and the stage profile all still
+ * carry it. This is a choice about two figures' scales.
+ */
+export const HEATMAP_STAGES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
+
 export function stageShortList(locale: Locale): string[] {
   return locale === "ar" ? STAGE_SHORT_AR : STAGE_SHORT;
 }

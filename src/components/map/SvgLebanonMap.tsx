@@ -10,6 +10,7 @@ import {
   DISTRICT_LABELS,
   GOV_PATHS,
   CITY_LABELS,
+  LITANI_LABEL_ANCHOR,
   LITANI_PATHS,
   OCCUPIED_COD_DISTRICTS_2026,
   computeBorderStripTowns,
@@ -1412,7 +1413,15 @@ export default function SvgLebanonMap({
                 />
               ))}
               {(() => {
-                const anchor = projectPoint(35.44, 33.365);
+                // Taken from the drawn line rather than written down
+                // beside it. The anchor used to be a hardcoded lon/lat
+                // that missed the river by 23.5 units - about 5.6 km -
+                // and printed the word over Jibchit, a town carrying its
+                // own pins. Worse, the gap grew on screen with every zoom
+                // step, because the anchor is a map coordinate while the
+                // glyphs are held at a constant pixel size by k. Riding
+                // the geometry means it cannot drift again.
+                const anchor = LITANI_LABEL_ANCHOR;
                 return (
                   <text
                     x={anchor.x}

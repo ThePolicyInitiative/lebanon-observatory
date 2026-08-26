@@ -132,6 +132,81 @@ describe("boundary projection", () => {
     expect(Math.max(...lats)).toBeLessThan(34.1);
   });
 
+  /**
+   * The projection box is width-bound, and VIEW_H depends on it staying
+   * that way.
+   *
+   * VIEW_H is the exact height the country occupies at the scale the
+   * width decides, plus padding - which only holds while scale_x is the
+   * smaller of the two. The margin is about a hundredth of a unit: one
+   * unit shorter and the height would bind instead, moving every
+   * projected coordinate, every path, every centroid and every pin on
+   * both maps. Nothing else would fail; the map would simply be drawn
+   * somewhere slightly different from where it was measured.
+   */
+  it("keeps the projection width-bound, which is what VIEW_H assumes", async () => {
+    const { VIEW_W, VIEW_H, projectPoint } = await import("@/lib/geo");
+    const gov = JSON.parse(
+      readFileSync("src/data/lebanon-adm1.json", "utf8"),
+    ) as { features: { geometry: { coordinates: unknown } }[] };
+    let minLon = Infinity, maxLon = -Infinity, minLat = Infinity, maxLat = -Infinity;
+    const walk = (c: unknown): void => {
+      if (Array.isArray(c) && typeof c[0] === "number") {
+        minLon = Math.min(minLon, c[0] as number);
+        maxLon = Math.max(maxLon, c[0] as number);
+        minLat = Math.min(minLat, c[1] as number);
+        maxLat = Math.max(maxLat, c[1] as number);
+      } else if (Array.isArray(c)) for (const p of c) walk(p);
+    };
+    for (const f of gov.features) walk(f.geometry.coordinates);
+
+    const PAD = 18;
+    const latCos = Math.cos((((minLat + maxLat) / 2) * Math.PI) / 180);
+    const scaleX = (VIEW_W - 2 * PAD) / ((maxLon - minLon) * latCos);
+    const scaleY = (VIEW_H - 2 * PAD) / (maxLat - minLat);
+    expect(scaleX, "the height now binds - every coordinate has moved").toBeLessThanOrEqual(scaleY);
+
+    // And the box is a close fit, which is the other half of the choice:
+    // the country should not hang from the top of an oversized frame.
+    const contentH = (maxLat - minLat) * scaleX;
+    const slack = VIEW_H - contentH - 2 * PAD;
+    expect(slack, `${slack.toFixed(1)} units of dead ground below the country`).toBeLessThan(6);
+
+    // The southern tip sits inside the frame, near its bottom edge.
+    const south = projectPoint((minLon + maxLon) / 2, minLat);
+    expect(south.y).toBeLessThan(VIEW_H);
+    expect(VIEW_H - south.y).toBeLessThan(VIEW_H * 0.05);
+  });
+
+  it("anchors the Litani label on the river it names", async () => {
+    const { LITANI_LABEL_ANCHOR, LITANI_SEGMENTS, projectPoint, VIEW_W, VIEW_H } =
+      await import("@/lib/geo");
+    // A hardcoded lon/lat had drifted 23.5 units - about 5.6 km - off the
+    // line, printing the word over the town of Jibchit. The anchor is now
+    // taken from the geometry, so it cannot drift again.
+    let nearest = Infinity;
+    for (const seg of LITANI_SEGMENTS) {
+      for (let i = 1; i < seg.length; i++) {
+        const p1 = projectPoint(seg[i - 1][0], seg[i - 1][1]);
+        const p2 = projectPoint(seg[i][0], seg[i][1]);
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const len2 = dx * dx + dy * dy;
+        let t = len2 === 0 ? 0 : ((LITANI_LABEL_ANCHOR.x - p1.x) * dx + (LITANI_LABEL_ANCHOR.y - p1.y) * dy) / len2;
+        t = Math.max(0, Math.min(1, t));
+        nearest = Math.min(
+          nearest,
+          Math.hypot(LITANI_LABEL_ANCHOR.x - (p1.x + t * dx), LITANI_LABEL_ANCHOR.y - (p1.y + t * dy)),
+        );
+      }
+    }
+    expect(nearest, `label sits ${nearest.toFixed(2)} units off the river`).toBeLessThan(1);
+    expect(LITANI_LABEL_ANCHOR.x).toBeGreaterThan(0);
+    expect(LITANI_LABEL_ANCHOR.x).toBeLessThan(VIEW_W);
+    expect(LITANI_LABEL_ANCHOR.y).toBeGreaterThan(0);
+    expect(LITANI_LABEL_ANCHOR.y).toBeLessThan(VIEW_H);
+  });
+
   it("projects every city label inside the viewBox", () => {
     expect(CITY_LABELS.length).toBeGreaterThanOrEqual(5);
     // No northern city is labelled: the map shows where the war and the

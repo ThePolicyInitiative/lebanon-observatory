@@ -14,7 +14,7 @@ import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
 import { SectionHeading } from "@/components/HomeNarrative";
 import { kpis, locations } from "@/lib/data";
-import { GOV_PATHS } from "@/lib/geo";
+import { GOV_PATHS, VIEW_H, VIEW_W } from "@/lib/geo";
 import { localeAlternates } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function HomePage() {
       <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(160deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
         <svg
           aria-hidden
-          viewBox="0 0 620 860"
+          viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
           className="pointer-events-none absolute -right-8 top-1/2 hidden h-[135%] -translate-y-1/2 lg:block"
         >
           {GOV_PATHS.map((p) => (

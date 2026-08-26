@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { regionLabel } from "@/lib/vocab";
 import { kpis, locations } from "@/lib/data";
-import { GOV_PATHS } from "@/lib/geo";
+import { GOV_PATHS, VIEW_H, VIEW_W } from "@/lib/geo";
 import InstitutionalStructures from "@/components/InstitutionalStructures";
 import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
 import KpiCard from "@/components/KpiCard";
@@ -46,7 +46,7 @@ export default function ArabicPage() {
       <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(200deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
         <svg
           aria-hidden
-          viewBox="0 0 620 860"
+          viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
           className="pointer-events-none absolute -left-8 top-1/2 hidden h-[135%] -translate-y-1/2 lg:block"
         >
           {GOV_PATHS.map((p) => (
