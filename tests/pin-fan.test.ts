@@ -63,17 +63,25 @@ describe("fan spacing", () => {
   });
 
   /**
-   * The bug itself, in the units a reader would notice it in.
+   * How much ground the scale ceiling gives back as the reader zooms in.
    *
-   * A Lebanese town is roughly a kilometre across, so a fan reaching much
-   * beyond that is standing in someone else's town. At street zoom the
-   * old constant reached 2.16 km; the guard is deliberately tighter than
-   * that so a regression cannot slip back under it.
+   * This is only half of what bounds a fan. fanSpacing knows about the
+   * scale and nothing about the place: it cannot tell whether the town
+   * underneath is Nabatieh or a hamlet, so it cannot promise a pin stays
+   * inside its town. fitSpacing does that, by capping the fan at the room
+   * the town actually has, and tests/pin-containment.test.ts checks the
+   * result against the real boundaries.
+   *
+   * What is checked here is the part fanSpacing is responsible for: that
+   * the ground footprint collapses as the reader goes in, so the scale
+   * ceiling stops being the binding constraint and the town's own room
+   * takes over.
    */
-  it("keeps the busiest towns' pins within their own town at close zoom", () => {
+  it("collapses its ground footprint as the reader zooms in", () => {
     for (const { town, entries } of BUSIEST) {
-      const metres = fanRadius(entries, fanSpacing(14)) * M_PER_DEG;
-      expect(metres, `${town} fans ${Math.round(metres)} m at zoom 14`).toBeLessThan(400);
+      const far = fanRadius(entries, fanSpacing(8)) * M_PER_DEG;
+      const near = fanRadius(entries, fanSpacing(14)) * M_PER_DEG;
+      expect(near, `${town} does not tighten between zoom 8 and 14`).toBeLessThan(far / 4);
     }
   });
 

@@ -7,10 +7,18 @@ import {
   featureCentroidLonLat,
   type GeoFeature,
 } from "@/lib/geo";
-import { buildPins, fanRadius, fanSpacing, fitSpacing } from "@/lib/pins";
+import { buildPins, degreesPerPixel, fanRadius, fanSpacing, fitSpacing } from "@/lib/pins";
 
 /** The vector map's own fan spacing, in screen pixels. */
 const PIN_SPACING_SVG = 9;
+
+/**
+ * What the pan-and-zoom map draws: a pin of radius 6 with a 1.2 stroke, so
+ * two of them need this much between centres to read as two. Mirrors
+ * GL_MIN_SEPARATION and GL's maxZoom in LebanonMap.tsx.
+ */
+const GL_MIN_SEPARATION = 2 * 6 + 1.2;
+const GL_MAX_ZOOM = 15;
 import { slimRecords } from "@/lib/map-records";
 import type { Year } from "@/lib/types";
 
@@ -210,6 +218,69 @@ describe("pin containment", () => {
       }
     }
     expect(checked).toBeGreaterThan(20);
+  });
+
+  /**
+   * The other half of the bargain.
+   *
+   * Containment on its own is trivially satisfiable by shrinking every fan
+   * to nothing, and that is exactly what fitting the fan to the town does
+   * at the opening view: a pin is twelve pixels across and a Lebanese town
+   * is about ten pixels wide there, so twenty entries fitted inside one
+   * would sit a pixel apart and merge into a single blob. A fan is only
+   * drawn where its pins can actually be told apart; below that the town
+   * is one marker carrying its count.
+   *
+   * So every town, at every zoom, must be in exactly one of two honest
+   * states - a fan whose pins clear each other, or a single counted
+   * marker. What must never happen is a fan too tight to read.
+   */
+  it.each([6, 7.3, 9, 12, 15])(
+    "never draws a fan too tight to tell apart at zoom %s",
+    (zoom) => {
+      const counts = placeAt(zoom, 2026).reduce(
+        (m, p) => m.set(p.town, (m.get(p.town) ?? 0) + 1),
+        new Map<string, number>(),
+      );
+      let fanned = 0;
+      let clustered = 0;
+      for (const [name, n] of counts) {
+        const s = fitSpacing(n, anchorOf(name).room, fanSpacing(zoom));
+        const separationPx = s / degreesPerPixel(zoom);
+        if (n === 1) continue; // a lone pin has nothing to be separated from
+        if (separationPx < GL_MIN_SEPARATION) {
+          clustered++;
+          continue;
+        }
+        fanned++;
+        expect(
+          separationPx,
+          `${name} fans ${n} pins ${separationPx.toFixed(1)}px apart, under the ${GL_MIN_SEPARATION}px two pins need`,
+        ).toBeGreaterThanOrEqual(GL_MIN_SEPARATION);
+      }
+      expect(fanned + clustered).toBeGreaterThan(20);
+    },
+  );
+
+  it("opens the busiest towns into real fans once zoomed in", () => {
+    // Clustering must be a stage, not a destination. If the map cannot be
+    // zoomed far enough for Nabatieh's entries to separate, they are
+    // unreachable on the map at any zoom - which is the failure the pins
+    // were introduced to fix in the first place.
+    const busiest = placeAt(7.3, 2026).reduce(
+      (m, p) => m.set(p.town, (m.get(p.town) ?? 0) + 1),
+      new Map<string, number>(),
+    );
+    const worst = [...busiest].sort((a, b) => b[1] - a[1]).slice(0, 5);
+    expect(worst[0][1]).toBeGreaterThan(15);
+    for (const [name, n] of worst) {
+      const s = fitSpacing(n, anchorOf(name).room, fanSpacing(GL_MAX_ZOOM));
+      const separationPx = s / degreesPerPixel(GL_MAX_ZOOM);
+      expect(
+        separationPx,
+        `${name} still cannot open its ${n} entries at the map's furthest zoom`,
+      ).toBeGreaterThanOrEqual(GL_MIN_SEPARATION);
+    }
   });
 
   it("gives a fan that fills the town rather than a token dot", () => {

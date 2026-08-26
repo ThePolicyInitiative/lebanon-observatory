@@ -81,8 +81,16 @@ export function fanRadius(count: number, spacing: number): number {
  */
 export const GROUND_SPACING_DEG = 0.0035;
 
-/** How far apart neighbouring pins should sit on the screen, in pixels. */
-const SCREEN_SPACING_PX = 9;
+/**
+ * How far apart neighbouring pins should sit on the screen, in pixels.
+ *
+ * This is the pan-and-zoom map's figure, where a pin is drawn at radius 6
+ * with a 1.2 stroke - 13.2 px across - so anything under that overlaps.
+ * Fourteen clears it with a thin lane of ground between neighbours. The
+ * vector map draws a smaller pin and passes its own 9 directly to
+ * fitSpacing, so it does not read this.
+ */
+const SCREEN_SPACING_PX = 14;
 
 /** Degrees of longitude per screen pixel at a MapLibre zoom level. */
 export function degreesPerPixel(zoom: number): number {

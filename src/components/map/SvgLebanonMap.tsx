@@ -68,6 +68,24 @@ const PIN_R = 3.2;
 const PIN_STROKE = 1;
 const PIN_HIT = PIN_SPACING / 2;
 
+/**
+ * The point below which a fan stops being worth drawing.
+ *
+ * A pin is 7.4 px across, and a Lebanese town at the opening view is about
+ * ten pixels wide - so one pin is very nearly the size of the town it sits
+ * in. Twenty entries cannot be drawn apart inside a shape that small, and
+ * the two ways of failing are both real: fan them wide enough to separate
+ * and they land in the neighbouring towns; keep them inside the town and
+ * they pile into a single illegible blob.
+ *
+ * So neither is done. Below this separation the town is drawn as one
+ * marker carrying its count, which is true at any zoom, and the fan opens
+ * into a pin per entry only once the town on screen is big enough to hold
+ * them apart. Selecting the marker lists the same entries in the panel, so
+ * nothing becomes unreachable at any zoom.
+ */
+const PIN_MIN_SEPARATION = 2 * (PIN_R + PIN_STROKE / 2);
+
 const PIN_T = {
   en: {
     pinCount: (pins: number, places: number) =>
@@ -76,7 +94,9 @@ const PIN_T = {
     episodeAt: "Traced episode ·",
     close: "Close this entry",
     pinNote:
-      "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address.",
+      "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address. Where a town is too small at this zoom to hold its entries apart, they are drawn as one marker carrying the count; zoom in and it opens into a pin for each.",
+    cluster: (n: number, town: string, district: string) =>
+      `${town}${district ? `, ${district}` : ""} - ${n} traced entries, too close together to draw apart at this zoom. Select to list them, or zoom in for a pin each.`,
     happenedHere: "What happened here",
     findTown: (n: string) => `Find a town (${n} cadastral towns - selecting zooms to it)`,
     loading: "loading",
@@ -134,7 +154,9 @@ const PIN_T = {
     episodeAt: "واقعة مرصودة ·",
     close: "إغلاق هذا المدخل",
     pinNote:
-      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع.",
+      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع. وحين تضيق البلدة عند هذا التكبير عن أن تفصل مداخلها، تُرسم علامة واحدة تحمل العدد؛ وبالتقريب تنفتح إلى دبّوس لكل مدخل.",
+    cluster: (n: number, town: string, district: string) =>
+      `${town}${district ? ` · قضاء ${district}` : ""} - ${n} مدخلاً مرصوداً، أقرب من أن تُرسم متفرّقة عند هذا التكبير. اخترها لعرضها، أو قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
     happenedHere: "ما الذي جرى هنا",
     findTown: (n: string) => `ابحث عن بلدة (${n} بلدة عقارية - اختيارها يقرّب الخريطة إليها)`,
     loading: "قيد التحميل",
@@ -829,21 +851,53 @@ export default function SvgLebanonMap({
    * the land test and back afterwards. Kept apart from the memo above so
    * that zooming re-runs this and not the matching.
    */
-  const entryPins = useMemo(
-    () =>
-      entryPinsRaw.map((pin) => {
-        const spacing = fitSpacing(pin.siblings, pin.town.room / k, PIN_SPACING);
-        const moved = clampToLand(pin.cx, pin.cy, pin.dx * spacing * k, pin.dy * spacing * k, (x, y) =>
-          landIndex
-            ? isOnLandIndexed(landIndex, x, y)
-            : (() => {
-                const { lon, lat } = unprojectPoint(x, y);
-                return isOnLand(lon, lat);
-              })(),
+  const { entryPins, entryClusters } = useMemo(() => {
+    const byTown = new Map<string, typeof entryPinsRaw>();
+    for (const pin of entryPinsRaw) {
+      const list = byTown.get(pin.townName);
+      if (list) list.push(pin);
+      else byTown.set(pin.townName, [pin]);
+    }
+
+    const pins: (typeof entryPinsRaw)[number][] = [];
+    const clusters: {
+      town: Town;
+      count: number;
+      pins: typeof entryPinsRaw;
+    }[] = [];
+
+    for (const [, group] of byTown) {
+      const town = group[0].town;
+      const spacing = fitSpacing(group.length, town.room / k, PIN_SPACING);
+      // Too tight to tell apart: one marker for the town instead.
+      if (group.length > 1 && spacing < PIN_MIN_SEPARATION) {
+        clusters.push({ town, count: group.length, pins: group });
+        continue;
+      }
+      for (const pin of group) {
+        const moved = clampToLand(
+          pin.cx,
+          pin.cy,
+          pin.dx * spacing * k,
+          pin.dy * spacing * k,
+          (x, y) =>
+            landIndex
+              ? isOnLandIndexed(landIndex, x, y)
+              : (() => {
+                  const { lon, lat } = unprojectPoint(x, y);
+                  return isOnLand(lon, lat);
+                })(),
         );
-        return { ...pin, dx: moved.dx / k, dy: moved.dy / k };
-      }),
-    [entryPinsRaw, k, landIndex],
+        pins.push({ ...pin, dx: moved.dx / k, dy: moved.dy / k });
+      }
+    }
+    return { entryPins: pins, entryClusters: clusters };
+  }, [entryPinsRaw, k, landIndex]);
+
+  /** Clustered towns by name, so a label can clear the marker it drew. */
+  const clusterByTown = useMemo(
+    () => new Map(entryClusters.map((c) => [c.town.name, c] as const)),
+    [entryClusters],
   );
 
   /**
@@ -1368,6 +1422,66 @@ export default function SvgLebanonMap({
                   })
                 : null}
 
+              {/* Towns whose entries cannot be drawn apart at this zoom:
+                  one marker carrying the count, which stays true however
+                  far out the reader is. Selecting it lists the same
+                  entries the pins would have opened. */}
+              {view === "entries"
+                ? entryClusters.map((c) => {
+                    const isSel = selectedTownName === c.town.name;
+                    // Area grows with the count, so ten reads as more than
+                    // three without a town of forty swallowing its
+                    // neighbours.
+                    const r = PIN_R * (isSel ? 1.4 : 1) + Math.sqrt(c.count) * 1.3;
+                    const label = tr.cluster(c.count, c.town.name, c.town.district);
+                    return (
+                      <g
+                        key={`cl-${c.town.uid}`}
+                        transform={`translate(${c.town.ax} ${c.town.ay}) scale(${k})`}
+                        tabIndex={0}
+                        role="button"
+                        aria-label={label}
+                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
+                        onClick={() => selectTown(c.town)}
+                        onPointerEnter={() => {
+                          setHover(label);
+                          setHoverUid(c.town.name);
+                        }}
+                        onPointerLeave={() => {
+                          setHover(null);
+                          setHoverUid(null);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            selectTown(c.town);
+                          }
+                        }}
+                      >
+                        <circle r={Math.max(PIN_HIT, r + 2)} fill="transparent" />
+                        <circle
+                          r={r}
+                          fill="#FFFFFF"
+                          stroke={isSel ? "#173B63" : UI.outlineQuiet}
+                          strokeWidth={PIN_STROKE}
+                          className="pointer-events-none"
+                        />
+                        <text
+                          textAnchor="middle"
+                          y={r * 0.36}
+                          fontSize={r * 1.05}
+                          fontWeight={600}
+                          fill="#173B63"
+                          className="pointer-events-none select-none"
+                        >
+                          {c.count}
+                        </text>
+                        <title>{label}</title>
+                      </g>
+                    );
+                  })
+                : null}
+
               {/* Town names sit over their fan, not on any one pin. */}
               {view === "entries"
                 ? placePoints.map((p) => {
@@ -1377,13 +1491,13 @@ export default function SvgLebanonMap({
                         ? declutteredLabels.has(t.name)
                         : topPlaceNames.has(t.name);
                     if (!showLabel) return null;
-                    // The label clears the fan, so it has to be measured
-                    // against the same fitted spacing the pins were laid
-                    // out with, from the same anchor.
-                    const reach = fanRadius(
-                      p.total,
-                      fitSpacing(p.total, t.room / k, PIN_SPACING),
-                    );
+                    // The label clears whatever the town actually drew:
+                    // the fitted fan, or the single marker that replaced
+                    // it where the fan would not have been legible.
+                    const cluster = clusterByTown.get(t.name);
+                    const reach = cluster
+                      ? PIN_R + Math.sqrt(cluster.count) * 1.3
+                      : fanRadius(p.total, fitSpacing(p.total, t.room / k, PIN_SPACING));
                     return (
                       <text
                         key={`pl-${t.name}`}

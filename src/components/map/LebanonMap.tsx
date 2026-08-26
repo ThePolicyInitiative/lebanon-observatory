@@ -39,11 +39,16 @@ import { fmtDate } from "@/lib/format";
 import {
   buildPins,
   clampToLand,
+  degreesPerPixel,
   fanSpacing,
   fitSpacing,
   layerColor,
   pinOutline,
 } from "@/lib/pins";
+
+/** The drawn radius of one pin, and the gap two of them need to read apart. */
+const GL_PIN_RADIUS = 6;
+const GL_MIN_SEPARATION = 2 * GL_PIN_RADIUS + 1.2;
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { eventKindLabel, type MapView } from "./SvgLebanonMap";
@@ -104,6 +109,8 @@ const T = {
     tracedEpisode: "Traced episode",
     pinFoot:
       "One pin, one traced entry - placed in the town the reporting names, not at an address.",
+    clusterNote: (n: number) =>
+      `${n} traced entries here, closer together than they can be drawn apart at this zoom. Zoom in for a pin on each.`,
     mentionsIn: (year: number) => `mentions in ${year}`,
     happenedAria: (year: number) => `Traced episodes in ${year}`,
     happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
@@ -133,6 +140,8 @@ const T = {
     tracedEpisode: "واقعة مرصودة",
     pinFoot:
       "دبّوس واحد لمدخل مرصود واحد - موضوع في البلدة التي يسمّيها الإبلاغ، لا على عنوان بعينه.",
+    clusterNote: (n: number) =>
+      `${n} مدخلاً مرصوداً هنا، أقرب بعضها إلى بعض من أن تُرسم متفرّقة عند هذا التكبير. قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
     mentionsIn: (year: number) => `إشارة في ${year}`,
     happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
     happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
@@ -274,7 +283,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           center: [35.65, 33.85],
           zoom: 7.3,
           minZoom: 6,
-          maxZoom: 12,
+          // Far enough in that a busy town's fan can actually open. At 12 a
+          // town like Nabatieh could never give its twenty-odd entries the
+          // twelve pixels they need apart, so it stayed a single marker
+          // however far the reader zoomed - which made the pins
+          // unreachable rather than merely crowded.
+          maxZoom: 15,
           attributionControl: false,
         });
         mapRef.current = map;
@@ -446,6 +460,24 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               "circle-stroke-width": ["get", "strokeWidth"],
             },
           });
+          // The count inside a clustered town's marker. Only clusters
+          // carry a label, so this layer is empty when every fan fits.
+          // Glyphs are fetched from the style's font endpoint, which may
+          // not be reachable; if it is not, the marker still shows and its
+          // popup and accessible name still carry the number.
+          map.addLayer({
+            id: "locality-counts",
+            type: "symbol",
+            source: "localities",
+            filter: ["has", "label"],
+            layout: {
+              "text-field": ["get", "label"],
+              "text-size": 11,
+              "text-allow-overlap": true,
+              "text-ignore-placement": true,
+            },
+            paint: { "text-color": "#173B63" },
+          });
 
           map.on("click", "gov-fill", (e: MapLayerMouseEvent) => {
             const f = e.features?.[0];
@@ -603,6 +635,35 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       for (const [name, pins] of grouped) {
         const anchor = anchorFor(name);
         if (!anchor) continue;
+
+        // A pin is twelve pixels across. Where the town's own room cannot
+        // hold its entries that far apart, drawing them separately would
+        // either pile them into one blob or push them into the next town,
+        // so the town is drawn as a single marker carrying its count and
+        // the fan opens only once there is room for it. The count is true
+        // at every zoom; the fan is only true when it fits.
+        const spacing = fitSpacing(pins.length, anchor.room, fanSpacing(glZoom));
+        if (pins.length > 1 && spacing / degreesPerPixel(glZoom) < GL_MIN_SEPARATION) {
+          const district = pins[0].district;
+          features.push({
+            type: "Feature" as const,
+            geometry: { type: "Point" as const, coordinates: [anchor.lon, anchor.lat] },
+            properties: {
+              name,
+              label: String(pins.length),
+              radius: GL_PIN_RADIUS + Math.sqrt(pins.length) * 1.6,
+              color: "#FFFFFF",
+              strokeColor: UI.outlineQuiet,
+              strokeWidth: 1.4,
+              popupHtml:
+                `<div${locale === "ar" ? ` dir="rtl"` : ""} style="font-size:12px;line-height:1.5;max-width:300px">` +
+                `<strong>${esc(name)}</strong>${district ? ` <span style="color:${CHART.label}">· ${esc(district)}</span>` : ""}` +
+                `<br/><span style="white-space:normal">${esc(t.clusterNote(pins.length))}</span></div>`,
+            },
+          });
+          continue;
+        }
+
         // Longitude degrees shrink with latitude; widen the x offset so the
         // fan stays circular on the ground rather than squashed.
         const lonScale = 1 / Math.max(0.2, Math.cos((anchor.lat * Math.PI) / 180));
