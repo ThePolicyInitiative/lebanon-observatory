@@ -207,6 +207,47 @@ describe("boundary projection", () => {
     expect(LITANI_LABEL_ANCHOR.y).toBeLessThan(VIEW_H);
   });
 
+  /**
+   * A district's printed label and the district named in the hover under
+   * it have to be the same words.
+   *
+   * The shapes come from geoBoundaries and everything else on the site
+   * reads the COD adm2_name that ships with the cadastre. Nine of the
+   * twenty-six are spelled differently between the two, so a reader
+   * hovering a town under a label reading NABATIYE was told it sat in "El
+   * Nabatieh district" - one place presented as two.
+   *
+   * Checked against the COD layer rather than against the alias literal,
+   * so replacing either boundary file fails here instead of quietly
+   * reintroducing the mismatch.
+   */
+  it("labels every district with the name the rest of the map uses", async () => {
+    const { DISTRICT_LABELS } = await import("@/lib/geo");
+    const adm3 = JSON.parse(readFileSync("public/geo/lebanon-adm3.geojson", "utf8")) as {
+      features: { properties: { adm2_name?: string } }[];
+    };
+    const cod = new Set(
+      adm3.features
+        .map((f) => String(f.properties.adm2_name ?? ""))
+        .filter((n) => n && n !== "Conflict"),
+    );
+
+    expect(DISTRICT_LABELS).toHaveLength(26);
+    expect(cod.size).toBe(26);
+
+    const strays = DISTRICT_LABELS.filter((l) => !cod.has(l.label)).map((l) => l.label);
+    expect(strays, "labels naming a district the cadastre does not").toEqual([]);
+
+    // Every district is labelled exactly once - an alias collapsing two
+    // districts onto one name would still pass the check above.
+    const labels = DISTRICT_LABELS.map((l) => l.label);
+    expect(new Set(labels).size).toBe(labels.length);
+
+    // And the identifier is left alone, because DISTRICT_ZONE is keyed on it.
+    const zoned = DISTRICT_LABELS.filter((l) => l.name !== l.label);
+    expect(zoned.length).toBe(9);
+  });
+
   it("projects every city label inside the viewBox", () => {
     expect(CITY_LABELS.length).toBeGreaterThanOrEqual(5);
     // No northern city is labelled: the map shows where the war and the

@@ -1476,7 +1476,7 @@ export default function SvgLebanonMap({
                       pointerEvents="none"
                       aria-hidden
                     >
-                      {l.name}
+                      {l.label}
                     </text>
                   ))
                 : null}

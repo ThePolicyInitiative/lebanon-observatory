@@ -587,12 +587,47 @@ export const DISTRICT_PATHS: DistrictPath[] = districtFeatures.map((f) => {
   };
 });
 
-/** District (qada) label anchors for the zoomed-in label layer. */
-export const DISTRICT_LABELS: { name: string; x: number; y: number }[] =
-  districtFeatures.map((f) => ({
-    name: String(f.properties.shapeName ?? ""),
-    ...featureCentroid(f),
-  }));
+/**
+ * The nine districts geoBoundaries and the OCHA COD layer spell
+ * differently, keyed by the geoBoundaries form.
+ *
+ * The outline layer this map draws its district shapes from is
+ * geoBoundaries; every other surface - the town hovers, the detail panel,
+ * the register, the explorer - reads the COD adm2_name that comes with
+ * the cadastre. Where the two disagree the reader met both at once: a
+ * label reading NABATIYE with a hover underneath it saying "El Nabatieh
+ * district", which looks like two different places rather than two
+ * spellings of one.
+ *
+ * The COD spelling wins because it is the one the rest of the site says.
+ * Pairing was done by geometry rather than by eye - each district's
+ * centre tested against the COD town polygons that contain it - and comes
+ * out one-to-one across all twenty-six.
+ */
+const DISTRICT_COD_NAME: Record<string, string> = {
+  Batroun: "El Batroun",
+  "Bent Jbail": "Bent Jbeil",
+  "El Metn": "El Meten",
+  Hermel: "El Hermel",
+  Jbail: "Jbeil",
+  Kesrouan: "Kesrwane",
+  Koura: "El Koura",
+  "Minieh-Dinnieh": "El Minieh-Dennie",
+  Nabatiye: "El Nabatieh",
+};
+
+/**
+ * District (qada) label anchors for the zoomed-in label layer.
+ *
+ * `name` stays the geoBoundaries spelling, because DISTRICT_ZONE and the
+ * callers that look a district up by name are keyed on it. `label` is
+ * what the reader sees.
+ */
+export const DISTRICT_LABELS: { name: string; label: string; x: number; y: number }[] =
+  districtFeatures.map((f) => {
+    const name = String(f.properties.shapeName ?? "");
+    return { name, label: DISTRICT_COD_NAME[name] ?? name, ...featureCentroid(f) };
+  });
 
 /**
  * Border districts containing Israeli-occupied areas in 2026. The tracking
