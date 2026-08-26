@@ -11,7 +11,7 @@ import KpiCard from "@/components/KpiCard";
 import ReconstructionPulse from "@/components/ReconstructionPulse";
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
-import { Body, GlanceFigures, Onward, SectionHeading } from "@/components/HomeNarrative";
+import { Body, Onward, SectionHeading } from "@/components/HomeNarrative";
 
 /** Below the fold and carrying the full data text for its drawer. */
 const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"), {
@@ -91,10 +91,6 @@ export default function ArabicPage() {
               {AR.hero.ctaNews}
             </Link>
           </div>
-          <GlanceFigures items={AR.glance} />
-          <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-white/55">
-            {AR.glanceNote}
-          </p>
         </div>
       </section>
 

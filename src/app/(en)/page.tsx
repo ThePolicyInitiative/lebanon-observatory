@@ -12,7 +12,7 @@ const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"),
 });
 import YearHeatmaps from "@/components/charts/YearHeatmaps";
 import NewsTeaser from "@/components/news/NewsTeaser";
-import { GlanceFigures, SectionHeading } from "@/components/HomeNarrative";
+import { SectionHeading } from "@/components/HomeNarrative";
 import { kpis, locations } from "@/lib/data";
 import { GOV_PATHS } from "@/lib/geo";
 import { localeAlternates } from "@/lib/i18n";
@@ -94,23 +94,6 @@ export default function HomePage() {
               View live updates
             </Link>
           </div>
-          {/* At a glance */}
-          <GlanceFigures
-            items={[
-              ["771", "traced entries in the tracking (357 for 2024; 414 for 2026)"],
-              ["105 → 130", "actors catalogued across the four layers, 2024 → 2026; 129 of the 130 carry traced entries"],
-              ["12 × 4 × 2", "value-chain stages × actor layers × years, recomputed at entry level"],
-              ["0", "works contracts awarded, confirmed completed outputs and confirmed compensation payments by the cut-off"],
-            ]}
-          />
-          <p className="mt-3 max-w-3xl text-[11px] leading-snug text-white/55">
-            Two counts coexist by design: the charts on the compare and actors
-            pages read the report-level actor-stage counts (343 for 2024; 360
-            for 2026, with the report&apos;s 363 recomputation flagged on the
-            compare page), while the explorer and the register list the finer
-            underlying entries counted here. An actor can carry several entries
-            within one stage.
-          </p>
         </div>
       </section>
 

@@ -324,7 +324,6 @@ describe("headline figures in the copy", () => {
     .join("\n");
   const kpi = (id: string) => kpis.find((k) => k.id === id)!;
   const funnel = (id: string) => financeFunnel.find((f) => f.id === id)!;
-  const recordsIn = (year: number) => roleRecords.filter((r) => r.year === year).length;
   const actorsIn = (year: number) => actorsJson.filter((a) => a.year === year).length;
 
   const CLAIMS: { what: string; printed: string; fromData: () => string }[] = [
@@ -373,16 +372,17 @@ describe("headline figures in the copy", () => {
       printed: "771",
       fromData: () => String(roleRecords.length),
     },
-    {
-      what: "traced entries for 2024",
-      printed: "357",
-      fromData: () => String(recordsIn(2024)),
-    },
-    {
-      what: "traced entries for 2026",
-      printed: "414",
-      fromData: () => String(recordsIn(2026)),
-    },
+    /*
+     * The per-year entry counts, 357 and 414, are no longer claimed
+     * anywhere: they were printed only inside the home page's
+     * at-a-glance strip, which has been removed. A claim nothing makes
+     * needs no guard, and leaving it here would have this suite asserting
+     * the presence of copy the site deliberately does not carry.
+     *
+     * They remain derivable - recordsIn(2024) and recordsIn(2026) - so if
+     * either figure is printed again, add the claim back rather than
+     * trusting the number.
+     */
     {
       what: "actor-stage presences counted for 2024",
       printed: "343",
@@ -395,8 +395,11 @@ describe("headline figures in the copy", () => {
     },
     {
       what: "actors across the four layers, 2024 then 2026",
-      printed: "105 → 130",
-      fromData: () => `${actorsIn(2024)} → ${actorsIn(2026)}`,
+      // The Arabic arrow, because this figure is now printed only on the
+      // Arabic explorer: the English home page no longer carries an
+      // at-a-glance strip for it to appear in.
+      printed: "105 ← 130",
+      fromData: () => `${actorsIn(2024)} ← ${actorsIn(2026)}`,
     },
     {
       what: "community entries, 2024 then 2026",

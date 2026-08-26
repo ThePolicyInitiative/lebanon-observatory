@@ -63,28 +63,6 @@ export function Body({ children, locale = "en" }: { children: ReactNode; locale?
   );
 }
 
-/**
- * The four figures under the hero. `.figure-number` is the site's declared
- * treatment for a figure, and it applies in both languages: the RTL block in
- * globals.css already neutralises the tracking it carries, which is the only
- * part of it Arabic could not take.
- */
-export function GlanceFigures({ items }: { items: readonly (readonly [string, string])[] }) {
-  return (
-    <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6 sm:grid-cols-4">
-      {items.map(([value, label]) => (
-        <div key={label}>
-          <dt className="sr-only">{label}</dt>
-          <dd>
-            <span className="figure-number block text-[27px] text-white">{value}</span>
-            <span className="mt-1.5 block text-[11px] leading-snug text-white/65">{label}</span>
-          </dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
 /** A link onward to the page that carries the detail. */
 export function Onward({
   href,
