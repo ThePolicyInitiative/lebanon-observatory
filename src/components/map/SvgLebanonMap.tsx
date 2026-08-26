@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHART, LAYER_META, UI, VALENCE } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import type { SlimRecord } from "@/lib/map-records";
@@ -287,17 +287,22 @@ type Town = {
   strip: boolean;
   cx: number;
   cy: number;
-  /**
-   * Where this town's pins are fanned from, and how much room the fan has
-   * before it reaches the boundary. Not the centroid: that is the average
-   * of a shape rather than a point inside it, and for a coastal sliver
-   * like Sour it sits 54 m from its own edge, which put entries in the
-   * next town along. See poleOfInaccessibility.
-   */
-  ax: number;
-  ay: number;
-  room: number;
 };
+
+/**
+ * Where a town's pins are fanned from, and how much room the fan has
+ * before it reaches the boundary.
+ *
+ * Not the centroid: that is the average of a shape rather than a point
+ * inside it, and for a coastal sliver like Sour it sits 54 m from its own
+ * edge, which put entries in the next town along.
+ *
+ * Worked out on demand rather than for the whole cadastre. The search
+ * costs about 1.2 ms a town - trivial for the thirty-odd towns the
+ * tracking reaches, and 1.9 seconds of frozen main thread if run over all
+ * 1,627 polygons on load, which is what it did until it was measured.
+ */
+type Anchor = { x: number; y: number; room: number };
 
 type ViewBox = { x: number; y: number; w: number; h: number };
 
@@ -361,6 +366,9 @@ export default function SvgLebanonMap({
   const [selectedZone, setSelectedZone] = useState<string | null>(null);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+  /** Town polygons by uid, and their resolved anchors. See anchorOf. */
+  const featuresRef = useRef<Map<string, GeoFeature>>(new Map());
+  const anchorCacheRef = useRef<Map<string, Anchor>>(new Map());
   const [selectedTownRaw, setSelectedTownRaw] = useState<string | null>(null);
   const [selectedTownUid, setSelectedTownUid] = useState<string | null>(null);
   const [selectedOccupation, setSelectedOccupation] = useState<"" | "strip" | "district">("");
@@ -433,7 +441,6 @@ export default function SvgLebanonMap({
           const name = String(f.properties.adm3_name ?? "");
           const district = String(f.properties.adm2_name ?? "");
           const c = featureCentroid(f);
-          const a = featureAnchor(f);
           return {
             // Unique per polygon: 65 disputed areas share the name
             // "Litige", so name alone cannot identify a shape.
@@ -446,11 +453,14 @@ export default function SvgLebanonMap({
             strip: strip.has(name),
             cx: c.x,
             cy: c.y,
-            ax: a.room > 0 ? a.x : c.x,
-            ay: a.room > 0 ? a.y : c.y,
-            room: a.room,
           };
         });
+        // Kept so an anchor can be worked out for a town when one is
+        // actually wanted. The rings are already retained by the land
+        // index built below, so this holds no geometry that was going to
+        // be freed.
+        featuresRef.current = new Map(out.map((t, i) => [t.uid, gj.features[i]] as const));
+        anchorCacheRef.current.clear();
         setTowns(out);
         // The land test uses the polygons the map draws, not the coarse
         // governorate outline, so a pin cannot sit just off a fine coast.
@@ -673,6 +683,22 @@ export default function SvgLebanonMap({
   const locIndex = useMemo(() => (towns ? buildLocationIndex(towns) : null), [towns]);
 
   /**
+   * A town's fan anchor, found the first time it is asked for and kept.
+   *
+   * Falls back to the centroid for a polygon so degenerate it leaves no
+   * room at all, which is the same thing the pan-and-zoom map does.
+   */
+  const anchorOf = useCallback((town: Town): Anchor => {
+    const hit = anchorCacheRef.current.get(town.uid);
+    if (hit) return hit;
+    const f = featuresRef.current.get(town.uid);
+    const a = f ? featureAnchor(f) : { x: town.cx, y: town.cy, room: 0 };
+    const anchor: Anchor = a.room > 0 ? a : { x: town.cx, y: town.cy, room: 0 };
+    anchorCacheRef.current.set(town.uid, anchor);
+    return anchor;
+  }, []);
+
+  /**
    * The tracking localized: entries matched to the districts and
    * towns their location names actually refer to. Derived from real
    * entry fields - regional phrases stay in the zone totals.
@@ -808,7 +834,13 @@ export default function SvgLebanonMap({
    */
   const entryPinsRaw = useMemo(() => {
     if (!towns || !locIndex)
-      return [] as (Pin & { town: Town; cx: number; cy: number; siblings: number })[];
+      return [] as (Pin & {
+        town: Town;
+        cx: number;
+        cy: number;
+        room: number;
+        siblings: number;
+      })[];
     const byName = new Map<string, Town>();
     for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
     const district = new Map(towns.map((t) => [t.name, t.district] as const));
@@ -825,15 +857,24 @@ export default function SvgLebanonMap({
       locale,
       spacing: 1,
     });
-    const out: (Pin & { town: Town; cx: number; cy: number; siblings: number })[] = [];
+    const out: (Pin & {
+      town: Town;
+      cx: number;
+      cy: number;
+      room: number;
+      siblings: number;
+    })[] = [];
     for (const [name, pins] of grouped) {
       const t = byName.get(name);
       if (!t) continue;
+      // One anchor per town, not per pin - this is where the search is
+      // paid for, and only for towns that carry something.
+      const a = anchorOf(t);
       for (const pin of pins)
-        out.push({ ...pin, town: t, cx: t.ax, cy: t.ay, siblings: pins.length });
+        out.push({ ...pin, town: t, cx: a.x, cy: a.y, room: a.room, siblings: pins.length });
     }
     return out;
-  }, [towns, locIndex, records, year, locale]);
+  }, [towns, locIndex, records, year, locale, anchorOf]);
 
   /**
    * Size each fan to its town, then pull any pin the spiral put in the sea
@@ -864,14 +905,22 @@ export default function SvgLebanonMap({
       town: Town;
       count: number;
       pins: typeof entryPinsRaw;
+      ax: number;
+      ay: number;
     }[] = [];
 
     for (const [, group] of byTown) {
       const town = group[0].town;
-      const spacing = fitSpacing(group.length, town.room / k, PIN_SPACING);
+      const spacing = fitSpacing(group.length, group[0].room / k, PIN_SPACING);
       // Too tight to tell apart: one marker for the town instead.
       if (group.length > 1 && spacing < PIN_MIN_SEPARATION) {
-        clusters.push({ town, count: group.length, pins: group });
+        clusters.push({
+          town,
+          count: group.length,
+          pins: group,
+          ax: group[0].cx,
+          ay: group[0].cy,
+        });
         continue;
       }
       for (const pin of group) {
@@ -1437,7 +1486,7 @@ export default function SvgLebanonMap({
                     return (
                       <g
                         key={`cl-${c.town.uid}`}
-                        transform={`translate(${c.town.ax} ${c.town.ay}) scale(${k})`}
+                        transform={`translate(${c.ax} ${c.ay}) scale(${k})`}
                         tabIndex={0}
                         role="button"
                         aria-label={label}
@@ -1495,13 +1544,16 @@ export default function SvgLebanonMap({
                     // the fitted fan, or the single marker that replaced
                     // it where the fan would not have been legible.
                     const cluster = clusterByTown.get(t.name);
+                    // The anchor is already resolved for any town that
+                    // drew something; anchorOf just reads its cache here.
+                    const a = anchorOf(t);
                     const reach = cluster
                       ? PIN_R + Math.sqrt(cluster.count) * 1.3
-                      : fanRadius(p.total, fitSpacing(p.total, t.room / k, PIN_SPACING));
+                      : fanRadius(p.total, fitSpacing(p.total, a.room / k, PIN_SPACING));
                     return (
                       <text
                         key={`pl-${t.name}`}
-                        transform={`translate(${t.ax} ${t.ay}) scale(${k})`}
+                        transform={`translate(${a.x} ${a.y}) scale(${k})`}
                         x={reach + 5}
                         y={3}
                         fontSize={9.5}
