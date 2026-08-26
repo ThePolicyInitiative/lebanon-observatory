@@ -110,6 +110,30 @@ export function fanSpacing(zoom: number): number {
 }
 
 /**
+ * How much of the town's own room a fan may fill. The rest is a margin, so
+ * a pin sits inside the outline rather than balanced on it.
+ */
+const ROOM_SHARE = 0.85;
+
+/**
+ * The spacing that fits `count` pins inside a town of this much `room`.
+ *
+ * The fan reaches spacing * sqrt(count - 1), so this inverts that: given
+ * the room the anchor has before the boundary, the widest spacing whose
+ * fan still stops short of it. Callers take the smaller of this and
+ * whatever scale-based spacing they already wanted, so the town's own size
+ * is a ceiling and never a floor - a big town does not get a bigger fan
+ * than it needs, but a small one is never given a fan it cannot hold.
+ *
+ * `room` and the result are in the caller's units: projected units on the
+ * vector map, degrees of latitude on the pan-and-zoom map.
+ */
+export function fitSpacing(count: number, room: number, wanted: number): number {
+  if (count <= 1 || !Number.isFinite(room) || room <= 0) return wanted;
+  return Math.min(wanted, (room * ROOM_SHARE) / Math.sqrt(count - 1));
+}
+
+/**
  * Keep a fanned pin on land.
  *
  * The spiral is blind geometry: around a coastal town - Sour, Saida,
@@ -204,16 +228,19 @@ export function buildPins({
   townDistrict: Map<string, string>;
   year: Year;
   locale: Locale;
-  spacing: number;
+  /**
+   * One spacing for every town, or a function given the town and how many
+   * pins it ended up with - which is what lets a fan be sized to the town
+   * it sits in, since the count is only known once grouping is done.
+   */
+  spacing: number | ((town: string, count: number) => number);
 }): Map<string, Pin[]> {
   const t = T[locale];
-  const byTown = new Map<string, Pin[]>();
+  const collected = new Map<string, Omit<Pin, "dx" | "dy">[]>();
 
   const push = (town: string, pin: Omit<Pin, "dx" | "dy">) => {
-    if (!byTown.has(town)) byTown.set(town, []);
-    const list = byTown.get(town)!;
-    const { dx, dy } = fanOffset(list.length, spacing);
-    list.push({ ...pin, dx, dy });
+    if (!collected.has(town)) collected.set(town, []);
+    collected.get(town)!.push(pin);
   };
 
   for (const r of entries) {
@@ -264,5 +291,15 @@ export function buildPins({
     }
   }
 
+  // The fan is laid out only now, because its spacing may depend on how
+  // many pins the town turned out to carry.
+  const byTown = new Map<string, Pin[]>();
+  for (const [town, pins] of collected) {
+    const s = typeof spacing === "function" ? spacing(town, pins.length) : spacing;
+    byTown.set(
+      town,
+      pins.map((p, i) => ({ ...p, ...fanOffset(i, s) })),
+    );
+  }
   return byTown;
 }

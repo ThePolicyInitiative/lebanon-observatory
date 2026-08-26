@@ -181,6 +181,178 @@ export function featureCentroidLonLat(f: GeoFeature): { lon: number; lat: number
   return { lon: best.lon, lat: best.lat };
 }
 
+/**
+ * The largest polygon of a feature: its outer ring first, then its holes.
+ */
+function largestPolygon(f: GeoFeature): number[][][] {
+  const polys =
+    f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+  let best = polys[0] ?? [[]];
+  let bestArea = -1;
+  for (const poly of polys) {
+    const ring = poly[0];
+    let a = 0;
+    for (let i = 0; i < ring.length; i++) {
+      const [x1, y1] = ring[i];
+      const [x2, y2] = ring[(i + 1) % ring.length];
+      a += x1 * y2 - x2 * y1;
+    }
+    const area = Math.abs(a) / 2;
+    if (area > bestArea) {
+      bestArea = area;
+      best = poly;
+    }
+  }
+  return best;
+}
+
+/** Distance from a point to the nearest edge of a ring set, in ring units. */
+function distanceToEdges(poly: number[][][], x: number, y: number): number {
+  let best = Infinity;
+  for (const ring of poly) {
+    for (let i = 0; i < ring.length; i++) {
+      const [x1, y1] = ring[i];
+      const [x2, y2] = ring[(i + 1) % ring.length];
+      const ax = x1 - x;
+      const ay = y1 - y;
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const len2 = dx * dx + dy * dy;
+      let t = len2 === 0 ? 0 : -(ax * dx + ay * dy) / len2;
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      const d = Math.hypot(ax + t * dx, ay + t * dy);
+      if (d < best) best = d;
+    }
+  }
+  return best;
+}
+
+/** Whether a point lies in the ring set's interior (outer ring, minus holes). */
+function polygonContains(poly: number[][][], x: number, y: number): boolean {
+  const inRing = (ring: number[][]) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  if (!inRing(poly[0])) return false;
+  for (let r = 1; r < poly.length; r++) if (inRing(poly[r])) return false;
+  return true;
+}
+
+/**
+ * The pole of inaccessibility: the interior point furthest from every edge.
+ *
+ * A polygon centroid is the average of a shape, not a point inside it. For
+ * a crescent, an L or a coastal sliver it can sit outside the shape
+ * altogether - seventeen of the boundary layer's towns are like that - and
+ * even when it stays inside it can hug an edge. Sour's centroid is 54 m
+ * from its own boundary and Chaaitiyeh's is 59 m, so a fan of entries drawn
+ * around either lands in the neighbouring town.
+ *
+ * This point is the centre of the largest circle that fits inside the
+ * polygon, so two things hold that the centroid cannot promise: it is
+ * always inside the shape, and it leaves the most room before an edge is
+ * reached. `room` is that radius, in whatever units the rings were given -
+ * projected SVG units or degrees of latitude - which is exactly the budget
+ * a pin fan may spend.
+ *
+ * Found by grid search, refined eight times around the best cell. Beam
+ * search rather than the exact algorithm, because the exact one needs a
+ * priority queue for a gain no one can see at map scale; the result is
+ * deterministic, so a pin never moves between renders.
+ */
+export function poleOfInaccessibility(poly: number[][][]): {
+  x: number;
+  y: number;
+  room: number;
+} {
+  const ring = poly[0] ?? [];
+  if (ring.length === 0) return { x: 0, y: 0, room: 0 };
+
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (const [x, y] of ring) {
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
+
+  // Outside the shape the score goes negative, so the search is pulled
+  // inward even when it starts on a cell that misses the polygon.
+  const score = (x: number, y: number) => {
+    const d = distanceToEdges(poly, x, y);
+    return polygonContains(poly, x, y) ? d : -d;
+  };
+
+  let bestX = (minX + maxX) / 2;
+  let bestY = (minY + maxY) / 2;
+  let bestScore = score(bestX, bestY);
+  let step = Math.max((maxX - minX) / 24, (maxY - minY) / 24);
+
+  for (let pass = 0; pass < 8 && step > 0; pass++) {
+    for (let x = minX; x <= maxX; x += step) {
+      for (let y = minY; y <= maxY; y += step) {
+        const s = score(x, y);
+        if (s > bestScore) {
+          bestScore = s;
+          bestX = x;
+          bestY = y;
+        }
+      }
+    }
+    minX = bestX - step;
+    maxX = bestX + step;
+    minY = bestY - step;
+    maxY = bestY + step;
+    step /= 3;
+  }
+
+  return { x: bestX, y: bestY, room: Math.max(0, bestScore) };
+}
+
+/**
+ * Where a town's pins belong on the vector map, in projected units, with
+ * the room a fan has around them before it leaves the town.
+ */
+export function featureAnchor(f: GeoFeature): { x: number; y: number; room: number } {
+  const poly = largestPolygon(f).map((ring) =>
+    ring.map(([lon, lat]) => {
+      const p = projectPoint(lon, lat);
+      return [p.x, p.y];
+    }),
+  );
+  return poleOfInaccessibility(poly);
+}
+
+/**
+ * The same anchor for the pan-and-zoom map, in degrees. Longitude is
+ * squashed by the cosine of the town's own latitude while the point is
+ * searched for, so the circle that defines it is round on the ground
+ * rather than an ellipse, then unsquashed on the way out. `room` comes
+ * back in degrees of latitude.
+ */
+export function featureAnchorLonLat(f: GeoFeature): {
+  lon: number;
+  lat: number;
+  room: number;
+} {
+  const poly = largestPolygon(f);
+  const ring = poly[0] ?? [];
+  if (ring.length === 0) return { lon: 0, lat: 0, room: 0 };
+  const lat0 = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+  const k = Math.max(0.2, Math.cos((lat0 * Math.PI) / 180));
+  const squashed = poly.map((r) => r.map(([lon, lat]) => [lon * k, lat]));
+  const p = poleOfInaccessibility(squashed);
+  return { lon: p.x / k, lat: p.y, room: p.room };
+}
+
 export function toSvgPath(f: GeoFeature): string {
   return toPath(f);
 }

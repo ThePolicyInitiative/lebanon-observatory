@@ -18,6 +18,7 @@ import {
   zoneForCodAdm1,
   toSvgPath,
   projectPoint,
+  featureAnchor,
   featureCentroid,
   isOnLand,
   isUnnamedArea,
@@ -40,7 +41,14 @@ import {
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
 import { layers, regionLabel, stageList, type Locale } from "@/lib/vocab";
-import { buildPins, clampToLand, fanRadius, pinOutline, type Pin } from "@/lib/pins";
+import {
+  buildPins,
+  clampToLand,
+  fanRadius,
+  fitSpacing,
+  pinOutline,
+  type Pin,
+} from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import ViewRanking, { type RankRow } from "./ViewRanking";
@@ -257,6 +265,16 @@ type Town = {
   strip: boolean;
   cx: number;
   cy: number;
+  /**
+   * Where this town's pins are fanned from, and how much room the fan has
+   * before it reaches the boundary. Not the centroid: that is the average
+   * of a shape rather than a point inside it, and for a coastal sliver
+   * like Sour it sits 54 m from its own edge, which put entries in the
+   * next town along. See poleOfInaccessibility.
+   */
+  ax: number;
+  ay: number;
+  room: number;
 };
 
 type ViewBox = { x: number; y: number; w: number; h: number };
@@ -393,6 +411,7 @@ export default function SvgLebanonMap({
           const name = String(f.properties.adm3_name ?? "");
           const district = String(f.properties.adm2_name ?? "");
           const c = featureCentroid(f);
+          const a = featureAnchor(f);
           return {
             // Unique per polygon: 65 disputed areas share the name
             // "Litige", so name alone cannot identify a shape.
@@ -405,6 +424,9 @@ export default function SvgLebanonMap({
             strip: strip.has(name),
             cx: c.x,
             cy: c.y,
+            ax: a.room > 0 ? a.x : c.x,
+            ay: a.room > 0 ? a.y : c.y,
+            room: a.room,
           };
         });
         setTowns(out);
@@ -763,37 +785,55 @@ export default function SvgLebanonMap({
    * reachable pins rather than one circle with a 40 printed on it.
    */
   const entryPinsRaw = useMemo(() => {
-    if (!towns || !locIndex) return [] as (Pin & { town: Town; cx: number; cy: number })[];
+    if (!towns || !locIndex)
+      return [] as (Pin & { town: Town; cx: number; cy: number; siblings: number })[];
     const byName = new Map<string, Town>();
     for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
     const district = new Map(towns.map((t) => [t.name, t.district] as const));
+    // A unit fan: spacing 1, so every offset is a pure direction and
+    // distance for the zoom-aware pass below to scale. fanOffset is linear
+    // in its spacing, so scaling there is exactly equal to having laid the
+    // fan out at that spacing here - and it keeps place-name matching, the
+    // expensive half, off the zoom path.
     const grouped = buildPins({
       entries: records,
       index: locIndex,
       townDistrict: district,
       year,
       locale,
-      spacing: PIN_SPACING,
+      spacing: 1,
     });
-    const out: (Pin & { town: Town; cx: number; cy: number })[] = [];
+    const out: (Pin & { town: Town; cx: number; cy: number; siblings: number })[] = [];
     for (const [name, pins] of grouped) {
       const t = byName.get(name);
       if (!t) continue;
-      for (const pin of pins) out.push({ ...pin, town: t, cx: t.cx, cy: t.cy });
+      for (const pin of pins)
+        out.push({ ...pin, town: t, cx: t.ax, cy: t.ay, siblings: pins.length });
     }
     return out;
   }, [towns, locIndex, records, year, locale]);
 
   /**
-   * Pull any pin the spiral put in the sea back onto land. The offsets
-   * are screen pixels inside a scale(k) group, so they are converted to
-   * map units for the test and back afterwards. Kept apart from the
-   * memo above so that zooming re-runs the clamp and not the matching.
+   * Size each fan to its town, then pull any pin the spiral put in the sea
+   * back onto land.
+   *
+   * PIN_SPACING is what a fan wants - nine screen pixels between
+   * neighbours, so pins stay the same distance apart however far the
+   * reader has zoomed in. The town's own room is what it gets. The smaller
+   * of the two wins, because a fan reaching past the boundary draws
+   * entries onto the neighbouring town and so says they happened there.
+   *
+   * Room is measured in map units and PIN_SPACING in screen pixels, so the
+   * former is divided by k to meet the latter. The offsets are screen
+   * pixels inside a scale(k) group, so they are converted to map units for
+   * the land test and back afterwards. Kept apart from the memo above so
+   * that zooming re-runs this and not the matching.
    */
   const entryPins = useMemo(
     () =>
       entryPinsRaw.map((pin) => {
-        const moved = clampToLand(pin.cx, pin.cy, pin.dx * k, pin.dy * k, (x, y) =>
+        const spacing = fitSpacing(pin.siblings, pin.town.room / k, PIN_SPACING);
+        const moved = clampToLand(pin.cx, pin.cy, pin.dx * spacing * k, pin.dy * spacing * k, (x, y) =>
           landIndex
             ? isOnLandIndexed(landIndex, x, y)
             : (() => {
@@ -1337,11 +1377,17 @@ export default function SvgLebanonMap({
                         ? declutteredLabels.has(t.name)
                         : topPlaceNames.has(t.name);
                     if (!showLabel) return null;
-                    const reach = fanRadius(p.total, PIN_SPACING);
+                    // The label clears the fan, so it has to be measured
+                    // against the same fitted spacing the pins were laid
+                    // out with, from the same anchor.
+                    const reach = fanRadius(
+                      p.total,
+                      fitSpacing(p.total, t.room / k, PIN_SPACING),
+                    );
                     return (
                       <text
                         key={`pl-${t.name}`}
-                        transform={`translate(${t.cx} ${t.cy}) scale(${k})`}
+                        transform={`translate(${t.ax} ${t.ay}) scale(${k})`}
                         x={reach + 5}
                         y={3}
                         fontSize={9.5}

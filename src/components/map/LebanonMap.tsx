@@ -19,6 +19,7 @@ import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import {
   computeBorderStripTowns,
+  featureAnchorLonLat,
   featureCentroidLonLat,
   isOnLand,
   isUnnamedArea,
@@ -35,7 +36,14 @@ import {
   EVENT_KIND_META,
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { buildPins, clampToLand, fanSpacing, layerColor, pinOutline } from "@/lib/pins";
+import {
+  buildPins,
+  clampToLand,
+  fanSpacing,
+  fitSpacing,
+  layerColor,
+  pinOutline,
+} from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { eventKindLabel, type MapView } from "./SvgLebanonMap";
@@ -158,9 +166,21 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   const mapRef = useRef<MlMap | null>(null);
   /** Town centroids + place-name index, set once the GL map loads its data. */
   const glTownsRef = useRef<
-    { name: string; district: string; lon: number; lat: number }[] | null
+    {
+      name: string;
+      district: string;
+      lon: number;
+      lat: number;
+      feature: GeoFeature;
+    }[] | null
   >(null);
   const glIndexRef = useRef<LocationIndex | null>(null);
+  /**
+   * Pin anchors, worked out the first time a town needs one and kept.
+   * The pole of inaccessibility costs a grid search per town, and only the
+   * thirty-odd towns the tracking names ever ask for it.
+   */
+  const glAnchorRef = useRef(new Map<string, { lon: number; lat: number; room: number }>());
   /** Land test from the town polygons, in lon/lat. */
   const glLandRef = useRef<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -302,9 +322,14 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           const adm3Res = await fetch("/geo/lebanon-adm3.geojson");
           const towns = await adm3Res.json();
           map.addSource("towns", { type: "geojson", data: towns });
+          // The centroid still anchors the choropleth popups; pins get the
+          // pole of inaccessibility instead, resolved lazily below because
+          // it is only worth computing for the thirty-odd towns the
+          // tracking actually names.
           const townList = (towns.features as GeoFeature[]).map((f) => ({
             name: String(f.properties.adm3_name ?? ""),
             district: String(f.properties.adm2_name ?? ""),
+            feature: f,
             ...featureCentroidLonLat(f),
           }));
           glTownsRef.current = townList;
@@ -545,34 +570,53 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     if (geoTowns && idx) {
       const byName = new Map(geoTowns.map((t) => [t.name, t] as const));
       const district = new Map(geoTowns.map((t) => [t.name, t.district] as const));
-      // Screen-sized, not ground-sized: the national view is unchanged and
-      // only the close views tighten. See fanSpacing.
-      const spacing = fanSpacing(glZoom);
+
+      /** The town's pin anchor, computed once and kept. */
+      const anchorFor = (name: string) => {
+        const cached = glAnchorRef.current.get(name);
+        if (cached) return cached;
+        const town = byName.get(name);
+        if (!town) return null;
+        const a = featureAnchorLonLat(town.feature);
+        // A degenerate polygon would give no room at all; fall back to the
+        // centroid the rest of the map already uses.
+        const anchor =
+          a.room > 0 ? a : { lon: town.lon, lat: town.lat, room: 0 };
+        glAnchorRef.current.set(name, anchor);
+        return anchor;
+      };
+
       const grouped = buildPins({
         entries: filteredRecords,
         index: idx,
         townDistrict: district,
         year,
         locale,
-        spacing,
+        // Two ceilings, whichever is lower: the scale-based spacing, so the
+        // fan reads the same at any zoom, and the town's own room, so it
+        // never reaches past the boundary of the place it names.
+        spacing: (name, count) => {
+          const anchor = anchorFor(name);
+          return fitSpacing(count, anchor?.room ?? 0, fanSpacing(glZoom));
+        },
       });
       for (const [name, pins] of grouped) {
-        const town = byName.get(name);
-        if (!town) continue;
+        const anchor = anchorFor(name);
+        if (!anchor) continue;
         // Longitude degrees shrink with latitude; widen the x offset so the
         // fan stays circular on the ground rather than squashed.
-        const lonScale = 1 / Math.max(0.2, Math.cos((town.lat * Math.PI) / 180));
+        const lonScale = 1 / Math.max(0.2, Math.cos((anchor.lat * Math.PI) / 180));
         for (const pin of pins) {
           // The spiral knows nothing about the coast; keep the pin ashore.
           const land = glLandRef.current;
-          const moved = clampToLand(town.lon, town.lat, pin.dx * lonScale, pin.dy, (x, y) =>
+          const moved = clampToLand(anchor.lon, anchor.lat, pin.dx * lonScale, pin.dy, (x, y) =>
             land ? isOnLandIndexed(land, x, y) : isOnLand(x, y),
           );
           features.push({
             type: "Feature" as const,
             geometry: {
               type: "Point" as const,
-              coordinates: [town.lon + moved.dx, town.lat + moved.dy],
+              coordinates: [anchor.lon + moved.dx, anchor.lat + moved.dy],
             },
             properties: {
               name,
