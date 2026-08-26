@@ -702,6 +702,24 @@ export default function SvgLebanonMap({
    * Falls back to the centroid for a polygon so degenerate it leaves no
    * room at all, which is the same thing the pan-and-zoom map does.
    */
+  /**
+   * Escape closes the open pin from anywhere on the page.
+   *
+   * The panel's own handler only fires while focus is inside it, which
+   * is not where a reader who opened a pin by pointer is standing. This
+   * catches the other case, and mirrors what ChangeHeatmap already does.
+   */
+  useEffect(() => {
+    if (!openPin) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      restoreFocusRef.current = true;
+      setOpenPin(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openPin]);
+
   // Move focus to the panel when a pin opens it, and back to that pin
   // when it closes. Guarded on restoreFocusRef so that a pin opened by
   // pointer does not have focus yanked back to a pin nobody is on.
@@ -970,6 +988,25 @@ export default function SvgLebanonMap({
     }
     return { entryPins: pins, entryClusters: clusters };
   }, [entryPinsRaw, k, landIndex]);
+
+  /**
+   * Whether a marker at these map coordinates is inside the current view.
+   *
+   * The map is clipped by its viewBox rather than by scrolling, so a
+   * marker outside the view is not merely off-screen - the browser has no
+   * way to bring it into view when it takes focus. At the tightest zoom
+   * that left 199 of 200 markers focusable but invisible, so tabbing
+   * moved focus to somewhere the reader could not see and could not
+   * reach. What cannot be seen is not offered; zooming back out returns
+   * it. A small margin keeps a marker on the edge reachable.
+   */
+  const inView = useCallback(
+    (x: number, y: number) => {
+      const m = Math.max(vb.w, vb.h) * 0.02;
+      return x >= vb.x - m && x <= vb.x + vb.w + m && y >= vb.y - m && y <= vb.y + vb.h + m;
+    },
+    [vb],
+  );
 
   /** Clustered towns by name, so a label can clear the marker it drew. */
   const clusterByTown = useMemo(
@@ -1474,7 +1511,7 @@ export default function SvgLebanonMap({
                       <g
                         key={pin.id}
                         transform={`translate(${pin.cx} ${pin.cy}) scale(${k}) translate(${pin.dx} ${pin.dy})`}
-                        tabIndex={0}
+                        tabIndex={inView(pin.cx + pin.dx * k, pin.cy + pin.dy * k) ? 0 : -1}
                         role="button"
                         aria-label={label}
                         className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
@@ -1537,7 +1574,7 @@ export default function SvgLebanonMap({
                       <g
                         key={`cl-${c.town.uid}`}
                         transform={`translate(${c.ax} ${c.ay}) scale(${k})`}
-                        tabIndex={0}
+                        tabIndex={inView(c.ax, c.ay) ? 0 : -1}
                         role="button"
                         aria-label={label}
                         className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
@@ -1739,6 +1776,20 @@ export default function SvgLebanonMap({
                 aria-label={tr.overviewAria}
                 className="absolute right-2 top-2 rounded-sm border border-border bg-white/90 p-0.5 shadow-sm"
                 onClick={(e) => {
+                  // Enter and Space on a button produce a click with no
+                  // pointer behind it, and clientX/clientY are 0 - which
+                  // this handler read as "the reader aimed at the very
+                  // top-left of the thumbnail" and obediently recentred
+                  // on the sea north-west of the country, every single
+                  // time. A synthetic click reports detail 0; a real one
+                  // reports 1. Whole-country is the sensible reading of
+                  // "recentre" when no point was aimed at, and it gives
+                  // keyboard readers the zoom-out they otherwise had no
+                  // way to reach.
+                  if (e.detail === 0) {
+                    setVb(HOME);
+                    return;
+                  }
                   const rect = e.currentTarget.getBoundingClientRect();
                   const cx = ((e.clientX - rect.left) / rect.width) * VIEW_W;
                   const cy = ((e.clientY - rect.top) / rect.height) * VIEW_H;

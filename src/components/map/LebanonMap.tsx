@@ -235,6 +235,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
    * stacking it and leaving the reader to dismiss both.
    */
   const popupRef = useRef<{ remove: () => void } | null>(null);
+  /**
+   * The list button that opened the current popup, so closing it returns
+   * focus there instead of dropping it on <body>, which is where
+   * MapLibre leaves it.
+   */
+  const popupOpenerRef = useRef<HTMLButtonElement | null>(null);
   /** Land test from the town polygons, in lon/lat. */
   const [glLand, setGlLand] = useState<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -575,6 +581,9 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 `<br/><em style="color:${CHART.label}">${esc(t.popupCaution)}</em></div>`
               : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
             popupRef.current?.remove();
+            // A pointer opened this one, so there is no list button to
+            // send focus back to.
+            popupOpenerRef.current = null;
             popupRef.current = new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)
               .setHTML(html)
@@ -592,6 +601,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             if (!f) return;
             const html = f.properties?.popupHtml as string;
             popupRef.current?.remove();
+            popupOpenerRef.current = null;
             popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
               .setLngLat(e.lngLat)
               .setHTML(html)
@@ -799,6 +809,27 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     }
     return features;
   }, [glTowns, glIndex, glLand, glAnchors, filteredRecords, year, locale, t, glZoom]);
+
+  /**
+   * Escape dismisses the pan-and-zoom map's popup.
+   *
+   * MapLibre 6.1 binds no key handling to a popup, so the only way out
+   * was clicking its close button or clicking the map behind it - which
+   * a keyboard reader cannot do, and which left the popup standing over
+   * the map for anyone who reached for Escape first.
+   */
+  useEffect(() => {
+    if (renderMode !== "gl") return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || !popupRef.current) return;
+      popupRef.current.remove();
+      popupRef.current = null;
+      // Back to whatever opened it, when that was the hidden list.
+      popupOpenerRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [renderMode]);
 
   /**
    * Open one marker from the focusable list: bring it into view and show
@@ -1050,7 +1081,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 <ul>
                   {glFeatures.map((f, i) => (
                     <li key={`${f.properties.name}-${i}`}>
-                      <button type="button" onClick={() => openGlFeature(f)}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          popupOpenerRef.current = e.currentTarget;
+                          openGlFeature(f);
+                        }}
+                      >
                         {f.properties.ariaLabel}
                       </button>
                     </li>
