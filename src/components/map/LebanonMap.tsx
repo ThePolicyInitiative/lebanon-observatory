@@ -35,19 +35,11 @@ import {
   EVENT_KIND_META,
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { buildPins, clampToLand, layerColor, pinOutline } from "@/lib/pins";
+import { buildPins, clampToLand, fanSpacing, layerColor, pinOutline } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
 import MapLegend from "./MapLegend";
 import SvgLebanonMap, { eventKindLabel, type MapView } from "./SvgLebanonMap";
 
-/**
- * Fan spacing between neighbouring pins at one town, in degrees of
- * latitude - about 390 m. At 110 m the pins sat inside a single pixel at
- * national zoom and could not be told apart until deep in; at this
- * spacing a forty-entry town spans roughly 2.4 km, which separates from
- * about town zoom onward and still reads as one place from above.
- */
-const PIN_SPACING_DEG = 0.0035;
 
 type MentionRow = Record<ActorLayer, number>;
 
@@ -173,6 +165,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
   const glLandRef = useRef<LandIndex | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const mapReadyRef = useRef(false);
+  /**
+   * The zoom the pins were last laid out for. Updated on zoomend rather
+   * than on every frame: rebuilding four hundred points mid-gesture buys
+   * nothing a reader can see, and the fan only has to be right when the
+   * movement stops.
+   */
+  const [glZoom, setGlZoom] = useState(8);
   /**
    * "svg" (default) renders the build-time vector map - part of the
    * server HTML, visible everywhere. "gl" opts into MapLibre for
@@ -476,7 +475,11 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             map.getCanvas().style.cursor = "";
           });
 
+          // Re-fan the pins for the new scale once a zoom gesture settles.
+          map.on("zoomend", () => setGlZoom(map.getZoom()));
+
           mapReadyRef.current = true;
+          setGlZoom(map.getZoom());
           setMapReady(true);
         });
       } catch {
@@ -542,13 +545,16 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
     if (geoTowns && idx) {
       const byName = new Map(geoTowns.map((t) => [t.name, t] as const));
       const district = new Map(geoTowns.map((t) => [t.name, t.district] as const));
+      // Screen-sized, not ground-sized: the national view is unchanged and
+      // only the close views tighten. See fanSpacing.
+      const spacing = fanSpacing(glZoom);
       const grouped = buildPins({
         entries: filteredRecords,
         index: idx,
         townDistrict: district,
         year,
         locale,
-        spacing: PIN_SPACING_DEG,
+        spacing,
       });
       for (const [name, pins] of grouped) {
         const town = byName.get(name);
@@ -601,7 +607,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         features,
       });
     }
-  }, [mapReady, filteredRecords, year, locale, t]);
+  }, [mapReady, filteredRecords, year, locale, t, glZoom]);
 
   /*
    * `w-full` matters on a phone: a bare <select> is sized by its longest

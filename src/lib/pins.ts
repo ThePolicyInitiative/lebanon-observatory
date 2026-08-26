@@ -73,6 +73,43 @@ export function fanRadius(count: number, spacing: number): number {
 }
 
 /**
+ * The widest the fan may open on the ground, in degrees.
+ *
+ * This is the right unit for the vector map, which is drawn at one fixed
+ * scale, and it is what the pan-and-zoom map used at every scale until the
+ * fan was made zoom-aware below.
+ */
+export const GROUND_SPACING_DEG = 0.0035;
+
+/** How far apart neighbouring pins should sit on the screen, in pixels. */
+const SCREEN_SPACING_PX = 9;
+
+/** Degrees of longitude per screen pixel at a MapLibre zoom level. */
+export function degreesPerPixel(zoom: number): number {
+  return 360 / (512 * Math.pow(2, zoom));
+}
+
+/**
+ * The fan, sized on the screen instead of on the ground.
+ *
+ * A distance in degrees is the right unit for a map you cannot zoom and
+ * the wrong one for a map you can. At the ground spacing above, Nabatieh's
+ * 32 entries fan to a 2.16 km radius: about seven pixels at national zoom
+ * - one place seen from above, as intended - but about 450 pixels at
+ * street zoom, which walks them into the neighbouring towns. The pins were
+ * never attached to the wrong town; the fan grew until it reached one.
+ *
+ * So the spacing is derived from the current zoom and capped by the ground
+ * value. Below roughly zoom 11 the cap binds and nothing changes from what
+ * shipped. Above it the fan holds steady at about fifty pixels across for
+ * a busy town while its footprint shrinks - 1.9 km at zoom 11, 480 m at
+ * 13, 60 m at 16 - so a pin stays inside the place it names.
+ */
+export function fanSpacing(zoom: number): number {
+  return Math.min(SCREEN_SPACING_PX * degreesPerPixel(zoom), GROUND_SPACING_DEG);
+}
+
+/**
  * Keep a fanned pin on land.
  *
  * The spiral is blind geometry: around a coastal town - Sour, Saida,
