@@ -743,7 +743,28 @@ export const LITANI_PATHS: string[] = LITANI_SEGMENTS.map(
 export const CITY_LABELS: { name: string; lon: number; lat: number }[] = [
   { name: "Beirut", lon: 35.5018, lat: 33.8938 },
   { name: "Saida", lon: 35.3758, lat: 33.5606 },
-  { name: "Tyre", lon: 35.2038, lat: 33.2705 },
+  // Sour, not Tyre. The English exonym named nothing else on this map:
+  // Beirut, Saida and Baalbek are all district names in the boundary
+  // layer and Nabatieh all but matches one, while Tyre appeared on the
+  // face alone - over a district the map labels SOUR, above a town whose
+  // hover, pins and ranking rows all say Sour, and it was the one label
+  // the town search could not find. TOWN_SEARCH_ALIASES keeps the exonym
+  // working as a search term.
+  { name: "Sour", lon: 35.2038, lat: 33.2705 },
   { name: "Nabatieh", lon: 35.4836, lat: 33.3772 },
   { name: "Baalbek", lon: 36.2181, lat: 34.0058 },
 ];
+
+/**
+ * Well-known English exonyms, so a reader who types the name they know
+ * reaches the town the map calls something else.
+ *
+ * The map face uses the boundary layer's own spelling throughout, which
+ * is what keeps a label from contradicting the hover underneath it. That
+ * leaves the familiar English forms unsearchable, which this restores
+ * without putting a second name back on the map.
+ */
+export const TOWN_SEARCH_ALIASES: Record<string, string> = {
+  Tyre: "Sour",
+  Sidon: "Saida El-Qadimeh",
+};

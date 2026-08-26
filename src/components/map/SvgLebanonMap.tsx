@@ -10,6 +10,7 @@ import {
   DISTRICT_LABELS,
   GOV_PATHS,
   CITY_LABELS,
+  TOWN_SEARCH_ALIASES,
   LITANI_LABEL_ANCHOR,
   LITANI_PATHS,
   OCCUPIED_COD_DISTRICTS_2026,
@@ -684,6 +685,20 @@ export default function SvgLebanonMap({
   function onSearch(value: string) {
     setSearch(value);
     if (!towns) return;
+    // A familiar English name the map does not print. Resolved before the
+    // exact match, so typing Tyre reaches the town the face calls Sour.
+    const typed = value.trim().toLowerCase();
+    const aliased = Object.entries(TOWN_SEARCH_ALIASES).find(
+      ([from]) => from.toLowerCase() === typed,
+    )?.[1];
+    if (aliased) {
+      const t = towns.find((x) => x.name === aliased);
+      if (t) {
+        selectTown(t);
+        setVb(vbAround(t.cx, t.cy, VIEW_W / 5));
+        return;
+      }
+    }
     const m = value.match(/^(.*) \(([^)]+)\)$/);
     if (!m) return;
     const t = towns.find((x) => x.name === m[1] && x.district === m[2]);
@@ -1245,6 +1260,10 @@ export default function SvgLebanonMap({
           className="mt-1 min-h-11 w-full max-w-md rounded-md border border-border bg-white px-2.5 text-sm"
         />
         <datalist id="town-list">
+          {/* Offered so the exonym is discoverable, not only accepted. */}
+          {Object.keys(TOWN_SEARCH_ALIASES).map((a) => (
+            <option key={`alias-${a}`} value={a} />
+          ))}
           {townNames.map((n) => (
             <option key={n} value={n} />
           ))}

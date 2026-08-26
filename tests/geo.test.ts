@@ -221,6 +221,45 @@ describe("boundary projection", () => {
    * so replacing either boundary file fails here instead of quietly
    * reintroducing the mismatch.
    */
+  /**
+   * A city label has to name something the rest of the map also names.
+   *
+   * "Tyre" did not. It sat over a district the map labels SOUR, above a
+   * town whose hover, pins and ranking rows all say Sour, and it was the
+   * one label the town search could not find - while Beirut, Saida and
+   * Baalbek are all district names in the boundary layer. It reads Sour
+   * now, and the exonym survives as a search term.
+   */
+  it("labels a city with a name the boundary layer knows", async () => {
+    const { CITY_LABELS, TOWN_SEARCH_ALIASES } = await import("@/lib/geo");
+    const adm3 = JSON.parse(readFileSync("public/geo/lebanon-adm3.geojson", "utf8")) as {
+      features: { properties: { adm3_name?: string; adm2_name?: string } }[];
+    };
+    const towns = new Set(adm3.features.map((f) => String(f.properties.adm3_name ?? "")));
+    const districts = new Set(adm3.features.map((f) => String(f.properties.adm2_name ?? "")));
+
+    // Recognisably the same name, not character-identical: the map prints
+    // "Nabatieh" over a district labelled EL NABATIEH, and a reader takes
+    // those for one place. "Tyre" over SOUR is the case this excludes -
+    // two different words for the same ground.
+    const known = [...towns, ...districts].map((n) => n.toLowerCase());
+    for (const c of CITY_LABELS) {
+      const needle = c.name.toLowerCase();
+      expect(
+        known.some((n) => n.includes(needle)),
+        `${c.name} shares no name with any town or district on the map`,
+      ).toBe(true);
+    }
+    expect(CITY_LABELS.map((c) => c.name)).not.toContain("Tyre");
+
+    // And every exonym resolves to a real town, or the search sends the
+    // reader nowhere.
+    for (const [from, to] of Object.entries(TOWN_SEARCH_ALIASES)) {
+      expect(towns.has(to), `${from} points at ${to}, which is not a town`).toBe(true);
+      expect(towns.has(from), `${from} is a real town name, so it needs no alias`).toBe(false);
+    }
+  });
+
   it("labels every district with the name the rest of the map uses", async () => {
     const { DISTRICT_LABELS } = await import("@/lib/geo");
     const adm3 = JSON.parse(readFileSync("public/geo/lebanon-adm3.geojson", "utf8")) as {
