@@ -9,6 +9,7 @@ import { countsFor, changeFor } from "@/lib/data-client";
 import { cautionCounts, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 import { signed } from "@/lib/format";
+import { chartText } from "@/lib/chart-style";
 
 const T = {
   en: {
@@ -44,8 +45,7 @@ export default function DivergingChangeChart({
   subtitle: string;
   description: string;
   locale?: Locale;
-}) {
-  const t = T[locale];
+}) {  const t = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const change = changeFor(layer);
@@ -81,7 +81,7 @@ export default function DivergingChangeChart({
         name: t.axisName,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11.5, color: "#3D4C5E" },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle, color: "#3D4C5E" },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -91,7 +91,7 @@ export default function DivergingChangeChart({
         position: ar ? "right" : "left",
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 12, color: "#3D4C5E" },
+        axisLabel: { fontSize: chartText(locale).tick, color: "#3D4C5E" },
       },
       series: [
         {
@@ -116,7 +116,7 @@ export default function DivergingChangeChart({
         },
       ],
     }),
-    [sorted, ar, t],
+    [sorted, ar, locale, t],
   );
 
   return (

@@ -8,6 +8,7 @@ import { locations } from "@/lib/data-client";
 import { cautionMap, layers, regionLabel, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
 import { CHART } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 const T = {
   en: {
@@ -40,8 +41,7 @@ const T = {
 export default function RegionalComposition({
   showCaveat = true,
   locale = "en",
-}: { showCaveat?: boolean; locale?: Locale } = {}) {
-  const chartRef = useRef<ECharts | null>(null);
+}: { showCaveat?: boolean; locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
   const t = T[locale];
 
   const regions = locations.regions;
@@ -83,7 +83,7 @@ export default function RegionalComposition({
         name: t.xAxis,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -92,7 +92,7 @@ export default function RegionalComposition({
         data: cats.map((r) => regionLabel(r.id, locale)),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 11, width: 175, overflow: "break" },
+        axisLabel: { fontSize: chartText(locale).tick, width: 175, overflow: "break" },
       },
       series,
     };

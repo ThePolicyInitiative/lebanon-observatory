@@ -7,6 +7,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import sectorsJson from "@/data/sectors.json";
 import { CHART, UI } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 /** Sector damage, losses and needs - three distinct economic categories,
  * shown side by side and never summed. Nulls are "not stated", not zero. */
@@ -41,8 +42,7 @@ const T = {
   },
 } as const;
 
-export default function SectorDamageChart({ locale = "en" }: { locale?: Locale } = {}) {
-  const chartRef = useRef<ECharts | null>(null);
+export default function SectorDamageChart({ locale = "en" }: { locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
   const rows = sectorsJson.sectors.filter(
     (s) => s.damage !== null || s.losses !== null || s.needs !== null,
   );
@@ -84,7 +84,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
         name: T[locale].axis,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -93,7 +93,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
         data: cats.map((s) => (locale === "ar" ? (s.labelAr ?? s.label) : s.label)),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 11, width: 155, overflow: "break" },
+        axisLabel: { fontSize: chartText(locale).tick, width: 155, overflow: "break" },
       },
       series: [
         mk(T[locale].damage, "damage", "#2E74B5"),

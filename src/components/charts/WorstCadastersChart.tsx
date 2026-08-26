@@ -7,6 +7,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import destruction from "@/data/destruction.json";
 import { CHART, UI } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 /** The four worst cadasters of the 2026 South-of-the-Litani assessment. */
 const T = {
@@ -36,8 +37,7 @@ const T = {
   },
 } as const;
 
-export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale } = {}) {
-  const chartRef = useRef<ECharts | null>(null);
+export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale } = {}) {  const chartRef = useRef<ECharts | null>(null);
   const zone = destruction.zones2026.find((z) => z.id === "south-litani")!;
   const rows = zone.worstCadasters;
   const cadasterName = (c: { name: string; nameAr?: string }) =>
@@ -57,7 +57,7 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
         name: T[locale].unit,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -68,7 +68,7 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
         ),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 12 },
+        axisLabel: { fontSize: chartText(locale).tick },
       },
       series: [
         {

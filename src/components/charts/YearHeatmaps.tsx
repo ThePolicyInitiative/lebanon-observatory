@@ -14,6 +14,7 @@ import {
   type Locale,
 } from "@/lib/vocab";
 import type { Year } from "@/lib/types";
+import { chartText } from "@/lib/chart-style";
 
 const T = {
   en: {
@@ -36,8 +37,7 @@ const T = {
  * scale. Cells are unlabelled: the value is in the tooltip and in the
  * figure's description, which is what a reader without the colours gets.
  */
-export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}) {
-  const tr = T[locale];
+export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
 
@@ -80,7 +80,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
         position: ar ? ("right" as const) : ("left" as const),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 11, color: "#3D4C5E" },
+        axisLabel: { fontSize: chartText(locale).tick, color: "#3D4C5E" },
       },
     });
     const ax1 = mkAxis(0, false);

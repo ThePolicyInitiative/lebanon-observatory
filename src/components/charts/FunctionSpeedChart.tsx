@@ -6,6 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { CHART, UI } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 /**
  * Speed is an architecture, not a temperament: fast functions have
@@ -143,8 +144,7 @@ const T = {
   },
 } as const;
 
-export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale } = {}) {
-  const tr = T[locale];
+export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
 
   const ar = locale === "ar";
@@ -175,7 +175,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
         name: tr.axis,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -185,7 +185,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
         data: rows.map(name),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 10.5, width: 240, overflow: "break" },
+        axisLabel: { fontSize: chartText(locale).tick, width: 240, overflow: "break" },
       },
       series: [
         {
@@ -220,7 +220,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
         },
       ],
     };
-  }, [ar, tr]);
+  }, [ar, locale, tr]);
 
   return (
     <ChartFrame

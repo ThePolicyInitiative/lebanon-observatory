@@ -7,6 +7,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { finance } from "@/lib/data-client";
 import { CHART } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 type Component = {
   label: string;
@@ -44,8 +45,7 @@ const T = {
   },
 } as const;
 
-export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale } = {}) {
-  const tr = T[locale];
+export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
   const components = finance.leapComponents as Component[];
 
@@ -69,7 +69,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
         name: tr.axis,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
         axisLabel: { formatter: (v: number) => `${v / 1e6}` },
@@ -80,7 +80,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
         data: cats.map(short),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 11, width: 150, overflow: "break" },
+        axisLabel: { fontSize: chartText(locale).tick, width: 150, overflow: "break" },
       },
       series: [
         {

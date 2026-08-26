@@ -16,6 +16,7 @@ import {
 } from "@/lib/vocab";
 import type { ActorLayer, RoleRecord } from "@/lib/types";
 import { signed } from "@/lib/format";
+import { chartText } from "@/lib/chart-style";
 
 /**
  * What the drawer prints for one traced entry. Served as one static JSON
@@ -97,8 +98,7 @@ const T = {
 export default function ChangeHeatmap({
   locale = "en",
   showCaveat = true,
-}: { locale?: Locale; showCaveat?: boolean } = {}) {
-  const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
+}: { locale?: Locale; showCaveat?: boolean } = {}) {  const [cell, setCell] = useState<{ layer: ActorLayer; stageNo: number } | null>(null);
   // null while the cell's entries are on their way from /cells/.
   const [records, setRecords] = useState<CellEntry[] | null>(null);
   const requestSeq = useRef(0);
@@ -263,7 +263,7 @@ export default function ChangeHeatmap({
         type: "category",
         data: stageShortList(locale),
         position: "bottom",
-        axisLabel: { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 },
+        axisLabel: { rotate: 30, fontSize: chartText(locale).tick, color: "#3D4C5E", margin: 10 },
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
       },
@@ -273,7 +273,7 @@ export default function ChangeHeatmap({
         data: ls.map((l) => l.short),
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 11.5, color: "#3D4C5E" },
+        axisLabel: { fontSize: chartText(locale).tick, color: "#3D4C5E" },
       },
       visualMap: {
         show: true,

@@ -7,6 +7,7 @@ import ChartFrame from "./ChartFrame";
 import { MUNICIPAL_POWER_GAP } from "@/lib/data-client";
 import { CHART, YEAR_COLORS } from "@/lib/colors";
 import { cautionCounts, type Locale } from "@/lib/vocab";
+import { chartText } from "@/lib/chart-style";
 
 const T = {
   en: {
@@ -49,8 +50,7 @@ const FN_AR: Record<string, string> = {
  * Visual 5 - Municipal power gap. Dumbbell chart comparing grouped
  * municipal functional presence in 2024 and 2026.
  */
-export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale } = {}) {
-  const t = T[locale];
+export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale } = {}) {  const t = T[locale];
   const ar = locale === "ar";
   const chartRef = useRef<ECharts | null>(null);
   const rows = [...MUNICIPAL_POWER_GAP].reverse();
@@ -84,7 +84,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         name: t.axisName,
         nameLocation: "middle",
         nameGap: 26,
-        nameTextStyle: { fontSize: 11.5, color: "#3D4C5E" },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle, color: "#3D4C5E" },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -94,7 +94,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         position: ar ? "right" : "left",
         axisTick: { show: false },
         axisLine: { lineStyle: { color: CHART.axis } },
-        axisLabel: { fontSize: 12, color: "#3D4C5E", width: 210, overflow: "break" },
+        axisLabel: { fontSize: chartText(locale).tick, color: "#3D4C5E", width: 210, overflow: "break" },
       },
       series: [
         // Connector segments drawn as a custom series
@@ -153,7 +153,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         },
       ],
     };
-  }, [rows, ar, t, fnLabel]);
+  }, [rows, ar, locale, t, fnLabel]);
 
   return (
     <div>

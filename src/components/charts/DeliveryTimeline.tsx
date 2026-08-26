@@ -8,6 +8,7 @@ import ChartFrame from "./ChartFrame";
 import { timeline } from "@/lib/data-client";
 import { fmtDate } from "@/lib/format";
 import { CHART, UI } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 const TRACKS = [
   { id: "conflict", label: "Conflict", labelAr: "الحرب" },
@@ -86,8 +87,7 @@ const T = {
   },
 } as const;
 
-export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } = {}) {
-  const tr = T[locale];
+export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } = {}) {  const tr = T[locale];
   const chartRef = useRef<ECharts | null>(null);
 
   const ar = locale === "ar";
@@ -136,7 +136,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
         min: "2024-09-01",
         max: "2026-08-15",
         inverse: ar,
-        axisLabel: { fontSize: 10.5, formatter: "{MMM} {yyyy}" },
+        axisLabel: { fontSize: chartText(locale).tick, formatter: "{MMM} {yyyy}" },
         splitLine: { show: true, lineStyle: { color: "#EDF0F4" } },
       },
       yAxis: {
@@ -146,7 +146,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
         interval: 1,
         position: ar ? "right" : "left",
         axisLabel: {
-          fontSize: 11,
+          fontSize: chartText(locale).tick,
           formatter: (v: number) => {
             const t = TRACKS[Math.round(v)];
             return t ? (ar ? t.labelAr : t.label) : "";

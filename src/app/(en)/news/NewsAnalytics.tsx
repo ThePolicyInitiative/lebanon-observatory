@@ -6,6 +6,7 @@ import EChart from "@/components/charts/EChart";
 import type { NewsArticle } from "@/lib/types";
 import type { Locale } from "@/lib/vocab";
 import { CHART } from "@/lib/colors";
+import { chartText } from "@/lib/chart-style";
 
 type VolumeResponse = {
   points: { date: string; value: number }[];
@@ -53,8 +54,7 @@ export default function NewsAnalytics({
 }: {
   articles: NewsArticle[];
   locale?: Locale;
-}) {
-  const t = T[locale];
+}) {  const t = T[locale];
   const [volume, setVolume] = useState<VolumeResponse | null>(null);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function NewsAnalytics({
         xAxis: {
           type: "category",
           data: volume.points.map((p) => p.date),
-          axisLabel: { fontSize: 10, rotate: 30, interval: 6 },
+          axisLabel: { fontSize: chartText(locale).tick, rotate: 30, interval: 6 },
           axisLine: { lineStyle: { color: CHART.axis } },
         },
         yAxis: {
@@ -116,7 +116,7 @@ export default function NewsAnalytics({
       xAxis: {
         type: "category",
         data: days,
-        axisLabel: { fontSize: 10, rotate: 30 },
+        axisLabel: { fontSize: chartText(locale).tick, rotate: 30 },
         axisLine: { lineStyle: { color: CHART.axis } },
       },
       yAxis: {
@@ -136,7 +136,7 @@ export default function NewsAnalytics({
         },
       ],
     };
-  }, [articles, t, volume]);
+  }, [articles, locale, t, volume]);
 
   return (
     <section aria-label={t.sectionAria}>

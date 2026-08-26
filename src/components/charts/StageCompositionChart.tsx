@@ -16,6 +16,7 @@ import {
 } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
 import { signed } from "@/lib/format";
+import { chartText } from "@/lib/chart-style";
 
 /**
  * Visual 3 - Paired stage-composition chart. Who occupied each of the
@@ -57,8 +58,7 @@ const T = {
 export default function StageCompositionChart({
   showCaveat = true,
   locale = "en",
-}: { showCaveat?: boolean; locale?: Locale } = {}) {
-  const tr = T[locale];
+}: { showCaveat?: boolean; locale?: Locale } = {}) {  const tr = T[locale];
   const ar = locale === "ar";
   const LAYER_META = layers(locale);
   const STAGES = stageList(locale);
@@ -95,7 +95,7 @@ export default function StageCompositionChart({
           name: tr.axisChange,
           nameLocation: "middle",
           nameGap: 24,
-          nameTextStyle: { fontSize: 11 },
+          nameTextStyle: { fontSize: chartText(locale).axisTitle },
           axisLine: { show: false },
           splitLine: { lineStyle: { color: "#EDF0F4" } },
         },
@@ -105,7 +105,7 @@ export default function StageCompositionChart({
           position: ar ? ("right" as const) : ("left" as const),
           axisLine: { lineStyle: { color: CHART.axis } },
           axisTick: { show: false },
-          axisLabel: { fontSize: 11 },
+          axisLabel: { fontSize: chartText(locale).tick },
         },
         series,
       };
@@ -173,7 +173,7 @@ export default function StageCompositionChart({
         name: percent ? tr.axisShare : tr.axisCount,
         nameLocation: "middle",
         nameGap: 24,
-        nameTextStyle: { fontSize: 11 },
+        nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
@@ -183,11 +183,11 @@ export default function StageCompositionChart({
         position: ar ? ("right" as const) : ("left" as const),
         axisLine: { lineStyle: { color: CHART.axis } },
         axisTick: { show: false },
-        axisLabel: { fontSize: 11 },
+        axisLabel: { fontSize: chartText(locale).tick },
       },
       series,
     };
-  }, [mode, percent, ar, tr, LAYER_META, STAGES, STAGE_SHORT]);
+  }, [mode, percent, ar, locale, tr, LAYER_META, STAGES, STAGE_SHORT]);
 
   const tableRows = STAGES.flatMap((stage, i) =>
     LAYER_META.map((layer) => [
