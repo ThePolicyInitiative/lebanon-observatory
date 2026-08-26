@@ -358,6 +358,19 @@ export default function SvgLebanonMap({
   /** Land test built from the town polygons the map itself draws. */
   const [landIndex, setLandIndex] = useState<LandIndex | null>(null);
   const [openPin, setOpenPin] = useState<(Pin & { town: Town }) | null>(null);
+  /**
+   * Focus handling for the panel a pin opens.
+   *
+   * Every pin is its own tab stop and the panel is a sibling of the whole
+   * map, so a reader who activated the first pin had to pass 199 more of
+   * them to reach what they had just opened. Moving focus into the panel
+   * on activation, and back to the pin it came from on close, means the
+   * thing that just appeared is the next thing reached.
+   */
+  const panelHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const pinOpenerRef = useRef<SVGGElement | null>(null);
+  /** Set when a pin is closed, so focus returns only then - not on open. */
+  const restoreFocusRef = useRef(false);
   const [districtOutlines, setDistrictOutlines] = useState<
     { name: string; d: string }[]
   >([]);
@@ -688,6 +701,20 @@ export default function SvgLebanonMap({
    * Falls back to the centroid for a polygon so degenerate it leaves no
    * room at all, which is the same thing the pan-and-zoom map does.
    */
+  // Move focus to the panel when a pin opens it, and back to that pin
+  // when it closes. Guarded on restoreFocusRef so that a pin opened by
+  // pointer does not have focus yanked back to a pin nobody is on.
+  useEffect(() => {
+    if (openPin) {
+      panelHeadingRef.current?.focus();
+      return;
+    }
+    if (restoreFocusRef.current) {
+      restoreFocusRef.current = false;
+      pinOpenerRef.current?.focus();
+    }
+  }, [openPin]);
+
   const anchorOf = useCallback((town: Town): Anchor => {
     const hit = anchorCacheRef.current.get(town.uid);
     if (hit) return hit;
@@ -1450,7 +1477,8 @@ export default function SvgLebanonMap({
                         role="button"
                         aria-label={label}
                         className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
-                        onClick={() => {
+                        onClick={(e) => {
+                          pinOpenerRef.current = e.currentTarget;
                           setOpenPin(pin);
                           selectTown(pin.town);
                         }}
@@ -1465,6 +1493,7 @@ export default function SvgLebanonMap({
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
+                            pinOpenerRef.current = e.currentTarget;
                             setOpenPin(pin);
                             selectTown(pin.town);
                           }
@@ -1743,6 +1772,15 @@ export default function SvgLebanonMap({
             aria-live="polite"
             className="card border-s-4"
             style={{ borderInlineStartColor: openPin.color }}
+            // Escape closes it from anywhere inside, which is what a
+            // reader who just tabbed into it will reach for first.
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                e.stopPropagation();
+                restoreFocusRef.current = true;
+                setOpenPin(null);
+              }
+            }}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
@@ -1751,13 +1789,22 @@ export default function SvgLebanonMap({
                   {openPin.townName}
                   {openPin.district ? ` · ${openPin.district}` : ""} · {openPin.year}
                 </p>
-                <h3 className="mt-1 text-sm font-semibold text-navy">
+                {/* tabIndex -1 so focus can be moved here on open
+                    without adding a tab stop of its own. */}
+                <h3
+                  ref={panelHeadingRef}
+                  tabIndex={-1}
+                  className="mt-1 text-sm font-semibold text-navy focus-visible:outline-2 focus-visible:outline-blue"
+                >
                   {openPin.title}
                 </h3>
               </div>
               <button
                 type="button"
-                onClick={() => setOpenPin(null)}
+                onClick={() => {
+                  restoreFocusRef.current = true;
+                  setOpenPin(null);
+                }}
                 aria-label={tr.close}
                 className="shrink-0 rounded-sm px-1.5 text-text-secondary hover:text-navy"
               >
