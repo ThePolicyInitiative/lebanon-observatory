@@ -1172,14 +1172,34 @@ export default function SvgLebanonMap({
         <div>
           {/* The drawing itself stays left-to-right in both languages, so
               geometry, labels and the scale bar never mirror. */}
-          <div dir="ltr" className="relative mx-auto w-full max-w-[min(82vh,46rem)] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
+          {/*
+           * dir belongs on the <svg>, not on this wrapper.
+           *
+           * The map's geometry has to stay left-to-right or the country
+           * mirrors, so the whole box was forced to ltr. That also caught
+           * every piece of Arabic text drawn inside it - the hover
+           * readout, the town and pin tooltips, the damage badges and the
+           * scale bar - and laid each one out in a left-to-right
+           * paragraph, which reverses the order its runs are read in. A
+           * hover line that should read as town, then district, then
+           * count came out with the count first.
+           *
+           * So the direction sits on the <svg>, where it keeps the
+           * projection honest, and the text nodes that carry Arabic get
+           * their own direction back below.
+           */}
+          <div className="relative mx-auto w-full max-w-[min(82vh,46rem)] select-none overflow-hidden rounded-lg border-2 border-[#c9d4e0] bg-[#E9EDF2] shadow-[0_2px_16px_rgba(23,59,99,0.10)]">
             <svg
               ref={svgRef}
               viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
               role="group"
               aria-label={tr.mapAria(year, showOccupation)}
               className={`block h-auto w-full ${dragging ? "cursor-grabbing" : ""}`}
-              style={{ touchAction: zoomed ? "none" : "pan-y" }}
+              // `direction` rather than the dir attribute, which React's
+              // SVG typings do not carry - it is the CSS property that
+              // actually governs bidi, and it keeps the labels drawn
+              // inside the projection laid out left to right.
+              style={{ direction: "ltr", touchAction: zoomed ? "none" : "pan-y" }}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
@@ -1676,7 +1696,10 @@ export default function SvgLebanonMap({
               </g>
             </svg>
             {hover ? (
-              <div className="pointer-events-none absolute left-2 top-2 max-w-[75%] rounded-sm bg-white/95 px-2 py-1 text-[11px] font-medium text-text shadow-sm">
+              <div
+                dir={locale === "ar" ? "rtl" : "ltr"}
+                className="pointer-events-none absolute left-2 top-2 max-w-[75%] rounded-sm bg-white/95 px-2 py-1 text-[11px] font-medium text-text shadow-sm"
+              >
                 {hover}
               </div>
             ) : null}

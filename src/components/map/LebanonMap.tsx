@@ -887,8 +887,29 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             />
           ) : (
             <div dir="ltr" className="overflow-hidden rounded-md border border-border">
+              {/*
+               * dir stays ltr on this wrapper: the canvas is WebGL, so
+               * CSS direction cannot mirror it, the controls position
+               * themselves with physical properties, and every popup sets
+               * its own dir from the locale - so no Arabic text depends
+               * on it. The vector map is the one that needed unpicking.
+               *
+               * role="region" so the description is actually announced.
+               * A bare div maps to ARIA generic, which takes no
+               * accessible name, so t.glAria - the sentence that tells a
+               * screen-reader reader this map takes keyboard pan and zoom
+               * and that the vector map beside it names every region as
+               * text - was being dropped on the floor. All that was
+               * announced was MapLibre's own three-character "Map".
+               *
+               * The label is rendered by React rather than passed to
+               * MapLibre's locale option, because it names the year and
+               * the year changes; anything handed to the constructor
+               * would be frozen at the year the map was built with.
+               */}
               <div
                 ref={containerRef}
+                role="region"
                 className="h-[560px] sm:h-[760px]"
                 aria-label={t.glAria(year)}
               />
