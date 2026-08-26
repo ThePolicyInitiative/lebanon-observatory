@@ -55,6 +55,24 @@ export const VALENCE = {
   bad: YEAR_COLORS.negative,
 } as const;
 
+/**
+ * The four greys every chart draws its furniture from.
+ *
+ * Twenty-five figures were each re-typing these, and they had drifted into
+ * near-duplicates of tokens that already existed: `#DCE3EA` on seventeen
+ * axis lines is one step from `--color-border` #DBE3EC and identical to the
+ * eye, so the axis rule and the card border were two colours pretending to
+ * be different. `#263645` on thirteen labels and `#667588` on fourteen more
+ * are the pre-correction text and secondary-text values, which the palette
+ * had already moved on from.
+ *
+ * Four decisions instead of forty-four literals - and because they are the
+ * same tokens the rest of the site is styled from, a chart's furniture now
+ * moves when the page's does.
+ *
+ * JS values, never var(): ECharts writes these into paint attributes, which
+ * is the whole reason this file exists.
+ */
 export const UI = {
   background: "#EAEFF4",
   navy: "#173B63",
@@ -66,6 +84,17 @@ export const UI = {
   text: "#1F2D3D",
   textSecondary: "#5D6B7D",
   border: "#DBE3EC",
+} as const;
+
+export const CHART = {
+  /** Axis lines and any rule drawn as chart furniture. */
+  axis: UI.border,
+  /** Gridlines, the same rule at lower emphasis. */
+  grid: UI.border,
+  /** Axis ticks, legends, and anything secondary inside a figure. */
+  label: UI.textSecondary,
+  /** In-figure text that carries a value or a name. */
+  text: UI.text,
 } as const;
 
 export const LAYER_META: {

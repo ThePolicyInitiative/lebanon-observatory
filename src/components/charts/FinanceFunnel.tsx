@@ -1,6 +1,7 @@
 import { financeFunnel } from "@/lib/data-client";
 import { fmtUsd, fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
+import { CHART } from "@/lib/colors";
 
 /**
  * Visual 9 - Financing coverage. Nested horizontal bars comparing assessed
@@ -93,7 +94,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
                   className="h-5 rounded-sm"
                   style={{
                     width: `max(${pct}%, 2px)`,
-                    background: barColor[b.status] ?? "#667588",
+                    background: barColor[b.status] ?? CHART.label,
                   }}
                 />
               </div>

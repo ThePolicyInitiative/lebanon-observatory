@@ -5,7 +5,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import YearControl, { type YearMode } from "@/components/YearControl";
-import { YEAR_COLORS } from "@/lib/colors";
+import { CHART, YEAR_COLORS } from "@/lib/colors";
 import { countsFor, changeFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -103,7 +103,7 @@ export default function StageCompositionChart({
           type: "category",
           data: stages,
           position: ar ? ("right" as const) : ("left" as const),
-          axisLine: { lineStyle: { color: "#DCE3EA" } },
+          axisLine: { lineStyle: { color: CHART.axis } },
           axisTick: { show: false },
           axisLabel: { fontSize: 11 },
         },
@@ -181,7 +181,7 @@ export default function StageCompositionChart({
         type: "category",
         data: stages,
         position: ar ? ("right" as const) : ("left" as const),
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisTick: { show: false },
         axisLabel: { fontSize: 11 },
       },

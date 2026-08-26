@@ -7,6 +7,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { timeline } from "@/lib/data-client";
 import { fmtDate } from "@/lib/format";
+import { CHART } from "@/lib/colors";
 
 const TRACKS = [
   { id: "conflict", label: "Conflict", labelAr: "الحرب" },
@@ -166,7 +167,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
             position: "top",
             distance: 7,
             fontSize: 9.5,
-            color: "#667588",
+            color: CHART.label,
             formatter: (p) => {
               const name = (p as { name: string }).name;
               return name.length > 28 ? `${name.slice(0, 27)}…` : name;

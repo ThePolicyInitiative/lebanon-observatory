@@ -5,6 +5,7 @@ import type { EChartsOption } from "echarts";
 import EChart from "@/components/charts/EChart";
 import type { NewsArticle } from "@/lib/types";
 import type { Locale } from "@/lib/vocab";
+import { CHART } from "@/lib/colors";
 
 type VolumeResponse = {
   points: { date: string; value: number }[];
@@ -83,7 +84,7 @@ export default function NewsAnalytics({
           type: "category",
           data: volume.points.map((p) => p.date),
           axisLabel: { fontSize: 10, rotate: 30, interval: 6 },
-          axisLine: { lineStyle: { color: "#DCE3EA" } },
+          axisLine: { lineStyle: { color: CHART.axis } },
         },
         yAxis: {
           type: "value",
@@ -116,7 +117,7 @@ export default function NewsAnalytics({
         type: "category",
         data: days,
         axisLabel: { fontSize: 10, rotate: 30 },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
       },
       yAxis: {
         type: "value",

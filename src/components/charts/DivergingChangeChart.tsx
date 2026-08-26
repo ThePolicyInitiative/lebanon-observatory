@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { VALENCE } from "@/lib/colors";
+import { CHART, VALENCE } from "@/lib/colors";
 import { countsFor, changeFor } from "@/lib/data-client";
 import { cautionCounts, stageList, stageShortList, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
@@ -90,7 +90,7 @@ export default function DivergingChangeChart({
         data: sorted.map((d) => d.short),
         position: ar ? "right" : "left",
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 12, color: "#3D4C5E" },
       },
       series: [
@@ -111,7 +111,7 @@ export default function DivergingChangeChart({
             position: "outside",
             formatter: (p) => signed(Number(p.value)),
             fontSize: 11,
-            color: "#263645",
+            color: CHART.text,
           },
         },
       ],

@@ -6,6 +6,7 @@ import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { stageCounts } from "@/lib/data-client";
 import { layers, type Locale } from "@/lib/vocab";
+import { CHART } from "@/lib/colors";
 
 /** Slopegraph of each actor layer's traced-presence total, 2024 → 2026. */
 const T = {
@@ -61,8 +62,8 @@ export default function LayerSlopeChart({ locale = "en" }: { locale?: Locale } =
         inverse: locale === "ar",
         boundaryGap: true,
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
-        axisLabel: { fontSize: 13, fontWeight: 600, color: "#263645" },
+        axisLine: { lineStyle: { color: CHART.axis } },
+        axisLabel: { fontSize: 13, fontWeight: 600, color: CHART.text },
       },
       yAxis: {
         type: "value",

@@ -1,5 +1,5 @@
 import webUpdates from "@/data/web-updates.json";
-import { LAYER_META } from "@/lib/colors";
+import { CHART, LAYER_META } from "@/lib/colors";
 import { fmtDate } from "@/lib/format";
 import { layers, type Locale } from "@/lib/vocab";
 
@@ -166,7 +166,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
     .map((id) => ({
       id,
       label: layers(locale).find((l) => l.id === id)?.label ?? id,
-      color: LAYER_META.find((l) => l.id === id)?.color ?? "#667588",
+      color: LAYER_META.find((l) => l.id === id)?.color ?? CHART.label,
       items: updates.filter((u) => u.layer === id),
     }))
     .filter((g) => g.items.length > 0);

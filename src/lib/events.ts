@@ -1,6 +1,7 @@
 import mapEvents from "@/data/map-events.json";
 import type { Year } from "./types";
 import type { Locale } from "./vocab";
+import { CHART } from "@/lib/colors";
 
 /** Traced episodes per locality - "what happened where", from the
  * the traced activity. */
@@ -60,5 +61,5 @@ export const EVENT_KIND_META: Record<
   municipal: { label: "Municipal", color: "#8a6200", bg: "#FAF3E3" },
   ngo_international: { label: "NGO / International", color: "#177384", bg: "#E8F1F3" },
   community: { label: "Community", color: "#A34F7C", bg: "#F4EAF0" },
-  context: { label: "Conflict context", color: "#667588", bg: "#EFF1F4" },
+  context: { label: "Conflict context", color: CHART.label, bg: "#EFF1F4" },
 };

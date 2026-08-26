@@ -6,6 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import destruction from "@/data/destruction.json";
+import { CHART } from "@/lib/colors";
 
 /** The four worst cadasters of the 2026 South-of-the-Litani assessment. */
 const T = {
@@ -66,7 +67,7 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
           locale === "ar" ? c.nameAr ?? c.name : c.name,
         ),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 12 },
       },
       series: [
@@ -80,7 +81,7 @@ export default function WorstCadastersChart({ locale = "en" }: { locale?: Locale
             position: "right",
             fontSize: 11,
             fontWeight: 600,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) =>
               Number((p as { value: number }).value).toLocaleString("en-US"),
           },

@@ -6,6 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import sectorsJson from "@/data/sectors.json";
+import { CHART } from "@/lib/colors";
 
 /** Sector damage, losses and needs - three distinct economic categories,
  * shown side by side and never summed. Nulls are "not stated", not zero. */
@@ -62,7 +63,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
         show: true,
         position: "right" as const,
         fontSize: 10,
-        color: "#263645",
+        color: CHART.text,
         formatter: (p: unknown) => {
           const value = (p as { value?: number | null }).value;
           return value === null || value === undefined ? "" : `$${value}M`;
@@ -91,7 +92,7 @@ export default function SectorDamageChart({ locale = "en" }: { locale?: Locale }
         type: "category",
         data: cats.map((s) => (locale === "ar" ? (s.labelAr ?? s.label) : s.label)),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11, width: 155, overflow: "break" },
       },
       series: [

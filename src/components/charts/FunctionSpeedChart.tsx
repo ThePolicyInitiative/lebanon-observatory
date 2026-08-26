@@ -5,6 +5,7 @@ import type { Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
+import { CHART } from "@/lib/colors";
 
 /**
  * Speed is an architecture, not a temperament: fast functions have
@@ -183,7 +184,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
         position: ar ? "right" : "left",
         data: rows.map(name),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 10.5, width: 240, overflow: "break" },
       },
       series: [
@@ -198,7 +199,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
             show: true,
             position: ar ? "left" : "right",
             fontSize: 10.5,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) => (rows[p.dataIndex].emergency ? shown(rows[p.dataIndex]) : ""),
           },
         },
@@ -213,7 +214,7 @@ export default function FunctionSpeedChart({ locale = "en" }: { locale?: Locale 
             show: true,
             position: ar ? "left" : "right",
             fontSize: 10.5,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) => (rows[p.dataIndex].emergency ? "" : shown(rows[p.dataIndex])),
           },
         },

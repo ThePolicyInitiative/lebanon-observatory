@@ -5,6 +5,7 @@ import { eventsByTown, eventsFor, eventText } from "./events";
 import { matchLocations, type LocationIndex } from "./geo-match";
 import type { SlimRecord } from "./map-records";
 import type { Year } from "./types";
+import { CHART } from "@/lib/colors";
 
 /**
  * One pin per traced entry, rather than one marker per town.
@@ -109,7 +110,7 @@ export function clampToLand(
   return { dx: 0, dy: 0 };
 }
 
-const CONTEXT_COLOR = "#667588";
+const CONTEXT_COLOR = CHART.label;
 
 const T = {
   en: {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { LAYER_META } from "@/lib/colors";
+import { CHART, LAYER_META } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import type { SlimRecord } from "@/lib/map-records";
 import {
@@ -726,12 +726,12 @@ export default function SvgLebanonMap({
         color: l.color,
         count: counts[l.id] ?? 0,
       })).filter((m) => m.count > 0);
-      if (contextCount > 0) mix.push({ color: "#667588", count: contextCount });
+      if (contextCount > 0) mix.push({ color: CHART.label, count: contextCount });
       out.push({
         town: t,
         records: recs,
         episodes: eps,
-        color: dominant?.color ?? "#667588",
+        color: dominant?.color ?? CHART.label,
         dominantLabel: dominant?.label ?? "Conflict context",
         total: recs.length + eps.length,
         mix,
@@ -1195,7 +1195,7 @@ export default function SvgLebanonMap({
                   <path
                     d={t.d}
                     fill="none"
-                    stroke="#263645"
+                    stroke={CHART.text}
                     strokeWidth={1.6}
                     vectorEffect="non-scaling-stroke"
                     pointerEvents="none"
@@ -1328,7 +1328,7 @@ export default function SvgLebanonMap({
                         x={reach + 5}
                         y={3}
                         fontSize={9.5}
-                        fill="#263645"
+                        fill={CHART.text}
                         stroke="#FFFFFF"
                         strokeWidth={2.2}
                         paintOrder="stroke"
@@ -1340,7 +1340,7 @@ export default function SvgLebanonMap({
                           dx={3}
                           fontSize={8.5}
                           fontWeight={700}
-                          fill="#667588"
+                          fill={CHART.label}
                         >
                           {p.total}
                         </tspan>

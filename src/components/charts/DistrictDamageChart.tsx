@@ -6,6 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import districtDamage from "@/data/district-damage.json";
+import { CHART } from "@/lib/colors";
 
 /**
  * Municipality-reported damaged housing units by district, from the
@@ -91,7 +92,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
           locale === "ar" ? d.nameAr ?? d.name : d.name,
         ),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11.5 },
       },
       series: [
@@ -107,7 +108,7 @@ export default function DistrictDamageChart({ locale = "en" }: { locale?: Locale
             position: "right",
             fontSize: 11,
             fontWeight: 600,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) =>
               Number((p as { value: number }).value).toLocaleString("en-US"),
           },

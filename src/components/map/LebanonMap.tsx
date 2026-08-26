@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
-import { LAYER_META } from "@/lib/colors";
+import { CHART, LAYER_META } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import { slimRecords } from "@/lib/map-records";
 import {
@@ -441,7 +441,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 layers(locale).map(
                   (l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}: <strong>${m[l.id]}</strong>`,
                 ).join("<br/>") +
-                `<br/><em style="color:#667588">${esc(t.popupCaution)}</em></div>`
+                `<br/><em style="color:${CHART.label}">${esc(t.popupCaution)}</em></div>`
               : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
             new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)
@@ -573,17 +573,17 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               strokeWidth: pin.kind === "episode" ? 2.4 : 1.2,
               popupHtml:
                 `<div${locale === "ar" ? ` dir="rtl"` : ""} style="font-size:12px;line-height:1.5;max-width:300px">` +
-                `<span style="font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#667588">` +
+                `<span style="font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:${CHART.label}">` +
                 `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry} · ${esc(pin.townName)}` +
                 `${pin.district ? ` · ${esc(pin.district)}` : ""} · ${year}</span>` +
                 `<br/><strong>${esc(pin.title)}</strong>` +
                 `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : layerColor(pin.layer)};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
-                `${pin.date ? ` <span style="font-size:10.5px;color:#667588">${esc(fmtDate(pin.date, locale))}</span>` : ""}` +
+                `${pin.date ? ` <span style="font-size:10.5px;color:${CHART.label}">${esc(fmtDate(pin.date, locale))}</span>` : ""}` +
                 (pin.kind === "entry"
-                  ? `<br/><span style="font-size:11px;color:#667588">${esc(pin.detail)}</span>`
+                  ? `<br/><span style="font-size:11px;color:${CHART.label}">${esc(pin.detail)}</span>`
                   : "") +
                 `<br/><span style="display:inline-block;margin-top:4px;white-space:normal">${esc(pin.body)}</span>` +
-                `<br/><em style="font-size:10.5px;color:#667588">${esc(t.pinFoot)}</em></div>`,
+                `<br/><em style="font-size:10.5px;color:${CHART.label}">${esc(t.pinFoot)}</em></div>`,
             },
           });
         }

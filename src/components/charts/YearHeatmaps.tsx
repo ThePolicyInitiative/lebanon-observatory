@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { LAYER_META, YEAR_COLORS } from "@/lib/colors";
+import { CHART, LAYER_META, YEAR_COLORS } from "@/lib/colors";
 import { countsFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -71,7 +71,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
           ? { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 }
           : { show: false },
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
       },
       y: {
         gridIndex,
@@ -79,7 +79,7 @@ export default function YearHeatmaps({ locale = "en" }: { locale?: Locale } = {}
         data: layerLabels,
         position: ar ? ("right" as const) : ("left" as const),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11, color: "#3D4C5E" },
       },
     });

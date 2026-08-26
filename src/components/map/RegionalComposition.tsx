@@ -7,6 +7,7 @@ import ChartFrame from "@/components/charts/ChartFrame";
 import { locations } from "@/lib/data-client";
 import { cautionMap, layers, regionLabel, type Locale } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
+import { CHART } from "@/lib/colors";
 
 const T = {
   en: {
@@ -90,7 +91,7 @@ export default function RegionalComposition({
         type: "category",
         data: cats.map((r) => regionLabel(r.id, locale)),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11, width: 175, overflow: "break" },
       },
       series,

@@ -6,6 +6,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { finance } from "@/lib/data-client";
+import { CHART } from "@/lib/colors";
 
 type Component = {
   label: string;
@@ -78,7 +79,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
         position: locale === "ar" ? "right" : "left",
         data: cats.map(short),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11, width: 150, overflow: "break" },
       },
       series: [
@@ -92,7 +93,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
             show: true,
             position: locale === "ar" ? "left" : "right",
             fontSize: 10,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) => `$${(Number((p as { value: number }).value) / 1e6).toFixed(0)}M`,
           },
         },
@@ -106,7 +107,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
             show: true,
             position: locale === "ar" ? "left" : "right",
             fontSize: 10,
-            color: "#263645",
+            color: CHART.text,
             formatter: (p) => `$${(Number((p as { value: number }).value) / 1e6).toFixed(0)}M`,
           },
         },

@@ -5,7 +5,7 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
 import { MUNICIPAL_POWER_GAP } from "@/lib/data-client";
-import { YEAR_COLORS } from "@/lib/colors";
+import { CHART, YEAR_COLORS } from "@/lib/colors";
 import { cautionCounts, type Locale } from "@/lib/vocab";
 
 const T = {
@@ -93,7 +93,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
         data: categories,
         position: ar ? "right" : "left",
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 12, color: "#3D4C5E", width: 210, overflow: "break" },
       },
       series: [
@@ -130,7 +130,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
             distance: 4,
             formatter: (p) => String(p.value),
             fontSize: 10.5,
-            color: "#263645",
+            color: CHART.text,
           },
           z: 2,
         },
@@ -147,7 +147,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
             distance: 4,
             formatter: (p) => String(p.value),
             fontSize: 10.5,
-            color: "#263645",
+            color: CHART.text,
           },
           z: 3,
         },

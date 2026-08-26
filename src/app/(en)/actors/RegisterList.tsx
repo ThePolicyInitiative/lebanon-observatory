@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { layers, stageLabel, statusLabel, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
+import { CHART } from "@/lib/colors";
 
 const T = {
   en: {
@@ -135,7 +136,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
   const shownRecords = groups.reduce((a, g) => a + g.records.length, 0);
 
   const layerOptions = [
-    { id: "all" as const, label: t.allLayers, color: "#667588" },
+    { id: "all" as const, label: t.allLayers, color: CHART.label },
     ...layers(locale),
   ];
   const layerRoving = useRovingRadio({

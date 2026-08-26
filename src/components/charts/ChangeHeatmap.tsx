@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
-import { VALENCE } from "@/lib/colors";
+import { CHART, VALENCE } from "@/lib/colors";
 import { changeFor, countsFor } from "@/lib/data-client";
 import {
   cautionCounts,
@@ -265,14 +265,14 @@ export default function ChangeHeatmap({
         position: "bottom",
         axisLabel: { rotate: 30, fontSize: 11, color: "#3D4C5E", margin: 10 },
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
       },
       yAxis: {
         type: "category",
         // Short layer names: the full ones ate a third of the plot width.
         data: ls.map((l) => l.short),
         axisTick: { show: false },
-        axisLine: { lineStyle: { color: "#DCE3EA" } },
+        axisLine: { lineStyle: { color: CHART.axis } },
         axisLabel: { fontSize: 11.5, color: "#3D4C5E" },
       },
       visualMap: {
