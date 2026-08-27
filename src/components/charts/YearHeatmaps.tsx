@@ -20,13 +20,13 @@ import { chartText } from "@/lib/chart-style";
 const T = {
   en: {
     title: "Heat maps of traced presence: 2024 and 2026",
-    sub: "Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Strategy and coordination is left out: nearly every actor touches it, so its column set the top of the ramp and flattened the rest. Hover a cell for its value; the counts behind the whole figure are in its description.",
+    sub: "Each panel shows traced actors per layer and stage for one year, on one shared scale (darker = more traced actors). Strategy and coordination is left out: nearly every actor touches it, so the column says more about who convenes than about where work sits along the chain. Hover a cell for its value; the counts behind the whole figure are in its description.",
     tracedActors: "traced actors",
     alt: "Heat maps of traced actor-stage presence for 2024 and 2026",
   },
   ar: {
     title: "خرائط حرارية للحضور المرصود: 2024 و2026",
-    sub: "كل لوحة تُظهر الجهات المرصودة بحسب الطبقة والمرحلة في سنة واحدة، على مقياس واحد مشترك (كلما دكن اللون زاد عدد الجهات المرصودة). ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فكان عمودها يحدّد أعلى المقياس ويُسطّح ما عداه. مرِّر فوق خانة لترى قيمتها؛ والأعداد خلف الشكل كله واردة في وصفه.",
+    sub: "كل لوحة تُظهر الجهات المرصودة بحسب الطبقة والمرحلة في سنة واحدة، على مقياس واحد مشترك (كلما دكن اللون زاد عدد الجهات المرصودة). ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فعمودها يقول عمّن ينسّق أكثر ممّا يقول أين يقع العمل على السلسلة. مرِّر فوق خانة لترى قيمتها؛ والأعداد خلف الشكل كله واردة في وصفه.",
     tracedActors: "جهة مرصودة",
     alt: "خرائط حرارية للحضور المرصود للجهات في المراحل، 2024 و2026",
   },

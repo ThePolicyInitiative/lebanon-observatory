@@ -124,11 +124,15 @@ export function stageList(locale: Locale): string[] {
  * coordination, which is index 0.
  *
  * Strategy is the stage nearly every actor touches - convening, routing,
- * linking - so its column ran far darker than any other and set the top of
- * a ramp the remaining eleven then shared. Everything else was pressed
- * into the pale end, and the figures answered "who coordinates" when the
- * question they exist for is where traced presence actually sits along the
- * chain. Dropping the column lets the ramp span the work.
+ * linking - so its column is dense for reasons that have nothing to do
+ * with where work sits along the chain. The figures answered "who
+ * coordinates" when that is the one thing they are not for.
+ *
+ * It is dropped for that reason and no other. The scale is unchanged:
+ * both year panels share one ramp whose top is 2026 community relief at
+ * 55, with or without strategy, and the change map's widest swing is 35
+ * either way. An earlier version of this comment said removing the column
+ * freed the ramp - it does not, and that was written without measuring.
  *
  * Held here rather than in either chart so the two cannot disagree about
  * which stages they are showing. The stage is not hidden from the

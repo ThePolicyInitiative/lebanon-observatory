@@ -42,7 +42,7 @@ const T = {
   en: {
     title: "Direct change in traced presence, 2026 minus 2024",
     subtitle:
-      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Strategy and coordination is left out: nearly every actor touches it, so its column set the top of the ramp and flattened the rest. Hover a cell for its value, or click it for the entries behind that change.",
+      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Strategy and coordination is left out: nearly every actor touches it, so the column says more about who convenes than about where work sits along the chain. Hover a cell for its value, or click it for the entries behind that change.",
     tipChange: "Change",
     tipClick: "Click for underlying data",
     visualMapText: ["more traced in 2026", "fewer traced in 2026"],
@@ -65,7 +65,7 @@ const T = {
   ar: {
     title: "التغيّر المباشر في الحضور المرصود، 2026 ناقص 2024",
     subtitle:
-      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فكان عمودها يحدّد أعلى المقياس ويُسطّح ما عداه. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
+      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. ومرحلة الاستراتيجية والتنسيق خارج الشكل: تكاد كل جهة تمسّها، فعمودها يقول عمّن ينسّق أكثر ممّا يقول أين يقع العمل على السلسلة. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
     tipChange: "التغيّر",
     tipClick: "انقر لعرض ما وراء الخلية",
     visualMapText: ["حضور أكبر في 2026", "حضور أقل في 2026"],
@@ -197,7 +197,12 @@ export default function ChangeHeatmap({
     let nli = li;
     switch (e.key) {
       case "ArrowRight":
-        nsi = Math.min(stages.length - 1, si + 1);
+        // Bounded by the drawn columns, not by the twelve stages that
+        // exist. The axis has eleven since strategy was dropped, so the
+        // old bound walked one past the end: HEATMAP_STAGES[11] is
+        // undefined, Enter then fetched /cells/{layer}-NaN.json and
+        // opened a drawer of "undefined".
+        nsi = Math.min(HEATMAP_STAGES.length - 1, si + 1);
         break;
       case "ArrowLeft":
         nsi = Math.max(0, si - 1);
