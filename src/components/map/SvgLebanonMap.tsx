@@ -101,6 +101,7 @@ const PIN_T = {
       "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address. Where a town is too small at this zoom to hold its entries apart, they are drawn as one marker carrying the count; zoom in and it opens into a pin for each.",
     cluster: (n: number, town: string, district: string) =>
       `${town}${district ? `, ${district}` : ""} - ${n} traced entries, too close together to draw apart at this zoom. Select to list them, or zoom in for a pin each.`,
+    clusterPanel: (n: number) => `${n} traced entries here`,
     happenedHere: "What happened here",
     findTown: (n: string) => `Find a town (${n} cadastral towns - selecting zooms to it)`,
     loading: "loading",
@@ -161,6 +162,7 @@ const PIN_T = {
       "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع. وحين تضيق البلدة عند هذا التكبير عن أن تفصل مداخلها، تُرسم علامة واحدة تحمل العدد؛ وبالتقريب تنفتح إلى دبّوس لكل مدخل.",
     cluster: (n: number, town: string, district: string) =>
       `${town}${district ? ` · قضاء ${district}` : ""} - ${n} مدخلاً مرصوداً، أقرب من أن تُرسم متفرّقة عند هذا التكبير. اخترها لعرضها، أو قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
+    clusterPanel: (n: number) => `${n} مدخلاً مرصوداً هنا`,
     happenedHere: "ما الذي جرى هنا",
     findTown: (n: string) => `ابحث عن بلدة (${n} بلدة عقارية - اختيارها يقرّب الخريطة إليها)`,
     loading: "قيد التحميل",
@@ -373,6 +375,22 @@ export default function SvgLebanonMap({
    */
   const panelHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const pinOpenerRef = useRef<SVGGElement | null>(null);
+  /**
+   * The town whose counted marker is open, and the entries behind it.
+   *
+   * A counted marker stands for entries that have no pin of their own at
+   * this zoom, and its own accessible name promises "select to list them".
+   * It was calling selectTown and nothing else, which opens a panel of
+   * per-layer bars - so the promise was not kept, and the entries behind
+   * the 27 markers at the opening view had no element anywhere: nothing
+   * to focus, nothing to open, 195 of 200 unreachable without a pointer
+   * and a zoom.
+   */
+  const [openCluster, setOpenCluster] = useState<{
+    town: Town;
+    pins: (Pin & { town: Town })[];
+  } | null>(null);
+  const clusterHeadingRef = useRef<HTMLHeadingElement | null>(null);
   /** Set when a pin is closed, so focus returns only then - not on open. */
   const restoreFocusRef = useRef(false);
   const [districtOutlines, setDistrictOutlines] = useState<
@@ -745,11 +763,37 @@ export default function SvgLebanonMap({
       panelHeadingRef.current?.focus();
       return;
     }
+    if (openCluster) {
+      clusterHeadingRef.current?.focus();
+      return;
+    }
     if (restoreFocusRef.current) {
       restoreFocusRef.current = false;
       pinOpenerRef.current?.focus();
     }
-  }, [openPin]);
+  }, [openPin, openCluster]);
+
+  /**
+   * A panel outlives the thing it describes when the year or a filter
+   * changes underneath it: the entry it names may no longer be drawn, and
+   * the marker its focus would return to is gone. Both close.
+   *
+   * Done while rendering rather than in an effect. This is React's own
+   * pattern for resetting state when a prop changes - the component
+   * re-renders immediately with the new state and nothing stale is ever
+   * painted, where an effect would show the wrong panel for a frame and
+   * eslint would object besides. The entries prop is memoised by the
+   * caller, so the identity check only fires when the filters move.
+   */
+  const [panelFor, setPanelFor] = useState<{ year: Year; entries: SlimRecord[] }>({
+    year,
+    entries: records,
+  });
+  if (panelFor.year !== year || panelFor.entries !== records) {
+    setPanelFor({ year, entries: records });
+    setOpenPin(null);
+    setOpenCluster(null);
+  }
 
   const anchorOf = useCallback((town: Town): Anchor => {
     const hit = anchorCacheRef.current.get(town.uid);
@@ -1637,7 +1681,11 @@ export default function SvgLebanonMap({
                         role="button"
                         aria-label={label}
                         className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
-                        onClick={() => selectTown(c.town)}
+                        onClick={(e) => {
+                          pinOpenerRef.current = e.currentTarget;
+                          setOpenCluster({ town: c.town, pins: c.pins });
+                          selectTown(c.town);
+                        }}
                         onPointerEnter={() => {
                           setHover(label);
                           setHoverUid(c.town.name);
@@ -1649,6 +1697,8 @@ export default function SvgLebanonMap({
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
+                            pinOpenerRef.current = e.currentTarget;
+                            setOpenCluster({ town: c.town, pins: c.pins });
                             selectTown(c.town);
                           }
                         }}
@@ -1896,6 +1946,79 @@ export default function SvgLebanonMap({
               ? regionLabel(selectedZone, locale)
               : ""}
         </p>
+        {/*
+         * What a counted marker stands for.
+         *
+         * The marker's own name promises a list, and until now selecting
+         * it opened the town's bar-chart panel instead - so the entries it
+         * covers had no element at all: nothing to focus, nothing to open.
+         * Each row here is one of them, and opens the same panel a pin
+         * does, so a reader who cannot zoom still reaches every entry.
+         */}
+        {openCluster && !openPin ? (
+          <aside
+            className="card border-s-4"
+            style={{ borderInlineStartColor: UI.outlineQuiet }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                e.stopPropagation();
+                restoreFocusRef.current = true;
+                setOpenCluster(null);
+              }
+            }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-text-secondary">
+                  {openCluster.town.name}
+                  {openCluster.town.district ? ` · ${openCluster.town.district}` : ""}
+                </p>
+                <h3
+                  ref={clusterHeadingRef}
+                  tabIndex={-1}
+                  className="mt-1 text-sm font-semibold text-navy focus-visible:outline-2 focus-visible:outline-blue"
+                >
+                  {tr.clusterPanel(openCluster.pins.length)}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  restoreFocusRef.current = true;
+                  setOpenCluster(null);
+                }}
+                aria-label={tr.close}
+                className="shrink-0 rounded-sm px-1.5 text-text-secondary hover:text-navy"
+              >
+                ×
+              </button>
+            </div>
+            <ul className="mt-2 space-y-1">
+              {openCluster.pins.map((pin) => (
+                <li key={pin.id}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenPin(pin)}
+                    className="flex w-full items-baseline gap-2 rounded-sm px-1 py-1 text-start text-[12px] hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-blue"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-1 h-2 w-2 shrink-0 rounded-sm"
+                      style={{ background: pin.color }}
+                    />
+                    <span className="min-w-0">
+                      <span className="font-semibold text-text">{pin.title}</span>
+                      {pin.detail ? (
+                        <span className="block text-text-secondary">{pin.detail}</span>
+                      ) : null}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        ) : null}
+
         {/* The opened pin, above everything else: it is what the reader
             just asked for, and one pin is one traced entry. */}
         {openPin ? (
@@ -2268,7 +2391,16 @@ export default function SvgLebanonMap({
           <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-text-secondary">
             {/* Colour meaning lives in the key; this row carries the count. */}
             {view === "entries" ? (
-              <li>{tr.pinCount(entryPins.length, placePoints.length)}</li>
+              <li>
+                {/* Every entry drawn, not only the ones that escaped
+                    clustering. At the opening view 27 of the 32 towns are
+                    counted markers holding 195 of the 200 entries, and
+                    this line used to report the other 5. */}
+                {tr.pinCount(
+                  entryPins.length + entryClusters.reduce((n, c) => n + c.count, 0),
+                  placePoints.length,
+                )}
+              </li>
             ) : view === "change" ? (
               <>
                 <li className="flex items-center gap-1.5">
