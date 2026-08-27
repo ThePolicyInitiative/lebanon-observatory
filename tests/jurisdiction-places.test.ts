@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
 import { CITY_LABELS } from "@/lib/geo";
 import { JURISDICTION_ONLY_PLACES } from "@/lib/pins";
 import { slimRecords } from "@/lib/map-records";
@@ -81,6 +82,30 @@ describe("places named as a remit rather than a location", () => {
         city.name === "Baalbek";
       expect(mentioned, `${city.name} is labelled but the tracking never names it`).toBe(true);
     }
+  });
+
+  /**
+   * A suppressed place has to be suppressed everywhere the map speaks,
+   * not only where it draws.
+   *
+   * Removing the pin left Baalbek ranked eighth on the map's own "most
+   * traced entries" panel, counted among the places in the legend line,
+   * and openable from the town panel - so the map showed nothing there
+   * while the panel beside it put the town in the top ten. One rule
+   * applied in one place is not a rule.
+   */
+  it("suppresses the place in the ranking and the counts, not just the pins", () => {
+    const src = readFileSync("src/components/map/SvgLebanonMap.tsx", "utf8");
+    // placePoints feeds the ranking rows, the legend's place count and
+    // the label pass, so the exclusion belongs there rather than at each
+    // of them.
+    expect(src, "the vector map does not consult the suppression set").toContain(
+      "JURISDICTION_ONLY_PLACES",
+    );
+    const memo = src.slice(src.indexOf("const placePoints"), src.indexOf("const townLayer"));
+    expect(memo, "placePoints still admits a suppressed place").toMatch(
+      /JURISDICTION_ONLY_PLACES\.has\(name\)/,
+    );
   });
 
   it("draws no pin on a suppressed place", () => {

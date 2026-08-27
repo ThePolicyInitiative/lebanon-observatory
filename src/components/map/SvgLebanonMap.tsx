@@ -49,6 +49,7 @@ import {
   clampToLand,
   fanRadius,
   fitSpacing,
+  JURISDICTION_ONLY_PLACES,
   pinOutline,
   type Pin,
 } from "@/lib/pins";
@@ -913,6 +914,12 @@ export default function SvgLebanonMap({
     for (const name of names) {
       const t = byName.get(name);
       if (!t || isUnnamedArea(name)) continue;
+      // A place named only as an official's remit draws no pin, and it
+      // cannot be ranked or counted as one either: Baalbek was holding
+      // eighth place on the panel beside a map that deliberately shows
+      // nothing there, and was counted among the "places" in the legend.
+      // One suppression, applied everywhere the map speaks.
+      if (JURISDICTION_ONLY_PLACES.has(name)) continue;
       const recs = townRecords.get(name) ?? [];
       const eps = eventsFor(eventsByTown.get(name), year);
       if (recs.length === 0 && eps.length === 0) continue;

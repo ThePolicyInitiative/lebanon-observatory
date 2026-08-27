@@ -411,6 +411,40 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       ? "#173B63"
       : (LAYER_META.find((l) => l.id === layerFilter)?.color ?? "#173B63");
 
+  /**
+   * The one way a popup is opened on this map.
+   *
+   * MapLibre closes its own popup - its close button, a click on the map
+   * behind it - without telling the ref that held it. So the ref went on
+   * pointing at a dead popup: Escape then "closed" something already
+   * gone, swallowing the keypress and dragging focus back to whichever
+   * list button had opened it, which by that point might not exist. The
+   * close event puts the ref back to null, and every caller comes through
+   * here so none of them can forget.
+   *
+   * Declared above the effect that uses it: the reference would resolve
+   * at call time either way, but React's compiler reads the component
+   * body in order and will not take a binding used before its line.
+   */
+  const showPopup = useCallback(
+    (lngLat: [number, number], html: string, opener: HTMLButtonElement | null) => {
+      const map = mapRef.current;
+      const maplibregl = maplibreRef.current;
+      if (!map || !maplibregl) return;
+      popupRef.current?.remove();
+      popupOpenerRef.current = opener;
+      const popup = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
+        .setLngLat(lngLat)
+        .setHTML(html)
+        .addTo(map);
+      popup.on("close", () => {
+        if (popupRef.current === popup) popupRef.current = null;
+      });
+      popupRef.current = popup;
+    },
+    [],
+  );
+
   // Initialise the GL map while in "gl" mode; tear it down on fallback.
   useEffect(() => {
     if (renderMode !== "gl") return;
@@ -707,14 +741,9 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 ).join("<br/>") +
                 `<br/><em style="color:${CHART.label}">${esc(t.popupCaution)}</em></div>`
               : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
-            popupRef.current?.remove();
             // A pointer opened this one, so there is no list button to
             // send focus back to.
-            popupOpenerRef.current = null;
-            popupRef.current = new maplibregl.Popup({ closeButton: true })
-              .setLngLat(e.lngLat)
-              .setHTML(html)
-              .addTo(map);
+            showPopup([e.lngLat.lng, e.lngLat.lat], html, null);
           });
           map.on("mouseenter", "gov-fill", () => {
             map.getCanvas().style.cursor = "pointer";
@@ -727,12 +756,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             const f = e.features?.[0];
             if (!f) return;
             const html = f.properties?.popupHtml as string;
-            popupRef.current?.remove();
-            popupOpenerRef.current = null;
-            popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
-              .setLngLat(e.lngLat)
-              .setHTML(html)
-              .addTo(map);
+            showPopup([e.lngLat.lng, e.lngLat.lat], html, null);
           });
           map.on("mouseenter", "locality-hit", () => {
             map.getCanvas().style.cursor = "pointer";
@@ -988,16 +1012,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       center: [lon, lat],
       zoom: f.properties.label ? Math.max(map.getZoom(), 11) : Math.max(map.getZoom(), 13),
     });
-    popupRef.current?.remove();
-    popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: "340px" })
-      .setLngLat([lon, lat])
-      .setHTML(f.properties.popupHtml)
-      .addTo(map);
+    showPopup([lon, lat], f.properties.popupHtml, popupOpenerRef.current);
     // And the same content as text on the page, which is the half a
     // screen reader can follow - a MapLibre popup lives in the map's own
     // overlay, outside the React tree and outside anything announced.
     setGlOpen(f);
-  }, []);
+  }, [showPopup]);
 
   // Focus the panel the list opened, once it exists.
   useEffect(() => {
