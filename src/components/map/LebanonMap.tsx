@@ -67,6 +67,19 @@ type GlFeature = {
     name: string;
     /** Plain text for the focusable list, which has no HTML to read. */
     ariaLabel: string;
+    /**
+     * The same content as fields rather than markup, so the panel the
+     * list opens is real text on the page. A MapLibre popup is appended
+     * to the map's own overlay outside the React tree and announces
+     * nothing; a reader who opened a marker from the list heard the
+     * button they had just pressed and no more.
+     */
+    heading: string;
+    town: string;
+    district: string;
+    detail: string;
+    body: string;
+    layerLabel: string;
     radius: number;
     color: string;
     strokeColor: string;
@@ -162,6 +175,8 @@ const T = {
       `Every marker on the map as a list - ${n} in all. Selecting one brings it into view and opens what is traced there.`,
     filterStatus: (n: number, year: number) =>
       `${n} traced ${n === 1 ? "entry" : "entries"} in ${year} match the filters now set.`,
+    listShow: (n: number) => `List all ${n} markers`,
+    listHide: "Hide the marker list",
     noWebgl: "This browser cannot run the pan-and-zoom map. The vector map carries the same entries.",
     creditBoundaries: "Boundaries: OCHA Lebanon COD administrative boundaries",
     creditLitani: "Litani centreline © OpenStreetMap contributors (ODbL)",
@@ -212,6 +227,8 @@ const T = {
       `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
     filterStatus: (n: number, year: number) =>
       `${n} مدخلاً مرصوداً في ${year} تطابق المرشّحات المضبوطة الآن.`,
+    listShow: (n: number) => `اعرض العلامات كلها (${n})`,
+    listHide: "إخفاء قائمة العلامات",
     noWebgl: "هذا المتصفّح لا يستطيع تشغيل خريطة التقريب والتحريك. والخريطة المتجهة تحمل المدخلات نفسها.",
     creditBoundaries: "الحدود: حدود لبنان الإدارية من بيانات OCHA COD",
     creditLitani: "مجرى نهر الليطاني © مساهمو OpenStreetMap (ODbL)",
@@ -298,6 +315,10 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
    * MapLibre leaves it.
    */
   const popupOpenerRef = useRef<HTMLButtonElement | null>(null);
+  /** The marker list's disclosure, and what it last opened. */
+  const [listOpen, setListOpen] = useState(false);
+  const [glOpen, setGlOpen] = useState<GlFeature | null>(null);
+  const glPanelHeadingRef = useRef<HTMLHeadingElement | null>(null);
   /** Land test from the town polygons, in lon/lat. */
   const [glLand, setGlLand] = useState<LandIndex | null>(null);
   /**
@@ -858,6 +879,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               name,
               label: String(pins.length),
               ariaLabel: `${name}${district ? `, ${district}` : ""} - ${t.clusterNote(pins.length)}`,
+              heading: t.clusterNote(pins.length),
+              town: name,
+              district,
+              detail: "",
+              body: t.clusterNote(pins.length),
+              layerLabel: "",
               radius: GL_PIN_RADIUS + Math.sqrt(pins.length) * 1.6,
               color: "#FFFFFF",
               strokeColor: UI.outlineQuiet,
@@ -892,6 +919,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry}: ` +
                 `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""}` +
                 `${pin.kind === "entry" ? ` · ${pin.detail}` : ""}`,
+              heading: pin.title,
+              town: pin.townName,
+              district: pin.district,
+              detail: pin.kind === "entry" ? pin.detail : "",
+              body: pin.body,
+              layerLabel: pin.layerLabel,
               radius: GL_PIN_RADIUS,
               // An episode is a ring, an entry a solid dot - the same
               // distinction the vector map draws.
@@ -960,7 +993,16 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       .setLngLat([lon, lat])
       .setHTML(f.properties.popupHtml)
       .addTo(map);
+    // And the same content as text on the page, which is the half a
+    // screen reader can follow - a MapLibre popup lives in the map's own
+    // overlay, outside the React tree and outside anything announced.
+    setGlOpen(f);
   }, []);
+
+  // Focus the panel the list opened, once it exists.
+  useEffect(() => {
+    if (glOpen) glPanelHeadingRef.current?.focus();
+  }, [glOpen]);
 
   // Paint the ground, then hand the markers to the source.
   useEffect(() => {
@@ -1170,6 +1212,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               locale={locale}
             />
           ) : (
+            <>
             <div dir="ltr" className="overflow-hidden rounded-md border border-border">
               {/*
                * dir stays ltr on this wrapper: the canvas is WebGL, so
@@ -1197,34 +1240,127 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 className="h-[560px] sm:h-[760px]"
                 aria-label={t.glAria(year)}
               />
-              {/*
-               * The same markers, as something a keyboard can reach.
-               *
-               * Pins are drawn into the WebGL canvas, so none of them is
-               * an element: nothing takes focus, and the only thing that
-               * opened one was a pointer click. This list is the map's
-               * content in the one form that can be tabbed through and
-               * read aloud. Selecting an item moves the map to it and
-               * opens the same popup the pointer would have.
-               */}
-              <nav aria-label={t.pinListHeading(glFeatures.length)} className="sr-only">
-                <ul>
+            </div>
+
+            {/*
+             * The same markers, as something a keyboard can reach.
+             *
+             * Pins are drawn into the WebGL canvas, so none of them is an
+             * element: nothing takes focus, and the only thing that opened
+             * one was a pointer click. This list is the map's content in
+             * the one form that can be tabbed through and read aloud.
+             *
+             * It was sr-only, which was the wrong shape twice over. Hidden
+             * text that still takes focus gives a sighted keyboard reader
+             * up to two hundred stops at which nothing appears to happen,
+             * and it gave everyone two hundred stops between the map and
+             * whatever came after it. Behind a disclosure it is one stop
+             * until asked for, and visible to whoever opens it.
+             */}
+            <div className="mt-2">
+              <button
+                type="button"
+                aria-expanded={listOpen}
+                aria-controls="gl-marker-list"
+                onClick={() => setListOpen((v) => !v)}
+                className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
+              >
+                {listOpen ? t.listHide : t.listShow(glFeatures.length)}
+              </button>
+              <div id="gl-marker-list" hidden={!listOpen}>
+                <p className="mt-2 text-micro text-text-secondary">
+                  {t.pinListHeading(glFeatures.length)}
+                </p>
+                <ul className="mt-1 max-h-64 overflow-y-auto rounded-md border border-border">
                   {glFeatures.map((f, i) => (
-                    <li key={`${f.properties.name}-${i}`}>
+                    <li key={`${f.properties.name}-${i}`} className="border-b border-border last:border-b-0">
                       <button
                         type="button"
                         onClick={(e) => {
                           popupOpenerRef.current = e.currentTarget;
                           openGlFeature(f);
                         }}
+                        className="flex w-full items-baseline gap-2 px-2 py-1.5 text-start text-[12px] hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-blue"
                       >
-                        {f.properties.ariaLabel}
+                        <span
+                          aria-hidden
+                          className="mt-1 h-2 w-2 shrink-0 rounded-sm"
+                          style={{ background: f.properties.color }}
+                        />
+                        <span className="min-w-0">{f.properties.ariaLabel}</span>
                       </button>
                     </li>
                   ))}
                 </ul>
-              </nav>
+              </div>
             </div>
+
+            {/*
+             * What the list opened, as text on the page.
+             *
+             * A MapLibre popup is appended to the map's own overlay,
+             * outside the React tree and outside anything a screen reader
+             * follows - so a reader who activated a marker heard the
+             * button they had just pressed and nothing else. This says the
+             * same thing where it can be read, and it survives the list
+             * rebuilding underneath it when the map eases to a new zoom.
+             */}
+            {glOpen ? (
+              <aside
+                className="card mt-2 border-s-4"
+                style={{ borderInlineStartColor: glOpen.properties.color }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") {
+                    e.stopPropagation();
+                    setGlOpen(null);
+                    popupOpenerRef.current?.focus();
+                  }
+                }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-text-secondary">
+                      {glOpen.properties.town}
+                      {glOpen.properties.district ? ` · ${glOpen.properties.district}` : ""}
+                    </p>
+                    <h3
+                      ref={glPanelHeadingRef}
+                      tabIndex={-1}
+                      className="mt-1 text-sm font-semibold text-navy focus-visible:outline-2 focus-visible:outline-blue"
+                    >
+                      {glOpen.properties.heading}
+                    </h3>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setGlOpen(null);
+                      popupOpenerRef.current?.focus();
+                    }}
+                    aria-label={t.mapLocale["Popup.Close"]}
+                    className="shrink-0 rounded-sm px-1.5 text-text-secondary hover:text-navy"
+                  >
+                    ×
+                  </button>
+                </div>
+                {glOpen.properties.layerLabel ? (
+                  <p className="mt-1">
+                    <span
+                      className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
+                      style={{ background: chipBackground(glOpen.properties.color) }}
+                    >
+                      {glOpen.properties.layerLabel}
+                    </span>
+                  </p>
+                ) : null}
+                {glOpen.properties.detail ? (
+                  <p className="mt-1 text-[11px] text-text-secondary">{glOpen.properties.detail}</p>
+                ) : null}
+                <p className="mt-1 text-[12px] text-text">{glOpen.properties.body}</p>
+                <p className="mt-1 text-micro text-text-secondary">{t.pinFoot}</p>
+              </aside>
+            ) : null}
+            </>
           )}
 
           {/* The key, then the groupings that cannot be put on a map at
