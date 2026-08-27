@@ -74,6 +74,22 @@ export function fmtDateTime(iso: string, locale: Loc = "en"): string {
   });
 }
 
+/**
+ * A change with its sign, as plain text.
+ *
+ * The sign needs isolating wherever this is printed on the Arabic side.
+ * A bare + or - carries no direction of its own, so it takes the
+ * paragraph's and lands to the right of the digits - "35+" where the
+ * value is +35, which a reader can take for a different number rather
+ * than a mirrored one.
+ *
+ * The isolation is left to the caller rather than baked in here, because
+ * this is used in three kinds of place and each wants a different device:
+ * `<bdi>` or dir="ltr" in HTML, an isolate character in a plain-text
+ * accessible name, and nothing at all inside a chart that already
+ * positions its own text. An invisible control character returned from
+ * here would end up in all three and be visible in none.
+ */
 export function signed(n: number): string {
   return n > 0 ? `+${n}` : String(n);
 }

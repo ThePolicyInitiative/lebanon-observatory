@@ -73,7 +73,7 @@ export default function DivergingChangeChart({
         formatter: (p) => {
           const params = p as { dataIndex: number };
           const d = sorted[params.dataIndex];
-          return `<strong>${d.stage}</strong><br/>2024: ${d.y24} · 2026: ${d.y26}<br/>${t.change}<strong>${signed(d.value)}</strong>`;
+          return `<strong>${d.stage}</strong><br/>2024: ${d.y24} · 2026: ${d.y26}<br/>${t.change}<strong><bdi dir="ltr">${signed(d.value)}</bdi></strong>`;
         },
       },
       xAxis: {

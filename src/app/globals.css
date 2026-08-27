@@ -363,6 +363,38 @@ body [dir="rtl"] {
 }
 
 /*
+ * The pan-and-zoom map's popups on the Arabic page.
+ *
+ * maplibre-gl.css carries six `[dir=rtl] .maplibregl-popup-*` rules that
+ * flip which side the little tip sits on. They are right when the popup
+ * itself is laid out right-to-left - and this one is not: the map
+ * container is deliberately dir="ltr", because the canvas is WebGL and
+ * the controls position themselves with physical properties. But those
+ * selectors match on an ancestor, and the Arabic document root is
+ * dir="rtl", so they fired anyway. The popup was built left-to-right and
+ * its tip flipped underneath it, leaving the tip pointing away from the
+ * pin it belongs to - and at a corner anchor, out into the map.
+ *
+ * These put the six back to their unlayered defaults, scoped under the
+ * map so nothing else that legitimately wants the RTL treatment is
+ * touched. Unlayered, so they outrank the library's own specificity.
+ */
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-left {
+  flex-direction: row;
+}
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-right {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip {
+  align-self: flex-start;
+}
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-top-right .maplibregl-popup-tip,
+[dir="rtl"] .maplibregl-map .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  align-self: flex-end;
+}
+
+/*
  * The editorial quote is a serif in English and cannot be one in Arabic -
  * the Latin serif carries no Arabic glyphs, so without this the Arabic
  * conclusions on the home, compare and finance pages fall through to

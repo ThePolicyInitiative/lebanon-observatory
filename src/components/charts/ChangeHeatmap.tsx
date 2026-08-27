@@ -259,7 +259,7 @@ export default function ChangeHeatmap({
           const layer = ls[li];
           const y24 = countsFor(2024, layer.id)[si];
           const y26 = countsFor(2026, layer.id)[si];
-          return `<strong>${stageNames[si]}</strong><br/>${layer.label}<br/>2024: ${y24} · 2026: ${y26} · ${tt.tipChange}: <strong>${signed(v)}</strong><br/><em>${tt.tipClick}</em>`;
+          return `<strong>${stageNames[si]}</strong><br/>${layer.label}<br/>2024: ${y24} · 2026: ${y26} · ${tt.tipChange}: <strong><bdi dir="ltr">${signed(v)}</bdi></strong><br/><em>${tt.tipClick}</em>`;
         },
       },
       xAxis: {

@@ -109,7 +109,17 @@ export default function ViewRanking({
                   <span className="min-w-0 truncate text-text" title={r.label}>
                     {r.label}
                   </span>
+                  {/*
+                   * dir="ltr" so a leading + or - stays on the left of the
+                   * digits. A bare sign carries no direction of its own, so
+                   * in the Arabic document it took the paragraph's and
+                   * rendered to the right of the number - "35+" where the
+                   * value is +35, and worse for a negative, which a reader
+                   * can take for a different number rather than a mirrored
+                   * one.
+                   */}
                   <span
+                    dir="ltr"
                     className="shrink-0 tabular-nums font-semibold"
                     style={{ color }}
                   >
