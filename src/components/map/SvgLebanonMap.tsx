@@ -314,7 +314,23 @@ type ViewBox = { x: number; y: number; w: number; h: number };
 
 const ASPECT = VIEW_H / VIEW_W;
 const HOME: ViewBox = { x: 0, y: 0, w: VIEW_W, h: VIEW_H };
-const MIN_W = VIEW_W / 18;
+/**
+ * How far in this map can be zoomed.
+ *
+ * It was VIEW_W / 18, and the pan-and-zoom map's ceiling was raised to
+ * zoom 15 precisely so a busy town's fan could open. This one - the
+ * default, the server-rendered one, and the only map at all without
+ * WebGL - was left at eighteen times, which is not enough for the
+ * tightest towns. Saida El-Qadimeh has 235 m of room around its anchor;
+ * its six entries need the rendered map about 680 CSS px wide before
+ * they clear each other, so on every phone and tablet, and on any desktop
+ * window under roughly 835 px tall, those entries stayed a counted marker
+ * at every zoom the map offered - while the marker told the reader to
+ * zoom in for a pin each.
+ *
+ * Forty-five times clears every town in both years at 300 px and above.
+ */
+const MIN_W = VIEW_W / 45;
 
 function clampVb(x: number, y: number, w: number): ViewBox {
   const cw = Math.min(Math.max(w, MIN_W), VIEW_W);
@@ -1014,6 +1030,8 @@ export default function SvgLebanonMap({
       pins: typeof entryPinsRaw;
       ax: number;
       ay: number;
+      /** Drawn radius in screen px, capped below so discs cannot overlap. */
+      radius: number;
     }[] = [];
 
     for (const [, group] of byTown) {
@@ -1027,6 +1045,8 @@ export default function SvgLebanonMap({
           pins: group,
           ax: group[0].cx,
           ay: group[0].cy,
+          // Provisional; capped against the neighbours once all are known.
+          radius: PIN_R + Math.sqrt(group.length) * 1.3,
         });
         continue;
       }
@@ -1047,6 +1067,43 @@ export default function SvgLebanonMap({
         pins.push({ ...pin, dx: moved.dx / k, dy: moved.dy / k });
       }
     }
+    /*
+     * A marker's radius grows with its count, and until now nothing
+     * stopped one town's disc from covering its neighbour's. The
+     * clustering rule separates a town from itself and says nothing about
+     * the town next door: around Nabatieh and through the Dahieh belt,
+     * ten pairs of markers overlapped at 620 px and twenty-three at 375,
+     * each opaque white disc hiding part of the one drawn before it and
+     * printing its number over the other's.
+     *
+     * So a marker may not grow past half the distance to its nearest
+     * neighbour, whether that neighbour is another marker or a pin.
+     *
+     * That does not reach zero, and cannot. The floor is one pin radius,
+     * so two towns whose anchors are less than 7.4 px apart still touch -
+     * at that separation they cannot be drawn as two discs by any rule,
+     * and shrinking further would leave a marker too small to carry its
+     * own number. What the cap removes is every overlap that was avoidable:
+     * on a 375 px phone at the opening view, 28 overlapping pairs become
+     * 8; at 620 px, 10 become 2; at 732 px, 8 become 1. The rest resolve
+     * by zooming, which now goes far enough to open every fan.
+     */
+    for (const c of clusters) {
+      let nearest = Infinity;
+      for (const other of clusters) {
+        if (other === c) continue;
+        nearest = Math.min(nearest, Math.hypot(other.ax - c.ax, other.ay - c.ay) / k);
+      }
+      for (const p of pins) {
+        const d = Math.hypot(p.cx + p.dx - c.ax, p.cy + p.dy - c.ay) / k;
+        if (d > 0) nearest = Math.min(nearest, d);
+      }
+      const wanted = PIN_R + Math.sqrt(c.count) * 1.3;
+      c.radius = Number.isFinite(nearest)
+        ? Math.max(PIN_R, Math.min(wanted, nearest / 2 - PIN_STROKE))
+        : wanted;
+    }
+
     return { entryPins: pins, entryClusters: clusters };
   }, [entryPinsRaw, k, landIndex]);
 
@@ -1157,7 +1214,7 @@ export default function SvgLebanonMap({
         const a = anchorOf(p.town);
         const cluster = clusterByTown.get(p.town.name);
         const reach = cluster
-          ? PIN_R + Math.sqrt(cluster.count) * 1.3
+          ? cluster.radius
           : fanRadius(p.total, fitSpacing(p.total, a.room / k, PIN_SPACING));
         return {
           key: p.town.name,
@@ -1275,9 +1332,16 @@ export default function SvgLebanonMap({
     selectedTownRaw ? eventsByTown.get(selectedTownRaw) : undefined,
     year,
   );
-  /** Adaptive scale bar: a round distance that stays 40–150 px on screen. */
+  /**
+   * Adaptive scale bar: a round distance that stays 40–150 px on screen.
+   *
+   * The half- and fifth-kilometre steps matter now the map zooms to
+   * forty-five times. Without them the list bottoms out at 1 km, which at
+   * the deepest zoom draws a bar over 200 px wide - no longer a scale so
+   * much as a stripe across the map.
+   */
   const scaleKm =
-    [100, 50, 25, 10, 5, 2, 1].find((km) => (km * PX_PER_KM) / k <= 150) ?? 1;
+    [100, 50, 25, 10, 5, 2, 1, 0.5, 0.2].find((km) => (km * PX_PER_KM) / k <= 150) ?? 0.2;
   const scaleLen = scaleKm * PX_PER_KM;
 
   return (
@@ -1671,7 +1735,8 @@ export default function SvgLebanonMap({
                     // Area grows with the count, so ten reads as more than
                     // three without a town of forty swallowing its
                     // neighbours.
-                    const r = PIN_R * (isSel ? 1.4 : 1) + Math.sqrt(c.count) * 1.3;
+                    // The capped radius, so a marker never covers its neighbour.
+                    const r = c.radius * (isSel ? 1.4 : 1);
                     const label = tr.cluster(c.count, c.town.name, c.town.district);
                     return (
                       <g
@@ -1740,7 +1805,7 @@ export default function SvgLebanonMap({
                     // drew something; anchorOf just reads its cache here.
                     const a = anchorOf(t);
                     const reach = cluster
-                      ? PIN_R + Math.sqrt(cluster.count) * 1.3
+                      ? cluster.radius
                       : fanRadius(p.total, fitSpacing(p.total, a.room / k, PIN_SPACING));
                     return (
                       <text

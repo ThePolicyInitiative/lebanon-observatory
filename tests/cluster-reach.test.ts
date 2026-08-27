@@ -129,6 +129,37 @@ describe("what a counted marker hides", () => {
     expect(src).toMatch(/openCluster\.pins\.map/);
   });
 
+  /**
+   * The zoom ceiling has to be deep enough to keep the marker's other
+   * promise: "zoom in for a pin each".
+   *
+   * It was VIEW_W / 18 on the vector map while the pan-and-zoom map's was
+   * raised to 15, so the tightest towns stayed a counted marker at every
+   * zoom this map offered - on every phone, and on any desktop window
+   * under roughly 835 px tall.
+   */
+  it.each([300, 339, 620, 732])(
+    "opens every town's fan at the deepest zoom, rendered at %spx",
+    (renderedW) => {
+      const MIN_W = 620 / 45;
+      const k = MIN_W / renderedW;
+      for (const year of [2024, 2026] as Year[]) {
+        const s = split(year, k);
+        expect(
+          s.clustered,
+          `${year} at ${renderedW}px still clusters ${s.clustered} towns (${s.clusteredEntries} entries) at the deepest zoom`,
+        ).toBe(0);
+      }
+    },
+  );
+
+  it("would have failed at the old ceiling on a phone", () => {
+    // Proof the guard above is capable of failing: 18x left towns stuck.
+    const k = 620 / 18 / 339;
+    const stuck = (["2024", "2026"] as const).map((y) => split(Number(y) as Year, k).clustered);
+    expect(stuck.some((n) => n > 0), "the old ceiling cleared everything too").toBe(true);
+  });
+
   it("still opens a real fan where there is room for one", () => {
     // Clustering must stay a last resort. Zoomed in, most towns fan.
     const deep = split(2026, 0.06);
