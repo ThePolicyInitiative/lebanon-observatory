@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import type { FilterSpecification, Map as MlMap, MapLayerMouseEvent } from "maplibre-gl";
 import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
@@ -86,6 +93,26 @@ function webglAvailable(): boolean {
   }
 }
 
+/**
+ * The probe, answered once and remembered.
+ *
+ * useSyncExternalStore compares what getSnapshot returns, so it has to be
+ * the same value every call rather than a fresh probe each time - and
+ * building a throwaway canvas per render would be wasteful anyway.
+ */
+let glProbe: boolean | null = null;
+function webglAvailableOnce(): boolean {
+  if (glProbe === null) glProbe = webglAvailable();
+  return glProbe;
+}
+/** Nothing to subscribe to: the answer cannot change within a page. */
+const subscribeNever = () => () => {};
+/**
+ * Unknown on the server, so the button renders enabled there and the
+ * markup the client hydrates against matches whatever it finds.
+ */
+const glUnknownOnServer = () => null;
+
 function mentionsFor(year: Year, regionId: string): MentionRow {
   const y = locations.mentions[String(year) as "2024" | "2026"];
   return y[regionId as keyof typeof y] as MentionRow;
@@ -135,8 +162,19 @@ const T = {
       `Every marker on the map as a list - ${n} in all. Selecting one brings it into view and opens what is traced there.`,
     filterStatus: (n: number, year: number) =>
       `${n} traced ${n === 1 ? "entry" : "entries"} in ${year} match the filters now set.`,
+    noWebgl: "This browser cannot run the pan-and-zoom map. The vector map carries the same entries.",
     creditBoundaries: "Boundaries: OCHA Lebanon COD administrative boundaries",
     creditLitani: "Litani centreline © OpenStreetMap contributors (ODbL)",
+    /** MapLibre's own control names, which it ships in English only. */
+    mapLocale: {
+      "Map.Title": "Map",
+      "NavigationControl.ZoomIn": "Zoom in",
+      "NavigationControl.ZoomOut": "Zoom out",
+      "FullscreenControl.Enter": "Enter fullscreen",
+      "FullscreenControl.Exit": "Exit fullscreen",
+      "AttributionControl.ToggleAttribution": "Toggle attribution",
+      "Popup.Close": "Close popup",
+    },
     fellBack:
       "The pan-and-zoom map could not start, so the vector map is shown instead. It carries the same entries and names each region and district as text.",
     mentionsIn: (year: number) => `mentions in ${year}`,
@@ -174,8 +212,19 @@ const T = {
       `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
     filterStatus: (n: number, year: number) =>
       `${n} مدخلاً مرصوداً في ${year} تطابق المرشّحات المضبوطة الآن.`,
+    noWebgl: "هذا المتصفّح لا يستطيع تشغيل خريطة التقريب والتحريك. والخريطة المتجهة تحمل المدخلات نفسها.",
     creditBoundaries: "الحدود: حدود لبنان الإدارية من بيانات OCHA COD",
     creditLitani: "مجرى نهر الليطاني © مساهمو OpenStreetMap (ODbL)",
+    /** MapLibre's own control names, which it ships in English only. */
+    mapLocale: {
+      "Map.Title": "خريطة",
+      "NavigationControl.ZoomIn": "تقريب",
+      "NavigationControl.ZoomOut": "إبعاد",
+      "FullscreenControl.Enter": "ملء الشاشة",
+      "FullscreenControl.Exit": "إنهاء ملء الشاشة",
+      "AttributionControl.ToggleAttribution": "إظهار نسب المصنّف",
+      "Popup.Close": "إغلاق النافذة",
+    },
     fellBack:
       "تعذّر تشغيل خريطة التقريب والتحريك، فعُرضت الخريطة المتجهة بدلاً منها. وهي تحمل المدخلات نفسها وتسمّي كل منطقة وقضاء نصّاً.",
     mentionsIn: (year: number) => `إشارة في ${year}`,
@@ -258,6 +307,17 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
    * page showing another.
    */
   const [fellBack, setFellBack] = useState(false);
+  /**
+   * Whether this browser can give MapLibre a GL context. Null until the
+   * probe runs, because it needs a document and the first render is on
+   * the server - so the button is never disabled in the markup and then
+   * enabled a moment later.
+   */
+  const glOk = useSyncExternalStore<boolean | null>(
+    subscribeNever,
+    webglAvailableOnce,
+    glUnknownOnServer,
+  );
   const [mapReady, setMapReady] = useState(false);
   const mapReadyRef = useRef(false);
   /**
@@ -362,6 +422,11 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                     },
                   ],
                 },
+          // MapLibre ships its control names in English only, so on the
+          // Arabic page every one of them - zoom, fullscreen, the
+          // attribution toggle, a popup's close button - was announced
+          // and titled in English inside an otherwise Arabic map.
+          locale: t.mapLocale,
           center: [35.65, 33.85],
           zoom: 7.3,
           minZoom: 6,
@@ -1045,17 +1110,22 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             onClick={() => {
               // A deliberate switch is not a failure; clear the notice.
               setFellBack(false);
-              if (renderMode === "gl") {
-                setRenderMode("svg");
-              } else if (webglAvailable()) {
-                setRenderMode("gl");
-              }
+              if (renderMode === "gl") setRenderMode("svg");
+              else setRenderMode("gl");
             }}
             aria-pressed={renderMode === "gl"}
-            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
+            // Without WebGL the click used to fall through the else-if and
+            // do nothing at all - a control that looks live, gives no
+            // feedback and changes nothing, in either language. Saying it
+            // cannot run is better than appearing to ignore the reader.
+            disabled={renderMode !== "gl" && glOk === false}
+            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-border disabled:hover:text-text-secondary"
           >
             {renderMode === "gl" ? t.backToVector : t.glOptIn}
           </button>
+          {renderMode !== "gl" && glOk === false ? (
+            <p className="mt-1 text-micro text-text-secondary">{t.noWebgl}</p>
+          ) : null}
         </div>
       </div>
 

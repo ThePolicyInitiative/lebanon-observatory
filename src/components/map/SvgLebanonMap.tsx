@@ -695,7 +695,7 @@ export default function SvgLebanonMap({
       const t = towns.find((x) => x.name === aliased);
       if (t) {
         selectTown(t);
-        setVb(vbAround(t.cx, t.cy, VIEW_W / 5));
+        setVb(vbAround(anchorOf(t).x, anchorOf(t).y, VIEW_W / 5));
         return;
       }
     }
@@ -704,7 +704,7 @@ export default function SvgLebanonMap({
     const t = towns.find((x) => x.name === m[1] && x.district === m[2]);
     if (t) {
       selectTown(t);
-      setVb(vbAround(t.cx, t.cy, VIEW_W / 5));
+      setVb(vbAround(anchorOf(t).x, anchorOf(t).y, VIEW_W / 5));
     }
   }
 
@@ -1741,7 +1741,13 @@ export default function SvgLebanonMap({
                           }
                         }}
                       >
-                        <circle r={r} fill={UI.rust} fillOpacity={0.75} stroke="#FFFFFF" strokeWidth={1.4} />
+                        {/* Opaque, because the number sits on it. At 0.75
+                            the rust composited to #BC7165 against the land
+                            fill and carried its white digits at 3.69:1,
+                            under the 4.5:1 that 8.5px text needs; solid it
+                            is 5.41:1. Seeing the ground through a badge is
+                            worth less than reading the badge. */}
+                        <circle r={r} fill={UI.rust} stroke="#FFFFFF" strokeWidth={1.4} />
                         <text
                           y={3.2}
                           fontSize={8.5}
@@ -2241,7 +2247,7 @@ export default function SvgLebanonMap({
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
                 <Link
-                  href={locale === "ar" ? "/ar/actors" : "/actors#actor-register"}
+                  href={locale === "ar" ? "/ar/actors#actor-register" : "/actors#actor-register"}
                   className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.whoLink}
