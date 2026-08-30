@@ -108,7 +108,26 @@ export function boxesOverlap(a: LabelBox, b: LabelBox): boolean {
   return a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
 }
 
-export type LabelCandidate<T> = { key: T; box: LabelBox };
+export type LabelCandidate<T> = {
+  key: T;
+  box: LabelBox;
+  /**
+   * A reserved box this candidate is not tested against, matched by
+   * identity - its own marker.
+   *
+   * A label that sits under the disc it names is touching it by
+   * construction, so testing the two would reject every such label. The
+   * damage view is built that way: each badge reserves its disc, and each
+   * label is placed just below the disc it belongs to. Nudging the label
+   * clear instead would mean relying on exact tangency, which does not
+   * survive the arithmetic - the disc radius and the label offset are
+   * scaled by a continuous zoom factor and rounded separately, so over a
+   * sample of zoom levels a label lands inside its own disc by a
+   * fraction of a pixel about a third of the time and silently vanishes.
+   * Saying which box does not apply is exact at every zoom.
+   */
+  own?: LabelBox;
+};
 
 /**
  * Greedy packing: take candidates in the order given and keep each one
@@ -129,7 +148,7 @@ export function packLabels<T>(
   const taken = [...reserved];
   const kept = new Set<T>();
   for (const c of candidates) {
-    if (taken.some((t) => boxesOverlap(t, c.box))) continue;
+    if (taken.some((t) => t !== c.own && boxesOverlap(t, c.box))) continue;
     taken.push(c.box);
     kept.add(c.key);
   }

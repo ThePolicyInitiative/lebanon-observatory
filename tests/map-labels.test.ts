@@ -190,6 +190,56 @@ describe("packing", () => {
     expect([...packReserved([b, a]).kept]).toEqual(["second"]);
   });
 
+  /**
+   * A label that names the marker it sits under.
+   *
+   * The damage view is built that way - each badge reserves the disc it
+   * draws, and its name is placed just below that disc - so testing a
+   * label against its own marker would reject every one of them. The
+   * alternative, nudging the label until it is exactly tangent, does not
+   * survive the arithmetic: the radius and the offset are scaled by a
+   * continuous zoom factor and rounded separately, so the label lands
+   * inside its own disc by a fraction of a unit at many zooms and
+   * silently vanishes. `own` is exact at every zoom.
+   */
+  it("does not test a label against its own marker", () => {
+    const disc = { x0: -10, y0: -10, x1: 10, y1: 10 };
+    const label = { key: "Aaitaroun", box: labelBox(0, 12, "Aaitaroun", 9.5, "middle") };
+    // Touching by construction, so without the exemption it is dropped.
+    expect(boxesOverlap(disc, label.box)).toBe(true);
+    expect(packLabels([label], [disc]).has("Aaitaroun")).toBe(false);
+    expect(packLabels([{ ...label, own: disc }], [disc]).has("Aaitaroun")).toBe(true);
+  });
+
+  it("still tests an exempted label against every other marker", () => {
+    // The exemption is one box, by identity - not a licence to overlap.
+    const own = { x0: -10, y0: -10, x1: 10, y1: 10 };
+    const neighbour = { x0: 4, y0: 8, x1: 40, y1: 30 };
+    const label = {
+      key: "Aaitaroun",
+      box: labelBox(0, 12, "Aaitaroun", 9.5, "middle"),
+      own,
+    };
+    expect(boxesOverlap(neighbour, label.box)).toBe(true);
+    expect(packLabels([label], [own, neighbour]).has("Aaitaroun")).toBe(false);
+  });
+
+  /**
+   * The scaled case, which is what actually bites: an equal-valued copy of
+   * the disc is not the disc, so the exemption has to be by identity.
+   */
+  it("exempts by identity, so an equal box elsewhere still blocks", () => {
+    const own = { x0: -10, y0: -10, x1: 10, y1: 10 };
+    const twin = { x0: -10, y0: -10, x1: 10, y1: 10 };
+    const label = {
+      key: "Taybe",
+      box: labelBox(0, 12, "Taybe", 9.5, "middle"),
+      own,
+    };
+    expect(packLabels([label], [own]).has("Taybe")).toBe(true);
+    expect(packLabels([label], [own, twin]).has("Taybe")).toBe(false);
+  });
+
   it("never returns two labels that overlap each other", () => {
     // The property that matters, over a grid dense enough to force
     // rejections in both axes.

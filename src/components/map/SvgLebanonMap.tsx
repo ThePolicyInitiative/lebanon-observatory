@@ -55,7 +55,13 @@ import {
   type Pin,
 } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
-import { labelBox, packLabels, packReserved } from "@/lib/map-labels";
+import {
+  labelBox,
+  packLabels,
+  packReserved,
+  type LabelBox,
+  type LabelCandidate,
+} from "@/lib/map-labels";
 import MapLegend from "./MapLegend";
 import ViewRanking, { type RankRow } from "./ViewRanking";
 
@@ -91,6 +97,18 @@ const PIN_HIT = PIN_SPACING / 2;
  * nothing becomes unreachable at any zoom.
  */
 const PIN_MIN_SEPARATION = 2 * (PIN_R + PIN_STROKE / 2);
+
+/**
+ * The damage view's badge radii, in one place.
+ *
+ * The label packing has to reserve exactly the disc the JSX draws. Two
+ * copies of `6.5 + sqrt(d/max) * 10` would be two chances to drift, and a
+ * reserved disc that is not the drawn disc is worse than no reservation:
+ * it rejects labels that would have fitted and admits ones that will not.
+ */
+const DAHIEH_R = 9;
+/** The Dahieh marker is not a cadaster, so it needs a key of its own. */
+const DAHIEH_KEY = "__dahieh";
 
 const PIN_T = {
   en: {
@@ -937,6 +955,11 @@ export default function SvgLebanonMap({
     return out;
   }, [towns, locIndex]);
   const maxDestroyed = Math.max(1, ...damageAnchors.map((a) => a.destroyed));
+  /** One definition, so the reserved disc is the drawn disc. */
+  const damageRadius = useCallback(
+    (destroyed: number) => 6.5 + Math.sqrt(destroyed / maxDestroyed) * 10,
+    [maxDestroyed],
+  );
 
   /**
    * The unified point layer: every town where something traced
@@ -1280,6 +1303,67 @@ export default function SvgLebanonMap({
     ];
     const { kept: reservedKept, boxes: reserved } = packReserved(reservedCandidates);
 
+    /*
+     * The damage view draws its own labels and used to draw them through
+     * everything: this memo had no `view` in it at all, so whichever view
+     * was on screen it packed the ENTRIES data - town names that the
+     * damage view never prints - while the four cadaster labels and the
+     * Dahieh label went out unfiltered. They printed through each other,
+     * through the destroyed-building counts in neighbouring badges, and
+     * through the district names, which are drawn in this view too.
+     *
+     * Each badge reserves its disc so a label cannot cross a number, and
+     * each label is exempted from its own disc, which it sits under by
+     * construction. Nothing moves on screen; what changes is which label
+     * gives way when two cannot both be read.
+     */
+    if (view === "damage") {
+      const discs = new Map<string, LabelBox>();
+      for (const a of damageAnchors) {
+        const r = damageRadius(a.destroyed) * k;
+        const box = { x0: a.town.cx - r, y0: a.town.cy - r, x1: a.town.cx + r, y1: a.town.cy + r };
+        discs.set(a.label, box);
+        reserved.push(box);
+      }
+      const baabda = DISTRICT_LABELS.find((l) => l.name === "Baabda");
+      if (baabda) {
+        const r = DAHIEH_R * k;
+        const box = { x0: baabda.x - r, y0: baabda.y - r, x1: baabda.x + r, y1: baabda.y + r };
+        discs.set(DAHIEH_KEY, box);
+        reserved.push(box);
+      }
+      const damageCandidates: LabelCandidate<string>[] = [
+        // Dahieh first: it names the single heaviest concentration in the
+        // 2026 assessment, so where it and a cadaster cannot both fit it
+        // is the one that stays.
+        ...(baabda
+          ? [
+              {
+                key: DAHIEH_KEY,
+                box: labelBox(baabda.x, baabda.y + 16 * k, tr.dahieh, 9.5 * k, "middle"),
+                own: discs.get(DAHIEH_KEY),
+              },
+            ]
+          : []),
+        ...damageAnchors.map((a) => ({
+          key: a.label,
+          box: labelBox(
+            a.town.cx,
+            a.town.cy + (damageRadius(a.destroyed) + 9) * k,
+            a.label,
+            9.5 * k,
+            "middle" as const,
+          ),
+          own: discs.get(a.label),
+        })),
+      ];
+      return {
+        towns: new Set<string>(),
+        reserved: reservedKept,
+        damage: packLabels(damageCandidates, reserved),
+      };
+    }
+
     // The markers themselves, which are drawn whatever the labels do. A
     // name that clears every other name can still print straight across
     // a neighbouring town's counted marker, and the number inside it is
@@ -1320,8 +1404,27 @@ export default function SvgLebanonMap({
         };
       });
 
-    return { towns: packLabels(candidates, reserved), reserved: reservedKept };
-  }, [placePoints, k, zoom, anchorOf, clusterByTown, entryClusters, entryPins]);
+    return {
+      towns: packLabels(candidates, reserved),
+      reserved: reservedKept,
+      damage: new Set<string>(),
+    };
+    // `view` is load-bearing: without it the memo packed the entries data
+    // whichever view was on screen, and the damage view got a set of town
+    // names it never draws.
+  }, [
+    placePoints,
+    k,
+    zoom,
+    view,
+    anchorOf,
+    clusterByTown,
+    entryClusters,
+    entryPins,
+    damageAnchors,
+    damageRadius,
+    tr,
+  ]);
 
   /** Town fills - memoized so zoom/pan and hover don't re-diff 1,600 paths. */
   const townLayer = useMemo(() => {
@@ -1943,7 +2046,7 @@ export default function SvgLebanonMap({
               {view === "damage" ? (
                 <>
                   {damageAnchors.map((a) => {
-                    const r = 6.5 + Math.sqrt(a.destroyed / maxDestroyed) * 10;
+                    const r = damageRadius(a.destroyed);
                     return (
                       <g
                         key={`dmg-${a.town.name}`}
@@ -1976,18 +2079,24 @@ export default function SvgLebanonMap({
                         >
                           {a.destroyed.toLocaleString("en-US")}
                         </text>
-                        <text
-                          y={r + 9}
-                          fontSize={9.5}
-                          textAnchor="middle"
-                          fill="#7A3327"
-                          stroke="#FFFFFF"
-                          strokeWidth={2.2}
-                          paintOrder="stroke"
-                          fontWeight={600}
-                        >
-                          {a.label}
-                        </text>
+                        {/* The badge is always drawn - it carries the
+                            count, which is the figure. Its name gives way
+                            when it cannot be read clear of a neighbour;
+                            the title below still says it either way. */}
+                        {visibleLabels.damage.has(a.label) ? (
+                          <text
+                            y={r + 9}
+                            fontSize={9.5}
+                            textAnchor="middle"
+                            fill="#7A3327"
+                            stroke="#FFFFFF"
+                            strokeWidth={2.2}
+                            paintOrder="stroke"
+                            fontWeight={600}
+                          >
+                            {a.label}
+                          </text>
+                        ) : null}
                         <title>{tr.dmgTitle(a.label, a.destroyed.toLocaleString("en-US"))}</title>
                       </g>
                     );
@@ -2001,19 +2110,27 @@ export default function SvgLebanonMap({
                         pointerEvents="none"
                         aria-hidden
                       >
-                        <circle r={9} fill={UI.rust} fillOpacity={0.55} stroke="#FFFFFF" strokeWidth={1.4} />
-                        <text
-                          y={16}
-                          fontSize={9.5}
-                          textAnchor="middle"
-                          fill="#7A3327"
+                        <circle
+                          r={DAHIEH_R}
+                          fill={UI.rust}
+                          fillOpacity={0.55}
                           stroke="#FFFFFF"
-                          strokeWidth={2.2}
-                          paintOrder="stroke"
-                          fontWeight={600}
-                        >
-                          {tr.dahieh}
-                        </text>
+                          strokeWidth={1.4}
+                        />
+                        {visibleLabels.damage.has(DAHIEH_KEY) ? (
+                          <text
+                            y={16}
+                            fontSize={9.5}
+                            textAnchor="middle"
+                            fill="#7A3327"
+                            stroke="#FFFFFF"
+                            strokeWidth={2.2}
+                            paintOrder="stroke"
+                            fontWeight={600}
+                          >
+                            {tr.dahieh}
+                          </text>
+                        ) : null}
                       </g>
                     );
                   })()}
