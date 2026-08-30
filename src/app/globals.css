@@ -146,6 +146,66 @@
   --color-outline-quiet: #7b8696;
 
   /*
+   * THE STATE RAMP. Identity is hue; state is ink.
+   *
+   * The four actor layers keep the whole chromatic register. A status is
+   * drawn achromatically, on graphite with no colour in it at all - so a
+   * status cannot be read as a layer, because a status is never coloured.
+   *
+   * That is measurable rather than a convention. Taking chroma as
+   * (max channel - min channel) / 255, the three rungs sit at 0.082,
+   * 0.086 and 0.094, and the least chromatic identity colour - the 2024
+   * blue - sits at 0.263. Nothing occupies the gap between, and
+   * tests/design-tokens.test.ts keeps it empty.
+   *
+   * It replaces a real collision rather than a hypothetical one. Three
+   * components painted `text-teal` for procurement and `text-navy` for
+   * formal mandate - the NGO and official layer colours exactly - and
+   * hand-typed #1f6b4e, a green belonging to no token, for underway. One
+   * chip row in the register showed official-navy, NGO-teal and
+   * community-magenta encoding three things that were not actor layers.
+   *
+   * Only four of the nine statuses occur across the 771 entries:
+   * not confirmed 404, traced activity 301, formal mandate 54,
+   * procurement 12, completed output 0. The ramp names those, and
+   * reserves the fifth.
+   *
+   * Measured on the two surfaces a figure ever sits on - white and the
+   * sunken panel: mandate 3.23:1 and 3.01:1, procurement 7.31:1 and
+   * 6.80:1, underway 16.78:1 and 15.60:1.
+   *
+   * Adjacent rungs are 2.26:1 and 2.29:1 apart, which is under 3:1 and is
+   * not claimed otherwise. It is the arithmetic ceiling: requiring all
+   * three to clear 3:1 on the sunken panel caps the lightest, and three
+   * rungs in the range that leaves cannot separate further. It is
+   * resolved the way the year pair above is - with a second channel. Every
+   * segment is separated by a 1px rule in the surface colour, so each
+   * abuts ground rather than its neighbour; the order is fixed and never
+   * sorted, so position identifies a rung; and every strip is labelled,
+   * because a twelve-entry segment is 1.6% of 771 and no colour makes a
+   * sliver legible.
+   *
+   * State marks are drawn on --color-surface or --color-surface-sunken
+   * only, never on the page ground, where the lightest rung falls to
+   * 2.79:1. Every figure already lives inside a card or a sunken panel.
+   */
+  --state-mandate: #87909c;
+  --state-procurement: #4e5764;
+  --state-underway: #141e2c;
+
+  /*
+   * Rung zero is unpainted on purpose. "Not confirmed" is not the bottom
+   * of the ladder, it is the absence of a grade - never assumed zero,
+   * never assumed done - and it is the largest count of the four. An
+   * outline is how this file already draws a mark that must stay quiet
+   * and still be countable.
+   */
+  --state-ungraded: var(--color-surface);
+  --state-ungraded-edge: var(--color-outline-quiet);
+  /* Reserved, and drawn only in a legend: no entry carries it. */
+  --state-complete-edge: var(--color-outline-quiet);
+
+  /*
    * THE TYPE SCALE. Eight steps, in place of the twenty-two distinct
    * font-size values the pages had grown - fifteen of them hand-typed
    * bracket sizes, eleven of them crammed between 8px and 13.5px, where the
@@ -215,6 +275,11 @@
   --color-magenta: var(--color-magenta);
   --color-rust: var(--color-rust);
   --color-caution-text: var(--color-caution-text);
+  --color-state-mandate: var(--state-mandate);
+  --color-state-procurement: var(--state-procurement);
+  --color-state-underway: var(--state-underway);
+  --color-state-ungraded: var(--state-ungraded);
+  --color-state-ungraded-edge: var(--state-ungraded-edge);
   --color-text: var(--color-text);
   --color-text-secondary: var(--color-text-secondary);
   --color-text-muted: var(--color-text-muted);
@@ -514,13 +579,23 @@ p {
   }
 
   /*
-   * The amber rule that marks an analytical caution throughout the site.
+   * The rule that marks an analytical caution throughout the site.
    * Logical, not physical: this is the site's one standing caution signal
    * and it was drawing on the far edge of all nine Arabic routes, opposite
    * the text it belongs to. A no-op in English across all 21 call sites.
+   *
+   * It used to be amber, and amber is the municipal layer's identity
+   * colour. On a dense page that put amber municipal counters beside amber
+   * caution rules inside one screen - the same collision this file already
+   * resolved for teal, which used to mean both "NGO actor" and "this went
+   * up". Amber is identity only now.
+   *
+   * The rule goes to the strong border grey, and the caution is carried by
+   * the words instead: --color-caution-text at 5.49:1, against the amber's
+   * 2.16:1, which was never readable and was only ever being seen.
    */
   .note-caution {
-    border-inline-start: 2px solid var(--color-amber);
+    border-inline-start: 2px solid var(--color-border-strong);
     padding-inline-start: 0.75rem;
   }
 

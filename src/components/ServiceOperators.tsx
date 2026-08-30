@@ -116,7 +116,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                 {ar ? (o.serviceAr ?? SERVICE_AR[o.service] ?? o.service) : o.service}
               </span>
               {o.inArea ? (
-                <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[#1F6B4E]">
+                <span className="rounded-sm bg-surface-sunken px-1.5 py-0.5 font-semibold text-text ring-1 ring-border">
                   {t.reaches}
                 </span>
               ) : null}

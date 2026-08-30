@@ -90,7 +90,7 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
           </span>
         ) : null}
         {u.southOfLitani ? (
-          <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 font-semibold text-[#1F6B4E]">
+          <span className="rounded-sm bg-surface-sunken px-1.5 py-0.5 font-semibold text-text ring-1 ring-border">
             {t.south}
           </span>
         ) : null}

@@ -1,7 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { LAYER_COLORS, UI, VALENCE, YEAR_COLORS } from "@/lib/colors";
+import {
+  LAYER_COLORS,
+  STATE_COLORS,
+  STATE_UNGRADED_EDGE,
+  UI,
+  VALENCE,
+  YEAR_COLORS,
+} from "@/lib/colors";
 import { rel, srcFiles } from "./source-tree";
 
 /**
@@ -113,6 +120,7 @@ describe("the palette's two copies", () => {
       "#263645": "old text - use CHART.text / UI.text",
       "#667588": "old secondary text - use CHART.label / UI.textSecondary",
       "#dce3ea": "old axis grey - use CHART.axis / UI.border",
+      "#1f6b4e": "hand-typed status green in no token - use StateChip / STATE_COLORS",
     };
     const pattern = new RegExp(Object.keys(retired).join("|"), "gi");
 
@@ -206,6 +214,70 @@ describe("colours that carry text", () => {
     const identity = Object.values(LAYER_COLORS).map(lower);
     expect(identity).not.toContain(lower(VALENCE.good));
     expect(identity).not.toContain(lower(VALENCE.bad));
+    expect(identity).not.toContain(lower(VALENCE.caution));
+  });
+
+  /**
+   * Identity is hue; state is ink.
+   *
+   * The four actor layers keep the whole chromatic register, and a status
+   * is drawn achromatically - so a status cannot be read as a layer,
+   * because a status is never coloured. That was not true until recently:
+   * three components painted procurement in the NGO teal and formal
+   * mandate in the official navy, and one chip row showed three identity
+   * hues encoding three things that were not actor layers.
+   *
+   * The rule is enforceable because the two families separate cleanly on
+   * chroma, taken as (max channel - min channel) / 255. Measured today the
+   * highest state value is 0.094 and the lowest chromatic one is 0.263, so
+   * the thresholds below sit either side of a gap nothing occupies. A new
+   * status colour with any hue in it fails here rather than on the page.
+   */
+  it("draws state without hue and identity with it", () => {
+    const chroma = (hex: string) => {
+      const v = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+      return (Math.max(...v) - Math.min(...v)) / 255;
+    };
+
+    for (const [name, value] of Object.entries(STATE_COLORS)) {
+      expect(chroma(value), `state ${name} (${value}) carries hue`).toBeLessThan(0.16);
+    }
+    expect(chroma(STATE_UNGRADED_EDGE)).toBeLessThan(0.16);
+
+    const chromatic = {
+      ...LAYER_COLORS,
+      ...YEAR_COLORS,
+      ...VALENCE,
+    } as Record<string, string>;
+    for (const [name, value] of Object.entries(chromatic)) {
+      expect(chroma(value), `${name} (${value}) is too grey to be identity`).toBeGreaterThan(0.24);
+    }
+
+    // And the gap is real rather than incidental: nothing sits between.
+    const topState = Math.max(
+      ...Object.values(STATE_COLORS).map(chroma),
+      chroma(STATE_UNGRADED_EDGE),
+    );
+    const bottomIdentity = Math.min(...Object.values(chromatic).map(chroma));
+    expect(bottomIdentity - topState).toBeGreaterThan(0.1);
+  });
+
+  /**
+   * The ramp is drawn on a card or a sunken panel, never on the page
+   * ground - where the lightest rung falls to 2.79:1, under the 3:1 a
+   * graphical object needs. Every figure on the site already lives inside
+   * one of those two, so this costs nothing and is worth asserting.
+   */
+  it("clears 3:1 on both surfaces a figure ever sits on", () => {
+    for (const [name, value] of Object.entries(STATE_COLORS)) {
+      for (const [surface, ground] of [
+        ["card", "#ffffff"],
+        ["sunken panel", "#f4f7fa"],
+      ] as const) {
+        const ratio = contrast(value, ground);
+        expect(ratio, `${name} is ${ratio.toFixed(2)}:1 on the ${surface}`).toBeGreaterThanOrEqual(3);
+      }
+    }
   });
 
   /**

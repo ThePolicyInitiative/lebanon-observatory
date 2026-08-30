@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { layers, stageLabel, statusLabel, type Locale } from "@/lib/vocab";
+import { layers, stageLabel, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import { CHART } from "@/lib/colors";
+import StateChip from "@/components/StateChip";
 
 const T = {
   en: {
@@ -65,17 +66,14 @@ const T = {
  * bundle alongside the action text it does show.
  */
 
-const STATUS_CHIP: Record<string, string> = {
-  underway: "bg-[#E8F1EC] text-[#1F6B4E]",
-  completed: "bg-[#E8F1EC] text-[#1F6B4E]",
-  procurement: "bg-[#E8F1F3] text-teal",
-  financing_committed: "bg-[#E8F1F3] text-teal",
-  financing_disbursed: "bg-[#E8F1F3] text-teal",
-  formal_mandate: "bg-[#EEF2F7] text-navy",
-  announced: "bg-[#FAF3E3] text-[#8a6200]",
-  planned: "bg-[#FAF3E3] text-[#8a6200]",
-  not_verified: "bg-[#F2F2EF] text-text-secondary",
-};
+/*
+ * The status tints that used to live here painted procurement and the
+ * two financing statuses in the NGO teal, formal mandate in the official
+ * navy, and announced/planned on the municipal amber - three of the four
+ * actor layer colours, encoding something that is not an actor layer.
+ * One chip row showed official-navy, NGO-teal and community-magenta for
+ * year, stage, status and role at once. StateChip draws status as ink.
+ */
 
 export type RegisterRecord = {
   id: string;
@@ -353,11 +351,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                         <span className="rounded-sm bg-white px-1.5 py-0.5 text-navy ring-1 ring-border">
                           {r.stageNo}. {stageLabel(r.stageNo, locale)}
                         </span>
-                        <span
-                          className={`rounded-sm px-1.5 py-0.5 ${STATUS_CHIP[r.implementationStatus] ?? "bg-[#F2F2EF] text-text-secondary"}`}
-                        >
-                          {statusLabel(r.implementationStatus, locale)}
-                        </span>
+                        <StateChip status={r.implementationStatus} locale={locale} />
                         {r.roles.map((key) => (
                           <span
                             key={key}

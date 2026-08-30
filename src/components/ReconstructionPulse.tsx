@@ -2,6 +2,7 @@ import Link from "next/link";
 import { roleRecords, stageCounts, finance } from "@/lib/data";
 import { stageLabel, statusLabel, type Locale } from "@/lib/vocab";
 import { YEAR_COLORS } from "@/lib/colors";
+import StateChip from "./StateChip";
 
 /**
  * The reconstruction pulse: what the sources show on the physical
@@ -13,12 +14,13 @@ import { YEAR_COLORS } from "@/lib/colors";
 
 const CHAIN_STAGE_NOS = [6, 7, 8, 9]; // Rubble clearance → Shelter and return
 const STATUS_ORDER = ["underway", "procurement", "formal_mandate", "not_verified"];
-const STATUS_CHIP: Record<string, string> = {
-  underway: "bg-[#E8F1EC] text-[#1F6B4E]",
-  procurement: "bg-[#E8F1F3] text-teal",
-  formal_mandate: "bg-[#EEF2F7] text-navy",
-  not_verified: "bg-[#F2F2EF] text-text-secondary",
-};
+/*
+ * The status tints that used to live here painted procurement in the NGO
+ * teal and formal mandate in the official navy - two of the four actor
+ * layer colours, encoding something that is not an actor layer - and
+ * hand-typed a green belonging to no token. StateChip draws them as ink
+ * instead. See the state ramp in globals.css.
+ */
 
 /** The procurement portal's status wording, rendered in Arabic. */
 const STATUS_AT_CHECK_AR: Record<string, string> = {
@@ -163,11 +165,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
             <ul className="mt-3 space-y-2">
               {statusMix.map((s) => (
                 <li key={s.status} className="flex items-center justify-between gap-2">
-                  <span
-                    className={`rounded-sm px-2 py-0.5 text-[11px] font-semibold ${STATUS_CHIP[s.status] ?? ""}`}
-                  >
-                    {s.label}
-                  </span>
+                  <StateChip status={s.status} locale={locale} />
                   <span className="tabular-nums text-sm font-semibold text-navy">
                     {s.count}
                   </span>

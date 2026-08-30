@@ -109,8 +109,11 @@ export default function LayerStageProfile({
               </span>
               <span
                 className={`justify-self-end rounded-sm px-1 py-0.5 text-[11.5px] font-bold tabular-nums ${
+                  // A delta is direction of change, so it belongs to the
+                  // valence family - not to the state ramp, and not to the
+                  // hand-typed green that was standing in for it.
                   delta > 0
-                    ? "bg-[#E8F1EC] text-[#1F6B4E]"
+                    ? "bg-[#E8F1EC] text-good"
                     : delta < 0
                       ? "bg-[#F7E9E5] text-rust"
                       : "text-text-secondary"

@@ -174,7 +174,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
                 <span className="w-36 shrink-0 truncate">
                   {say(DEPT_AR, d.name)}
                   {d.inArea ? (
-                    <span className="ms-1 text-[10px] font-semibold text-[#1F6B4E]">{t.southTag}</span>
+                    <span className="ms-1 text-[10px] font-semibold text-text-secondary">{t.southTag}</span>
                   ) : null}
                 </span>
                 <span
@@ -269,7 +269,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
               >
                 <span>{say(DEPT_AR, p.department)}</span>
                 {p.towns ? (
-                  <span className="rounded-sm bg-[#E8F1EC] px-1.5 py-0.5 normal-case text-[#1F6B4E]">
+                  <span className="rounded-sm bg-surface-sunken px-1.5 py-0.5 normal-case text-text ring-1 ring-border">
                     {say(TOWN_AR, p.towns)}
                   </span>
                 ) : null}

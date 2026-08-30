@@ -53,7 +53,40 @@ export const YEAR_COLORS = {
 export const VALENCE = {
   good: YEAR_COLORS.y2026,
   bad: YEAR_COLORS.negative,
+  /**
+   * Caution, which used to be the municipal amber doing a second job.
+   * #d69600 is the municipal layer's identity colour, and on a dense page
+   * that put amber municipal counters beside amber caution rules within
+   * one screen. Amber is identity only now, on the same reasoning this
+   * file already applied to teal, and caution is carried by its readable
+   * sibling - 5.49:1 on white, against the amber's 2.16:1.
+   */
+  caution: "#8a6200",
 } as const;
+
+/**
+ * Status, as ink rather than hue - the JS mirror of the state ramp in
+ * globals.css.
+ *
+ * Identity is hue and state is ink: the four layer colours keep the whole
+ * chromatic register, and a status is drawn achromatically so it can
+ * never be mistaken for a layer. Three components used to paint
+ * procurement in the NGO teal and formal mandate in the official navy,
+ * which is exactly the confusion this prevents.
+ *
+ * Only the statuses that occur are named. Across the 771 entries: not
+ * confirmed 404, traced activity 301, formal mandate 54, procurement 12,
+ * completed output 0 - so completion is reserved to a legend outline and
+ * has no fill here to be drawn with by accident.
+ */
+export const STATE_COLORS = {
+  formal_mandate: "#87909c",
+  procurement: "#4e5764",
+  underway: "#141e2c",
+} as const;
+
+/** The edge that makes the unpainted "not confirmed" rung countable. */
+export const STATE_UNGRADED_EDGE = "#7b8696";
 
 /**
  * The four greys every chart draws its furniture from.
