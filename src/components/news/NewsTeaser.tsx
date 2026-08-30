@@ -8,7 +8,7 @@ import { fmtDateTime } from "@/lib/format";
 
 const T = {
   en: {
-    href: "/news",
+    href: "/reported",
     unavailable:
       "Live updates are temporarily unavailable. The analysis on this site is unaffected - it is separate, and confirmed.",
     open: "Open the live-updates page",
@@ -17,7 +17,7 @@ const T = {
     empty: "No recent coverage matched the observatory's filters.",
   },
   ar: {
-    href: "/ar/news",
+    href: "/ar/reported",
     unavailable:
       "المستجدات المباشرة غير متاحة مؤقتاً. تحليل هذا الموقع لم يتأثّر - فهو منفصل ومؤكَّد.",
     open: "افتح صفحة المستجدات",

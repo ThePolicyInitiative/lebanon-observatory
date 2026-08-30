@@ -107,7 +107,7 @@ export default function CoverageHistory({
   kind?: string | null;
 }) {
   const t = T[locale];
-  const base = locale === "ar" ? "/ar/news" : "/news";
+  const base = locale === "ar" ? "/ar/reported" : "/reported";
 
   const activeYear = YEARS.some((y) => String(y) === year) ? year : null;
   const activeKind = (KINDS as readonly string[]).includes(kind ?? "") ? kind : null;

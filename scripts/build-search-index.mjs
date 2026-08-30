@@ -206,12 +206,12 @@ const chartAnchor = (id, component, pages) => ({
  * the same components, so one check pair serves each side: the page still
  * mounts the component, and the component still carries the id.
  */
-const ACTORS_MODULE = (file) => ["src", "app", "(en)", "actors", `${file}.tsx`];
+const ACTORS_MODULE = (file) => ["src", "app", "(en)", "who", `${file}.tsx`];
 const actorAnchorFor = (id, component) => ({
   id,
   checks: [
-    [EN_PAGE("/actors"), `<${component}`],
-    [AR_PAGE("/actors"), `<${component}`],
+    [EN_PAGE("/who"), `<${component}`],
+    [AR_PAGE("/who"), `<${component}`],
     [ACTORS_MODULE(component), `id="${id}"`],
   ],
 });
@@ -226,8 +226,8 @@ const KPI_AR = { id: "ar-kpis", checks: [[AR_PAGE("/"), 'id="ar-kpis"']] };
 
 /** The milestone timeline, the one surface that prints timeline.json. */
 const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
-  EN_PAGE("/finance"),
-  AR_PAGE("/finance"),
+  EN_PAGE("/money"),
+  AR_PAGE("/money"),
 ]);
 
 /**
@@ -326,7 +326,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/actors",
+    route: "/who",
     en: "Actor layers",
     ar: "طبقات الجهات الفاعلة",
     enDesc:
@@ -355,7 +355,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/damage",
+    route: "/destroyed",
     en: "The damage assessments - kept honest",
     ar: "تقديرات الأضرار",
     enDesc:
@@ -380,7 +380,7 @@ const PAGES = [
         ar: "الأضرار المبلَّغة بلدياً بحسب القضاء",
         enAnchor: { id: "district-survey" },
         arAnchor: chartAnchor("district-damage-2024", "DistrictDamageChart", [
-          AR_PAGE("/damage"),
+          AR_PAGE("/destroyed"),
         ]),
       },
       {
@@ -388,7 +388,7 @@ const PAGES = [
         ar: "الأضرار والخسائر والاحتياجات بحسب القطاع",
         enAnchor: { id: "sector-chart" },
         arAnchor: chartAnchor("sector-estimates", "SectorDamageChart", [
-          AR_PAGE("/damage"),
+          AR_PAGE("/destroyed"),
         ]),
       },
     ],
@@ -426,7 +426,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/finance",
+    route: "/money",
     en: "Finance and delivery",
     ar: "التمويل مقابل الإنجاز",
     enDesc:
@@ -455,7 +455,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/news",
+    route: "/reported",
     en: "Live news and official updates",
     ar: "مستجدات مباشرة",
     enDesc:
@@ -472,7 +472,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/explorer",
+    route: "/entries",
     en: "Who did what, and where",
     ar: "مستكشف المدخلات",
     enDesc:
@@ -633,7 +633,7 @@ export function buildIndex() {
     const people = [...entry.people];
     const subtypes = [...entry.subtypes];
     items.push(
-      item("actor", entry.base, ar, `/actors#${actorAnchor(entry.base)}`, {
+      item("actor", entry.base, ar, `/who#${actorAnchor(entry.base)}`, {
         c: `${layer.en} · ${yearsEn(entry.years)}`,
         ca: `${layer.ar} · ${yearsAr(entry.years)}`,
         x: [...subtypes, ...people].join(" · "),
@@ -693,7 +693,7 @@ export function buildIndex() {
   /* The four actor layers. */
   for (const layer of LAYER_LABELS) {
     items.push(
-      item("layer", layer.en, layer.ar, "/actors", {
+      item("layer", layer.en, layer.ar, "/who", {
         c: "Actor layer",
         ca: "طبقة جهات فاعلة",
       }),
@@ -726,7 +726,7 @@ export function buildIndex() {
      where every other one writes 23 أيلول 2024. */
   const timeline = readJson("src", "data", "timeline.json");
   const timelineOk = anchorLives(TIMELINE_ANCHOR, null, warnings);
-  const timelineHref = timelineOk ? `/finance#${TIMELINE_ANCHOR.id}` : "/finance";
+  const timelineHref = timelineOk ? `/money#${TIMELINE_ANCHOR.id}` : "/money";
   for (const event of timeline) {
     const track = TRACKS[event.track];
     if (!track) throw new Error(`Unknown track "${event.track}" on ${event.id}`);

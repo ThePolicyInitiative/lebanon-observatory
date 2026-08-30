@@ -23,20 +23,20 @@ export const metadata: Metadata = {
 const EN_LINKS: [string, string][] = [
   ["/", "Home"],
   ["/compare", "2024 vs 2026"],
-  ["/actors", "Actor layers"],
+  ["/who", "Actor layers"],
   ["/map", "Map"],
-  ["/finance", "Finance & delivery"],
-  ["/explorer", "Data explorer"],
+  ["/money", "Finance & delivery"],
+  ["/entries", "Data explorer"],
   ["/search", "Search"],
 ];
 
 const AR_LINKS: [string, string][] = [
   ["/ar", "الرئيسية"],
   ["/ar/compare", "2024 مقابل 2026"],
-  ["/ar/actors", "الجهات الفاعلة"],
+  ["/ar/who", "الجهات الفاعلة"],
   ["/ar/map", "الخريطة"],
-  ["/ar/finance", "التمويل والإنجاز"],
-  ["/ar/explorer", "المستكشف"],
+  ["/ar/money", "التمويل والإنجاز"],
+  ["/ar/entries", "المستكشف"],
   ["/ar/search", "البحث"],
 ];
 

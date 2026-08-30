@@ -13,7 +13,7 @@ import { localeAlternates } from "@/lib/i18n";
 import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  alternates: localeAlternates("/damage"),
+  alternates: localeAlternates("/destroyed"),
   title: "Damage assessments",
   description:
     "The building-destruction data for Lebanon's 2024 and 2026 wars: four non-additive 2024 tracks, sector damage and losses, and the two bounded 2026 assessment zones - presented side by side, never merged.",
@@ -245,7 +245,7 @@ export default function DamagePage() {
           See where traced activity concentrated →
         </Link>{" "}
         ·{" "}
-        <Link href="/finance" className="font-medium text-blue underline-offset-2 hover:underline">
+        <Link href="/money" className="font-medium text-blue underline-offset-2 hover:underline">
           See what financing followed the data →
         </Link>
       </p>

@@ -5,7 +5,7 @@ import { localeAlternates } from "@/lib/i18n";
 import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  alternates: localeAlternates("/explorer"),
+  alternates: localeAlternates("/entries"),
   title: "Data explorer",
   description:
     "Who did what and where: searchable actor-stage tracking for Lebanon's reconstruction system, 2024 and 2026, with citations and confirmation notes.",

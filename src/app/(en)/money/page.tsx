@@ -14,7 +14,7 @@ import { localeAlternates } from "@/lib/i18n";
 import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  alternates: localeAlternates("/finance"),
+  alternates: localeAlternates("/money"),
   title: "Finance and delivery",
   description:
     "Assessed need, financing framework, approved financing, disbursement, procurement and completed output in Lebanon's reconstruction, 2024–2026 - kept strictly separate.",

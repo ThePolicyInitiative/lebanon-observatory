@@ -61,8 +61,8 @@ function routes(locale: Locale) {
   const prefix = locale === "ar" ? "/ar" : "";
   return {
     home: prefix || "/",
-    milestonePage: `${prefix}/finance`,
-    updatePage: `${prefix}/actors`,
+    milestonePage: `${prefix}/money`,
+    updatePage: `${prefix}/who`,
     feed: `${prefix}/feed.xml`,
   };
 }

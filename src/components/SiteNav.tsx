@@ -11,15 +11,25 @@ import { AR, CHROME } from "@/lib/i18n";
  * same routes under /ar, so following the navigation never drops the reader
  * back into English mid-visit.
  */
+/**
+ * The tab bar is the question the reader arrived with.
+ *
+ * It used to be eight topics - Home, 2024 vs 2026, Actor layers, Damage
+ * assessments, Map, Finance, Live updates, Explorer - which named the
+ * site's own filing rather than anything a reader wants to know, and put
+ * an axis (the year) and a tool (the explorer) beside four subjects as
+ * though they were the same kind of thing.
+ *
+ * Each of these is a question the tracking can answer, and each page is
+ * one instrument tuned to answer exactly one of them. The map is not a
+ * tab, because "map" is not a question: it is how /who draws its answer.
+ */
 const NAV_ITEMS = [
-  { path: "/", label: "Home", ar: AR.nav.home },
-  { path: "/compare", label: "2024 vs 2026", ar: AR.nav.compare },
-  { path: "/actors", label: "Actor layers", ar: AR.nav.actors },
-  { path: "/damage", label: "Damage assessments", ar: AR.nav.damage },
-  { path: "/map", label: "Map", ar: AR.nav.map },
-  { path: "/finance", label: "Finance", ar: AR.nav.finance },
-  { path: "/news", label: "Live updates", ar: AR.nav.news },
-  { path: "/explorer", label: "Explorer", ar: AR.nav.explorer },
+  { path: "/", label: "Was anything built?", short: "Built?", ar: AR.nav.built, arShort: AR.nav.builtShort },
+  { path: "/who", label: "Who is doing what?", short: "Who?", ar: AR.nav.who, arShort: AR.nav.whoShort },
+  { path: "/money", label: "Where did the money go?", short: "Money?", ar: AR.nav.money, arShort: AR.nav.moneyShort },
+  { path: "/destroyed", label: "What was destroyed?", short: "Destroyed?", ar: AR.nav.destroyed, arShort: AR.nav.destroyedShort },
+  { path: "/reported", label: "What is being reported?", short: "Reported?", ar: AR.nav.reported, arShort: AR.nav.reportedShort },
 ];
 
 /**
@@ -112,7 +122,20 @@ export default function SiteNav() {
                         : "text-white/70 hover:text-white"
                     }`}
                   >
-                    {isArabic ? item.ar : item.label}
+                    {/*
+                     * The whole question where the bar has room, and the
+                     * one-word form where it does not. Five questions run
+                     * about 700px at this size, so they fit a desktop and
+                     * crowd a small laptop - and a truncated question
+                     * reads worse than a short one, so the short form is
+                     * written rather than clipped.
+                     */}
+                    <span className="hidden xl:inline">
+                      {isArabic ? item.ar : item.label}
+                    </span>
+                    <span className="xl:hidden">
+                      {isArabic ? item.arShort : item.short}
+                    </span>
                   </Link>
                 </li>
               );

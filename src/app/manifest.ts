@@ -46,7 +46,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: "Live updates",
         short_name: "Updates",
-        url: "/news",
+        url: "/reported",
       },
     ],
   };

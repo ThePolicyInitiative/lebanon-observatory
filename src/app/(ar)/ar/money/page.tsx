@@ -14,9 +14,9 @@ import Takeaways from "@/components/Takeaways";
 import { fmtUsd, fmtDate } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: AR.pages.finance.title,
-  description: AR.pages.finance.desc,
-  alternates: localeAlternates("/finance", "ar"),
+  title: AR.pages.money.title,
+  description: AR.pages.money.desc,
+  alternates: localeAlternates("/money", "ar"),
 };
 
 /** The six concepts public debate merges, kept apart here as on the English page. */
@@ -62,10 +62,10 @@ const PORTAL_STATUS_AR: Record<string, string> = {
 export default function Page() {
   return (
     <ArabicPageShell
-      title={AR.pages.finance.title}
-      lede={AR.pages.finance.lede}
-      point={AR.pages.finance.point}
-      englishHref="/finance"
+      title={AR.pages.money.title}
+      lede={AR.pages.money.lede}
+      point={AR.pages.money.point}
+      englishHref="/money"
       figures={[
         { value: "11 مليار $", label: "احتياجات التعافي وإعادة الإعمار المقدَّرة" },
         { value: "1 مليار $", label: "إطار LEAP القابل للتوسّع" },

@@ -6,12 +6,12 @@ const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const PAGES = [
   "",
   "/compare",
-  "/actors",
-  "/damage",
+  "/who",
+  "/destroyed",
   "/map",
-  "/finance",
-  "/news",
-  "/explorer",
+  "/money",
+  "/reported",
+  "/entries",
   "/search",
   "/about",
 ];
@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: locale === "en" ? languages.en : languages.ar,
       lastModified: CONTENT_UPDATED,
       changeFrequency:
-        p === "/news"
+        p === "/reported"
           ? ("hourly" as const)
           : SECONDARY.has(p)
             ? ("yearly" as const)

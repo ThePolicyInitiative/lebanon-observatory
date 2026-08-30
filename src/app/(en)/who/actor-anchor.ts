@@ -24,5 +24,5 @@ export function actorAnchor(base: string): string {
 
 /** The same anchor as a link, for any surface that names an actor. */
 export function actorHref(base: string, locale: Locale = "en"): string {
-  return `${locale === "ar" ? "/ar" : ""}/actors#${actorAnchor(base)}`;
+  return `${locale === "ar" ? "/ar" : ""}/who#${actorAnchor(base)}`;
 }

@@ -14,10 +14,10 @@ export default function NotFound() {
         {[
           ["/", "Home"],
           ["/compare", "2024 vs 2026"],
-          ["/actors", "Actor layers"],
+          ["/who", "Actor layers"],
           ["/map", "Map"],
-          ["/finance", "Finance & delivery"],
-          ["/explorer", "Data explorer"],
+          ["/money", "Finance & delivery"],
+          ["/entries", "Data explorer"],
           ["/search", "Search"],
         ].map(([href, label]) => (
           <li key={href}>

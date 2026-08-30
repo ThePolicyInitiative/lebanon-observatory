@@ -9,15 +9,15 @@ import ReportedUpdates from "@/components/ReportedUpdates";
 import ServiceOperators from "@/components/ServiceOperators";
 import Takeaways from "@/components/Takeaways";
 import ActorTreemap from "@/components/charts/ActorTreemap";
-import ActorStageMatrix from "@/app/(en)/actors/ActorStageMatrix";
-import ActorRegister from "@/app/(en)/actors/ActorRegister";
-import ActorTabs from "@/app/(en)/actors/ActorTabs";
+import ActorStageMatrix from "@/app/(en)/who/ActorStageMatrix";
+import ActorRegister from "@/app/(en)/who/ActorRegister";
+import ActorTabs from "@/app/(en)/who/ActorTabs";
 import { cautionCounts, layers } from "@/lib/vocab";
 
 export const metadata: Metadata = {
-  title: AR.pages.actors.title,
-  description: AR.pages.actors.desc,
-  alternates: localeAlternates("/actors", "ar"),
+  title: AR.pages.who.title,
+  description: AR.pages.who.desc,
+  alternates: localeAlternates("/who", "ar"),
 };
 
 export default function Page() {
@@ -31,10 +31,10 @@ export default function Page() {
   const south = webUpdates.updates.filter((u) => u.southOfLitani).length;
   return (
     <ArabicPageShell
-      title={AR.pages.actors.title}
-      lede={AR.pages.actors.lede}
-      point={AR.pages.actors.point}
-      englishHref="/actors"
+      title={AR.pages.who.title}
+      lede={AR.pages.who.lede}
+      point={AR.pages.who.point}
+      englishHref="/who"
       figures={counts}
     >
       <p className="mt-6 max-w-3xl text-sm leading-relaxed text-text-secondary">

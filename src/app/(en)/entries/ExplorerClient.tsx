@@ -774,7 +774,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 <h4 className={headingCls}>{t.relatedNews}</h4>
                 <p className="mt-1 text-[13px]">
                   <Link
-                    href={`${ar ? "/ar" : ""}/news?stage=${encodeURIComponent(selected.stage)}`}
+                    href={`${ar ? "/ar" : ""}/reported?stage=${encodeURIComponent(selected.stage)}`}
                     className="text-blue underline underline-offset-2"
                   >
                     {t.openCoverage(stageLabel(selected.stageNo, locale))}

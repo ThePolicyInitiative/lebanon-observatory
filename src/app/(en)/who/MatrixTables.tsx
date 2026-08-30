@@ -148,7 +148,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                           hashchange, and a router navigation whose only
                           difference is the fragment never fires one. */}
                       <a
-                        href={`${locale === "ar" ? "/ar" : ""}/actors#${r.anchor}`}
+                        href={`${locale === "ar" ? "/ar" : ""}/who#${r.anchor}`}
                         className="text-inherit underline-offset-2 hover:underline"
                       >
                         {r.base}

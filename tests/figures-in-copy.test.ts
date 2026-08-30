@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CHANGE_CHARTS, CONTENT, GOVERNANCE_SHIFT, type Bi } from "@/app/(en)/actors/actor-content";
+import { CHANGE_CHARTS, CONTENT, GOVERNANCE_SHIFT, type Bi } from "@/app/(en)/who/actor-content";
 import {
   LAYERS,
   MUNICIPAL_POWER_GAP,

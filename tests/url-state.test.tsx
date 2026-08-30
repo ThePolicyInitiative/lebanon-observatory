@@ -18,7 +18,7 @@ import { useUrlState } from "@/lib/useUrlState";
 const nav = vi.hoisted(() => ({
   replace: vi.fn(),
   push: vi.fn(),
-  pathname: "/explorer",
+  pathname: "/entries",
   params: new URLSearchParams(),
 }));
 
@@ -31,7 +31,7 @@ vi.mock("next/navigation", () => ({
 const DEFAULTS = { year: "all", layer: "all", stage: "all", q: "" };
 
 /** Renders the hook as one of the views would, over a given query string. */
-function mount(query = "", pathname = "/explorer") {
+function mount(query = "", pathname = "/entries") {
   nav.params = new URLSearchParams(query);
   nav.pathname = pathname;
   return renderHook(() => useUrlState(DEFAULTS));
@@ -65,7 +65,7 @@ describe("writing filter state into the URL", () => {
     const { result } = mount("");
     act(() => result.current.set("layer", "official"));
     expect(nav.replace).toHaveBeenCalledTimes(1);
-    expect(nav.replace).toHaveBeenCalledWith("/explorer?layer=official", { scroll: false });
+    expect(nav.replace).toHaveBeenCalledWith("/entries?layer=official", { scroll: false });
   });
 
   it("keeps the parameters already in the URL", () => {
@@ -84,24 +84,24 @@ describe("writing filter state into the URL", () => {
   it("removes a value that has gone back to its default", () => {
     const { result } = mount("layer=official&year=2026");
     act(() => result.current.set("layer", "all"));
-    expect(nav.replace).toHaveBeenCalledWith("/explorer?year=2026", { scroll: false });
+    expect(nav.replace).toHaveBeenCalledWith("/entries?year=2026", { scroll: false });
   });
 
   it("removes an emptied value and a nulled one", () => {
     const { result } = mount("q=beirut&layer=official");
     act(() => result.current.set("q", ""));
-    expect(nav.replace).toHaveBeenLastCalledWith("/explorer?layer=official", { scroll: false });
+    expect(nav.replace).toHaveBeenLastCalledWith("/entries?layer=official", { scroll: false });
 
     nav.replace.mockClear();
     const second = mount("q=beirut&layer=official");
     act(() => second.result.current.set("layer", null));
-    expect(nav.replace).toHaveBeenLastCalledWith("/explorer?q=beirut", { scroll: false });
+    expect(nav.replace).toHaveBeenLastCalledWith("/entries?q=beirut", { scroll: false });
   });
 
   it("leaves a bare path when every filter is back at its default", () => {
     const { result } = mount("layer=official");
     act(() => result.current.set("layer", "all"));
-    expect(nav.replace).toHaveBeenCalledWith("/explorer", { scroll: false });
+    expect(nav.replace).toHaveBeenCalledWith("/entries", { scroll: false });
   });
 
   it("applies a batch of changes in a single navigation", () => {
@@ -121,9 +121,9 @@ describe("writing filter state into the URL", () => {
   });
 
   it("strips the whole query on reset, keeping the route", () => {
-    const { result } = mount("layer=official&year=2026&q=beirut", "/ar/explorer");
+    const { result } = mount("layer=official&year=2026&q=beirut", "/ar/entries");
     act(() => result.current.reset());
     expect(nav.replace).toHaveBeenCalledTimes(1);
-    expect(nav.replace).toHaveBeenCalledWith("/ar/explorer", { scroll: false });
+    expect(nav.replace).toHaveBeenCalledWith("/ar/entries", { scroll: false });
   });
 });

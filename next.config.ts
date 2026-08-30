@@ -113,6 +113,36 @@ const nextConfig: NextConfig = {
   // response.
   poweredByHeader: false,
 
+  /**
+   * The routes as they were, kept working.
+   *
+   * The tab bar became the question a reader arrives with rather than the
+   * site's own filing, and five paths moved with it. Anything already
+   * published - a link in a report, a bookmark, a search result, the
+   * sitemap a crawler fetched last week - points at the old ones, and a
+   * URL that has been given out is a promise.
+   *
+   * Permanent, because these are not coming back: a 308 is what tells a
+   * crawler to move its index rather than keep asking. Both language
+   * trees, and the anchor and query string survive the move, so a link
+   * into a named actor or a filtered view lands where it meant to.
+   */
+  async redirects() {
+    const moved: [string, string][] = [
+      ["/actors", "/who"],
+      ["/finance", "/money"],
+      ["/damage", "/destroyed"],
+      ["/news", "/reported"],
+      ["/explorer", "/entries"],
+    ];
+    return moved.flatMap(([from, to]) => [
+      { source: from, destination: to, permanent: true },
+      { source: `${from}/:path*`, destination: `${to}/:path*`, permanent: true },
+      { source: `/ar${from}`, destination: `/ar${to}`, permanent: true },
+      { source: `/ar${from}/:path*`, destination: `/ar${to}/:path*`, permanent: true },
+    ]);
+  },
+
   async headers() {
     return [
       // Header rules are checked before the filesystem, so these reach the

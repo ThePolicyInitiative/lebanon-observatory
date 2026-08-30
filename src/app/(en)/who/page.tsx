@@ -18,7 +18,7 @@ import { localeAlternates } from "@/lib/i18n";
 import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  alternates: localeAlternates("/actors"),
+  alternates: localeAlternates("/who"),
   title: "Actor layers",
   description:
     "Four actor layers in Lebanon's reconstruction system - official institutions, NGOs and international agencies, municipalities, and community initiatives - profiled for 2024 and 2026 with gains, losses, mandates and delivery.",

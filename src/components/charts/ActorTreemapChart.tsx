@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
-import { actorHref } from "@/app/(en)/actors/actor-anchor";
+import { actorHref } from "@/app/(en)/who/actor-anchor";
 import ChartFrame from "./ChartFrame";
 import { layers, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";

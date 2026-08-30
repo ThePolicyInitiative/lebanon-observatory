@@ -4,7 +4,7 @@ import { actorBase, actorLabel } from "@/lib/actor-names";
 // From the data-free module, not through ActorRegister: this component
 // renders inside a client tree, and the register module carries the whole
 // entry log with it.
-import { actorHref } from "@/app/(en)/actors/actor-anchor";
+import { actorHref } from "@/app/(en)/who/actor-anchor";
 import { cautionCounts, layers, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
@@ -161,7 +161,7 @@ export default function ActorConcentration({
       </div>
       <p className="mt-3 text-xs">
         <Link
-          href={locale === "ar" ? `/ar/explorer?layer=${layer}` : `/explorer?layer=${layer}`}
+          href={locale === "ar" ? `/ar/entries?layer=${layer}` : `/entries?layer=${layer}`}
           className="text-blue underline underline-offset-2"
         >
           {t.explorer}

@@ -4,12 +4,12 @@ import { AR, localeAlternates } from "@/lib/i18n";
 import { slimRecords } from "@/lib/map-records";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
-import ExplorerClient from "@/app/(en)/explorer/ExplorerClient";
+import ExplorerClient from "@/app/(en)/entries/ExplorerClient";
 
 export const metadata: Metadata = {
-  title: AR.pages.explorer.title,
-  description: AR.pages.explorer.desc,
-  alternates: localeAlternates("/explorer", "ar"),
+  title: AR.pages.entries.title,
+  description: AR.pages.entries.desc,
+  alternates: localeAlternates("/entries", "ar"),
 };
 
 /**
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ArabicPageShell
-      title={AR.pages.explorer.title}
-      lede={AR.pages.explorer.lede}
-      point={AR.pages.explorer.point}
-      englishHref="/explorer"
+      title={AR.pages.entries.title}
+      lede={AR.pages.entries.lede}
+      point={AR.pages.entries.point}
+      englishHref="/entries"
       figures={[
         { value: String(slimRecords.length), label: "مدخل متتبَّع" },
         { value: "105 ← 130", label: "جهة فاعلة، 2024 ثم 2026" },

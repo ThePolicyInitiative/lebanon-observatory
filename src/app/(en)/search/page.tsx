@@ -41,14 +41,14 @@ export default function SearchPage() {
           the live news feed, and it does not read the full text of every
           traced entry - each of those carries its own search on its own page:{" "}
           <Link
-            href="/explorer"
+            href="/entries"
             className="font-medium text-blue underline-offset-2 hover:underline"
           >
             the explorer
           </Link>{" "}
           and{" "}
           <Link
-            href="/news"
+            href="/reported"
             className="font-medium text-blue underline-offset-2 hover:underline"
           >
             the news page

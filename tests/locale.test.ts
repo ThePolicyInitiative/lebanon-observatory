@@ -20,7 +20,7 @@ import { kpis } from "@/lib/data";
  */
 
 /** The pages with their own entry in AR.pages. */
-const PAGES = ["compare", "actors", "damage", "map", "finance", "news", "explorer"];
+const PAGES = ["compare", "who", "destroyed", "map", "money", "reported", "entries"];
 /**
  * The two halves of the site have separate root layouts, so each lives in
  * its own route group. Route groups do not appear in a URL: (en)/compare is
@@ -88,7 +88,7 @@ describe("the Arabic side", () => {
 
   it("names every page in Arabic in the navigation", () => {
     const arabic = /[؀-ۿ]/;
-    for (const key of ["home", "compare", "actors", "damage", "map", "finance", "news", "explorer"] as const) {
+    for (const key of ["home", "compare", "map", "built", "who", "money", "destroyed", "reported"] as const) {
       expect(arabic.test(AR.nav[key]), `nav.${key} is not Arabic`).toBe(true);
     }
   });

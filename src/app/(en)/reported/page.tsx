@@ -6,7 +6,7 @@ import PageShell from "@/components/PageShell";
 import { localeAlternates } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  alternates: localeAlternates("/news"),
+  alternates: localeAlternates("/reported"),
   title: "Live updates",
   description:
     "Aggregated live coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official publishers - searchable and filterable, kept separate from the analysis.",

@@ -2516,13 +2516,13 @@ export default function SvgLebanonMap({
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
                 <Link
-                  href={locale === "ar" ? "/ar/actors#actor-register" : "/actors#actor-register"}
+                  href={locale === "ar" ? "/ar/who#actor-register" : "/who#actor-register"}
                   className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.whoLink}
                 </Link>
                 <Link
-                  href={locale === "ar" ? "/ar/explorer" : "/explorer"}
+                  href={locale === "ar" ? "/ar/entries" : "/entries"}
                   className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.explorerLink}

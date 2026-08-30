@@ -23,7 +23,7 @@ export const SITE_URL = configuredSiteUrl || "http://localhost:3000";
  * without this pairing a search engine has to guess which one it is looking
  * at - and, since the two share a layout, it tends to guess wrong.
  *
- * `path` is the English route ("/" , "/finance"); the Arabic counterpart is
+ * `path` is the English route ("/" , "/money"); the Arabic counterpart is
  * always the same route under /ar.
  */
 export function localeAlternates(path: string, locale: "en" | "ar" = "en") {
@@ -66,6 +66,22 @@ export const AR = {
       "تتبّع إعادة إعمار لبنان: رفع الأنقاض، معالجة الركام، أعمال البناء، الإيواء والعودة - من يعيد البناء، بأي تمويل، وفي أي مرحلة، 2024-2026.",
   },
   nav: {
+    /*
+     * The tabs are questions now, not topics. The wide labels below carry
+     * the whole question; SiteNav prints the short form on a narrow
+     * screen, because a five-word question does not fit a phone tab bar
+     * and a truncated question is worse than a short one.
+     */
+    built: "هل أُنجز شيء؟",
+    builtShort: "أُنجز؟",
+    who: "من يفعل ماذا؟",
+    whoShort: "من؟",
+    money: "أين ذهب المال؟",
+    moneyShort: "المال؟",
+    destroyed: "ما الذي دُمِّر؟",
+    destroyedShort: "الدمار؟",
+    reported: "ماذا يُنشَر؟",
+    reportedShort: "يُنشَر؟",
     home: "الرئيسية",
     compare: "2024 مقابل 2026",
     actors: "الجهات الفاعلة",
@@ -184,7 +200,7 @@ export const AR = {
       point:
         "المقارنة هنا تقيس حضور الجهات في المراحل، لا الإنفاق ولا الإنجاز ولا عدد المستفيدين.",
     },
-    actors: {
+    who: {
       desc:
         "أربع طبقات فاعلة في إعادة إعمار لبنان - المؤسسات الرسمية، والمنظمات الدولية وغير الحكومية، والبلديات، والمجتمع المحلي - لعامي 2024 و2026، بمكاسبها وخسائرها ومهامّها.",
       title: "طبقات الجهات الفاعلة",
@@ -192,7 +208,7 @@ export const AR = {
       point:
         "الخلاصة المتكررة: في القرى الجنوبية، العمل الظاهر فعلياً يقوم به الأهالي والجمعيات والبلديات، وغالباً على نفقتهم الخاصة.",
     },
-    damage: {
+    destroyed: {
       desc:
         "تقديرات أضرار حربي 2024 و2026 في لبنان: أربعة مسارات لا تُجمع لعام 2024، وتقييمان لمنطقتين في 2026، مع منهجية كل رقم ونطاقه وتاريخه.",
       title: "تقديرات الأضرار",
@@ -208,7 +224,7 @@ export const AR = {
       point:
         "الخريطة تُظهر أين رُصد حضور الجهات، دبّوساً لكل مدخل متتبَّع - والحضور المرصود ليس مقياساً للضرر ولا للحاجة، وغياب العلامة غياب معطى لا غياب ضرر.",
     },
-    finance: {
+    money: {
       desc:
         "التمويل مقابل الإنجاز في إعادة إعمار لبنان: الاحتياج والإطار والالتزام والدفع الفعلي أشياء مختلفة، وإطار LEAP ليس مكافئاً للاحتياج الوطني.",
       title: "التمويل مقابل الإنجاز",
@@ -216,12 +232,12 @@ export const AR = {
       point:
         "حتى تاريخ التوقف لم يُعرض أي عقد أشغال مُرسى على بوابة الشراء، وبقيت مؤشرات الإنجاز المادي المعلنة عند الصفر.",
     },
-    news: {
+    reported: {
       desc:
         "تجميع آلي لتغطية إعادة إعمار لبنان من ناشرين لبنانيين ودوليين وإنسانيين ورسميين، مفصولاً عن تحليل المرصد ولا يدخل في أي عدّ من أعداده.",
       title: "مستجدات مباشرة",
     },
-    explorer: {
+    entries: {
       desc:
         "كل مدخل متتبَّع في مرصد إعادة إعمار لبنان، قابلاً للترشيح بالسنة والطبقة والمرحلة وحالة التنفيذ ودرجة القابلية للمقارنة.",
       title: "مستكشف المدخلات",

@@ -85,7 +85,7 @@ export default function ArabicPage() {
               {AR.hero.ctaCompare}
             </Link>
             <Link
-              href="/ar/news"
+              href="/ar/reported"
               className="inline-flex min-h-11 items-center rounded-md border border-white/25 px-5 text-sm font-semibold text-white/80 hover:border-white/60 hover:text-white"
             >
               {AR.hero.ctaNews}
@@ -156,14 +156,14 @@ export default function ArabicPage() {
             <YearHeatmaps locale="ar" />
             <ChangeHeatmap locale="ar" showCaveat={false} />
           </div>
-          <Onward locale="ar" href="/ar/actors">{AR.home.roles.link}</Onward>
+          <Onward locale="ar" href="/ar/who">{AR.home.roles.link}</Onward>
         </section>
 
         <section id="finance-delivery" aria-label={AR.home.finance.title}>
           <SectionHeading index={AR.home.finance.n} title={AR.home.finance.title}>
             <Body locale="ar">{AR.home.finance.body}</Body>
           </SectionHeading>
-          <Onward locale="ar" href="/ar/finance">{AR.home.finance.link}</Onward>
+          <Onward locale="ar" href="/ar/money">{AR.home.finance.link}</Onward>
         </section>
 
         <section id="geography" aria-label={AR.home.geography.title}>
@@ -203,7 +203,7 @@ export default function ArabicPage() {
               {AR.home.geography.openMap} ←
             </Link>
             <Link
-              href="/ar/damage"
+              href="/ar/destroyed"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.home.geography.openDamage} ←

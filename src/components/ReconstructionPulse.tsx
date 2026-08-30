@@ -213,7 +213,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
               <Link
-                href={`${base}/finance`}
+                href={`${base}/money`}
                 className="font-medium text-blue underline-offset-2 hover:underline"
               >
                 {t.financeLink}

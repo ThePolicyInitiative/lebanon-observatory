@@ -88,7 +88,7 @@ export default function HomePage() {
               Open the reconstruction map
             </Link>
             <Link
-              href="/news"
+              href="/reported"
               className="inline-flex min-h-11 items-center rounded-md border border-white/25 px-5 text-sm font-semibold text-white/80 transition-colors duration-150 hover:border-white/60 hover:text-white"
             >
               View live updates
@@ -193,7 +193,7 @@ export default function HomePage() {
           </div>
           <p className="mt-3 text-sm">
             <Link
-              href="/actors"
+              href="/who"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Explore each actor layer in depth →
@@ -214,7 +214,7 @@ export default function HomePage() {
               numbers they carry are already in the indicator strip above. */}
           <p className="mt-3 text-sm">
             <Link
-              href="/finance"
+              href="/money"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Full finance and delivery analysis →
@@ -265,7 +265,7 @@ export default function HomePage() {
             </Link>{" "}
             ·{" "}
             <Link
-              href="/damage"
+              href="/destroyed"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Examine the damage assessments →

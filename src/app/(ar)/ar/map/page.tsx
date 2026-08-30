@@ -95,7 +95,7 @@ export default function Page() {
           زائفة، ولذلك لا يرسم هذا المرصد تقديرات الأضرار على مفتاح مشترك.
           الأرقام على مستوى كل منطقة، مع شارة قابلية المقارنة وطريقة
           التثبيت لكل رقم، معروضة في{" "}
-          <Link href="/ar/damage" className="underline underline-offset-2">
+          <Link href="/ar/destroyed" className="underline underline-offset-2">
             صفحة تقديرات الأضرار
           </Link>
           ، إلى جانب مسارات عدّ الأبنية الأربعة غير القابلة للجمع لعام 2024.

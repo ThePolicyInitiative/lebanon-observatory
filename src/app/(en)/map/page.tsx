@@ -58,7 +58,7 @@ export default function MapPage() {
           observatory does not map damage estimates onto a shared legend. The
           zone-level figures, each with its comparability badge and
           confirmation method, are on the{" "}
-          <a href="/damage" className="underline underline-offset-2">damage-data page</a>,
+          <a href="/destroyed" className="underline underline-offset-2">damage-data page</a>,
           alongside the four non-additive 2024 building-count tracks.
         </p>
       </section>

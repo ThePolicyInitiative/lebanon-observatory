@@ -94,7 +94,7 @@ test.describe("every route", () => {
     test.setTimeout(60_000 + ROUTES.length * 15_000);
     await page.route("**/api/news**", (route) => route.abort());
     const offenders: string[] = [];
-    for (const route of ROUTES.filter((r) => !r.includes("/news"))) {
+    for (const route of ROUTES.filter((r) => !r.includes("/reported"))) {
       await page.goto(route, { waitUntil: "networkidle" });
       const text = await page.locator("body").innerText();
       for (const hit of bannedHitsInPage(text)) offenders.push(`${route}: ${hit}`);
@@ -122,7 +122,7 @@ test.describe("the composite-widget keyboard model", () => {
   const group = (page: Page) => page.locator('[role="tablist"] [role="tab"]');
 
   test("keeps one Tab stop and moves selection with the arrow keys", async ({ page }) => {
-    await page.goto("/actors", { waitUntil: "networkidle" });
+    await page.goto("/who", { waitUntil: "networkidle" });
     const tabs = group(page);
     await expect(tabs.first()).toBeVisible();
     expect(await tabs.count()).toBeGreaterThan(1);
@@ -140,7 +140,7 @@ test.describe("the composite-widget keyboard model", () => {
   });
 
   test("flips the horizontal keys under right-to-left", async ({ page }) => {
-    await page.goto("/ar/actors", { waitUntil: "networkidle" });
+    await page.goto("/ar/who", { waitUntil: "networkidle" });
     const tabs = group(page);
     await expect(tabs.first()).toBeVisible();
     expect(await tabs.count()).toBeGreaterThan(1);
@@ -157,7 +157,7 @@ test.describe("the composite-widget keyboard model", () => {
 test.describe("the explorer drawer", () => {
   test("opens an entry, traps focus in it, and hands focus back on close", async ({ page }) => {
     const w = watch(page);
-    await page.goto("/explorer", { waitUntil: "networkidle" });
+    await page.goto("/entries", { waitUntil: "networkidle" });
 
     const firstRow = page.locator("table tbody tr").first();
     await expect(firstRow).toBeVisible();

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import ArabicPageShell from "../ArabicPageShell";
-import NewsExplorer from "@/app/(en)/news/NewsExplorer";
+import NewsExplorer from "@/app/(en)/reported/NewsExplorer";
 import CoverageHistory from "@/components/CoverageHistory";
 
 export const metadata: Metadata = {
-  title: AR.pages.news.title,
-  description: AR.pages.news.desc,
-  alternates: localeAlternates("/news", "ar"),
+  title: AR.pages.reported.title,
+  description: AR.pages.reported.desc,
+  alternates: localeAlternates("/reported", "ar"),
 };
 
 /**
@@ -26,7 +26,7 @@ export default async function Page({
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
   // No opening passage: the English page carries none either.
   return (
-    <ArabicPageShell title={AR.pages.news.title} englishHref="/news">
+    <ArabicPageShell title={AR.pages.reported.title} englishHref="/reported">
       <section aria-labelledby="ar-news-explorer" className="mt-8">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2

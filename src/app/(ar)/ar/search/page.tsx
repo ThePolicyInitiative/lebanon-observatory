@@ -28,14 +28,14 @@ export default function Page() {
           المباشر، ولا يقرأ النص الكامل لكل مدخل متتبَّع - ولكلٍّ منهما بحثه على
           صفحته:{" "}
           <Link
-            href="/ar/explorer"
+            href="/ar/entries"
             className="font-medium text-blue underline-offset-2 hover:underline"
           >
             مستكشف المدخلات
           </Link>{" "}
           و
           <Link
-            href="/ar/news"
+            href="/ar/reported"
             className="font-medium text-blue underline-offset-2 hover:underline"
           >
             صفحة المستجدات

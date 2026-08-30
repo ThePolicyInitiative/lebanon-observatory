@@ -14,18 +14,18 @@ import { comparabilityLabel } from "@/lib/vocab";
 import { fmtDate } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: AR.pages.damage.title,
-  description: AR.pages.damage.desc,
-  alternates: localeAlternates("/damage", "ar"),
+  title: AR.pages.destroyed.title,
+  description: AR.pages.destroyed.desc,
+  alternates: localeAlternates("/destroyed", "ar"),
 };
 
 export default function Page() {
   return (
     <ArabicPageShell
-      title={AR.pages.damage.title}
-      lede={AR.pages.damage.lede}
-      point={AR.pages.damage.point}
-      englishHref="/damage"
+      title={AR.pages.destroyed.title}
+      lede={AR.pages.destroyed.lede}
+      point={AR.pages.destroyed.point}
+      englishHref="/destroyed"
       figures={[
         { value: "4", label: "مسارات غير قابلة للجمع تحصر دمار 2024" },
         { value: "11,095", label: "مبنى مدمَّر كلياً جنوب الليطاني في تقييم 2026" },
@@ -206,7 +206,7 @@ export default function Page() {
         </Link>{" "}
         ·{" "}
         <Link
-          href="/ar/finance"
+          href="/ar/money"
           className="font-medium text-blue underline-offset-2 hover:underline"
         >
           اطّلع على التمويل الذي أعقب المعطيات ←
