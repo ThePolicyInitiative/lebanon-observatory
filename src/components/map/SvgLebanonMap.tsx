@@ -333,6 +333,18 @@ const HOME: ViewBox = { x: 0, y: 0, w: VIEW_W, h: VIEW_H };
  */
 const MIN_W = VIEW_W / 45;
 
+/**
+ * The overview thumbnail, sized from the projection rather than from
+ * memory.
+ *
+ * It was 56x78, which matched the old 620x860 box. Once VIEW_H became
+ * 800 the drawing letterboxed inside it - and because the click that
+ * recentres the map reads the ratio, a click near the bottom aimed at
+ * ground the thumbnail was not drawing.
+ */
+const MINI_W = 56;
+const MINI_H = Math.round(MINI_W * (VIEW_H / VIEW_W));
+
 function clampVb(x: number, y: number, w: number): ViewBox {
   const cw = Math.min(Math.max(w, MIN_W), VIEW_W);
   const ch = cw * ASPECT;
@@ -408,6 +420,8 @@ export default function SvgLebanonMap({
     pins: (Pin & { town: Town })[];
   } | null>(null);
   const clusterHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  /** The overview drawing, so a click on it is measured against itself. */
+  const miniRef = useRef<SVGSVGElement | null>(null);
   /** Set when a pin is closed, so focus returns only then - not on open. */
   const restoreFocusRef = useRef(false);
   const [districtOutlines, setDistrictOutlines] = useState<
@@ -1209,6 +1223,21 @@ export default function SvgLebanonMap({
       }
     }
 
+    // The markers themselves, which are drawn whatever the labels do. A
+    // name that clears every other name can still print straight across
+    // a neighbouring town's counted marker, and the number inside it is
+    // the thing that becomes unreadable.
+    for (const c of entryClusters) {
+      const r = c.radius * k;
+      reserved.push({ x0: c.ax - r, y0: c.ay - r, x1: c.ax + r, y1: c.ay + r });
+    }
+    for (const p of entryPins) {
+      const r = PIN_R * k;
+      const x = p.cx + p.dx * k;
+      const y = p.cy + p.dy * k;
+      reserved.push({ x0: x - r, y0: y - r, x1: x + r, y1: y + r });
+    }
+
     const candidates = placePoints
       // A town the city labels already name would print the same place
       // twice over. That is a fact about the names, not about the zoom,
@@ -1235,7 +1264,7 @@ export default function SvgLebanonMap({
       });
 
     return packLabels(candidates, reserved);
-  }, [placePoints, k, zoom, anchorOf, clusterByTown]);
+  }, [placePoints, k, zoom, anchorOf, clusterByTown, entryClusters, entryPins]);
 
   /** Town fills - memoized so zoom/pan and hover don't re-diff 1,600 paths. */
   const townLayer = useMemo(() => {
@@ -1973,13 +2002,24 @@ export default function SvgLebanonMap({
                     setVb(HOME);
                     return;
                   }
-                  const rect = e.currentTarget.getBoundingClientRect();
+                  // Measured from the drawing, not from the button around
+                  // it. The button carries padding and a border, so
+                  // reading the ratio off it put every click a couple of
+                  // percent out - and silently more whenever the two
+                  // sizes drifted apart.
+                  const rect = (miniRef.current ?? e.currentTarget).getBoundingClientRect();
                   const cx = ((e.clientX - rect.left) / rect.width) * VIEW_W;
                   const cy = ((e.clientY - rect.top) / rect.height) * VIEW_H;
                   setVb((cur) => vbAround(cx, cy, cur.w));
                 }}
               >
-                <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} width={56} height={78} aria-hidden>
+                <svg
+                  ref={miniRef}
+                  viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+                  width={MINI_W}
+                  height={MINI_H}
+                  aria-hidden
+                >
                   {GOV_PATHS.map((p) => (
                     <path key={`mini-${p.name}`} d={p.d} fill="#D7DEE6" stroke="#FFFFFF" strokeWidth={4} />
                   ))}
@@ -2011,12 +2051,23 @@ export default function SvgLebanonMap({
          * does announce; the panels no longer claim to be live regions,
          * so a reader moving from one pin to the next hears it once.
          */}
+        {/*
+         * What was selected, not what region it falls in.
+         *
+         * The second branch announced the zone label, and a zone covers
+         * many towns - so selecting any of the thirty-odd markers in the
+         * south said "South and Nabatieh" and selecting the next one said
+         * it again. A live region that repeats itself is one a reader
+         * learns to ignore.
+         */}
         <p role="status" aria-live="polite" className="sr-only">
           {openPin
             ? `${openPin.title} · ${openPin.townName}${openPin.district ? ` · ${openPin.district}` : ""}`
-            : selectedZone && zoneMentions
-              ? regionLabel(selectedZone, locale)
-              : ""}
+            : openCluster
+              ? `${openCluster.town.name}${openCluster.town.district ? ` · ${openCluster.town.district}` : ""} · ${tr.clusterPanel(openCluster.pins.length)}`
+              : selectedTownName
+                ? `${selectedTownName}${selectedTownRecords.length ? ` · ${tr.clusterPanel(selectedTownRecords.length)}` : ""}`
+                : ""}
         </p>
         {/*
          * What a counted marker stands for.
@@ -2330,7 +2381,12 @@ export default function SvgLebanonMap({
                         <span className="font-semibold text-navy">
                           {selectedDistrictRecords.length}
                         </span>{" "}
-                        traced activity{selectedDistrictRecords.length === 1 ? "" : "s"} locate
+                        {/* "activity" does not pluralise with an s. The
+                            hover a few lines up already gets this right;
+                            this branch was written separately and did
+                            not, so every town a reader opened said
+                            "traced activitys". */}
+                        traced activit{selectedDistrictRecords.length === 1 ? "y" : "ies"} locate
                         work in {selectedDistrict} district under the current filters
                         {selectedTownRecords.length > 0 ? (
                           <>
