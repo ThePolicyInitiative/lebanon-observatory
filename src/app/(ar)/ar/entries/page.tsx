@@ -26,7 +26,7 @@ export default function Page() {
       point={AR.pages.entries.point}
       englishHref="/entries"
       figures={[
-        { value: String(slimRecords.length), label: "مدخل متتبَّع" },
+        { value: String(slimRecords.length), label: "مدخلاً متتبَّعاً" },
         { value: "105 ← 130", label: "جهة فاعلة، 2024 ثم 2026" },
         { value: "12", label: "مرحلة في سلسلة القيمة" },
         { value: "2", label: "سنتان تحت المقارنة" },

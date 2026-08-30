@@ -1,7 +1,14 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { layers, stageList, stageShortList, type Locale } from "@/lib/vocab";
+import {
+  AR_COUNT,
+  arabicCount,
+  layers,
+  stageList,
+  stageShortList,
+  type Locale,
+} from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
 import { YEAR_COLORS } from "@/lib/colors";
 
@@ -23,18 +30,16 @@ const T = {
     lede: "كل جهة مرصودة مقابل أفعال سلسلة القيمة الاثني عشر، مصفوفة لكل سنة. الصفوف مجمّعة بحسب الطبقة ومرتّبة بحسب الحضور المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
     filter: "ترشيح الجهات",
     placeholder: "مثلاً: بلدية، UNDP، مجلس الإنماء",
-    panel: (y: number, n: number) => `${y}: ${n} جهة × 12 فعلاً`,
+    panel: (y: number, n: number) => `${y}: ${arabicCount(n, AR_COUNT.actor)} × 12 فعلاً`,
     legend: "الخلية = مدخلات تضع الجهة في ذلك الفعل؛ الأغمق أكثر",
     actor: "الجهة",
     total: "المجموع",
-    // Arabic counts agree with the noun: one, two, the 3-10 plural, then
-    // the singular again from 11 up.
-    actors: (n: number) =>
-      n === 1 ? "جهة واحدة" : n === 2 ? "جهتان" : n <= 10 ? `${n} جهات` : `${n} جهة`,
+    // These two were the site's reference implementation of the count
+    // rule, written by hand - while `panel` above, in the same object,
+    // ignored it. That is what a shared helper is for.
+    actors: (n: number) => arabicCount(n, AR_COUNT.actor),
     cell: (a: string, s: string, n: number) =>
-      `${a} - ${s}: ${
-        n === 1 ? "مدخل واحد" : n === 2 ? "مدخلان" : n <= 10 ? `${n} مدخلات` : `${n} مدخلاً`
-      }`,
+      `${a} - ${s}: ${arabicCount(n, AR_COUNT.entry)}`,
   },
 } as const;
 

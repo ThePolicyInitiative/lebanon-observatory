@@ -5,7 +5,13 @@ import { actorBase, actorLabel } from "@/lib/actor-names";
 // renders inside a client tree, and the register module carries the whole
 // entry log with it.
 import { actorHref } from "@/app/(en)/who/actor-anchor";
-import { cautionCounts, layers, type Locale } from "@/lib/vocab";
+import {
+  AR_COUNT,
+  arabicCount,
+  cautionCounts,
+  layers,
+  type Locale,
+} from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
 /**
@@ -21,7 +27,7 @@ const T = {
   en: {
     title: "Who carries this layer",
     sub: "Traced entries per named actor, each year. Entry counts are traced presence, not importance or delivery.",
-    actors: (n: number) => `${n} traced actors`,
+    actors: (n: number) => `${n} traced ${n === 1 ? "actor" : "actors"}`,
     top: (n: number, pct: number) => `Top ${n} carry ${pct}% of the layer's entries`,
     more: (n: number) => `Show the remaining ${n}`,
     explorer: "Open these actors in the explorer →",
@@ -30,7 +36,7 @@ const T = {
   ar: {
     title: "من يحمل هذه الطبقة",
     sub: "المدخلات المرصودة لكل جهة مسمّاة، في كل سنة. وأعداد المدخلات حضور مرصود، لا أهمية ولا إنجازاً.",
-    actors: (n: number) => `${n} جهة مرصودة`,
+    actors: (n: number) => arabicCount(n, AR_COUNT.actorTraced),
     top: (n: number, pct: number) => `أعلى ${n} جهات تحمل ${pct}% من مدخلات الطبقة`,
     more: (n: number) => `أظهر الـ${n} المتبقية`,
     explorer: "افتح هذه الجهات في المستكشف ←",

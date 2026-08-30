@@ -5,7 +5,12 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import { actorHref } from "@/app/(en)/who/actor-anchor";
 import ChartFrame from "./ChartFrame";
-import { layers, type Locale } from "@/lib/vocab";
+import {
+  AR_COUNT,
+  arabicCount,
+  layers,
+  type Locale,
+} from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import { YEAR_COLORS } from "@/lib/colors";
@@ -19,7 +24,7 @@ const T = {
       "Cell area measures traced presence in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled).",
     mentions: (n: number, y: number) => `${n} traced mention${n === 1 ? "" : "s"} in ${y}`,
     legend: (label: string, total: number, actors: number) =>
-      `${label}: ${total} mentions · ${actors} actors`,
+      `${label}: ${total} ${total === 1 ? "mention" : "mentions"} · ${actors} ${actors === 1 ? "actor" : "actors"}`,
     yearLabel: "Treemap year",
     chart: (y: number) => `Treemap of traced actors by layer, ${y}`,
   },
@@ -29,9 +34,9 @@ const T = {
       `كل جهة مسمّاة في تتبّع ${y} - مساحة الخلية هي عدد الإشارات المرصودة إليها، مجمّعة بحسب الطبقة. بدّل السنة لترى المشهد يعيد تشكّله.`,
     caveat:
       "مساحة الخلية تقيس الحضور المرصود في التتبّع - لا الموازنة ولا الملاك ولا الإنجاز. الجهات المرصودة بأوصاف عامة تظهر كما رُصدت؛ واللون وحده لا يحمل الهوية أبداً (كل خلية مقروءة تحمل اسمها).",
-    mentions: (n: number, y: number) => `${n} إشارة مرصودة في ${y}`,
+    mentions: (n: number, y: number) => `${arabicCount(n, AR_COUNT.mentionTraced)} في ${y}`,
     legend: (label: string, total: number, actors: number) =>
-      `${label}: ${total} إشارة · ${actors} جهة`,
+      `${label}: ${arabicCount(total, AR_COUNT.mention)} · ${arabicCount(actors, AR_COUNT.actor)}`,
     yearLabel: "سنة المخطط",
     chart: (y: number) => `مخطط مساحي للجهات المرصودة بحسب الطبقة، ${y}`,
   },

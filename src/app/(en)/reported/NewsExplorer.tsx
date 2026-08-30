@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { newsTagLabel } from "@/lib/news/tag-labels";
 import type { NewsArticle, NewsResponse } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
-import type { Locale } from "@/lib/vocab";
+import { AR_COUNT, arabicCount, type Locale } from "@/lib/vocab";
 import { useUrlState } from "@/lib/useUrlState";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import NewsAnalytics from "./NewsAnalytics";
@@ -164,7 +164,7 @@ const T = {
     tryAgain: "حاول مجدداً",
     noMatch:
       "لا مقالات تطابق الترشيح الحالي. وسّع نطاق التاريخ، أو امسح كلمات البحث، أو أوقف خيار «الأعلى صلة فقط».",
-    showMore: (remaining: number) => `عرض المزيد (${remaining} متبقياً)`,
+    showMore: (remaining: number) => `عرض المزيد (المتبقّي: ${remaining})`,
     listJoin: "؛ ",
     whyStages: (list: string) => `يذكر مراحل من سلسلة القيمة: ${list}.`,
     whyLocations: (list: string) => `يشير إلى أماكن متتبَّعة: ${list}.`,
@@ -176,14 +176,7 @@ const T = {
     viaGoogle: "عبر Google News",
     viaGoogleTitle: "يفتح هذا الرابط عبر Google News الذي يحوّل بدوره إلى الناشر",
     srVia: (name: string) => `(يفتح عبر Google News الذي يحوّل إلى ${name})`,
-    alsoReported: (n: number) =>
-      n === 1
-        ? "أوردته أيضاً وسيلة أخرى واحدة."
-        : n === 2
-          ? "أوردته أيضاً وسيلتان أُخريان."
-          : n <= 10
-            ? `أوردته أيضاً ${n} وسائل أخرى.`
-            : `أوردته أيضاً ${n} وسيلة أخرى.`,
+    alsoReported: (n: number) => `أوردته أيضاً ${arabicCount(n, AR_COUNT.outlet)}.`,
     hide: "إخفاء",
     whyRelevant: "لماذا هذا ذو صلة؟",
   },

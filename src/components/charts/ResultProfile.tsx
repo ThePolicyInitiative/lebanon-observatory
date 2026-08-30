@@ -1,4 +1,6 @@
 import {
+  AR_COUNT,
+  arabicCount,
   layers,
   stageShortList,
   statusLabel,
@@ -42,7 +44,7 @@ const T = {
     byLayer: "بحسب طبقة الجهات",
     byStage: "بحسب مرحلة السلسلة",
     byStatus: "بحسب الحالة",
-    rows: (n: number) => `${n} مطابقاً`,
+    rows: (n: number) => arabicCount(n, AR_COUNT.entryMatching),
   },
 } as const;
 

@@ -1,6 +1,7 @@
 import archive from "@/data/coverage-archive.json";
 import { fmtDate } from "@/lib/format";
 import type { Locale } from "@/lib/vocab";
+import { AR_COUNT, arabicCount } from "@/lib/vocab";
 
 /**
  * The coverage history: long-form reporting and analysis of the two wars
@@ -40,10 +41,10 @@ const T = {
     all: "All",
     clear: "Clear filters",
     showing: (n: number, total: number) =>
-      n === total ? `${total} pieces` : `${n} of ${total} pieces`,
+      n === total ? `${total} ${total === 1 ? "piece" : "pieces"}` : `${n} of ${total} pieces`,
     none: "Nothing matches these filters.",
     undated: "Date not given",
-    yearHeading: (year: number, n: number) => `${year} - ${n} pieces`,
+    yearHeading: (year: number, n: number) => `${year} - ${n} ${n === 1 ? "piece" : "pieces"}`,
     kinds: {
       news: "News",
       research: "Research and analysis",
@@ -64,7 +65,7 @@ const T = {
       n === total ? `${total} مادة` : `${n} من أصل ${total} مادة`,
     none: "لا شيء يطابق هذا الترشيح.",
     undated: "بلا تاريخ",
-    yearHeading: (year: number, n: number) => `${year} - ${n} مادة`,
+    yearHeading: (year: number, n: number) => `${year} - ${arabicCount(n, AR_COUNT.piece)}`,
     kinds: {
       news: "أخبار",
       research: "بحوث وتحليل",

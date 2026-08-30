@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { layers, stageLabel, type Locale } from "@/lib/vocab";
+import {
+  AR_COUNT,
+  arabicCount,
+  layers,
+  stageLabel,
+  type Locale,
+} from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import { CHART } from "@/lib/colors";
@@ -35,20 +41,18 @@ const T = {
     yearFilter: "ترشيح بالسنة",
     allLayers: "كل الطبقات",
     bothYears: "السنتان",
-    showing: (a: number, e: number) => [`تُعرض `, `${a}`, ` جهة بـ`, `${e}`, ` مدخلاً ضمن الترشيح الحالي.`] as const,
+    showing: (a: number, e: number) =>
+      [
+        `تُعرض `,
+        `${a}`,
+        ` ${a <= 10 ? "جهات" : "جهة"} بـ`,
+        `${e}`,
+        ` ${e <= 10 ? "مدخلات" : "مدخلاً"} ضمن الترشيح الحالي.`,
+      ] as const,
     where: "أين:",
     seeMap: "على الخريطة ←",
     none: "لا جهة تطابق الترشيح الحالي.",
-    // Arabic counts agree with the noun: one, two, the 3-10 plural, then
-    // the singular again from 11 up.
-    stages: (n: number) =>
-      n === 1
-        ? "مرحلة واحدة"
-        : n === 2
-          ? "مرحلتان"
-          : n <= 10
-            ? `${n} مراحل`
-            : `${n} مرحلة`,
+    stages: (n: number) => arabicCount(n, AR_COUNT.stage),
     roles: {
       finance: "تمويل",
       procurement: "شراء",

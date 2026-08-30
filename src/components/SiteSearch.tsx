@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import type { Locale } from "@/lib/vocab";
+import { AR_COUNT, arabicCount, type Locale } from "@/lib/vocab";
 import {
   contextOf,
   groupByKind,
@@ -53,14 +53,7 @@ const COPY = {
     scope: "ما الذي يبلغه البحث من هنا:",
     loading: "جارٍ تحميل فهرس البحث",
     failed: "تعذّر تحميل فهرس البحث. أعد تحميل الصفحة للمحاولة من جديد.",
-    count: (n: number) =>
-      n === 1
-        ? "نتيجة واحدة"
-        : n === 2
-          ? "نتيجتان"
-          : n <= 10
-            ? `${n} نتائج`
-            : `${n} نتيجة`,
+    count: (n: number) => arabicCount(n, AR_COUNT.result),
     none: "لا شيء يطابق ذلك. جرّب كلمة أقصر أو اللغة الأخرى.",
     more: (n: number) => `أظهر الـ${n} الباقية من النوع نفسه`,
     fewer: "أظهر عدداً أقل",

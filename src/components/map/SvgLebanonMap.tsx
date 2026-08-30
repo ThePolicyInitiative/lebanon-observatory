@@ -42,7 +42,14 @@ import {
   type MapEvent,
 } from "@/lib/events";
 import { fmtDate } from "@/lib/format";
-import { layers, regionLabel, stageList, type Locale } from "@/lib/vocab";
+import {
+  AR_COUNT,
+  arabicCount,
+  layers,
+  regionLabel,
+  stageList,
+  type Locale,
+} from "@/lib/vocab";
 import {
   buildPins,
   chipBackground,
@@ -153,7 +160,7 @@ const PIN_T = {
     dmgTitle: (label: string, n: string) =>
       `${label}: ${n} buildings completely destroyed - South of the Litani assessment, 29 April 2026 imagery, desk-validated`,
     stageTip: (no: number, name: string, c: number) =>
-      `${no}. ${name}: ${c} entry${c === 1 ? "" : "s"}`,
+      `${no}. ${name}: ${c} ${c === 1 ? "entry" : "entries"}`,
     stagesCaption: (present: number) =>
       `value-chain stages 1–12 (hover for names) - ${present} of 12 present`,
     zoneScaleNote:
@@ -174,15 +181,15 @@ const PIN_T = {
   },
   ar: {
     pinCount: (pins: number, places: number) =>
-      `${pins} دبّوساً في ${places} مكاناً - اختر واحداً لعرض مدخله`,
+      `${arabicCount(pins, AR_COUNT.pin)} في ${arabicCount(places, AR_COUNT.place)} - اختر واحداً لعرض مدخله`,
     entryAt: "مدخل مرصود ·",
     episodeAt: "واقعة مرصودة ·",
     close: "إغلاق هذا المدخل",
     pinNote:
       "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع. وحين تضيق البلدة عند هذا التكبير عن أن تفصل مداخلها، تُرسم علامة واحدة تحمل العدد؛ وبالتقريب تنفتح إلى دبّوس لكل مدخل.",
     cluster: (n: number, town: string, district: string) =>
-      `${town}${district ? ` · قضاء ${district}` : ""} - ${n} مدخلاً مرصوداً، أقرب من أن تُرسم متفرّقة عند هذا التكبير. اخترها لعرضها، أو قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
-    clusterPanel: (n: number) => `${n} مدخلاً مرصوداً هنا`,
+      `${town}${district ? ` · قضاء ${district}` : ""} - ${arabicCount(n, AR_COUNT.entryTraced)}، أقرب من أن تُرسم متفرّقة عند هذا التكبير. اخترها لعرضها، أو قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
+    clusterPanel: (n: number) => `${arabicCount(n, AR_COUNT.entryTraced)} هنا`,
     happenedHere: "ما الذي جرى هنا",
     findTown: (n: string) => `ابحث عن بلدة (${n} بلدة عقارية - اختيارها يقرّب الخريطة إليها)`,
     loading: "قيد التحميل",
@@ -191,7 +198,7 @@ const PIN_T = {
     mapAria: (year: number, occupation: boolean) =>
       `خريطة لبنان على مستوى البلدات مظلَّلة بالنشاط المرصود المحدَّد الموقع لسنة ${year}.${occupation ? " البلدات المخطَّطة تشكّل شريط الخط الأزرق الحدودي حيث رُصد احتلال إسرائيلي." : ""} قرّب بالعجلة أو السحب أو النقر المزدوج؛ ومربّع البحث عن بلدة يتيح الوصول إلى البلدات بلوحة المفاتيح.`,
     baseTitle: (name: string, zone: string, v: number, year: number) =>
-      `${name} - ${zone}: ${v} إشارة (${year})`,
+      `${name} - ${zone}: ${arabicCount(v, AR_COUNT.mention)} (${year})`,
     area: (name: string, district: string) => `${name} · قضاء ${district}`,
     hoverChange: (name: string, district: string, y24: number, y26: number) =>
       `${name} · قضاء ${district} - النشاط من ${y24} إلى ${y26} (${y26 - y24 >= 0 ? "+" : ""}${y26 - y24})`,
@@ -202,7 +209,7 @@ const PIN_T = {
     hoverDamage: (name: string, district: string) =>
       `${name} · قضاء ${district} - اختره لتفاصيل التقييم`,
     hoverEntries: (name: string, district: string, dCount: number, namedCount: number) =>
-      `${name} · قضاء ${district} - ${dCount} نشاطاً مرصوداً في هذا القضاء${namedCount > 0 ? `، منها ${namedCount} يسمّي هذه البلدة` : ""}`,
+      `${name} · قضاء ${district} - ${arabicCount(dCount, AR_COUNT.activityTraced)} في هذا القضاء${namedCount > 0 ? `، منها ${namedCount} تسمّي هذه البلدة` : ""}`,
     stripSuffix: " · شريط الخط الأزرق الحدودي (احتلال)",
     occupiedSuffix: " · قضاء يضم مناطق محتلة",
     unnamed: "منطقة بلا اسم أو متنازَع عليها (معطيات الحدود)",
@@ -213,7 +220,7 @@ const PIN_T = {
       `${label}: ${n} مبنى مدمَّراً كلياً في تقييم 2026`,
     dmgTitle: (label: string, n: string) =>
       `${label}: ${n} مبنى مدمَّراً كلياً - تقييم جنوب الليطاني، صور 29 نيسان 2026، بتدقيق مكتبي`,
-    stageTip: (no: number, name: string, c: number) => `${no}. ${name}: ${c} مدخل`,
+    stageTip: (no: number, name: string, c: number) => `${no}. ${name}: ${arabicCount(c, AR_COUNT.entry)}`,
     stagesCaption: (present: number) =>
       `مراحل سلسلة القيمة 1-12 (مرّر المؤشر للأسماء) - ${present} من 12 حاضرة`,
     zoneScaleNote:

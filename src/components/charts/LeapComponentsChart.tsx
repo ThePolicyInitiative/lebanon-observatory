@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import type { Locale } from "@/lib/vocab";
+import { AR_COUNT, arabicCount, type Locale } from "@/lib/vocab";
 import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import ChartFrame from "./ChartFrame";
@@ -29,7 +29,7 @@ const T = {
     axis: "US$ million",
     initial: "Initial US$250M loan",
     appraised: "Appraised US$1B framework",
-    unit: (v: number) => `US$${v} million`,
+    unit: (v: number) => (v === 0 ? "no initial allocation" : `US$${v} million`),
     alt: "Grouped bar chart of LEAP component allocations, initial loan versus appraised framework",
   },
   ar: {
@@ -40,7 +40,8 @@ const T = {
     axis: "مليون دولار",
     initial: "القرض الأولي 250 مليون دولار",
     appraised: "الإطار المقدَّر بمليار دولار",
-    unit: (v: number) => `${v} مليون دولار`,
+    unit: (v: number) =>
+      v === 0 ? "بلا تخصيص أولي" : `${arabicCount(v, AR_COUNT.million)} دولار`,
     alt: "رسم أعمدة مجمّعة لتوزيع مكوّنات LEAP، القرض الأولي مقابل الإطار المقدَّر",
   },
 } as const;

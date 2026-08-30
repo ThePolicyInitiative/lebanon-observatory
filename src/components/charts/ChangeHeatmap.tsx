@@ -7,6 +7,8 @@ import ChartFrame from "./ChartFrame";
 import { CHART, UI, VALENCE } from "@/lib/colors";
 import { changeFor, countsFor } from "@/lib/data-client";
 import {
+  AR_COUNT,
+  arabicCount,
   HEATMAP_STAGES,
   cautionCounts,
   layers,
@@ -78,7 +80,7 @@ const T = {
       "خريطة حرارية تفاعلية للتغيّر. ما دامت في بؤرة التركيز، تنقل مفاتيح الأسهم بين الخلايا ويفتح Enter المدخلات المتتبَّعة وراء الخلية المختارة.",
     dialogLabel: (layer: string, stage: string) => `معطيات ${layer} في ${stage}`,
     drawerCounts: (y24: number, y26: number) =>
-      `${y24} مرصوداً في 2024 · ${y26} في 2026 (التحليل)`,
+      `${arabicCount(y24, AR_COUNT.entryTraced)} في 2024 · ${y26} في 2026 (التحليل)`,
     drawerShown: (n: number) => ` · ${n} من المدخلات المتتبَّعة معروضة أدناه`,
     close: "إغلاق",
     loading: "جارٍ تحميل المدخلات وراء هذه الخلية…",

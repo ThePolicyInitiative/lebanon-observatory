@@ -17,7 +17,23 @@ export function fmtUsd(value: number, locale: Loc = "en"): string {
   if (value >= 1_000_000) {
     const m = value / 1_000_000;
     const n = m % 1 === 0 ? m.toFixed(0) : m.toFixed(2).replace(/0$/, "");
-    return ar ? `${n} مليون دولار` : `US$${n} million`;
+    /*
+     * Arabic counts three to ten with the plural, so ten million is
+     * "عشرة ملايين" and not "10 مليون" - and the LEAP project-management
+     * component is exactly 10,000,000, so this was wrong on a live page.
+     *
+     * Whole millions only. A fractional count takes the singular by
+     * convention - "4.13 مليون دولار" is right and is what the finance
+     * funnel already writes by hand - and 4.13 would otherwise fall into
+     * the three-to-ten branch and come out as "4.13 ملايين".
+     */
+    if (ar) {
+      const whole = value % 1_000_000 === 0 ? Number(n) : null;
+      return whole !== null && whole >= 3 && whole <= 10
+        ? `${n} ملايين دولار`
+        : `${n} مليون دولار`;
+    }
+    return `US$${n} million`;
   }
   const n = value.toLocaleString("en-US");
   return ar ? `${n} دولار` : `US$${n}`;

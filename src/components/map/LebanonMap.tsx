@@ -13,6 +13,8 @@ import { CHART, LAYER_META, UI } from "@/lib/colors";
 import { locations } from "@/lib/data-client";
 import { COMPARABILITY_IN_USE, STATUSES_IN_USE, slimRecords } from "@/lib/map-records";
 import {
+  AR_COUNT,
+  arabicCount,
   cautionMap,
   comparabilityLabel,
   governorateLabel,
@@ -224,11 +226,11 @@ const T = {
     pinFoot:
       "دبّوس واحد لمدخل مرصود واحد - موضوع في البلدة التي يسمّيها الإبلاغ، لا على عنوان بعينه.",
     clusterNote: (n: number) =>
-      `${n} مدخلاً مرصوداً هنا، أقرب بعضها إلى بعض من أن تُرسم متفرّقة عند هذا التكبير. قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
+      `${arabicCount(n, AR_COUNT.entryTraced)} هنا، أقرب بعضها إلى بعض من أن تُرسم متفرّقة عند هذا التكبير. قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
     pinListHeading: (n: number) =>
       `كل علامة على الخريطة في قائمة - ${n} في المجموع. اختيار إحداها يجلبها إلى العرض ويفتح ما رُصد فيها.`,
     filterStatus: (n: number, year: number) =>
-      `${n} مدخلاً مرصوداً في ${year} تطابق المرشّحات المضبوطة الآن.`,
+      `${arabicCount(n, AR_COUNT.entryTraced)} في ${year} تطابق المرشّحات المضبوطة الآن.`,
     listShow: (n: number) => `اعرض العلامات كلها (${n})`,
     listHide: "إخفاء قائمة العلامات",
     noWebgl: "هذا المتصفّح لا يستطيع تشغيل خريطة التقريب والتحريك. والخريطة المتجهة تحمل المدخلات نفسها.",

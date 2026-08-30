@@ -223,3 +223,114 @@ export function cautionMap(locale: Locale): string {
     ? "الجغرافيا تُظهر أين رُصد النشاط، لا أين كان الدمار أو الحاجة أكبر. والتجمّعات الإقليمية تختلف في المساحة والسكان وكثافة الإبلاغ؛ وغياب علامة يعني غياب معطى، لا غياب دمار أبداً."
     : "Geography shows where activity was traced, not where damage or need was greatest. Regional groupings differ in size, population and reporting intensity; absence of a marker means absence of data, never absence of damage.";
 }
+
+/* ------------------------------------------------------------------ */
+/* Arabic count agreement                                              */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Arabic does not pluralise the way English does, and the site kept
+ * writing it as though it did.
+ *
+ * The rule has four shapes, not two. One takes the bare noun. Two takes
+ * the dual, which carries the twoness itself, so the numeral is dropped.
+ * Three to ten takes the plural. Eleven and up takes the singular again,
+ * in the accusative - and that accusative alif is a written letter, so
+ * getting it wrong is visible in undiacritised text rather than merely
+ * heard.
+ *
+ * Nearly every interpolated count on the Arabic side was written in the
+ * 11-and-up form and used at every value: "3 مدخلاً" for three entries,
+ * where the language wants "3 مدخلات", and "2 مدخلاً" for two, where it
+ * wants "مدخلان" and no numeral at all. Map clusters are the worst of it,
+ * since a cluster exists only when two or more pins merge, so the one
+ * range the form is never right for is the only range it ever sees.
+ *
+ * The rule was already implemented correctly five times, by hand, in five
+ * separate components - and three of those files get it right in one
+ * string and wrong in another a dozen lines away. That is what a missing
+ * shared function looks like, so this is it.
+ *
+ * Only the noun forms live here, never the numeral. Every count on this
+ * site renders as a Western digit in both languages, deliberately, so no
+ * numeral is ever spelled out and the reverse gender agreement that
+ * governs spelled-out numerals never arises.
+ */
+export type ArCountForms = {
+  /** "لا مدخلات" - falls back to the plural form when not given. */
+  zero?: string;
+  /** The bare noun: "مدخل واحد". Printed without the numeral. */
+  one: string;
+  /** The dual: "مدخلان". Printed without the numeral. */
+  two: string;
+  /** The plural, printed after the digit: 3-10. */
+  few: string;
+  /** The accusative singular, printed after the digit: 11 and up. */
+  many: string;
+};
+
+export function arabicCount(n: number, f: ArCountForms): string {
+  if (n === 0) return f.zero ?? `${n} ${f.few}`;
+  if (n === 1) return f.one;
+  if (n === 2) return f.two;
+  return n <= 10 ? `${n} ${f.few}` : `${n} ${f.many}`;
+}
+
+/**
+ * The nouns the site counts, so one noun cannot acquire two plurals in
+ * two components - the same reason the region and layer names are tabled
+ * above rather than written where they are used.
+ *
+ * Where a count is followed by an adjective the adjective travels inside
+ * the form, because it has to agree with the noun that just changed:
+ * "مدخلات مرصودة" and not "مدخلات" + "مرصوداً".
+ */
+export const AR_COUNT = {
+  entry: { one: "مدخل واحد", two: "مدخلان", few: "مدخلات", many: "مدخلاً", zero: "لا مدخلات" },
+  entryTraced: {
+    one: "مدخل مرصود واحد",
+    two: "مدخلان مرصودان",
+    few: "مدخلات مرصودة",
+    many: "مدخلاً مرصوداً",
+    zero: "لا مدخلات مرصودة",
+  },
+  entryMatching: {
+    one: "مدخل واحد مطابق",
+    two: "مدخلان مطابقان",
+    few: "مدخلات مطابقة",
+    many: "مدخلاً مطابقاً",
+    zero: "لا مدخلات مطابقة",
+  },
+  actor: { one: "جهة واحدة", two: "جهتان", few: "جهات", many: "جهة" },
+  actorTraced: {
+    one: "جهة مرصودة واحدة",
+    two: "جهتان مرصودتان",
+    few: "جهات مرصودة",
+    many: "جهة مرصودة",
+  },
+  stage: { one: "مرحلة واحدة", two: "مرحلتان", few: "مراحل", many: "مرحلة" },
+  mention: { one: "إشارة واحدة", two: "إشارتان", few: "إشارات", many: "إشارة" },
+  mentionTraced: {
+    one: "إشارة مرصودة واحدة",
+    two: "إشارتان مرصودتان",
+    few: "إشارات مرصودة",
+    many: "إشارة مرصودة",
+  },
+  piece: { one: "مادة واحدة", two: "مادتان", few: "موادّ", many: "مادة" },
+  pin: { one: "دبّوس واحد", two: "دبّوسان", few: "دبابيس", many: "دبّوساً" },
+  place: { one: "مكان واحد", two: "مكانان", few: "أماكن", many: "مكاناً" },
+  activityTraced: {
+    one: "نشاط مرصود واحد",
+    two: "نشاطان مرصودان",
+    few: "أنشطة مرصودة",
+    many: "نشاطاً مرصوداً",
+  },
+  result: { one: "نتيجة واحدة", two: "نتيجتان", few: "نتائج", many: "نتيجة" },
+  outlet: {
+    one: "وسيلة أخرى واحدة",
+    two: "وسيلتان أُخريان",
+    few: "وسائل أخرى",
+    many: "وسيلة أخرى",
+  },
+  million: { one: "مليون", two: "مليونان", few: "ملايين", many: "مليون" },
+} as const satisfies Record<string, ArCountForms>;
