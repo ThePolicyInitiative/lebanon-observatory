@@ -11,12 +11,16 @@ export default function NotFound() {
         sections are linked below.
       </p>
       <ul className="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        {/* One entry per page. It listed seven when there were seven pages;
+            "2024 vs 2026" and "Map" have since become sections of the home
+            page and of /who, so listing them here would print two links to
+            the same route and leave /destroyed and /reported unlisted. */}
         {[
           ["/", "Home"],
-          ["/compare", "2024 vs 2026"],
-          ["/who", "Actor layers"],
-          ["/map", "Map"],
+          ["/who", "Actor layers & map"],
+          ["/destroyed", "Damage assessments"],
           ["/money", "Finance & delivery"],
+          ["/reported", "Live updates"],
           ["/entries", "Data explorer"],
           ["/search", "Search"],
         ].map(([href, label]) => (

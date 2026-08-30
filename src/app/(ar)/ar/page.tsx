@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { regionLabel } from "@/lib/vocab";
 import { kpis, locations } from "@/lib/data";
@@ -9,14 +8,11 @@ import InstitutionalStructures from "@/components/InstitutionalStructures";
 import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
 import KpiCard from "@/components/KpiCard";
 import ReconstructionPulse from "@/components/ReconstructionPulse";
-import YearHeatmaps from "@/components/charts/YearHeatmaps";
+import { Suspense } from "react";
+import ComparePanel from "@/components/ComparePanel";
+import ThreeStreams from "@/components/ThreeStreams";
 import NewsTeaser from "@/components/news/NewsTeaser";
 import { Body, Onward, SectionHeading } from "@/components/HomeNarrative";
-
-/** Below the fold and carrying the full data text for its drawer. */
-const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"), {
-  loading: () => <div className="h-96 animate-pulse rounded-md bg-white" />,
-});
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/", "ar"),
@@ -73,13 +69,16 @@ export default function ArabicPage() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
-              href="/ar/map"
+              href="/ar/who"
               className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-sm font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
             >
               {AR.hero.ctaMap}
             </Link>
+            {/* مقارنة السنتين صارت قسماً من هذه الصفحة لا صفحة قائمة
+                بذاتها، فالزر ينزل إليه بدل أن ينقل القارئ إلى الرابط
+                نفسه الذي يقف عليه. */}
             <Link
-              href="/ar/compare"
+              href="#role-shift"
               className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-sm font-semibold text-white hover:bg-white/10"
             >
               {AR.hero.ctaCompare}
@@ -150,11 +149,18 @@ export default function ArabicPage() {
           <SectionHeading index={AR.home.roles.n} title={AR.home.roles.title}>
             <Body locale="ar">{AR.home.roles.body}</Body>
           </SectionHeading>
-          <div className="mt-6 space-y-6">
-            {/* The standing counts caution prints once per page, on the
-                first figure below; the repeat here is suppressed. */}
-            <YearHeatmaps locale="ar" />
-            <ChangeHeatmap locale="ar" showCaveat={false} />
+          {/*
+           * الخريطتان الحراريتان انتقلتا إلى /ar/who، وهي الصفحة التي تسأل
+           * من يفعل ماذا. كانتا تُرسمان هنا أيضاً، فيظهر الشكل نفسه مرتين
+           * على الموقع دون ما يدلّ القارئ على أيّهما المرجع.
+           */}
+          <div className="mt-6">
+            <Suspense fallback={<div className="h-24 animate-pulse rounded-md bg-white" />}>
+              <ComparePanel locale="ar" />
+            </Suspense>
+          </div>
+          <div className="mt-6">
+            <ThreeStreams locale="ar" />
           </div>
           <Onward locale="ar" href="/ar/who">{AR.home.roles.link}</Onward>
         </section>
@@ -197,7 +203,7 @@ export default function ArabicPage() {
           </div>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <Link
-              href="/ar/map"
+              href="/ar/who"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               {AR.home.geography.openMap} ←

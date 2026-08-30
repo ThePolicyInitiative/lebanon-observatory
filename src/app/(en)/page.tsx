@@ -4,13 +4,9 @@ import KpiCard from "@/components/KpiCard";
 import ReconstructionPulse from "@/components/ReconstructionPulse";
 import InstitutionalShiftDiagram from "@/components/charts/InstitutionalShiftDiagram";
 import InstitutionalStructures from "@/components/InstitutionalStructures";
-import dynamic from "next/dynamic";
-
-/** Below the fold and carrying the full data text for its drawer. */
-const ChangeHeatmap = dynamic(() => import("@/components/charts/ChangeHeatmap"), {
-  loading: () => <div className="h-96 animate-pulse rounded-md bg-white" />,
-});
-import YearHeatmaps from "@/components/charts/YearHeatmaps";
+import { Suspense } from "react";
+import ComparePanel from "@/components/ComparePanel";
+import ThreeStreams from "@/components/ThreeStreams";
 import NewsTeaser from "@/components/news/NewsTeaser";
 import { SectionHeading } from "@/components/HomeNarrative";
 import { kpis, locations } from "@/lib/data";
@@ -75,14 +71,18 @@ export default function HomePage() {
             preparation.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
+            {/* The year contrast used to be its own page, and this sent the
+                reader to it. It is a section of this one now, so the button
+                scrolls rather than navigating - pointed at "/" it was a
+                link from the home page to the home page. */}
             <Link
-              href="/compare"
+              href="#role-shift"
               className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-sm font-semibold text-[#2a1e00] transition-colors duration-150 hover:bg-[#e8ab1a]"
             >
               Explore the 2024–2026 shift
             </Link>
             <Link
-              href="/map"
+              href="/who"
               className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10"
             >
               Open the reconstruction map
@@ -185,11 +185,24 @@ export default function HomePage() {
               contracting out of finance, rubble and physical reconstruction.
             </p>
           </SectionHeading>
-          <div className="mt-6 space-y-6">
-            {/* The standing counts caution prints once per page, on the
-                first figure below; the repeat here is suppressed. */}
-            <YearHeatmaps />
-            <ChangeHeatmap showCaveat={false} />
+          {/*
+           * The two heat maps moved to /who, the page that asks who is
+           * doing what. They were drawn here as well, so one figure
+           * appeared twice on the site and a reader had no way to tell
+           * which was the authoritative one.
+           *
+           * The verdict panel says what they say, in eleven rows, and
+           * links to each dimension on the page that owns its subject. It
+           * was the whole of /compare, which was an axis pretending to be
+           * a topic - the year is a control, not a destination.
+           */}
+          <div className="mt-6">
+            <Suspense fallback={<div className="h-24 animate-pulse rounded-md bg-white" />}>
+              <ComparePanel />
+            </Suspense>
+          </div>
+          <div className="mt-6">
+            <ThreeStreams />
           </div>
           <p className="mt-3 text-sm">
             <Link
@@ -258,7 +271,7 @@ export default function HomePage() {
           </div>
           <p className="mt-3 text-sm">
             <Link
-              href="/map"
+              href="/who"
               className="font-medium text-blue underline-offset-2 hover:underline"
             >
               Open the interactive map →

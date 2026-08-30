@@ -117,10 +117,19 @@ const nextConfig: NextConfig = {
    * The routes as they were, kept working.
    *
    * The tab bar became the question a reader arrives with rather than the
-   * site's own filing, and five paths moved with it. Anything already
+   * site's own filing, and seven paths moved with it. Anything already
    * published - a link in a report, a bookmark, a search result, the
    * sitemap a crawler fetched last week - points at the old ones, and a
    * URL that has been given out is a promise.
+   *
+   * Five were renamed. The last two were dissolved rather than renamed,
+   * because neither was a question: /map is how /who draws its answer, and
+   * /compare was an axis pretending to be a subject - the year is a
+   * control, so its verdict panel is a section of the home page. Both land
+   * at the top of the page that absorbed them rather than at the section,
+   * because a hash in a redirect destination is not something the bundled
+   * guide documents and an undocumented Location header is a poor promise
+   * to keep a published URL with.
    *
    * Permanent, because these are not coming back: a 308 is what tells a
    * crawler to move its index rather than keep asking. Both language
@@ -128,19 +137,40 @@ const nextConfig: NextConfig = {
    * into a named actor or a filtered view lands where it meant to.
    */
   async redirects() {
-    const moved: [string, string][] = [
+    /** Renamed: the page is the same page, so its subpaths came along. */
+    const renamed: [string, string][] = [
       ["/actors", "/who"],
       ["/finance", "/money"],
       ["/damage", "/destroyed"],
       ["/news", "/reported"],
       ["/explorer", "/entries"],
     ];
-    return moved.flatMap(([from, to]) => [
-      { source: from, destination: to, permanent: true },
-      { source: `${from}/:path*`, destination: `${to}/:path*`, permanent: true },
-      { source: `/ar${from}`, destination: `/ar${to}`, permanent: true },
-      { source: `/ar${from}/:path*`, destination: `/ar${to}/:path*`, permanent: true },
-    ]);
+    /**
+     * Dissolved: no subpath rule, because there is no subpath to carry.
+     * `/compare/:path*` to `//:path*` would be a broken destination, and
+     * `/ar/compare/:path*` to `/ar/:path*` would quietly send a stray path
+     * to whatever Arabic route happened to share its name.
+     */
+    const dissolved: [string, string][] = [
+      ["/map", "/who"],
+      ["/compare", "/"],
+    ];
+    return [
+      ...renamed.flatMap(([from, to]) => [
+        { source: from, destination: to, permanent: true },
+        { source: `${from}/:path*`, destination: `${to}/:path*`, permanent: true },
+        { source: `/ar${from}`, destination: `/ar${to}`, permanent: true },
+        { source: `/ar${from}/:path*`, destination: `/ar${to}/:path*`, permanent: true },
+      ]),
+      ...dissolved.flatMap(([from, to]) => [
+        { source: from, destination: to, permanent: true },
+        {
+          source: `/ar${from}`,
+          destination: to === "/" ? "/ar" : `/ar${to}`,
+          permanent: true,
+        },
+      ]),
+    ];
   },
 
   async headers() {
@@ -165,8 +195,12 @@ const nextConfig: NextConfig = {
       // that check headers, and keeps each language half pointing at its own
       // feed. The Arabic rule comes second so it overrides the general one on
       // /ar paths.
+      //
+      // The slugs are the routes as they are now. They were the old names
+      // for long enough that the header was announcing the feed on seven
+      // paths that redirect and on none of the five that exist.
       {
-        source: "/:page(compare|actors|damage|map|finance|news|explorer)?",
+        source: "/:page(who|destroyed|money|reported|entries)?",
         headers: [
           {
             key: "Link",
@@ -175,7 +209,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/ar/:page(compare|actors|damage|map|finance|news|explorer)?",
+        source: "/ar/:page(who|destroyed|money|reported|entries)?",
         headers: [
           {
             key: "Link",

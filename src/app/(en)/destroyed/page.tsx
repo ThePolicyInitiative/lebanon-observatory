@@ -7,6 +7,9 @@ import ServiceImpact from "@/components/ServiceImpact";
 import DistrictDamageChart from "@/components/charts/DistrictDamageChart";
 import HumanToll from "@/components/HumanToll";
 import Takeaways from "@/components/Takeaways";
+import DisplacementCycle from "@/components/DisplacementCycle";
+import WaterRepairs from "@/components/WaterRepairs";
+import ServiceOperators from "@/components/ServiceOperators";
 import destruction from "@/data/destruction.json";
 import { fmtDate } from "@/lib/format";
 import { localeAlternates } from "@/lib/i18n";
@@ -14,7 +17,7 @@ import PageShell from "@/components/PageShell";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/destroyed"),
-  title: "Damage assessments",
+  title: "What was destroyed?",
   description:
     "The building-destruction data for Lebanon's 2024 and 2026 wars: four non-additive 2024 tracks, sector damage and losses, and the two bounded 2026 assessment zones - presented side by side, never merged.",
 };
@@ -240,9 +243,24 @@ export default function DamagePage() {
         </div>
       </section>
 
+      {/*
+        * What stopped and what came back. The outage side of this story
+        * was here and the restoration side was filed under the actor
+        * page, so the two halves of one account sat on different routes.
+        */}
+      <div className="mt-8">
+        <DisplacementCycle />
+      </div>
+      <div className="mt-7">
+        <WaterRepairs />
+      </div>
+      <div className="mt-7">
+        <ServiceOperators />
+      </div>
+
       <p className="mt-8 text-sm">
-        <Link href="/map" className="font-medium text-blue underline-offset-2 hover:underline">
-          See where traced activity concentrated →
+        <Link href="/who" className="font-medium text-blue underline-offset-2 hover:underline">
+          See who was traced acting, and where →
         </Link>{" "}
         ·{" "}
         <Link href="/money" className="font-medium text-blue underline-offset-2 hover:underline">

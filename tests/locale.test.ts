@@ -20,11 +20,11 @@ import { kpis } from "@/lib/data";
  */
 
 /** The pages with their own entry in AR.pages. */
-const PAGES = ["compare", "who", "destroyed", "map", "money", "reported", "entries"];
+const PAGES = ["who", "destroyed", "money", "reported", "entries"];
 /**
  * The two halves of the site have separate root layouts, so each lives in
- * its own route group. Route groups do not appear in a URL: (en)/compare is
- * /compare and (ar)/ar/compare is /ar/compare.
+ * its own route group. Route groups do not appear in a URL: (en)/who is
+ * /who and (ar)/ar/who is /ar/who.
  */
 const app = join(process.cwd(), "src", "app");
 const en = join(app, "(en)");
@@ -88,7 +88,9 @@ describe("the Arabic side", () => {
 
   it("names every page in Arabic in the navigation", () => {
     const arabic = /[؀-ۿ]/;
-    for (const key of ["home", "compare", "map", "built", "who", "money", "destroyed", "reported"] as const) {
+    // The five tab questions, the home label, and the two footer topic
+    // names that are not one of the tabs.
+    for (const key of ["home", "built", "who", "money", "destroyed", "reported", "compare", "explorer"] as const) {
       expect(arabic.test(AR.nav[key]), `nav.${key} is not Arabic`).toBe(true);
     }
   });
@@ -155,7 +157,7 @@ describe("the Arabic side", () => {
        * places, not one: the shared components, the shared bilingual
        * modules that live under the English route group, and a component
        * beside the page. Counting only the first left the pages that lean
-       * hardest on shared copy - compare, explorer, news - scoring zero
+       * hardest on shared copy - entries, reported - scoring zero
        * here and passing on their section count alone.
        */
       const shared = (src.match(/from "@\/(components|app|lib)\//g) ?? []).length;

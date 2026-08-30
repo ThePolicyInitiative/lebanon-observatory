@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import ArabicPageShell from "../ArabicPageShell";
+import ReportedUpdates from "@/components/ReportedUpdates";
 import NewsExplorer from "@/app/(en)/reported/NewsExplorer";
 import CoverageHistory from "@/components/CoverageHistory";
 
@@ -48,6 +49,10 @@ export default async function Page({
           كل خبر يبقى بلغة ناشره ويحيل إليه.
         </p>
       </section>
+      {/* المستجدات المنشورة، وكانت مُدرجة تحت صفحة الجهات. */}
+      <div className="mt-7">
+        <ReportedUpdates locale="ar" />
+      </div>
       <CoverageHistory locale="ar" year={one(params.hy)} kind={one(params.hk)} />
     </ArabicPageShell>
   );

@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import "maplibre-gl/dist/maplibre-gl.css";
 import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
-import { roleRecords } from "@/lib/data";
+import { locations, roleRecords } from "@/lib/data";
 import webUpdates from "@/data/web-updates.json";
 import ArabicPageShell from "../ArabicPageShell";
-import WaterRepairs from "@/components/WaterRepairs";
-import ReportedUpdates from "@/components/ReportedUpdates";
-import ServiceOperators from "@/components/ServiceOperators";
 import Takeaways from "@/components/Takeaways";
+import LayerSlopeChart from "@/components/charts/LayerSlopeChart";
+import YearHeatmaps from "@/components/charts/YearHeatmaps";
+import ChangeHeatmap from "@/components/charts/ChangeHeatmap";
+import StageCompositionChart from "@/components/charts/StageCompositionChart";
+import LebanonMap from "@/components/map/LebanonMap";
+import RegionalComposition from "@/components/map/RegionalComposition";
 import ActorTreemap from "@/components/charts/ActorTreemap";
 import ActorStageMatrix from "@/app/(en)/who/ActorStageMatrix";
 import ActorRegister from "@/app/(en)/who/ActorRegister";
@@ -29,6 +33,8 @@ export default function Page() {
     label: `${l.label} (مدخلات السنتين معاً)`,
   }));
   const south = webUpdates.updates.filter((u) => u.southOfLitani).length;
+  const mappable = locations.regions.filter((r) => r.mappable).length;
+  const notMappable = locations.regions.length - mappable;
   return (
     <ArabicPageShell
       title={AR.pages.who.title}
@@ -73,21 +79,79 @@ export default function Page() {
       <div className="mt-8">
         <ActorTreemap locale="ar" />
       </div>
+      {/* كيف تحرّك حضور كل طبقة بين الحربين. */}
+      <div className="mt-7">
+        <LayerSlopeChart locale="ar" />
+      </div>
+      {/* السنتان جنباً إلى جنب، ثم الفرق بينهما. كان الزوج هنا والفرق على
+          الصفحة الرئيسية، فانقسم شكل واحد على مسارين؛ والتنبيه يُطبع مرة
+          واحدة، على أوّلهما. */}
+      <div className="mt-7">
+        <YearHeatmaps locale="ar" />
+      </div>
+      <div className="mt-7">
+        <ChangeHeatmap locale="ar" showCaveat={false} />
+      </div>
+      <div className="mt-7">
+        <StageCompositionChart locale="ar" showCaveat={false} />
+      </div>
+
       <div className="mt-7">
         <ActorStageMatrix locale="ar" />
       </div>
       <div className="mt-7">
         <ActorRegister locale="ar" />
       </div>
-      <div className="mt-7">
-        <ReportedUpdates locale="ar" />
-      </div>
-      <div className="mt-8">
-        <WaterRepairs locale="ar" />
-      </div>
-      <div className="mt-8">
-        <ServiceOperators locale="ar" />
-      </div>
+
+      {/*
+       * أين رُصد عمل الجهات نفسها. الخريطة ليست تبويباً لأن "الخريطة" ليست
+       * سؤالاً يصل به القارئ، بل هي كيف يُرسم جواب هذه الصفحة.
+       */}
+      <section aria-labelledby="ar-where-traced" className="mt-9">
+        <h2 id="ar-where-traced" className="text-h2 font-semibold text-navy">
+          أين يقع النشاط المرصود
+        </h2>
+        {/* أول ما يحتاجه القارئ من الخريطة هو ما تستطيع عرضه وما لا تستطيع. */}
+        <dl className="mt-3 grid gap-3 sm:grid-cols-3">
+          {[
+            [String(locations.regions.length), "تجمّعات إقليمية في الرصد"],
+            [String(mappable), "منها يمكن وضعها على الخريطة"],
+            [String(notMappable), "تُعرض على حدة - يتعذّر تحديد موقعها"],
+          ].map(([value, label]) => (
+            <div key={label} className="card">
+              <dt className="figure-number text-h2 font-semibold text-navy">{value}</dt>
+              <dd className="text-meta text-text-secondary">{label}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="mt-5">
+          <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
+            <LebanonMap locale="ar" />
+          </Suspense>
+        </div>
+        <div className="mt-7">
+          <RegionalComposition locale="ar" showCaveat={false} />
+        </div>
+      </section>
+
+      <section id="ar-no-national-layer" className="card mt-8 max-w-3xl text-sm leading-relaxed">
+        <h2 className="text-xl font-semibold text-navy">
+          لماذا لا توجد طبقة أضرار وطنية
+        </h2>
+        <p className="mt-2 text-text">
+          التقييمات السريعة لعام 2026 تغطّي منطقتين اثنتين - جنوب الليطاني
+          (مراجَعة مكتبياً) وبيروت وجبل لبنان (مسح ميداني) - بينما البقاع
+          وبعلبك-الهرمل، وقد بلغتهما الحرب، بقيا بلا تقييم مكافئ حتى تاريخ
+          الإقفال. جمع هذه المنتجات الجزئية في مقياس أضرار وطني واحد يصنع
+          مقارنة زائفة، لذلك لا يضع هذا المرصد تقديرات الأضرار على مفتاح
+          مشترك. أرقام كل منطقة، بشارة قابلية المقارنة وطريقة التثبّت، على{" "}
+          <a href="/ar/destroyed" className="underline underline-offset-2">
+            صفحة بيانات الأضرار
+          </a>
+          ، إلى جانب مسارات عدّ المباني الأربعة غير القابلة للجمع لعام 2024.
+        </p>
+      </section>
+
       <div className="mt-7">
         <Takeaways
           locale="ar"

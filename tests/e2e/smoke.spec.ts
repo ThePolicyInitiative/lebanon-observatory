@@ -230,7 +230,7 @@ test.describe("the map", () => {
   test("draws the vector map and completes its cadastre request", async ({ page }) => {
     const w = watch(page);
     const cadastre = page.waitForResponse((r) => r.url().includes("lebanon-adm3.geojson"));
-    await page.goto("/map", { waitUntil: "networkidle" });
+    await page.goto("/who", { waitUntil: "networkidle" });
 
     const response = await cadastre;
     expect(response.status()).toBe(200);
@@ -254,7 +254,7 @@ test.describe("the map", () => {
     });
 
     const w = watch(page);
-    await page.goto("/map", { waitUntil: "networkidle" });
+    await page.goto("/who", { waitUntil: "networkidle" });
     await expect(page.locator('svg[role="group"]').first()).toBeVisible();
 
     // The opt-in is gated on WebGL being there, so pressing it must leave

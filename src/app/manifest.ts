@@ -39,9 +39,11 @@ export default function manifest(): MetadataRoute.Manifest {
         url: "/ar",
       },
       {
-        name: "Reconstruction map",
-        short_name: "Map",
-        url: "/map",
+        // The map is a section of this page rather than a route, so the
+        // shortcut names the page and lands on the section.
+        name: "Who is doing what",
+        short_name: "Who",
+        url: "/who#where-traced",
       },
       {
         name: "Live updates",

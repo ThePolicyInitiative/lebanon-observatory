@@ -4,6 +4,9 @@ import { AR, localeAlternates } from "@/lib/i18n";
 import destruction from "@/data/destruction.json";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
+import DisplacementCycle from "@/components/DisplacementCycle";
+import WaterRepairs from "@/components/WaterRepairs";
+import ServiceOperators from "@/components/ServiceOperators";
 import DistrictDamageChart from "@/components/charts/DistrictDamageChart";
 import SectorDamageChart from "@/components/charts/SectorDamageChart";
 import WorstCadastersChart from "@/components/charts/WorstCadastersChart";
@@ -199,7 +202,7 @@ export default function Page() {
 
       <p className="mt-8 text-sm">
         <Link
-          href="/ar/map"
+          href="/ar/who"
           className="font-medium text-blue underline-offset-2 hover:underline"
         >
           اطّلع على أين تركّز النشاط المرصود ←
@@ -212,6 +215,17 @@ export default function Page() {
           اطّلع على التمويل الذي أعقب المعطيات ←
         </Link>
       </p>
+
+      {/* ما الذي توقّف وما الذي عاد: جانبا القصة الواحدة على صفحة واحدة. */}
+      <div className="mt-8">
+        <DisplacementCycle locale="ar" />
+      </div>
+      <div className="mt-7">
+        <WaterRepairs locale="ar" />
+      </div>
+      <div className="mt-7">
+        <ServiceOperators locale="ar" />
+      </div>
 
       <div className="mt-7">
         <Takeaways

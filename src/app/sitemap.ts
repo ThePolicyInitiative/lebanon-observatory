@@ -3,12 +3,16 @@ import { ANALYSIS_REVISED } from "@/lib/about-content";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+/**
+ * The home page is "" rather than "/", so the Arabic twin below comes out
+ * as /ar and not /ar/. /map and /compare are gone - the map is a section of
+ * /who and the year contrast a section of the home page - and a sitemap
+ * that still listed them would hand a crawler two redirects per language.
+ */
 const PAGES = [
   "",
-  "/compare",
   "/who",
   "/destroyed",
-  "/map",
   "/money",
   "/reported",
   "/entries",

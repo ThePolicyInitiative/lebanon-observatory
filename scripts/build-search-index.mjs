@@ -175,6 +175,7 @@ const AR_PAGE = (route) =>
 const ABOUT_BODY = ["src", "app", "(en)", "about", "AboutBody.tsx"];
 const ABOUT_COPY = ["src", "lib", "about-content.ts"];
 const CHART = (name) => ["src", "components", "charts", `${name}.tsx`];
+const REGIONAL_COMPOSITION = ["src", "components", "map", "RegionalComposition.tsx"];
 
 /**
  * An anchor is written into the index only when the id it points at is
@@ -231,10 +232,16 @@ const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
 ]);
 
 /**
- * The nine routes the index covers - the tenth, the search page itself, is
- * deliberately not a target of its own search - with their one-line
+ * The seven routes the index covers - the eighth, the search page itself,
+ * is deliberately not a target of its own search - with their one-line
  * descriptions and their main section headings, in both languages. Heading
  * text is the wording the page prints.
+ *
+ * It was nine until /map and /compare were dissolved. Neither was a
+ * question: the map is how /who draws its answer, and the year is a
+ * control rather than a destination, so their sections are sections of
+ * /who and / now, and a reader searching for one lands on the page that
+ * carries it rather than on a page whose whole subject was an axis.
  *
  * A heading is anchored on both sides or on neither: a reader dropped at
  * the top of a long page while the other language lands on the section is
@@ -303,36 +310,13 @@ const PAGES = [
     ],
   },
   {
-    route: "/compare",
-    en: "Compare 2024 and 2026",
-    ar: "2024 مقابل 2026: ما الذي تغيّر",
-    enDesc:
-      "The two systems side by side: mandate, coordination, finance, assessment, procurement, implementation, municipal power and oversight.",
-    arDesc:
-      "النظامان جنباً إلى جنب: الصلاحية والتنسيق والتمويل والتقييم والشراء والتنفيذ وصلاحيات البلديات والرقابة.",
-    headings: [
-      {
-        en: "2024: emergency substitution",
-        ar: "2024: إحلال في الطوارئ",
-        enAnchor: { id: "summary-2024" },
-        arAnchor: { id: "summary-2024" },
-      },
-      {
-        en: "2026: programmed architecture",
-        ar: "2026: بنية مبرمَجة",
-        enAnchor: { id: "summary-2026" },
-        arAnchor: { id: "summary-2026" },
-      },
-    ],
-  },
-  {
     route: "/who",
     en: "Actor layers",
     ar: "طبقات الجهات الفاعلة",
     enDesc:
-      "Four layers - official institutions, international and non-governmental bodies, municipalities, community initiatives - profiled for both years, with the full register of who did what.",
+      "Four layers - official institutions, international and non-governmental bodies, municipalities, community initiatives - profiled for both years, with the full register of who did what and the map of where the traced activity sits.",
     arDesc:
-      "أربع طبقات - المؤسسات الرسمية والمنظمات الدولية وغير الحكومية والبلديات ومبادرات المجتمع المحلي - بملامح كل منها في السنتين، مع السجل الكامل لمن فعل ماذا.",
+      "أربع طبقات - المؤسسات الرسمية والمنظمات الدولية وغير الحكومية والبلديات ومبادرات المجتمع المحلي - بملامح كل منها في السنتين، مع السجل الكامل لمن فعل ماذا وخريطة موقع النشاط المرصود.",
     headings: [
       {
         en: "Who did what - the full register",
@@ -351,6 +335,53 @@ const PAGES = [
         ar: "الجهات بحسب المرحلة",
         enAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
         arAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
+      },
+      /*
+       * The map was its own route, and so its own entry here. It is not a
+       * question a reader arrives with - it is how this page draws its
+       * answer to "who is doing what", so its two sections are sections of
+       * this page now rather than a separate target.
+       */
+      {
+        en: "Where the traced activity sits",
+        ar: "أين يقع النشاط المرصود",
+        enAnchor: { id: "where-traced", checks: [[EN_PAGE("/who"), 'id="where-traced"']] },
+        arAnchor: {
+          id: "ar-where-traced",
+          checks: [[AR_PAGE("/who"), 'id="ar-where-traced"']],
+        },
+      },
+      {
+        en: "Place mentions, grouping by grouping",
+        ar: "الإشارات إلى الأماكن، تجمّعاً بتجمّع",
+        // RegionalComposition sits under components/map rather than
+        // components/charts, so chartAnchor's path would miss it.
+        enAnchor: {
+          id: "regional-composition",
+          checks: [
+            [EN_PAGE("/who"), "<RegionalComposition"],
+            [REGIONAL_COMPOSITION, 'id="regional-composition"'],
+          ],
+        },
+        arAnchor: {
+          id: "regional-composition",
+          checks: [
+            [AR_PAGE("/who"), "<RegionalComposition"],
+            [REGIONAL_COMPOSITION, 'id="regional-composition"'],
+          ],
+        },
+      },
+      {
+        en: "Why there is no national damage layer",
+        ar: "لماذا لا توجد طبقة أضرار وطنية",
+        enAnchor: {
+          id: "no-national-layer",
+          checks: [[EN_PAGE("/who"), 'id="no-national-layer"']],
+        },
+        arAnchor: {
+          id: "ar-no-national-layer",
+          checks: [[AR_PAGE("/who"), 'id="ar-no-national-layer"']],
+        },
       },
     ],
   },
@@ -390,38 +421,6 @@ const PAGES = [
         arAnchor: chartAnchor("sector-estimates", "SectorDamageChart", [
           AR_PAGE("/destroyed"),
         ]),
-      },
-    ],
-  },
-  {
-    route: "/map",
-    en: "Where traced activity concentrated",
-    ar: "خريطة إعادة الإعمار",
-    enDesc:
-      "Traced activity by regional grouping and by named locality, and the reason there is no national damage layer.",
-    arDesc:
-      "النشاط المرصود بحسب التجمّع الإقليمي والبلدات المسمّاة، ولماذا لا توجد طبقة أضرار وطنية.",
-    headings: [
-      {
-        en: "Why there is no national damage layer",
-        ar: "لماذا لا توجد طبقة أضرار وطنية",
-        enAnchor: { id: "no-national-layer" },
-        arAnchor: { id: "no-national-layer" },
-      },
-      {
-        en: "Place mentions, grouping by grouping",
-        ar: "الإشارات إلى الأماكن، تجمّعاً بتجمّع",
-        enAnchor: {
-          id: "regional-composition",
-          checks: [
-            [EN_PAGE("/map"), "<RegionalComposition"],
-            [
-              ["src", "components", "map", "RegionalComposition.tsx"],
-              'id="regional-composition"',
-            ],
-          ],
-        },
-        arAnchor: { id: "ar-regions" },
       },
     ],
   },
@@ -656,7 +655,7 @@ export function buildIndex() {
     const label = REGIONS[region.id];
     if (!label) throw new Error(`No name for the grouping "${region.id}"`);
     items.push(
-      item("place", label.en, label.ar, "/map", {
+      item("place", label.en, label.ar, "/who", {
         c: "Regional grouping",
         ca: "تجمّع إقليمي",
       }),
@@ -673,17 +672,23 @@ export function buildIndex() {
     const region = REGIONS[locality.region];
     if (!region) throw new Error(`No name for the grouping "${locality.region}"`);
     items.push(
-      item("place", locality.name, ar, "/map", { c: region.en, ca: region.ar }),
+      item("place", locality.name, ar, "/who", { c: region.en, ca: region.ar }),
     );
   }
 
-  /* The twelve stages of the value chain. */
+  /*
+   * The twelve stages of the value chain. They used to point at /compare,
+   * which contrasted them across the two years; the two surfaces that
+   * actually draw a stage - the stage composition chart and the actor-by-
+   * stage matrix - are both on /who, so that is where a reader searching a
+   * stage name should land.
+   */
   const stages = readJson("src", "data", "stage-counts.json").stages;
   if (stages.length !== STAGES_AR.length)
     throw new Error(`The Arabic stage names are stale: ${stages.length} stages, ${STAGES_AR.length} names`);
   stages.forEach((stage, i) => {
     items.push(
-      item("stage", stage, STAGES_AR[i], "/compare", {
+      item("stage", stage, STAGES_AR[i], "/who", {
         c: `Stage ${i + 1} of ${stages.length}`,
         ca: `المرحلة ${i + 1} من ${stages.length}`,
       }),

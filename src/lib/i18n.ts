@@ -82,11 +82,18 @@ export const AR = {
     destroyedShort: "الدمار؟",
     reported: "ماذا يُنشَر؟",
     reportedShort: "يُنشَر؟",
+    /*
+     * The footer's topic names. It says what each page holds, because a
+     * reader at the foot of a page has already read it and is looking for
+     * a subject by name; the questions above are for a reader arriving.
+     *
+     * `map` is gone with the route it named: the map is a section of /who,
+     * and `actors` says so.
+     */
     home: "الرئيسية",
-    compare: "2024 مقابل 2026",
-    actors: "الجهات الفاعلة",
+    compare: "تحوّل 2024-2026",
+    actors: "الجهات الفاعلة والخريطة",
     damage: "الأضرار",
-    map: "الخريطة",
     finance: "التمويل",
     news: "مستجدات",
     explorer: "المستكشف",

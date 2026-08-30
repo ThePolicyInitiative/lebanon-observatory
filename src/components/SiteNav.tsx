@@ -51,7 +51,7 @@ const NAV_ITEMS = [
  */
 const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/about"];
 
-/** "/compare" becomes "/ar/compare"; "/" becomes "/ar". */
+/** "/who" becomes "/ar/who"; "/" becomes "/ar". */
 export function localisedHref(path: string, arabic: boolean): string {
   if (!arabic) return path;
   return path === "/" ? "/ar" : `/ar${path}`;

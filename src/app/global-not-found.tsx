@@ -20,22 +20,31 @@ export const metadata: Metadata = {
   description: "The page you requested does not exist. الصفحة المطلوبة غير موجودة.",
 };
 
+/**
+ * One entry per page, and the two lists are the same routes in the same
+ * order - an unmatched URL says nothing about which language the reader
+ * came for, so neither side may offer a way in the other does not.
+ *
+ * They listed seven when the site had seven pages. "2024 vs 2026" and
+ * "Map" are sections now, of the home page and of /who, so keeping them
+ * would print two links to one route and leave two pages unlisted.
+ */
 const EN_LINKS: [string, string][] = [
   ["/", "Home"],
-  ["/compare", "2024 vs 2026"],
-  ["/who", "Actor layers"],
-  ["/map", "Map"],
+  ["/who", "Actor layers & map"],
+  ["/destroyed", "Damage assessments"],
   ["/money", "Finance & delivery"],
+  ["/reported", "Live updates"],
   ["/entries", "Data explorer"],
   ["/search", "Search"],
 ];
 
 const AR_LINKS: [string, string][] = [
   ["/ar", "الرئيسية"],
-  ["/ar/compare", "2024 مقابل 2026"],
-  ["/ar/who", "الجهات الفاعلة"],
-  ["/ar/map", "الخريطة"],
+  ["/ar/who", "الجهات الفاعلة والخريطة"],
+  ["/ar/destroyed", "الأضرار"],
   ["/ar/money", "التمويل والإنجاز"],
+  ["/ar/reported", "المستجدات"],
   ["/ar/entries", "المستكشف"],
   ["/ar/search", "البحث"],
 ];

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import NewsExplorer from "./NewsExplorer";
 import CoverageHistory from "@/components/CoverageHistory";
+import ReportedUpdates from "@/components/ReportedUpdates";
 import PageShell from "@/components/PageShell";
 import { localeAlternates } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   alternates: localeAlternates("/reported"),
-  title: "Live updates",
+  title: "What is being reported?",
   description:
     "Aggregated live coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official publishers - searchable and filterable, kept separate from the analysis.",
 };
@@ -34,6 +35,15 @@ export default async function NewsPage({
           <NewsExplorer />
         </Suspense>
       </section>
+      {/*
+        * The web updates, which were filed under the actor page because
+        * that is where they were first written. They are published
+        * material this tracking has not counted, which is what this page
+        * is for and what the actor page is not.
+        */}
+      <div className="mt-7">
+        <ReportedUpdates />
+      </div>
       <CoverageHistory year={one(params.hy)} kind={one(params.hk)} />
     </PageShell>
   );
