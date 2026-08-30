@@ -95,6 +95,56 @@ export function regionLabel(id: string, locale: Locale): string {
   return (locale === "ar" ? REGION_AR[id] : REGION_EN[id]) ?? id;
 }
 
+/**
+ * The nine governorates, named in both languages.
+ *
+ * The boundary layer's own `shapeName` is French throughout - Liban-Nord,
+ * Mont-Liban, Beyrouth, Béqaa, Nabatîyé, Aakkâr - and both maps printed
+ * it raw wherever a governorate had no grouping in locations.json to
+ * supply a label. That is exactly the two northern ones, so an Arabic
+ * reader hovering the north was shown "Liban-Nord", and an English reader
+ * was shown it too.
+ *
+ * Keyed on the shapeName because that is what the layer carries. The
+ * English forms are the COD adm1_name spellings the town layer uses, for
+ * the same reason DISTRICT_COD_NAME prefers them at the district level:
+ * the COD spelling is the one the rest of the site says. Keserwan-Jbeil
+ * is the exception, having no COD form to borrow - the older COD town
+ * layer still folds it into Mount Lebanon.
+ *
+ * This is a name for a place, not a grouping for the tracking. The north
+ * deliberately has no entry in locations.json, because neither war
+ * reached those governorates and nothing traced is attributed there; that
+ * stays true. Being able to say where the cursor is, is not an
+ * attribution.
+ */
+const GOVERNORATE: Record<string, { en: string; ar: string }> = {
+  "Baalbek-Hermel": { en: "Baalbek-El Hermel", ar: "بعلبك-الهرمل" },
+  Beyrouth: { en: "Beirut", ar: "بيروت" },
+  "Liban-Nord": { en: "North", ar: "الشمال" },
+  "Mont-Liban": { en: "Mount Lebanon", ar: "جبل لبنان" },
+  "Liban-Sud": { en: "South", ar: "الجنوب" },
+  Nabatîyé: { en: "El Nabatieh", ar: "النبطية" },
+  Béqaa: { en: "Bekaa", ar: "البقاع" },
+  Aakkâr: { en: "Akkar", ar: "عكار" },
+  "Keserwan-Jbeil": { en: "Keserwan-Jbeil", ar: "كسروان-جبيل" },
+};
+
+/**
+ * What to print for a governorate the tracking has no grouping for.
+ *
+ * Falls back to the raw shapeName only if the boundary layer ever gains a
+ * name this table does not carry, which a test forbids - so in practice
+ * the fallback is unreachable and exists so a data revision degrades to a
+ * French name rather than to an empty string.
+ */
+export function governorateLabel(shapeName: string, locale: Locale): string {
+  const g = GOVERNORATE[shapeName];
+  return g ? g[locale] : shapeName;
+}
+
+export const GOVERNORATE_NAMES = Object.keys(GOVERNORATE);
+
 /** Actor layers with their labels in the requested language. */
 export function layers(locale: Locale) {
   return LAYER_META.map((l) =>

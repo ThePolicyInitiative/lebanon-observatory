@@ -1558,8 +1558,11 @@ export default function SvgLebanonMap({
                       strokeOpacity={0.85}
                     >
                       <title>
+                        {/* Only traced zones reach regionLabel, and every
+                            traced zone has a grouping, so there is no
+                            fallback branch here to leak a raw name. */}
                         {traced
-                          ? tr.baseTitle(p.name, regionLabel(p.zoneId, locale) || p.zoneLabel, v, year)
+                          ? tr.baseTitle(p.name, regionLabel(p.zoneId, locale), v, year)
                           : p.name}
                       </title>
                     </path>

@@ -397,11 +397,23 @@ function toPath(f: GeoFeature): string {
 
 export type GovPath = {
   d: string;
+  /**
+   * The boundary layer's own name for the governorate, which is FRENCH -
+   * Liban-Nord, Mont-Liban, Beyrouth, Béqaa, Nabatîyé, Aakkâr. It is a
+   * key, never copy: pass it through governorateLabel() to print it.
+   */
   name: string;
   zoneId: string;
-  zoneLabel: string;
 };
 
+/**
+ * These carried a `zoneLabel` of `region?.label ?? name`, which is how a
+ * French governorate name reached a reader: the two northern governorates
+ * have no grouping in locations.json, so the fallback handed the raw
+ * shapeName to whatever printed it. A geometry module has no business
+ * holding reader copy in the first place - it cannot know the language -
+ * so the label is gone and the name is documented as the key it is.
+ */
 export const GOV_PATHS: GovPath[] = govFeatures.map((f) => {
   const name = String(f.properties.shapeName ?? "");
   const region = locationsJson.regions.find((r) => r.governorates.includes(name));
@@ -409,7 +421,6 @@ export const GOV_PATHS: GovPath[] = govFeatures.map((f) => {
     d: toPath(f),
     name,
     zoneId: region?.id ?? "",
-    zoneLabel: region?.label ?? name,
   };
 });
 
@@ -572,18 +583,15 @@ export type DistrictPath = {
   d: string;
   name: string;
   zoneId: string;
-  zoneLabel: string;
 };
 
+/** Same as GOV_PATHS: the name is a key, and the label is the caller's. */
 export const DISTRICT_PATHS: DistrictPath[] = districtFeatures.map((f) => {
   const name = String(f.properties.shapeName ?? "");
-  const zoneId = DISTRICT_ZONE[name] ?? "";
-  const region = locationsJson.regions.find((r) => r.id === zoneId);
   return {
     d: toPath(f),
     name,
-    zoneId,
-    zoneLabel: region?.label ?? name,
+    zoneId: DISTRICT_ZONE[name] ?? "",
   };
 });
 

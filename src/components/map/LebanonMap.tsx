@@ -15,6 +15,7 @@ import { COMPARABILITY_IN_USE, STATUSES_IN_USE, slimRecords } from "@/lib/map-re
 import {
   cautionMap,
   comparabilityLabel,
+  governorateLabel,
   layers,
   regionLabel,
   stageList,
@@ -531,7 +532,12 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               r.governorates.includes(name),
             );
             f.properties.zoneId = region?.id ?? "";
-            f.properties.zoneLabel = region?.label ?? name;
+            // The key, not the label. This carried `region?.label ?? name`,
+            // and for the two governorates with no grouping - the northern
+            // ones - that `?? name` handed the layer's raw French shapeName
+            // to the popup, in both languages. A name is resolved where the
+            // locale is in scope, which is at render time, not here.
+            f.properties.govName = name;
           }
           map.addSource("governorates", { type: "geojson", data: geojson });
           map.addLayer({
@@ -713,7 +719,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             const f = e.features?.[0];
             if (!f) return;
             const zoneId = f.properties?.zoneId as string;
-            const zoneLabel = f.properties?.zoneLabel as string;
+            const govName = f.properties?.govName as string;
             // Town under the cursor, if the town layer has loaded.
             const townFeat = map.getLayer("town-fill")
               ? map.queryRenderedFeatures(e.point, { layers: ["town-fill"] })[0]
@@ -725,7 +731,13 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 ? `<strong>${esc(townName)}</strong> · ${esc(t.districtOf(townDistrict ?? ""))}<br/>`
                 : "";
             const dirAttr = locale === "ar" ? ` dir="rtl"` : "";
-            const zoneName = (zoneId && regionLabel(zoneId, locale)) || zoneLabel;
+            // A grouping's name where the tracking has one, the
+            // governorate's own name where it does not - never the
+            // boundary layer's French, which is what `|| zoneLabel` used
+            // to fall through to for the north.
+            const zoneName = zoneId
+              ? regionLabel(zoneId, locale)
+              : governorateLabel(govName, locale);
             // yearRef, not get("year"): this handler is registered once,
             // inside the one-shot load callback, so it closes over that
             // render's get and keeps answering with the year that was
