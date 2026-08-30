@@ -1383,6 +1383,21 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </>
           )}
 
+          {/*
+           * Who the geometry belongs to, under whichever map is showing.
+           *
+           * The credits were passed to MapLibre's attribution control,
+           * which exists only on the pan-and-zoom map - so the vector
+           * map, which is the default and draws the same OCHA boundaries
+           * and the same OpenStreetMap centreline, carried no credit at
+           * all. The Litani geometry is ODbL, where that is a licence
+           * term rather than a courtesy. Printed here it covers both, and
+           * the control keeps its copy for anyone who opens it.
+           */}
+          <p className="mt-2 text-micro text-text-secondary">
+            {t.creditBoundaries} · {t.creditLitani}
+          </p>
+
           {/* The key, then the groupings that cannot be put on a map at
               all. The reason they sit outside it is stated once for the
               group, not repeated on each card. */}

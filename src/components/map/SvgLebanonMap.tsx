@@ -54,7 +54,7 @@ import {
   type Pin,
 } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
-import { labelBox, packLabels } from "@/lib/map-labels";
+import { labelBox, packLabels, packReserved } from "@/lib/map-labels";
 import MapLegend from "./MapLegend";
 import ViewRanking, { type RankRow } from "./ViewRanking";
 
@@ -1210,18 +1210,34 @@ export default function SvgLebanonMap({
   const visibleLabels = useMemo(() => {
     // Drawn at every zoom, so they are the first claimants.
     const cityPoints = CITY_LABELS.map((c) => ({ ...c, ...projectPoint(c.lon, c.lat) }));
-    const reserved = cityPoints.map((c) =>
-      labelBox(c.x + 4.5 * k, c.y - 3.5 * k, c.name, 10.5 * k),
-    );
-    reserved.push(
-      labelBox(LITANI_LABEL_ANCHOR.x, LITANI_LABEL_ANCHOR.y - 4 * k, "Litani", 9.5 * k),
-    );
-    // District labels appear only when zoomed out past this point.
-    if (zoom <= 0.55) {
-      for (const l of DISTRICT_LABELS) {
-        reserved.push(labelBox(l.x, l.y, l.label, 9.5 * k, "middle"));
-      }
-    }
+
+    /*
+     * The unconditional labels, thinned against each other first.
+     *
+     * They were all reserved and none tested, so where a district label
+     * sits under the city that names it the two printed on top of each
+     * other - "BEIRUT" through "Beirut" - at every zoom the district
+     * layer is on. Cities come first because they are drawn at every
+     * zoom and a district label only below 0.55; the river last, since
+     * it is the one a reader can place from the line itself.
+     */
+    const reservedCandidates = [
+      ...cityPoints.map((c) => ({
+        key: `city:${c.name}`,
+        box: labelBox(c.x + 4.5 * k, c.y - 3.5 * k, c.name, 10.5 * k),
+      })),
+      ...(zoom <= 0.55
+        ? DISTRICT_LABELS.map((l) => ({
+            key: `district:${l.name}`,
+            box: labelBox(l.x, l.y, l.label, 9.5 * k, "middle"),
+          }))
+        : []),
+      {
+        key: "litani",
+        box: labelBox(LITANI_LABEL_ANCHOR.x, LITANI_LABEL_ANCHOR.y - 4 * k, "Litani", 9.5 * k),
+      },
+    ];
+    const { kept: reservedKept, boxes: reserved } = packReserved(reservedCandidates);
 
     // The markers themselves, which are drawn whatever the labels do. A
     // name that clears every other name can still print straight across
@@ -1263,7 +1279,7 @@ export default function SvgLebanonMap({
         };
       });
 
-    return packLabels(candidates, reserved);
+    return { towns: packLabels(candidates, reserved), reserved: reservedKept };
   }, [placePoints, k, zoom, anchorOf, clusterByTown, entryClusters, entryPins]);
 
   /** Town fills - memoized so zoom/pan and hover don't re-diff 1,600 paths. */
@@ -1653,7 +1669,9 @@ export default function SvgLebanonMap({
 
               {/* District labels appear once zoomed in */}
               {zoom <= 0.55
-                ? DISTRICT_LABELS.map((l) => (
+                ? DISTRICT_LABELS.filter((l) =>
+                    visibleLabels.reserved.has(`district:${l.name}`),
+                  ).map((l) => (
                     <text
                       key={`dl-${l.name}`}
                       x={l.x}
@@ -1676,7 +1694,7 @@ export default function SvgLebanonMap({
                 : null}
 
               {/* Major-city reference labels */}
-              {CITY_LABELS.map((c) => {
+              {CITY_LABELS.filter((c) => visibleLabels.reserved.has(`city:${c.name}`)).map((c) => {
                 const { x, y } = projectPoint(c.lon, c.lat);
                 return (
                   <g
@@ -1832,7 +1850,7 @@ export default function SvgLebanonMap({
               {view === "entries"
                 ? placePoints.map((p) => {
                     const t = p.town;
-                    if (!visibleLabels.has(t.name)) return null;
+                    if (!visibleLabels.towns.has(t.name)) return null;
                     // The label clears whatever the town actually drew:
                     // the fitted fan, or the single marker that replaced
                     // it where the fan would not have been legible.

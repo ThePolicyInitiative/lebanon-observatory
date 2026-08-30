@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boxesOverlap, labelBox, packLabels } from "@/lib/map-labels";
+import { boxesOverlap, labelBox, packLabels, packReserved } from "@/lib/map-labels";
 
 /**
  * The map printed names on top of each other in two different ways.
@@ -81,6 +81,37 @@ describe("packing", () => {
     const city = box(0, 0, "Nabatieh");
     const kept = packLabels([{ key: "Nabatieh Et-Tahta", box: box(4, 0) }], [city]);
     expect(kept.size).toBe(0);
+  });
+
+  /**
+   * The labels that are drawn whatever happens still have to clear each
+   * other.
+   *
+   * packLabels takes its reserved boxes as given, which is right for a
+   * marker - a marker is drawn regardless - and wrong for a label. The
+   * city and district layers are both unconditional, so where a district
+   * label sat under the city that names it, the two printed on top of one
+   * another: "BEIRUT" through "Beirut", at every zoom the district layer
+   * is on.
+   */
+  it("thins the unconditional labels against each other", () => {
+    const city = { key: "city:Beirut", box: box(0, 0, "Beirut") };
+    const district = { key: "district:Beirut", box: box(2, 0, "BEIRUT") };
+    const far = { key: "district:Baalbek", box: box(400, 0, "BAALBEK") };
+    const { kept, boxes } = packReserved([city, district, far]);
+    expect(kept.has("city:Beirut")).toBe(true);
+    expect(kept.has("district:Beirut"), "the district label prints through the city").toBe(false);
+    expect(kept.has("district:Baalbek")).toBe(true);
+    // And what comes back is only what survived, so a caller that draws
+    // from it cannot draw a suppressed one.
+    expect(boxes).toHaveLength(2);
+  });
+
+  it("keeps priority in the order given, for reserved labels too", () => {
+    const a = { key: "first", box: box(0, 0) };
+    const b = { key: "second", box: box(3, 0) };
+    expect([...packReserved([a, b]).kept]).toEqual(["first"]);
+    expect([...packReserved([b, a]).kept]).toEqual(["second"]);
   });
 
   it("never returns two labels that overlap each other", () => {

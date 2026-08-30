@@ -67,3 +67,31 @@ export function packLabels<T>(
   }
   return kept;
 }
+
+/**
+ * The reserved labels, thinned so they do not print through each other.
+ *
+ * `packLabels` takes reserved boxes as given and only protects candidates
+ * from them - which is right for a marker, since a marker is drawn
+ * whatever happens, but wrong for a label. The city and district layers
+ * are both unconditional, so where a district label sits under the city
+ * that names it the two printed on top of each other: "BEIRUT" through
+ * "Beirut", at every zoom the district layer is on.
+ *
+ * Order is priority, as everywhere else here. The caller passes the
+ * layers in the order it wants them kept, and draws only what comes
+ * back.
+ */
+export function packReserved<T>(candidates: LabelCandidate<T>[]): {
+  kept: Set<T>;
+  boxes: LabelBox[];
+} {
+  const boxes: LabelBox[] = [];
+  const kept = new Set<T>();
+  for (const c of candidates) {
+    if (boxes.some((b) => boxesOverlap(b, c.box))) continue;
+    boxes.push(c.box);
+    kept.add(c.key);
+  }
+  return { kept, boxes };
+}
