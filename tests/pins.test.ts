@@ -4,15 +4,39 @@ import { join } from "node:path";
 import {
   buildPins,
   clampToLand,
+  episodeRing,
   fanOffset,
   fanRadius,
   JURISDICTION_ONLY_PLACES,
   layerColor,
+  MAP_GROUND,
   pinOutline,
 } from "@/lib/pins";
 import { featureCentroid, projectPoint, type GeoFeature } from "@/lib/geo";
 import { buildLandIndex, isOnLandIndexed } from "@/lib/land";
 import { buildLocationIndex, matchLocations } from "@/lib/geo-match";
+
+/**
+ * The four actor layers, and the contrast arithmetic the colour checks
+ * share. These sat inside one `it()` and so were reachable from nowhere
+ * else; the next contrast test would have had to copy them, or reference
+ * them and fail at run time.
+ */
+const LAYER_IDS = ["official", "ngo_international", "municipal", "community"];
+/** The pale chart ground the pin outlines are judged against. */
+const GROUND = "#e5eaf0";
+const lin = (c: number) => {
+  const v = c / 255;
+  return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+};
+const lum = (hex: string) =>
+  0.2126 * lin(parseInt(hex.slice(1, 3), 16)) +
+  0.7152 * lin(parseInt(hex.slice(3, 5), 16)) +
+  0.0722 * lin(parseInt(hex.slice(5, 7), 16));
+const contrast = (a: string, b: string) => {
+  const [x, y] = [lum(a), lum(b)];
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+};
 import { slimRecords } from "@/lib/map-records";
 import { LAYER_COLORS } from "@/lib/colors";
 
@@ -146,22 +170,61 @@ describe("map pins", () => {
 
   it("outlines every layer clear of the map's ground", () => {
     // WCAG 1.4.11: graphical objects need 3:1 against what is behind them.
-    const GROUND = "#e5eaf0";
-    const lin = (c: number) => {
-      const v = c / 255;
-      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-    };
-    const lum = (hex: string) =>
-      0.2126 * lin(parseInt(hex.slice(1, 3), 16)) +
-      0.7152 * lin(parseInt(hex.slice(3, 5), 16)) +
-      0.0722 * lin(parseInt(hex.slice(5, 7), 16));
-    const contrast = (a: string, b: string) => {
-      const [x, y] = [lum(a), lum(b)];
-      return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
-    };
-    for (const layer of ["official", "ngo_international", "municipal", "community"]) {
+    for (const layer of LAYER_IDS) {
       const edge = pinOutline(layerColor(layer));
       expect(contrast(edge, GROUND), `${layer} outline is too faint`).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  /**
+   * The entry dot's outline had this guarantee and the episode ring did
+   * not, which is how the episode ring lost it.
+   *
+   * An entry is a solid dot: its colour fills it, pinOutline edges it, and
+   * the dark edge is what carries the contrast - which is what the test
+   * above checks. An episode inverts the arrangement: a white disc with a
+   * coloured ring, so the ring is the marker's only boundary and has to
+   * clear 3:1 twice, against the white inside it and the ground outside.
+   * Both renderers passed the raw layer colour straight through, so the
+   * helper written for exactly this problem was applied to the branch that
+   * was already fine and skipped on the one that was not. Municipal amber
+   * reached 2.55:1 and 2.07:1 - the one actor layer whose traced episodes
+   * a reader with low vision could not find at all.
+   */
+  it("rings every episode clear of the ground and of the white it encloses", () => {
+    for (const layer of LAYER_IDS) {
+      const ring = episodeRing(layerColor(layer));
+      expect(
+        contrast(ring, MAP_GROUND),
+        `${layer} episode ring on the map's ground`,
+      ).toBeGreaterThanOrEqual(3);
+      expect(
+        contrast(ring, "#FFFFFF"),
+        `${layer} episode ring against its own white fill`,
+      ).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  /**
+   * MAP_GROUND is a composite, not a token: no declaration holds it, so
+   * nothing would notice if the two colours it is derived from moved. This
+   * re-derives it from the literals both renderers actually paint.
+   */
+  it("keeps the composited ground in step with the fills it comes from", () => {
+    const over = (fg: string, bg: string, a: number) => {
+      const ch = (i: number) =>
+        Math.round(parseInt(fg.slice(i, i + 2), 16) * a + parseInt(bg.slice(i, i + 2), 16) * (1 - a));
+      return `#${[ch(1), ch(3), ch(5)].map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+    };
+    // The town fill at 0.9 over the map's bed, as both maps draw it.
+    expect(over("#E1E7EE", "#E9EDF2", 0.9).toLowerCase()).toBe(MAP_GROUND.toLowerCase());
+    for (const src of [
+      join(process.cwd(), "src", "components", "map", "SvgLebanonMap.tsx"),
+      join(process.cwd(), "src", "components", "map", "LebanonMap.tsx"),
+    ]) {
+      const text = readFileSync(src, "utf-8");
+      expect(text, `${src} no longer paints the fill MAP_GROUND assumes`).toContain("#E1E7EE");
+      expect(text, `${src} no longer paints the bed MAP_GROUND assumes`).toContain("#E9EDF2");
     }
   });
 

@@ -50,6 +50,7 @@ import {
   fanRadius,
   fitSpacing,
   JURISDICTION_ONLY_PLACES,
+  episodeRing,
   pinOutline,
   type Pin,
 } from "@/lib/pins";
@@ -281,9 +282,22 @@ const SURVEY_BY_DISTRICT = new Map(
 );
 const SURVEY_MAX = Math.max(...districtDamage.districts.map((d) => d.units));
 
+/**
+ * A polygon id, and a type a town name cannot be assigned to.
+ *
+ * The plain `string` this used to be is why the hover highlight silently
+ * stopped working: the state is compared against `Town.uid`, which always
+ * carries a `#index` suffix, and two call sites wrote a bare name into it.
+ * A name is a `string`, so it assigned cleanly, never matched anything,
+ * and drew nothing - the readout text comes from separate state, so the
+ * label still appeared and the missing outline read as a design choice.
+ * Branding the id makes that a compile error instead.
+ */
+type TownUid = string & { readonly __townUid: unique symbol };
+
 type Town = {
   /** Unique per polygon (names are not unique in the boundary data). */
-  uid: string;
+  uid: TownUid;
   d: string;
   name: string;
   district: string;
@@ -435,12 +449,20 @@ export default function SvgLebanonMap({
   /** Town polygons by uid, and their resolved anchors. See anchorOf. */
   const featuresRef = useRef<Map<string, GeoFeature>>(new Map());
   const anchorCacheRef = useRef<Map<string, Anchor>>(new Map());
+  /**
+   * The selected town twice over, and the two are not interchangeable.
+   * `Raw` is the name, which is the key the location matcher emits and so
+   * the key the entry lists are grouped under; `Uid` is the polygon, which
+   * is what a shape is drawn from. Reading one where the other is meant is
+   * what the branded type below now prevents.
+   */
   const [selectedTownRaw, setSelectedTownRaw] = useState<string | null>(null);
-  const [selectedTownUid, setSelectedTownUid] = useState<string | null>(null);
+  const [selectedTownUid, setSelectedTownUid] = useState<TownUid | null>(null);
   const [selectedOccupation, setSelectedOccupation] = useState<"" | "strip" | "district">("");
   const [search, setSearch] = useState("");
+  /** The hover readout text, and the polygon to outline while it shows. */
   const [hover, setHover] = useState<string | null>(null);
-  const [hoverUid, setHoverUid] = useState<string | null>(null);
+  const [hoverUid, setHoverUid] = useState<TownUid | null>(null);
   const [vb, setVb] = useState<ViewBox>(HOME);
   /** Rendered width of the SVG in CSS pixels; VIEW_W until measured. */
   const [renderedW, setRenderedW] = useState(VIEW_W);
@@ -510,7 +532,7 @@ export default function SvgLebanonMap({
           return {
             // Unique per polygon: 65 disputed areas share the name
             // "Litige", so name alone cannot identify a shape.
-            uid: `${name}#${i}`,
+            uid: `${name}#${i}` as TownUid,
             d: toSvgPath(f),
             name,
             district,
@@ -889,7 +911,20 @@ export default function SvgLebanonMap({
   /** The 2026 assessment's worst cadasters, resolved onto the town layer. */
   const damageAnchors = useMemo(() => {
     if (!towns || !locIndex) return [];
-    const byName = new Map(towns.map((t) => [t.name, t] as const));
+    /*
+     * First polygon wins, which is what placePoints, entryPinsRaw and
+     * buildLocationIndex all do. Built through the Map constructor this
+     * was LAST-wins, so for the one genuinely duplicated town name in the
+     * boundary layer - Kafr, in Jbeil and in Akkar - this resolver alone
+     * picked the northern polygon while every other path picked the
+     * southern one. No assessment names Kafr today, so nothing moved on
+     * screen; a resolver that disagrees with its three siblings about
+     * which shape a name means is a trap either way, and this one could
+     * put a damage badge in the north, where the tracking attributes
+     * nothing.
+     */
+    const byName = new Map<string, Town>();
+    for (const t of towns) if (!byName.has(t.name)) byName.set(t.name, t);
     const out: { town: Town; label: string; destroyed: number }[] = [];
     for (const zone of destruction.zones2026) {
       for (const c of zone.worstCadasters) {
@@ -1730,7 +1765,8 @@ export default function SvgLebanonMap({
                   sources name. Colour = that entry's own actor layer. */}
               {view === "entries"
                 ? entryPins.map((pin) => {
-                    const isSel = selectedTownName === pin.townName;
+                    // The polygon, not the name: two towns can share one.
+                    const isSel = selectedTownUid === pin.town.uid;
                     const rp = PIN_R * (isSel ? 1.4 : 1);
                     const edge = isSel ? "#173B63" : pinOutline(pin.color);
                     const label = `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""} · ${pin.detail}`;
@@ -1749,7 +1785,7 @@ export default function SvgLebanonMap({
                         }}
                         onPointerEnter={() => {
                           setHover(label);
-                          setHoverUid(pin.townName);
+                          setHoverUid(pin.town.uid);
                         }}
                         onPointerLeave={() => {
                           setHover(null);
@@ -1771,10 +1807,15 @@ export default function SvgLebanonMap({
                             dot grows under the pointer and on keyboard
                             focus, so the target being hit is never in
                             doubt. */}
+                        {/* The episode ring takes no selection override.
+                            `edge` carries one because a selected entry dot
+                            keeps its fill and only changes its rim; an
+                            episode's ring IS the mark, so painting it navy
+                            would erase the layer it names. */}
                         <circle
                           r={rp}
                           fill={pin.kind === "episode" ? "#FFFFFF" : pin.color}
-                          stroke={pin.kind === "episode" ? pin.color : edge}
+                          stroke={pin.kind === "episode" ? episodeRing(pin.color) : edge}
                           strokeWidth={pin.kind === "episode" ? PIN_STROKE * 2 : PIN_STROKE}
                           className="pointer-events-none transition-transform duration-100 group-hover/pin:scale-150 group-focus-visible/pin:scale-150"
                           style={{ transformBox: "fill-box", transformOrigin: "center" }}
@@ -1791,7 +1832,7 @@ export default function SvgLebanonMap({
                   entries the pins would have opened. */}
               {view === "entries"
                 ? entryClusters.map((c) => {
-                    const isSel = selectedTownName === c.town.name;
+                    const isSel = selectedTownUid === c.town.uid;
                     // Area grows with the count, so ten reads as more than
                     // three without a town of forty swallowing its
                     // neighbours.
@@ -1813,7 +1854,7 @@ export default function SvgLebanonMap({
                         }}
                         onPointerEnter={() => {
                           setHover(label);
-                          setHoverUid(c.town.name);
+                          setHoverUid(c.town.uid);
                         }}
                         onPointerLeave={() => {
                           setHover(null);

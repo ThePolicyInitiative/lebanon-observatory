@@ -59,7 +59,7 @@ export const VALENCE = {
    * that put amber municipal counters beside amber caution rules within
    * one screen. Amber is identity only now, on the same reasoning this
    * file already applied to teal, and caution is carried by its readable
-   * sibling - 5.49:1 on white, against the amber's 2.16:1.
+   * sibling - 5.49:1 on white, against the amber's 2.55:1.
    */
   caution: "#8a6200",
 } as const;

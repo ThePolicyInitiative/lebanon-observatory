@@ -52,6 +52,7 @@ import {
   fanSpacing,
   fitSpacing,
   layerColor,
+  episodeRing,
   pinOutline,
 } from "@/lib/pins";
 
@@ -953,7 +954,9 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               // An episode is a ring, an entry a solid dot - the same
               // distinction the vector map draws.
               color: pin.kind === "episode" ? "#FFFFFF" : pin.color,
-              strokeColor: pin.kind === "episode" ? pin.color : pinOutline(pin.color),
+              // The ring is an episode's only boundary, so it answers to
+              // 3:1 against both the white it encloses and the ground.
+              strokeColor: pin.kind === "episode" ? episodeRing(pin.color) : pinOutline(pin.color),
               strokeWidth: pin.kind === "episode" ? 2.4 : 1.2,
               popupHtml:
                 `<div${locale === "ar" ? ` dir="rtl"` : ""} style="font-size:12px;line-height:1.5;max-width:300px">` +

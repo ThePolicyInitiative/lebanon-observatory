@@ -120,7 +120,7 @@
    * Caution as TEXT. #d69600 is the municipal identity colour and the amber
    * of the caution rule, and it manages both because a 2px rule and a chip
    * fill only have to be seen. It cannot be read: on white it measures
-   * 2.16:1. Seventeen places had already worked that out independently and
+   * 2.55:1. Seventeen places had already worked that out independently and
    * hand-typed #8a6200 - 5.49:1 - beside the amber, without ever declaring
    * it. This is that value, named, so the eighteenth place does not have to
    * rediscover it.
@@ -592,7 +592,7 @@ p {
    *
    * The rule goes to the strong border grey, and the caution is carried by
    * the words instead: --color-caution-text at 5.49:1, against the amber's
-   * 2.16:1, which was never readable and was only ever being seen.
+   * 2.55:1, which was never readable and was only ever being seen.
    */
   .note-caution {
     border-inline-start: 2px solid var(--color-border-strong);

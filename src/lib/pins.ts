@@ -285,6 +285,53 @@ export function chipBackground(color: string): string {
   return contrastWithWhite(color) >= 4.5 ? color : pinOutline(color);
 }
 
+/** WCAG contrast ratio between two #rrggbb colours. */
+export function contrastRatio(a: string, b: string): number {
+  const [x, y] = [luminance(a), luminance(b)];
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+}
+
+/**
+ * The grey a marker is actually drawn on.
+ *
+ * Not a token, and deliberately not one: it is what the eye receives after
+ * compositing, which no single declaration holds. Both renderers paint the
+ * town fill #E1E7EE at 0.9 over the map's own bed #E9EDF2, and 0.9 of the
+ * one over the other is this. MAP_SURFACES below is checked against those
+ * two literals by the test, so moving either without moving this fails
+ * rather than silently invalidating the arithmetic that depends on it.
+ */
+export const MAP_GROUND = "#E2E8EE";
+
+/**
+ * The ring an episode marker is drawn with.
+ *
+ * An entry is a solid dot - its colour fills it and pinOutline edges it,
+ * so the dark edge carries the contrast. An episode inverts that: it is a
+ * white disc with a coloured ring, so the ring is the only boundary the
+ * marker has, and it answers to 3:1 twice over - against the white it
+ * encloses and against the ground it sits on. Both renderers passed the
+ * raw layer colour straight through, so pinOutline, which exists for
+ * exactly this reason, was applied to the one branch that was already
+ * fine and skipped on the one that was not.
+ *
+ * Official, NGO and community rings clear 3:1 on both and keep their
+ * identity colour untouched. Municipal amber reaches 2.55:1 on the white
+ * and 2.07:1 on the ground - it is the only actor layer whose traced
+ * episodes were effectively invisible - so it takes the darkened form of
+ * its own colour, the same one the entry dot's outline and the layer chip
+ * already use. The layer stays recognisably itself rather than being
+ * swapped for another hue, which is also why the palette does not move:
+ * #D69600 is the municipal identity in every chip, series and counter on
+ * the site, and the darkened value that would fix it site-wide is
+ * VALENCE.caution, which the identity colours may not borrow.
+ */
+export function episodeRing(color: string): string {
+  return contrastWithWhite(color) >= 3 && contrastRatio(color, MAP_GROUND) >= 3
+    ? color
+    : pinOutline(color);
+}
+
 /**
  * Every pin for one year: one per entry naming a town, one per traced
  * episode. `spacing` is in the caller's units. Towns are resolved through

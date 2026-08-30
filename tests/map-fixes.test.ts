@@ -38,6 +38,41 @@ describe("town identity", () => {
     const uids = new Set(gj.features.map((f, i) => `${f.properties.adm3_name}#${i}`));
     expect(uids.size).toBe(gj.features.length);
   });
+
+  /**
+   * The test above says a name is not an id. This one says the map agrees.
+   *
+   * It did not. The hover state is compared against `Town.uid`, which
+   * always carries a `#index` suffix, and the pin and cluster handlers
+   * wrote a bare town name into it. A name is a string and a uid is a
+   * string, so it assigned cleanly, matched nothing, and drew no outline
+   * at all - while the readout text, which comes from separate state, went
+   * on appearing. The missing highlight read as a design decision rather
+   * than a bug, which is why it survived: the premise had a test and the
+   * code that depends on it did not.
+   *
+   * `TownUid` is branded now, so this is a compile error too. The scan
+   * stays because a brand is only as good as the absence of a cast, and
+   * because it names the failure for whoever reads it next.
+   */
+  it("passes a polygon id, never a name, to the identity state", () => {
+    const src = readFileSync(
+      join(process.cwd(), "src", "components", "map", "SvgLebanonMap.tsx"),
+      "utf-8",
+    );
+    const writes = [...src.matchAll(/setHoverUid\(([^)]*)\)/g)].map((m) => m[1].trim());
+    expect(writes.length, "the hover state has moved").toBeGreaterThan(2);
+    for (const arg of writes) {
+      if (arg === "null") continue;
+      expect(arg, `setHoverUid(${arg}) is not a polygon id`).toMatch(/\.uid$/);
+    }
+
+    const compares = [...src.matchAll(/selectedTownUid === ([^;)\s]+)/g)].map((m) => m[1]);
+    expect(compares.length, "the selection comparison has moved").toBeGreaterThan(2);
+    for (const arg of compares) {
+      expect(arg, `selectedTownUid === ${arg} is not a polygon id`).toMatch(/\.uid$/);
+    }
+  });
 });
 
 describe("affected-zone focus", () => {
