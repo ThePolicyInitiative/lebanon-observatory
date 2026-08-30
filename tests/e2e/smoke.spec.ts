@@ -193,9 +193,14 @@ test.describe("the explorer drawer", () => {
 test.describe("the change heatmap", () => {
   test("walks the grid by keyboard and opens the entries behind a cell", async ({ page }) => {
     const w = watch(page);
-    await page.goto("/", { waitUntil: "networkidle" });
+    // The heat maps live on /who now: they say who moved between the two
+    // years, and drawing them here as well as on the home page printed one
+    // figure twice with nothing to say which was the reference.
+    await page.goto("/who", { waitUntil: "networkidle" });
 
-    const chart = page.locator('[role="application"]').first();
+    // The only role="application" on the site - the keyboard-walkable grid.
+    const chart = page.locator('[role="application"]');
+    await expect(chart).toHaveCount(1);
     await chart.scrollIntoViewIfNeeded();
     await chart.focus();
     await expect(chart).toBeFocused();
@@ -257,14 +262,23 @@ test.describe("the map", () => {
     await page.goto("/who", { waitUntil: "networkidle" });
     await expect(page.locator('svg[role="group"]').first()).toBeVisible();
 
-    // The opt-in is gated on WebGL being there, so pressing it must leave
-    // the reader on the vector map rather than on a blank canvas.
+    /*
+     * The opt-in is gated on WebGL being there. It used to stay clickable
+     * and fall through to nothing - a control that looks live, gives no
+     * feedback and changes nothing - so this pressed it and checked the
+     * reader was still on the vector map. It is disabled now, and says
+     * why, which is the better answer and a different assertion: the
+     * click can no longer happen at all.
+     */
     const optIn = page.locator('button[aria-pressed]').first();
-    if (await optIn.count()) {
-      await optIn.scrollIntoViewIfNeeded();
-      await optIn.click();
-      await expect(optIn).toHaveAttribute("aria-pressed", "false");
-    }
+    await expect(optIn).toBeVisible();
+    await expect(optIn).toBeDisabled();
+    await expect(optIn).toHaveAttribute("aria-pressed", "false");
+    await expect(
+      page.getByText("This browser cannot run the pan-and-zoom map", {
+        exact: false,
+      }),
+    ).toBeVisible();
     await expect(page.locator('svg[role="group"]').first()).toBeVisible();
     expect(w.crashes).toEqual([]);
   });

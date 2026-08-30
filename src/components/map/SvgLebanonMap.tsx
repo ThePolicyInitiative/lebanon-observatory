@@ -1229,7 +1229,13 @@ export default function SvgLebanonMap({
       ...(zoom <= 0.55
         ? DISTRICT_LABELS.map((l) => ({
             key: `district:${l.name}`,
-            box: labelBox(l.x, l.y, l.label, 9.5 * k, "middle"),
+            // Uppercase and letter-spaced, exactly as the layer below
+            // draws it: measured mixed-case and unspaced, every district
+            // name was handed to the packing 5-38% narrower than it prints.
+            box: labelBox(l.x, l.y, l.label, 9.5 * k, "middle", {
+              uppercase: true,
+              letterSpacing: 0.4 * k,
+            }),
           }))
         : []),
       {

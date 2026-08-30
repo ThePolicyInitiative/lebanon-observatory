@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { boxesOverlap, labelBox, packLabels, packReserved } from "@/lib/map-labels";
+import { boxesOverlap, labelBox, packLabels, packReserved, textWidth } from "@/lib/map-labels";
+import { DISTRICT_LABELS } from "@/lib/geo";
 
 /**
  * The map printed names on top of each other in two different ways.
@@ -43,6 +44,81 @@ describe("label boxes", () => {
     expect(b.y0).toBeLessThan(0);
     expect(b.y1).toBeGreaterThan(0);
     expect(Math.abs(b.y0)).toBeGreaterThan(Math.abs(b.y1));
+  });
+});
+
+/**
+ * How wide the text actually comes out.
+ *
+ * The widths below were read out of the browser that draws the map -
+ * canvas measureText, on the Inter next/font serves, at the size, weight,
+ * case and letter-spacing each layer draws in. They are what the estimate
+ * has to match, and matching them is the whole of this fix: a box narrower
+ * than its text is a label the packing believes it has cleared.
+ *
+ * Summing advances ignores kerning, so the estimate runs a little wide on
+ * pairs like AY. That direction is safe - a wide box drops a lower-priority
+ * name, a narrow one prints two names through each other - so the
+ * tolerance here is asymmetric, and deliberately so.
+ */
+describe("text width", () => {
+  /** [text, fontSize, style, width Chromium lays it out at] */
+  const MEASURED: [string, number, Parameters<typeof textWidth>[2], number][] = [
+    // The district layer: 9.5px, weight 600, uppercase, 0.4px spacing.
+    ["Sour", 9.5, { uppercase: true, letterSpacing: 0.4 }, 28.3],
+    ["Chouf", 9.5, { uppercase: true, letterSpacing: 0.4 }, 36.0],
+    ["Baabda", 9.5, { uppercase: true, letterSpacing: 0.4 }, 42.3],
+    ["Marjaayoun", 9.5, { uppercase: true, letterSpacing: 0.4 }, 72.3],
+    ["Kesrwane", 9.5, { uppercase: true, letterSpacing: 0.4 }, 56.9],
+    // The city layer: 10.5px, weight 600, as written.
+    ["Beirut", 10.5, {}, 30.2],
+    ["Nabatieh", 10.5, {}, 45.8],
+    ["Baalbek", 10.5, {}, 40.5],
+    // A town label, which carries its count.
+    ["Shama", 9, {}, 29.8],
+    ["Chehour", 9, {}, 37.5],
+  ];
+
+  it("matches what the browser lays out", () => {
+    for (const [text, size, style, real] of MEASURED) {
+      const w = textWidth(text, size, style);
+      const err = w / real - 1;
+      expect(err, `"${text}" is ${(err * 100).toFixed(1)}% off`).toBeGreaterThan(-0.01);
+      expect(err, `"${text}" is ${(err * 100).toFixed(1)}% off`).toBeLessThan(0.05);
+    }
+  });
+
+  /**
+   * The defect this replaced. Every one of the 26 district names was
+   * handed to the packing 5-38% narrower than it prints, because the
+   * estimate averaged every glyph at 0.55 em and knew about neither the
+   * uppercase transform nor the letter-spacing.
+   */
+  it("no longer under-states a single district name", () => {
+    for (const l of DISTRICT_LABELS) {
+      const drawn = textWidth(l.label, 9.5, { uppercase: true, letterSpacing: 0.4 });
+      const flat = l.label.length * 9.5 * 0.55;
+      expect(drawn, `${l.label} is not wider than the old estimate`).toBeGreaterThan(flat);
+    }
+  });
+
+  it("counts the uppercase transform and the letter-spacing", () => {
+    const plain = textWidth("Baabda", 9.5);
+    expect(textWidth("Baabda", 9.5, { uppercase: true })).toBeGreaterThan(plain);
+    expect(textWidth("Baabda", 9.5, { letterSpacing: 0.4 })).toBeCloseTo(
+      plain + 6 * 0.4,
+      6,
+    );
+  });
+
+  it("scales with the font size, so zoom cannot change what fits", () => {
+    expect(textWidth("Chehour", 19)).toBeCloseTo(textWidth("Chehour", 9.5) * 2, 6);
+  });
+
+  it("treats an unmeasured character as a wide one rather than a narrow one", () => {
+    // Over-measuring drops a lower-priority label; under-measuring prints
+    // two names through each other.
+    expect(textWidth("م", 10)).toBeGreaterThan(textWidth("i", 10));
   });
 });
 
