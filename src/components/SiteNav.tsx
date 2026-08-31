@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { AR, CHROME } from "@/lib/i18n";
+import BrandMark from "./BrandMark";
 
 /**
  * One entry per page, in both languages. The Arabic side is a mirror of the
@@ -87,12 +88,7 @@ export default function SiteNav() {
           href={isArabic ? "/ar" : "/"}
           className="flex min-h-11 items-center gap-2.5 rounded focus-visible:outline-2 focus-visible:outline-white"
         >
-          <span
-            aria-hidden
-            className="grid h-8 w-8 place-items-center rounded bg-amber text-body font-bold text-navy"
-          >
-            LR
-          </span>
+          <BrandMark className="h-8 w-8 shrink-0" />
           <span className="leading-tight">
             {/* The wordmark reads in the language of the page under it. It
                 was the one English run left standing over an otherwise
@@ -101,7 +97,9 @@ export default function SiteNav() {
             <span className="block text-body font-semibold text-white">
               {isArabic ? AR.meta.title : "Lebanon Reconstruction Observatory"}
             </span>
-            <span className="hidden text-micro text-white/60 sm:block">
+            {/* dir=ltr so the range stays chronological under the Arabic
+                masthead instead of flipping to 2026-2024. */}
+            <span dir="ltr" className="hidden text-micro text-white/60 sm:block">
               2024–2026
             </span>
           </span>

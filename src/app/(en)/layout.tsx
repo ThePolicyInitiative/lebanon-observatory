@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "../globals.css";
@@ -33,13 +33,26 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Lebanon Reconstruction Observatory",
     locale: "en",
+    images: [
+      {
+        url: "/og/og-en.png",
+        width: 1200,
+        height: 630,
+        alt: "Lebanon drawn as its towns, one dot per cadastral shape, with the Litani in amber.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lebanon Reconstruction Observatory",
     description:
       "Tracking Lebanon's reconstruction town by town: rubble, works, finance and return, 2024-2026.",
+    images: ["/og/og-en.png"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#173b63",
 };
 
 /**

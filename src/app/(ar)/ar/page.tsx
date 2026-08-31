@@ -3,7 +3,6 @@ import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { AR_COUNT, arabicCount } from "@/lib/vocab";
 import { AIM, IMPORTANCE, finding } from "@/lib/framework";
-import { GOV_PATHS, VIEW_H, VIEW_W } from "@/lib/geo";
 import NewsTeaser from "@/components/news/NewsTeaser";
 import {
   Body,
@@ -51,23 +50,15 @@ export default function ArabicPage() {
     <div dir="rtl" lang="ar" className="text-right">
       {/* Hero */}
       <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(200deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
-        <svg
+        {/* البلد مرسوماً ببلداته: نقطة لكل شكل عقاري، والليطاني بالكهرماني.
+            يولَّد من طبقة الحدود الخاصة بالموقع عبر scripts/build-brand-art.mjs. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           aria-hidden
-          viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-          className="pointer-events-none absolute -left-8 top-1/2 hidden h-[135%] -translate-y-1/2 lg:block"
-        >
-          {GOV_PATHS.map((p) => (
-            <path
-              key={p.name}
-              d={p.d}
-              fill="#FFFFFF"
-              fillOpacity={0.03}
-              stroke="#FFFFFF"
-              strokeOpacity={0.14}
-              strokeWidth={1.2}
-            />
-          ))}
-        </svg>
+          alt=""
+          src="/brand/constellation.svg"
+          className="pointer-events-none absolute -left-8 top-1/2 hidden h-[135%] w-auto -translate-y-1/2 select-none lg:block"
+        />
         <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
           <p className="text-meta font-semibold tracking-widest text-amber">
             {AR.hero.eyebrow}

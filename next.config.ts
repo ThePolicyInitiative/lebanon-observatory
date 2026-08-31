@@ -196,6 +196,15 @@ const nextConfig: NextConfig = {
         source: "/entries/:path*",
         headers: [{ key: "Cache-Control", value: PROJECTION_CACHE }],
       },
+      // The generated identity art moves only when the identity does.
+      {
+        source: "/brand/:path*",
+        headers: [{ key: "Cache-Control", value: BOUNDARY_CACHE }],
+      },
+      {
+        source: "/og/:path*",
+        headers: [{ key: "Cache-Control", value: BOUNDARY_CACHE }],
+      },
       // Feed autodiscovery at the HTTP level. The in-page <link rel="alternate">
       // belongs in the two root layouts; this reaches the readers and crawlers
       // that check headers, and keeps each language half pointing at its own

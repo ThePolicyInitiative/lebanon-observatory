@@ -399,6 +399,18 @@ h1 {
   line-height: 1.1;
 }
 
+/*
+ * Headings inside a navy band read in white. The element rule above is
+ * unlayered, so it outranks Tailwind's layered text utilities no matter
+ * what a heading's own classes say - the hero title was navy on navy
+ * until this matched it.
+ */
+.on-navy h1,
+.on-navy h2,
+.on-navy h3 {
+  color: #ffffff;
+}
+
 h2 {
   letter-spacing: -0.016em;
   line-height: 1.2;
