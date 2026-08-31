@@ -5,6 +5,11 @@ import slwe from "@/data/slwe-posts.json";
 import ops from "@/data/service-operators.json";
 import reportSources from "@/data/report-sources.json";
 import stageCounts from "@/data/stage-counts.json";
+/**
+ * The content-word key lives in scripts/watch/content-key.mjs so the
+ * ingest pipeline refuses exactly the repeats this suite would fail on.
+ */
+import { contentKey } from "../scripts/watch/content-key.mjs";
 
 /**
  * Nothing on this site should say the same thing twice. These guards are
@@ -13,18 +18,6 @@ import stageCounts from "@/data/stage-counts.json";
  * whose place list was pasted onto the end of the action text.
  */
 
-/** Content words only: connectives and punctuation must not hide a repeat. */
-const CONNECTIVE = new Set(
-  ("and the a an in on of to order which that had has have been was were is " +
-    "are at for by with as it its this these from").split(" "),
-);
-const contentKey = (s: unknown) =>
-  String(s ?? "")
-    .toLowerCase()
-    .replace(/[^a-z0-9؀-ۿ]+/g, " ")
-    .split(" ")
-    .filter((w) => w && !CONNECTIVE.has(w))
-    .join(" ");
 
 function duplicates<T>(items: T[], key: (t: T) => string) {
   const seen = new Map<string, number>();

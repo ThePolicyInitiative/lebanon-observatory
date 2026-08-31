@@ -50,3 +50,7 @@ next-env.d.ts
 # harnesses in the root and a public/__bidi.html that shipped at a real URL.
 _*.mjs
 public/__*.html
+
+# The sweep's lead collection is a scratch product; what deserves to
+# persist lands in src/data or scripts/watch/news-review.json.
+scripts/web-sweep-results.json

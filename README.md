@@ -3,23 +3,22 @@
 **From Emergency Substitution to Programmed Reconstruction: how Lebanon's
 post-war reconstruction system changed between 2024 and 2026.**
 
-A policy-analysis and data-journalism website tracking who held authority, who
-controlled finance and procurement, who delivered, and who absorbed the cost of
-delay — built on a verified actor-role evidence base with a strict separation
-between analytical data and live news.
-
-Evidence cut-off: **31 July 2026**.
+A bilingual (English / Arabic) policy-analysis site tracking who is rebuilding
+Lebanon: who held authority, who controlled finance and procurement, who
+delivered, and who absorbed the cost of delay. The site mirrors the structure
+of its underlying reconstruction report - aim, importance, methodology,
+findings - and keeps a strict separation between the confirmed analysis and
+the live reported layer.
 
 ## Stack
 
 - Next.js 16 (App Router, Turbopack) + TypeScript
 - Tailwind CSS 4
 - ECharts (SVG renderer) for analytical charts
-- MapLibre GL JS for the interactive map (geoBoundaries LBN ADM1, public domain)
+- MapLibre GL JS for the pan-and-zoom map, with an SVG fallback map
 - Zod for runtime validation
-- Vitest for automated tests
-- Analytical data ships as validated JSON in `src/data` (no database required;
-  `DATABASE_URL` is reserved for a future PostgreSQL/Supabase migration)
+- Vitest + Playwright for the test suites
+- The analytical data ships as validated JSON in `src/data` (no database)
 
 ## Getting started
 
@@ -29,68 +28,100 @@ cp .env.example .env.local   # fill in optional keys
 npm run dev                  # http://localhost:3000
 ```
 
-Production:
+Production build:
 
 ```bash
 npm run build
 npm start
 ```
 
-Tests and data bundle:
+Tests:
 
 ```bash
-npm test                     # data-integrity + news-pipeline + API-contract tests
+npm test                     # vitest: data integrity, parity, vocabulary, pipeline
+npm run test:e2e             # playwright: rendered pages, both languages
+npm run lint
 ```
 
 ## Site structure
 
+Every route is mirrored at `/ar/<path>` in Arabic at the same depth.
+
 | Route | Purpose |
 | --- | --- |
-| `/` | Hero, typed KPI cards, seven-part narrative, institutional-shift diagram, change heatmap, financing funnel, live-news teaser |
-| `/compare` | 2024 \| side-by-side \| 2026 control with a "show change" switch across eleven dimensions, year summaries, the three-streams framework, composition charts and the shelter-and-return cycle |
-| `/actors` | Four actor-layer tabs: profiles, gains/losses, mandate vs action, chain roles, geography, named actors, municipal power-gap dumbbell, diverging change charts |
-| `/damage` | The damage evidence kept honest: four non-additive 2024 building-count tracks, sector damage/losses/needs chart, the two bounded 2026 assessment zones with verification badges |
-| `/map` | MapLibre map of documented role concentration by governorate zone with locality points, filters, legend, full-screen, table alternative; automatic SVG vector-map fallback when WebGL is unavailable; non-mappable groupings shown honestly as panels |
-| `/finance` | Six-concept separation, nested financing funnel with magnified disbursement bar, LEAP components, procurement package statuses, adjacent flows, the compensation-tracks module, milestone timeline, speed-of-functions analysis |
-| `/news` | Live aggregation (GDELT + ReliefWeb + optional NewsAPI) with tabs, filters, dedup, provider status, coverage analytics |
-| `/explorer` | Searchable evidence log (771 records) with filter sidebar and detail drawer |
-| `/api/news` | Server-side news aggregation endpoint (see `docs/news-providers.md`) |
+| `/` | The aim, why it matters, and the five findings in brief |
+| `/actors` | The four actor groups: definitions, composition, register and treemap |
+| `/actions` | The four action categories, stage visuals, the change heatmap, and the map of where the actions happened |
+| `/map` | The traced entries on the country: towns shaded by entry count, with group filters |
+| `/findings` | The five findings in full, including the money trail and the damage picture |
+| `/methodology` | The eight steps of the method |
+| `/reported` | The live layer: what open web coverage reports, plus the long-form archive |
+| `/entries` | The full register of traced entries |
+| `/search` | Search across pages, places, groups and stages |
 
-## Analytical discipline (enforced in code and tests)
+## Analytical discipline (enforced by the test suite)
 
-- Counts measure **documented presence**, never performance; the caution is
-  attached to every count-based visual.
+- Counts measure **traced presence**, never performance.
 - Committed finance ≠ disbursed finance ≠ completed output; the funnel keeps
   each step separate and tests assert the arithmetic.
-- 2024 and 2026 damage estimates are never merged into a cumulative or
-  national scale; no invented damage-intensity layer exists on the map.
-- Missing evidence renders as **"Not verified"** — never as zero, never as done.
-- No record in the evidence log carries `completed` status, because no
-  completed reconstruction output was publicly verified by the cut-off
-  (asserted by a test).
-- The live-news feed is aggregation, not analysis: it never modifies the
-  verified dataset, links to original publishers, and shows no AI summaries.
+- 2024 and 2026 damage estimates are never merged into a cumulative scale.
+- What the published material cannot support renders **"Not verified"** -
+  never as zero, never as done.
+- No traced entry carries `completed` status (asserted by a test).
+- The reported layer is kept strictly separate from the confirmed analysis:
+  nothing in it enters any count, matrix or map, and every row names its
+  publisher and carries a caution.
+
+## Keeping the site current (automation)
+
+Two scheduled GitHub Actions keep the data moving; both gate every change
+behind the full test suite and push only what survives it. See
+`docs/automation.md` for the full design.
+
+- **Figures** (`.github/workflows/auto-update.yml`, daily): re-reads the
+  World Bank's machine-readable LEAP reporting, checks the arithmetic the
+  report supplies about itself, and updates the finance figures.
+- **Open web** (`.github/workflows/news-sweep.yml`, twice daily): sweeps
+  free news feeds in three languages, opens each lead, and - when the
+  `ANTHROPIC_API_KEY` repository secret is set - has a Claude model draft
+  the bilingual reported-layer rows, which are re-checked mechanically and
+  then by the whole suite. Without the secret, leads queue in
+  `scripts/watch/news-review.json` for a human read. The confirmed analysis
+  is never touched by either workflow.
+
+Run the same pipelines locally:
+
+```bash
+npm run auto-update -- --dry-run
+python scripts/web-sweep.py --days 7
+node scripts/news-ingest.mjs --dry-run
+```
+
+## Publishing
+
+1. **Create a GitHub repository** and push this project to it (default
+   branch `main`). If you received the project as an archive, extract it,
+   then `git init`, commit, and push.
+2. **Deploy on a Node host** - Vercel and Netlify both auto-detect Next.js:
+   import the repository, set `NEXT_PUBLIC_SITE_URL` to the deployed address
+   in the host's dashboard, and deploy. Every later push to `main` deploys
+   itself. Full options, headers and the post-deploy checklist:
+   `docs/deployment.md`.
+3. **Enable the two workflows** under the repository's Actions tab (GitHub
+   asks once for scheduled workflows on a new repository).
+4. Optional: add `ANTHROPIC_API_KEY` under Settings → Secrets and variables
+   → Actions to turn on the writing step of the open-web sweep.
 
 ## Documentation
 
-- `docs/data-import.md` — how the evidence base was built and how to update it
-- `docs/news-providers.md` — provider setup, caching, quotas, failure modes
-- `docs/deployment.md` — deployment and configuration
+- `docs/automation.md` - the two update pipelines and their safety argument
+- `docs/data-import.md` - how the analytical base was built
+- `docs/news-providers.md` - live news providers, caching, failure modes
+- `docs/deployment.md` - deployment, headers, caching, verification checklists
 
 ## Accessibility
 
 WCAG 2.2 AA targets: full keyboard navigation, visible focus states, skip
-link, semantic headings, `aria` labelling on charts and map, a data-table
-alternative for every chart, reduced-motion support, ≥44px touch targets, and
-no meaning encoded by colour alone (every heatmap cell and diverging bar
-prints its value; year identity is carried by labels and marker shapes as
-well as colour). Manual checks are listed in `docs/deployment.md`.
-
-## Updating with new evidence
-
-1. Add or amend records in `src/data/*.json` (schemas in `src/lib/schemas.ts`).
-2. `npm test` — the integrity suite recomputes totals and validates schemas.
-3. `npm run build`.
-
-The analytical dataset and the live-news feed are deliberately separate;
-news reporting is never a substitute for verified evidence.
+link, semantic headings, `aria` labelling on charts and map, reduced-motion
+support, and no meaning encoded by colour alone. Manual checks are listed in
+`docs/deployment.md`.

@@ -27,6 +27,12 @@ carry the analytical figures. A source is one of two tiers:
   and writes nothing. Today: the project's other World Bank documents
   (procurement plans, agreements) and the ReliefWeb Lebanon feed.
 
+**Swept and drafted.** The open-web sweep (below) collects news leads from
+free feeds, opens them, and - key permitting - drafts reported-layer rows
+from what the pages actually say. It writes only the reported layer and
+the long-form archive, which state on their faces that nothing in them
+enters any count, matrix or map.
+
 **Published.** A push to the default branch builds and deploys.
 
 ## Commands
@@ -121,6 +127,62 @@ new disbursement figure will halt the pipeline rather than flow through
 it. De-hardcoding those call sites is what turns "detected and prepared"
 into "published without a human", and it is the next piece of work.
 
+## The open-web sweep
+
+`.github/workflows/news-sweep.yml`, twice daily; the same pipeline runs
+locally:
+
+```bash
+python scripts/web-sweep.py --days 7        # collect leads (free feeds, keyless)
+node scripts/news-ingest.mjs --dry-run      # open, judge, report; write nothing
+node scripts/news-ingest.mjs                # write, rebuild, test, commit
+node scripts/news-ingest.mjs --push         # ...and publish
+```
+
+The site's method says an item joins the reported layer only after its
+page has been opened and read. The pipeline enforces that literally, in
+stages, and every stage can only shrink what the next one sees:
+
+1. **Collect.** `web-sweep.py` queries Google News RSS in English, Arabic
+   and French, ReliefWeb's Lebanon RSS, UN News and (gently) GDELT, and
+   filters titles for country + reconstruction theme.
+2. **Open.** `news-ingest.mjs` fetches each unseen lead over
+   `scripts/watch/http.mjs`. A Google redirect page is followed only when
+   it names exactly one outside address; otherwise the lead is queued. A
+   page that will not open is queued.
+3. **Read.** The page's own text must pass the same country + theme gate,
+   or the lead is dropped before it costs anything.
+4. **Draft.** With `ANTHROPIC_API_KEY` set, a Claude model
+   (`scripts/watch/claude-writer.mjs`) is shown the page text, the site's
+   writing rules, and the nearest existing rows, and answers in a fixed
+   JSON shape: one reported update, one archive item, or a refusal with a
+   reason. The model never controls a URL - `sourceUrl`, `id` and
+   `openedDirectly` are set by the pipeline from what it actually fetched.
+   Without the key, opened leads queue instead.
+5. **Check.** `scripts/watch/news-rules.mjs` re-validates every field
+   mechanically: the banned vocabulary in both languages (imported from
+   `tests/vocab-patterns.ts`, the same module the guard suites read, never
+   copied), em/en dashes, date-as-limit phrasing, enum fields, date
+   shapes, bilingual parity of the optional fields, caution floors, and
+   the same actor-and-action dedupe key `duplication.test.ts` enforces
+   (shared via `scripts/watch/content-key.mjs`). A draft that fails any of
+   it is queued with its problems, and the run reports exit 10.
+6. **Gate and publish.** Exactly as the figures pipeline: rebuild both
+   derived layers, run the whole vitest suite, restore the tree on any
+   failure, otherwise commit and push. The two workflows share one
+   concurrency group so their pushes never interleave.
+
+What the machine cannot settle lands in `scripts/watch/news-review.json`
+(committed, so the queue survives the runner), and
+`scripts/watch/news-state.json` remembers every judged lead so no run
+pays twice for the same page. Cost and load are bounded per run:
+`--max-pages` (40), `--max-calls` (16 writing calls), `--max-writes`
+(10 rows).
+
+Exit codes match `auto-update.mjs`: `0` nothing to write or published;
+`10` a draft needs a human look; `20` the suite rejected the batch and
+the tree was restored; `1` the run could not complete.
+
 ## Adding a source
 
 In `scripts/watch/registry.mjs`:
@@ -162,10 +224,18 @@ already handles redirects, deadlines, size caps and retries.
 Most of the site's other figures are published as prose in a PDF or a
 press release - a ministry's death toll, a cabinet decision, a damage
 assessment. There is no mechanical reading of "roughly 4,300 people" that
-is safe to publish unattended, so those sources sit in the `alert` tier:
-the pipeline tells a human that the source moved, and a human turns prose
-into a traced figure. That division is the limit of the sources, not of
-the tooling.
+is safe to publish unattended **as a confirmed figure**, so those sources
+sit in the `alert` tier: the pipeline tells a human that the source
+moved, and a human turns prose into a traced figure. That division is the
+limit of the sources, not of the tooling.
+
+The open-web sweep does not cross that line. What it writes are
+reported-layer rows - attributed claims that enter no count, matrix or
+map - and even those pass a mechanical validator and the whole test suite
+before they publish. A new number in the news changes what the reported
+layer carries and what its own tallies say; it never changes a confirmed
+figure. Those still move only through the watched-source registry or a
+human read.
 
 The ReliefWeb JSON API is also unavailable: it refuses any request
 without an application name it has approved, and this project has none

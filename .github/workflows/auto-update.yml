@@ -20,9 +20,10 @@ on:
 
 # A second run must never start while one is part-way through writing,
 # testing and pushing: both would compute a plan from the same state and
-# the loser would push a commit built on a tree it had not seen.
+# the loser would push a commit built on a tree it had not seen. The
+# group is shared with news-sweep.yml, which pushes to the same branch.
 concurrency:
-  group: auto-update
+  group: observatory-write
   cancel-in-progress: false
 
 jobs:

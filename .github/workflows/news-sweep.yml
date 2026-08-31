@@ -1,0 +1,68 @@
+name: Gather the open web into the reported layer
+
+# Sweep the free feeds, open each lead, write what holds up, publish.
+# See docs/automation.md ("The open-web sweep").
+#
+# Two modes, decided by one repository secret:
+#
+#   ANTHROPIC_API_KEY set     leads are opened and a Claude model drafts
+#                             the bilingual rows; every draft is re-checked
+#                             mechanically and the full test suite gates
+#                             the commit. A push deploys via the host.
+#   secret absent             leads are opened, filtered and queued in
+#                             scripts/watch/news-review.json for a human
+#                             read; nothing is written to the site's data.
+#
+# A failed run in the Actions list means something real:
+#   failure   a draft failed its checks (exit 10), the test suite
+#             rejected the batch and the tree was restored (exit 20),
+#             or the run could not complete (exit 1)
+
+on:
+  schedule:
+    # Twice daily, offset from the 06:00 figures run. The two workflows
+    # share a concurrency group so their pushes can never interleave.
+    - cron: "30 4,16 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: observatory-write
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      # Node 24: the ingest imports tests/vocab-patterns.ts directly
+      # (native type stripping), so the validators can never drift from
+      # the vocabulary the test suite enforces.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: npm ci
+
+      - name: Identify the committer
+        run: |
+          git config user.name "observatory-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Sweep the feeds
+        run: python scripts/web-sweep.py --days 7 --out "$RUNNER_TEMP/leads.json"
+
+      - name: Open, write, check and publish
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/news-ingest.mjs --leads "$RUNNER_TEMP/leads.json" --push
