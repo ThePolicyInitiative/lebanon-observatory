@@ -7,8 +7,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mt-3 text-body text-text-secondary">
-        The page you requested does not exist. The observatory&apos;s main
-        sections are linked below.
+        The page you requested does not exist.
       </p>
       <ul className="mt-6 flex flex-wrap justify-center gap-3 text-body">
         {/* One entry per page, in the report's own order. The finance and

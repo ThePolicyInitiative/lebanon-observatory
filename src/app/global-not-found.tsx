@@ -91,8 +91,7 @@ export default function GlobalNotFound() {
               Page not found
             </h1>
             <p className="mt-3 text-body text-text-secondary">
-              The page you requested does not exist. The observatory&apos;s main
-              sections are linked below.
+              The page you requested does not exist.
             </p>
             <SectionLinks links={EN_LINKS} />
           </section>
@@ -115,7 +114,7 @@ export default function GlobalNotFound() {
               الصفحة غير موجودة
             </h1>
             <p className="mt-3 text-body leading-loose text-text-secondary">
-              الصفحة المطلوبة غير موجودة. أقسام المرصد الرئيسية في الروابط أدناه.
+              الصفحة المطلوبة غير موجودة.
             </p>
             <SectionLinks links={AR_LINKS} />
           </section>
