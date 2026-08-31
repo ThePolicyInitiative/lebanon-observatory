@@ -40,7 +40,7 @@ export default function DamagePage() {
       lede={
         <>
           No single building count exists for the 2024 war, and no national
-          assessment existed for the 2026 war by the cut-off. This
+          assessment existed for the 2026 war by 31 August 2026. This
           page presents every major damage estimate side by side with its
           method, scope, unit and comparability badge - and never averages,
           sums or merges them. The plurality of estimates is itself data:

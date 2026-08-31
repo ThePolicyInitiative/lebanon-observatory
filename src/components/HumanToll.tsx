@@ -77,7 +77,7 @@ const T = {
     shelter2024: "2024 conflict: the shelter response",
     asOf: "as of",
     caution:
-      "“Returns” measure movement, not durable return: people counted as returned may have gone back to a damaged building, to relatives, or to a rental while awaiting repairs or compensation that, at the cut-off, no financed instrument had delivered.",
+      "“Returns” measure movement, not durable return: people counted as returned may have gone back to a damaged building, to relatives, or to a rental while awaiting repairs or compensation that, at 31 August 2026, no financed instrument had delivered.",
   },
   ar: {
     heading: "الكلفة البشرية خلف التقييمات",
@@ -86,7 +86,7 @@ const T = {
     shelter2024: "حرب 2024: استجابة الإيواء",
     asOf: "حتى",
     caution:
-      "«العودات» تقيس الحركة لا العودة الدائمة: من يُحصى عائداً قد يكون رجع إلى بناء متضرّر، أو إلى أقارب، أو إلى مسكن مستأجَر في انتظار ترميم أو تعويض لم تكن أي أداة تمويل قد أوصلته حتى تاريخ التوقف.",
+      "«العودات» تقيس الحركة لا العودة الدائمة: من يُحصى عائداً قد يكون رجع إلى بناء متضرّر، أو إلى أقارب، أو إلى مسكن مستأجَر في انتظار ترميم أو تعويض لم تكن أي أداة تمويل قد أوصلته حتى 31 آب 2026.",
   },
 } as const;
 

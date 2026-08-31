@@ -29,12 +29,12 @@ export type TabContent = {
 export const CONTENT: Record<ActorLayer, TabContent> = {
   official: {
     profile2024: {
-      en: "The 2024 state was strong exactly where mandates require least money and weak exactly where reconstruction happens: 24 of 54 traced actors in strategy and coordination and 11 of 37 in assessment, but only 4 of 8 in procurement, 2 of 12 in debris treatment and 3 of 8 in oversight. Every downstream function had a legal public owner; in practice its traced performers were private, communal or international.",
-      ar: "كانت دولة 2024 قوية تحديداً حيث تتطلّب التفويضات أقل قدر من المال، وضعيفة تحديداً حيث تجري إعادة الإعمار: 24 من 54 جهة مرصودة في الاستراتيجية والتنسيق، و11 من 37 في التقييم، مقابل 4 فقط من 8 في الشراء، و2 من 12 في معالجة الركام، و3 من 8 في الرقابة. كل وظيفة لاحقة في السلسلة كان لها مالك عام قانوني؛ وعملياً كان مؤدّوها المرصودون جهات خاصة أو أهلية أو دولية.",
+      en: "The 2024 state was strong exactly where mandates require least money and weak exactly where reconstruction happens: 24 of 54 traced actors in coordination and 11 of 37 in assessment, but only 4 of 8 in procurement, 2 of 12 in debris treatment and 3 of 8 in oversight. Every downstream function had a legal public owner; in practice its traced performers were private, communal or international.",
+      ar: "كانت دولة 2024 قوية تحديداً حيث تتطلّب التفويضات أقل قدر من المال، وضعيفة تحديداً حيث تجري إعادة الإعمار: 24 من 54 جهة مرصودة في التنسيق، و11 من 37 في التقييم، مقابل 4 فقط من 8 في الشراء، و2 من 12 في معالجة الركام، و3 من 8 في الرقابة. كل وظيفة لاحقة في السلسلة كان لها مالك عام قانوني؛ وعملياً كان مؤدّوها المرصودون جهات خاصة أو أهلية أو دولية.",
     },
     profile2026: {
-      en: "The 2026 state concentrated in programmed reconstruction rather than expanding uniformly: steady in strategy (24 → 24), newly present in procurement and oversight cells that were thin or empty before, and thinner as an emergency-finance crowd - one financed project chain replaced fifteen scattered emergency-finance presences.",
-      ar: "تركّزت دولة 2026 في إعادة الإعمار المبرمجة بدل التوسّع المتجانس: ثبات في الاستراتيجية (24 ← 24)، وحضور جديد في خانات الشراء والرقابة التي كانت رقيقة أو فارغة من قبل، وانحسار بوصفها حشداً لتمويل الطوارئ - سلسلة مشروع مموَّلة واحدة حلّت محل خمسة عشر حضوراً متناثراً في تمويل الطوارئ.",
+      en: "The 2026 state concentrated in programmed reconstruction rather than expanding uniformly: steady in coordination (24 → 24), newly present in procurement and oversight cells that were thin or empty before, and thinner as an emergency-finance crowd - one financed project chain replaced fifteen scattered emergency-finance presences.",
+      ar: "تركّزت دولة 2026 في إعادة الإعمار المبرمجة بدل التوسّع المتجانس: ثبات في التنسيق (24 ← 24)، وحضور جديد في خانات الشراء والرقابة التي كانت رقيقة أو فارغة من قبل، وانحسار بوصفها حشداً لتمويل الطوارئ - سلسلة مشروع مموَّلة واحدة حلّت محل خمسة عشر حضوراً متناثراً في تمويل الطوارئ.",
     },
     directChange: {
       en: "Greater role specialisation rather than uniform state expansion: the official row changed least in total while changing most in kind.",
@@ -54,8 +54,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
         ar: "الرقابة والمساءلة: 3 ← 4",
       },
       {
-        en: "Strategy held steady at 24 - with an empowered executive behind it",
-        ar: "الاستراتيجية ثابتة عند 24 - ومن خلفها سلطة تنفيذية ممكَّنة",
+        en: "Coordination held steady at 24 - with an empowered executive behind it",
+        ar: "التنسيق ثابت عند 24 - ومن خلفه سلطة تنفيذية ممكَّنة",
       },
     ],
     losses: [
@@ -81,8 +81,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "في السنتين كان للدولة مالك على الورق لكل مرحلة. ما تغيّر هو التفعيل: تفويضات 2024 كانت مطالبات على بنود موازنة لم تستطع حكومة تصريف أعمال بخزينة منهارة أن تمارسها بما يتجاوز التنسيق؛ أما 2026 فأعادت تمويل ورصد جزء من التفويضات نفسها بدل اختراع تفويضات جديدة.",
     },
     financeRole: {
-      en: "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment by the cut-off.",
-      ar: "المقترض والمدير المالي لقرض LEAP (وزارة المالية)؛ ومجلس الوزراء أقرّ إطار التعويضات في كانون الثاني 2026 - من دون أي دفعة مؤكَّدة حتى تاريخ التوقف.",
+      en: "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment by 31 August 2026.",
+      ar: "المقترض والمدير المالي لقرض LEAP (وزارة المالية)؛ ومجلس الوزراء أقرّ إطار التعويضات في كانون الثاني 2026 - من دون أي دفعة مؤكَّدة حتى 31 آب 2026.",
     },
     procurementRole: {
       en: "CDR runs LEAP procurement under World Bank rules with a published portal; the Council for the South continued legacy tendering outside the project perimeter.",
@@ -109,8 +109,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
     },
     gains: [
       {
-        en: "Strategy and coordination: +8 (15 → 23)",
-        ar: "الاستراتيجية والتنسيق: +8 (15 ← 23)",
+        en: "Coordination: +8 (15 → 23)",
+        ar: "التنسيق: +8 (15 ← 23)",
       },
       {
         en: "Shelter and return: +4 (7 → 11)",
@@ -148,8 +148,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "أصبح البنك الدولي واضع قواعد مسار إعادة الإعمار ومموّله معاً؛ وجرى النداء الإنساني (ممول بنسبة 42% في 6 تموز) والحزم الثنائية على مسارات موازية يجب ألا تُخلط بتمويل إعادة الإعمار.",
     },
     procurementRole: {
-      en: "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at the cut-off.",
-      ar: "قانون الشراء لدى البنك الدولي يحكم حزم LEAP؛ وجهة رقابة الطرف الثالث - وهي جهة مساءلة خارجية - كانت هي نفسها قيد الشراء عند تاريخ التوقف.",
+      en: "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at 31 August 2026.",
+      ar: "قانون الشراء لدى البنك الدولي يحكم حزم LEAP؛ وجهة رقابة الطرف الثالث - وهي جهة مساءلة خارجية - كانت هي نفسها قيد الشراء عند 31 آب 2026.",
     },
     implementationRole: {
       en: "Agencies delivered relief, shelter support and WASH at scale in both years; they did not and could not resolve compensation policy, property rights or municipal finance.",
@@ -231,8 +231,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
         ar: "الإغاثة والحماية: +35 (20 ← 55)",
       },
       {
-        en: "Strategy and coordination: +25 (9 → 34)",
-        ar: "الاستراتيجية والتنسيق: +25 (9 ← 34)",
+        en: "Coordination: +25 (9 → 34)",
+        ar: "التنسيق: +25 (9 ← 34)",
       },
       {
         en: "Shelter and return: +7 (18 → 25)",
@@ -301,8 +301,8 @@ export const CHANGE_CHARTS: Record<
       ar: "التغيّر في الحضور المرصود للمنظمات غير الحكومية والوكالات الدولية في كل مرحلة. تتجمّع المكاسب في مراحل الحوكمة والمراحل الإنسانية؛ وانكماش التقييم يعكس إعادة الوظيفة إلى مؤسسات لبنانية.",
     },
     description: {
-      en: "Diverging bar chart of change in traced international presence: strategy and coordination up 8, relief up 5, shelter up 4, oversight up 3, procurement up 1, assessment down 7.",
-      ar: "مخطط أشرطة متباعد للتغيّر في الحضور الدولي المرصود: الاستراتيجية والتنسيق +8، والإغاثة +5، والإيواء +4، والرقابة +3، والشراء +1، والتقييم −7.",
+      en: "Diverging bar chart of change in traced international presence: coordination up 8, relief up 5, shelter up 4, oversight up 3, procurement up 1, assessment down 7.",
+      ar: "مخطط أشرطة متباعد للتغيّر في الحضور الدولي المرصود: التنسيق +8، والإغاثة +5، والإيواء +4، والرقابة +3، والشراء +1، والتقييم −7.",
     },
   },
   community: {

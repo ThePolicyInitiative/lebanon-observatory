@@ -29,7 +29,7 @@ const CONCEPTS = [
   {
     n: 2,
     label: "Financing framework",
-    text: "The US$1 billion LEAP scalable framework - an envelope into which financing can flow, three-quarters of it unfilled at the cut-off.",
+    text: "The US$1 billion LEAP scalable framework - an envelope into which financing can flow, three-quarters of it unfilled at 31 August 2026.",
   },
   {
     n: 3,
@@ -49,7 +49,7 @@ const CONCEPTS = [
   {
     n: 6,
     label: "Completed output",
-    text: "No publicly confirmed completed reconstruction output, no awarded works contract and no confirmed state compensation payment by 31 July 2026.",
+    text: "No publicly confirmed completed reconstruction output, no awarded works contract and no confirmed state compensation payment by 31 August 2026.",
   },
 ];
 

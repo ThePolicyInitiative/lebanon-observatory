@@ -79,16 +79,16 @@
       "label": "Completed reconstruction output, publicly confirmed",
       "amountUsd": 0,
       "status": "not_verified",
-      "note": "Not confirmed by the 31 July 2026 cut-off. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
+      "note": "Not confirmed by 31 August 2026. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
       "date": "2026-07-31",
       "geographicScope": "LEAP project scope",
-      "owner": "Third-Party Monitoring Agent (itself under procurement at the cut-off)",
+      "owner": "Third-Party Monitoring Agent (itself under procurement as of 31 August 2026)",
       "sourceIds": [
         "S1",
         "S7"
       ],
       "labelAr": "إنجاز إعادة إعمار مكتمل ومُعلَن",
-      "noteAr": "غير مؤكَّد حتى تاريخ التوقف في 31 تموز 2026. مؤشرات الإنجاز المادي المعلنة بقيت عند الصفر مقابل تواريخ خط أساس من أيلول 2025."
+      "noteAr": "غير مؤكَّد حتى 31 آب 2026. مؤشرات الإنجاز المادي المعلنة بقيت عند الصفر مقابل تواريخ خط أساس من أيلول 2025."
     }
   ],
   "leapComponents": [
@@ -150,12 +150,13 @@
       "label": "Revised humanitarian appeal for the 2026 emergency",
       "amountUsd": 639900000,
       "status": "need",
-      "note": "42.2% funded by 6 July 2026. Humanitarian financing, not reconstruction financing.",
+      "note": "48% funded by 18 August 2026. Humanitarian financing, not reconstruction financing.",
       "sourceIds": [
-        "S40"
+        "S40",
+        "S63"
       ],
       "labelAr": "النداء الإنساني المعدَّل لطوارئ 2026",
-      "noteAr": "مموَّل بنسبة 42.2% حتى 6 تموز 2026. تمويل إنساني لا تمويل إعادة إعمار."
+      "noteAr": "مموَّل بنسبة 48% حتى 18 آب 2026. تمويل إنساني لا تمويل إعادة إعمار."
     },
     {
       "label": "AFD financing announced via CDR",

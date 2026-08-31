@@ -24,7 +24,7 @@ import type {
 export const STAGES: string[] = stageCountsJson.stages;
 
 export const STAGE_SHORT: string[] = [
-  "Strategy",
+  "Coordination",
   "Finance",
   "Assessment",
   "Safety",

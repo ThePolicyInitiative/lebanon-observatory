@@ -236,6 +236,12 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
           </p>
         </div>
 
+        {/* Who carries the layer comes before any analysis of it: the
+            named bodies are the thing the rest of the tab is about, and
+            reading the profiles first meant meeting the argument before
+            meeting its subjects. */}
+        <ActorConcentration layer={layer} locale={locale} />
+
         <div className="grid gap-4 md:grid-cols-2">
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2024)" }}>
             <h3 className={`text-body font-bold text-y2024 ${caps}`}>
@@ -386,8 +392,6 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         <MandateVsCapacity layer={layer} locale={locale} />
 
         <RegionPresence layer={layer} locale={locale} showCaveat={false} />
-
-        <ActorConcentration layer={layer} locale={locale} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 {
   "note": "Traced actor-stage presence counts at the report level (the 2024 matrix sums to 343; the seeded 2026 matrix sums to 360 against a report-level recomputation of 363 - a three-entry difference flagged in the chart caveats). Counts measure traced actor-stage presence. They do not measure expenditure, effectiveness, beneficiaries, geographic coverage or completed output. The tracking's finer entry log is more numerous (771 entries: 357 for 2024; 414 for 2026) because an actor can carry several entries within one stage. The 2026 data also identifies some community and volunteer actors more granularly than the 2024 data.",
   "stages": [
-    "Strategy and coordination",
+    "Coordination",
     "Finance and compensation",
     "Damage and needs assessment",
     "Safety and access",

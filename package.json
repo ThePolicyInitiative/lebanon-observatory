@@ -10,7 +10,10 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install chromium",
-    "projections": "node scripts/build-projections.mjs"
+    "projections": "node scripts/build-projections.mjs",
+    "search-index": "node scripts/build-search-index.mjs",
+    "watch:sources": "node scripts/watch-sources.mjs",
+    "auto-update": "node scripts/auto-update.mjs"
   },
   "dependencies": {
     "echarts": "^6.1.0",

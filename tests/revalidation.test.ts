@@ -52,7 +52,7 @@ describe("2024 municipal survey", () => {
 
 describe("human toll", () => {
   it("keeps the two wars in separate panels with their own dates", () => {
-    expect(humanToll.war2026.asOf).toBe("2026-07-15");
+    expect(humanToll.war2026.asOf).toBe("2026-08-18");
     expect(humanToll.war2026.items.length).toBeGreaterThanOrEqual(5);
     expect(humanToll.shelter2024.items.length).toBeGreaterThanOrEqual(5);
     for (const i of [...humanToll.war2026.items, ...humanToll.shelter2024.items]) {
@@ -145,7 +145,11 @@ describe("the water utility's own posts", () => {
   it("keeps the caveats that make the source usable", () => {
     expect(slwe.caveats.length).toBeGreaterThanOrEqual(5);
     const all = slwe.caveats.join(" ").toLowerCase();
-    for (const need of ["self-published", "undated", "cut-off", "not reconstruction"]) {
+    // "placed in time" stands where "cut-off" used to: the site no longer
+    // holds a cut-off, but the caveat it anchored - these posts carry no
+    // date, so none of them can be located in the period - still has to
+    // survive any rewrite of this copy.
+    for (const need of ["self-published", "undated", "placed in time", "not reconstruction"]) {
       expect(all, `caveats no longer mention "${need}"`).toContain(need);
     }
     expect(slwe.sourceKind).toBe("social");

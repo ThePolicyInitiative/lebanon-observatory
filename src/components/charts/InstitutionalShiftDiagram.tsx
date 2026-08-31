@@ -55,7 +55,7 @@ const ROWS: Record<Locale, Row[]> = {
       y2024:
         "Households, municipalities, volunteers and agencies performed works by substitution - self-financed repair, improvised clearance, projectised patches.",
       y2026:
-        "CDR project unit staffed, framework agreements prepared, contractors designated as implementers - and zero works contracts awarded by the cut-off.",
+        "CDR project unit staffed, framework agreements prepared, contractors designated as implementers - and zero works contracts awarded by 31 August 2026.",
     },
     {
       kind: "unchanged",
@@ -71,7 +71,7 @@ const ROWS: Record<Locale, Row[]> = {
       y2024:
         "Residual oversight: general controls with little public money to grip; civil-society analysis supplied much of the traced scrutiny.",
       y2026:
-        "A project-perimeter stack - published procurement portal, grievance address, disclosed results, planned third-party monitoring - mostly unexercised by the cut-off, with the TPMA itself still in tender.",
+        "A project-perimeter stack - published procurement portal, grievance address, disclosed results, planned third-party monitoring - mostly unexercised by 31 August 2026, with the TPMA itself still in tender.",
     },
     {
       kind: "redirected",
@@ -105,7 +105,7 @@ const ROWS: Record<Locale, Row[]> = {
       y2024:
         "الأسر والبلديات والمتطوعون والوكالات نفّذوا الأشغال بالاستبدال - ترميم على النفقة الخاصة، ورفع أنقاض مرتجل، ورقع على شكل مشاريع.",
       y2026:
-        "وحدة مشروع في مجلس الإنماء والإعمار مزوّدة بالملاك، واتفاقات إطارية مُعدّة، ومتعهدون مُعيَّنون منفذين - وصفر عقود أشغال مُرساة حتى تاريخ التوقف.",
+        "وحدة مشروع في مجلس الإنماء والإعمار مزوّدة بالملاك، واتفاقات إطارية مُعدّة، ومتعهدون مُعيَّنون منفذين - وصفر عقود أشغال مُرساة حتى 31 آب 2026.",
     },
     {
       kind: "unchanged",
@@ -121,7 +121,7 @@ const ROWS: Record<Locale, Row[]> = {
       y2024:
         "رقابة متبقية: ضوابط عامة بلا مال عام يُذكر تُمسك به؛ وتحليل المجتمع المدني وفّر جانباً كبيراً من التدقيق المرصود.",
       y2026:
-        "طبقة على محيط المشروع - بوابة شراء منشورة، وعنوان للتظلّم، ونتائج معلنة، ومراقبة طرف ثالث مخطَّطة - بقيت في معظمها غير مُمارَسة حتى تاريخ التوقف، وجهة المراقبة نفسها لا تزال في مرحلة المناقصة.",
+        "طبقة على محيط المشروع - بوابة شراء منشورة، وعنوان للتظلّم، ونتائج معلنة، ومراقبة طرف ثالث مخطَّطة - بقيت في معظمها غير مُمارَسة حتى 31 آب 2026، وجهة المراقبة نفسها لا تزال في مرحلة المناقصة.",
     },
     {
       kind: "redirected",

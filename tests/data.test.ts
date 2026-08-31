@@ -27,7 +27,7 @@ import stageCountsJson from "@/data/stage-counts.json";
 describe("analytical dataset integrity", () => {
   it("has exactly twelve stages in the specified order", () => {
     expect(STAGES).toHaveLength(12);
-    expect(STAGES[0]).toBe("Strategy and coordination");
+    expect(STAGES[0]).toBe("Coordination");
     expect(STAGES[4]).toBe("Procurement and contracting");
     expect(STAGES[11]).toBe("Oversight and accountability");
   });
@@ -54,7 +54,7 @@ describe("analytical dataset integrity", () => {
 
   it("reproduces the specified international-agency changes", () => {
     const change = changeFor("ngo_international");
-    expect(change[0]).toBe(8); // strategy +8
+    expect(change[0]).toBe(8); // coordination +8
     expect(change[2]).toBe(-7); // assessment -7
     expect(change[4]).toBe(1); // procurement +1
     expect(change[8]).toBe(4); // shelter +4
@@ -65,7 +65,7 @@ describe("analytical dataset integrity", () => {
   it("reproduces the specified community changes", () => {
     const change = changeFor("community");
     expect(change[9]).toBe(35); // relief +35
-    expect(change[0]).toBe(25); // strategy +25
+    expect(change[0]).toBe(25); // coordination +25
     expect(change[8]).toBe(7); // shelter +7
     expect(change[1]).toBe(-11); // finance -11
     expect(change[5]).toBe(-9); // rubble -9

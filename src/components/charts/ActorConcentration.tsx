@@ -1,4 +1,5 @@
 import Link from "next/link";
+import municipalBodies from "@/data/municipal-bodies.json";
 import { actors } from "@/lib/data-client";
 import { actorBase, actorLabel } from "@/lib/actor-names";
 // From the data-free module, not through ActorRegister: this component
@@ -32,6 +33,12 @@ const T = {
     more: (n: number) => `Show the remaining ${n}`,
     explorer: "Open these actors in the explorer →",
     none: "No traced actors in this year.",
+    namedHeading: "The bodies named by name",
+    namedSub:
+      "Most of this layer is held as aggregates, because the reporting behind it names no single body. These are the ones it does name. They carry no count here - being named is not a measure of what a body carried.",
+    municipalities: "Municipalities",
+    unions: "Unions of municipalities",
+    inTracking: "in the tracking",
   },
   ar: {
     title: "من يحمل هذه الطبقة",
@@ -41,6 +48,12 @@ const T = {
     more: (n: number) => `أظهر الـ${n} المتبقية`,
     explorer: "افتح هذه الجهات في المستكشف ←",
     none: "لا جهات مرصودة في هذه السنة.",
+    namedHeading: "الجهات المسمّاة بالاسم",
+    namedSub:
+      "معظم هذه الطبقة محفوظ بصيغة تجميعية، لأن الإبلاغ خلفها لا يسمّي جهة بعينها. وهذه هي التي يسمّيها. ولا تحمل هنا أي عدّ - فالتسمية ليست مقياساً لما حملته الجهة.",
+    municipalities: "البلديات",
+    unions: "اتحادات البلديات",
+    inTracking: "في التتبّع",
   },
 } as const;
 
@@ -142,6 +155,85 @@ function YearColumn({
   );
 }
 
+/**
+ * The municipal layer, named.
+ *
+ * Its entries are mostly aggregates - "Municipalities", "Unions of
+ * municipalities" - because the reporting behind them names no single
+ * body, and a reader met a layer whose members were all anonymous. The
+ * bodies the reporting does name are held in municipal-bodies.json and
+ * listed here beside the bars.
+ *
+ * Deliberately without counts. A named body has no entry total of its
+ * own: its activity sits inside an aggregate row, so printing a number
+ * next to it would invent a measure the tracking does not hold. The
+ * bars above carry the counts; this carries the names.
+ */
+function NamedMunicipalBodies({ locale }: { locale: Locale }) {
+  const t = T[locale];
+  const ar = locale === "ar";
+  const groups = [
+    { label: t.municipalities, rows: municipalBodies.municipalities },
+    { label: t.unions, rows: municipalBodies.unions },
+  ];
+  return (
+    <section className="mt-5 border-t border-rule pt-4">
+      <h4 className="text-body font-semibold text-navy">{t.namedHeading}</h4>
+      <p className="mt-1 text-meta leading-relaxed text-text-secondary">
+        {t.namedSub}
+      </p>
+      <div className="mt-3 grid gap-4 sm:grid-cols-2">
+        {groups.map((g) => (
+          <div key={g.label}>
+            <h5 className="text-micro font-bold uppercase tracking-wide text-text-secondary">
+              {g.label}
+            </h5>
+            <ul className="mt-1.5 space-y-1.5 text-meta">
+              {g.rows.map((b) => {
+                const row = b as (typeof g.rows)[number] & {
+                  role?: string;
+                  roleAr?: string;
+                };
+                const name = ar ? b.nameAr : b.name;
+                const head = ar ? b.headAr : b.head;
+                const place = ar ? b.placeAr : b.place;
+                const role = ar ? row.roleAr : row.role;
+                return (
+                  <li key={b.name} className="leading-relaxed">
+                    {b.url ? (
+                      <a
+                        href={b.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-text underline underline-offset-2"
+                      >
+                        {name}
+                      </a>
+                    ) : (
+                      <span className="font-medium text-text">{name}</span>
+                    )}
+                    {head ? (
+                      <span className="text-text-secondary"> - {head}</span>
+                    ) : null}
+                    <span className="block text-micro text-text-secondary">
+                      {b.url ? place : `${place} - ${t.inTracking}`}
+                    </span>
+                    {role ? (
+                      <span className="mt-0.5 block text-micro leading-relaxed text-text-secondary">
+                        {role}
+                      </span>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function ActorConcentration({
   layer,
   locale = "en",
@@ -165,6 +257,8 @@ export default function ActorConcentration({
         <YearColumn year={2024} layer={layer} locale={locale} />
         <YearColumn year={2026} layer={layer} locale={locale} />
       </div>
+      {layer === "municipal" ? <NamedMunicipalBodies locale={locale} /> : null}
+
       <p className="mt-3 text-meta">
         <Link
           href={locale === "ar" ? `/ar/entries?layer=${layer}` : `/entries?layer=${layer}`}

@@ -135,7 +135,7 @@ export default function WhoPage() {
           The 2026 rapid assessments cover two zones - south of the Litani
           (desk-validated) and Beirut-Mount Lebanon (field-checked) - while the
           Bekaa and Baalbek-Hermel, which the war did reach, had no equivalent
-          assessment by the cut-off. Merging these partial products into a single
+          assessment by 31 August 2026. Merging these partial products into a single
           national damage scale would manufacture a false comparison, so this
           observatory does not map damage estimates onto a shared legend. The
           zone-level figures, each with its comparability badge and

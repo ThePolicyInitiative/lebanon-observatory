@@ -5,15 +5,19 @@
  * It lives here rather than beside the Arabic page copy because both
  * halves of the site read it - the two About pages and the footer strip
  * that carries the same two dates on every page. One home means the
- * cut-off and the revision date cannot drift between languages.
+ * currency date and the revision date cannot drift between languages.
  *
  * Deliberately not a method note: no transformation rules, no field
  * definitions, no listing of where the underlying text came from. Scope
  * and limits only.
  */
 
-/** The content cut-off. Nothing dated after it enters any figure. */
-export const CONTENT_CUT_OFF = "2026-07-31";
+/**
+ * How current the tracking is. The site no longer holds a cut-off that
+ * excludes later material: this is the date the tracking reaches, and
+ * every figure carries its own date beside it.
+ */
+export const CONTENT_THROUGH = "2026-08-31";
 
 /**
  * The last content release, and the one place it is written. The crawler
@@ -21,7 +25,7 @@ export const CONTENT_CUT_OFF = "2026-07-31";
  * derives CONTENT_UPDATED from this constant rather than repeating it - a
  * footer that ages while the sitemap moves is worse than no date at all.
  */
-export const ANALYSIS_REVISED = "2026-08-25";
+export const ANALYSIS_REVISED = "2026-08-31";
 
 /**
  * The observatory's contact address, or null while there is none.
@@ -55,14 +59,14 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
       "Who compiles the Lebanon Reconstruction Observatory, what its tracking of 771 traced entries covers across 2024 and 2026, what it refuses to claim, and how to reach it.",
     title: "About the observatory",
     lede:
-      "The Lebanon Reconstruction Observatory follows one question across two wars: between 2024 and 2026, what changed in who actually rebuilds Lebanon, and what did not. It traces the reconstruction chain from strategy and finance, through rubble clearance and procurement, to shelter and return - and shows where each actor was present at each stage.",
+      "The Lebanon Reconstruction Observatory follows one question across two wars: between 2024 and 2026, what changed in who actually rebuilds Lebanon, and what did not. It traces the reconstruction chain from coordination and finance, through rubble clearance and procurement, to shelter and return - and shows where each actor was present at each stage.",
     point:
       "This page states who runs the observatory, what the tracking covers, what it refuses to claim and how to reach us. It is not a method note, and it does not restate the analysis the pages themselves carry.",
     figures: [
       { value: "771", label: "traced entries, 2024 and 2026 together" },
       { value: "4", label: "actor layers, from state institutions to households" },
       { value: "12", label: "stages of the reconstruction chain" },
-      { value: "31 Jul 2026", label: "cut-off - nothing later enters a figure" },
+      { value: "31 Aug 2026", label: "the date the tracking reaches" },
     ],
     sections: [
       {
@@ -86,8 +90,8 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "What the tracking covers",
         body: [
           "Two years stand side by side: 2024 and 2026. Between them the tracking holds 771 traced entries, one per actor and function within a stage, so a single actor can carry several entries inside the same stage.",
-          "Actors sit in four layers - official institutions, NGOs and international agencies, municipalities and local authorities, and community initiatives. Each entry is placed on one of twelve chain stages, running from strategy and coordination, finance and compensation, damage and needs assessment, safety and access, and procurement, through rubble clearance, debris treatment and reconstruction works, to shelter and return, relief, livelihoods and oversight.",
-          "The cut-off is 31 July 2026. Nothing dated after it enters a count, a chart or the comparison. The live updates page keeps gathering later coverage, and that coverage stays entirely outside the tracking: it enters none of the figures on any other page.",
+          "Actors sit in four layers - official institutions, NGOs and international agencies, municipalities and local authorities, and community initiatives. Each entry is placed on one of twelve chain stages, running from coordination, finance and compensation, damage and needs assessment, safety and access, and procurement, through rubble clearance, debris treatment and reconstruction works, to shelter and return, relief, livelihoods and oversight.",
+          "The tracking reaches 31 August 2026 and holds no cut-off that shuts later material out. Every figure is dated where it stands, so a reader can see how current each one is rather than trusting a single date for all of them. The live updates page runs ahead of the tracking, gathering coverage as it appears; a piece there enters a count only once it has been read into the entries.",
           "Both languages carry the same thing. The Arabic pages are not a summary of the English ones - every page, chart, filter and entry runs in Arabic at the same depth, and the figures are read from one place, so a number cannot say one thing in Arabic and another in English.",
         ],
       },
@@ -97,7 +101,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         points: [
           "Presence is not performance. A traced entry means an actor was reported as present in a stage in a year. It says nothing about money spent, work finished or people reached.",
           "Commitment is not disbursement, and disbursement is not completed output. The finance pages hold the three apart, because collapsing them is the most common way reconstruction reporting overstates itself.",
-          "Nothing is ever marked completed. Where a completed output was not publicly confirmed by 31 July 2026, the tracking says exactly that and stops there.",
+          "Nothing is ever marked completed. Where a completed output was not publicly confirmed by 31 August 2026, the tracking says exactly that and stops there.",
           "Damage estimates are never merged. The four 2024 tracks are not additive with one another, and no 2026 assessment is ever combined with a 2024 figure: method, scope, unit and timing differ, and those differences are themselves part of the finding.",
           "An absent mark is an absent figure, not absent damage and not absent work. Places and stages with no entry are the places reporting did not reach.",
           "The counts follow what the reporting says, not what happened on the ground. The distance between the two is the subject of this site, not a defect in it.",
@@ -108,7 +112,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "How updates work",
         body: [
           "The tracking is revised in releases rather than continuously. A release re-reads the underlying entries, refreshes every affected page in both languages together, and moves the revision date shown in the footer of every page.",
-          "The cut-off moves only when a further period is taken in full, on the same terms as the two years already held. Until then it stays at 31 July 2026, even as later coverage accumulates on the live updates page: a cut-off that drifts quietly would break the comparison between the two years, which is the whole point of the site.",
+          "The date the tracking reaches moves forward as further material is read in. Because it moves, it is stated on every page and beside the figures it governs: a date that advanced silently would let a reader take an older number for a current one. The two-year comparison is a separate matter - 2024 and 2026 are compared on the same terms, and a figure is only ever set against another drawn the same way.",
           "Where a figure changes because the underlying entries changed, the change is carried into both languages in the same revision. There is no partial release in one language.",
         ],
       },
@@ -128,14 +132,14 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
       "من يُعِدّ مرصد إعادة إعمار لبنان، وما الذي يغطيه تتبّعه البالغ 771 مدخلاً متتبَّعاً عبر 2024 و2026، وما الذي يرفض ادّعاءه، وكيف تصل إليه.",
     title: "عن المرصد",
     lede:
-      "يلاحق مرصد إعادة إعمار لبنان سؤالاً واحداً عبر حربين: بين 2024 و2026، ما الذي تغيّر فعلاً في من يعيد بناء لبنان، وما الذي لم يتغيّر. يتتبّع المرصد سلسلة إعادة الإعمار من الاستراتيجية والتمويل، مروراً برفع الأنقاض والشراء، وصولاً إلى الإيواء والعودة - ويبيّن أين كانت كل جهة حاضرة في كل مرحلة.",
+      "يلاحق مرصد إعادة إعمار لبنان سؤالاً واحداً عبر حربين: بين 2024 و2026، ما الذي تغيّر فعلاً في من يعيد بناء لبنان، وما الذي لم يتغيّر. يتتبّع المرصد سلسلة إعادة الإعمار من التنسيق والتمويل، مروراً برفع الأنقاض والشراء، وصولاً إلى الإيواء والعودة - ويبيّن أين كانت كل جهة حاضرة في كل مرحلة.",
     point:
       "هذه الصفحة تقول من يدير المرصد، وما الذي يغطيه التتبّع، وما الذي يرفض ادّعاءه، وكيف تصل إلينا. ليست ملاحظة منهجية، ولا تعيد سرد التحليل الذي تحمله الصفحات نفسها.",
     figures: [
       { value: "771", label: "مدخلاً متتبَّعاً، 2024 و2026 معاً" },
       { value: "4", label: "طبقات فاعلة، من المؤسسات الرسمية إلى الأهالي" },
       { value: "12", label: "مرحلة في سلسلة إعادة الإعمار" },
-      { value: "31 تموز 2026", label: "تاريخ التوقف - لا يدخل ما بعده في أي رقم" },
+      { value: "31 آب 2026", label: "التاريخ الذي يبلغه التتبّع" },
     ],
     sections: [
       {
@@ -159,8 +163,8 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "ما الذي يغطيه التتبّع",
         body: [
           "سنتان جنباً إلى جنب: 2024 و2026. وبينهما يحمل التتبّع 771 مدخلاً متتبَّعاً، مدخلاً واحداً لكل جهة ووظيفة داخل مرحلة، فقد تحمل الجهة الواحدة عدة مدخلات في المرحلة نفسها.",
-          "وتتوزّع الجهات على أربع طبقات: المؤسسات الرسمية، والمنظمات الدولية وغير الحكومية، والبلديات والسلطات المحلية، ومبادرات المجتمع المحلي. ويُسنَد كل مدخل إلى واحدة من اثنتي عشرة مرحلة، من الاستراتيجية والتنسيق، والتمويل والتعويضات، وتقييم الأضرار والاحتياجات، والسلامة والوصول، والشراء والتعاقد، مروراً برفع الأنقاض ومعالجة الركام وأشغال إعادة الإعمار، وصولاً إلى الإيواء والعودة، والإغاثة، وسبل العيش، والرقابة.",
-          "تاريخ التوقف هو 31 تموز 2026. ولا يدخل ما بعده في عدّ ولا رسم ولا مقارنة. وصفحة المستجدات تواصل تجميع تغطية لاحقة تبقى كلياً خارج التتبّع: لا تدخل في أي رقم في أي صفحة أخرى.",
+          "وتتوزّع الجهات على أربع طبقات: المؤسسات الرسمية، والمنظمات الدولية وغير الحكومية، والبلديات والسلطات المحلية، ومبادرات المجتمع المحلي. ويُسنَد كل مدخل إلى واحدة من اثنتي عشرة مرحلة، من التنسيق، والتمويل والتعويضات، وتقييم الأضرار والاحتياجات، والسلامة والوصول، والشراء والتعاقد، مروراً برفع الأنقاض ومعالجة الركام وأشغال إعادة الإعمار، وصولاً إلى الإيواء والعودة، والإغاثة، وسبل العيش، والرقابة.",
+          "يبلغ التتبّع 31 آب 2026، ولا يحمل تاريخ توقف يُقصي ما بعده. وكل رقم مؤرَّخ في موضعه، فيرى القارئ مدى حداثة كل رقم على حدة بدل الركون إلى تاريخ واحد لها جميعاً. وصفحة المستجدات تسبق التتبّع، تجمع التغطية فور ظهورها؛ ولا تدخل مادة منها في أي عدّ إلا بعد قراءتها ضمن المدخلات.",
           "واللغتان تحملان الشيء نفسه. الصفحات العربية ليست تلخيصاً للإنجليزية - كل صفحة ورسم ومرشّح ومدخل يعمل بالعربية بالعمق نفسه، والأرقام تُقرأ من مكان واحد، فلا يمكن لرقم أن يقول شيئاً بالعربية وشيئاً آخر بالإنجليزية.",
         ],
       },
@@ -170,7 +174,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         points: [
           "الحضور ليس أداءً. المدخل المتتبَّع يعني أن جهة أُبلغ عن حضورها في مرحلة في سنة. ولا يقول شيئاً عن مال أُنفق أو عمل أُنجز أو ناس بلغهم الأثر.",
           "الالتزام ليس دفعاً، والدفع ليس ناتجاً مكتملاً. صفحات التمويل تفصل الثلاثة عمداً، لأن دمجها أشيع طريقة يبالغ بها الإبلاغ عن إعادة الإعمار في وصف نفسه.",
-          "لا شيء يُوسم أبداً بأنه مكتمل. وحيث لم يُعلَن ناتج مكتمل ومؤكَّد حتى 31 تموز 2026، يقول التتبّع ذلك بالضبط ويتوقف عنده.",
+          "لا شيء يُوسم أبداً بأنه مكتمل. وحيث لم يُعلَن ناتج مكتمل ومؤكَّد حتى 31 آب 2026، يقول التتبّع ذلك بالضبط ويتوقف عنده.",
           "تقديرات الأضرار لا تُدمج أبداً. مسارات 2024 الأربعة لا تُجمع بعضها إلى بعض، ولا يُضمّ أي تقييم من 2026 إلى رقم من 2024: المنهجية والنطاق والوحدة والتوقيت تختلف، وهذا الاختلاف نفسه جزء من الخلاصة.",
           "غياب العلامة غياب رقم، لا غياب ضرر ولا غياب عمل. فالأماكن والمراحل بلا مدخلات هي ما لم يبلغه الإبلاغ.",
           "والأعداد تتبع ما يقوله الإبلاغ، لا ما جرى على الأرض. والمسافة بينهما هي موضوع هذا الموقع، لا خلل فيه.",
@@ -181,7 +185,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "كيف تجري التحديثات",
         body: [
           "يُراجَع التتبّع على شكل إصدارات لا بشكل متواصل. والإصدار يعيد قراءة المدخلات الأساسية، ويحدّث كل صفحة متأثرة باللغتين معاً، ويحرّك تاريخ المراجعة الظاهر أسفل كل صفحة.",
-          "ولا يتحرّك تاريخ التوقف إلا حين تُؤخذ فترة إضافية كاملة، بالشروط نفسها التي أُخذت بها السنتان. وحتى ذلك يبقى عند 31 تموز 2026، ولو تراكمت تغطية لاحقة على صفحة المستجدات: فتاريخ توقف ينزلق بصمت يكسر المقارنة بين السنتين، وهي كل غرض الموقع.",
+          "يتقدّم التاريخ الذي يبلغه التتبّع كلما قُرئت مادة إضافية. ولأنه يتحرّك، فهو مكتوب على كل صفحة وإلى جانب الأرقام التي يحكمها: تاريخ يتقدّم بصمت يجعل القارئ يأخذ رقماً قديماً على أنه راهن. أما المقارنة بين السنتين فمسألة أخرى - 2024 و2026 تُقارَنان بالشروط نفسها، ولا يُوضع رقم قط في مواجهة رقم استُخرج بطريقة مغايرة.",
           "وحين يتغيّر رقم لأن المدخلات الأساسية تغيّرت، يُنقل التغيير إلى اللغتين في المراجعة نفسها. ولا إصدار جزئي بلغة واحدة.",
         ],
       },

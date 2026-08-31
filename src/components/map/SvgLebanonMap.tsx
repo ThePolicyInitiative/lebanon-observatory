@@ -2818,7 +2818,7 @@ export default function SvgLebanonMap({
             <p className="mt-1.5 rounded-md border border-border bg-white px-3 py-2 text-micro leading-relaxed text-text-secondary">
               {locale === "ar" ? (
                 <>
-                  لم تُقيَّم بحلول تاريخ التوقف في 31 تموز 2026 سوى منطقتين:{" "}
+                  لم تُقيَّم بحلول 31 آب 2026 سوى منطقتين:{" "}
                   <strong className="text-navy">جنوب الليطاني</strong>{" "}
                   ({destruction.zones2026[0].assessedDamageAr}؛ 11,095 مبنى
                   مدمَّراً كلياً؛ ذكاء اصطناعي جغرافي بتدقيق مكتبي ومن دون
@@ -2832,7 +2832,7 @@ export default function SvgLebanonMap({
                 </>
               ) : (
                 <>
-                  Only two zones were assessed by the 31 July 2026 cut-off:{" "}
+                  Only two zones were assessed by 31 August 2026:{" "}
                   <strong className="text-navy">South of the Litani</strong>{" "}
                   ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
                   completely destroyed; desk-validated GeoAI, no field

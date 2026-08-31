@@ -1,0 +1,53 @@
+name: Update figures from sources
+
+# Detect, write, rebuild, test, publish. See docs/automation.md.
+#
+# The job's exit code carries the outcome, so a failed run in the Actions
+# list means something real:
+#
+#   success  nothing had moved, or a change was published
+#   failure  a source needs a human read (exit 10), the test suite
+#            rejected an update and the tree was restored (exit 20), or
+#            the run could not complete (exit 1)
+
+on:
+  schedule:
+    # 06:00 UTC daily. The World Bank posts status reports quarterly and
+    # procurement plans irregularly, so this is a cheap check that a
+    # quarterly document never waits more than a day to be noticed.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+# A second run must never start while one is part-way through writing,
+# testing and pushing: both would compute a plan from the same state and
+# the loser would push a commit built on a tree it had not seen.
+concurrency:
+  group: auto-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The default token's push is what triggers the host's build.
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Identify the committer
+        run: |
+          git config user.name "observatory-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Detect, write, test and publish
+        run: node scripts/auto-update.mjs --push

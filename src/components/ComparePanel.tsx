@@ -82,7 +82,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "Four non-additive damage tracks, national scope, months of latency, internationally produced; a usable national baseline only in March 2025.",
       y2026:
-        "Bounded products in weeks, jointly produced with a Lebanese scientific institution (CNRS-L), plus a real-time national database - but covering two zones, with the Bekaa and Baalbek-Hermel unassessed at the cut-off.",
+        "Bounded products in weeks, jointly produced with a Lebanese scientific institution (CNRS-L), plus a real-time national database - but covering two zones, with the Bekaa and Baalbek-Hermel unassessed at 31 August 2026.",
       change: "Faster products from fewer traced actors - 37 to 21 across the chain's assessment stage; coverage was traded for speed.",
     },
     ar: {
@@ -90,7 +90,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "أربعة مسارات أضرار غير قابلة للجمع، بنطاق وطني، وبتأخّر شهور، ومن إنتاج دولي؛ ولم يتوفّر خط أساس وطني صالح للاستعمال قبل آذار 2025.",
       y2026:
-        "منتجات محدودة النطاق أُنجزت في أسابيع، بإنتاج مشترك مع مؤسسة علمية لبنانية (المجلس الوطني للبحوث العلمية)، مع قاعدة معطيات وطنية آنية - لكنها تغطّي منطقتين، وبقي البقاع وبعلبك-الهرمل بلا تقييم حتى تاريخ التوقف.",
+        "منتجات محدودة النطاق أُنجزت في أسابيع، بإنتاج مشترك مع مؤسسة علمية لبنانية (المجلس الوطني للبحوث العلمية)، مع قاعدة معطيات وطنية آنية - لكنها تغطّي منطقتين، وبقي البقاع وبعلبك-الهرمل بلا تقييم حتى 31 آب 2026.",
       change: "منتجات أسرع من عدد أقل من الجهات المرصودة - من 37 إلى 21 في مرحلة التقييم؛ وقد بودلت التغطية بالسرعة.",
     },
   },
@@ -202,7 +202,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "Residual: general controls with little public money to grip; civil-society analyses supplied much of the traced scrutiny.",
       y2026:
-        "A project-perimeter accountability stack - portal, grievance address, disclosed results, planned third-party monitoring - mostly unexercised by the cut-off, with the monitoring agent itself in tender.",
+        "A project-perimeter accountability stack - portal, grievance address, disclosed results, planned third-party monitoring - mostly unexercised by 31 August 2026, with the monitoring agent itself in tender.",
       change: "Fiduciary accountability built; political accountability essentially untouched. Strongest oversight sits where the least money moved.",
     },
     ar: {
@@ -210,7 +210,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "متبقّية: رقابات عامة بلا مال عام كافٍ تمسك به؛ وتحليلات المجتمع المدني وفّرت جانباً كبيراً من التدقيق المرصود.",
       y2026:
-        "طبقة مساءلة داخل محيط المشروع - بوابة، وعنوان للشكاوى، ونتائج معلَنة، ورقابة مقرَّرة من طرف ثالث - بقيت غير مُفعَّلة إلى حد بعيد حتى تاريخ التوقف، وجهة الرقابة نفسها كانت في المناقصة.",
+        "طبقة مساءلة داخل محيط المشروع - بوابة، وعنوان للشكاوى، ونتائج معلَنة، ورقابة مقرَّرة من طرف ثالث - بقيت غير مُفعَّلة إلى حد بعيد حتى 31 آب 2026، وجهة الرقابة نفسها كانت في المناقصة.",
       change: "بُنيت المساءلة المالية؛ أما المساءلة السياسية فبقيت على حالها تقريباً. وأقوى رقابة تجلس حيث تحرّك أقل قدر من المال.",
     },
   },
@@ -222,7 +222,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "No financed programme existed, so no programme outputs; restoration ran on emergency budgets and self-help, quantities unpublished.",
       y2026:
-        "Zero awarded works contracts, zero publicly confirmed completed reconstruction outputs, zero confirmed state compensation payments by 31 July 2026.",
+        "Zero awarded works contracts, zero publicly confirmed completed reconstruction outputs, zero confirmed state compensation payments by 31 August 2026.",
       change: "Empty in both years - the report's most uncomfortable finding, and the one the next reporting cycle can falsify.",
     },
     ar: {
@@ -230,7 +230,7 @@ const DIMENSIONS: Dimension[] = [
       y2024:
         "لم يوجد برنامج مموَّل، فلم توجد إنجازات برنامجية؛ والترميم جرى على موازنات الطوارئ والعون الذاتي، بكميات غير منشورة.",
       y2026:
-        "صفر عقود أشغال مُرساة، وصفر إنجازات إعادة إعمار مكتملة ومُعلَنة، وصفر دفعات تعويض حكومية مؤكَّدة حتى 31 تموز 2026.",
+        "صفر عقود أشغال مُرساة، وصفر إنجازات إعادة إعمار مكتملة ومُعلَنة، وصفر دفعات تعويض حكومية مؤكَّدة حتى 31 آب 2026.",
       change: "فارغة في السنتين - أكثر خلاصات التقرير إزعاجاً، وأولاها بالنفي في دورة الإبلاغ المقبلة.",
     },
   },

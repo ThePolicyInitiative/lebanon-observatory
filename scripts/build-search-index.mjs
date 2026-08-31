@@ -68,7 +68,7 @@ export function actorPeople(actorName) {
 
 /** Mirror of STAGES_AR in src/lib/vocab.ts, in stageNo order. */
 export const STAGES_AR = [
-  "الاستراتيجية والتنسيق",
+  "التنسيق",
   "التمويل والتعويضات",
   "تقييم الأضرار والاحتياجات",
   "السلامة والوصول",

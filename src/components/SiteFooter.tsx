@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AR, CHROME } from "@/lib/i18n";
-import { ABOUT_FOOTER, ANALYSIS_REVISED, CONTACT_EMAIL, CONTENT_CUT_OFF } from "@/lib/about-content";
+import { ABOUT_FOOTER, ANALYSIS_REVISED, CONTACT_EMAIL, CONTENT_THROUGH } from "@/lib/about-content";
 import { fmtDate } from "@/lib/format";
 import { localisedHref } from "./SiteNav";
 
@@ -14,7 +14,7 @@ import { localisedHref } from "./SiteNav";
  *
  * Below the page links it carries the two things a returning reader has
  * nowhere else to look for: who is behind the counting and how to reach
- * them, and how current the site is - the cut-off the tracking reaches
+ * them, and how current the site is - the date the tracking reaches
  * and the date the analysis last moved. Two dated facts, not a log of
  * edits nobody kept.
  */
@@ -115,7 +115,7 @@ export default function SiteFooter() {
               {f.updatedLabel}
             </p>
             <p className="mt-2 text-meta leading-relaxed text-white/80">
-              {f.tracking(fmtDate(CONTENT_CUT_OFF, locale))}
+              {f.tracking(fmtDate(CONTENT_THROUGH, locale))}
               <span aria-hidden className="mx-2 text-white/35">
                 ·
               </span>

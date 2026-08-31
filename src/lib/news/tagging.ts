@@ -98,7 +98,7 @@ const SECTOR_TAGS: [string, string[]][] = [
 ];
 
 const STAGE_TAGS: [string, string[]][] = [
-  ["Strategy and coordination", ["cabinet", "government plan", "coordination", "strategy", "مجلس الوزراء", "خطة"]],
+  ["Coordination", ["cabinet", "government plan", "coordination", "strategy", "مجلس الوزراء", "خطة"]],
   ["Finance and compensation", ["loan", "financing", "compensation", "donor", "grant", "funding", "قرض", "تمويل", "تعويض", "prêt", "financement"]],
   ["Damage and needs assessment", ["damage assessment", "assessment", "rdna", "satellite", "تقييم الأضرار", "évaluation"]],
   ["Safety and access", ["unexploded", "ordnance", "mine action", "demining", "ألغام", "ذخائر", "déminage"]],

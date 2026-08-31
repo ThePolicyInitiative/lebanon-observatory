@@ -556,5 +556,23 @@
     "url": "https://www.bdl.gov.lb/economicandfinancialdatasub.php?code=9&docId=161&filecode=90",
     "sourceType": "official",
     "accessedDate": "2026-07-31"
+  },
+  {
+    "id": "S62",
+    "title": "Lebanon Economic Monitor, Summer 2026 - A Conflict-Torn Economy, and its launch release 'Renewed Conflict Derails Lebanon's Fragile Economic Recovery'",
+    "organisation": "World Bank",
+    "publicationDate": "2026-08-21",
+    "url": "https://www.worldbank.org/en/news/press-release/2026/08/21/renewed-conflict-derails-lebanon-s-fragile-economic-recovery",
+    "sourceType": "multilateral",
+    "accessedDate": "2026-08-31"
+  },
+  {
+    "id": "S63",
+    "title": "Lebanon: 860,000 displaced people have returned home, but humanitarian crisis remains 'immense' - UNHCR briefing reported by UN News",
+    "organisation": "UN News / UNHCR",
+    "publicationDate": "2026-08-18",
+    "url": "https://news.un.org/en/story/2026/08/1168163",
+    "sourceType": "un",
+    "accessedDate": "2026-08-31"
   }
 ]

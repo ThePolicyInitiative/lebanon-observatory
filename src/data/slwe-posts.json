@@ -1529,7 +1529,7 @@
   ],
   "caveats": [
     "Self-published. Every line is the utility's own claim about its own work, with no independent check and no photograph or contract behind it here.",
-    "Undated. The export carried no date field, so no post can be placed against the 31 July 2026 cut-off, and the export's own summary states it cannot be confirmed that all of them fall after 2 March 2026.",
+    "Undated. The export carried no date field, so no post can be placed in time against the tracking, and the export's own summary states it cannot be confirmed that all of them fall after 2 March 2026.",
     "Individual posts are not linkable. The export carried no post URLs, so every row cites the establishment's official page rather than the single post it came from.",
     "Nine posts repeat an earlier one and the second copy of each was removed, leaving 597 of the 606 supplied: three were identical, six differed only in punctuation.",
     "Department labels are the utility's own. The match from a post to a cadastral town is ours, made on place-name matching, and is approximate.",
@@ -1537,7 +1537,7 @@
   ],
   "caveatsAr": [
     "منشور ذاتياً. كل سطر هو ادّعاء المؤسسة عن عملها هي، بلا تدقيق مستقل وبلا صورة أو عقد خلفه هنا.",
-    "بلا تواريخ. لم يحمل التصدير حقل تاريخ، فلا يمكن وضع أي منشور بالنسبة إلى تاريخ التوقف في 31 تموز 2026.",
+    "بلا تواريخ. لم يحمل التصدير حقل تاريخ، فلا يمكن وضع أي منشور زمنياً بالنسبة إلى التتبّع.",
     "المنشورات الفردية غير قابلة للربط. لم يحمل التصدير روابط للمنشورات، فكل صف يحيل إلى صفحة المؤسسة الرسمية لا إلى المنشور نفسه.",
     "تسعة منشورات تكرّر منشوراً سابقاً وحُذفت النسخة الثانية من كل منها، فبقي 597 من أصل 606 مُسلَّمة: ثلاثة كانت متطابقة وستة اختلفت في الترقيم فقط.",
     "تسميات الدوائر هي تسميات المؤسسة. أما ربط المنشور ببلدة عقارية فهو من عندنا، مبني على مطابقة أسماء الأماكن، وتقريبي.",

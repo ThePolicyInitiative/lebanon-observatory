@@ -40,7 +40,7 @@ export const slimRecords = roleRecordsSlimJson as SlimRecord[];
  * get an empty list every time.
  *
  * "Completed output" is the sharpest of those. This site's central finding
- * is that there was none by the cut-off - so offering it as a filter
+ * is that there was none by 31 August 2026 - so offering it as a filter
  * suggested a populated category and then returned nothing, which reads as
  * a broken control rather than as the finding it actually is. The finding
  * belongs in the analysis, where it is stated plainly; it does not belong

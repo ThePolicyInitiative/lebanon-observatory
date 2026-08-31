@@ -19,7 +19,7 @@ const LAYER_AR: Record<string, { label: string; short: string }> = {
 
 /** The twelve value-chain stages, in stageNo order. */
 const STAGES_AR = [
-  "الاستراتيجية والتنسيق",
+  "التنسيق",
   "التمويل والتعويضات",
   "تقييم الأضرار والاحتياجات",
   "السلامة والوصول",
@@ -34,7 +34,7 @@ const STAGES_AR = [
 ];
 
 const STAGE_SHORT_AR = [
-  "استراتيجية",
+  "تنسيق",
   "تمويل",
   "تقييم",
   "سلامة",
@@ -170,17 +170,17 @@ export function stageList(locale: Locale): string[] {
 }
 
 /**
- * The stages the two heat maps draw: all of them except strategy and
- * coordination, which is index 0.
+ * The stages the two heat maps draw: all of them except coordination,
+ * which is index 0.
  *
- * Strategy is the stage nearly every actor touches - convening, routing,
+ * Coordination is the stage nearly every actor touches - convening, routing,
  * linking - so its column is dense for reasons that have nothing to do
  * with where work sits along the chain. The figures answered "who
  * coordinates" when that is the one thing they are not for.
  *
  * It is dropped for that reason and no other. The scale is unchanged:
  * both year panels share one ramp whose top is 2026 community relief at
- * 55, with or without strategy, and the change map's widest swing is 35
+ * 55, with or without coordination, and the change map's widest swing is 35
  * either way. An earlier version of this comment said removing the column
  * freed the ramp - it does not, and that was written without measuring.
  *

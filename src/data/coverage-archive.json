@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-08-25",
+  "compiled": "2026-08-31",
   "items": [
     {
       "id": "c1",
@@ -2989,6 +2989,54 @@
       "focus": "Domicide, urbicide, ecocide, CNRS-L, Ministry of Environment, housing units, agriculture, soil, water",
       "focusAr": "تدمير المساكن، تدمير العمران، التدمير البيئي، المجلس الوطني للبحوث العلمية، وزارة البيئة، الوحدات السكنية، الزراعة، التربة، المياه",
       "url": "https://legal-agenda.com/%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D9%85%D9%86%D8%A7%D8%B2%D9%84%D8%8C-%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D8%AD%D8%B6%D8%B1%D9%8A%D8%A9-%D9%88%D8%A5%D8%A8%D8%A7%D8%AF%D8%A9-%D8%A8%D9%8A%D8%A6%D9%8A%D8%A9/"
+    },
+    {
+      "id": "c259",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "Al Jazeera",
+      "title": "Lebanon's displaced begin to return home, but some have nowhere to go",
+      "date": "2026-06-29",
+      "focus": "Returns after the March 2026 ceasefire, families with no house to return to, displacement centres emptying, damage estimates for both wars",
+      "focusAr": "العودة بعد وقف إطلاق النار في آذار 2026، عائلات بلا منزل تعود إليه، إفراغ مراكز الإيواء، تقديرات الأضرار في الحربين",
+      "url": "https://www.aljazeera.com/features/2026/6/29/lebanons-displaced-begin-to-return-home-but-some-have-nowhere-to-go"
+    },
+    {
+      "id": "c260",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "Al Jazeera",
+      "title": "Nabatieh recovery begins amid ongoing southern Lebanon tensions",
+      "date": "2026-07-04",
+      "focus": "Rubble clearance in Nabatieh carried out by civil defence, scouts, municipal crews and residents; streets reopened amid continuing strikes",
+      "focusAr": "رفع الأنقاض في النبطية على يد الدفاع المدني والكشافة وعمال البلدية والأهالي؛ إعادة فتح الشوارع وسط استمرار الغارات",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/7/4/nabatieh-recovery-begins-amid-ongoing-southern-lebanon-tensions"
+    },
+    {
+      "id": "c261",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "UN News / Global Issues",
+      "title": "Lebanon: 860,000 displaced people have returned home, but humanitarian crisis remains 'immense'",
+      "date": "2026-08-18",
+      "focus": "UNHCR briefing, 18 August: 860,000 returned and 360,000 still displaced, 22,000 in collective shelters, the 639.9 million dollar Flash Appeal 48 per cent funded, water damage affecting over 700,000 people",
+      "focusAr": "إحاطة المفوضية في 18 آب: عودة 860 ألفاً وبقاء 360 ألفاً نازحين، و22 ألفاً في مراكز إيواء جماعية، وتمويل النداء العاجل البالغ 639.9 مليون دولار بنسبة 48 بالمئة، وأضرار المياه تطال أكثر من 700 ألف شخص",
+      "url": "https://news.un.org/en/story/2026/08/1168163"
+    },
+    {
+      "id": "c262",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "Asharq Al-Awsat",
+      "title": "State Return to South Lebanon Extends Beyond Security to Services, Recovery",
+      "date": "2026-08-22",
+      "focus": "The state to the south in August: CDR on LEAP with 250 million dollars secured against a 750 million gap, MoSA cash for about 230,000 families, Agriculture five-track plan, Education on 198 of 267 damaged schools",
+      "focusAr": "الدولة إلى الجنوب في آب: مجلس الإنماء والإعمار على مشروع LEAP بـ250 مليون دولار مؤمّنة مقابل فجوة 750 مليوناً، ومساعدات وزارة الشؤون الاجتماعية النقدية لنحو 230 ألف عائلة، وخطة وزارة الزراعة بخمسة مسارات، ووزارة التربية أمام 198 مدرسة متضررة من أصل 267",
+      "url": "https://english.aawsat.com/arab-world/5309705-state-return-south-lebanon-extends-beyond-security-services-recovery"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."

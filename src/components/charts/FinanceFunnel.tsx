@@ -22,7 +22,7 @@ const T = {
     caveat:
       "The US$1 billion framework is not equivalent to the US$11 billion national need: even fully funded it covers roughly the public third of one war's assessed needs. Committed finance is not disbursed finance; disbursement is not completed output.",
     barsAlt:
-      "Nested bars: assessed need US$11 billion (100%); LEAP framework US$1 billion (9.09% of need); initial loan US$250 million (2.27% of need); disbursed US$4.13 million (about 0.04% of need). Works contracts awarded and confirmed completed output: zero as of the cut-off.",
+      "Nested bars: assessed need US$11 billion (100%); LEAP framework US$1 billion (9.09% of need); initial loan US$250 million (2.27% of need); disbursed US$4.13 million (about 0.04% of need). Works contracts awarded and confirmed completed output: zero as of 31 August 2026.",
     magnifiedAlt:
       "Magnified bar: 1.65 percent of the initial loan disbursed, 98.35 percent not yet disbursed, as of 29 June 2026",
   },
@@ -37,7 +37,7 @@ const T = {
     caveat:
       "إطار المليار دولار لا يعادل الاحتياج الوطني البالغ 11 مليار دولار: حتى لو مُوّل بالكامل فهو يغطي نحو الثلث العام من احتياجات حرب واحدة. والتمويل الملتزَم به ليس تمويلاً مدفوعاً، والدفع ليس إنجازاً مكتملاً.",
     barsAlt:
-      "أشرطة متداخلة: الاحتياج المقدَّر 11 مليار دولار (100%)؛ إطار LEAP مليار دولار (9.09% من الاحتياج)؛ القرض الأولي 250 مليون دولار (2.27%)؛ المدفوع 4.13 مليون دولار (نحو 0.04%). وعقود الأشغال المُرساة والإنجاز المكتمل المؤكَّد: صفر حتى تاريخ التوقف.",
+      "أشرطة متداخلة: الاحتياج المقدَّر 11 مليار دولار (100%)؛ إطار LEAP مليار دولار (9.09% من الاحتياج)؛ القرض الأولي 250 مليون دولار (2.27%)؛ المدفوع 4.13 مليون دولار (نحو 0.04%). وعقود الأشغال المُرساة والإنجاز المكتمل المؤكَّد: صفر حتى 31 آب 2026.",
     magnifiedAlt:
       "شريط مكبَّر: 1.65 في المئة من القرض الأولي مدفوعة، و98.35 في المئة غير مدفوعة بعد، حتى 29 حزيران 2026",
   },

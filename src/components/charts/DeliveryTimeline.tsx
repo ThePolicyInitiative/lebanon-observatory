@@ -55,11 +55,11 @@ const STATUS_STYLE: Record<
 const T = {
   en: {
     title: "From assessment request to (unconfirmed) delivery, Dec 2024 – Jul 2026",
-    sub: "Filled teal circles: milestones reached. Amber diamonds: processes under way. Open rust circles: not confirmed or unpaid by the cut-off. Grey squares: conflict context.",
+    sub: "Filled teal circles: milestones reached. Amber diamonds: processes under way. Open rust circles: not confirmed or unpaid by 31 August 2026. Grey squares: conflict context.",
     caveat:
-      "Procurement under way is a process milestone, not data of completed reconstruction. Completed works were not publicly confirmed by the 31 July 2026 cut-off.",
+      "Procurement under way is a process milestone, not data of completed reconstruction. Completed works were not publicly confirmed by 31 August 2026.",
     description:
-      "Timeline scatter across five tracks (conflict, data, state decisions, finance, procurement) from December 2024 to July 2026, showing the 2025 approval cluster, the 2026 procurement publications, first disbursement in May 2026, and the absence of confirmed completed output at the cut-off.",
+      "Timeline scatter across five tracks (conflict, data, state decisions, finance, procurement) from December 2024 to July 2026, showing the 2025 approval cluster, the 2026 procurement publications, first disbursement in May 2026, and the absence of confirmed completed output at 31 August 2026.",
     alt: "Timeline of reconstruction milestones from December 2024 to July 2026",
     chainHead: "The conversion chain",
     chain: [
@@ -71,18 +71,18 @@ const T = {
   },
   ar: {
     title: "من طلب التقييم إلى الإنجاز (غير المؤكَّد)، كانون الأول 2024 - تموز 2026",
-    sub: "دوائر فيروزية ممتلئة: محطات بلغت. معينات كهرمانية: مسارات جارية. دوائر خمرية مفرغة: غير مؤكَّدة أو غير مدفوعة حتى تاريخ التوقف. مربعات رمادية: سياق الحرب.",
+    sub: "دوائر فيروزية ممتلئة: محطات بلغت. معينات كهرمانية: مسارات جارية. دوائر خمرية مفرغة: غير مؤكَّدة أو غير مدفوعة حتى 31 آب 2026. مربعات رمادية: سياق الحرب.",
     caveat:
-      "الشراء الجاري محطة إجرائية، لا معطى عن إعادة إعمار مكتملة. ولم تُعلَن أي أشغال مكتملة ومؤكَّدة حتى تاريخ التوقف في 31 تموز 2026.",
+      "الشراء الجاري محطة إجرائية، لا معطى عن إعادة إعمار مكتملة. ولم تُعلَن أي أشغال مكتملة ومؤكَّدة حتى 31 آب 2026.",
     description:
-      "رسم نقطي زمني على خمسة مسارات (الحرب، المعطيات، قرارات الدولة، التمويل، الشراء) من كانون الأول 2024 إلى تموز 2026، يُظهر تجمّع الإقرارات في 2025، وإعلانات الشراء في 2026، وأول دفعة في أيار 2026، وغياب إنجاز مكتمل مؤكَّد حتى تاريخ التوقف.",
+      "رسم نقطي زمني على خمسة مسارات (الحرب، المعطيات، قرارات الدولة، التمويل، الشراء) من كانون الأول 2024 إلى تموز 2026، يُظهر تجمّع الإقرارات في 2025، وإعلانات الشراء في 2026، وأول دفعة في أيار 2026، وغياب إنجاز مكتمل مؤكَّد حتى 31 آب 2026.",
     alt: "جدول زمني لمحطات إعادة الإعمار من كانون الأول 2024 إلى تموز 2026",
     chainHead: "سلسلة التحوّل",
     chain: [
       ["المعطيات", "تقييم RDNA وتقييمات 2026 أُنجزت"],
       ["البنية", "LEAP نافذ؛ وحدة مجلس الإنماء والإعمار مجهَّزة"],
       ["الشراء والتنفيذ", "3 حزم منشورة، ولا إرساء"],
-      ["الإنجاز المؤكَّد", "لا إنجاز مكتمل مؤكَّد حتى 31 تموز 2026"],
+      ["الإنجاز المؤكَّد", "لا إنجاز مكتمل مؤكَّد حتى 31 آب 2026"],
     ],
   },
 } as const;

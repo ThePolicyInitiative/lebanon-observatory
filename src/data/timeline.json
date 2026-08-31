@@ -189,7 +189,7 @@
     "id": "t10",
     "date": "2026-01-30",
     "label": "Cabinet approves compensation framework",
-    "detail": "Territory split between the Council for the South and the Higher Relief Commission; reported per-unit parameters; no payment start date identified and no consolidated claims data public by the cut-off.",
+    "detail": "Territory split between the Council for the South and the Higher Relief Commission; reported per-unit parameters; no payment start date identified and no consolidated claims data public by 31 August 2026.",
     "track": "state",
     "status": "not_verified",
     "sourceIds": [
@@ -197,7 +197,7 @@
       "S60"
     ],
     "labelAr": "مجلس الوزراء يقرّ إطار التعويضات",
-    "detailAr": "تقسيم المناطق بين مجلس الجنوب والهيئة العليا للإغاثة؛ ومعايير معلَنة لكل وحدة؛ من دون تاريخ لبدء الدفع ومن دون بيانات مجمّعة عن الطلبات حتى تاريخ التوقف."
+    "detailAr": "تقسيم المناطق بين مجلس الجنوب والهيئة العليا للإغاثة؛ ومعايير معلَنة لكل وحدة؛ من دون تاريخ لبدء الدفع ومن دون بيانات مجمّعة عن الطلبات حتى 31 آب 2026."
   },
   {
     "id": "t11",
@@ -347,8 +347,8 @@
   },
   {
     "id": "t20",
-    "date": "2026-07-31",
-    "label": "cut-off",
+    "date": "2026-08-31",
+    "label": "tracking reaches this date",
     "detail": "By this date: no awarded works contract, no publicly confirmed completed reconstruction output, no confirmed state compensation payment.",
     "track": "data",
     "status": "not_verified",
@@ -357,7 +357,7 @@
       "S7",
       "S37"
     ],
-    "labelAr": "تاريخ التوقف",
+    "labelAr": "التاريخ الذي يبلغه التتبّع",
     "detailAr": "حتى هذا التاريخ: لا عقد أشغال مُرسى، ولا إنجاز إعادة إعمار مكتمل ومُعلَن، ولا دفعة تعويض حكومية مؤكَّدة."
   }
 ]

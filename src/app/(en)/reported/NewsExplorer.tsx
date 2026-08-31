@@ -78,7 +78,7 @@ const SECTOR_OPTIONS = [
 ];
 
 const STAGE_OPTIONS = [
-  "Strategy and coordination",
+  "Coordination",
   "Finance and compensation",
   "Damage and needs assessment",
   "Safety and access",

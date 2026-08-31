@@ -36,11 +36,11 @@ const T = {
     presence: "Traced presence, 2024 → 2026",
     statusHeading: (n: number) => `Status of the ${n} chain entries, 2026`,
     statusHonesty:
-      "Traced activity is not completed output: the tracking contains no confirmed completed reconstruction outputs by the cut-off, and “not confirmed” marks presence the reporting cannot grade - never assumed zero, never assumed done.",
+      "Traced activity is not completed output: the tracking contains no confirmed completed reconstruction outputs by 31 August 2026, and “not confirmed” marks presence the reporting cannot grade - never assumed zero, never assumed done.",
     pipeline: "The procurement pipeline",
     packages: "LEAP packages tracked",
     zeroContracts:
-      "Works contracts awarded by the cut-off: zero. Procurement under way is a process milestone, not reconstruction.",
+      "Works contracts awarded by 31 August 2026: zero. Procurement under way is a process milestone, not reconstruction.",
     financeLink: "Finance & delivery →",
     mapLink: "Where work is traced →",
   },
@@ -51,11 +51,11 @@ const T = {
     presence: "الحضور المرصود، 2024 ← 2026",
     statusHeading: (n: number) => `أوضاع مدخلات السلسلة الـ${n}، 2026`,
     statusHonesty:
-      "النشاط المرصود ليس إنجازاً مكتملاً: فالتتبّع لا يتضمن أي مخرجات إعادة إعمار مكتملة مؤكَّدة حتى تاريخ التوقف، و“غير مؤكَّد” يعلّم حضوراً لا يستطيع الإبلاغ تصنيفه - لا يُفترض أنه صفر أبداً، ولا يُفترض أنه أُنجز أبداً.",
+      "النشاط المرصود ليس إنجازاً مكتملاً: فالتتبّع لا يتضمن أي مخرجات إعادة إعمار مكتملة مؤكَّدة حتى 31 آب 2026، و“غير مؤكَّد” يعلّم حضوراً لا يستطيع الإبلاغ تصنيفه - لا يُفترض أنه صفر أبداً، ولا يُفترض أنه أُنجز أبداً.",
     pipeline: "مسار الشراء",
     packages: "حزم LEAP المتتبَّعة",
     zeroContracts:
-      "عقود الأشغال المُرساة حتى تاريخ التوقف: صفر. الشراء الجاري مرحلة إجرائية، لا إعادة إعمار.",
+      "عقود الأشغال المُرساة حتى 31 آب 2026: صفر. الشراء الجاري مرحلة إجرائية، لا إعادة إعمار.",
     financeLink: "التمويل والإنجاز ←",
     mapLink: "أين رُصد العمل ←",
   },

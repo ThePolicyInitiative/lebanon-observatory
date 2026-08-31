@@ -1,9 +1,10 @@
 {
   "note": "Human toll and displacement across the two wars. The two crises ran on separate reporting systems and are never compared or summed here; each figure carries its own date and reporter.",
   "war2026": {
-    "asOf": "2026-07-15",
+    "asOf": "2026-08-18",
     "sourceIds": [
-      "S29"
+      "S29",
+      "S63"
     ],
     "items": [
       {
@@ -36,21 +37,31 @@
       },
       {
         "label": "Reported returns",
-        "value": "741,111",
-        "detail": "Movement back toward areas of origin - movement data, not proof of durable return to habitable homes.",
+        "value": "860,000",
+        "detail": "Movement back toward areas of origin, reported by UNHCR on 18 August 2026 - movement data, not proof of durable return to habitable homes.",
         "reporter": "Humanitarian reporting",
         "labelAr": "العودات المعلَنة",
-        "detailAr": "حركة عودة نحو مناطق المنشأ - معطى حركة، لا برهاناً على عودة دائمة إلى مساكن صالحة للسكن.",
+        "detailAr": "حركة عودة نحو مناطق المنشأ، أعلنتها المفوضية في 18 آب 2026 - معطى حركة، لا برهاناً على عودة دائمة إلى مساكن صالحة للسكن.",
         "reporterAr": "إبلاغ إنساني"
       },
       {
         "label": "Still displaced",
-        "value": "412,700",
-        "detail": "As of 15 July 2026, four and a half months into the war.",
+        "value": "360,000",
+        "detail": "As of 18 August 2026, five and a half months into the war.",
         "reporter": "Humanitarian reporting",
         "labelAr": "ما زالوا نازحين",
-        "detailAr": "حتى 15 تموز 2026، بعد أربعة أشهر ونصف من الحرب.",
+        "detailAr": "حتى 18 آب 2026، بعد خمسة أشهر ونصف من الحرب.",
         "reporterAr": "إبلاغ إنساني"
+      },
+      {
+        "label": "In collective shelters",
+        "value": "at least 22,000",
+        "detail": "Part of those still displaced, sheltering collectively rather than privately, as reported on 18 August 2026.",
+        "reporter": "UNHCR via UN News",
+        "labelAr": "في مراكز إيواء جماعية",
+        "detailAr": "جزء ممّن ما زالوا نازحين، يقيمون إقامة جماعية لا خاصة، بحسب ما أُعلن في 18 آب 2026.",
+        "reporterAr": "المفوضية عبر أخبار الأمم المتحدة",
+        "valueAr": "22 ألفاً على الأقل"
       }
     ]
   },

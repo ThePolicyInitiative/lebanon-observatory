@@ -803,12 +803,12 @@ const BANDS_2026: BandSpec[] = [
           {
             tone: "alert",
             title: {
-              en: "Works contracts awarded by the cut-off: zero",
-              ar: "عقود الأشغال المُرساة حتى تاريخ التوقف: صفر",
+              en: "Works contracts awarded by 31 August 2026: zero",
+              ar: "عقود الأشغال المُرساة حتى 31 آب 2026: صفر",
             },
             sub: {
-              en: "Procurement under way is a process milestone. No works contract, no confirmed completed output and no confirmed compensation payment by 31 July 2026.",
-              ar: "الشراء الجاري محطة إجرائية. لا عقد أشغال، ولا مخرج مكتمل مؤكَّد، ولا دفعة تعويض مؤكَّدة حتى 31 تموز 2026.",
+              en: "Procurement under way is a process milestone. No works contract, no confirmed completed output and no confirmed compensation payment by 31 August 2026.",
+              ar: "الشراء الجاري محطة إجرائية. لا عقد أشغال، ولا مخرج مكتمل مؤكَّد، ولا دفعة تعويض مؤكَّدة حتى 31 آب 2026.",
             },
           },
         ],
@@ -1046,8 +1046,8 @@ const TAIL_2026: BoxSpec[] = [
 ];
 
 const GAP_2026: L = {
-  en: "Gap in 2026: LEAP's scope is limited to 2023-24 damage. No financed compensation or reconstruction instrument for 2026-war damage had been identified by 31 July 2026.",
-  ar: "الفجوة في 2026: نطاق LEAP محصور بأضرار 2023-24. ولم تُحدَّد حتى 31 تموز 2026 أي أداة ممولة للتعويض أو لإعادة الإعمار عن أضرار حرب 2026.",
+  en: "Gap in 2026: LEAP's scope is limited to 2023-24 damage. No financed compensation or reconstruction instrument for 2026-war damage had been identified by 31 August 2026.",
+  ar: "الفجوة في 2026: نطاق LEAP محصور بأضرار 2023-24. ولم تُحدَّد حتى 31 آب 2026 أي أداة ممولة للتعويض أو لإعادة الإعمار عن أضرار حرب 2026.",
 };
 
 function Map2026({ locale }: { locale: Locale }) {

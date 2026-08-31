@@ -198,7 +198,7 @@ describe("figures written into the actors narrative", () => {
   });
 
   /**
-   * "24 of 54 traced actors in strategy and coordination" is a claim about
+   * "24 of 54 traced actors in coordination" is a claim about
    * a layer's share of a whole column, so both halves have to come out of
    * the table: the numerator from that layer's cell, the denominator from
    * the four layers summed at the same stage. The one at the other scale -

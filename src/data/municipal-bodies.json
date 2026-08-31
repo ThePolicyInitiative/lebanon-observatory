@@ -1,0 +1,179 @@
+{
+  "note": "The municipalities and unions of municipalities that the tracking and the updates name by name. The municipal layer's entries are mostly held as aggregates - \"Municipalities\", \"Unions of municipalities\", \"Qada-level local administration\" - because the reporting behind them names no single body. These are the ones it does name. Appearing here is not a count and carries no entry total: it says a body was named somewhere the observatory read, not how much of the layer it carried. Mayors are given as the most recent piece that named them gave them, and a head can change: Lebanon last held municipal elections in 2025, and one name here was replaced at that point.",
+  "noteAr": "البلديات واتحادات البلديات التي يسمّيها التتبّع والمستجدات بالاسم. مدخلات الطبقة البلدية محفوظة في معظمها بصيغة تجميعية - «بلديات»، «اتحادات بلديات»، «إدارة محلية على مستوى القضاء» - لأن الإبلاغ خلفها لا يسمّي جهة بعينها. وهذه هي التي يسمّيها. والورود هنا ليس عدّاً ولا يحمل أي مجموع مدخلات: يقول إن جهة سُمّيت في مادة قرأها المرصد، لا كم حملت من الطبقة. وأسماء الرؤساء كما وردت في آخر مادة سمّتهم، والرئاسة قد تتبدّل: آخر انتخابات بلدية في لبنان جرت في 2025، وقد تبدّل عندها أحد الأسماء الواردة هنا.",
+  "municipalities": [
+    {
+      "name": "Tyre (Sour)",
+      "nameAr": "صور",
+      "head": "Mayor Hassan Dbouk",
+      "headAr": "الرئيس حسن دبوق",
+      "place": "Tyre (Sour) district",
+      "placeAr": "قضاء صور",
+      "source": "UN Development Coordination Office",
+      "url": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management"
+    },
+    {
+      "name": "Nabatieh",
+      "nameAr": "النبطية",
+      "head": "Mayor Abbas Fakhreddine",
+      "headAr": "الرئيس عباس فخر الدين",
+      "place": "Nabatieh",
+      "placeAr": "النبطية",
+      "source": "Ici Beyrouth",
+      "url": "https://icibeyrouth.com/articles/1341048/liban-sud-quand-les-municipalites-tiennent-lieu-detat",
+      "role": "Says the municipality receives demands far beyond its capacity, without the resources to meet them.",
+      "roleAr": "يقول إن البلدية تتلقى طلبات تفوق طاقتها بكثير، من دون الموارد اللازمة لتلبيتها."
+    },
+    {
+      "name": "Bint Jbeil",
+      "nameAr": "بنت جبيل",
+      "head": "Mayor Muhammad Bazzi",
+      "headAr": "الرئيس محمد بزي",
+      "place": "Bint Jbeil town",
+      "placeAr": "بلدة بنت جبيل",
+      "source": "Al-Manar; earlier clearing reported by Bintjbeil.org",
+      "url": "https://almanar.com.lb/article/452567/",
+      "role": "Elected head in June 2025, after the municipal elections returned the council by acclamation. Under his predecessor Hajj Afif Bizzi the municipality reported over 95% of roads passable within days of the 2024 ceasefire, cleared by the municipality itself.",
+      "roleAr": "انتُخب رئيساً في حزيران 2025، بعد أن أعادت الانتخابات البلدية المجلس بالتزكية. وفي عهد سلفه الحاج عفيف بزي أعلنت البلدية أن أكثر من 95% من الطرق سالكة خلال أيام من وقف إطلاق النار في 2024، رفعتها البلدية بنفسها."
+    },
+    {
+      "name": "Marjaayoun",
+      "nameAr": "مرجعيون",
+      "head": "Mayor Sari Gholmieh",
+      "headAr": "الرئيس ساري غلمية",
+      "place": "Marjaayoun",
+      "placeAr": "مرجعيون",
+      "source": "Ici Beyrouth",
+      "url": "https://icibeyrouth.com/articles/1341048/liban-sud-quand-les-municipalites-tiennent-lieu-detat",
+      "role": "Says the municipality has become the complaints desk, the relief office and the problem-solver where state institutions are absent.",
+      "roleAr": "يقول إن البلدية صارت مكتب الشكاوى ومكتب الإغاثة وصاحبة الحلول حيث تغيب مؤسسات الدولة."
+    },
+    {
+      "name": "Blat",
+      "nameAr": "بلاط",
+      "head": "Mayor Ali Ramadan",
+      "headAr": "الرئيس علي رمضان",
+      "place": "Blat (Bint Jbeil)",
+      "placeAr": "بلاط (بنت جبيل)",
+      "source": "Ici Beyrouth",
+      "url": "https://icibeyrouth.com/articles/1341048/liban-sud-quand-les-municipalites-tiennent-lieu-detat",
+      "role": "Says residents bring problems beyond municipal competence while municipal resources have not grown.",
+      "roleAr": "يقول إن الأهالي يحملون إليها مشكلات تتجاوز صلاحية البلدية بينما لم تكبر مواردها."
+    },
+    {
+      "name": "Debbine",
+      "nameAr": "دبين",
+      "head": "Mayor Tarraf",
+      "headAr": "الرئيس طرّاف",
+      "place": "Debbine",
+      "placeAr": "دبين",
+      "source": "Ici Beyrouth",
+      "url": "https://icibeyrouth.com/articles/1341048/liban-sud-quand-les-municipalites-tiennent-lieu-detat",
+      "role": "Says every decision is a choice of which urgent need to meet first.",
+      "roleAr": "يقول إن كل قرار هو اختيار أي حاجة ملحّة تُلبّى أولاً."
+    },
+    {
+      "name": "Froun",
+      "nameAr": "فرون",
+      "head": null,
+      "headAr": null,
+      "place": "South Lebanon - one of the first three pilot zones",
+      "placeAr": "جنوب لبنان - إحدى مناطق التجربة الثلاث الأولى",
+      "role": "Named as a pilot zone on 20 July 2026, the first places where the state chained reconstruction to army deployment. Mayors elsewhere in the south objected that the designation splits the region.",
+      "roleAr": "سُمّيت منطقة تجربة في 20 تموز 2026، وهي أولى الأماكن التي ربطت فيها الدولة إعادة الإعمار بانتشار الجيش. واعترض رؤساء بلديات آخرون في الجنوب على أن التسمية تقسّم المنطقة.",
+      "source": "US State Department, via LBCI",
+      "url": "https://www.lbcgroup.tv/news/lebanon-news/947810/us-state-department-pilot-zone-operations-began-in-the-villages-of-fro/en"
+    },
+    {
+      "name": "Srifa",
+      "nameAr": "صريفا",
+      "head": null,
+      "headAr": null,
+      "place": "South Lebanon - one of the first three pilot zones",
+      "placeAr": "جنوب لبنان - إحدى مناطق التجربة الثلاث الأولى",
+      "role": "Named as a pilot zone on 20 July 2026, the first places where the state chained reconstruction to army deployment. Mayors elsewhere in the south objected that the designation splits the region.",
+      "roleAr": "سُمّيت منطقة تجربة في 20 تموز 2026، وهي أولى الأماكن التي ربطت فيها الدولة إعادة الإعمار بانتشار الجيش. واعترض رؤساء بلديات آخرون في الجنوب على أن التسمية تقسّم المنطقة.",
+      "source": "US State Department, via LBCI",
+      "url": "https://www.lbcgroup.tv/news/lebanon-news/947810/us-state-department-pilot-zone-operations-began-in-the-villages-of-fro/en"
+    },
+    {
+      "name": "Zawtar el-Gharbiyeh",
+      "nameAr": "زوطر الغربية",
+      "head": null,
+      "headAr": null,
+      "place": "South Lebanon - one of the first three pilot zones",
+      "placeAr": "جنوب لبنان - إحدى مناطق التجربة الثلاث الأولى",
+      "role": "Named as a pilot zone on 20 July 2026, the first places where the state chained reconstruction to army deployment. Mayors elsewhere in the south objected that the designation splits the region.",
+      "roleAr": "سُمّيت منطقة تجربة في 20 تموز 2026، وهي أولى الأماكن التي ربطت فيها الدولة إعادة الإعمار بانتشار الجيش. واعترض رؤساء بلديات آخرون في الجنوب على أن التسمية تقسّم المنطقة.",
+      "source": "US State Department, via LBCI",
+      "url": "https://www.lbcgroup.tv/news/lebanon-news/947810/us-state-department-pilot-zone-operations-began-in-the-villages-of-fro/en"
+    }
+  ],
+  "unions": [
+    {
+      "name": "Union of Municipalities of the Southern Suburbs",
+      "nameAr": "اتحاد بلديات الضاحية الجنوبية",
+      "head": "Muhammad Durgham",
+      "headAr": "محمد درغام",
+      "place": "Southern suburbs of Beirut",
+      "placeAr": "الضاحية الجنوبية لبيروت",
+      "source": "Carried in the tracking itself, with its own traced entries",
+      "sourceAr": "محمول في التتبّع نفسه، وله مدخلاته المرصودة",
+      "url": null,
+      "role": "Ran the southern suburbs' rubble clearance through its own contractor, reporting about 70% cleared and no state funds disbursed to it.",
+      "roleAr": "أدار رفع الأنقاض في الضاحية الجنوبية عبر متعهّده الخاص، معلناً إنجاز نحو 70% وعدم صرف أي أموال حكومية له."
+    },
+    {
+      "name": "Tyre Union of Municipalities",
+      "nameAr": "اتحاد بلديات صور",
+      "head": "Mayor Hassan Dbouk",
+      "headAr": "الرئيس حسن دبوق",
+      "place": "Tyre (Sour) district",
+      "placeAr": "قضاء صور",
+      "source": "UN Development Coordination Office",
+      "url": "https://un-dco.org/stories/rebuilding-hope-lebanons-journey-toward-sustainable-recovery-through-debris-management"
+    },
+    {
+      "name": "Union of Municipalities of Bint Jbeil district",
+      "nameAr": "اتحاد بلديات قضاء بنت جبيل",
+      "head": null,
+      "headAr": null,
+      "place": "Bint Jbeil district",
+      "placeAr": "قضاء بنت جبيل",
+      "source": "Elnashra",
+      "url": "https://www.elnashra.com/news/show/1272276"
+    },
+    {
+      "name": "Union of Municipalities of Jabal Amel",
+      "nameAr": "اتحاد بلديات جبل عامل",
+      "head": null,
+      "headAr": null,
+      "place": "33 towns across the Bint Jbeil district, with the Bint Jbeil union",
+      "placeAr": "33 بلدة في قضاء بنت جبيل، مع اتحاد بنت جبيل",
+      "source": "National News Agency (Lebanon)",
+      "url": "https://www.nna-leb.gov.lb/ar/%D9%85%D8%AA%D9%81%D8%B1%D9%82%D8%A7%D8%AA/688109"
+    },
+    {
+      "name": "Union of Saida/Zahrani Municipalities",
+      "nameAr": "اتحاد بلديات صيدا/الزهراني",
+      "head": null,
+      "headAr": null,
+      "place": "Marwanieh (Saida district)",
+      "placeAr": "المروانية (قضاء صيدا)",
+      "source": "UN Women Lebanon",
+      "url": "https://lebanon.unwomen.org/en/stories/feature-story/2026/08/a-women-led-bakery-rebuilding-hope-in-south-lebanon"
+    },
+    {
+      "name": "Union of Municipalities of Al-Qalaa",
+      "nameAr": "اتحاد بلديات القلعة",
+      "head": null,
+      "headAr": null,
+      "place": "Bint Jbeil district, nine member municipalities",
+      "placeAr": "قضاء بنت جبيل، تسع بلديات أعضاء",
+      "role": "One of the four unions of the south-of-the-Litani area that jointly requested development support for the zone.",
+      "roleAr": "أحد اتحادات المنطقة الأربعة جنوب الليطاني التي طلبت مجتمعةً دعماً إنمائياً للمنطقة.",
+      "source": "Lebanese Center for Policy Studies",
+      "url": "https://www.lcps-lebanon.org/en/articles/details/4901/south-of-the-litani-river-area-pathways-to-recovery-and-reconstruction-amid-uncertainty"
+    }
+  ]
+}

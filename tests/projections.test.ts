@@ -87,7 +87,18 @@ describe("per-entry detail files stay in sync with the full log", () => {
         `${r.id} has ids that resolve to nothing`,
       ).toBe((r.sourceIds ?? []).length);
     }
-  });
+    /*
+     * 771 file reads and 771 deep comparisons. That runs in about seven
+     * seconds on a Windows checkout with a cold cache, which is over
+     * vitest's five-second default - so this failed intermittently on
+     * machine speed rather than on anything about the data.
+     *
+     * It matters more than an occasional red run: `scripts/auto-update.mjs`
+     * gates publication on this suite, and a test that fails on timing
+     * would abandon a correct update and restore the tree, quietly, on
+     * whichever mornings the runner was busy.
+     */
+  }, 60_000);
 });
 
 describe("heatmap cell files stay in sync with the full log", () => {

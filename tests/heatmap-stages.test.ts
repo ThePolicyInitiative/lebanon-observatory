@@ -5,9 +5,9 @@ import { changeFor, countsFor } from "@/lib/data-client";
 import { LAYER_META } from "@/lib/colors";
 
 /**
- * Both heat maps draw every stage except strategy and coordination.
+ * Both heat maps draw every stage except coordination.
  *
- * Strategy is the stage nearly every actor touches, so its column sat far
+ * Coordination is the stage nearly every actor touches, so its column sat far
  * above the rest and set the top of a ramp the other eleven then shared -
  * the figures ended up answering "who coordinates" rather than where
  * traced presence sits along the chain.
@@ -18,11 +18,11 @@ import { LAYER_META } from "@/lib/colors";
  * lookup that turns one back into the other has to agree.
  */
 describe("heat map stage selection", () => {
-  it("drops strategy and keeps the other eleven, in order", () => {
+  it("drops coordination and keeps the other eleven, in order", () => {
     expect(HEATMAP_STAGES).toHaveLength(11);
     expect(HEATMAP_STAGES).not.toContain(0);
     expect([...HEATMAP_STAGES]).toEqual([...HEATMAP_STAGES].sort((a, b) => a - b));
-    expect(stageList("en")[0]).toBe("Strategy and coordination");
+    expect(stageList("en")[0]).toBe("Coordination");
     for (const i of HEATMAP_STAGES) expect(i).toBeGreaterThan(0);
     expect(Math.max(...HEATMAP_STAGES)).toBeLessThan(stageList("en").length);
   });
@@ -34,7 +34,7 @@ describe("heat map stage selection", () => {
       expect(long[i], `stage ${i} has no long label in ${locale}`).toBeTruthy();
       expect(short[i], `stage ${i} has no short label in ${locale}`).toBeTruthy();
     }
-    // The strategy label still exists - it is omitted from two figures,
+    // The coordination label still exists - it is omitted from two figures,
     // not removed from the site's vocabulary.
     expect(long[0]).toBeTruthy();
     expect(short[0]).toBeTruthy();
@@ -94,11 +94,11 @@ describe("heat map stage selection", () => {
   });
 
   /**
-   * Dropping strategy does not change the colour scale, and the copy must
+   * Dropping coordination does not change the colour scale, and the copy must
    * not say it does.
    *
    * Both year panels share one ramp across both years, and its top is
-   * 2026 community relief at 55 - with or without strategy. The change
+   * 2026 community relief at 55 - with or without coordination. The change
    * map's widest swing is 35 either way. The subtitles claimed the column
    * had been setting the top of the ramp and flattening the rest; that
    * was written without measuring, and it is not true. The stage is
@@ -148,7 +148,7 @@ describe("heat map stage selection", () => {
     const src = readFileSync("src/components/charts/ChangeHeatmap.tsx", "utf8");
     expect(src).not.toContain("twelve value-chain stages");
     expect(src).toContain("eleven value-chain stages");
-    // The old description named a strategy cell as its second-largest
+    // The old description named a coordination cell as its second-largest
     // gain; that cell is no longer drawn.
     expect(src).not.toContain("community coordination (+25)");
   });
