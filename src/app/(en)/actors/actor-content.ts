@@ -89,8 +89,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "في السنتين كان للدولة مالك على الورق لكل مرحلة. ما تغيّر هو التفعيل: تفويضات 2024 كانت مطالبات على بنود موازنة لم تستطع حكومة تصريف أعمال بخزينة منهارة أن تمارسها بما يتجاوز التنسيق؛ أما 2026 فأعادت تمويل ورصد جزء من التفويضات نفسها بدل اختراع تفويضات جديدة.",
     },
     financeRole: {
-      en: "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment by 31 August 2026.",
-      ar: "المقترض والمدير المالي لقرض LEAP (وزارة المالية)؛ ومجلس الوزراء أقرّ إطار التعويضات في كانون الثاني 2026 - من دون أي دفعة مؤكَّدة حتى 31 آب 2026.",
+      en: "Borrower and fiscal manager of the LEAP loan (Ministry of Finance); cabinet approved the January 2026 compensation framework - with no confirmed payment at the latest review.",
+      ar: "المقترض والمدير المالي لقرض LEAP (وزارة المالية)؛ ومجلس الوزراء أقرّ إطار التعويضات في كانون الثاني 2026 - من دون أي دفعة مؤكَّدة عند آخر مراجعة.",
     },
     procurementRole: {
       en: "CDR runs LEAP procurement under World Bank rules with a published portal; the Council for the South continued legacy tendering outside the project perimeter.",
@@ -156,8 +156,8 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "أصبح البنك الدولي واضع قواعد مسار إعادة الإعمار ومموّله معاً؛ وجرى النداء الإنساني (ممول بنسبة 42% في 6 تموز) والحزم الثنائية على مسارات موازية يجب ألا تُخلط بتمويل إعادة الإعمار.",
     },
     procurementRole: {
-      en: "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at 31 August 2026.",
-      ar: "قانون الشراء لدى البنك الدولي يحكم حزم LEAP؛ وجهة رقابة الطرف الثالث - وهي جهة مساءلة خارجية - كانت هي نفسها قيد الشراء عند 31 آب 2026.",
+      en: "World Bank procurement law governs LEAP packages; the Third-Party Monitoring Agent - an external accountability actor - was itself under procurement at the latest review.",
+      ar: "قانون الشراء لدى البنك الدولي يحكم حزم LEAP؛ وجهة رقابة الطرف الثالث - وهي جهة مساءلة خارجية - كانت هي نفسها قيد الشراء عند آخر مراجعة.",
     },
     implementationRole: {
       en: "Agencies delivered relief, shelter support and WASH at scale in both years; they did not and could not resolve compensation policy, property rights or municipal finance.",

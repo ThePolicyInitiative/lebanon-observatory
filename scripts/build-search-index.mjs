@@ -172,8 +172,6 @@ const AR_PAGE = (route) =>
     ? ["src", "app", "(ar)", "ar", "page.tsx"]
     : ["src", "app", "(ar)", "ar", route.slice(1), "page.tsx"];
 
-const ABOUT_BODY = ["src", "app", "(en)", "about", "AboutBody.tsx"];
-const ABOUT_COPY = ["src", "lib", "about-content.ts"];
 const FRAMEWORK = ["src", "lib", "framework.ts"];
 
 /**
@@ -198,13 +196,6 @@ const REGIONAL_COMPOSITION = ["src", "components", "map", "RegionalComposition.t
  * default is `id="..."` in the page file itself, and the identity page
  * needs two, because its ids are assembled from a table.
  */
-const aboutAnchor = (id) => ({
-  id: `about-${id}`,
-  checks: [
-    [ABOUT_BODY, "id={`about-${s.id}`}"],
-    [ABOUT_COPY, `id: "${id}"`],
-  ],
-});
 
 /**
  * A chart carries its own id on the <figure> ChartFrame draws, so a section
@@ -352,12 +343,6 @@ const PAGES = [
         arAnchor: { id: "ar-group-profiles" },
       },
       {
-        en: "Who carries the work",
-        ar: "من يحمل العمل",
-        enAnchor: { id: "who-carries-the-work" },
-        arAnchor: { id: "ar-who-carries-the-work" },
-      },
-      {
         en: "Who did what - the full register",
         ar: "من فعل ماذا - السجل الكامل",
         enAnchor: actorAnchorFor("actor-register", "ActorRegister"),
@@ -417,14 +402,22 @@ const PAGES = [
         arAnchor: actionsAnchorFor("actor-matrix", "ActorStageMatrix", ["src", "app", "(en)", "actors", "ActorStageMatrix.tsx"]),
       },
       {
-        en: "Where the actions happened",
-        ar: "أين جرت الأفعال المرصودة",
-        enAnchor: { id: "where-traced", checks: [[EN_PAGE("/actions"), 'id="where-traced"']] },
-        arAnchor: {
-          id: "ar-where-traced",
-          checks: [[AR_PAGE("/actions"), 'id="ar-where-traced"']],
-        },
+        en: "Announced is not done",
+        ar: "المُعلَن ليس مُنجَزاً",
+        enAnchor: { id: "status" },
+        arAnchor: { id: "ar-status" },
       },
+    ],
+  },
+  {
+    route: "/map",
+    en: "Where the actions happened",
+    ar: "أين جرت الأفعال المرصودة",
+    enDesc:
+      "Every traced action placed where it happened, filterable by year, actor group, stage of the response and status - with the regional composition beside it.",
+    arDesc:
+      "كل فعل مرصود موضوعاً حيث جرى، قابلاً للترشيح بالسنة ومجموعة الجهات ومرحلة الاستجابة والحالة - ومعه التركيب الإقليمي.",
+    headings: [
       {
         en: "Place mentions, grouping by grouping",
         ar: "الإشارات إلى الأماكن، تجمّعاً بتجمّع",
@@ -433,23 +426,17 @@ const PAGES = [
         enAnchor: {
           id: "regional-composition",
           checks: [
-            [EN_PAGE("/actions"), "<RegionalComposition"],
+            [EN_PAGE("/map"), "<RegionalComposition"],
             [REGIONAL_COMPOSITION, 'id="regional-composition"'],
           ],
         },
         arAnchor: {
           id: "regional-composition",
           checks: [
-            [AR_PAGE("/actions"), "<RegionalComposition"],
+            [AR_PAGE("/map"), "<RegionalComposition"],
             [REGIONAL_COMPOSITION, 'id="regional-composition"'],
           ],
         },
-      },
-      {
-        en: "Announced is not done",
-        ar: "المُعلَن ليس مُنجَزاً",
-        enAnchor: { id: "status" },
-        arAnchor: { id: "ar-status" },
       },
     ],
   },
@@ -620,48 +607,6 @@ const PAGES = [
       },
     ],
   },
-  {
-    route: "/about",
-    en: "About the observatory",
-    ar: "عن المرصد",
-    enDesc:
-      "Who compiles the observatory, what the tracking covers, what it refuses to claim and how to reach it.",
-    arDesc: "من يعدّ المرصد، وما الذي يغطيه التتبّع، وما الذي يرفض ادّعاءه، وكيف تصل إلينا.",
-    headings: [
-      { en: "What this is", ar: "ما هذا الموقع", enAnchor: aboutAnchor("what"), arAnchor: aboutAnchor("what") },
-      { en: "Who compiled it", ar: "من أعدّه", enAnchor: aboutAnchor("who"), arAnchor: aboutAnchor("who") },
-      {
-        en: "What the tracking covers",
-        ar: "ما الذي يغطيه التتبّع",
-        enAnchor: aboutAnchor("covers"),
-        arAnchor: aboutAnchor("covers"),
-      },
-      {
-        en: "What it does not claim",
-        ar: "ما الذي لا يدّعيه",
-        enAnchor: aboutAnchor("limits"),
-        arAnchor: aboutAnchor("limits"),
-      },
-      {
-        en: "How updates work",
-        ar: "كيف تجري التحديثات",
-        enAnchor: aboutAnchor("updates"),
-        arAnchor: aboutAnchor("updates"),
-      },
-      {
-        en: "How to reach us",
-        ar: "كيف تصل إلينا",
-        enAnchor: {
-          id: "about-contact",
-          checks: [[ABOUT_BODY, 'id="about-contact"']],
-        },
-        arAnchor: {
-          id: "about-contact",
-          checks: [[ABOUT_BODY, 'id="about-contact"']],
-        },
-      },
-    ],
-  },
 ];
 
 /** The Arabic twin of an English route. */
@@ -795,7 +740,7 @@ export function buildIndex() {
     const label = REGIONS[region.id];
     if (!label) throw new Error(`No name for the grouping "${region.id}"`);
     items.push(
-      item("place", label.en, label.ar, "/actions", {
+      item("place", label.en, label.ar, "/map", {
         c: "Regional grouping",
         ca: "تجمّع إقليمي",
       }),
@@ -812,7 +757,7 @@ export function buildIndex() {
     const region = REGIONS[locality.region];
     if (!region) throw new Error(`No name for the grouping "${locality.region}"`);
     items.push(
-      item("place", locality.name, ar, "/actions", { c: region.en, ca: region.ar }),
+      item("place", locality.name, ar, "/map", { c: region.en, ca: region.ar }),
     );
   }
 

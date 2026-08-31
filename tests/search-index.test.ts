@@ -155,7 +155,7 @@ describe("what the index covers", () => {
     const routes = new Set(kinds("page").map((i) => i.h.split("#")[0]));
     expect([...routes].sort()).toEqual(
       // Sorted, because the assertion sorts what it is comparing against.
-      ["/", "/about", "/actions", "/actors", "/entries", "/findings", "/methodology", "/reported"],
+      ["/", "/actions", "/actors", "/entries", "/findings", "/map", "/methodology", "/reported"],
     );
     expect(items.some((i) => i.h.startsWith("/search"))).toBe(false);
   });
@@ -237,11 +237,11 @@ describe("what the index covers", () => {
   it("links only to routes this site serves", () => {
     const routes = new Set([
       "/",
-      "/about",
       "/actions",
       "/actors",
       "/entries",
       "/findings",
+      "/map",
       "/methodology",
       "/reported",
     ]);

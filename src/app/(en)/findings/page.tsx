@@ -46,7 +46,7 @@ const CONCEPTS = [
   {
     n: 2,
     label: "Financing framework",
-    text: "The US$1 billion LEAP scalable framework - an envelope into which financing can flow, three-quarters of it unfilled at 31 August 2026.",
+    text: "The US$1 billion LEAP scalable framework - an envelope into which financing can flow, three-quarters of it unfilled at the latest review.",
   },
   {
     n: 3,
@@ -66,7 +66,7 @@ const CONCEPTS = [
   {
     n: 6,
     label: "Completed output",
-    text: "No publicly confirmed completed reconstruction output, no awarded works contract and no confirmed state compensation payment by 31 August 2026.",
+    text: "No publicly confirmed completed reconstruction output, no awarded works contract and no confirmed state compensation payment at the latest review.",
   },
 ];
 
@@ -167,7 +167,7 @@ export default function FindingsPage() {
             The estimates under those figures follow, each presented with its
             method, scope, unit and comparability - never averaged, summed or
             merged. No single building count exists for the 2024 war, and no
-            national assessment existed for the 2026 war by 31 August 2026;
+            national assessment existed for the 2026 war at the latest review;
             the plurality gave the response its fastest early figures while
             delaying the single baseline every compensation system needs.
           </p>
@@ -671,7 +671,7 @@ export default function FindingsPage() {
       <div className="mt-16">
         <Takeaways
           changed="Both wars were measured and framed better over time: 2026 was assessed within weeks, in joint products with a Lebanese scientific institution that state their own limits, and by 26 February 2026 the financing framework was real plumbing - an effective US$250 million loan, a disbursement account and three procurement packages - none of which existed in 2024."
-          unchanged="Conversion. Neither war has one authoritative building count, the Bekaa and Baalbek-Hermel were never assessed in 2026, US$4.13 million of the loan - 1.65% - had been disbursed by 29 June 2026, and no completed reconstruction output was publicly confirmed by 31 August 2026."
+          unchanged="Conversion. Neither war has one authoritative building count, the Bekaa and Baalbek-Hermel were never assessed in 2026, US$4.13 million of the loan - 1.65% - had been disbursed by 29 June 2026, and no completed reconstruction output was publicly confirmed at the latest review."
           matters="Programmes fund what is measured, so unassessed areas enter any future financing instrument late and weakly. And until a first works award, a first state compensation payment and a first confirmed output appear, the framework's headline describes capacity, not recovery - households live at the bottom of the funnel."
         />
       </div>

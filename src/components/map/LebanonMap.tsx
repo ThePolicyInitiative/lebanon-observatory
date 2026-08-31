@@ -1429,7 +1429,10 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               group, not repeated on each card. */}
           <div className="space-y-3">
             {renderMode === "gl" && mapView === "entries" ? (
-              <MapLegend locale={locale} />
+              // The pan-and-zoom map still draws one GL pin per traced
+              // entry, so its key keeps the pin sentence; the vector
+              // map's key explains the shaded towns instead.
+              <MapLegend locale={locale} variant="pins" />
             ) : null}
             {nonMappable.map((r) => {
               const m = mentionsFor(year, r.id);

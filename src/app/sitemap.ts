@@ -5,26 +5,25 @@ const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 /**
  * The home page is "" rather than "/", so the Arabic twin below comes out
- * as /ar and not /ar/. /map and /compare are gone - the map is a section of
- * /actors and the year contrast a section of the home page - and a sitemap
- * that still listed them would hand a crawler two redirects per language.
+ * as /ar and not /ar/. /compare is gone - the year contrast is a section of the
+ * home page - and a sitemap that listed it would hand a crawler two
+ * redirects per language.
  */
 const PAGES = [
   "",
   "/actors",
   "/actions",
+  "/map",
   "/findings",
   "/reported",
   "/entries",
   "/methodology",
   "/search",
-  "/about",
 ];
 
-/** The two routes that carry no analysis of their own: a way in and a
- * statement of identity. Both are listed, and both rank below the pages
- * that hold the argument. */
-const SECONDARY = new Set(["/about", "/search"]);
+/** The one route that carries no analysis of its own - a way in. Listed,
+ * and ranked below the pages that hold the argument. */
+const SECONDARY = new Set(["/search"]);
 
 /** The date the footer shows readers, not a second copy of it: a crawler
  * date that drifts from the visible one is worse than no date at all. */

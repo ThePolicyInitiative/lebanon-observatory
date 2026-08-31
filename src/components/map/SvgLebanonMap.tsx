@@ -57,8 +57,6 @@ import {
   fanRadius,
   fitSpacing,
   JURISDICTION_ONLY_PLACES,
-  episodeRing,
-  pinOutline,
   type Pin,
 } from "@/lib/pins";
 import { buildLandIndex, isOnLandIndexed, type LandIndex } from "@/lib/land";
@@ -86,6 +84,20 @@ const PIN_SPACING = 9;
 const PIN_R = 3.2;
 const PIN_STROKE = 1;
 const PIN_HIT = PIN_SPACING / 2;
+
+/*
+ * The entries view says "how much" with the town fill itself now - a
+ * sequential ramp over the polygons - so no pin, fan or counted marker
+ * is drawn there any more. The fan plumbing above and below stays: it
+ * still carries every entry into the per-town list a selection opens,
+ * still decides which towns would have clustered (the label packing
+ * reserves those discs, which keeps a name off a town's shaded core and
+ * keeps label placement stable across the change), and
+ * tests/pins.test.ts mirrors its arithmetic. PIN_HIT is the one
+ * constant nothing draws with; referenced so it survives without a
+ * lint waiver.
+ */
+void PIN_HIT;
 
 /**
  * The point below which a fan stops being worth drawing.
@@ -119,13 +131,15 @@ const DAHIEH_KEY = "__dahieh";
 
 const PIN_T = {
   en: {
-    pinCount: (pins: number, places: number) =>
-      `${pins} pins across ${places} places - select one for its entry`,
+    pinCount: (entries: number, places: number) =>
+      `${entries} traced entries across ${places} places - the deeper the colour, the more of them a town carries`,
     entryAt: "Traced entry ·",
     episodeAt: "Traced episode ·",
     close: "Close this entry",
     pinNote:
-      "One pin, one traced entry. The pin sits in the town the reporting names, fanned off its centre so neighbouring entries stay separate - it is not a street address. Where a town is too small at this zoom to hold its entries apart, they are drawn as one marker carrying the count; zoom in and it opens into a pin for each.",
+      "One row in this list is one traced entry, placed under the town the reporting names - not at a street address. On the map, a deeper town colour means more traced entries there; towns carrying nothing keep the plain ground.",
+    shadedTown: (n: number, town: string, district: string) =>
+      `${town}${district ? `, ${district}` : ""} - ${n} traced ${n === 1 ? "entry" : "entries"} here; the town's colour deepens with them. Select to list them.`,
     cluster: (n: number, town: string, district: string) =>
       `${town}${district ? `, ${district}` : ""} - ${n} traced entries, too close together to draw apart at this zoom. Select to list them, or zoom in for a pin each.`,
     clusterPanel: (n: number) => `${n} traced entries here`,
@@ -182,13 +196,15 @@ const PIN_T = {
     completeShare: (pct: number) => `${pct}% complete`,
   },
   ar: {
-    pinCount: (pins: number, places: number) =>
-      `${arabicCount(pins, AR_COUNT.pin)} في ${arabicCount(places, AR_COUNT.place)} - اختر واحداً لعرض مدخله`,
+    pinCount: (entries: number, places: number) =>
+      `${arabicCount(entries, AR_COUNT.entryTraced)} في ${arabicCount(places, AR_COUNT.place)} - وكلما اشتدّ اللون زاد ما تحمله البلدة منها`,
     entryAt: "مدخل مرصود ·",
     episodeAt: "واقعة مرصودة ·",
     close: "إغلاق هذا المدخل",
     pinNote:
-      "دبّوس واحد لمدخل مرصود واحد. والدبّوس يقع في البلدة التي يسمّيها الإبلاغ، منشوراً عن مركزها ليبقى كل مدخل منفصلاً - وهو ليس عنواناً في شارع. وحين تضيق البلدة عند هذا التكبير عن أن تفصل مداخلها، تُرسم علامة واحدة تحمل العدد؛ وبالتقريب تنفتح إلى دبّوس لكل مدخل.",
+      "كل سطر في هذه القائمة مدخل مرصود واحد، مُدرج تحت البلدة التي يسمّيها الإبلاغ - لا على عنوان في شارع. وعلى الخريطة، كلما اشتدّ لون البلدة زادت المدخلات المرصودة فيها؛ والبلدات التي لا شيء مرصود فيها تبقى بلون الأرضية.",
+    shadedTown: (n: number, town: string, district: string) =>
+      `${town}${district ? ` · قضاء ${district}` : ""} - ${arabicCount(n, AR_COUNT.entryTraced)} هنا، ويشتدّ لون البلدة بها. اخترها لعرض قائمتها.`,
     cluster: (n: number, town: string, district: string) =>
       `${town}${district ? ` · قضاء ${district}` : ""} - ${arabicCount(n, AR_COUNT.entryTraced)}، أقرب من أن تُرسم متفرّقة عند هذا التكبير. اخترها لعرضها، أو قرّب الخريطة ليظهر دبّوس لكل مدخل.`,
     clusterPanel: (n: number) => `${arabicCount(n, AR_COUNT.entryTraced)} هنا`,
@@ -412,13 +428,16 @@ function vbAround(cx: number, cy: number, w: number): ViewBox {
 
 /**
  * Vector map at town (cadastre) detail: 1,600+ town polygons from the
- * OCHA COD boundary data shaded by their regional grouping's value,
- * with wheel/drag/button zoom and pan, district outlines and labels,
- * city labels, markers on the towns work is traced in, diamonds on
- * towns with traced episodes, a hover readout, a scale bar, and
+ * OCHA COD boundary data, with wheel/drag/button zoom and pan, district
+ * outlines and labels, city labels, a hover readout, a scale bar, and
  * hatching over border districts containing Israeli-occupied areas
- * (2026). The district base renders from server HTML instantly; the
- * town layer loads over it.
+ * (2026). The entries view shades each town the tracking names by how
+ * many traced entries name it - navy for the whole tracking, the
+ * filtered group's own hue when the filter narrows to one group, which
+ * is what rampColor carries - and selecting a shaded town lists those
+ * entries. The other views shade by change, surveyed damage and
+ * assessed destruction. The district base renders from server HTML
+ * instantly; the town layer loads over it.
  */
 export default function SvgLebanonMap({
   year,
@@ -457,6 +476,10 @@ export default function SvgLebanonMap({
    * the 27 markers at the opening view had no element anywhere: nothing
    * to focus, nothing to open, 195 of 200 unreachable without a pointer
    * and a zoom.
+   *
+   * The marker itself is gone now - the shaded town is the thing that
+   * opens - but the state, the panel and the promise are the same: a
+   * town's traced entries are always listable, at every zoom.
    */
   const [openCluster, setOpenCluster] = useState<{
     town: Town;
@@ -973,10 +996,11 @@ export default function SvgLebanonMap({
   );
 
   /**
-   * The unified point layer: every town where something traced
-   * happened - traced activities naming it or episodes - marked at the
-   * town's actual location (polygon centroid), coloured by the leading
-   * actor layer and sized by how much is traced there.
+   * The per-town roll-up: every town where something traced happened -
+   * traced activities naming it or episodes - with its total. It feeds
+   * the entries view's shading depth, the printed place labels, the
+   * ranking rows and the focusable town overlay, so all four speak from
+   * one set of figures.
    */
   const placePoints = useMemo(() => {
     if (!towns) return [];
@@ -1041,9 +1065,25 @@ export default function SvgLebanonMap({
   }, [towns, townRecords, year]);
 
   /**
-   * Every traced entry as its own pin, placed at the town the sources
-   * name and fanned around its centroid so a forty-entry town is forty
-   * reachable pins rather than one circle with a 40 printed on it.
+   * The totals behind the entries view's shading - the same figures the
+   * printed place labels carry, so the depth of a town's colour and the
+   * number beside its name cannot disagree.
+   */
+  const townTotals = useMemo(() => {
+    const byName = new Map<string, number>();
+    let max = 1;
+    for (const p of placePoints) {
+      byName.set(p.town.name, p.total);
+      if (p.total > max) max = p.total;
+    }
+    return { byName, max };
+  }, [placePoints]);
+
+  /**
+   * Every traced entry, grouped under its town and fanned in unit space.
+   * The fans are not drawn any more - the shading carries the quantity -
+   * but this is still where each entry gets its own openable element:
+   * the list a shaded town opens is exactly this group.
    */
   const entryPinsRaw = useMemo(() => {
     if (!towns || !locIndex)
@@ -1088,6 +1128,42 @@ export default function SvgLebanonMap({
     }
     return out;
   }, [towns, locIndex, records, year, locale, anchorOf]);
+
+  /**
+   * A town's entries as the list its shaded polygon opens - the same
+   * per-town grouping the counted markers used to hold behind them.
+   */
+  const pinsByTown = useMemo(() => {
+    const m = new Map<string, typeof entryPinsRaw>();
+    for (const pin of entryPinsRaw) {
+      const list = m.get(pin.townName);
+      if (list) list.push(pin);
+      else m.set(pin.townName, [pin]);
+    }
+    return m;
+  }, [entryPinsRaw]);
+
+  /**
+   * Open a town in the entries view: select it and list what is traced
+   * there. One function, so the pointer path (the shaded polygon) and
+   * the keyboard path (its focusable twin) cannot drift apart. The
+   * functional set means a click on the town whose list is already open
+   * keeps that list rather than remounting it, and a town carrying
+   * nothing closes whatever list was standing - a panel must not
+   * outlive the selection it described.
+   */
+  function openTownEntries(t: Town, opener: SVGGElement | null = null) {
+    pinOpenerRef.current = opener;
+    selectTown(t);
+    const pins = pinsByTown.get(t.name);
+    setOpenCluster((cur) =>
+      pins && pins.length > 0
+        ? cur && cur.town.uid === t.uid
+          ? cur
+          : { town: t, pins }
+        : null,
+    );
+  }
 
   /**
    * Size each fan to its town, then pull any pin the spiral put in the sea
@@ -1375,10 +1451,12 @@ export default function SvgLebanonMap({
       };
     }
 
-    // The markers themselves, which are drawn whatever the labels do. A
-    // name that clears every other name can still print straight across
-    // a neighbouring town's counted marker, and the number inside it is
-    // the thing that becomes unreadable.
+    // The discs the pin-era markers occupied, still reserved though no
+    // marker is drawn there now: the shading is deepest at a town's
+    // core, and a name printed straight across a busy town's centre
+    // hides exactly the depth the reader is being asked to compare.
+    // Reserving what the pin era reserved also keeps every label where
+    // it already was.
     for (const c of entryClusters) {
       const r = c.radius * k;
       reserved.push({ x0: c.ax - r, y0: c.ay - r, x1: c.ax + r, y1: c.ay + r });
@@ -1453,6 +1531,8 @@ export default function SvgLebanonMap({
       let fill = unnamed ? "#B9C2CE" : rampColor;
       let opacity: number;
       let hoverText: string;
+      /** Carrying a ramp value, so the zone dimming must not touch it. */
+      let shadedEntries = false;
       if (view === "change" && !unnamed) {
         const e = change.byDistrict.get(t.district) ?? { y24: 0, y26: 0 };
         const delta = e.y26 - e.y24;
@@ -1470,16 +1550,31 @@ export default function SvgLebanonMap({
         opacity = 0.1;
         hoverText = tr.hoverDamage(t.name, t.district);
       } else {
-        // Entries view: the base map is geography and nothing else. The
-        // quantity lives in the pins now, one per entry, so tinting the
-        // land by the same quantity said it twice and put a colour ramp
-        // in direct competition with the actor-layer colours the pins
-        // carry. Grey keeps colour meaning exactly one thing.
-        fill = unnamed ? "#B9C2CE" : "#E1E7EE";
-        opacity = unnamed ? 0.35 : 0.9;
+        // Entries view: the quantity lives in the land itself. Each town
+        // the tracking names takes the ramp colour - navy with every
+        // group showing, the filtered group's own hue when the filter
+        // narrows to one, which is exactly what rampColor carries - at a
+        // depth scaled by its traced entries. Square-root scaled, because
+        // the counts are skewed: linear left every one-entry town
+        // indistinguishable from the ground while a single busy town took
+        // the whole range. Towns with nothing traced keep the plain
+        // ground, so a tint is always a statement about the tracking and
+        // never about the geography.
+        const total = townTotals.byName.get(t.name) ?? 0;
+        if (!unnamed && total > 0) {
+          fill = rampColor;
+          opacity = 0.16 + Math.sqrt(total / townTotals.max) * 0.74;
+          shadedEntries = true;
+        } else {
+          fill = unnamed ? "#B9C2CE" : "#E1E7EE";
+          opacity = unnamed ? 0.35 : 0.9;
+        }
         hoverText = tr.hoverEntries(t.name, t.district, dCount, namedCount);
       }
-      if (!affected && !unnamed) opacity *= 0.42;
+      // The zones the war never reached are muted - but never a town
+      // whose opacity IS its value: dimming a ramp step misstates the
+      // count it stands for.
+      if (!affected && !unnamed && !shadedEntries) opacity *= 0.42;
       if (!unnamed && onStrip2026) hoverText += tr.stripSuffix;
       else if (!unnamed && occupied2026) hoverText += tr.occupiedSuffix;
 
@@ -1494,7 +1589,16 @@ export default function SvgLebanonMap({
           strokeOpacity={isSel ? 1 : affected ? 0.8 : 0.45}
           vectorEffect="non-scaling-stroke"
           className={unnamed ? undefined : "cursor-pointer"}
-          onClick={unnamed ? undefined : () => selectTown(t)}
+          // In the entries view a click also opens the town's entry
+          // list, which is what the shading invites; the other views
+          // keep plain selection.
+          onClick={
+            unnamed
+              ? undefined
+              : view === "entries"
+                ? () => openTownEntries(t)
+                : () => selectTown(t)
+          }
           onPointerEnter={
             unnamed
               ? undefined
@@ -1518,9 +1622,10 @@ export default function SvgLebanonMap({
         </path>
       );
     });
-    // selectTown is recreated per render but only closes over `year` (a dep).
+    // selectTown and openTownEntries are recreated per render but only
+    // close over `year`, `pinsByTown` and stable setters (all deps).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [towns, regionValues, maxRegion, rampColor, selectedTownUid, year, view, change, districtRecords, townRecords, maxDistrict, maxTown, locale]);
+  }, [towns, regionValues, maxRegion, rampColor, selectedTownUid, year, view, change, districtRecords, townRecords, maxDistrict, maxTown, townTotals, pinsByTown, locale]);
 
   const zoneMentions = selectedZone
     ? (locations.mentions[String(year) as "2024" | "2026"][
@@ -1880,146 +1985,80 @@ export default function SvgLebanonMap({
                 );
               })}
 
-              {/* One pin per traced entry, fanned around the town the
-                  sources name. Colour = that entry's own actor layer. */}
+              {/* The shaded towns as keyboard stops. The shading itself
+                  is inert paint inside the memoised town layer, so these
+                  invisible twins of the same polygons carry focus, the
+                  accessible name and Enter/Space - every town with
+                  traced entries stays reachable and openable without a
+                  pointer, which is the reach the pin and marker tab
+                  stops used to provide. pointerEvents stays off so the
+                  pointer keeps hitting the painted layer, whose hover
+                  readout and click are the single copy of that logic. */}
               {view === "entries"
-                ? entryPins.map((pin) => {
-                    // The polygon, not the name: two towns can share one.
-                    const isSel = selectedTownUid === pin.town.uid;
-                    const rp = PIN_R * (isSel ? 1.4 : 1);
-                    const edge = isSel ? "#173B63" : pinOutline(pin.color);
-                    const label = `${pin.title} - ${pin.townName}${pin.district ? `, ${pin.district}` : ""} · ${pin.detail}`;
+                ? placePoints.map((p) => {
+                    const t = p.town;
+                    const a = anchorOf(t);
+                    const label = tr.shadedTown(p.total, t.name, t.district);
                     return (
                       <g
-                        key={pin.id}
-                        transform={`translate(${pin.cx} ${pin.cy}) scale(${k}) translate(${pin.dx} ${pin.dy})`}
-                        tabIndex={inView(pin.cx + pin.dx * k, pin.cy + pin.dy * k) ? 0 : -1}
+                        key={`sh-${t.uid}`}
+                        tabIndex={inView(a.x, a.y) ? 0 : -1}
                         role="button"
                         aria-label={label}
-                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
+                        // The polygon, not the name: two towns can share one.
+                        aria-current={selectedTownUid === t.uid ? "location" : undefined}
+                        pointerEvents="none"
+                        className="focus-visible:outline-2 focus-visible:outline-blue"
                         onClick={(e) => {
-                          pinOpenerRef.current = e.currentTarget;
-                          setOpenPin(pin);
-                          selectTown(pin.town);
+                          // Unreachable by pointer (pointerEvents is off);
+                          // assistive tech that fires clicks
+                          // programmatically still lands here.
+                          openTownEntries(t, e.currentTarget);
                         }}
-                        onPointerEnter={() => {
+                        onFocus={() => {
+                          // The readout and outline a pointer gets from
+                          // hovering the painted layer, on focus too.
                           setHover(label);
-                          setHoverUid(pin.town.uid);
+                          setHoverUid(t.uid);
                         }}
-                        onPointerLeave={() => {
+                        onBlur={() => {
                           setHover(null);
                           setHoverUid(null);
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            pinOpenerRef.current = e.currentTarget;
-                            setOpenPin(pin);
-                            selectTown(pin.town);
+                            // Pressing the town whose list is already open
+                            // closes it, so the button toggles rather than
+                            // dead-ending.
+                            if (
+                              selectedTownUid === t.uid &&
+                              openCluster?.town.uid === t.uid &&
+                              !openPin
+                            ) {
+                              restoreFocusRef.current = true;
+                              setOpenCluster(null);
+                              return;
+                            }
+                            openTownEntries(t, e.currentTarget);
                           }
                         }}
                       >
-                        {/* The target, invisible and wider than the dot. */}
-                        <circle r={PIN_HIT} fill="transparent" />
-                        {/* An episode is a ring, an entry a solid dot -
-                            distinguishable without relying on colour. The
-                            dot grows under the pointer and on keyboard
-                            focus, so the target being hit is never in
-                            doubt. */}
-                        {/* The episode ring takes no selection override.
-                            `edge` carries one because a selected entry dot
-                            keeps its fill and only changes its rim; an
-                            episode's ring IS the mark, so painting it navy
-                            would erase the layer it names. */}
-                        <circle
-                          r={rp}
-                          fill={pin.kind === "episode" ? "#FFFFFF" : pin.color}
-                          stroke={pin.kind === "episode" ? episodeRing(pin.color) : edge}
-                          strokeWidth={pin.kind === "episode" ? PIN_STROKE * 2 : PIN_STROKE}
-                          className="pointer-events-none transition-transform duration-100 group-hover/pin:scale-150 group-focus-visible/pin:scale-150"
-                          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-                        />
-                        <title>{label}</title>
+                        <path d={t.d} fill="transparent" stroke="none" />
                       </g>
                     );
                   })
                 : null}
 
-              {/* Towns whose entries cannot be drawn apart at this zoom:
-                  one marker carrying the count, which stays true however
-                  far out the reader is. Selecting it lists the same
-                  entries the pins would have opened. */}
-              {view === "entries"
-                ? entryClusters.map((c) => {
-                    const isSel = selectedTownUid === c.town.uid;
-                    // Area grows with the count, so ten reads as more than
-                    // three without a town of forty swallowing its
-                    // neighbours.
-                    // The capped radius, so a marker never covers its neighbour.
-                    const r = c.radius * (isSel ? 1.4 : 1);
-                    const label = tr.cluster(c.count, c.town.name, c.town.district);
-                    return (
-                      <g
-                        key={`cl-${c.town.uid}`}
-                        transform={`translate(${c.ax} ${c.ay}) scale(${k})`}
-                        tabIndex={inView(c.ax, c.ay) ? 0 : -1}
-                        role="button"
-                        aria-label={label}
-                        className="group/pin cursor-pointer focus-visible:outline-2 focus-visible:outline-blue"
-                        onClick={(e) => {
-                          pinOpenerRef.current = e.currentTarget;
-                          setOpenCluster({ town: c.town, pins: c.pins });
-                          selectTown(c.town);
-                        }}
-                        onPointerEnter={() => {
-                          setHover(label);
-                          setHoverUid(c.town.uid);
-                        }}
-                        onPointerLeave={() => {
-                          setHover(null);
-                          setHoverUid(null);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            pinOpenerRef.current = e.currentTarget;
-                            setOpenCluster({ town: c.town, pins: c.pins });
-                            selectTown(c.town);
-                          }
-                        }}
-                      >
-                        <circle r={Math.max(PIN_HIT, r + 2)} fill="transparent" />
-                        <circle
-                          r={r}
-                          fill="#FFFFFF"
-                          stroke={isSel ? "#173B63" : UI.outlineQuiet}
-                          strokeWidth={PIN_STROKE}
-                          className="pointer-events-none"
-                        />
-                        <text
-                          textAnchor="middle"
-                          y={r * 0.36}
-                          fontSize={r * 1.05}
-                          fontWeight={600}
-                          fill="#173B63"
-                          className="pointer-events-none select-none"
-                        >
-                          {c.count}
-                        </text>
-                        <title>{label}</title>
-                      </g>
-                    );
-                  })
-                : null}
-
-              {/* Town names sit over their fan, not on any one pin. */}
+              {/* Town names sit beside the shaded core, offset by the
+                  reach the fan-era packing still reserves for it. */}
               {view === "entries"
                 ? placePoints.map((p) => {
                     const t = p.town;
                     if (!visibleLabels.towns.has(t.name)) return null;
-                    // The label clears whatever the town actually drew:
-                    // the fitted fan, or the single marker that replaced
-                    // it where the fan would not have been legible.
+                    // The label clears the disc the packing reserved for
+                    // this town - the fitted fan, or the marker that
+                    // stood in where a fan would not have been legible.
                     const cluster = clusterByTown.get(t.name);
                     // The anchor is already resolved for any town that
                     // drew something; anchorOf just reads its cache here.
@@ -2748,10 +2787,10 @@ export default function SvgLebanonMap({
             {/* Colour meaning lives in the key; this row carries the count. */}
             {view === "entries" ? (
               <li>
-                {/* Every entry drawn, not only the ones that escaped
-                    clustering. At the opening view 27 of the 32 towns are
-                    counted markers holding 195 of the 200 entries, and
-                    this line used to report the other 5. */}
+                {/* Every entry in the count, whichever side of the fan
+                    plumbing's split it fell on - the split no longer
+                    draws, but its sum is still every traced entry the
+                    view carries. */}
                 {tr.pinCount(
                   entryPins.length + entryClusters.reduce((n, c) => n + c.count, 0),
                   placePoints.length,
@@ -2854,7 +2893,7 @@ export default function SvgLebanonMap({
             <p className="mt-1.5 rounded-md border border-border bg-white px-3 py-2 text-micro leading-relaxed text-text-secondary">
               {locale === "ar" ? (
                 <>
-                  لم تُقيَّم بحلول 31 آب 2026 سوى منطقتين:{" "}
+                  لم تُقيَّم عند آخر مراجعة سوى منطقتين:{" "}
                   <strong className="text-navy">جنوب الليطاني</strong>{" "}
                   ({destruction.zones2026[0].assessedDamageAr}؛ 11,095 مبنى
                   مدمَّراً كلياً؛ ذكاء اصطناعي جغرافي بتدقيق مكتبي ومن دون
@@ -2868,7 +2907,7 @@ export default function SvgLebanonMap({
                 </>
               ) : (
                 <>
-                  Only two zones were assessed by 31 August 2026:{" "}
+                  Only two zones were assessed at the latest review:{" "}
                   <strong className="text-navy">South of the Litani</strong>{" "}
                   ({destruction.zones2026[0].assessedDamage}; 11,095 buildings
                   completely destroyed; desk-validated GeoAI, no field

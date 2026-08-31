@@ -37,198 +37,18 @@ export const ANALYSIS_REVISED = "2026-08-31";
  */
 export const CONTACT_EMAIL: string | null = null;
 
-type Figure = { value: string; label: string };
-type Section = {
-  id: string;
-  heading: string;
-  body?: string[];
-  points?: string[];
-  /**
-   * A single onward link rendered after the section's text. The one use is
-   * the pointer to the methodology page: the about page states scope and
-   * limits, and the eight-step method lives in exactly one other place.
-   */
-  link?: { href: string; label: string };
-};
-
-type AboutCopy = {
-  metaTitle: string;
-  metaDesc: string;
-  title: string;
-  lede: string;
-  point: string;
-  figures: Figure[];
-  sections: Section[];
-  contact: { heading: string; body: string; note: string; none: string };
-  crossLink: string;
-};
-
-export const ABOUT: Record<"en" | "ar", AboutCopy> = {
-  en: {
-    metaTitle: "About the observatory",
-    metaDesc:
-      "Who compiles the Lebanon Reconstruction Observatory, what its tracking of 771 traced entries covers across 2024 and 2026, what it refuses to claim, and how to reach it.",
-    title: "About the observatory",
-    lede:
-      "The Lebanon Reconstruction Observatory follows one question across two wars: between 2024 and 2026, what changed in who actually rebuilds Lebanon, and what did not. It traces the reconstruction chain from coordination and finance, through rubble clearance and procurement, to shelter and return - and shows where each actor was present at each stage.",
-    point:
-      "This page states who runs the observatory, what the tracking covers, what it refuses to claim and how to reach us. It is not a method note, and it does not restate the analysis the pages themselves carry.",
-    figures: [
-      { value: "771", label: "traced activity entries, 2024 and 2026 together" },
-      { value: "235", label: "actors traced across the two years" },
-    ],
-    sections: [
-      {
-        id: "what",
-        heading: "What this is",
-        body: [
-          "The observatory maps, tracks and compares the two responses that followed Lebanon's 2024 and 2026 wars, reading both through the same two layers: the actors involved, sorted into four groups from state institutions to community initiatives, and the actions they carried out, sorted into four categories from financial actions to reconstruction and implementation. It is independent policy analysis - not a relief operation, an official list or a compensation channel, and it cannot act on an individual case. Because every traced activity sits in a group, a category, a place and a time, the two years can be compared on the same terms.",
-        ],
-      },
-      {
-        id: "who",
-        heading: "Who compiled it",
-        body: [
-          "The observatory is compiled and maintained independently, outside any government, donor or implementing body. No part of it is commissioned, funded or cleared by an actor that appears inside the tracking - which is the only reason a count of official presence can be published here without a conflict of interest.",
-          "Corrections are the fastest way to improve it. If a figure, an actor name or a stage assignment looks wrong, say so - naming the page and the figure - and it will be checked against the underlying entries, then corrected in the next revision or explained.",
-        ],
-      },
-      {
-        id: "covers",
-        heading: "What the tracking covers",
-        body: [
-          "Two years stand side by side: 2024 and 2026. Between them the tracking holds 771 traced entries, one per actor and function within a stage, so a single actor can carry several entries inside the same stage.",
-          "Actors sit in four groups - public officials and institutions, NGOs and international organisations, municipalities and local authorities, and community initiatives. Each entry is placed in one of four action categories and on one of twelve stages of the response, running from coordination, finance and compensation, damage and needs assessment, safety and access, and procurement, through rubble clearance, debris treatment and reconstruction works, to shelter and return, relief, livelihoods and oversight.",
-          "The tracking reaches 31 August 2026 and holds no cut-off that shuts later material out. Every figure is dated where it stands, so a reader can see how current each one is rather than trusting a single date for all of them. The live updates page runs ahead of the tracking, gathering coverage as it appears; a piece there enters a count only once it has been read into the entries.",
-          "Both languages carry the same thing. The Arabic pages are not a summary of the English ones - every page, chart, filter and entry runs in Arabic at the same depth, and the figures are read from one place, so a number cannot say one thing in Arabic and another in English.",
-        ],
-      },
-      {
-        id: "limits",
-        heading: "What it does not claim",
-        points: [
-          "Presence is not performance. A traced entry means an actor was reported as present in a stage in a year. It says nothing about money spent, work finished or people reached.",
-          "Commitment is not disbursement, and disbursement is not completed output. The finance pages hold the three apart, because collapsing them is the most common way reconstruction reporting overstates itself.",
-          "Nothing is ever marked completed. Where a completed output was not publicly confirmed by 31 August 2026, the tracking says exactly that and stops there.",
-          "Damage estimates are never merged. The four 2024 tracks are not additive with one another, and no 2026 assessment is ever combined with a 2024 figure: method, scope, unit and timing differ, and those differences are themselves part of the finding.",
-          "An absent mark is an absent figure, not absent damage and not absent work. Places and stages with no entry are the places reporting did not reach.",
-          "The counts follow what the reporting says, not what happened on the ground. The distance between the two is the subject of this site, not a defect in it.",
-        ],
-      },
-      {
-        id: "updates",
-        heading: "How updates work",
-        body: [
-          "The tracking is revised in releases rather than continuously. A release re-reads the underlying entries, refreshes every affected page in both languages together, and moves the revision date shown in the footer of every page.",
-          "The date the tracking reaches moves forward as further material is read in. Because it moves, it is stated on every page and beside the figures it governs: a date that advanced silently would let a reader take an older number for a current one. The two-year comparison is a separate matter - 2024 and 2026 are compared on the same terms, and a figure is only ever set against another drawn the same way.",
-          "Where a figure changes because the underlying entries changed, the change is carried into both languages in the same revision. There is no partial release in one language.",
-        ],
-        link: {
-          href: "/methodology",
-          label:
-            "The full eight-step method, from the two frameworks to manual confirmation, is set out on the methodology page",
-        },
-      },
-    ],
-    contact: {
-      heading: "How to reach us",
-      body: "Questions, corrections and challenges to any figure go to one address:",
-      note: "Write naming the page and the figure in question. Press enquiries should give the deadline in the first line.",
-      none: "No contact address is open yet. Until one is, corrections cannot be sent to the observatory directly - so treat every figure as checkable against the page that carries it and the caveat printed beside it.",
-    },
-    crossLink: "Read this page in Arabic",
-  },
-
-  ar: {
-    metaTitle: "عن المرصد",
-    metaDesc:
-      "من يُعِدّ مرصد إعادة إعمار لبنان، وما الذي يغطيه تتبّعه البالغ 771 مدخلاً متتبَّعاً عبر 2024 و2026، وما الذي يرفض ادّعاءه، وكيف تصل إليه.",
-    title: "عن المرصد",
-    lede:
-      "يلاحق مرصد إعادة إعمار لبنان سؤالاً واحداً عبر حربين: بين 2024 و2026، ما الذي تغيّر فعلاً في من يعيد بناء لبنان، وما الذي لم يتغيّر. يتتبّع المرصد سلسلة إعادة الإعمار من التنسيق والتمويل، مروراً برفع الأنقاض والشراء، وصولاً إلى الإيواء والعودة - ويبيّن أين كانت كل جهة حاضرة في كل مرحلة.",
-    point:
-      "هذه الصفحة تقول من يدير المرصد، وما الذي يغطيه التتبّع، وما الذي يرفض ادّعاءه، وكيف تصل إلينا. ليست ملاحظة منهجية، ولا تعيد سرد التحليل الذي تحمله الصفحات نفسها.",
-    figures: [
-      { value: "771", label: "مدخلاً متتبَّعاً للنشاط، 2024 و2026 معاً" },
-      { value: "235", label: "جهة متتبَّعة عبر السنتين معاً" },
-    ],
-    sections: [
-      {
-        id: "what",
-        heading: "ما هذا الموقع",
-        body: [
-          "يرسم المرصد خريطة الاستجابتين اللتين أعقبتا حربَي لبنان في 2024 و2026 ويتتبّعهما ويقارن بينهما، قارئاً كلتيهما عبر الطبقتين نفسيهما: الجهات الفاعلة مصنّفةً في أربع مجموعات من مؤسسات الدولة إلى مبادرات المجتمع المحلي، والأفعال التي نفّذتها مصنّفةً في أربع فئات من الإجراءات المالية إلى إعادة الإعمار والتنفيذ. وهو تحليل سياسات مستقل - لا عملية إغاثة ولا لائحة رسمية ولا قناة تعويض، ولا يمكنه التصرّف في أي حالة فردية. ولأن كل نشاط متتبَّع يقع في مجموعة وفئة ومكان وزمن، يمكن مقارنة السنتين بالشروط نفسها.",
-        ],
-      },
-      {
-        id: "who",
-        heading: "من أعدّه",
-        body: [
-          "يُعَدّ المرصد ويُحدَّث باستقلال، خارج أي حكومة أو جهة مانحة أو جهة منفّذة. ولا جزء منه مكلَّف به أو ممول أو مُجاز من جهة تظهر داخل التتبّع نفسه - وهذا وحده ما يتيح نشر عدّ للحضور الرسمي بلا تضارب مصالح.",
-          "والتصويبات أسرع طريق إلى تحسينه. إذا بدا رقم أو اسم جهة أو إسناد مرحلة خاطئاً، فقُل ذلك - مسمّياً الصفحة والرقم - ليُراجَع في مقابل المدخلات الأساسية، فيُصوَّب في المراجعة التالية أو يُشرَح.",
-        ],
-      },
-      {
-        id: "covers",
-        heading: "ما الذي يغطيه التتبّع",
-        body: [
-          "سنتان جنباً إلى جنب: 2024 و2026. وبينهما يحمل التتبّع 771 مدخلاً متتبَّعاً، مدخلاً واحداً لكل جهة ووظيفة داخل مرحلة، فقد تحمل الجهة الواحدة عدة مدخلات في المرحلة نفسها.",
-          "وتتوزّع الجهات على أربع مجموعات: المسؤولون الرسميون والمؤسسات الرسمية، والمنظمات غير الحكومية والدولية، والبلديات والسلطات المحلية، ومبادرات المجتمع المحلي. ويُسنَد كل مدخل إلى واحدة من أربع فئات أفعال، وإلى واحدة من اثنتي عشرة مرحلة من مراحل الاستجابة، من التنسيق، والتمويل والتعويضات، وتقييم الأضرار والاحتياجات، والسلامة والوصول، والشراء والتعاقد، مروراً برفع الأنقاض ومعالجة الركام وأشغال إعادة الإعمار، وصولاً إلى الإيواء والعودة، والإغاثة، وسبل العيش، والرقابة.",
-          "يبلغ التتبّع 31 آب 2026، ولا يحمل تاريخ توقف يُقصي ما بعده. وكل رقم مؤرَّخ في موضعه، فيرى القارئ مدى حداثة كل رقم على حدة بدل الركون إلى تاريخ واحد لها جميعاً. وصفحة المستجدات تسبق التتبّع، تجمع التغطية فور ظهورها؛ ولا تدخل مادة منها في أي عدّ إلا بعد قراءتها ضمن المدخلات.",
-          "واللغتان تحملان الشيء نفسه. الصفحات العربية ليست تلخيصاً للإنجليزية - كل صفحة ورسم ومرشّح ومدخل يعمل بالعربية بالعمق نفسه، والأرقام تُقرأ من مكان واحد، فلا يمكن لرقم أن يقول شيئاً بالعربية وشيئاً آخر بالإنجليزية.",
-        ],
-      },
-      {
-        id: "limits",
-        heading: "ما الذي لا يدّعيه",
-        points: [
-          "الحضور ليس أداءً. المدخل المتتبَّع يعني أن جهة أُبلغ عن حضورها في مرحلة في سنة. ولا يقول شيئاً عن مال أُنفق أو عمل أُنجز أو ناس بلغهم الأثر.",
-          "الالتزام ليس دفعاً، والدفع ليس ناتجاً مكتملاً. صفحات التمويل تفصل الثلاثة عمداً، لأن دمجها أشيع طريقة يبالغ بها الإبلاغ عن إعادة الإعمار في وصف نفسه.",
-          "لا شيء يُوسم أبداً بأنه مكتمل. وحيث لم يُعلَن ناتج مكتمل ومؤكَّد حتى 31 آب 2026، يقول التتبّع ذلك بالضبط ويتوقف عنده.",
-          "تقديرات الأضرار لا تُدمج أبداً. مسارات 2024 الأربعة لا تُجمع بعضها إلى بعض، ولا يُضمّ أي تقييم من 2026 إلى رقم من 2024: المنهجية والنطاق والوحدة والتوقيت تختلف، وهذا الاختلاف نفسه جزء من الخلاصة.",
-          "غياب العلامة غياب رقم، لا غياب ضرر ولا غياب عمل. فالأماكن والمراحل بلا مدخلات هي ما لم يبلغه الإبلاغ.",
-          "والأعداد تتبع ما يقوله الإبلاغ، لا ما جرى على الأرض. والمسافة بينهما هي موضوع هذا الموقع، لا خلل فيه.",
-        ],
-      },
-      {
-        id: "updates",
-        heading: "كيف تجري التحديثات",
-        body: [
-          "يُراجَع التتبّع على شكل إصدارات لا بشكل متواصل. والإصدار يعيد قراءة المدخلات الأساسية، ويحدّث كل صفحة متأثرة باللغتين معاً، ويحرّك تاريخ المراجعة الظاهر أسفل كل صفحة.",
-          "يتقدّم التاريخ الذي يبلغه التتبّع كلما قُرئت مادة إضافية. ولأنه يتحرّك، فهو مكتوب على كل صفحة وإلى جانب الأرقام التي يحكمها: تاريخ يتقدّم بصمت يجعل القارئ يأخذ رقماً قديماً على أنه راهن. أما المقارنة بين السنتين فمسألة أخرى - 2024 و2026 تُقارَنان بالشروط نفسها، ولا يُوضع رقم قط في مواجهة رقم استُخرج بطريقة مغايرة.",
-          "وحين يتغيّر رقم لأن المدخلات الأساسية تغيّرت، يُنقل التغيير إلى اللغتين في المراجعة نفسها. ولا إصدار جزئي بلغة واحدة.",
-        ],
-        link: {
-          href: "/ar/methodology",
-          label:
-            "المنهجية الكاملة بخطواتها الثماني، من الإطارين إلى التثبّت اليدوي، مبسوطة على صفحة المنهجية",
-        },
-      },
-    ],
-    contact: {
-      heading: "كيف تصل إلينا",
-      body: "الأسئلة والتصويبات والاعتراضات على أي رقم تذهب إلى عنوان واحد:",
-      note: "اكتب ذاكراً الصفحة والرقم موضع السؤال. وطلبات الصحافة تذكر المهلة في السطر الأول.",
-      none: "لا عنوان تواصل مفتوح بعد. وإلى أن يتوفّر، لا سبيل لإرسال التصويبات إلى المرصد مباشرة - فليُقرأ كل رقم مقابل الصفحة التي تحمله والتحفّظ المطبوع إلى جانبه.",
-    },
-    crossLink: "افتح هذه الصفحة بالإنجليزية",
-  },
-};
-
-/**
- * The footer's identity and currency strip. Two dates only, both of them
- * facts the site can stand behind: how far the tracking reaches, and when
- * the analysis last moved. No list of individual edits, because no such
- * list is kept.
+/*
+ * The identity page these strings once fed was removed at the user's
+ * request on 31 August 2026; what remains here is what the chrome still
+ * reads - the footer identity strip, the two dates, and the contact
+ * address the footer prints when one exists.
  */
 export const ABOUT_FOOTER = {
   en: {
     heading: "The observatory",
     identity:
       "Independent tracking of who rebuilds Lebanon, 2024 and 2026 - compiled outside government, donor and implementing bodies.",
-    aboutLink: "About and contact",
     updatedLabel: "Last updated",
-    tracking: (d: string) => `Tracking through ${d}`,
     revised: (d: string) => `Analysis last revised ${d}`,
     note: "Later coverage sits on the live updates page and enters none of these figures.",
   },
@@ -236,9 +56,7 @@ export const ABOUT_FOOTER = {
     heading: "المرصد",
     identity:
       "تتبّع مستقل لمن يعيد بناء لبنان، 2024 و2026 - يُعَدّ خارج الحكومة والجهات المانحة والجهات المنفّذة.",
-    aboutLink: "عن المرصد والتواصل",
     updatedLabel: "آخر تحديث",
-    tracking: (d: string) => `التتبّع حتى ${d}`,
     revised: (d: string) => `آخر مراجعة للتحليل ${d}`,
     note: "التغطية اللاحقة تبقى على صفحة المستجدات ولا تدخل في أي من هذه الأرقام.",
   },

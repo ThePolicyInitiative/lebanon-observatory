@@ -344,20 +344,5 @@
     ],
     "labelAr": "مراجعة بوابة الشراء",
     "detailAr": "الحزمة 1082 قيد التقييم؛ والحزمتان 1095 و1096 من دون إرساء معروض."
-  },
-  {
-    "id": "t20",
-    "date": "2026-08-31",
-    "label": "tracking reaches this date",
-    "detail": "By this date: no awarded works contract, no publicly confirmed completed reconstruction output, no confirmed state compensation payment.",
-    "track": "data",
-    "status": "not_verified",
-    "sourceIds": [
-      "S1",
-      "S7",
-      "S37"
-    ],
-    "labelAr": "التاريخ الذي يبلغه التتبّع",
-    "detailAr": "حتى هذا التاريخ: لا عقد أشغال مُرسى، ولا إنجاز إعادة إعمار مكتمل ومُعلَن، ولا دفعة تعويض حكومية مؤكَّدة."
   }
 ]

@@ -142,7 +142,6 @@ export default function HomePage() {
         <p className="text-body leading-relaxed text-text">
           <span className="font-semibold text-navy">771 traced activity entries</span>
         </p>
-        <p className="text-meta text-text-secondary">Tracking through 31 August 2026</p>
       </ScaleStrip>
 
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 py-12 sm:px-6">

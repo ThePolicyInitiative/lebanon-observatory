@@ -71,7 +71,7 @@ const STREAMS = [
         "No dedicated financing identified",
       ],
       verdict:
-        "As of 31 August 2026: no financed instrument of any kind. Households hit in March 2026 faced, structurally, exactly the 2024 vacuum - beside a functioning state programme legally unable to serve them.",
+        "At the latest review: no financed instrument of any kind. Households hit in March 2026 faced, structurally, exactly the 2024 vacuum - beside a functioning state programme legally unable to serve them.",
       status: "Empty",
     },
     ar: {
@@ -83,7 +83,7 @@ const STREAMS = [
         "لا تمويل مخصَّص محدَّد",
       ],
       verdict:
-        "حتى 31 آب 2026: لا أداة تمويل من أي نوع. والأسر التي أُصيبت في آذار 2026 واجهت بنيوياً الفراغ نفسه الذي ساد في 2024 - إلى جانب برنامج حكومي عامل لا يستطيع قانوناً أن يخدمها.",
+        "عند آخر مراجعة: لا أداة تمويل من أي نوع. والأسر التي أُصيبت في آذار 2026 واجهت بنيوياً الفراغ نفسه الذي ساد في 2024 - إلى جانب برنامج حكومي عامل لا يستطيع قانوناً أن يخدمها.",
       status: "فارغ",
     },
   },

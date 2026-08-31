@@ -16,14 +16,15 @@ import { AR, CHROME } from "@/lib/i18n";
  *
  * The site follows the report's structure - the aim, the two analytical
  * layers (actors, actions), the five findings, the method - so the tabs
- * name those parts rather than questions or the site's own filing. The
- * map is not a tab: it is how /actors draws its answer. Live reporting is
+ * name those parts rather than questions or the site's own filing. The map
+ * is a section of its own - it reads across both layers. Live reporting is
  * the report's search step continuing in public, so it closes the list.
  */
 const NAV_ITEMS = [
   { path: "/", label: "The aim", short: "Aim", ar: AR.nav.aim, arShort: AR.nav.aimShort },
   { path: "/actors", label: "The actors", short: "Actors", ar: AR.nav.actors2, arShort: AR.nav.actors2Short },
   { path: "/actions", label: "The actions", short: "Actions", ar: AR.nav.actions, arShort: AR.nav.actionsShort },
+  { path: "/map", label: "The map", short: "Map", ar: AR.nav.map, arShort: AR.nav.mapShort },
   { path: "/findings", label: "The findings", short: "Findings", ar: AR.nav.findings, arShort: AR.nav.findingsShort },
   { path: "/methodology", label: "The method", short: "Method", ar: AR.nav.methodology, arShort: AR.nav.methodologyShort },
   { path: "/reported", label: "Live reporting", short: "Reported", ar: AR.nav.reported, arShort: AR.nav.reportedShort },
@@ -37,16 +38,16 @@ const NAV_ITEMS = [
  * language, and falls back to that language's home when there is no
  * counterpart. It used to decide that from NAV_ITEMS, so a route's presence
  * in the tab bar silently determined whether its reader could cross
- * languages: /search and /about existed on both sides but were not tabs, so
- * the toggle dropped anyone reading them back to the home page, and the
- * search page grew a hand-written Arabic link to work around it.
+ * languages: /search existed on both sides but was not a tab, so the
+ * toggle dropped anyone reading it back to the home page, and the search
+ * page grew a hand-written Arabic link to work around it.
  *
  * Two lists, because they answer two questions. What belongs in the tab bar
  * is an editorial decision about the argument's shape; what exists in both
- * languages is a fact about the routes. /search and /about are reachable
+ * languages is a fact about the routes. /search and /entries are reachable
  * from the footer, which carries both.
  */
-const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/about"];
+const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/entries"];
 
 /** "/actors" becomes "/ar/actors"; "/" becomes "/ar". */
 export function localisedHref(path: string, arabic: boolean): string {

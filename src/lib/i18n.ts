@@ -78,6 +78,8 @@ export const AR = {
     actors2Short: "الجهات",
     actions: "الأفعال",
     actionsShort: "الأفعال",
+    map: "الخريطة",
+    mapShort: "الخريطة",
     findings: "الاستنتاجات",
     findingsShort: "استنتاجات",
     methodology: "المنهجية",
@@ -90,7 +92,7 @@ export const AR = {
      * a subject by name.
      */
     home: "الرئيسية",
-    actors: "مجموعات الجهات والخريطة",
+    actors: "مجموعات الجهات",
     news: "مستجدات",
     explorer: "المستكشف",
     method: "المنهجية",
@@ -110,9 +112,6 @@ export const AR = {
   footer: {
     explore: "تصفّح",
   },
-  notice:
-    "هذا الموقع متاح بالعربية كاملاً: الصفحات والرسوم والخريطة التفاعلية والمستكشف والمستجدات كلها تعمل بالعربية. وما اقتُبس من إبلاغ خارجي - عناوين الناشرين في شريط المستجدات وبعض نصوص التغطية والوقائع - يبقى بلغته الأصلية.",
-
   /** Shared wording for the Arabic counterparts of the English pages. */
   common: {
     openEnglish: "افتح الصفحة الإنجليزية الكاملة",

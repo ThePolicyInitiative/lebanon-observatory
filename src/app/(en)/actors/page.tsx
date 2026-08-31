@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import ActorTabs from "./ActorTabs";
 import GroupCards from "./GroupCards";
-import ActorTreemap from "@/components/charts/ActorTreemap";
 /**
  * This one was lazily loaded because it pulled the whole register into
  * the browser. It now reduces and projects on the server and hands small
@@ -55,32 +54,10 @@ export default function WhoPage() {
         </div>
       </section>
 
-      <section aria-labelledby="who-carries-the-work" className="mt-9">
-        <h2 id="who-carries-the-work" className="text-h2 font-semibold text-navy">
-          Who carries the work
-        </h2>
-        <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
-          One cell per traced actor, sized by its traced activity and
-          gathered into the four groups - the whole cast on one canvas.
-        </p>
-        <div className="mt-4">
-          <ActorTreemap />
-        </div>
-      </section>
-
-      {/* The category and stage figures, and the map, moved to /actions
-          with the rest of the action layer; a line here keeps the reader
-          from being stranded. */}
+      {/* The category and stage figures moved to /actions with the rest of
+          the action layer; a line here keeps the reader from being stranded. */}
       <p className="mt-9 max-w-3xl text-body leading-relaxed text-text">
-        How the work itself breaks down - by category and stage, and where
-        it happened on the{" "}
-        <a
-          href="/actions#where-traced"
-          className="font-medium text-blue underline-offset-2 hover:underline"
-        >
-          map
-        </a>{" "}
-        - is on the{" "}
+        How the work itself breaks down - by category and stage - is on the{" "}
         <a href="/actions" className="font-medium text-blue underline-offset-2 hover:underline">
           actions page
         </a>
@@ -90,6 +67,16 @@ export default function WhoPage() {
       <div className="mt-9">
         <ActorRegister />
       </div>
+
+      {/* The map is its own section of the site now: it reads across both
+          layers, so it stands beside them rather than inside this one. */}
+      <p className="mt-9 max-w-3xl text-body leading-relaxed text-text">
+        Where each group&apos;s work happened is on the{" "}
+        <a href="/map" className="font-medium text-blue underline-offset-2 hover:underline">
+          map
+        </a>{" "}
+        - filter it by actor group to follow one group across the country.
+      </p>
 
       {/* One line: the claim's one home is the damage page. */}
       <section id="no-national-layer" className="card mt-8 max-w-3xl text-body leading-relaxed">

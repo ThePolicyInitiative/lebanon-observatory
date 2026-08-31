@@ -79,16 +79,16 @@
       "label": "Completed reconstruction output, publicly confirmed",
       "amountUsd": 0,
       "status": "not_verified",
-      "note": "Not confirmed by 31 August 2026. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
+      "note": "Not confirmed at the latest review. Disclosed physical-output indicators stood at zero against September 2025 baseline dates.",
       "date": "2026-07-31",
       "geographicScope": "LEAP project scope",
-      "owner": "Third-Party Monitoring Agent (itself under procurement as of 31 August 2026)",
+      "owner": "Third-Party Monitoring Agent (itself under procurement at the latest review)",
       "sourceIds": [
         "S1",
         "S7"
       ],
       "labelAr": "إنجاز إعادة إعمار مكتمل ومُعلَن",
-      "noteAr": "غير مؤكَّد حتى 31 آب 2026. مؤشرات الإنجاز المادي المعلنة بقيت عند الصفر مقابل تواريخ خط أساس من أيلول 2025."
+      "noteAr": "غير مؤكَّد عند آخر مراجعة. مؤشرات الإنجاز المادي المعلنة بقيت عند الصفر مقابل تواريخ خط أساس من أيلول 2025."
     }
   ],
   "leapComponents": [

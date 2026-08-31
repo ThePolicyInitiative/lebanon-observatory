@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AR, CHROME } from "@/lib/i18n";
-import { ABOUT_FOOTER, ANALYSIS_REVISED, CONTACT_EMAIL, CONTENT_THROUGH } from "@/lib/about-content";
+import { ABOUT_FOOTER, ANALYSIS_REVISED, CONTACT_EMAIL } from "@/lib/about-content";
 import { fmtDate } from "@/lib/format";
 import { localisedHref } from "./SiteNav";
 
@@ -25,8 +25,9 @@ import { localisedHref } from "./SiteNav";
  */
 const LINKS: [string, string, string][] = [
   ["/", "Aim & importance", AR.nav.aim],
-  ["/actors", "Actor groups & map", AR.nav.actors],
+  ["/actors", "Actor groups", AR.nav.actors],
   ["/actions", "Action categories", AR.nav.actions],
+  ["/map", "The map", AR.nav.map],
   ["/findings", "The five findings", AR.nav.findings],
   ["/reported", "Live updates", AR.nav.news],
   ["/entries", "Data explorer", AR.nav.explorer],
@@ -80,12 +81,6 @@ export default function SiteFooter() {
               {f.identity}
             </p>
             <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-body">
-              <Link
-                href={localisedHref("/about", isArabic)}
-                className="inline-flex min-h-8 items-center font-medium text-white underline-offset-2 hover:underline"
-              >
-                {f.aboutLink}
-              </Link>
               {/* No address until a real one exists: a live mailto that
                   reaches nobody is worse than none. */}
               {CONTACT_EMAIL ? (
@@ -109,10 +104,6 @@ export default function SiteFooter() {
               {f.updatedLabel}
             </p>
             <p className="mt-2 text-meta leading-relaxed text-white/80">
-              {f.tracking(fmtDate(CONTENT_THROUGH, locale))}
-              <span aria-hidden className="mx-2 text-white/35">
-                ·
-              </span>
               <span className="whitespace-nowrap">
                 {f.revised(fmtDate(ANALYSIS_REVISED, locale))}
               </span>

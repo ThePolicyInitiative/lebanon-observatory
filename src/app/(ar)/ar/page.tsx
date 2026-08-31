@@ -152,9 +152,6 @@ export default function ArabicPage() {
             {arabicCount(771, AR_COUNT.entryTraced)}
           </span>
         </p>
-        <p className="text-meta leading-loose text-text-secondary">
-          التتبّع حتى 31 آب 2026
-        </p>
       </ScaleStrip>
 
       <div className="mx-auto max-w-[1360px] space-y-16 px-4 py-12 sm:px-6">
@@ -251,20 +248,6 @@ export default function ArabicPage() {
         </section>
       </div>
 
-      {/* Cross-locale notice */}
-      <section className="mx-auto max-w-[1360px] px-4 pb-16 sm:px-6">
-        <p className="rounded-md border-r-4 border-amber bg-white p-4 text-body leading-loose text-text-secondary">
-          {AR.notice}{" "}
-          <Link
-            href="/"
-            lang="en"
-            dir="ltr"
-            className="font-semibold text-blue underline-offset-2 hover:underline"
-          >
-            {AR.nav.english}
-          </Link>
-        </p>
-      </section>
     </div>
   );
 }

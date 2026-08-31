@@ -155,7 +155,6 @@ const nextConfig: NextConfig = {
      * to whatever Arabic route happened to share its name.
      */
     const dissolved: [string, string][] = [
-      ["/map", "/actors"],
       ["/compare", "/"],
       ["/money", "/findings"],
       ["/destroyed", "/findings"],
@@ -207,7 +206,7 @@ const nextConfig: NextConfig = {
       // for long enough that the header was announcing the feed on seven
       // paths that redirect and on none of the five that exist.
       {
-        source: "/:page(actors|actions|findings|reported|entries|methodology)?",
+        source: "/:page(actors|actions|map|findings|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",
@@ -216,7 +215,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/ar/:page(actors|actions|findings|reported|entries|methodology)?",
+        source: "/ar/:page(actors|actions|map|findings|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",

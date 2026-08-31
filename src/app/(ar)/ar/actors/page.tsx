@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { localeAlternates } from "@/lib/i18n";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
-import ActorTreemap from "@/components/charts/ActorTreemap";
 import ActorRegister from "@/app/(en)/actors/ActorRegister";
 import ActorTabs from "@/app/(en)/actors/ActorTabs";
 import GroupCards from "@/app/(en)/actors/GroupCards";
@@ -50,30 +49,10 @@ export default function Page() {
         </div>
       </section>
 
-      <section aria-labelledby="ar-who-carries-the-work" className="mt-9">
-        <h2 id="ar-who-carries-the-work" className="text-h2 font-semibold text-navy">
-          من يحمل العمل
-        </h2>
-        <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
-          خلية لكل جهة مرصودة، بمساحة توازي نشاطها المرصود، مجموعةً في
-          المجموعات الأربع - المشهد كله على لوحة واحدة.
-        </p>
-        <div className="mt-4">
-          <ActorTreemap locale="ar" />
-        </div>
-      </section>
-
-      {/* أشكال الفئات والمراحل والخريطة انتقلت إلى /ar/actions مع بقية
-          طبقة الأفعال؛ هذا السطر يمنع القارئ من الضياع. */}
+      {/* أشكال الفئات والمراحل انتقلت إلى /ar/actions مع بقية طبقة
+          الأفعال؛ هذا السطر يمنع القارئ من الضياع. */}
       <p className="mt-9 max-w-3xl text-body leading-relaxed text-text">
-        كيف يتوزّع العمل نفسه - بحسب الفئة والمرحلة، وأين جرى على{" "}
-        <a
-          href="/ar/actions#ar-where-traced"
-          className="font-medium text-blue underline-offset-2 hover:underline"
-        >
-          الخريطة
-        </a>{" "}
-        - على{" "}
+        كيف يتوزّع العمل نفسه - بحسب الفئة والمرحلة - على{" "}
         <a href="/ar/actions" className="font-medium text-blue underline-offset-2 hover:underline">
           صفحة الأفعال
         </a>
@@ -83,6 +62,16 @@ export default function Page() {
       <div className="mt-9">
         <ActorRegister locale="ar" />
       </div>
+
+      {/* الخريطة قسم قائم بذاته الآن: تقرأ عبر الطبقتين معاً، فتقف
+          بجانبهما لا داخل هذه الصفحة. */}
+      <p className="mt-9 max-w-3xl text-body leading-relaxed text-text">
+        أين جرى عمل كل مجموعة - على{" "}
+        <a href="/ar/map" className="font-medium text-blue underline-offset-2 hover:underline">
+          الخريطة
+        </a>
+        ؛ رشّحها بمجموعة الجهات لتتبّع مجموعة واحدة عبر البلاد.
+      </p>
 
       {/* سطر واحد: البيت الوحيد لهذا الشرح هو صفحة الأضرار. */}
       <section id="ar-no-national-layer" className="card mt-8 max-w-3xl text-body leading-relaxed">

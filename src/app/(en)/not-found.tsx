@@ -16,8 +16,9 @@ export default function NotFound() {
             row of its own. */}
         {[
           ["/", "Home - the aim"],
-          ["/actors", "Actor groups & map"],
+          ["/actors", "Actor groups"],
           ["/actions", "Action categories"],
+          ["/map", "The map"],
           ["/findings", "The five findings"],
           ["/reported", "Live updates"],
           ["/entries", "Data explorer"],

@@ -126,7 +126,7 @@ export default function Page() {
           حيثما سمح ما نُشر علناً، يحمل المدخل حالة تنفيذ، والانضباط فيها
           صارم: التمويل المعلن لا يُعرض أبداً تمويلاً مُقرّاً أو مدفوعاً،
           وخطوة الشراء لا تُعرض أبداً عملاً منجزاً، ولا مدخل في التتبّع كله
-          موسوم بإنجاز مكتمل - فحتى 31 آب 2026 ترد هذه الحالة صفر مرة. وعبر{" "}
+          موسوم بإنجاز مكتمل - فهذه الحالة ترد صفر مرة. وعبر{" "}
           {arabicCount(total, AR_COUNT.entry)} لا ترد إلا أربع حالات.
         </p>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -168,12 +168,6 @@ export default function Page() {
           className="font-medium text-blue underline-offset-2 hover:underline"
         >
           كل مدخل متتبَّع، صفاً صفاً ←
-        </Link>
-        <Link
-          href="/ar/about"
-          className="font-medium text-blue underline-offset-2 hover:underline"
-        >
-          عن المرصد ←
         </Link>
       </p>
     </ArabicPageShell>

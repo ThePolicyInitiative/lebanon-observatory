@@ -134,7 +134,7 @@ export default function MethodologyPage() {
           announced funding is never presented as approved or disbursed
           funding, a procurement step is never presented as completed work,
           and no entry in the whole tracking is marked as completed output -
-          through 31 August 2026 that status occurs zero times. Across the{" "}
+          that status occurs zero times. Across the{" "}
           {total} entries, only four statuses occur.
         </p>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -177,12 +177,6 @@ export default function MethodologyPage() {
           className="font-medium text-blue underline-offset-2 hover:underline"
         >
           Every traced entry, one row each →
-        </Link>
-        <Link
-          href="/about"
-          className="font-medium text-blue underline-offset-2 hover:underline"
-        >
-          About the observatory →
         </Link>
       </p>
     </PageShell>

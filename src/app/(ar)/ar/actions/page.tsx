@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import "maplibre-gl/dist/maplibre-gl.css";
 import Link from "next/link";
-import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
-import { locations } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
 import Takeaways from "@/components/Takeaways";
 import ChangeHeatmap from "@/components/charts/ChangeHeatmap";
 import StageCompositionChart from "@/components/charts/StageCompositionChart";
-import LebanonMap from "@/components/map/LebanonMap";
-import RegionalComposition from "@/components/map/RegionalComposition";
 import ActorStageMatrix from "@/app/(en)/actors/ActorStageMatrix";
 import CategoryMix from "@/app/(en)/actions/CategoryMix";
 import SeeMore from "@/components/SeeMore";
@@ -29,8 +24,6 @@ export const metadata: Metadata = {
  * يجوز طبعها هنا بينما لا تُطبع مجاميع المجموعة الواحدة في أي مكان.
  */
 export default function Page() {
-  const mappable = locations.regions.filter((r) => r.mappable).length;
-  const notMappable = locations.regions.length - mappable;
   return (
     <ArabicPageShell
       title={AR.pages.actions.title}
@@ -73,37 +66,6 @@ export default function Page() {
         <SeeMore label="كل جهة مرصودة مقابل كل مرحلة من مراحل الاستجابة" locale="ar">
           <ActorStageMatrix locale="ar" />
         </SeeMore>
-      </section>
-
-      {/*
-       * أين جرت الأفعال المرصودة. أول ما يحتاجه القارئ من الخريطة هو ما
-       * تستطيع عرضه وما لا تستطيع؛ ورشّح بمرحلة الاستجابة لتتبّع نوع واحد
-       * من العمل عبر البلاد.
-       */}
-      <section aria-labelledby="ar-where-traced" className="mt-9">
-        <h2 id="ar-where-traced" className="text-h2 font-semibold text-navy">
-          أين جرت الأفعال المرصودة
-        </h2>
-        <dl className="mt-3 grid gap-3 sm:grid-cols-3">
-          {[
-            [String(locations.regions.length), "تجمّعات إقليمية في الرصد"],
-            [String(mappable), "منها يمكن وضعها على الخريطة"],
-            [String(notMappable), "تُعرض على حدة - يتعذّر تحديد موقعها"],
-          ].map(([value, label]) => (
-            <div key={label} className="card">
-              <dt className="figure-number text-h2 font-semibold text-navy">{value}</dt>
-              <dd className="text-meta text-text-secondary">{label}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-5">
-          <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
-            <LebanonMap locale="ar" />
-          </Suspense>
-        </div>
-        <div className="mt-7">
-          <RegionalComposition locale="ar" showCaveat={false} />
-        </div>
       </section>
 
       <section aria-labelledby="ar-status" className="mt-9">

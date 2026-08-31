@@ -25,14 +25,13 @@ export const metadata: Metadata = {
  * order - an unmatched URL says nothing about which language the reader
  * came for, so neither side may offer a way in the other does not.
  *
- * They listed seven when the site had seven pages. "2024 vs 2026" and
- * "Map" are sections now, of the home page and of /actors, so keeping them
- * would print two links to one route and leave two pages unlisted.
+ *
  */
 const EN_LINKS: [string, string][] = [
   ["/", "Home - the aim"],
-  ["/actors", "Actor groups & map"],
+  ["/actors", "Actor groups"],
   ["/actions", "Action categories"],
+  ["/map", "The map"],
   ["/findings", "The five findings"],
   ["/reported", "Live updates"],
   ["/entries", "Data explorer"],
@@ -42,8 +41,9 @@ const EN_LINKS: [string, string][] = [
 
 const AR_LINKS: [string, string][] = [
   ["/ar", "الرئيسية - الهدف"],
-  ["/ar/actors", "مجموعات الجهات والخريطة"],
+  ["/ar/actors", "مجموعات الجهات"],
   ["/ar/actions", "فئات الأفعال"],
+  ["/ar/map", "الخريطة"],
   ["/ar/findings", "الاستنتاجات الخمسة"],
   ["/ar/reported", "المستجدات"],
   ["/ar/entries", "المستكشف"],
