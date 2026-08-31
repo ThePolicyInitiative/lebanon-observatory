@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { ANALYSIS_REVISED } from "@/lib/about-content";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -25,9 +24,12 @@ const PAGES = [
  * and ranked below the pages that hold the argument. */
 const SECONDARY = new Set(["/search"]);
 
-/** The date the footer shows readers, not a second copy of it: a crawler
- * date that drifts from the visible one is worse than no date at all. */
-const CONTENT_UPDATED = new Date(ANALYSIS_REVISED);
+/**
+ * The last content release. Since the footer's dated strip was removed at
+ * the user's request (31 Aug 2026), this is the one place the date lives -
+ * it exists for crawlers only, and moves with each data release.
+ */
+const CONTENT_UPDATED = new Date("2026-08-31");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Both languages, so the Arabic side is discoverable page by page rather

@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AR, CHROME } from "@/lib/i18n";
-import { ABOUT_FOOTER, ANALYSIS_REVISED, CONTACT_EMAIL } from "@/lib/about-content";
-import { fmtDate } from "@/lib/format";
 import { localisedHref } from "./SiteNav";
 
 /**
@@ -12,11 +10,8 @@ import { localisedHref } from "./SiteNav";
  * does: a link that quietly returns an Arabic reader to English is a dead
  * end in the middle of the site, not a shortcut.
  *
- * Below the page links it carries the two things a returning reader has
- * nowhere else to look for: who is behind the counting and how to reach
- * them, and how current the site is - the date the tracking reaches
- * and the date the analysis last moved. Two dated facts, not a log of
- * edits nobody kept.
+ * Links only. The identity strip and the dated "last revised" line it
+ * once carried were removed at the user's request on 31 August 2026.
  */
 /**
  * Topics here, part names in the tab bar. A reader at the foot of a page
@@ -46,7 +41,6 @@ export default function SiteFooter() {
   const pathname = usePathname();
   const isArabic = pathname.startsWith("/ar");
   const locale = isArabic ? "ar" : "en";
-  const f = ABOUT_FOOTER[locale];
 
   return (
     <footer className="on-navy mt-16 border-t border-[#0e2542] bg-navy">
@@ -68,51 +62,6 @@ export default function SiteFooter() {
             ))}
           </ul>
         </nav>
-
-        <div className="mt-6 grid gap-5 border-t border-white/15 pt-5 md:grid-cols-2">
-          <section aria-labelledby="footer-identity">
-            <p
-              id="footer-identity"
-              className="text-micro font-semibold uppercase tracking-wide text-white/60"
-            >
-              {f.heading}
-            </p>
-            <p className="mt-2 max-w-prose text-meta leading-relaxed text-white/70">
-              {f.identity}
-            </p>
-            <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-body">
-              {/* No address until a real one exists: a live mailto that
-                  reaches nobody is worse than none. */}
-              {CONTACT_EMAIL ? (
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  lang="en"
-                  dir="ltr"
-                  className="inline-flex min-h-8 items-center text-white/70 underline-offset-2 hover:text-white hover:underline"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-              ) : null}
-            </p>
-          </section>
-
-          <section aria-labelledby="footer-updated" className="md:text-end">
-            <p
-              id="footer-updated"
-              className="text-micro font-semibold uppercase tracking-wide text-white/60"
-            >
-              {f.updatedLabel}
-            </p>
-            <p className="mt-2 text-meta leading-relaxed text-white/80">
-              <span className="whitespace-nowrap">
-                {f.revised(fmtDate(ANALYSIS_REVISED, locale))}
-              </span>
-            </p>
-            <p className="mt-1.5 max-w-prose text-meta leading-relaxed text-white/55 md:ms-auto">
-              {f.note}
-            </p>
-          </section>
-        </div>
       </div>
     </footer>
   );
