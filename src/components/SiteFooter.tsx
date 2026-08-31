@@ -27,14 +27,8 @@ const LINKS: [string, string, string][] = [
   ["/reported", "Live updates", AR.nav.news],
   ["/entries", "Data explorer", AR.nav.explorer],
   ["/methodology", "Methodology", AR.nav.method],
-  // Search is not a tab, so this is how a reader reaches it. Its Arabic
-  // label is written here rather than in AR.nav because the search route is
-  // not one of the navigation's own entries.
-  //
-  // About is not listed here: it already has its own link below, beside the
-  // contact line, and adding it here put two links to the same page in one
-  // footer.
-  ["/search", "Search", "البحث"],
+  // Search is deliberately absent: the header's search control already
+  // reaches it from every page.
 ];
 
 export default function SiteFooter() {
