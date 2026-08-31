@@ -258,7 +258,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
   }, [data, tab]);
 
   const inputCls =
-    "min-h-11 rounded-md border border-border bg-white px-2.5 text-sm";
+    "min-h-11 rounded-md border border-border bg-white px-2.5 text-body";
 
   const roving = useRovingRadio({
     count: TABS.length,
@@ -281,7 +281,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
               aria-controls="news-tabpanel"
               {...roving.itemProps(i)}
               onClick={() => set("tab", tb.id)}
-              className={`min-h-11 rounded-t-md border-b-2 px-3.5 text-sm transition-colors duration-150 ${
+              className={`min-h-11 rounded-t-md border-b-2 px-3.5 text-body transition-colors duration-150 ${
                 active
                   ? "border-navy font-semibold text-navy"
                   : "border-transparent text-text-secondary hover:text-navy"
@@ -296,7 +296,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
       {/* Filters */}
       <div className="mt-4 flex flex-wrap items-end gap-3">
         <div className="min-w-[200px] flex-1">
-          <label htmlFor="news-q" className="block text-[11px] font-semibold text-text-secondary">
+          <label htmlFor="news-q" className="block text-micro font-semibold text-text-secondary">
             {t.search}
           </label>
           <input
@@ -312,15 +312,15 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           />
         </div>
         <div>
-          <label htmlFor="news-from" className="block text-[11px] font-semibold text-text-secondary">{t.from}</label>
+          <label htmlFor="news-from" className="block text-micro font-semibold text-text-secondary">{t.from}</label>
           <input id="news-from" type="date" value={get("from")} onChange={(e) => set("from", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-to" className="block text-[11px] font-semibold text-text-secondary">{t.to}</label>
+          <label htmlFor="news-to" className="block text-micro font-semibold text-text-secondary">{t.to}</label>
           <input id="news-to" type="date" value={get("to")} onChange={(e) => set("to", e.target.value)} className={`mt-1 ${inputCls}`} />
         </div>
         <div>
-          <label htmlFor="news-lang" className="block text-[11px] font-semibold text-text-secondary">{t.language}</label>
+          <label htmlFor="news-lang" className="block text-micro font-semibold text-text-secondary">{t.language}</label>
           <select id="news-lang" value={get("language")} onChange={(e) => set("language", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {(["en", "ar", "fr", "other"] as const).map((code) => (
@@ -329,7 +329,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-loc" className="block text-[11px] font-semibold text-text-secondary">{t.location}</label>
+          <label htmlFor="news-loc" className="block text-micro font-semibold text-text-secondary">{t.location}</label>
           <select id="news-loc" value={get("location")} onChange={(e) => set("location", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {LOCATION_OPTIONS.map((s) => (
@@ -338,7 +338,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-sector" className="block text-[11px] font-semibold text-text-secondary">{t.sector}</label>
+          <label htmlFor="news-sector" className="block text-micro font-semibold text-text-secondary">{t.sector}</label>
           <select id="news-sector" value={get("sector")} onChange={(e) => set("sector", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {SECTOR_OPTIONS.map((s) => (
@@ -347,7 +347,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
           </select>
         </div>
         <div>
-          <label htmlFor="news-stage" className="block text-[11px] font-semibold text-text-secondary">{t.stage}</label>
+          <label htmlFor="news-stage" className="block text-micro font-semibold text-text-secondary">{t.stage}</label>
           <select id="news-stage" value={get("stage")} onChange={(e) => set("stage", e.target.value)} className={`mt-1 ${inputCls}`}>
             <option value="">{t.all}</option>
             {STAGE_OPTIONS.map((s) => (
@@ -355,7 +355,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
             ))}
           </select>
         </div>
-        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm">
+        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-body">
           <input
             type="checkbox"
             checked={get("relevant") === "1"}
@@ -367,14 +367,14 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
         <button
           type="button"
           onClick={reset}
-          className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary"
+          className="min-h-11 rounded-md border border-border bg-white px-3 text-body text-text-secondary"
         >
           {t.resetFilters}
         </button>
         <button
           type="button"
           onClick={() => setRefreshTick((n) => n + 1)}
-          className="min-h-11 rounded-md border border-navy bg-white px-3 text-sm font-medium text-navy"
+          className="min-h-11 rounded-md border border-navy bg-white px-3 text-body font-medium text-navy"
         >
           {t.refresh}
         </button>
@@ -383,18 +383,18 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
       {/* Official directory under Official tab */}
       {tab === "official" ? (
         <div className="mt-4 card">
-          <h3 className="text-sm font-semibold text-navy">
+          <h3 className="text-body font-semibold text-navy">
             {t.officialHeading}
           </h3>
-          <p className="mt-1 text-xs text-text-secondary">
+          <p className="mt-1 text-meta text-text-secondary">
             {t.officialBody}
           </p>
           {[...new Set(OFFICIAL_DIRECTORY.map((o) => o.group))].map((group) => (
             <div key={group} className="mt-3">
-              <h4 className="text-[11px] font-bold uppercase tracking-wide text-teal">
+              <h4 className="text-micro font-bold uppercase tracking-wide text-teal">
                 {locale === "ar" ? (GROUP_AR[group] ?? group) : group}
               </h4>
-              <ul className="mt-1 grid gap-1 text-sm sm:grid-cols-2">
+              <ul className="mt-1 grid gap-1 text-body sm:grid-cols-2">
                 {OFFICIAL_DIRECTORY.filter((o) => o.group === group).map((o) => (
                   <li key={o.url}>
                     <a href={o.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-blue underline-offset-2 hover:underline" dir="ltr">
@@ -423,7 +423,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
             ))}
           </div>
         ) : error ? (
-          <div className="rounded-md border border-rust bg-white p-5 text-sm">
+          <div className="rounded-md border border-rust bg-white p-5 text-body">
             <p className="font-semibold text-rust">{t.liveUnavailable}</p>
             <p className="mt-1 text-text-secondary">{error}</p>
             <p className="mt-2 text-text-secondary">
@@ -432,13 +432,13 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
             <button
               type="button"
               onClick={() => setRefreshTick((n) => n + 1)}
-              className="mt-3 min-h-11 rounded-md border border-navy px-4 text-sm font-medium text-navy"
+              className="mt-3 min-h-11 rounded-md border border-navy px-4 text-body font-medium text-navy"
             >
               {t.tryAgain}
             </button>
           </div>
         ) : articles.length === 0 ? (
-          <div className="card text-sm text-text-secondary">
+          <div className="card text-body text-text-secondary">
             {t.noMatch}
           </div>
         ) : (
@@ -460,7 +460,7 @@ export default function NewsExplorer({ locale = "en" }: { locale?: Locale } = {}
                 <button
                   type="button"
                   onClick={() => setVisibleCount((c) => c + 25)}
-                  className="min-h-11 rounded-md border border-border bg-white px-5 text-sm text-text-secondary hover:border-navy hover:text-navy"
+                  className="min-h-11 rounded-md border border-border bg-white px-5 text-body text-text-secondary hover:border-navy hover:text-navy"
                 >
                   {t.showMore(articles.length - visibleCount)}
                 </button>
@@ -507,7 +507,7 @@ function NewsCard({
 
   return (
     <article className="flex h-full flex-col card" dir={a.language === "ar" ? "rtl" : "ltr"}>
-      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-wide text-text-secondary" dir={chrome}>
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-micro uppercase tracking-wide text-text-secondary" dir={chrome}>
         <span className="font-semibold">{a.sourceName}</span>
         <span>·</span>
         <span>{fmtDateTime(a.publishedAt, locale)}</span>
@@ -524,7 +524,7 @@ function NewsCard({
           </span>
         ) : null}
       </p>
-      <h3 className="mt-1.5 text-sm font-semibold leading-snug text-navy">
+      <h3 className="mt-1.5 text-body font-semibold leading-snug text-navy">
         <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
           {a.title} <span aria-hidden dir="ltr">↗</span>
           <span className="sr-only">
@@ -533,12 +533,12 @@ function NewsCard({
         </a>
       </h3>
       {a.description ? (
-        <p className="mt-1.5 text-xs leading-relaxed text-text-secondary">{a.description}</p>
+        <p className="mt-1.5 text-meta leading-relaxed text-text-secondary">{a.description}</p>
       ) : null}
       {(a.valueChainStages.length > 0 || a.locations.length > 0) && (
         <ul className="mt-2 flex flex-wrap gap-1" dir={chrome}>
           {[...a.valueChainStages.slice(0, 2), ...a.locations.slice(0, 2)].map((tag) => (
-            <li key={tag} className="rounded-sm bg-bg px-1.5 py-0.5 text-[10.5px] text-text-secondary">
+            <li key={tag} className="rounded-sm bg-bg px-1.5 py-0.5 text-micro text-text-secondary">
               {label(tag)}
             </li>
           ))}
@@ -546,7 +546,7 @@ function NewsCard({
       )}
       <div className="mt-auto pt-2" dir={chrome}>
         {typeof a.relatedCount === "number" && a.relatedCount > 0 ? (
-          <p className="text-[11px] text-text-secondary">
+          <p className="text-micro text-text-secondary">
             {t.alsoReported(a.relatedCount)}
           </p>
         ) : null}
@@ -554,12 +554,12 @@ function NewsCard({
           type="button"
           onClick={onToggle}
           aria-expanded={expanded}
-          className="mt-1 min-h-8 text-[11px] text-blue underline decoration-dotted underline-offset-2"
+          className="mt-1 min-h-8 text-micro text-blue underline decoration-dotted underline-offset-2"
         >
           {expanded ? t.hide : t.whyRelevant}
         </button>
         {expanded ? (
-          <ul className="mt-1.5 space-y-1 border-s-2 border-border ps-2.5 text-[11px] text-text-secondary">
+          <ul className="mt-1.5 space-y-1 border-s-2 border-border ps-2.5 text-micro text-text-secondary">
             {whyRelevant.map((w) => (
               <li key={w}>{w}</li>
             ))}

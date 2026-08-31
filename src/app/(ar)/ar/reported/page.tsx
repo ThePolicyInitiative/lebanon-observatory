@@ -32,11 +32,11 @@ export default async function Page({
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2
             id="ar-news-explorer"
-            className="text-xl font-semibold text-navy"
+            className="text-h2 font-semibold text-navy"
           >
             آخر ما نُشر
           </h2>
-          <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200]">
+          <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-bold text-[#8a6200]">
             غير مؤكَّد · خارج كل عدّ
           </span>
         </div>
@@ -45,7 +45,7 @@ export default async function Page({
             <NewsExplorer locale="ar" />
           </Suspense>
         </div>
-        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-text-secondary">
+        <p className="mt-6 note-caution text-meta leading-relaxed text-text-secondary">
           كل خبر يبقى بلغة ناشره ويحيل إليه.
         </p>
       </section>

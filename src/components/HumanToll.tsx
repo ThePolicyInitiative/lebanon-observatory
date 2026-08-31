@@ -37,8 +37,8 @@ function Panel({
   return (
     <div className="card">
       <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 pb-2" style={{ borderColor: accent }}>
-        <h3 className="text-base font-semibold text-navy">{title}</h3>
-        <span className="text-[11px] font-medium text-text-secondary">
+        <h3 className="text-lead font-semibold text-navy">{title}</h3>
+        <span className="text-micro font-medium text-text-secondary">
           {asOfLabel} {fmtDate(asOf, locale)}
         </span>
       </div>
@@ -46,19 +46,19 @@ function Panel({
         {items.map((i) => (
           <li key={i.label} className="grid gap-1 sm:grid-cols-[auto_1fr] sm:gap-3">
             <p
-              className="text-xl font-bold tabular-nums tracking-tight sm:w-40 sm:text-end"
+              className="text-h2 font-bold tabular-nums tracking-tight sm:w-40 sm:text-end"
               style={{ color: accent }}
             >
               {ar ? (i.valueAr ?? i.value) : i.value}
             </p>
             <div>
-              <p className="text-[13px] font-semibold text-text">
+              <p className="text-meta font-semibold text-text">
                 {ar ? i.labelAr : i.label}
               </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-text-secondary">
+              <p className="mt-0.5 text-meta leading-relaxed text-text-secondary">
                 {ar ? i.detailAr : i.detail}
               </p>
-              <p className="mt-0.5 text-[10.5px] font-medium text-text-secondary">
+              <p className="mt-0.5 text-micro font-medium text-text-secondary">
                 {ar ? i.reporterAr : i.reporter}
               </p>
             </div>
@@ -94,10 +94,10 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
   const tr = T[locale];
   return (
     <section aria-labelledby="human-toll">
-      <h2 id="human-toll" className="text-xl font-semibold text-navy">
+      <h2 id="human-toll" className="text-h2 font-semibold text-navy">
         {tr.heading}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
         {tr.lede}
       </p>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -118,7 +118,7 @@ export default function HumanToll({ locale = "en" }: { locale?: Locale } = {}) {
           locale={locale}
         />
       </div>
-      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
+      <p className="mt-3 note-caution text-meta leading-relaxed text-text-secondary">
         {tr.caution}
       </p>
     </section>

@@ -316,10 +316,10 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
           comparison's own shape is visible. */}
       <figure className="mt-6 card">
         <figcaption>
-          <h3 className="text-base font-semibold text-navy">
+          <h3 className="text-lead font-semibold text-navy">
             {t.overview}
           </h3>
-          <p className="mt-1 text-sm text-text-secondary">
+          <p className="mt-1 text-body text-text-secondary">
             {t.overviewSub}
           </p>
         </figcaption>
@@ -346,7 +346,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
             const list = DIMENSIONS.filter((d) => d.kind === kind);
             if (list.length === 0) return null;
             return (
-              <li key={kind} className="text-[12px]">
+              <li key={kind} className="text-meta">
                 <p className="flex items-center gap-1.5 font-semibold">
                   <span
                     aria-hidden
@@ -380,7 +380,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
               className="rounded-md border border-border bg-white"
             >
               <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-2.5">
-                <h3 className="text-sm font-semibold text-navy">
+                <h3 className="text-body font-semibold text-navy">
                   {c.label}
                 </h3>
                 <span className="flex items-center gap-2.5">
@@ -392,7 +392,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
                   <span
                     aria-label={t.trackLabel(ar ? badge.labelAr : badge.label)}
                     role="img"
-                    className="flex items-center gap-1 text-[10px] font-bold tabular-nums"
+                    className="flex items-center gap-1 text-micro font-bold tabular-nums"
                   >
                     <span
                       className={mode === "2026" ? "opacity-30" : ""}
@@ -423,7 +423,7 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
                     </span>
                   </span>
                   <span
-                    className={`rounded-sm px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide ${badge.cls}`}
+                    className={`rounded-sm px-2 py-0.5 text-micro font-semibold uppercase tracking-wide ${badge.cls}`}
                   >
                     {ar ? badge.labelAr : badge.label}
                   </span>
@@ -436,27 +436,27 @@ export default function ComparePanel({ locale = "en" }: { locale?: Locale } = {}
               >
                 {(mode === "2024" || mode === "side" || mode === "change") && (
                   <div className="border-b border-border p-4 md:border-b-0 md:border-e">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-y2024">
+                    <p className="text-micro font-bold uppercase tracking-wide text-y2024">
                       2024
                     </p>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-text">
+                    <p className="mt-1.5 text-meta leading-relaxed text-text">
                       {c.y2024}
                     </p>
                   </div>
                 )}
                 {(mode === "2026" || mode === "side" || mode === "change") && (
                   <div className="p-4">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-y2026">
+                    <p className="text-micro font-bold uppercase tracking-wide text-y2026">
                       2026
                     </p>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-text">
+                    <p className="mt-1.5 text-meta leading-relaxed text-text">
                       {c.y2026}
                     </p>
                   </div>
                 )}
               </div>
               {mode === "change" ? (
-                <p className="border-t border-dashed border-border px-4 py-3 text-[13px] leading-relaxed">
+                <p className="border-t border-dashed border-border px-4 py-3 text-meta leading-relaxed">
                   <span className="font-semibold text-rust">
                     {t.change}
                   </span>

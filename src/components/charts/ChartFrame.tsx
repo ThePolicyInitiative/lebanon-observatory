@@ -43,11 +43,12 @@ export default function ChartFrame({
     >
       <figcaption>
         {/* 17px was the only one on the site, and being off-scale is how it
-            ended up above the 16px section h2s it sits under. text-lg is the
-            scale's h3 step and stays below the 20px an h2 now takes. */}
-        <h3 className="text-lg font-semibold">{title}</h3>
+            ended up above the section h2s it sits under. It names the step
+            now rather than a size, so a figure title cannot outgrow the
+            heading above it however the scale is later tuned. */}
+        <h3 className="text-h3 font-semibold">{title}</h3>
         {subtitle ? (
-          <p className="prose-measure mt-1.5 text-sm leading-relaxed text-text-secondary">
+          <p className="prose-measure mt-1.5 text-body leading-relaxed text-text-secondary">
             {subtitle}
           </p>
         ) : null}
@@ -59,7 +60,7 @@ export default function ChartFrame({
       ) : null}
       <div className="mt-3">{children}</div>
       {caveat ? (
-        <p className="note-caution prose-measure mt-4 text-xs leading-relaxed text-text-secondary">
+        <p className="note-caution prose-measure mt-4 text-meta leading-relaxed text-text-secondary">
           {caveat}
         </p>
       ) : null}

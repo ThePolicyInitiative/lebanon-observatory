@@ -71,7 +71,7 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
   const meta = layers(locale).find((l) => l.id === u.layer);
   return (
     <li className="card">
-      <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
+      <p className="flex flex-wrap items-center gap-1.5 text-micro">
         {meta ? (
           <span
             className="inline-flex items-center gap-1.5 rounded-sm px-1.5 py-0.5 font-semibold text-white"
@@ -106,42 +106,42 @@ function Card({ u, locale }: { u: Update; locale: Locale }) {
           <span className="text-text-secondary">{t.noDate}</span>
         )}
       </p>
-      <p className="mt-1.5 text-sm font-semibold text-navy">
+      <p className="mt-1.5 text-body font-semibold text-navy">
         {say(u.actor, loc.actorAr)}
       </p>
-      <p className="mt-1 text-[13px] leading-relaxed text-text">
+      <p className="mt-1 text-meta leading-relaxed text-text">
         {say(u.action, loc.actionAr)}
       </p>
       {/* Named group: the card sits inside the layer disclosure, so an
           unnamed group-open would follow that one instead of this. */}
       {u.detail ? (
         <details className="group/more mt-1.5">
-          <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-[11px] font-semibold text-blue underline-offset-2 hover:underline [&::-webkit-details-marker]:hidden">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-micro font-semibold text-blue underline-offset-2 hover:underline [&::-webkit-details-marker]:hidden">
             <span className="group-open/more:hidden">{t.seeMore}</span>
             <span className="hidden group-open/more:inline">{t.seeLess}</span>
-            <span aria-hidden className="text-[9px]">
+            <span aria-hidden className="text-micro">
               {/* The closed marker points the way the reader is going. */}
               <span className="group-open/more:hidden">{ar ? "◂" : "▸"}</span>
               <span className="hidden group-open/more:inline">▾</span>
             </span>
           </summary>
-          <p className="mt-1 border-s-2 border-border ps-2.5 text-[12px] leading-relaxed text-text-secondary">
+          <p className="mt-1 border-s-2 border-border ps-2.5 text-meta leading-relaxed text-text-secondary">
             {say(u.detail, loc.detailAr)}
           </p>
         </details>
       ) : null}
       {u.place ? (
-        <p className="mt-1.5 text-[11px] text-text-secondary">
+        <p className="mt-1.5 text-micro text-text-secondary">
           <span className="font-semibold">{t.where}</span>{" "}
           {say(u.place, loc.placeAr)}
         </p>
       ) : null}
       {u.caution ? (
-        <p className="note-caution mt-2 text-[11px] leading-relaxed text-text-secondary">
+        <p className="note-caution mt-2 text-micro leading-relaxed text-text-secondary">
           {say(u.caution, loc.cautionAr)}
         </p>
       ) : null}
-      <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-[11px]">
+      <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-micro">
         <a
           href={u.sourceUrl}
           target="_blank"
@@ -179,12 +179,12 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2
           id="reported-updates"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           {t.title}
         </h2>
         <span
-          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-bold text-[#8a6200] ${
             ar ? "" : "uppercase tracking-wide"
           }`}
         >
@@ -193,14 +193,14 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       </div>
       {ar ? (
         <>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
+          <p className="mt-2 prose-measure text-body leading-relaxed text-text-secondary">
             {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
             والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
             الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مراجعها - لم تُقارَن بالتتبّع ولا تدخل
             في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه. اتبع كل رابط
             لتحكم على المرجع بنفسك.
           </p>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-text">
+          <p className="mt-2 prose-measure text-body leading-relaxed text-text">
             مجموعة المجتمع المحلي هي الأكبر، وتلك هي الخلاصة: في القرى الجنوبية، العمل الظاهر
             فعلياً يقوم به الأهالي والجمعيات القروية والمجموعات الشبابية والبلديات، وعلى نفقتهم
             الخاصة في معظمه.
@@ -208,7 +208,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
         </>
       ) : (
         <>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
+          <p className="mt-2 prose-measure text-body leading-relaxed text-text-secondary">
             {updates.length} actors and actions found in open web coverage in English, Arabic and
             French (gathered {fmtDate(webUpdates.gatheredOn)}), {south} of them in the area between
             the Litani and the Blue Line. These are reported claims, quoted with their publishers - they
@@ -216,7 +216,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
             Each entry says how much checking sits behind it. Follow each link to judge it
             yourself.
           </p>
-          <p className="mt-2 prose-measure text-sm leading-relaxed text-text">
+          <p className="mt-2 prose-measure text-body leading-relaxed text-text">
             The community group is the largest, and that is the finding: in the southern villages the
             work that is actually visible is being done by residents, village associations, youth
             groups and municipalities, largely at their own cost.
@@ -227,7 +227,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       <div className="mt-5 space-y-4">
         {groups.map((g, i) => (
           <details key={g.id} open={i === 0} className="group">
-            <summary className="flex cursor-pointer items-center gap-2 rounded-sm py-1 text-sm font-semibold text-navy">
+            <summary className="flex cursor-pointer items-center gap-2 rounded-sm py-1 text-body font-semibold text-navy">
               <span
                 aria-hidden
                 className="h-2.5 w-2.5 shrink-0 rounded-sm"

@@ -53,13 +53,13 @@ export default function LayerStageProfile({
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">{t.sub}</p>
+        <p className="mt-1 text-body text-text-secondary">{t.sub}</p>
       </figcaption>
 
-      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-text-secondary">
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-meta text-text-secondary">
         <span className="flex items-center gap-1.5">
           <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2024" />
           {t.y24}
@@ -80,7 +80,7 @@ export default function LayerStageProfile({
           const delta = v26 - v24;
           return (
             <li key={label} className="grid grid-cols-[9.5rem_1fr_2.5rem] items-center gap-2">
-              <span className="text-[12.5px] leading-snug text-text">
+              <span className="text-meta leading-snug text-text">
                 <span className="tabular-nums text-text-secondary">
                   {i + 1}.
                 </span>{" "}
@@ -101,14 +101,14 @@ export default function LayerStageProfile({
                         background: row.color,
                       }}
                     />
-                    <span className="text-[11.5px] tabular-nums text-text-secondary">
+                    <span className="text-micro tabular-nums text-text-secondary">
                       {row.v}
                     </span>
                   </span>
                 ))}
               </span>
               <span
-                className={`justify-self-end rounded-sm px-1 py-0.5 text-[11.5px] font-bold tabular-nums ${
+                className={`justify-self-end rounded-sm px-1 py-0.5 text-micro font-bold tabular-nums ${
                   // A delta is direction of change, so it belongs to the
                   // valence family - not to the state ramp, and not to the
                   // hand-typed green that was standing in for it.
@@ -131,7 +131,7 @@ export default function LayerStageProfile({
       </p>
 
       {showCaveat ? (
-        <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
+        <p className="mt-3 note-caution text-meta leading-relaxed text-text-secondary">
           {cautionCounts(locale)}
         </p>
       ) : null}

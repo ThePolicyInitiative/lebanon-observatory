@@ -43,7 +43,7 @@ export default function Page() {
       englishHref="/who"
       figures={counts}
     >
-      <p className="mt-6 max-w-3xl text-sm leading-relaxed text-text-secondary">
+      <p className="mt-6 max-w-3xl text-body leading-relaxed text-text-secondary">
         إضافةً إلى ما سبق، يحمل المرصد {webUpdates.updates.length} مدخلاً من تغطية
         مفتوحة على الإنترنت، منها {south} بين الليطاني والخط الأزرق. هذه المدخلات
         غير مؤكَّدة ولا تدخل في أي عدّ.
@@ -56,11 +56,11 @@ export default function Page() {
       <section aria-labelledby="ar-layer-profiles" className="mt-8">
         <h2
           id="ar-layer-profiles"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           الطبقات الأربع، طبقةً طبقة
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
           لكل طبقة ملامحها في السنتين، وتغيّرها المباشر بمكاسبه وخسائره،
           وأدوارها على السلسلة، وشكلها على امتدادها، وجغرافيتها، والجهات التي
           تحملها. الأشرطة أعداد حضور مرصود، لا مقاييس إنجاز.
@@ -70,7 +70,7 @@ export default function Page() {
             <ActorTabs locale="ar" />
           </Suspense>
         </div>
-        <p className="mt-4 note-caution text-xs leading-relaxed text-text-secondary">
+        <p className="mt-4 note-caution text-meta leading-relaxed text-text-secondary">
           {cautionCounts("ar")}
         </p>
       </section>
@@ -134,8 +134,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="ar-no-national-layer" className="card mt-8 max-w-3xl text-sm leading-relaxed">
-        <h2 className="text-xl font-semibold text-navy">
+      <section id="ar-no-national-layer" className="card mt-8 max-w-3xl text-body leading-relaxed">
+        <h2 className="text-h2 font-semibold text-navy">
           لماذا لا توجد طبقة أضرار وطنية
         </h2>
         <p className="mt-2 text-text">

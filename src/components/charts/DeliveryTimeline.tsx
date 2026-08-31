@@ -200,7 +200,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
 
       <div className="mt-4 card">
         <h4 className="sr-only">{tr.chainHead}</h4>
-        <ol className="flex flex-wrap items-center gap-2 text-[13px]">
+        <ol className="flex flex-wrap items-center gap-2 text-meta">
           {(["done", "done", "partial", "missing"] as const)
             .map((status, i) => ({ status, label: tr.chain[i][0], note: tr.chain[i][1] }))
             .map((step, i, arr) => (
@@ -215,7 +215,7 @@ export default function DeliveryTimeline({ locale = "en" }: { locale?: Locale } 
                 }`}
               >
                 {step.label}
-                <span className="mt-0.5 block text-[10.5px] font-normal opacity-90">
+                <span className="mt-0.5 block text-micro font-normal opacity-90">
                   {step.note}
                 </span>
               </span>

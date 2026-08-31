@@ -36,11 +36,11 @@ export function SectionHeading({
 }) {
   return (
     <div className="prose-measure">
-      <p className="flex items-center gap-2.5 font-sans text-xs font-bold uppercase tracking-widest text-teal">
+      <p className="flex items-center gap-2.5 font-sans text-micro font-bold uppercase tracking-widest text-teal">
         {String(index).padStart(2, "0")}
         <span aria-hidden className="h-px w-8 bg-amber" />
       </p>
-      <h2 className="mt-2 text-[26px] font-semibold sm:text-[30px]">{title}</h2>
+      <h2 className="mt-2 text-h1 font-semibold">{title}</h2>
       {children}
     </div>
   );
@@ -54,7 +54,7 @@ export function SectionHeading({
 export function Body({ children, locale = "en" }: { children: ReactNode; locale?: Locale }) {
   return (
     <p
-      className={`mt-3 text-sm text-text ${
+      className={`mt-3 text-body text-text ${
         locale === "ar" ? "leading-loose" : "leading-relaxed"
       }`}
     >
@@ -74,7 +74,7 @@ export function Onward({
   locale?: Locale;
 }) {
   return (
-    <p className="mt-3 text-sm">
+    <p className="mt-3 text-body">
       <Link
         href={href}
         className="font-medium text-blue underline-offset-2 hover:underline"

@@ -88,7 +88,7 @@ function MandateEntry({ actor, locale }: { actor: ActorEntry; locale: Locale }) 
   const base = actorBase(actor.name);
   return (
     <li className="rounded-md border border-border p-3.5">
-      <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-navy">
+      <p className="flex flex-wrap items-center gap-2 text-body font-semibold text-navy">
         {/* A plain anchor, not a Link: the register listens for hashchange,
             and a router navigation whose only difference is the fragment
             never fires one. */}
@@ -99,7 +99,7 @@ function MandateEntry({ actor, locale }: { actor: ActorEntry; locale: Locale }) 
           {actorLabel(base, locale)}
         </a>
         <span
-          className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
+          className="rounded-sm px-1.5 py-0.5 text-micro font-semibold text-white"
           style={{ background: actor.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
         >
           {actor.year}
@@ -107,17 +107,17 @@ function MandateEntry({ actor, locale }: { actor: ActorEntry; locale: Locale }) 
       </p>
       {s.onPaper ? (
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
-          <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-[12.5px] leading-relaxed">
+          <p className="rounded-sm bg-[#EEF2F7] p-2.5 text-meta leading-relaxed">
             <span className="font-bold text-navy">{t.onPaper}</span>
             {s.onPaper}
           </p>
-          <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-[12.5px] leading-relaxed">
+          <p className="rounded-sm bg-[#F7E9E5] p-2.5 text-meta leading-relaxed">
             <span className="font-bold text-rust">{t.inPractice}</span>
             {s.inPractice}
           </p>
         </div>
       ) : (
-        <p className="mt-2 text-[12.5px] leading-relaxed">{s.raw}</p>
+        <p className="mt-2 text-meta leading-relaxed">{s.raw}</p>
       )}
     </li>
   );
@@ -132,10 +132,10 @@ function MandateVsCapacity({ layer, locale }: { layer: ActorLayer; locale: Local
 
   return (
     <section className="card">
-      <h3 className="text-sm font-semibold text-navy">
+      <h3 className="text-body font-semibold text-navy">
         {t.onPaperHeading}
       </h3>
-      <p className="mt-1 text-xs text-text-secondary">
+      <p className="mt-1 text-meta text-text-secondary">
         {t.onPaperIntro}
       </p>
       <ul className="mt-4 space-y-3">
@@ -145,7 +145,7 @@ function MandateVsCapacity({ layer, locale }: { layer: ActorLayer; locale: Local
       </ul>
       {entries.length > 6 ? (
         <details className="mt-3">
-          <summary className="cursor-pointer text-xs text-blue underline underline-offset-2">
+          <summary className="cursor-pointer text-meta text-blue underline underline-offset-2">
             {t.showAll(entries.length)}
           </summary>
           <ul className="mt-3 space-y-3">
@@ -202,7 +202,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
                  every layer in both languages, so the accessible name
                  stays the full one and only the visible text shortens. */
               aria-label={l.label}
-              className={`min-h-11 rounded-t-md border-b-[3px] px-3.5 text-[13px] transition-colors duration-150 ${
+              className={`min-h-11 rounded-t-md border-b-[3px] px-3.5 text-meta transition-colors duration-150 ${
                 active
                   ? "font-semibold text-navy"
                   : "border-transparent text-text-secondary hover:text-navy"
@@ -228,40 +228,40 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         className="mt-6 space-y-6"
       >
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <h2 className="text-xl font-semibold" style={{ color: meta.color }}>
+          <h2 className="text-h2 font-semibold" style={{ color: meta.color }}>
             {meta.label}
           </h2>
-          <p className="text-sm tabular-nums text-text-secondary">
+          <p className="text-meta tabular-nums text-text-secondary">
             {t.presence(layerTotal(2024, layer), layerTotal(2026, layer))}
           </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2024)" }}>
-            <h3 className={`text-sm font-bold text-y2024 ${caps}`}>
+            <h3 className={`text-body font-bold text-y2024 ${caps}`}>
               {t.profile2024}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.profile2024[locale]}</p>
+            <p className="mt-2 text-body leading-relaxed">{content.profile2024[locale]}</p>
           </section>
           <section className="rounded-md border-t-4 bg-white p-5" style={{ borderTopColor: "var(--color-y2026)" }}>
-            <h3 className={`text-sm font-bold text-y2026 ${caps}`}>
+            <h3 className={`text-body font-bold text-y2026 ${caps}`}>
               {t.profile2026}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.profile2026[locale]}</p>
+            <p className="mt-2 text-body leading-relaxed">{content.profile2026[locale]}</p>
           </section>
         </div>
 
         <section className="card">
-          <h3 className="text-sm font-semibold text-navy">
+          <h3 className="text-body font-semibold text-navy">
             {t.directChange}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed">{content.directChange[locale]}</p>
+          <p className="mt-2 text-body leading-relaxed">{content.directChange[locale]}</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div>
-              <h4 className={`text-xs font-bold text-teal ${caps}`}>
+              <h4 className={`text-micro font-bold text-teal ${caps}`}>
                 {t.mainGains}
               </h4>
-              <ul className="mt-2 space-y-1.5 text-sm">
+              <ul className="mt-2 space-y-1.5 text-body">
                 {content.gains.map((g) => (
                   <li key={g.en} className="flex gap-2">
                     <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
@@ -271,10 +271,10 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               </ul>
             </div>
             <div>
-              <h4 className={`text-xs font-bold text-rust ${caps}`}>
+              <h4 className={`text-micro font-bold text-rust ${caps}`}>
                 {t.mainLosses}
               </h4>
-              <ul className="mt-2 space-y-1.5 text-sm">
+              <ul className="mt-2 space-y-1.5 text-body">
                 {content.losses.map((l) => (
                   <li key={l.en} className="flex gap-2">
                     <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rust" />
@@ -302,23 +302,23 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               description={CHANGE_CHARTS.ngo_international.description[locale]}
             />
             <figure className="card">
-              <figcaption className="text-sm font-semibold text-navy">
+              <figcaption className="text-body font-semibold text-navy">
                 {govShift.heading[locale]}
               </figcaption>
               <div className="mt-3 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
-                <div className="rounded-md border border-y2024 p-3 text-sm sm:flex-1">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2024">2024</p>
+                <div className="rounded-md border border-y2024 p-3 text-body sm:flex-1">
+                  <p className="text-micro font-bold uppercase tracking-wide text-y2024">2024</p>
                   <p className="mt-1">{govShift.before[locale]}</p>
                 </div>
-                <span aria-hidden className="self-center text-xl text-text-secondary">
+                <span aria-hidden className="self-center text-h3 text-text-secondary">
                   {t.arrow}
                 </span>
-                <div className="rounded-md border border-y2026 p-3 text-sm sm:flex-[2]">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2026">2026</p>
+                <div className="rounded-md border border-y2026 p-3 text-body sm:flex-[2]">
+                  <p className="text-micro font-bold uppercase tracking-wide text-y2026">2026</p>
                   <p className="mt-1">{govShift.afterIntro[locale]}</p>
                   <ul className="mt-2 flex flex-wrap gap-1.5">
                     {govShift.chips.map((c) => (
-                      <li key={c.en} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-xs font-medium text-teal">
+                      <li key={c.en} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-micro font-medium text-teal">
                         {c[locale]}
                       </li>
                     ))}
@@ -350,23 +350,23 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         ) : null}
 
         {content.coreFinding ? (
-          <p className="rounded-md border-s-4 border-navy bg-white p-5 text-sm font-medium leading-relaxed">
+          <p className="rounded-md border-s-4 border-navy bg-white p-5 text-body font-medium leading-relaxed">
             {content.coreFinding[locale]}
           </p>
         ) : null}
 
         <section className="grid gap-4 lg:grid-cols-2">
           <div className="card">
-            <h3 className="text-sm font-semibold text-navy">
+            <h3 className="text-body font-semibold text-navy">
               {t.mandateVsAction}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed">{content.mandateVsAction[locale]}</p>
+            <p className="mt-2 text-body leading-relaxed">{content.mandateVsAction[locale]}</p>
           </div>
           <div className="card">
-            <h3 className="text-sm font-semibold text-navy">
+            <h3 className="text-body font-semibold text-navy">
               {t.chainRoles}
             </h3>
-            <dl className="mt-2 space-y-2.5 text-sm">
+            <dl className="mt-2 space-y-2.5 text-body">
               <div>
                 <dt className="font-semibold text-text-secondary">{t.finance}</dt>
                 <dd className="leading-relaxed">{content.financeRole[locale]}</dd>

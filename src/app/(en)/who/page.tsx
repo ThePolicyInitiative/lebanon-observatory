@@ -127,8 +127,8 @@ export default function WhoPage() {
         </div>
       </section>
 
-      <section id="no-national-layer" className="card mt-8 max-w-3xl text-sm leading-relaxed">
-        <h2 className="text-xl font-semibold text-navy">
+      <section id="no-national-layer" className="card mt-8 max-w-3xl text-body leading-relaxed">
+        <h2 className="text-h2 font-semibold text-navy">
           Why there is no national damage layer
         </h2>
         <p className="mt-2 text-text">

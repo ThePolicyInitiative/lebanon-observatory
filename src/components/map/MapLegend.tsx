@@ -32,7 +32,7 @@ export default function MapLegend({
   const t = T[locale];
   return (
     <div
-      className={`rounded-md border border-border bg-white/95 p-3 text-[11px] leading-snug ${className}`}
+      className={`rounded-md border border-border bg-white/95 p-3 text-micro leading-snug ${className}`}
     >
       <p className="font-semibold text-navy">{t.heading}</p>
       <p className="mt-1.5 text-text-secondary">{t.pins}</p>

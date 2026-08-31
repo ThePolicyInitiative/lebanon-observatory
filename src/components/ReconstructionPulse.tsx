@@ -102,12 +102,12 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
       >
         <h2
           id="recon-pulse"
-          className="text-xl font-semibold text-navy sm:text-2xl"
+          className="text-h2 font-semibold text-navy"
         >
           {t.title}
         </h2>
         <p
-          className={`mt-2 max-w-3xl text-sm text-text-secondary ${
+          className={`mt-2 max-w-3xl text-body text-text-secondary ${
             ar ? "leading-loose" : "leading-relaxed"
           }`}
         >
@@ -117,7 +117,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Traced presence on the physical chain */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-text-secondary ${
+              className={`text-meta font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
@@ -126,7 +126,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
             <ul className="mt-3 space-y-3">
               {chainTotals.map((c) => (
                 <li key={c.stage}>
-                  <p className="text-[13px] font-medium text-text">
+                  <p className="text-meta font-medium text-text">
                     {c.stage}
                   </p>
                   {[
@@ -134,7 +134,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                     { year: "2026", v: c.y26, color: YEAR_COLORS.y2026 },
                   ].map((row) => (
                     <div key={row.year} className="mt-1 flex items-center gap-2">
-                      <span className="w-9 text-[11px] tabular-nums text-text-secondary">
+                      <span className="w-9 text-micro tabular-nums text-text-secondary">
                         {row.year}
                       </span>
                       <span
@@ -145,7 +145,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                           background: row.color,
                         }}
                       />
-                      <span className="text-[12px] font-semibold tabular-nums">{row.v}</span>
+                      <span className="text-meta font-semibold tabular-nums">{row.v}</span>
                     </div>
                   ))}
                 </li>
@@ -156,7 +156,7 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Status honesty */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-text-secondary ${
+              className={`text-meta font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
@@ -166,13 +166,13 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
               {statusMix.map((s) => (
                 <li key={s.status} className="flex items-center justify-between gap-2">
                   <StateChip status={s.status} locale={locale} />
-                  <span className="tabular-nums text-sm font-semibold text-navy">
+                  <span className="tabular-nums text-body font-semibold text-navy">
                     {s.count}
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-xs leading-relaxed text-text-secondary">
+            <p className="mt-3 text-meta leading-relaxed text-text-secondary">
               {t.statusHonesty}
             </p>
           </div>
@@ -180,19 +180,19 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
           {/* Procurement pipeline */}
           <div>
             <h3
-              className={`text-[13px] font-bold text-text-secondary ${
+              className={`text-meta font-bold text-text-secondary ${
                 ar ? "" : "uppercase tracking-wide"
               }`}
             >
               {t.pipeline}
             </h3>
-            <p className="mt-3 text-3xl font-bold tabular-nums tracking-tight text-navy">
+            <p className="mt-3 text-h1 font-bold tabular-nums tracking-tight text-navy">
               {packages.length}
-              <span className="ms-2 align-middle text-sm font-medium text-text-secondary">
+              <span className="ms-2 align-middle text-meta font-medium text-text-secondary">
                 {t.packages}
               </span>
             </p>
-            <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-text-secondary">
+            <ul className="mt-2 space-y-1.5 text-meta leading-relaxed text-text-secondary">
               {packages.slice(0, 3).map((p) => {
                 const label = ar ? p.labelAr ?? p.label : p.label;
                 const status = ar
@@ -208,10 +208,10 @@ export default function ReconstructionPulse({ locale = "en" }: { locale?: Locale
                 );
               })}
             </ul>
-            <p className="mt-3 rounded-sm bg-[#F7E9E5] px-2.5 py-1.5 text-xs font-medium text-rust">
+            <p className="mt-3 rounded-sm bg-[#F7E9E5] px-2.5 py-1.5 text-meta font-medium text-rust">
               {t.zeroContracts}
             </p>
-            <div className="mt-4 flex flex-wrap gap-3 text-sm">
+            <div className="mt-4 flex flex-wrap gap-3 text-body">
               <Link
                 href={`${base}/money`}
                 className="font-medium text-blue underline-offset-2 hover:underline"

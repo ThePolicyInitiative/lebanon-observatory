@@ -65,7 +65,7 @@ export default function YearControl({
               id={`${idPrefix}-${p.id}`}
               {...roving.itemProps(i)}
               onClick={() => onChange(p.id)}
-              className={`min-h-11 px-4 text-sm transition-colors duration-150 ${
+              className={`min-h-11 px-4 text-body transition-colors duration-150 ${
                 active
                   ? "font-semibold text-white"
                   : "text-text-secondary hover:text-navy"
@@ -82,7 +82,7 @@ export default function YearControl({
         })}
       </div>
       {withChange ? (
-        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-text">
+        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-body text-text">
           <input
             type="checkbox"
             checked={mode === "change"}

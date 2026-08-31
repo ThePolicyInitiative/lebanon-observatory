@@ -60,14 +60,14 @@ function Bars({
     <ul className="mt-2 space-y-1.5">
       {items.map((i) => (
         <li key={i.key}>
-          <p className="flex items-baseline justify-between gap-2 text-[11.5px]">
+          <p className="flex items-baseline justify-between gap-2 text-micro">
             <span className="min-w-0 truncate text-text" title={i.label}>
               {i.label}
             </span>
             <span className="shrink-0 tabular-nums text-text-secondary">
               {i.value}
               {total > 0 ? (
-                <span className="ms-1 text-[10px]">
+                <span className="ms-1 text-micro">
                   {Math.round((i.value / total) * 100)}%
                 </span>
               ) : null}
@@ -124,23 +124,23 @@ export default function ResultProfile({
   return (
     <figure className="card">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-xl font-semibold text-navy">
+        <h2 className="text-h2 font-semibold text-navy">
           {t.title}
         </h2>
-        <span className="text-[11px] tabular-nums text-text-secondary">
+        <span className="text-micro tabular-nums text-text-secondary">
           {t.rows(total)}
         </span>
       </figcaption>
-      <p className="mt-1 text-[11.5px] leading-relaxed text-text-secondary">
+      <p className="mt-1 text-micro leading-relaxed text-text-secondary">
         {t.sub}
       </p>
 
       {total === 0 ? (
-        <p className="mt-3 text-[12.5px] text-text-secondary">{t.empty}</p>
+        <p className="mt-3 text-meta text-text-secondary">{t.empty}</p>
       ) : (
         <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
+            <h3 className="text-micro font-bold uppercase tracking-wide text-text-secondary">
               {t.byYear}
             </h3>
             <Bars
@@ -155,7 +155,7 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
+            <h3 className="text-micro font-bold uppercase tracking-wide text-text-secondary">
               {t.byLayer}
             </h3>
             <Bars
@@ -170,14 +170,14 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
+            <h3 className="text-micro font-bold uppercase tracking-wide text-text-secondary">
               {t.byStage}
             </h3>
             <ul className="mt-2 space-y-1">
               {shorts.map((label, i) => {
                 const v = byStage.get(i + 1) ?? 0;
                 return (
-                  <li key={label} className="flex items-center gap-1.5 text-[10.5px]">
+                  <li key={label} className="flex items-center gap-1.5 text-micro">
                     <span
                       className="w-16 shrink-0 truncate text-text-secondary"
                       title={label}
@@ -199,7 +199,7 @@ export default function ResultProfile({
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-wide text-text-secondary">
+            <h3 className="text-micro font-bold uppercase tracking-wide text-text-secondary">
               {t.byStatus}
             </h3>
             <Bars total={total} items={statusItems} />

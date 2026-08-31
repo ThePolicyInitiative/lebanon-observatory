@@ -108,10 +108,10 @@ export default function ActorRegister({ locale = "en" }: { locale?: Locale } = {
   const h = HEAD[locale];
   return (
     <section aria-labelledby="actor-register" className="card">
-      <h2 id="actor-register" className="text-xl font-semibold text-navy">
+      <h2 id="actor-register" className="text-h2 font-semibold text-navy">
         {h.title}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
         {h.lede}
       </p>
       <RegisterList allGroups={ALL_GROUPS[locale]} locale={locale} />

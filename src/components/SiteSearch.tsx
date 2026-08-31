@@ -177,7 +177,7 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
       <div role="search" className="max-w-2xl">
         <label
           htmlFor="site-q"
-          className="block text-[13px] font-semibold text-navy"
+          className="block text-meta font-semibold text-navy"
         >
           {t.label}
         </label>
@@ -189,9 +189,9 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
           placeholder={t.placeholder}
           autoComplete="off"
           spellCheck={false}
-          className="mt-1.5 min-h-11 w-full rounded-md border border-border bg-white px-3 text-sm text-text"
+          className="mt-1.5 min-h-11 w-full rounded-md border border-border bg-white px-3 text-body text-text"
         />
-        <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">
+        <p className="mt-2 text-meta leading-relaxed text-text-secondary">
           {t.hint}
         </p>
       </div>
@@ -203,7 +203,7 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
 
       <div ref={resultsRef} className="mt-6">
         {failed ? (
-          <p className="note-caution text-sm leading-relaxed text-text-secondary">
+          <p className="note-caution text-body leading-relaxed text-text-secondary">
             {t.failed}
           </p>
         ) : index === null ? (
@@ -220,14 +220,14 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
         ) : !typed ? (
           /* Empty state: what a query can reach, and how much of each. */
           <div className="card">
-            <p className="text-[13px] font-semibold text-navy">
+            <p className="text-meta font-semibold text-navy">
               {t.scope}
             </p>
             <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
               {KIND_ORDER.filter((kind) => (index.counts[kind] ?? 0) > 0).map((kind) => (
                 <li
                   key={kind}
-                  className="text-[12.5px] text-text-secondary"
+                  className="text-meta text-text-secondary"
                 >
                   {kindLabel(kind, locale)}{" "}
                   <span className="font-semibold tabular-nums text-navy">
@@ -238,14 +238,14 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
             </ul>
           </div>
         ) : results.length === 0 ? (
-          <p className="text-sm leading-relaxed text-text-secondary">
+          <p className="text-body leading-relaxed text-text-secondary">
             {t.none}
           </p>
         ) : (
           <>
             <p
               aria-hidden
-              className="text-[12.5px] font-semibold text-text-secondary"
+              className="text-meta font-semibold text-text-secondary"
             >
               {t.count(results.length)}
             </p>
@@ -257,10 +257,10 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
                   <section key={group.kind} aria-labelledby={`hits-${group.kind}`}>
                     <h2
                       id={`hits-${group.kind}`}
-                      className="flex flex-wrap items-baseline gap-x-2 text-[13px] font-semibold text-navy"
+                      className="flex flex-wrap items-baseline gap-x-2 text-meta font-semibold text-navy"
                     >
                       {kindLabel(group.kind, locale)}
-                      <span className="text-[12px] font-normal tabular-nums text-text-secondary">
+                      <span className="text-meta font-normal tabular-nums text-text-secondary">
                         {group.items.length}
                       </span>
                     </h2>
@@ -278,11 +278,11 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
                                  and the reason the override exists. */
                               className="card card-interactive block p-2.5 ps-3"
                             >
-                              <span className="block text-sm font-medium text-navy">
+                              <span className="block text-body font-medium text-navy">
                                 {labelOf(item, locale)}
                               </span>
                               {context ? (
-                                <span className="mt-0.5 block text-[12.5px] leading-relaxed text-text-secondary">
+                                <span className="mt-0.5 block text-meta leading-relaxed text-text-secondary">
                                   {context}
                                 </span>
                               ) : null}
@@ -304,7 +304,7 @@ export default function SiteSearch({ locale = "en" }: { locale?: Locale } = {}) 
                               : [...openedKinds, group.kind],
                           })
                         }
-                        className="mt-2 inline-flex min-h-9 items-center rounded-md border border-border bg-white px-2.5 text-[12px] font-medium text-navy transition-colors hover:border-navy"
+                        className="mt-2 inline-flex min-h-9 items-center rounded-md border border-border bg-white px-2.5 text-meta font-medium text-navy transition-colors hover:border-navy"
                       >
                         {open ? t.fewer : t.more(group.items.length - PER_GROUP)}
                       </button>

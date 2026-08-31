@@ -53,10 +53,10 @@ export default function DamagePage() {
 
       {/* Four 2024 tracks */}
       <section aria-labelledby="tracks-2024" className="mt-7">
-        <h2 id="tracks-2024" className="text-xl font-semibold text-navy">
+        <h2 id="tracks-2024" className="text-h2 font-semibold text-navy">
           2024: four non-additive tracks bracket the destruction
         </h2>
-        <p className="mt-2 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body text-text-secondary">
           The spread between the tracks reflects method (satellite radar
           versus optical imagery versus municipal declaration), scope (four
           versus six governorates), unit (buildings versus dwellings) and
@@ -69,22 +69,22 @@ export default function DamagePage() {
               className="flex flex-col card"
             >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-semibold leading-snug text-navy">
+                <h3 className="text-body font-semibold leading-snug text-navy">
                   {t.label}
                 </h3>
                 <span
-                  className={`shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${COMPARABILITY_BADGE[t.comparability].cls}`}
+                  className={`shrink-0 rounded-sm px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide ${COMPARABILITY_BADGE[t.comparability].cls}`}
                 >
                   {COMPARABILITY_BADGE[t.comparability].label}
                 </span>
               </div>
-              <p className="mt-2 text-lg font-semibold tabular-nums text-navy">
+              <p className="mt-2 text-h3 font-semibold tabular-nums text-navy">
                 {t.headline}
               </p>
-              <p className="mt-2 flex-1 text-[13px] leading-relaxed text-text">
+              <p className="mt-2 flex-1 text-meta leading-relaxed text-text">
                 {t.detail}
               </p>
-              <dl className="mt-3 grid grid-cols-3 gap-2 border-t border-dashed border-border pt-2.5 text-[11px] text-text-secondary">
+              <dl className="mt-3 grid grid-cols-3 gap-2 border-t border-dashed border-border pt-2.5 text-micro text-text-secondary">
                 <div>
                   <dt className="font-semibold">Method</dt>
                   <dd>{t.method}</dd>
@@ -102,13 +102,13 @@ export default function DamagePage() {
           ))}
         </div>
         <div className="mt-4 card">
-          <h3 className="text-sm font-semibold text-navy">
+          <h3 className="text-body font-semibold text-navy">
             2024 debris
           </h3>
-          <p className="mt-1 text-lg font-semibold tabular-nums text-navy">
+          <p className="mt-1 text-h3 font-semibold tabular-nums text-navy">
             {destruction.debris2024.headline}
           </p>
-          <p className="mt-1.5 max-w-3xl text-[13px] leading-relaxed">
+          <p className="mt-1.5 max-w-3xl text-meta leading-relaxed">
             {destruction.debris2024.detail}
           </p>
         </div>
@@ -124,10 +124,10 @@ export default function DamagePage() {
 
       {/* Sector chart */}
       <section aria-labelledby="sector-chart" className="mt-8">
-        <h2 id="sector-chart" className="text-xl font-semibold text-navy">
+        <h2 id="sector-chart" className="text-h2 font-semibold text-navy">
           Sector damage, losses and needs
         </h2>
-        <p className="mt-2 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body text-text-secondary">
           The structural signature is the same everywhere: damage that public
           budgets must repair is the smaller number; losses that only economic
           recovery can restore are the larger one.
@@ -139,10 +139,10 @@ export default function DamagePage() {
 
       {/* 2026 zones */}
       <section aria-labelledby="zones-2026" className="mt-8">
-        <h2 id="zones-2026" className="text-xl font-semibold text-navy">
+        <h2 id="zones-2026" className="text-h2 font-semibold text-navy">
           2026: two bounded assessment zones - not a national picture
         </h2>
-        <p className="mt-2 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body text-text-secondary">
           Within their zones, the 2026 numbers describe destruction
           approaching 2024&apos;s southern intensity in one-third the time.
           The two products use different confirmation methods and must not
@@ -155,20 +155,20 @@ export default function DamagePage() {
               className="flex flex-col rounded-md border border-border bg-white"
             >
               <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-bg px-4 py-2.5">
-                <h3 className="text-sm font-semibold text-navy">
+                <h3 className="text-body font-semibold text-navy">
                   {z.label}
                 </h3>
                 <div className="flex gap-1.5">
-                  <span className="rounded-sm bg-[#E8F1F3] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-teal">
+                  <span className="rounded-sm bg-[#E8F1F3] px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide text-teal">
                     {z.checkedBy}
                   </span>
-                  <span className={`rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${COMPARABILITY_BADGE[z.comparability].cls}`}>
+                  <span className={`rounded-sm px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide ${COMPARABILITY_BADGE[z.comparability].cls}`}>
                     {COMPARABILITY_BADGE[z.comparability].label}
                   </span>
                 </div>
               </header>
-              <div className="flex-1 space-y-2.5 p-4 text-[13px] leading-relaxed">
-                <p className="text-lg font-semibold tabular-nums text-navy">
+              <div className="flex-1 space-y-2.5 p-4 text-meta leading-relaxed">
+                <p className="text-h3 font-semibold tabular-nums text-navy">
                   {z.assessedDamage}
                 </p>
                 <p>
@@ -183,23 +183,23 @@ export default function DamagePage() {
                     the card carries the point they make rather than the
                     numbers a second time. */}
                 {z.worstCadasters.length > 0 ? (
-                  <p className="text-xs text-text-secondary">
+                  <p className="text-meta text-text-secondary">
                     Its worst-hit cadasters, charted below, are the same border
                     communities levelled in 2024 - repetition converts
                     reconstruction from a stock problem (rebuild X) into a flow
                     problem (rebuild under recurrence risk).
                   </p>
                 ) : null}
-                <p className="text-xs text-text-secondary">
+                <p className="text-meta text-text-secondary">
                   <span className="font-semibold">Method: </span>
                   {z.method}
                 </p>
-                <p className="text-xs text-text-secondary">
+                <p className="text-meta text-text-secondary">
                   <span className="font-semibold">Comparability: </span>
                   {z.comparabilityNote}
                 </p>
               </div>
-              <p className="border-t border-dashed border-border px-4 py-2.5 text-[11px] text-text-secondary">
+              <p className="border-t border-dashed border-border px-4 py-2.5 text-micro text-text-secondary">
                 Published {fmtDate(z.published)} (UNDP &amp; CNRS-L)
               </p>
             </article>
@@ -226,7 +226,7 @@ export default function DamagePage() {
           {destruction.zones2026Notes.map((n) => (
             <li
               key={n.slice(0, 30)}
-              className="border-l-2 border-amber bg-white p-3 pl-4 text-[13px] leading-relaxed"
+              className="border-l-2 border-amber bg-white p-3 pl-4 text-meta leading-relaxed"
             >
               {n}
             </li>
@@ -234,8 +234,8 @@ export default function DamagePage() {
         </ul>
 
         <div className="mt-4 rounded-md border border-dashed border-border bg-white p-4">
-          <p className="text-[13px] leading-relaxed text-text-secondary">
-            <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+          <p className="text-meta leading-relaxed text-text-secondary">
+            <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide">
               Context only
             </span>{" "}
             {destruction.presidentialEstimate.detail}
@@ -258,7 +258,7 @@ export default function DamagePage() {
         <ServiceOperators />
       </div>
 
-      <p className="mt-8 text-sm">
+      <p className="mt-8 text-body">
         <Link href="/who" className="font-medium text-blue underline-offset-2 hover:underline">
           See who was traced acting, and where →
         </Link>{" "}

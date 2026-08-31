@@ -124,7 +124,7 @@ export default function CoverageHistory({
       key={`${label}-${to}`}
       href={to}
       aria-current={on ? "true" : undefined}
-      className={`inline-flex min-h-8 items-center rounded-md border px-2.5 text-xs transition-colors ${
+      className={`inline-flex min-h-8 items-center rounded-md border px-2.5 text-micro transition-colors ${
         on
           ? "border-navy bg-navy font-semibold text-white"
           : "border-border bg-white text-text-secondary hover:text-navy"
@@ -139,16 +139,16 @@ export default function CoverageHistory({
   // the section itself and the block has no accessible name.
   return (
     <section aria-labelledby="coverage-history-heading" id="coverage-history" className="mt-10 scroll-mt-[calc(var(--header-h)+1rem)]">
-      <h2 id="coverage-history-heading" className="text-xl font-semibold text-navy">
+      <h2 id="coverage-history-heading" className="text-h2 font-semibold text-navy">
         {t.heading}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
         {t.lede}
       </p>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-semibold text-text-secondary">
+          <span className="text-micro font-semibold text-text-secondary">
             {t.filterYear}
           </span>
           {chip(t.all, activeYear === null, href(base, null, activeKind))}
@@ -157,7 +157,7 @@ export default function CoverageHistory({
           )}
         </span>
         <span className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-semibold text-text-secondary">
+          <span className="text-micro font-semibold text-text-secondary">
             {t.filterKind}
           </span>
           {chip(t.all, activeKind === null, href(base, activeYear, null))}
@@ -172,19 +172,19 @@ export default function CoverageHistory({
         {activeYear || activeKind ? (
           <a
             href={href(base, null, null)}
-            className="text-xs font-medium text-blue underline-offset-2 hover:underline"
+            className="text-meta font-medium text-blue underline-offset-2 hover:underline"
           >
             {t.clear}
           </a>
         ) : null}
       </div>
 
-      <p className="mt-3 text-xs text-text-secondary">
+      <p className="mt-3 text-meta text-text-secondary">
         {t.showing(shown.length, ITEMS.length)}
       </p>
 
       {shown.length === 0 ? (
-        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-text-secondary">
+        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-body text-text-secondary">
           {t.none}
         </p>
       ) : (
@@ -199,7 +199,7 @@ export default function CoverageHistory({
                 open={yi === 0 || activeYear !== null || activeKind !== null}
                 className="card"
               >
-                <summary className="cursor-pointer list-none text-sm font-semibold text-navy [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer list-none text-body font-semibold text-navy [&::-webkit-details-marker]:hidden">
                   {t.yearHeading(y, inYear.length)}
                 </summary>
                 <ul className="mt-3 space-y-3">
@@ -209,7 +209,7 @@ export default function CoverageHistory({
                       dir={item.language === "ar" ? "rtl" : "ltr"}
                       className="border-s-2 border-border ps-3"
                     >
-                      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-secondary">
+                      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-micro text-text-secondary">
                         <span className="tabular-nums">
                           {item.date ? fmtDate(item.date, locale) : t.undated}
                         </span>
@@ -221,7 +221,7 @@ export default function CoverageHistory({
                           {t.kinds[item.kind] ?? item.kind}
                         </span>
                       </p>
-                      <h4 className="mt-1 text-[13.5px] font-semibold leading-snug text-navy">
+                      <h4 className="mt-1 text-meta font-semibold leading-snug text-navy">
                         <a
                           href={item.url}
                           target="_blank"
@@ -232,7 +232,7 @@ export default function CoverageHistory({
                           <span className="sr-only">{t.opens(item.publisher)}</span>
                         </a>
                       </h4>
-                      <p className="mt-1 text-xs leading-relaxed text-text">
+                      <p className="mt-1 text-meta leading-relaxed text-text">
                         {locale === "ar" ? (item.focusAr ?? item.focus) : item.focus}
                       </p>
                     </li>

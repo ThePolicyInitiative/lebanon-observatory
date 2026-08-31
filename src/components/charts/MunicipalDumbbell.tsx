@@ -174,7 +174,7 @@ export default function MunicipalDumbbell({ locale = "en" }: { locale?: Locale }
           }}
         />
       </ChartFrame>
-      <p className="mt-3 rounded-md border-s-4 border-rust bg-white p-4 text-sm font-medium leading-relaxed text-text">
+      <p className="mt-3 rounded-md border-s-4 border-rust bg-white p-4 text-body font-medium leading-relaxed text-text">
         {t.note}
       </p>
     </div>

@@ -10,7 +10,7 @@
    * their top edge clipped. The header's min-height is set from this
    * same value, so the two cannot drift apart.
    */
-  --header-h: 65px;
+  --header-h: 57px;
 
   /*
    * THE STICKY BUDGET. Every sticky element must cap its own height, and
@@ -217,19 +217,60 @@
    * cell, `body` running text, `lead` an opening passage. Sizes can then
    * move without every call site being wrong about what it asked for.
    */
+  /*
+   * Tuned one step down for density, which is the whole reason the 646
+   * call sites were moved onto these tokens first: the scale is eight
+   * lines, and before the migration it was eight lines nothing read.
+   *
+   * The ladder keeps its shape rather than being flattened - every ratio
+   * lands within 0.03 of what it was - so this reads as the same
+   * typography set tighter, not as a different one. `micro` is the floor
+   * and does not move: it is already the smallest size the Arabic face
+   * survives, and it is the step the [dir="rtl"] block below lifts.
+   *
+   * One real cost, stated rather than hidden: micro-to-meta was a 2px
+   * step and is now 1px. The scale already had a 1px step between meta
+   * and body, so this is not a new kind of closeness, but it is one more
+   * place where two steps are told apart by their job rather than by
+   * their size.
+   */
   --text-micro: 0.6875rem; /* 11px - chips, axis ticks, footnotes */
-  --text-meta: 0.8125rem; /* 13px - captions, dense table cells */
-  --text-body: 0.875rem; /* 14px - running text */
-  --text-lead: 1rem; /* 16px - opening passages */
-  --text-h3: 1.125rem; /* 18px */
-  --text-h2: 1.375rem; /* 22px */
-  --text-h1: 1.75rem; /* 28px */
-  --text-display: 2.25rem; /* 36px - the home hero only */
+  --text-meta: 0.75rem; /* 12px - captions, dense table cells */
+  --text-body: 0.8125rem; /* 13px - running text */
+  --text-lead: 0.9375rem; /* 15px - opening passages */
+  --text-h3: 1.0625rem; /* 17px */
+  --text-h2: 1.25rem; /* 20px */
+  --text-h1: 1.5625rem; /* 25px */
+  --text-display: 2rem; /* 32px - the home hero only */
 
   /* One elevation ramp, used everywhere. */
   --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);
   --shadow-lift: 0 4px 16px rgba(16, 42, 72, 0.1);
   --radius-card: 10px;
+
+  /*
+   * Density, on the same principle as the type scale above: named for the
+   * job, so the size can move without every call site being wrong about
+   * what it asked for.
+   *
+   * These were literals scattered across the pages - 14px of card padding
+   * written once in this file but never named, a `px-4 sm:px-6` gutter
+   * repeated in fifteen components, a `mt-7` module gap in fifty-four
+   * places - which is the same problem the colours and the type had. A
+   * dashboard is tuned by moving its density a step at a time and looking,
+   * and that is only possible if there is one place to move it from.
+   *
+   * `--control-h` is the exception to the tuning: 44px is the pointer
+   * target size, not a spacing choice, so it is named here to keep it out
+   * of reach rather than to make it adjustable. Tightening the header
+   * means tightening the padding AROUND the target, never the target.
+   */
+  --card-pad: 0.75rem; /* 12px */
+  --gutter: 1rem; /* 16px - page edge on a phone */
+  --gutter-wide: 1.5rem; /* 24px - from sm up */
+  --stack: 1.5rem; /* 24px - between modules within a section */
+  --stack-section: 2.5rem; /* 40px - between sections */
+  --control-h: 2.75rem; /* 44px - pointer target, not a density knob */
 }
 
 /*
@@ -247,7 +288,7 @@
  */
 [dir="rtl"] {
   --text-micro: 0.75rem; /* 12px */
-  --text-meta: 0.875rem; /* 14px */
+  --text-meta: 0.8125rem; /* 13px */
 }
 
 /*
@@ -299,6 +340,18 @@
   --text-h2: var(--text-h2);
   --text-h1: var(--text-h1);
   --text-display: var(--text-display);
+
+  /*
+   * Density, exposed the same way, so a call site says `p-card` or
+   * `gap-stack` rather than picking a number off Tailwind's own scale and
+   * hoping it matches the one beside it.
+   */
+  --spacing-card: var(--card-pad);
+  --spacing-gutter: var(--gutter);
+  --spacing-gutter-wide: var(--gutter-wide);
+  --spacing-stack: var(--stack);
+  --spacing-stack-section: var(--stack-section);
+  --spacing-control: var(--control-h);
 
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
@@ -525,9 +578,13 @@ p {
    * sm:p-4, p-4, p-4 sm:p-5, p-5 sm:p-6 and one p-2.5 ps-3. Cards sit beside
    * each other on /finance and /actors, so the difference showed.
    *
-   * 0.875rem because that is what the site already does: 64 of the 72 used
-   * 14px on a phone and 46 used it everywhere. This is the existing value
-   * written down once, not a new one imposed.
+   * It was 0.875rem because that is what the site already did: 64 of the
+   * 72 used 14px on a phone and 46 used it everywhere - the existing value
+   * written down once, not a new one imposed. It reads --card-pad now, and
+   * that token is a step tighter, because a card on this site is a figure
+   * with a caption rather than an article: the padding was set to keep
+   * prose off an edge, and what actually sits in these is a number, a
+   * label and a chart.
    *
    * A call site that genuinely needs different padding still overrides it,
    * because these classes sit in @layer components and a utility beats
@@ -539,7 +596,7 @@ p {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
-    padding: 0.875rem;
+    padding: var(--card-pad);
   }
 
   .card-interactive {

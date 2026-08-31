@@ -216,7 +216,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         <div className="min-w-56 flex-1 sm:max-w-xs">
           <label
             htmlFor="register-search"
-            className="block text-[11px] font-semibold text-text-secondary"
+            className="block text-micro font-semibold text-text-secondary"
           >
             {t.search}
           </label>
@@ -226,7 +226,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm"
+            className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-body"
           />
         </div>
         <div role="radiogroup" aria-label={t.layerFilter} className="flex flex-wrap gap-1.5">
@@ -239,7 +239,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                 aria-checked={layer === l.id}
                 {...layerRoving.itemProps(i)}
                 onClick={() => setLayer(l.id as "all" | ActorLayer)}
-                className={`inline-flex min-h-9 items-center gap-1.5 rounded-md border px-2.5 text-xs font-medium transition-colors ${
+                className={`inline-flex min-h-9 items-center gap-1.5 rounded-md border px-2.5 text-micro font-medium transition-colors ${
                   layer === l.id
                     ? "border-navy bg-navy text-white"
                     : "border-border bg-white text-text-secondary hover:text-navy"
@@ -264,7 +264,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
               aria-checked={year === y}
               {...yearRoving.itemProps(i)}
               onClick={() => setYear(y)}
-              className={`min-h-9 px-3 text-xs font-medium ${
+              className={`min-h-9 px-3 text-micro font-medium ${
                 year === y
                   ? "bg-navy text-white"
                   : "text-text-secondary"
@@ -276,7 +276,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         </div>
       </div>
 
-      <p className="mt-3 text-xs text-text-secondary">
+      <p className="mt-3 text-meta text-text-secondary">
         {t.showing(groups.length, shownRecords)[0]}
         <strong className="text-navy">{groups.length}</strong>
         {t.showing(groups.length, shownRecords)[2]}
@@ -307,15 +307,15 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                   style={{ background: meta.color }}
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-navy">
+                  <span className="block truncate text-body font-semibold text-navy">
                     {g.base}
                   </span>
-                  <span className="block truncate text-[11px] text-text-secondary">
+                  <span className="block truncate text-micro text-text-secondary">
                     {g.people ? `${g.people} · ` : ""}
                     {g.subtype}
                   </span>
                 </span>
-                <span className="hidden shrink-0 gap-1.5 text-[11px] tabular-nums sm:flex">
+                <span className="hidden shrink-0 gap-1.5 text-micro tabular-nums sm:flex">
                   {g.y24 > 0 && year !== 2026 ? (
                     <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold text-y2024-text">
                       2024 × {year === "both" ? g.y24 : g.records.length}
@@ -339,7 +339,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                   {g.records.map((r) => (
                     <article key={r.id} className="panel-sunken p-3">
                       <p
-                        className={`flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold ${
+                        className={`flex flex-wrap items-center gap-1.5 text-micro font-semibold ${
                           locale === "ar" ? "" : "uppercase tracking-wide"
                         }`}
                       >
@@ -365,11 +365,11 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                           </span>
                         ))}
                       </p>
-                      <p className="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-text">
+                      <p className="mt-2 whitespace-pre-line text-meta leading-relaxed text-text">
                         {r.action}
                       </p>
                       {r.locationNames.length > 0 ? (
-                        <p className="mt-2 text-[11px] text-text-secondary">
+                        <p className="mt-2 text-micro text-text-secondary">
                           <span className="font-semibold">{t.where}</span>{" "}
                           {r.locationNames.join("; ")}{" "}
                           <Link
@@ -389,7 +389,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
         })}
       </ul>
       {groups.length === 0 ? (
-        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-sm text-text-secondary">
+        <p className="mt-4 rounded-md bg-[#F6F8FA] px-3 py-4 text-body text-text-secondary">
           {t.none}
         </p>
       ) : null}

@@ -77,10 +77,10 @@ export default function Page() {
       <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CONCEPTS.map((c) => (
           <li key={c.n} className="card">
-            <p className="text-xs font-bold uppercase tracking-widest text-teal">
+            <p className="text-micro font-bold uppercase tracking-widest text-teal">
               {c.n}. {c.label}
             </p>
-            <p className="mt-1.5 text-sm leading-relaxed">{c.text}</p>
+            <p className="mt-1.5 text-body leading-relaxed">{c.text}</p>
           </li>
         ))}
       </ol>
@@ -106,17 +106,17 @@ export default function Page() {
       <section aria-labelledby="ar-leap" className="mt-7 card">
         <h2
           id="ar-leap"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           داخل الـ250 مليون دولار الأولى
         </h2>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           مخصّصات التقييم. أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد -
           فالأشغال تحتاج تحضيراً أولاً - وهو ما يترك فجوة الـ750 مليون دولار في
           الإطار للشركاء.
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="min-w-full border-collapse text-sm tabular-nums">
+          <table className="min-w-full border-collapse text-meta tabular-nums">
             <caption className="sr-only">مخصّصات مكوّنات LEAP</caption>
             <thead>
               <tr>
@@ -131,7 +131,7 @@ export default function Page() {
                   <td className="border-b border-border px-2 py-1.5">
                     {c.labelAr}
                     {"noteAr" in c && c.noteAr ? (
-                      <span className="block text-[11px] text-text-secondary">{c.noteAr}</span>
+                      <span className="block text-micro text-text-secondary">{c.noteAr}</span>
                     ) : null}
                   </td>
                   <td className="border-b border-border px-2 py-1.5 text-end">
@@ -149,11 +149,11 @@ export default function Page() {
       <section aria-labelledby="ar-procurement" className="mt-7">
         <h2
           id="ar-procurement"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           حزم الشراء وحالتها الفعلية
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-1 max-w-3xl text-body text-text-secondary">
           الحالات كما كانت معروضة على بوابة الشراء في مجلس الإنماء والإعمار عند
           المراجعة في 17 تموز 2026. التمديدات وفترات التقييم أمر عادي بقواعد البنك
           الدولي، وغير عادي أمام الاحتياج اللبناني. وأحدّ إشارة هنا انعكاسية: جهة
@@ -162,10 +162,10 @@ export default function Page() {
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {finance.procurementPackages.map((p) => (
             <article key={p.id} className="card">
-              <h3 className="text-sm font-semibold leading-snug text-navy">
+              <h3 className="text-body font-semibold leading-snug text-navy">
                 {p.labelAr}
               </h3>
-              <dl className="mt-2 space-y-1 text-xs text-text-secondary">
+              <dl className="mt-2 space-y-1 text-meta text-text-secondary">
                 <div className="flex gap-1.5">
                   <dt className="font-semibold">نُشرت:</dt>
                   <dd>{fmtDate(p.published, "ar")}</dd>
@@ -178,13 +178,13 @@ export default function Page() {
                   </dd>
                 </div>
               </dl>
-              <p className="mt-2 inline-block rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[11px] font-semibold text-[#8a6200]">
+              <p className="mt-2 inline-block rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-semibold text-[#8a6200]">
                 {PORTAL_STATUS_AR[p.statusAtCheck] ?? p.statusAtCheck}
               </p>
             </article>
           ))}
         </div>
-        <div className="mt-4 card text-sm">
+        <div className="mt-4 card text-body">
           <p>
             <span className="font-semibold text-navy">
               أهداف الإصلاح تقيس حجم الجبل:
@@ -205,16 +205,16 @@ export default function Page() {
       <section aria-labelledby="ar-adjacent" className="mt-7 card">
         <h2
           id="ar-adjacent"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           مال تحرّك على مسارات موازية - وليس تمويل إعادة إعمار
         </h2>
-        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-1 max-w-3xl text-body text-text-secondary">
           هذه تدفّقات مال حقيقي لأغراض أخرى، ولا يجوز خلطها ببرنامج إعادة الإعمار.
         </p>
         <ul className="mt-4 space-y-2.5">
           {finance.adjacentFlows.map((f) => (
-            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-sm last:border-b-0">
+            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-body last:border-b-0">
               <span>
                 <span className="font-medium">{f.labelAr}.</span>{" "}
                 <span className="text-text-secondary">{f.noteAr}</span>
@@ -244,7 +244,7 @@ export default function Page() {
 
       {/* Core statement */}
       <section className="mt-7 rounded-md border-s-4 border-navy bg-white p-6">
-        <blockquote className="editorial-quote max-w-4xl text-lg leading-relaxed text-navy">
+        <blockquote className="editorial-quote max-w-4xl text-h3 leading-relaxed text-navy">
           تقدّمت البنية المؤسسية أسرع من المال ومن الإنجاز المادي. والشراء الجاري
           محطة إجرائية، لا معطى عن إعادة إعمار مكتملة.
         </blockquote>

@@ -204,7 +204,7 @@ export default function StageCompositionChart({
     <div>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <YearControl mode={mode} onChange={setMode} idPrefix="composition" locale={locale} />
-        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm">
+        <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-body">
           <input
             type="checkbox"
             checked={percent}
@@ -236,7 +236,7 @@ export default function StageCompositionChart({
           }}
         />
         {mode === "side" ? (
-          <p className="mt-1 text-[11px] text-text-secondary">
+          <p className="mt-1 text-micro text-text-secondary">
             {tr.upper}
             <span
               className="rounded-sm px-1 font-semibold text-white"

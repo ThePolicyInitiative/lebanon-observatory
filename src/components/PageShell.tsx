@@ -54,16 +54,16 @@ export default function PageShell({
   return (
     <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
       <header className="max-w-3xl">
-        <h1 className="text-2xl font-bold text-navy sm:text-3xl">
+        <h1 className="text-h1 font-bold text-navy">
           {title}
         </h1>
         {lede ? (
-          <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+          <p className="mt-3 text-body leading-relaxed text-text-secondary">
             {lede}
           </p>
         ) : null}
         {point ? (
-          <p className="note-caution mt-4 text-[13px] leading-relaxed text-text-secondary">
+          <p className="note-caution mt-4 text-meta leading-relaxed text-text-secondary">
             {point}
           </p>
         ) : null}
@@ -73,10 +73,10 @@ export default function PageShell({
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {figures.map((f) => (
             <li key={f.label} className="card">
-              <p className="figure-number text-2xl text-navy">
+              <p className="figure-number text-h2 text-navy">
                 {f.value}
               </p>
-              <p className="mt-1 text-[12.5px] leading-relaxed text-text-secondary">
+              <p className="mt-1 text-meta leading-relaxed text-text-secondary">
                 {f.label}
               </p>
             </li>

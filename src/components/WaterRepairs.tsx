@@ -110,16 +110,16 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
       className="rounded-md border border-dashed border-border bg-[#FBFCFD] p-4 sm:p-6"
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="water-repairs" className="text-xl font-semibold text-navy">
+        <h2 id="water-repairs" className="text-h2 font-semibold text-navy">
           {t.title}
         </h2>
         <span
-          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${caps}`}
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-bold text-[#8a6200] ${caps}`}
         >
           {t.badge}
         </span>
       </div>
-      <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 prose-measure text-body leading-relaxed text-text-secondary">
         {ar ? (
           <>
             تنشر مؤسسة مياه لبنان الجنوبي كل إصلاح تقوم به. {slwe.totalPosts} من تلك
@@ -154,8 +154,8 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
           },
         ].map((s) => (
           <div key={s.v} className="panel-sunken p-3">
-            <p className="figure-number text-2xl text-navy">{s.k}</p>
-            <p className="mt-1 text-[11px] leading-snug text-text-secondary">
+            <p className="figure-number text-h2 text-navy">{s.k}</p>
+            <p className="mt-1 text-micro leading-snug text-text-secondary">
               {s.v}
             </p>
           </div>
@@ -165,16 +165,16 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
       <div className="mt-5 grid gap-6 lg:grid-cols-2">
         {/* Where the work is reported */}
         <div>
-          <h3 className={`text-[13px] font-bold text-text-secondary ${caps}`}>
+          <h3 className={`text-meta font-bold text-text-secondary ${caps}`}>
             {t.byDept}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.departments.map((d) => (
-              <li key={d.name} className="flex items-center gap-2 text-[12px]">
+              <li key={d.name} className="flex items-center gap-2 text-meta">
                 <span className="w-36 shrink-0 truncate">
                   {say(DEPT_AR, d.name)}
                   {d.inArea ? (
-                    <span className="ms-1 text-[10px] font-semibold text-text-secondary">{t.southTag}</span>
+                    <span className="ms-1 text-micro font-semibold text-text-secondary">{t.southTag}</span>
                   ) : null}
                 </span>
                 <span
@@ -194,12 +194,12 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
         {/* What kind of work */}
         <div>
-          <h3 className={`text-[13px] font-bold text-text-secondary ${caps}`}>
+          <h3 className={`text-meta font-bold text-text-secondary ${caps}`}>
             {t.workKinds}
           </h3>
           <ul className="mt-2 space-y-1.5">
             {slwe.work.map((w) => (
-              <li key={w.label} className="flex items-center gap-2 text-[12px]">
+              <li key={w.label} className="flex items-center gap-2 text-meta">
                 <span className="w-40 shrink-0 truncate">{say(WORK_AR, w.label)}</span>
                 <span
                   aria-hidden
@@ -210,7 +210,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-[11px] leading-relaxed text-text-secondary">
+          <p className="mt-2 text-micro leading-relaxed text-text-secondary">
             {t.multi} {slwe.totalPosts}.
           </p>
         </div>
@@ -218,10 +218,10 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Localities inside the area */}
       <div className="mt-5">
-        <h3 className={`text-[13px] font-bold text-text-secondary ${caps}`}>
+        <h3 className={`text-meta font-bold text-text-secondary ${caps}`}>
           {t.localities}
         </h3>
-        <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
+        <p className="mt-1 text-micro leading-relaxed text-text-secondary">
           {ar
             ? `محسوبة على منشورات الدوائر الثلاث داخل المنطقة، وهي المجموعة المعروضة أدناه ونفسها التي يحملها التتبّع. ودوائر المؤسسة الأخرى تذكر أيضاً أماكن جنوبية، وتلك ضمن الـ${slwe.southTownsNamed} أعلاه لا ضمن هذه اللائحة.`
             : `Counted across the posts of the three departments inside the area, which is the set listed below and the set this compilation carries. The establishment's other departments also name southern places; those are in the ${slwe.southTownsNamed} above, not in this list.`}
@@ -251,12 +251,12 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
       {/* Every post from the departments inside the area */}
       <div className="mt-5">
-        <h3 className={`text-[13px] font-bold text-text-secondary ${caps}`}>
+        <h3 className={`text-meta font-bold text-text-secondary ${caps}`}>
           {ar
             ? `بكلماتها هي: كل المنشورات الـ${slwe.areaPosts.length} من الدوائر داخل المنطقة`
             : `In its own words: all ${slwe.areaPosts.length} posts from the departments inside the area`}
         </h3>
-        <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
+        <p className="mt-1 text-micro leading-relaxed text-text-secondary">
           {ar
             ? `بنت جبيل وصور ووادي جيلو كاملة، بلا انتقاء. أما الـ${slwe.totalPosts - slwe.areaPosts.length} منشوراً الباقية فهي من دوائر المؤسسة الأخرى، خارج منطقة هذا العمل.`
             : `Bint Jbeil, Tyre and Wadi Jilo in full, nothing selected out. The remaining ${slwe.totalPosts - slwe.areaPosts.length} posts come from the establishment's other departments, outside this work's area.`}
@@ -265,7 +265,7 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
           {slwe.areaPosts.map((p) => (
             <li key={p.no} className="panel-sunken p-3">
               <p
-                className={`flex flex-wrap items-center gap-1.5 text-[10px] font-bold text-text-secondary ${caps}`}
+                className={`flex flex-wrap items-center gap-1.5 text-micro font-bold text-text-secondary ${caps}`}
               >
                 <span>{say(DEPT_AR, p.department)}</span>
                 {p.towns ? (
@@ -282,14 +282,14 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
               {/* Arabic is the source language for these posts. */}
               <p
                 dir={ar ? "rtl" : "ltr"}
-                className="mt-1 text-[12.5px] leading-relaxed text-text"
+                className="mt-1 text-meta leading-relaxed text-text"
               >
                 {ar ? p.arabic || p.text : p.text}
               </p>
             </li>
           ))}
         </ul>
-        <p className="mt-2 text-[11px]">
+        <p className="mt-2 text-micro">
           <a
             href={slwe.sourceUrl}
             target="_blank"
@@ -308,12 +308,12 @@ export default function WaterRepairs({ locale = "en" }: { locale?: Locale } = {}
 
       {/* What this is not */}
       <details className="mt-5 rounded-md border border-dashed border-border bg-white p-3">
-        <summary className="cursor-pointer text-[12px] font-bold text-navy">
+        <summary className="cursor-pointer text-meta font-bold text-navy">
           {ar
             ? `من أين يأتي هذا، وما الذي لا يستطيع قوله (${slwe.caveats.length})`
             : `Where this comes from, and what it cannot tell you (${slwe.caveats.length})`}
         </summary>
-        <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-text-secondary">
+        <ul className="mt-2 space-y-1.5 text-micro leading-relaxed text-text-secondary">
           {(ar ? slwe.caveatsAr : slwe.caveats).map((c) => (
             <li key={c.slice(0, 30)} className="flex gap-2">
               <span

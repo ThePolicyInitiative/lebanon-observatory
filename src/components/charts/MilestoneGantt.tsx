@@ -68,7 +68,7 @@ export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = 
           {segments.map((s, i) => (
             <div
               key={s.to.date}
-              className="flex items-center justify-center text-[10px] font-semibold text-white"
+              className="flex items-center justify-center text-micro font-semibold text-white"
               style={{
                 width: `${(s.days / totalDays) * 100}%`,
                 background: SEGMENT_COLORS[i],
@@ -79,7 +79,7 @@ export default function MilestoneGantt({ locale = "en" }: { locale?: Locale } = 
             </div>
           ))}
         </div>
-        <ol className="mt-3 space-y-1 text-xs leading-relaxed text-text-secondary">
+        <ol className="mt-3 space-y-1 text-micro leading-relaxed text-text-secondary">
           {segments.map((s, i) => (
             <li key={s.to.date} className="flex items-baseline gap-2">
               <span

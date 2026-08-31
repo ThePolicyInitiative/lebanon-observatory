@@ -51,7 +51,7 @@ const AR_LINKS: [string, string][] = [
 
 function SectionLinks({ links }: { links: [string, string][] }) {
   return (
-    <ul className="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+    <ul className="mt-6 flex flex-wrap justify-center gap-3 text-body">
       {links.map(([href, label]) => (
         <li key={href}>
           <Link
@@ -84,11 +84,11 @@ export default function GlobalNotFound() {
           <section aria-labelledby="nf-en" className="text-center">
             <h1
               id="nf-en"
-              className="text-xl font-bold text-navy"
+              className="text-h1 font-bold text-navy"
             >
               Page not found
             </h1>
-            <p className="mt-3 text-sm text-text-secondary">
+            <p className="mt-3 text-body text-text-secondary">
               The page you requested does not exist. The observatory&apos;s main
               sections are linked below.
             </p>
@@ -108,11 +108,11 @@ export default function GlobalNotFound() {
           >
             <h1
               id="nf-ar"
-              className="text-xl font-bold text-navy"
+              className="text-h1 font-bold text-navy"
             >
               الصفحة غير موجودة
             </h1>
-            <p className="mt-3 text-sm leading-loose text-text-secondary">
+            <p className="mt-3 text-body leading-loose text-text-secondary">
               الصفحة المطلوبة غير موجودة. أقسام المرصد الرئيسية في الروابط أدناه.
             </p>
             <SectionLinks links={AR_LINKS} />

@@ -157,15 +157,15 @@ export default function InstitutionalShiftDiagram({
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           {t.sub}
         </p>
       </figcaption>
 
-      <div className="mt-3 flex flex-wrap gap-3 text-[11px]">
+      <div className="mt-3 flex flex-wrap gap-3 text-micro">
         {(Object.keys(KIND_COLOR) as ShiftKind[]).map((k) => (
           <span key={k} className="inline-flex items-center gap-1.5">
             <span
@@ -191,11 +191,11 @@ export default function InstitutionalShiftDiagram({
                 className="flex flex-wrap items-center justify-between gap-2 rounded-t-md px-3 py-2"
                 style={{ background: meta.bg }}
               >
-                <h4 className="text-sm font-semibold" style={{ color: meta.color }}>
+                <h4 className="text-body font-semibold" style={{ color: meta.color }}>
                   {row.dimension}
                 </h4>
                 <span
-                  className="rounded-sm border px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                  className="rounded-sm border px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide"
                   style={{ color: meta.color, borderColor: meta.color }}
                 >
                   {kindLabel[row.kind]}
@@ -203,25 +203,25 @@ export default function InstitutionalShiftDiagram({
               </header>
               <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr]">
                 <div className="p-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2024">
+                  <p className="text-micro font-bold uppercase tracking-wide text-y2024">
                     2024
                   </p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-text">
+                  <p className="mt-1 text-meta leading-relaxed text-text">
                     {row.y2024}
                   </p>
                 </div>
                 <div
                   aria-hidden
-                  className="hidden items-center px-1 text-xl text-text-secondary md:flex"
+                  className="hidden items-center px-1 text-h3 text-text-secondary md:flex"
                 >
                   <span className="rtl:hidden">→</span>
                   <span className="hidden rtl:inline">←</span>
                 </div>
                 <div className="p-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-y2026">
+                  <p className="text-micro font-bold uppercase tracking-wide text-y2026">
                     2026
                   </p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-text">
+                  <p className="mt-1 text-meta leading-relaxed text-text">
                     {row.y2026}
                   </p>
                 </div>

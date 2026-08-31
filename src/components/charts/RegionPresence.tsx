@@ -50,13 +50,13 @@ export default function RegionPresence({
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">{t.sub}</p>
+        <p className="mt-1 text-body text-text-secondary">{t.sub}</p>
       </figcaption>
 
-      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-text-secondary">
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-meta text-text-secondary">
         <span className="flex items-center gap-1.5">
           <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2024" />
           2024
@@ -70,11 +70,11 @@ export default function RegionPresence({
       <ul className="mt-3 space-y-2.5">
         {rows.map((r) => (
           <li key={r.id}>
-            <p className="flex items-baseline justify-between gap-2 text-[12.5px]">
+            <p className="flex items-baseline justify-between gap-2 text-meta">
               <span className="text-text">
                 {r.label}
                 {!r.mappable ? (
-                  <span className="ms-1.5 text-[10.5px] text-text-secondary">
+                  <span className="ms-1.5 text-micro text-text-secondary">
                     ({t.unmappable})
                   </span>
                 ) : null}
@@ -105,7 +105,7 @@ export default function RegionPresence({
       </ul>
 
       {showCaveat ? (
-        <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
+        <p className="mt-3 note-caution text-meta leading-relaxed text-text-secondary">
           {cautionMap(locale)}
         </p>
       ) : null}

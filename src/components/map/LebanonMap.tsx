@@ -1074,7 +1074,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
    * claimed a row of its own. Filling a grid column instead lets them pair.
    */
   const selectCls =
-    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm text-text";
+    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-body text-text";
 
   const yearOptions = ["2024", "2026"] as const;
   const yearRoving = useRovingRadio({
@@ -1098,7 +1098,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
       <div className="z-40 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:sticky sm:top-[var(--header-h)] sm:max-h-[40vh] sm:overflow-y-auto sm:px-6">
         <div className="grid grid-cols-2 items-end gap-3 sm:flex sm:flex-wrap">
           <div>
-            <label htmlFor="map-year" className="block text-[11px] font-semibold text-text-secondary">
+            <label htmlFor="map-year" className="block text-micro font-semibold text-text-secondary">
               {t.year}
             </label>
             <div className="mt-1 inline-flex overflow-hidden rounded-md border border-border bg-white" role="radiogroup" aria-label={t.mapYear}>
@@ -1110,7 +1110,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                   aria-checked={String(year) === y}
                   {...yearRoving.itemProps(i)}
                   onClick={() => set("year", y)}
-                  className={`min-h-11 px-4 text-sm ${
+                  className={`min-h-11 px-4 text-body ${
                     String(year) === y ? "font-semibold text-white" : "text-text-secondary"
                   }`}
                   style={
@@ -1125,7 +1125,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </div>
           </div>
           <div>
-            <label htmlFor="map-layer" className="block text-[11px] font-semibold text-text-secondary">
+            <label htmlFor="map-layer" className="block text-micro font-semibold text-text-secondary">
               {t.actorLayer}
             </label>
             <select id="map-layer" className={`mt-1 ${selectCls}`} value={layerFilter} onChange={(e) => set("layer", e.target.value)}>
@@ -1136,7 +1136,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </select>
           </div>
           <div>
-            <label htmlFor="map-stage" className="block text-[11px] font-semibold text-text-secondary">
+            <label htmlFor="map-stage" className="block text-micro font-semibold text-text-secondary">
               {t.stage}
             </label>
             <select id="map-stage" className={`mt-1 ${selectCls}`} value={stageFilter} onChange={(e) => set("stage", e.target.value)}>
@@ -1147,7 +1147,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             </select>
           </div>
           <div>
-            <label htmlFor="map-status" className="block text-[11px] font-semibold text-text-secondary">
+            <label htmlFor="map-status" className="block text-micro font-semibold text-text-secondary">
               {t.status}
             </label>
             <select id="map-status" className={`mt-1 ${selectCls}`} value={statusFilter} onChange={(e) => set("status", e.target.value)}>
@@ -1164,7 +1164,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               choose between. See COMPARABILITY_IN_USE. */}
           {COMPARABILITY_IN_USE.size > 1 ? (
             <div>
-              <label htmlFor="map-comp" className="block text-[11px] font-semibold text-text-secondary">
+              <label htmlFor="map-comp" className="block text-micro font-semibold text-text-secondary">
                 {t.comparability}
               </label>
               <select id="map-comp" className={`mt-1 ${selectCls}`} value={comparabilityFilter} onChange={(e) => set("comparability", e.target.value)}>
@@ -1180,7 +1180,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           <button
             type="button"
             onClick={reset}
-            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
+            className="min-h-11 rounded-md border border-border bg-white px-3 text-body text-text-secondary hover:border-navy hover:text-navy"
           >
             {t.reset}
           </button>
@@ -1198,7 +1198,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             // feedback and changes nothing, in either language. Saying it
             // cannot run is better than appearing to ignore the reader.
             disabled={renderMode !== "gl" && glOk === false}
-            className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-border disabled:hover:text-text-secondary"
+            className="min-h-11 rounded-md border border-border bg-white px-3 text-body text-text-secondary hover:border-navy hover:text-navy disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-border disabled:hover:text-text-secondary"
           >
             {renderMode === "gl" ? t.backToVector : t.glOptIn}
           </button>
@@ -1208,7 +1208,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
         </div>
       </div>
 
-      <p className="mt-4 note-caution text-xs leading-relaxed text-text-secondary">
+      <p className="mt-4 note-caution text-meta leading-relaxed text-text-secondary">
         {cautionMap(locale)}
       </p>
 
@@ -1300,7 +1300,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 aria-expanded={listOpen}
                 aria-controls="gl-marker-list"
                 onClick={() => setListOpen((v) => !v)}
-                className="min-h-11 rounded-md border border-border bg-white px-3 text-sm text-text-secondary hover:border-navy hover:text-navy"
+                className="min-h-11 rounded-md border border-border bg-white px-3 text-body text-text-secondary hover:border-navy hover:text-navy"
               >
                 {listOpen ? t.listHide : t.listShow(glFeatures.length)}
               </button>
@@ -1317,7 +1317,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                           popupOpenerRef.current = e.currentTarget;
                           openGlFeature(f);
                         }}
-                        className="flex w-full items-baseline gap-2 px-2 py-1.5 text-start text-[12px] hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-blue"
+                        className="flex w-full items-baseline gap-2 px-2 py-1.5 text-start text-meta hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-blue"
                       >
                         <span
                           aria-hidden
@@ -1356,14 +1356,14 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-text-secondary">
+                    <p className="text-micro font-semibold uppercase tracking-wide text-text-secondary">
                       {glOpen.properties.town}
                       {glOpen.properties.district ? ` · ${glOpen.properties.district}` : ""}
                     </p>
                     <h3
                       ref={glPanelHeadingRef}
                       tabIndex={-1}
-                      className="mt-1 text-sm font-semibold text-navy focus-visible:outline-2 focus-visible:outline-blue"
+                      className="mt-1 text-body font-semibold text-navy focus-visible:outline-2 focus-visible:outline-blue"
                     >
                       {glOpen.properties.heading}
                     </h3>
@@ -1383,7 +1383,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 {glOpen.properties.layerLabel ? (
                   <p className="mt-1">
                     <span
-                      className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
+                      className="rounded-sm px-1.5 py-0.5 text-micro font-semibold text-white"
                       style={{ background: chipBackground(glOpen.properties.color) }}
                     >
                       {glOpen.properties.layerLabel}
@@ -1391,9 +1391,9 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                   </p>
                 ) : null}
                 {glOpen.properties.detail ? (
-                  <p className="mt-1 text-[11px] text-text-secondary">{glOpen.properties.detail}</p>
+                  <p className="mt-1 text-micro text-text-secondary">{glOpen.properties.detail}</p>
                 ) : null}
-                <p className="mt-1 text-[12px] text-text">{glOpen.properties.body}</p>
+                <p className="mt-1 text-meta text-text">{glOpen.properties.body}</p>
                 <p className="mt-1 text-micro text-text-secondary">{t.pinFoot}</p>
               </aside>
             ) : null}
@@ -1427,16 +1427,16 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
               return (
                 <section key={r.id} className="card">
-                  <h3 className="text-sm font-semibold text-navy">
+                  <h3 className="text-body font-semibold text-navy">
                     {regionLabel(r.id, locale)}
                   </h3>
-                  <p className="mt-2 text-lg font-semibold tabular-nums text-navy">
+                  <p className="mt-2 text-h3 font-semibold tabular-nums text-navy">
                     {total}{" "}
-                    <span className="text-xs font-normal text-text-secondary">
+                    <span className="text-micro font-normal text-text-secondary">
                       {t.mentionsIn(year)}
                     </span>
                   </p>
-                  <ul className="mt-2 space-y-1 text-xs">
+                  <ul className="mt-2 space-y-1 text-meta">
                     {layers(locale).map((l) => (
                       <li key={l.id} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-1.5">
@@ -1460,10 +1460,10 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
           aria-label={t.happenedAria(year)}
           className="mt-6 card"
         >
-          <h3 className="text-base font-semibold text-navy">
+          <h3 className="text-lead font-semibold text-navy">
             {t.happenedHead(year)}
           </h3>
-          <p className="mt-1 max-w-3xl text-xs text-text-secondary">
+          <p className="mt-1 max-w-3xl text-meta text-text-secondary">
             {t.happenedSub}
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -1472,16 +1472,16 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 key={l.name}
                 className="rounded-md border border-border p-3.5"
               >
-                <h4 className="text-sm font-semibold text-navy">
+                <h4 className="text-body font-semibold text-navy">
                   {localityName(l, locale)}
                 </h4>
                 <ul className="mt-2 space-y-2">
                   {eventsFor(l, year).map((e, i) => {
                     const meta = EVENT_KIND_META[e.kind];
                     return (
-                      <li key={i} className="text-[12.5px] leading-relaxed">
+                      <li key={i} className="text-meta leading-relaxed">
                         <span
-                          className="me-1.5 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                          className="me-1.5 rounded-sm px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide"
                           style={{ color: meta.color, background: meta.bg }}
                         >
                           {eventKindLabel(e.kind, locale)}

@@ -25,10 +25,10 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 max-w-3xl text-sm text-text-secondary">
+        <p className="mt-1 max-w-3xl text-body text-text-secondary">
           {ar ? compensation.noteAr : compensation.note}
         </p>
       </figcaption>
@@ -43,13 +43,13 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
               className="flex flex-col rounded-md border border-border"
             >
               <header className="border-b border-border bg-bg px-4 py-2.5">
-                <h4 className="text-sm font-semibold text-navy">
+                <h4 className="text-body font-semibold text-navy">
                   {label}
                 </h4>
               </header>
-              <div className="flex-1 space-y-3 p-4 text-[13px] leading-relaxed">
+              <div className="flex-1 space-y-3 p-4 text-meta leading-relaxed">
                 <p>
-                  <span className="font-bold uppercase tracking-wide text-[11px] text-y2024">
+                  <span className="font-bold uppercase tracking-wide text-micro text-y2024">
                     2024 ·{" "}
                   </span>
                   {ar ? t.status2024Ar : t.status2024}
@@ -62,7 +62,7 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
                       </p>
                       <p className="mt-1">{ar ? i.detailAr : i.detail}</p>
                       <p className="mt-1.5">
-                        <span className="rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-[#8a6200]">
+                        <span className="rounded-sm bg-[#FAF3E3] px-1.5 py-0.5 text-micro font-semibold uppercase tracking-wide text-[#8a6200]">
                           {ar ? i.evidenceLevelAr : i.evidenceLevel}
                         </span>
                       </p>
@@ -70,13 +70,13 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
                   ))}
                 </ul>
                 <p>
-                  <span className="font-bold uppercase tracking-wide text-[11px] text-y2026">
+                  <span className="font-bold uppercase tracking-wide text-micro text-y2026">
                     2026 ·{" "}
                   </span>
                   {ar ? t.status2026Ar : t.status2026}
                 </p>
               </div>
-              <p className="border-t border-dashed border-border px-4 py-2.5 text-[13px]">
+              <p className="border-t border-dashed border-border px-4 py-2.5 text-meta">
                 <span className="font-semibold text-rust">
                   {tr.confirmedPayments}{" "}
                 </span>
@@ -87,7 +87,7 @@ export default function CompensationTracks({ locale = "en" }: { locale?: Locale 
         })}
       </div>
 
-      <p className="mt-4 rounded-md border-s-4 border-navy bg-bg p-4 text-sm leading-relaxed">
+      <p className="mt-4 rounded-md border-s-4 border-navy bg-bg p-4 text-body leading-relaxed">
         {ar ? compensation.distributionalFindingAr : compensation.distributionalFinding}
       </p>
     </figure>

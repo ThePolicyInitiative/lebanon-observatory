@@ -87,19 +87,19 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2
           id="service-operators"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           {t.title}
         </h2>
         <span
-          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-[10px] font-bold text-[#8a6200] ${
+          className={`rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-bold text-[#8a6200] ${
             ar ? "" : "uppercase tracking-wide"
           }`}
         >
           {t.badge}
         </span>
       </div>
-      <p className="mt-2 prose-measure text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 prose-measure text-body leading-relaxed text-text-secondary">
         {ar
           ? "الكهرباء والاتصالات والري والطرق، كما يصف المشغّلون أنفسهم إعادتها إلى الخدمة. الدقة هنا هي نفسها في منشورات مؤسسة المياه، والوضع نفسه: غير مؤكَّد، وخارج كل أعداد هذا الموقع. وهي هنا لأن هذه الروايات تسمّي المحطة والخط والجسر والتاريخ، بينما يتوقف كل تقييم عند حدود القطاع."
           : "Electricity, telecoms, irrigation and roads, as the operators themselves describe restoring them. This is the same granularity as the water utility's own posts and the same standing: unconfirmed, and in none of this site's counts. It is here because these accounts name the substation, the line, the bridge and the date, where every assessment stops at the sector."}
@@ -108,7 +108,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {ops.operators.map((o) => (
           <article key={o.id} className="card">
-            <p className="flex flex-wrap items-center gap-1.5 text-[11px]">
+            <p className="flex flex-wrap items-center gap-1.5 text-micro">
               <span
                 className="rounded-sm px-1.5 py-0.5 font-semibold text-white"
                 style={{ background: SERVICE_TONE[o.service] ?? "#58779B" }}
@@ -121,10 +121,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                 </span>
               ) : null}
             </p>
-            <h3 className="mt-2 text-sm font-semibold text-navy">
+            <h3 className="mt-2 text-body font-semibold text-navy">
               {ar ? (o.nameAr ?? o.name) : o.name}
             </h3>
-            <p className="mt-0.5 text-[13px] font-medium italic text-text-secondary">
+            <p className="mt-0.5 text-meta font-medium italic text-text-secondary">
               {ar ? (o.headlineAr ?? o.headline) : o.headline}
             </p>
 
@@ -136,9 +136,9 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                   <Expandable
                     labels={labels}
                     text={ar ? (i.whatAr ?? i.what) : i.what}
-                    className="text-[12.5px] leading-relaxed text-text"
+                    className="text-meta leading-relaxed text-text"
                   />
-                  <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-secondary">
+                  <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-micro text-text-secondary">
                     {figure ? (
                       <span className="rounded-sm bg-[#EEF2F7] px-1.5 py-0.5 font-semibold tabular-nums text-navy">
                         {figure}
@@ -149,7 +149,7 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
                       {ar ? (i.whereAr ?? i.where) : i.where}
                     </span>
                   </p>
-                  <p className="mt-0.5 text-[11px] text-text-secondary">
+                  <p className="mt-0.5 text-micro text-text-secondary">
                     <span className="font-semibold">{t.when}</span>{" "}
                     {ar ? (i.dateAr ?? i.date) : i.date}
                   </p>
@@ -162,10 +162,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
               <Expandable
                 labels={labels}
                 text={ar ? (o.constraintAr ?? o.constraint) : o.constraint}
-                className="text-[11.5px] leading-relaxed text-text-secondary"
+                className="text-micro leading-relaxed text-text-secondary"
               />
             </div>
-            <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-[11px]">
+            <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-border pt-1.5 text-micro">
               <a
                 href={o.sourceUrl}
                 target="_blank"
@@ -181,13 +181,13 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
 
       {/* The finding two ministries state independently */}
       <div className="mt-4 rounded-md border-2 border-rust bg-[#FBF3F0] p-4">
-        <h3 className="text-sm font-bold text-rust">
+        <h3 className="text-body font-bold text-rust">
           {ar ? ops.crossCutting.titleAr : ops.crossCutting.title}
         </h3>
-        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-text">
+        <p className="mt-1.5 prose-measure text-meta leading-relaxed text-text">
           {ar ? ops.crossCutting.textAr : ops.crossCutting.text}
         </p>
-        <p className="mt-2 text-[11px]">
+        <p className="mt-2 text-micro">
           <a
             href={ops.crossCutting.sourceUrl}
             target="_blank"
@@ -201,13 +201,13 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
 
       {/* The date every timeline on this page runs into */}
       <div className="mt-4 rounded-md border-2 border-navy bg-[#EEF2F7] p-4">
-        <h3 className="text-sm font-bold text-navy">
+        <h3 className="text-body font-bold text-navy">
           {ar ? ops.horizon.titleAr : ops.horizon.title}
         </h3>
-        <p className="mt-1.5 prose-measure text-[13px] leading-relaxed text-text">
+        <p className="mt-1.5 prose-measure text-meta leading-relaxed text-text">
           {ar ? ops.horizon.textAr : ops.horizon.text}
         </p>
-        <p className="mt-2 text-[11px]">
+        <p className="mt-2 text-micro">
           <a
             href={ops.horizon.sourceUrl}
             target="_blank"
@@ -220,10 +220,10 @@ export default function ServiceOperators({ locale = "en" }: { locale?: Locale } 
       </div>
 
       <details className="mt-4 rounded-md border border-dashed border-border bg-white p-3">
-        <summary className="cursor-pointer text-[12px] font-bold text-navy">
+        <summary className="cursor-pointer text-meta font-bold text-navy">
           {t.howToRead} ({ops.caveats.length})
         </summary>
-        <ul className="mt-2 space-y-1.5 text-[11.5px] leading-relaxed text-text-secondary">
+        <ul className="mt-2 space-y-1.5 text-micro leading-relaxed text-text-secondary">
           {(ar ? ops.caveatsAr : ops.caveats).map((c) => (
             <li key={c.slice(0, 30)} className="flex gap-2">
               <span

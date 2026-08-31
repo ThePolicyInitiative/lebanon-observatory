@@ -80,7 +80,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
   return (
     <figure className="card">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           <span
             aria-hidden
             className="me-2 inline-block h-3 w-3 rounded-sm align-baseline"
@@ -88,12 +88,12 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
           />
           {t.panel(year, shown)}
         </h3>
-        <span className="text-[11px] text-text-secondary">
+        <span className="text-micro text-text-secondary">
           {t.legend}
         </span>
       </figcaption>
       <div className="mt-3 max-h-[70vh] overflow-auto rounded-md border border-border">
-        <table className="min-w-[860px] border-collapse text-[12px]">
+        <table className="min-w-[860px] border-collapse text-meta">
           {/* The heading above the table is in a figcaption, which does not
               name the table itself for a screen reader. */}
           <caption className="sr-only">{t.panel(year, shown)}</caption>
@@ -113,7 +113,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                 >
                   <abbr title={`${i + 1}. ${STAGES[i]}`} className="no-underline">
                     <span className="block tabular-nums text-navy">{i + 1}</span>
-                    <span className="block text-[9.5px] font-medium">{s}</span>
+                    <span className="block text-micro font-medium">{s}</span>
                   </abbr>
                 </th>
               ))}
@@ -132,7 +132,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                   <th
                     colSpan={14}
                     scope="colgroup"
-                    className={`sticky start-0 bg-[#F3F5F8] px-2 py-1.5 text-start text-[11px] font-bold ${
+                    className={`sticky start-0 bg-[#F3F5F8] px-2 py-1.5 text-start text-micro font-bold ${
                       locale === "ar" ? "" : "uppercase tracking-wide"
                     }`}
                     style={{ color: g.meta.color }}
@@ -163,7 +163,7 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                       c > 0 ? (
                         <td key={i} className="px-1 py-1 text-center">
                           <span
-                            className="inline-flex h-5 w-9 items-center justify-center rounded-[3px] text-[10.5px] font-bold tabular-nums text-white"
+                            className="inline-flex h-5 w-9 items-center justify-center rounded-[3px] text-micro font-bold tabular-nums text-white"
                             style={{
                               background: g.meta.color,
                               opacity: 0.35 + (c / maxCell) * 0.65,
@@ -202,7 +202,7 @@ export default function MatrixTables({ matrices, locale = "en" }: { matrices: Ye
       <div className="mt-3 max-w-xs">
         <label
           htmlFor="matrix-search"
-          className="block text-[11px] font-semibold text-text-secondary"
+          className="block text-micro font-semibold text-text-secondary"
         >
           {t.filter}
         </label>
@@ -212,7 +212,7 @@ export default function MatrixTables({ matrices, locale = "en" }: { matrices: Ye
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.placeholder}
-          className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm"
+          className="mt-1 min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-body"
         />
       </div>
       <div className="mt-4 space-y-6">

@@ -79,14 +79,19 @@ export default function SiteNav() {
 
   return (
     <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0e2542] bg-navy/[0.97] backdrop-blur-sm">
-      <div className="mx-auto flex max-w-[1360px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+      {/* py-1.5, not py-2.5: the header is 44px of pointer target plus its
+          padding plus a border, so the only way to tighten it without
+          shrinking the target is to take the 8px off the padding. That is
+          what --header-h moving 65 -> 57 is, and every sticky offset on the
+          site follows it because they all read the token. */}
+      <div className="mx-auto flex max-w-[1360px] items-center justify-between gap-4 px-4 py-1.5 sm:px-6">
         <Link
           href={isArabic ? "/ar" : "/"}
           className="flex min-h-11 items-center gap-2.5 rounded focus-visible:outline-2 focus-visible:outline-white"
         >
           <span
             aria-hidden
-            className="grid h-8 w-8 place-items-center rounded bg-amber text-sm font-bold text-navy"
+            className="grid h-8 w-8 place-items-center rounded bg-amber text-body font-bold text-navy"
           >
             LR
           </span>
@@ -95,10 +100,10 @@ export default function SiteNav() {
                 was the one English run left standing over an otherwise
                 Arabic masthead, directly above the same name in Arabic in
                 the hero. */}
-            <span className="block text-sm font-semibold text-white">
+            <span className="block text-body font-semibold text-white">
               {isArabic ? AR.meta.title : "Lebanon Reconstruction Observatory"}
             </span>
-            <span className="hidden text-[11px] text-white/60 sm:block">
+            <span className="hidden text-micro text-white/60 sm:block">
               2024–2026
             </span>
           </span>
@@ -116,7 +121,7 @@ export default function SiteNav() {
                   <Link
                     href={href}
                     aria-current={active ? "page" : undefined}
-                    className={`inline-flex min-h-11 items-center rounded px-2.5 text-[13px] transition-colors duration-150 ${
+                    className={`inline-flex min-h-11 items-center rounded px-2.5 text-meta transition-colors duration-150 ${
                       active
                         ? "font-semibold text-white underline decoration-amber decoration-2 underline-offset-8"
                         : "text-white/70 hover:text-white"
@@ -147,7 +152,7 @@ export default function SiteNav() {
         <Link
           href={counterpart}
           lang={isArabic ? "en" : "ar"}
-          className="ms-auto inline-flex min-h-9 items-center rounded border border-white/35 px-2.5 text-xs font-semibold text-white/85 transition-colors hover:border-white hover:text-white xl:ms-0"
+          className="ms-auto inline-flex min-h-9 items-center rounded border border-white/35 px-2.5 text-meta font-semibold text-white/85 transition-colors hover:border-white hover:text-white xl:ms-0"
         >
           {isArabic ? "English" : "العربية"}
         </Link>
@@ -159,7 +164,7 @@ export default function SiteNav() {
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">{open ? chrome.closeMenu : chrome.openMenu}</span>
-          <span aria-hidden className="text-lg leading-none">
+          <span aria-hidden className="text-h3 leading-none">
             {open ? "✕" : "☰"}
           </span>
         </button>
@@ -188,7 +193,7 @@ export default function SiteNav() {
                     href={href}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setOpen(false)}
-                    className={`block min-h-11 rounded px-2 py-2.5 text-sm ${
+                    className={`block min-h-11 rounded px-2 py-2.5 text-body ${
                       active ? "font-semibold text-white" : "text-white/70"
                     }`}
                   >

@@ -40,13 +40,13 @@ export default function ArabicPageShell({
       figures={figures}
       after={
         <div className="mt-8 card">
-          <p className="text-[13px] leading-relaxed text-text">
+          <p className="text-meta leading-relaxed text-text">
             {AR.common.figuresNote}
           </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+          <p className="mt-2 text-meta leading-relaxed text-text-secondary">
             {AR.common.englishModules}
           </p>
-          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-body">
             {/* hrefLang, not lang/dir: the English is the destination, while
                 the label itself is Arabic and has to lay out right-to-left
                 like its sibling - otherwise its arrow lands on the far side. */}

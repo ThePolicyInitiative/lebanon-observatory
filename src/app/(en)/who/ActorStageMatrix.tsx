@@ -67,11 +67,11 @@ export default function ActorStageMatrix({ locale = "en" }: { locale?: Locale } 
     <section aria-labelledby="actor-matrix">
       <h2
         id="actor-matrix"
-        className="text-xl font-semibold text-navy"
+        className="text-h2 font-semibold text-navy"
       >
         {h.title}
       </h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+      <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
         {h.lede}
       </p>
       <MatrixTables matrices={MATRICES[locale]} locale={locale} />

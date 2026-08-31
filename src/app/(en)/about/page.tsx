@@ -30,10 +30,10 @@ export default function AboutPage() {
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {t.figures.map((f) => (
           <li key={f.label} className="card">
-            <p className="figure-number text-2xl text-navy">
+            <p className="figure-number text-h2 text-navy">
               {f.value}
             </p>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-text-secondary">
+            <p className="mt-1 text-meta leading-relaxed text-text-secondary">
               {f.label}
             </p>
           </li>
@@ -45,7 +45,7 @@ export default function AboutPage() {
       {/* The language toggle in the header only crosses over for routes it
           knows; an explicit pair here keeps the two identity pages joined
           whatever the navigation carries. */}
-      <p className="mt-8 text-sm">
+      <p className="mt-8 text-body">
         <Link
           href="/ar/about"
           hrefLang="ar"

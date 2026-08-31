@@ -33,10 +33,10 @@ export default function Page() {
       ]}
     >
       <section aria-labelledby="ar-explorer" className="mt-8">
-        <h2 id="ar-explorer" className="text-xl font-semibold text-navy">
+        <h2 id="ar-explorer" className="text-h2 font-semibold text-navy">
           من فعل ماذا، وأين
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
           التتبّع الأساسي نفسه: صف واحد لكل جهة ووظيفة متتبَّعة، للسنتين 2024
           و2026. الصفوف تدل على حضور متتبَّع - لا على أداء أبداً. وأعداد
           المراحل في الرسوم تُعاد على مستوى المدخل من هذه القاعدة، فصفوف
@@ -47,7 +47,7 @@ export default function Page() {
             <ExplorerClient locale="ar" />
           </Suspense>
         </div>
-        <p className="mt-6 note-caution text-[12.5px] leading-relaxed text-text-secondary">
+        <p className="mt-6 note-caution text-meta leading-relaxed text-text-secondary">
           البحث الحر والترشيح على كل المحاور معاً وفتح المدخل الواحد بتفصيله
           الكامل تعمل في هذه الصفحة بالعربية. نص كل مدخل يظهر بالعربية حيث
           له نظير عربي في التتبّع، ويبقى بلغته الأصلية وباتجاه كتابتها حيث

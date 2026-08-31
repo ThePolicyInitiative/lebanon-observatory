@@ -105,16 +105,16 @@ export default function DisplacementCycle({ locale = "en" }: { locale?: Locale }
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
 
       <div className="mt-4 overflow-x-auto">
-        <table className="min-w-full border-collapse text-[13px]">
+        <table className="min-w-full border-collapse text-meta">
           <caption className="sr-only">{tr.caption}</caption>
           <thead>
             <tr>

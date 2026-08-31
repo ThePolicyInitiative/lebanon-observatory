@@ -58,19 +58,19 @@ export default function ArabicPage() {
           ))}
         </svg>
         <div className="relative mx-auto max-w-[1360px] px-4 py-8 sm:px-6 sm:py-16">
-          <p className="text-sm font-semibold tracking-widest text-amber">
+          <p className="text-meta font-semibold tracking-widest text-amber">
             {AR.hero.eyebrow}
           </p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h1 className="mt-3 max-w-4xl text-h1 font-bold leading-tight text-white sm:text-display">
             {AR.hero.title}
           </h1>
-          <p className="mt-5 max-w-3xl text-base leading-loose text-white/85 sm:text-lg">
+          <p className="mt-5 max-w-3xl text-lead leading-loose text-white/85">
             {AR.hero.lede}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/ar/who"
-              className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-sm font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
+              className="inline-flex min-h-11 items-center rounded-md bg-amber px-5 text-body font-semibold text-[#2a1e00] hover:bg-[#e8ab1a]"
             >
               {AR.hero.ctaMap}
             </Link>
@@ -79,13 +79,13 @@ export default function ArabicPage() {
                 نفسه الذي يقف عليه. */}
             <Link
               href="#role-shift"
-              className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-sm font-semibold text-white hover:bg-white/10"
+              className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-body font-semibold text-white hover:bg-white/10"
             >
               {AR.hero.ctaCompare}
             </Link>
             <Link
               href="/ar/reported"
-              className="inline-flex min-h-11 items-center rounded-md border border-white/25 px-5 text-sm font-semibold text-white/80 hover:border-white/60 hover:text-white"
+              className="inline-flex min-h-11 items-center rounded-md border border-white/25 px-5 text-body font-semibold text-white/80 hover:border-white/60 hover:text-white"
             >
               {AR.hero.ctaNews}
             </Link>
@@ -105,11 +105,11 @@ export default function ArabicPage() {
       >
         <h2
           id="ar-kpis"
-          className="text-xl font-semibold text-navy sm:text-2xl"
+          className="text-h2 font-semibold text-navy"
         >
           {AR.kpis.title}
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-loose text-text-secondary">
+        <p className="mt-2 max-w-3xl text-body leading-loose text-text-secondary">
           {AR.kpis.lede}
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -177,8 +177,8 @@ export default function ArabicPage() {
             <Body locale="ar">{AR.home.geography.body}</Body>
           </SectionHeading>
           <div className="mt-6 overflow-x-auto card">
-            <table className="min-w-full border-collapse text-sm tabular-nums">
-              <caption className="pb-2 text-start text-xs text-text-secondary">
+            <table className="min-w-full border-collapse text-meta tabular-nums">
+              <caption className="pb-2 text-start text-meta text-text-secondary">
                 {AR.home.geography.tableCaption}
               </caption>
               <thead>
@@ -201,7 +201,7 @@ export default function ArabicPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-body">
             <Link
               href="/ar/who"
               className="font-medium text-blue underline-offset-2 hover:underline"
@@ -230,7 +230,7 @@ export default function ArabicPage() {
           aria-label={AR.home.conclusion.slice(0, 40)}
           className="rounded-md border-r-4 border-navy bg-white p-6"
         >
-          <blockquote className="editorial-quote max-w-4xl text-lg leading-loose text-navy">
+          <blockquote className="editorial-quote max-w-4xl text-h3 leading-loose text-navy">
             {AR.home.conclusion}
           </blockquote>
         </section>
@@ -238,7 +238,7 @@ export default function ArabicPage() {
 
       {/* Cross-locale notice */}
       <section className="mx-auto max-w-[1360px] px-4 pb-16 sm:px-6">
-        <p className="rounded-md border-r-4 border-amber bg-white p-4 text-sm leading-loose text-text-secondary">
+        <p className="rounded-md border-r-4 border-amber bg-white p-4 text-body leading-loose text-text-secondary">
           {AR.notice}{" "}
           <Link
             href="/"

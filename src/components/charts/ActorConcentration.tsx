@@ -72,8 +72,8 @@ function YearColumn({
   if (list.length === 0)
     return (
       <div>
-        <h4 className="text-sm font-semibold text-navy">{year}</h4>
-        <p className="mt-2 text-[12.5px] text-text-secondary">{t.none}</p>
+        <h4 className="text-body font-semibold text-navy">{year}</h4>
+        <p className="mt-2 text-meta text-text-secondary">{t.none}</p>
       </div>
     );
 
@@ -87,7 +87,7 @@ function YearColumn({
 
   const Row = ({ a }: { a: (typeof list)[number] }) => (
     <li key={a.id}>
-      <p className="flex items-baseline justify-between gap-2 text-[12.5px]">
+      <p className="flex items-baseline justify-between gap-2 text-meta">
         {/* A plain anchor, not next/link: this list sits on the actors page
             itself, and a router navigation that changes only the fragment
             never fires hashchange, so the register would not open. */}
@@ -112,13 +112,13 @@ function YearColumn({
 
   return (
     <div>
-      <h4 className="flex flex-wrap items-baseline gap-x-2 text-sm font-semibold text-navy">
+      <h4 className="flex flex-wrap items-baseline gap-x-2 text-body font-semibold text-navy">
         {year}
-        <span className="text-[12px] font-normal text-text-secondary">
+        <span className="text-meta font-normal text-text-secondary">
           {t.actors(list.length)}
         </span>
       </h4>
-      <p className="mt-0.5 text-[12px] text-text-secondary">
+      <p className="mt-0.5 text-meta text-text-secondary">
         {t.top(headN, headShare)}
       </p>
       <ul className="mt-2.5 space-y-2">
@@ -128,7 +128,7 @@ function YearColumn({
       </ul>
       {list.length > 10 ? (
         <details className="mt-2.5">
-          <summary className="cursor-pointer text-xs text-blue underline underline-offset-2">
+          <summary className="cursor-pointer text-meta text-blue underline underline-offset-2">
             {t.more(list.length - 10)}
           </summary>
           <ul className="mt-2.5 space-y-2">
@@ -156,16 +156,16 @@ export default function ActorConcentration({
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold" style={{ color: meta.color }}>
+        <h3 className="text-lead font-semibold" style={{ color: meta.color }}>
           {t.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">{t.sub}</p>
+        <p className="mt-1 text-body text-text-secondary">{t.sub}</p>
       </figcaption>
       <div className="mt-4 grid gap-5 md:grid-cols-2">
         <YearColumn year={2024} layer={layer} locale={locale} />
         <YearColumn year={2026} layer={layer} locale={locale} />
       </div>
-      <p className="mt-3 text-xs">
+      <p className="mt-3 text-meta">
         <Link
           href={locale === "ar" ? `/ar/entries?layer=${layer}` : `/entries?layer=${layer}`}
           className="text-blue underline underline-offset-2"
@@ -174,7 +174,7 @@ export default function ActorConcentration({
         </Link>
       </p>
       {showCaveat ? (
-        <p className="mt-2 note-caution text-xs leading-relaxed text-text-secondary">
+        <p className="mt-2 note-caution text-meta leading-relaxed text-text-secondary">
           {cautionCounts(locale)}
         </p>
       ) : null}

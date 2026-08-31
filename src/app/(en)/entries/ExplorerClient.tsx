@@ -355,9 +355,9 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
     ar && r.locationNamesAr?.length ? r.locationNamesAr : r.locationNames;
 
   const selectCls =
-    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-sm";
+    "min-h-11 w-full rounded-md border border-border bg-white px-2.5 text-body";
   const headingCls =
-    "text-xs font-bold uppercase tracking-wide text-text-secondary";
+    "text-micro font-bold uppercase tracking-wide text-text-secondary";
 
   return (
     <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-6">
@@ -370,12 +370,12 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         className="lg:sticky lg:top-[var(--header-h)] lg:max-h-[calc(100dvh-var(--header-h))] lg:self-start lg:overflow-y-auto lg:overscroll-contain"
       >
         <details className="rounded-md border border-border bg-white lg:open:pb-4" open>
-          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy">
+          <summary className="cursor-pointer px-4 py-3 text-body font-semibold text-navy">
             {t.filtersSummary(filtered.length, TOTAL)}
           </summary>
           <div className="space-y-3 px-4 pb-4">
             <div>
-              <label htmlFor="ex-q" className="block text-[11px] font-semibold text-text-secondary">{t.search}</label>
+              <label htmlFor="ex-q" className="block text-micro font-semibold text-text-secondary">{t.search}</label>
               <input
                 id="ex-q"
                 type="search"
@@ -387,7 +387,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               />
             </div>
             <div>
-              <label htmlFor="ex-year" className="block text-[11px] font-semibold text-text-secondary">{t.year}</label>
+              <label htmlFor="ex-year" className="block text-micro font-semibold text-text-secondary">{t.year}</label>
               <select id="ex-year" className={selectCls} value={get("year")} onChange={(e) => set("year", e.target.value)}>
                 <option value="all">{t.bothYears}</option>
                 <option value="2024">2024</option>
@@ -395,7 +395,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-layer" className="block text-[11px] font-semibold text-text-secondary">{t.layer}</label>
+              <label htmlFor="ex-layer" className="block text-micro font-semibold text-text-secondary">{t.layer}</label>
               <select id="ex-layer" className={selectCls} value={get("layer")} onChange={(e) => set("layer", e.target.value)}>
                 <option value="all">{t.allLayers}</option>
                 {layerMeta.map((l) => (
@@ -404,7 +404,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-stage" className="block text-[11px] font-semibold text-text-secondary">{t.stage}</label>
+              <label htmlFor="ex-stage" className="block text-micro font-semibold text-text-secondary">{t.stage}</label>
               <select id="ex-stage" className={selectCls} value={get("stage")} onChange={(e) => set("stage", e.target.value)}>
                 <option value="all">{t.allStages}</option>
                 {stages.map((s, i) => (
@@ -413,7 +413,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-fn" className="block text-[11px] font-semibold text-text-secondary">{t.fn}</label>
+              <label htmlFor="ex-fn" className="block text-micro font-semibold text-text-secondary">{t.fn}</label>
               <select id="ex-fn" className={selectCls} value={get("fn")} onChange={(e) => set("fn", e.target.value)}>
                 <option value="all">{t.allFns}</option>
                 {FUNCTION_COLUMNS.map((f) => (
@@ -422,7 +422,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-status" className="block text-[11px] font-semibold text-text-secondary">{t.status}</label>
+              <label htmlFor="ex-status" className="block text-micro font-semibold text-text-secondary">{t.status}</label>
               <select id="ex-status" className={selectCls} value={get("status")} onChange={(e) => set("status", e.target.value)}>
                 <option value="all">{t.allStatuses}</option>
                 {/* Only statuses entries carry: five of the vocabulary's
@@ -436,7 +436,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div>
-              <label htmlFor="ex-region" className="block text-[11px] font-semibold text-text-secondary">{t.region}</label>
+              <label htmlFor="ex-region" className="block text-micro font-semibold text-text-secondary">{t.region}</label>
               <select id="ex-region" className={selectCls} value={get("region")} onChange={(e) => set("region", e.target.value)}>
                 <option value="all">{t.allRegions}</option>
                 {locations.regions.map((r) => (
@@ -445,7 +445,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               </select>
             </div>
             <div className="pt-1">
-              <button type="button" onClick={reset} className="min-h-11 w-full rounded-md border border-border bg-white text-sm text-text-secondary">
+              <button type="button" onClick={reset} className="min-h-11 w-full rounded-md border border-border bg-white text-body text-text-secondary">
                 {t.reset}
               </button>
             </div>
@@ -469,7 +469,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
 
         {/* Desktop table */}
         <div className="hidden overflow-x-auto rounded-md border border-border bg-white md:block">
-          <table className="min-w-full border-collapse text-[13px]">
+          <table className="min-w-full border-collapse text-meta">
             <caption className="sr-only">{t.tableCaption}</caption>
             <thead>
               <tr>
@@ -489,7 +489,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 >
                   <td className="border-b border-border px-2.5 py-2 tabular-nums">
                     <span
-                      className="rounded-sm px-1.5 py-0.5 text-[10.5px] font-semibold text-white"
+                      className="rounded-sm px-1.5 py-0.5 text-micro font-semibold text-white"
                       style={{ background: r.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
                     >
                       {r.year}
@@ -533,20 +533,20 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 onClick={(e) => open(r, e.currentTarget)}
                 className="w-full card text-start"
               >
-                <p className="flex items-center justify-between gap-2 text-[11px] text-text-secondary">
+                <p className="flex items-center justify-between gap-2 text-micro text-text-secondary">
                   <span className="inline-flex items-center gap-1.5">
                     <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: layerMeta.find((l) => l.id === r.actorLayer)?.color }} />
                     {layerMeta.find((l) => l.id === r.actorLayer)?.short}
                   </span>
                   <span
-                    className="rounded-sm px-1.5 py-0.5 text-[10.5px] font-semibold text-white"
+                    className="rounded-sm px-1.5 py-0.5 text-micro font-semibold text-white"
                     style={{ background: r.year === 2024 ? "var(--color-y2024)" : "var(--color-y2026)" }}
                   >
                     {r.year}
                   </span>
                 </p>
-                <p className="mt-1 text-sm font-semibold text-navy">{name(r.actorName.split(":")[0])}</p>
-                <p className="mt-0.5 text-xs text-text-secondary">
+                <p className="mt-1 text-body font-semibold text-navy">{name(r.actorName.split(":")[0])}</p>
+                <p className="mt-0.5 text-meta text-text-secondary">
                   {stageLabel(r.stageNo, locale)} · {ar ? <span lang="en" dir="ltr">{r.functionColumn}</span> : r.functionColumn} · {statusLabel(r.implementationStatus, locale)}
                 </p>
               </button>
@@ -555,7 +555,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="card text-sm text-text-secondary">
+          <p className="card text-body text-text-secondary">
             {t.empty(TOTAL)}
           </p>
         ) : null}
@@ -565,7 +565,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
             <button
               type="button"
               onClick={() => setVisible((v) => v + 100)}
-              className="min-h-11 rounded-md border border-border bg-white px-5 text-sm text-text-secondary hover:border-navy hover:text-navy"
+              className="min-h-11 rounded-md border border-border bg-white px-5 text-body text-text-secondary hover:border-navy hover:text-navy"
             >
               {t.showMore(filtered.length - visible)}
             </button>
@@ -586,15 +586,15 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
           <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white text-text shadow-xl">
             <div className="flex items-start justify-between gap-3 border-b border-border p-4">
               <div>
-                <p className="text-[11px] uppercase tracking-wide text-text-secondary">
+                <p className="text-micro uppercase tracking-wide text-text-secondary">
                   {layerMeta.find((l) => l.id === selected.actorLayer)?.label} · {selected.year} · {stageLabel(selected.stageNo, locale)}
                 </p>
-                <h3 className="mt-0.5 text-sm font-semibold text-navy">
+                <h3 className="mt-0.5 text-body font-semibold text-navy">
                   {name(selected.actorName)}
                 </h3>
                 {/* The id in the address bar, printed once so an entry can
                     be named in prose and found again from the name. */}
-                <p className="mt-1 text-[11px] text-text-secondary">
+                <p className="mt-1 text-micro text-text-secondary">
                   {t.entryRef}:{" "}
                   <span dir="ltr" className="font-mono">
                     {selected.id}
@@ -605,31 +605,31 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="min-h-11 min-w-11 rounded border border-border text-sm"
+                className="min-h-11 min-w-11 rounded border border-border text-body"
               >
                 <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
               </button>
             </div>
-            <div className="flex-1 space-y-4 overflow-y-auto p-4 text-sm">
+            <div className="flex-1 space-y-4 overflow-y-auto p-4 text-body">
               {/* No "Data summary" block: it is the mandate and the action
                   concatenated, so printing it here showed the same two
                   passages twice. It stays in the data, where the search
                   filter still reads it. */}
               {detailFailed ? (
                 <section className="rounded-md bg-bg p-3">
-                  <p className="text-[13px] text-text-secondary">{t.loadFailed}</p>
+                  <p className="text-meta text-text-secondary">{t.loadFailed}</p>
                   <button
                     type="button"
                     onClick={() => loadDetail(selected.id)}
-                    className="mt-2 min-h-9 rounded-md border border-border bg-white px-3 text-[13px] text-navy"
+                    className="mt-2 min-h-9 rounded-md border border-border bg-white px-3 text-meta text-navy"
                   >
                     {t.retry}
                   </button>
                 </section>
               ) : !detail ? (
                 <div aria-busy="true" aria-label={t.loadingDetail} className="space-y-2">
-                  <p className="text-[13px] text-text-secondary">{t.loadingDetail}</p>
+                  <p className="text-meta text-text-secondary">{t.loadingDetail}</p>
                   <div className="h-4 w-3/4 animate-pulse rounded bg-bg" />
                   <div className="h-4 w-full animate-pulse rounded bg-bg" />
                   <div className="h-4 w-2/3 animate-pulse rounded bg-bg" />
@@ -648,7 +648,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                       <EntryText en={detail.tracedAction} arText={detail.tracedActionAr} locale={locale} className="mt-1 leading-relaxed" />
                     </section>
                   ) : null}
-                  <dl className="grid grid-cols-2 gap-3 text-[13px]">
+                  <dl className="grid grid-cols-2 gap-3 text-meta">
                     <div>
                       <dt className="font-semibold text-text-secondary">{t.statusLabel}</dt>
                       <dd>{statusLabel(detail.implementationStatus, locale)}</dd>
@@ -707,7 +707,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                           themselves mean nothing outside the compilation. */}
                       <ul className="mt-1 space-y-1">
                         {detail.citations.map((c) => (
-                          <li key={c.id} className="text-[12.5px] leading-snug">
+                          <li key={c.id} className="text-meta leading-snug">
                             {c.url ? (
                               <a
                                 href={c.url}
@@ -732,12 +732,12 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                         en={actorEntry?.mandateVsCapacity}
                         arText={actorEntry?.mandateVsCapacityAr}
                         locale={locale}
-                        className="mt-1 text-[13px] leading-relaxed"
+                        className="mt-1 text-meta leading-relaxed"
                       />
                     </section>
                   ) : null}
                   <section>
-                    <p className="text-xs text-text-secondary">{t.confirmNote}</p>
+                    <p className="text-meta text-text-secondary">{t.confirmNote}</p>
                   </section>
                 </>
               )}
@@ -750,7 +750,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                         <button
                           type="button"
                           onClick={() => open(r)}
-                          className="rounded-sm bg-bg px-2 py-1 text-xs hover:bg-[#EEF2F7]"
+                          className="rounded-sm bg-bg px-2 py-1 text-meta hover:bg-[#EEF2F7]"
                         >
                           {stageLabel(r.stageNo, locale)}
                         </button>
@@ -763,7 +763,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
                 <section>
                   <h4 className={headingCls}>{t.relatedActors}</h4>
                   <p
-                    className="mt-1 text-[13px] text-text-secondary"
+                    className="mt-1 text-meta text-text-secondary"
                     {...(ar ? { lang: "en", dir: "ltr" as const } : {})}
                   >
                     {relatedActorNames.join("; ")}
@@ -772,7 +772,7 @@ export default function ExplorerClient({ locale = "en" }: { locale?: Locale } = 
               ) : null}
               <section>
                 <h4 className={headingCls}>{t.relatedNews}</h4>
-                <p className="mt-1 text-[13px]">
+                <p className="mt-1 text-meta">
                   <Link
                     href={`${ar ? "/ar" : ""}/reported?stage=${encodeURIComponent(selected.stage)}`}
                     className="text-blue underline underline-offset-2"

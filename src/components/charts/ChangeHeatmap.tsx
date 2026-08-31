@@ -380,11 +380,11 @@ export default function ChangeHeatmap({
           <div className="flex h-full w-full max-w-xl flex-col overflow-hidden bg-white shadow-xl">
             <div className="flex items-start justify-between gap-3 border-b border-border p-4">
               <div>
-                <h3 className="text-sm font-semibold text-navy">
+                <h3 className="text-body font-semibold text-navy">
                   {layerMeta.find((l) => l.id === cell.layer)?.label} ·{" "}
                   {stages[cell.stageNo - 1]}
                 </h3>
-                <p className="mt-0.5 text-xs text-text-secondary">
+                <p className="mt-0.5 text-meta text-text-secondary">
                   {t.drawerCounts(
                     countsFor(2024, cell.layer)[cell.stageNo - 1],
                     countsFor(2026, cell.layer)[cell.stageNo - 1],
@@ -396,7 +396,7 @@ export default function ChangeHeatmap({
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="min-h-11 min-w-11 rounded border border-border text-sm"
+                className="min-h-11 min-w-11 rounded border border-border text-body"
               >
                 <span className="sr-only">{t.close}</span>
                 <span aria-hidden>✕</span>
@@ -404,11 +404,11 @@ export default function ChangeHeatmap({
             </div>
             <div className="flex-1 overflow-y-auto p-4">
               {records === null ? (
-                <p className="text-sm text-text-secondary">
+                <p className="text-body text-text-secondary">
                   {t.loading}
                 </p>
               ) : records.length === 0 ? (
-                <p className="text-sm text-text-secondary">
+                <p className="text-body text-text-secondary">
                   {t.empty}
                 </p>
               ) : (
@@ -419,11 +419,11 @@ export default function ChangeHeatmap({
                       className="rounded border border-border p-3"
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm font-semibold text-navy">
+                        <p className="text-body font-semibold text-navy">
                           {r.actorName}
                         </p>
                         <span
-                          className="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-white"
+                          className="rounded-sm px-1.5 py-0.5 text-micro font-semibold text-white"
                           style={{
                             background:
                               r.year === 2024
@@ -434,7 +434,7 @@ export default function ChangeHeatmap({
                           {r.year}
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-text-secondary">
+                      <p className="mt-1 text-meta text-text-secondary">
                         {r.functionColumn} ·{" "}
                         {statusLabel(r.implementationStatus, locale)}
                         {(() => {
@@ -447,7 +447,7 @@ export default function ChangeHeatmap({
                             : "";
                         })()}
                       </p>
-                      <p className="mt-2 text-xs leading-relaxed text-text">
+                      <p className="mt-2 text-meta leading-relaxed text-text">
                         {locale === "ar" && r.summaryAr ? r.summaryAr : r.summary}
                       </p>
                     </li>

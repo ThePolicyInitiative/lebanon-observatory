@@ -171,7 +171,7 @@ export default function ActorTreemapChart({
               aria-checked={year === y}
               {...yearRoving.itemProps(i)}
               onClick={() => setYear(y)}
-              className={`min-h-9 px-4 text-sm ${
+              className={`min-h-9 px-4 text-body ${
                 year === y ? "font-semibold text-white" : "text-text-secondary"
               }`}
               style={year === y ? { background: y === 2024 ? YEAR_COLORS.y2024 : YEAR_COLORS.y2026 } : undefined}
@@ -200,7 +200,7 @@ export default function ActorTreemapChart({
             },
           }}
         />
-        <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-text-secondary">
+        <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-micro text-text-secondary">
           {layerTotals.map((l) => (
             <li key={l.id} className="flex items-center gap-1.5">
               <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />

@@ -111,10 +111,10 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
   return (
     <figure className="card">
       <figcaption>
-        <h3 className="text-base font-semibold text-navy">
+        <h3 className="text-lead font-semibold text-navy">
           {tr.title}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           {tr.sub}
         </p>
       </figcaption>
@@ -131,11 +131,11 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
                 className="flex items-center justify-between gap-2 rounded-t-md px-3.5 py-2.5"
                 style={{ background: s.bg }}
               >
-                <h4 className="text-sm font-semibold" style={{ color: s.color }}>
+                <h4 className="text-body font-semibold" style={{ color: s.color }}>
                   {tr.stream(s.n)} - {c.title}
                 </h4>
               </header>
-              <ul className="flex-1 space-y-1.5 px-3.5 pt-3 text-[13px]">
+              <ul className="flex-1 space-y-1.5 px-3.5 pt-3 text-meta">
                 {c.items.map((item) => (
                   <li key={item} className="flex gap-2">
                     <span
@@ -147,12 +147,12 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
                   </li>
                 ))}
               </ul>
-              <p className="px-3.5 pt-2.5 text-[13px] leading-relaxed text-text-secondary">
+              <p className="px-3.5 pt-2.5 text-meta leading-relaxed text-text-secondary">
                 {c.verdict}
               </p>
               <p className="px-3.5 py-3">
                 <span
-                  className="rounded-sm border px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide"
+                  className="rounded-sm border px-2 py-0.5 text-micro font-semibold uppercase tracking-wide"
                   style={{ color: s.color, borderColor: s.color }}
                 >
                   {c.status}
@@ -162,7 +162,7 @@ export default function ThreeStreams({ locale = "en" }: { locale?: Locale } = {}
           );
         })}
       </div>
-      <p className="mt-3 note-caution text-xs leading-relaxed text-text-secondary">
+      <p className="mt-3 note-caution text-meta leading-relaxed text-text-secondary">
         {tr.caveat}
       </p>
     </figure>

@@ -48,14 +48,14 @@ function Box({ tone = "stateLight", spec, locale }: { tone?: Tone; spec: BoxSpec
     t === "command" || t === "state" || t === "international" || t === "community";
   return (
     <div className={`rounded-md border-2 px-3 py-2 ${TONE_BOX[t]}`}>
-      <p className="text-[12px] font-bold leading-snug">{say(locale, spec.title)}</p>
+      <p className="text-meta font-bold leading-snug">{say(locale, spec.title)}</p>
       {spec.sub ? (
-        <p className={`mt-0.5 text-[11px] leading-snug ${muted ? "text-white/80" : "text-text-secondary"}`}>
+        <p className={`mt-0.5 text-micro leading-snug ${muted ? "text-white/80" : "text-text-secondary"}`}>
           {say(locale, spec.sub)}
         </p>
       ) : null}
       {spec.bullets && spec.bullets.length > 0 ? (
-        <ul className={`mt-1 space-y-0.5 text-[11px] leading-snug ${muted ? "text-white/85" : "text-text-secondary"}`}>
+        <ul className={`mt-1 space-y-0.5 text-micro leading-snug ${muted ? "text-white/85" : "text-text-secondary"}`}>
           {spec.bullets.map((b) => (
             <li key={b.en} className="flex gap-1.5">
               <span aria-hidden>·</span>
@@ -81,8 +81,8 @@ function Band({
 }) {
   return (
     <section className="mt-4">
-      <h4 className="inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-[12px] font-bold uppercase tracking-wide text-white" style={{ background: accent }}>
-        <span className="grid h-4 w-4 place-items-center rounded-full bg-white/25 text-[10px]">
+      <h4 className="inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-meta font-bold uppercase tracking-wide text-white" style={{ background: accent }}>
+        <span className="grid h-4 w-4 place-items-center rounded-full bg-white/25 text-micro">
           {n}
         </span>
         {title}
@@ -98,12 +98,12 @@ function Chain({ steps, locale }: { steps: ChainStep[]; locale: Locale }) {
       {steps.map((s, i) => (
         <li key={s.title.en} className="relative">
           <div className="h-full rounded-md border-2 border-[#C6D2DF] bg-white px-2.5 py-2">
-            <p className="text-[11.5px] font-bold leading-snug text-navy">
+            <p className="text-micro font-bold leading-snug text-navy">
               <span className="text-text-secondary">{i + 1}. </span>
               {say(locale, s.title)}
             </p>
             {s.sub ? (
-              <p className="mt-0.5 text-[10.5px] leading-snug text-text-secondary">
+              <p className="mt-0.5 text-micro leading-snug text-text-secondary">
                 {say(locale, s.sub)}
               </p>
             ) : null}
@@ -128,7 +128,7 @@ function Bands({ bands, accent, locale }: { bands: BandSpec[]; accent: string; l
           ))}
           {b.chain ? <Chain steps={b.chain} locale={locale} /> : null}
           {b.note ? (
-            <p className="mt-2 rounded-md bg-[#EEF2F7] px-3 py-1.5 text-center text-[11.5px] font-semibold text-navy">
+            <p className="mt-2 rounded-md bg-[#EEF2F7] px-3 py-1.5 text-center text-micro font-semibold text-navy">
               {say(locale, b.note)}
             </p>
           ) : null}
@@ -513,10 +513,10 @@ function Map2024({ locale }: { locale: Locale }) {
   return (
     <figure className="card">
       <figcaption className="border-b-2 border-navy pb-3">
-        <h3 className="text-lg font-bold text-navy sm:text-xl">
+        <h3 className="text-h3 font-bold text-navy">
           {say(locale, HEAD_2024.title)}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           {say(locale, HEAD_2024.sub)}
         </p>
       </figcaption>
@@ -525,10 +525,10 @@ function Map2024({ locale }: { locale: Locale }) {
 
       <div className="mt-4 grid gap-2 lg:grid-cols-2">
         <div className="rounded-md border-2 border-[#C6D2DF] bg-[#F1F4F8] px-3 py-2">
-          <p className="text-[12px] font-bold text-navy">
+          <p className="text-meta font-bold text-navy">
             {say(locale, KEY_FIGURES_2024.title)}
           </p>
-          <ul className="mt-1 space-y-0.5 text-[11.5px] text-text-secondary">
+          <ul className="mt-1 space-y-0.5 text-micro text-text-secondary">
             {KEY_FIGURES_2024.items.map((i) => (
               <li key={i.en}>· {say(locale, i)}</li>
             ))}
@@ -1055,10 +1055,10 @@ function Map2026({ locale }: { locale: Locale }) {
   return (
     <figure className="card">
       <figcaption className="border-b-2 border-[#2F6B4F] pb-3">
-        <h3 className="text-lg font-bold text-[#24543E] sm:text-xl">
+        <h3 className="text-h3 font-bold text-[#24543E]">
           {say(locale, HEAD_2026.title)}
         </h3>
-        <p className="mt-1 text-sm text-text-secondary">
+        <p className="mt-1 text-body text-text-secondary">
           {say(locale, HEAD_2026.sub)}
         </p>
       </figcaption>
@@ -1071,7 +1071,7 @@ function Map2026({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      <p className="mt-3 rounded-md border-2 border-rust bg-[#FBF3F0] px-4 py-2.5 text-center text-[12.5px] font-bold leading-relaxed text-rust">
+      <p className="mt-3 rounded-md border-2 border-rust bg-[#FBF3F0] px-4 py-2.5 text-center text-meta font-bold leading-relaxed text-rust">
         {say(locale, GAP_2026)}
       </p>
     </figure>

@@ -19,14 +19,14 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
         <section key={s.id} aria-labelledby={`about-${s.id}`}>
           <h2
             id={`about-${s.id}`}
-            className="text-xl font-semibold text-navy"
+            className="text-h2 font-semibold text-navy"
           >
             {s.heading}
           </h2>
           {s.body?.map((p) => (
             <p
               key={p.slice(0, 24)}
-              className="mt-2.5 max-w-3xl text-sm leading-relaxed text-text-secondary"
+              className="mt-2.5 max-w-3xl text-body leading-relaxed text-text-secondary"
             >
               {p}
             </p>
@@ -36,7 +36,7 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
               {s.points.map((p) => (
                 <li
                   key={p.slice(0, 24)}
-                  className="card text-sm leading-relaxed text-text"
+                  className="card text-body leading-relaxed text-text"
                 >
                   {p}
                 </li>
@@ -49,16 +49,16 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
       <section aria-labelledby="about-contact" className="card">
         <h2
           id="about-contact"
-          className="text-xl font-semibold text-navy"
+          className="text-h2 font-semibold text-navy"
         >
           {t.contact.heading}
         </h2>
         {CONTACT_EMAIL ? (
           <>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+            <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
               {t.contact.body}
             </p>
-            <p className="mt-2 text-sm font-semibold">
+            <p className="mt-2 text-body font-semibold">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 lang="en"
@@ -68,12 +68,12 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <p className="mt-2.5 max-w-3xl text-[13px] leading-relaxed text-text-secondary">
+            <p className="mt-2.5 max-w-3xl text-meta leading-relaxed text-text-secondary">
               {t.contact.note}
             </p>
           </>
         ) : (
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary">
+          <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
             {t.contact.none}
           </p>
         )}
