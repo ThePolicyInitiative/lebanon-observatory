@@ -43,7 +43,7 @@ export default function manifest(): MetadataRoute.Manifest {
         // shortcut names the page and lands on the section.
         name: "Who is doing what",
         short_name: "Who",
-        url: "/who#where-traced",
+        url: "/actions#where-traced",
       },
       {
         name: "Live updates",

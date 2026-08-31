@@ -63,8 +63,6 @@ export default function Page() {
       figures={[
         { value: String(total), label: "مدخلاً متتبَّعاً" },
         { value: "235", label: "جهة مرصودة: 105 في 2024 و130 في 2026" },
-        { value: "4 + 4", label: "مجموعات للجهات وفئات للأفعال" },
-        { value: "31 آب 2026", label: "التتبّع يمتد حتى هذا التاريخ" },
       ]}
     >
       <section aria-labelledby="ar-steps" className="mt-9">

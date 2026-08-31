@@ -64,8 +64,6 @@ export default function MethodologyPage() {
       figures={[
         { value: String(total), label: "traced activity entries" },
         { value: "235", label: "actors traced: 105 in 2024, 130 in 2026" },
-        { value: "4 + 4", label: "actor groups and action categories" },
-        { value: "31 Aug 2026", label: "the tracking runs through this date" },
       ]}
     >
       <section aria-labelledby="steps" className="mt-9">

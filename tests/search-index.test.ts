@@ -11,7 +11,7 @@ import {
   fmtDate as mirrorDate,
   buildIndex,
 } from "../scripts/build-search-index.mjs";
-import { actorAnchor, actorHref } from "@/app/(en)/who/actor-anchor";
+import { actorAnchor, actorHref } from "@/app/(en)/actors/actor-anchor";
 import { layerLabel, regionLabel, stageList } from "@/lib/vocab";
 import { actorBase } from "@/lib/actor-names";
 import { eventsByLocality, localityName } from "@/lib/events";
@@ -155,7 +155,7 @@ describe("what the index covers", () => {
     const routes = new Set(kinds("page").map((i) => i.h.split("#")[0]));
     expect([...routes].sort()).toEqual(
       // Sorted, because the assertion sorts what it is comparing against.
-      ["/", "/about", "/destroyed", "/entries", "/methodology", "/money", "/reported", "/who"],
+      ["/", "/about", "/actions", "/actors", "/entries", "/findings", "/methodology", "/reported"],
     );
     expect(items.some((i) => i.h.startsWith("/search"))).toBe(false);
   });
@@ -238,11 +238,11 @@ describe("what the index covers", () => {
     const routes = new Set([
       "/",
       "/about",
-      "/who",
-      "/destroyed",
+      "/actions",
+      "/actors",
       "/entries",
+      "/findings",
       "/methodology",
-      "/money",
       "/reported",
     ]);
     for (const i of items) {

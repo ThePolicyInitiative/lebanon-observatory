@@ -377,7 +377,7 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                               retired /map route; the section id differs by
                               language, which is why the whole href forks. */}
                           <Link
-                            href={locale === "ar" ? "/ar/who#ar-where-traced" : "/who#where-traced"}
+                            href={locale === "ar" ? "/ar/actions#ar-where-traced" : "/actions#where-traced"}
                             className="font-medium text-blue underline-offset-2 hover:underline"
                           >
                             {t.seeMap}

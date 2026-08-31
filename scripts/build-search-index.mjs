@@ -222,28 +222,41 @@ const chartAnchor = (id, component, pages) => ({
  * the same components, so one check pair serves each side: the page still
  * mounts the component, and the component still carries the id.
  */
-const ACTORS_MODULE = (file) => ["src", "app", "(en)", "who", `${file}.tsx`];
+const ACTORS_MODULE = (file) => ["src", "app", "(en)", "actors", `${file}.tsx`];
 const actorAnchorFor = (id, component) => ({
   id,
   checks: [
-    [EN_PAGE("/who"), `<${component}`],
-    [AR_PAGE("/who"), `<${component}`],
+    [EN_PAGE("/actors"), `<${component}`],
+    [AR_PAGE("/actors"), `<${component}`],
     [ACTORS_MODULE(component), `id="${id}"`],
+  ],
+});
+
+/**
+ * A module that carries its own id and is mounted by both /actions pages.
+ * ActorStageMatrix stays under (en)/actors (its data plumbing lives
+ * there); CategoryMix moved with the section it draws.
+ */
+const actionsAnchorFor = (id, component, modulePath) => ({
+  id,
+  checks: [
+    [EN_PAGE("/actions"), `<${component}`],
+    [AR_PAGE("/actions"), `<${component}`],
+    [modulePath, `"${id}"`],
   ],
 });
 
 /*
  * The indicator board is gone: the report-driven home carries the aim,
- * the importance and the five findings, and the money figures live in
- * the finance page's own modules. Indicator hits therefore land on the
- * finance page, whose six-concept list and funnel print every one of
- * these figures with its date and scope.
+ * the importance and the five findings, and the money figures live under
+ * finding 2 on the findings page, whose six-concept list and funnel
+ * print every one of these figures with its date and scope.
  */
 
 /** The milestone timeline, the one surface that prints timeline.json. */
 const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
-  EN_PAGE("/money"),
-  AR_PAGE("/money"),
+  EN_PAGE("/findings"),
+  AR_PAGE("/findings"),
 ]);
 
 /**
@@ -253,9 +266,9 @@ const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
  * text is the wording the page prints.
  *
  * It was nine until /map and /compare were dissolved. Neither was a
- * question: the map is how /who draws its answer, and the year is a
+ * question: the map is how /actors draws its answer, and the year is a
  * control rather than a destination, so their sections are sections of
- * /who and / now, and a reader searching for one lands on the page that
+ * /actors and / now, and a reader searching for one lands on the page that
  * carries it rather than on a page whose whole subject was an axis.
  *
  * A heading is anchored on both sides or on neither: a reader dropped at
@@ -298,36 +311,6 @@ const PAGES = [
        * both home pages render, so the check is on the section id.
        */
       {
-        en: "The 2024 war created needs far beyond the government's immediate financial capacity",
-        ar: "حرب 2024 ولّدت احتياجات تتجاوز بكثير القدرة المالية الفورية للحكومة",
-        enAnchor: findingAnchor("needs", EN_PAGE("/"), "The 2024 war created needs far beyond"),
-        arAnchor: findingAnchor("needs", AR_PAGE("/"), "حرب 2024 ولّدت احتياجات"),
-      },
-      {
-        en: "Announced financing frameworks were not money in hand",
-        ar: "أطر التمويل المعلنة لم تكن مالاً في اليد",
-        enAnchor: findingAnchor("frameworks", EN_PAGE("/"), "Announced financing frameworks were not money in hand"),
-        arAnchor: findingAnchor("frameworks", AR_PAGE("/"), "أطر التمويل المعلنة لم تكن"),
-      },
-      {
-        en: "The 2026 plan was a sound framework - the response stayed inadequate",
-        ar: "خطة 2026 كانت إطاراً سليماً - لكن الاستجابة بقيت قاصرة",
-        enAnchor: findingAnchor("plan", EN_PAGE("/"), "The 2026 plan was a sound framework"),
-        arAnchor: findingAnchor("plan", AR_PAGE("/"), "خطة 2026 كانت إطاراً سليماً"),
-      },
-      {
-        en: "Community initiatives carried a larger share of the 2026 response",
-        ar: "مبادرات المجتمع المحلي حملت حصة أكبر من استجابة 2026",
-        enAnchor: findingAnchor("community", EN_PAGE("/"), "Community initiatives carried a larger share"),
-        arAnchor: findingAnchor("community", AR_PAGE("/"), "مبادرات المجتمع المحلي حملت حصة أكبر"),
-      },
-      {
-        en: "Both responses stayed concentrated in the early stages of recovery",
-        ar: "الاستجابتان بقيتا متركّزتين في المراحل المبكرة من التعافي",
-        enAnchor: findingAnchor("stages", EN_PAGE("/"), "Both responses stayed concentrated in the early stages"),
-        arAnchor: findingAnchor("stages", AR_PAGE("/"), "الاستجابتان بقيتا متركّزتين"),
-      },
-      {
         en: "Latest reporting",
         ar: "أحدث التغطية والمستجدات",
         enAnchor: { id: "latest-reporting" },
@@ -336,7 +319,7 @@ const PAGES = [
     ],
   },
   {
-    route: "/who",
+    route: "/actors",
     en: "Actor groups",
     ar: "مجموعات الجهات الفاعلة",
     enDesc:
@@ -350,15 +333,15 @@ const PAGES = [
         enAnchor: {
           id: "groups",
           checks: [
-            [EN_PAGE("/who"), "<GroupCards"],
-            [["src", "app", "(en)", "who", "GroupCards.tsx"], '"groups"'],
+            [EN_PAGE("/actors"), "<GroupCards"],
+            [["src", "app", "(en)", "actors", "GroupCards.tsx"], '"groups"'],
           ],
         },
         arAnchor: {
           id: "ar-groups",
           checks: [
-            [AR_PAGE("/who"), "<GroupCards"],
-            [["src", "app", "(en)", "who", "GroupCards.tsx"], '"ar-groups"'],
+            [AR_PAGE("/actors"), "<GroupCards"],
+            [["src", "app", "(en)", "actors", "GroupCards.tsx"], '"ar-groups"'],
           ],
         },
       },
@@ -375,6 +358,47 @@ const PAGES = [
         arAnchor: { id: "ar-who-carries-the-work" },
       },
       {
+        en: "Who did what - the full register",
+        ar: "من فعل ماذا - السجل الكامل",
+        enAnchor: actorAnchorFor("actor-register", "ActorRegister"),
+        arAnchor: actorAnchorFor("actor-register", "ActorRegister"),
+      },
+      /*
+       * The map was its own route, and so its own entry here. It is not a
+       * question a reader arrives with - it is how this page draws its
+       * answer to "who is doing what", so its two sections are sections of
+       * this page now rather than a separate target.
+       */
+      {
+        en: "Why there is no national damage layer",
+        ar: "لماذا لا توجد طبقة أضرار وطنية",
+        enAnchor: {
+          id: "no-national-layer",
+          checks: [[EN_PAGE("/actors"), 'id="no-national-layer"']],
+        },
+        arAnchor: {
+          id: "ar-no-national-layer",
+          checks: [[AR_PAGE("/actors"), 'id="ar-no-national-layer"']],
+        },
+      },
+    ],
+  },
+  {
+    route: "/actions",
+    en: "The action layer",
+    ar: "طبقة الأفعال",
+    enDesc:
+      "Everything the actors were traced doing, sorted into the four action categories - what kind of work each year held, which groups held each stage, and what shifted between the wars.",
+    arDesc:
+      "كل ما رُصدت الجهات وهي تقوم به، مصنّفاً في فئات الأفعال الأربع - أي نوع من العمل حملته كل سنة، وأي المجموعات شغلت كل مرحلة، وما الذي تبدّل بين الحربين.",
+    headings: [
+      {
+        en: "What kind of work was traced",
+        ar: "أي نوع من العمل رُصد",
+        enAnchor: actionsAnchorFor("action-mix", "CategoryMix", ["src", "app", "(en)", "actions", "CategoryMix.tsx"]),
+        arAnchor: actionsAnchorFor("ar-action-mix", "CategoryMix", ["src", "app", "(en)", "actions", "CategoryMix.tsx"]),
+      },
+      {
         en: "Which groups held each stage of the response",
         ar: "أي المجموعات شغلت كل مرحلة من مراحل الاستجابة",
         enAnchor: { id: "stages-held" },
@@ -387,48 +411,18 @@ const PAGES = [
         arAnchor: { id: "ar-what-shifted" },
       },
       {
-        en: "What kind of work was traced",
-        ar: "أي نوع من العمل رُصد",
-        enAnchor: {
-          id: "action-mix",
-          checks: [
-            [EN_PAGE("/who"), "<CategoryMix"],
-            [["src", "app", "(en)", "who", "CategoryMix.tsx"], '"action-mix"'],
-          ],
-        },
-        arAnchor: {
-          id: "ar-action-mix",
-          checks: [
-            [AR_PAGE("/who"), "<CategoryMix"],
-            [["src", "app", "(en)", "who", "CategoryMix.tsx"], '"ar-action-mix"'],
-          ],
-        },
-      },
-      {
-        en: "Who did what - the full register",
-        ar: "من فعل ماذا - السجل الكامل",
-        enAnchor: actorAnchorFor("actor-register", "ActorRegister"),
-        arAnchor: actorAnchorFor("actor-register", "ActorRegister"),
-      },
-      {
         en: "Every traced actor against every stage of the response",
         ar: "كل جهة مرصودة مقابل كل مرحلة من مراحل الاستجابة",
-        enAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
-        arAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
+        enAnchor: actionsAnchorFor("actor-matrix", "ActorStageMatrix", ["src", "app", "(en)", "actors", "ActorStageMatrix.tsx"]),
+        arAnchor: actionsAnchorFor("actor-matrix", "ActorStageMatrix", ["src", "app", "(en)", "actors", "ActorStageMatrix.tsx"]),
       },
-      /*
-       * The map was its own route, and so its own entry here. It is not a
-       * question a reader arrives with - it is how this page draws its
-       * answer to "who is doing what", so its two sections are sections of
-       * this page now rather than a separate target.
-       */
       {
-        en: "Where the traced activity sits",
-        ar: "أين يقع النشاط المرصود",
-        enAnchor: { id: "where-traced", checks: [[EN_PAGE("/who"), 'id="where-traced"']] },
+        en: "Where the actions happened",
+        ar: "أين جرت الأفعال المرصودة",
+        enAnchor: { id: "where-traced", checks: [[EN_PAGE("/actions"), 'id="where-traced"']] },
         arAnchor: {
           id: "ar-where-traced",
-          checks: [[AR_PAGE("/who"), 'id="ar-where-traced"']],
+          checks: [[AR_PAGE("/actions"), 'id="ar-where-traced"']],
         },
       },
       {
@@ -439,41 +433,65 @@ const PAGES = [
         enAnchor: {
           id: "regional-composition",
           checks: [
-            [EN_PAGE("/who"), "<RegionalComposition"],
+            [EN_PAGE("/actions"), "<RegionalComposition"],
             [REGIONAL_COMPOSITION, 'id="regional-composition"'],
           ],
         },
         arAnchor: {
           id: "regional-composition",
           checks: [
-            [AR_PAGE("/who"), "<RegionalComposition"],
+            [AR_PAGE("/actions"), "<RegionalComposition"],
             [REGIONAL_COMPOSITION, 'id="regional-composition"'],
           ],
         },
       },
       {
-        en: "Why there is no national damage layer",
-        ar: "لماذا لا توجد طبقة أضرار وطنية",
-        enAnchor: {
-          id: "no-national-layer",
-          checks: [[EN_PAGE("/who"), 'id="no-national-layer"']],
-        },
-        arAnchor: {
-          id: "ar-no-national-layer",
-          checks: [[AR_PAGE("/who"), 'id="ar-no-national-layer"']],
-        },
+        en: "Announced is not done",
+        ar: "المُعلَن ليس مُنجَزاً",
+        enAnchor: { id: "status" },
+        arAnchor: { id: "ar-status" },
       },
     ],
   },
   {
-    route: "/destroyed",
-    en: "The damage assessments - kept honest",
-    ar: "تقديرات الأضرار",
+    route: "/findings",
+    en: "The findings",
+    ar: "الاستنتاجات",
     enDesc:
-      "Four non-additive tracks for 2024 and two bounded zones for 2026, each with its method, scope and date - never merged, never averaged.",
+      "The five findings of the 2024-2026 comparison, each with its full depth: the damage estimates behind the US$11 billion benchmark, the money's path from framework to disbursement, and the command structures side by side.",
     arDesc:
-      "أربعة مسارات لا تُجمع لعام 2024 ومنطقتان مقيَّمتان في 2026، لكل تقدير منهجيته ونطاقه وتاريخه - بلا جمع ولا متوسط.",
+      "الاستنتاجات الخمسة لمقارنة 2024-2026، ولكل منها عمقه الكامل: تقديرات الأضرار خلف مرجع الـ11 مليار دولار، ومسار المال من الإطار إلى الدفع، وبنى القيادة جنباً إلى جنب.",
     headings: [
+      {
+        en: "The 2024 war created needs far beyond the government's immediate financial capacity",
+        ar: "حرب 2024 ولّدت احتياجات تتجاوز بكثير القدرة المالية الفورية للحكومة",
+        enAnchor: findingAnchor("needs", EN_PAGE("/findings"), "The 2024 war created needs far beyond"),
+        arAnchor: findingAnchor("needs", AR_PAGE("/findings"), "حرب 2024 ولّدت احتياجات"),
+      },
+      {
+        en: "Announced financing frameworks were not money in hand",
+        ar: "أطر التمويل المعلنة لم تكن مالاً في اليد",
+        enAnchor: findingAnchor("frameworks", EN_PAGE("/findings"), "Announced financing frameworks were not money in hand"),
+        arAnchor: findingAnchor("frameworks", AR_PAGE("/findings"), "أطر التمويل المعلنة لم تكن"),
+      },
+      {
+        en: "The 2026 plan was a sound framework - the response stayed inadequate",
+        ar: "خطة 2026 كانت إطاراً سليماً - لكن الاستجابة بقيت قاصرة",
+        enAnchor: findingAnchor("plan", EN_PAGE("/findings"), "The 2026 plan was a sound framework"),
+        arAnchor: findingAnchor("plan", AR_PAGE("/findings"), "خطة 2026 كانت إطاراً سليماً"),
+      },
+      {
+        en: "Community initiatives carried a larger share of the 2026 response",
+        ar: "مبادرات المجتمع المحلي حملت حصة أكبر من استجابة 2026",
+        enAnchor: findingAnchor("community", EN_PAGE("/findings"), "Community initiatives carried a larger share"),
+        arAnchor: findingAnchor("community", AR_PAGE("/findings"), "مبادرات المجتمع المحلي حملت حصة أكبر"),
+      },
+      {
+        en: "Both responses stayed concentrated in the early stages of recovery",
+        ar: "الاستجابتان بقيتا متركّزتين في المراحل المبكرة من التعافي",
+        enAnchor: findingAnchor("stages", EN_PAGE("/findings"), "Both responses stayed concentrated in the early stages"),
+        arAnchor: findingAnchor("stages", AR_PAGE("/findings"), "الاستجابتان بقيتا متركّزتين"),
+      },
       {
         en: "2024: four non-additive tracks bracket the destruction",
         ar: "2024: أربعة مسارات غير قابلة للجمع تحصر الدمار",
@@ -491,7 +509,7 @@ const PAGES = [
         ar: "الأضرار المبلَّغة بلدياً بحسب القضاء",
         enAnchor: { id: "district-survey" },
         arAnchor: chartAnchor("district-damage-2024", "DistrictDamageChart", [
-          AR_PAGE("/destroyed"),
+          AR_PAGE("/findings"),
         ]),
       },
       {
@@ -499,7 +517,7 @@ const PAGES = [
         ar: "الأضرار والخسائر والاحتياجات بحسب القطاع",
         enAnchor: { id: "sector-chart" },
         arAnchor: chartAnchor("sector-estimates", "SectorDamageChart", [
-          AR_PAGE("/destroyed"),
+          AR_PAGE("/findings"),
         ]),
       },
       {
@@ -508,17 +526,6 @@ const PAGES = [
         enAnchor: { id: "services-networks" },
         arAnchor: { id: "ar-services" },
       },
-    ],
-  },
-  {
-    route: "/money",
-    en: "Finance and delivery",
-    ar: "التمويل مقابل الإنجاز",
-    enDesc:
-      "Need, framework, commitment, disbursement and works are different objects; the funnel, the packages and the procurement status keep them apart.",
-    arDesc:
-      "الاحتياج والإطار والالتزام والدفع والأشغال أشياء مختلفة؛ المسار والحزم وحالة الشراء تُبقيها متمايزة.",
-    headings: [
       {
         en: "Inside the initial US$250 million",
         ar: "داخل الـ250 مليون دولار الأولى",
@@ -765,7 +772,7 @@ export function buildIndex() {
     const people = [...entry.people];
     const subtypes = [...entry.subtypes];
     items.push(
-      item("actor", entry.base, ar, `/who#${actorAnchor(entry.base)}`, {
+      item("actor", entry.base, ar, `/actors#${actorAnchor(entry.base)}`, {
         c: `${layer.en} · ${yearsEn(entry.years)}`,
         ca: `${layer.ar} · ${yearsAr(entry.years)}`,
         x: [...subtypes, ...people].join(" · "),
@@ -788,7 +795,7 @@ export function buildIndex() {
     const label = REGIONS[region.id];
     if (!label) throw new Error(`No name for the grouping "${region.id}"`);
     items.push(
-      item("place", label.en, label.ar, "/who", {
+      item("place", label.en, label.ar, "/actions", {
         c: "Regional grouping",
         ca: "تجمّع إقليمي",
       }),
@@ -805,7 +812,7 @@ export function buildIndex() {
     const region = REGIONS[locality.region];
     if (!region) throw new Error(`No name for the grouping "${locality.region}"`);
     items.push(
-      item("place", locality.name, ar, "/who", { c: region.en, ca: region.ar }),
+      item("place", locality.name, ar, "/actions", { c: region.en, ca: region.ar }),
     );
   }
 
@@ -813,7 +820,7 @@ export function buildIndex() {
    * The twelve stages of the value chain. They used to point at /compare,
    * which contrasted them across the two years; the two surfaces that
    * actually draw a stage - the stage composition chart and the actor-by-
-   * stage matrix - are both on /who, so that is where a reader searching a
+   * stage matrix - are both on /actors, so that is where a reader searching a
    * stage name should land.
    */
   const stages = readJson("src", "data", "stage-counts.json").stages;
@@ -821,7 +828,7 @@ export function buildIndex() {
     throw new Error(`The Arabic stage names are stale: ${stages.length} stages, ${STAGES_AR.length} names`);
   stages.forEach((stage, i) => {
     items.push(
-      item("stage", stage, STAGES_AR[i], "/who", {
+      item("stage", stage, STAGES_AR[i], "/actions", {
         c: `Stage ${i + 1} of ${stages.length}`,
         ca: `المرحلة ${i + 1} من ${stages.length}`,
       }),
@@ -831,7 +838,7 @@ export function buildIndex() {
   /* The four actor layers. */
   for (const layer of LAYER_LABELS) {
     items.push(
-      item("layer", layer.en, layer.ar, "/who", {
+      item("layer", layer.en, layer.ar, "/actors", {
         c: "Actor group",
         ca: "مجموعة جهات فاعلة",
       }),
@@ -843,8 +850,8 @@ export function buildIndex() {
      funnel print these same figures - the home page's indicator board
      was retired with the report-driven rebuild. */
   const kpis = readJson("src", "data", "kpis.json");
-  const kpiEn = "/money";
-  const kpiAr = "/ar/money";
+  const kpiEn = "/findings";
+  const kpiAr = "/ar/findings";
   for (const kpi of kpis) {
     items.push(
       item("indicator", kpi.label, kpi.labelAr, kpiEn, {
@@ -864,7 +871,7 @@ export function buildIndex() {
      where every other one writes 23 أيلول 2024. */
   const timeline = readJson("src", "data", "timeline.json");
   const timelineOk = anchorLives(TIMELINE_ANCHOR, null, warnings);
-  const timelineHref = timelineOk ? `/money#${TIMELINE_ANCHOR.id}` : "/money";
+  const timelineHref = timelineOk ? `/findings#${TIMELINE_ANCHOR.id}` : "/findings";
   for (const event of timeline) {
     const track = TRACKS[event.track];
     if (!track) throw new Error(`Unknown track "${event.track}" on ${event.id}`);

@@ -11,18 +11,17 @@ export default function NotFound() {
         sections are linked below.
       </p>
       <ul className="mt-6 flex flex-wrap justify-center gap-3 text-body">
-        {/* One entry per page. It listed seven when there were seven pages;
-            "2024 vs 2026" and "Map" have since become sections of the home
-            page and of /who, so listing them here would print two links to
-            the same route and leave /destroyed and /reported unlisted. */}
+        {/* One entry per page, in the report's own order. The finance and
+            damage material lives inside /findings now, so neither gets a
+            row of its own. */}
         {[
-          ["/", "Home"],
-          ["/who", "Actor layers & map"],
-          ["/destroyed", "Damage assessments"],
-          ["/money", "Finance & delivery"],
+          ["/", "Home - the aim"],
+          ["/actors", "Actor groups & map"],
+          ["/actions", "Action categories"],
+          ["/findings", "The five findings"],
           ["/reported", "Live updates"],
           ["/entries", "Data explorer"],
-          ["/methodology", "How was this built?"],
+          ["/methodology", "Methodology"],
           ["/search", "Search"],
         ].map(([href, label]) => (
           <li key={href}>

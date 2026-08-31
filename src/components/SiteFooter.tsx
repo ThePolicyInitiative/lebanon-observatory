@@ -19,22 +19,15 @@ import { localisedHref } from "./SiteNav";
  * edits nobody kept.
  */
 /**
- * Topics here, questions in the tab bar - deliberately, and not a leftover.
- * A reader at the foot of a page has already read it and is looking for a
- * subject by name, so the footer says what each page holds; a reader at the
- * top has not, and arrives with a question.
- *
- * The list had seven entries when there were seven pages. "2024 vs 2026"
- * and "Reconstruction map" pointed at routes that no longer exist - the
- * year is a control on the home page and the map is a section of /who -
- * and repointing them would have printed two links to /who and two to the
- * home page in one seven-item list.
+ * Topics here, part names in the tab bar. A reader at the foot of a page
+ * has already read it and is looking for a subject by name, so the footer
+ * says what each page holds.
  */
 const LINKS: [string, string, string][] = [
-  ["/", "The two responses compared", AR.nav.compare],
-  ["/who", "Actor groups & map", AR.nav.actors],
-  ["/destroyed", "Damage assessments", AR.nav.damage],
-  ["/money", "Finance & delivery", AR.nav.finance],
+  ["/", "Aim & importance", AR.nav.aim],
+  ["/actors", "Actor groups & map", AR.nav.actors],
+  ["/actions", "Action categories", AR.nav.actions],
+  ["/findings", "The five findings", AR.nav.findings],
   ["/reported", "Live updates", AR.nav.news],
   ["/entries", "Data explorer", AR.nav.explorer],
   ["/methodology", "Methodology", AR.nav.method],

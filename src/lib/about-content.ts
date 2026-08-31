@@ -76,8 +76,6 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
     figures: [
       { value: "771", label: "traced activity entries, 2024 and 2026 together" },
       { value: "235", label: "actors traced across the two years" },
-      { value: "4 + 4", label: "actor groups, and action categories the activity sorts into" },
-      { value: "31 Aug 2026", label: "the date the tracking reaches" },
     ],
     sections: [
       {
@@ -153,8 +151,6 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
     figures: [
       { value: "771", label: "مدخلاً متتبَّعاً للنشاط، 2024 و2026 معاً" },
       { value: "235", label: "جهة متتبَّعة عبر السنتين معاً" },
-      { value: "4 + 4", label: "مجموعات جهات وفئات أفعال يُصنَّف النشاط فيها" },
-      { value: "31 آب 2026", label: "التاريخ الذي يبلغه التتبّع" },
     ],
     sections: [
       {

@@ -5,7 +5,7 @@ import { actorBase, actorLabel } from "@/lib/actor-names";
 // From the data-free module, not through ActorRegister: this component
 // renders inside a client tree, and the register module carries the whole
 // entry log with it.
-import { actorHref } from "@/app/(en)/who/actor-anchor";
+import { actorHref } from "@/app/(en)/actors/actor-anchor";
 import { cautionCounts, layers, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 

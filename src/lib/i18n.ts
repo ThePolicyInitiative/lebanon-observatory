@@ -67,40 +67,32 @@ export const AR = {
   },
   nav: {
     /*
-     * The tabs are questions now, not topics. The wide labels below carry
-     * the whole question; SiteNav prints the short form on a narrow
-     * screen, because a five-word question does not fit a phone tab bar
-     * and a truncated question is worse than a short one.
+     * The tabs are the reconstruction report's table of contents: the
+     * aim, the two analytical layers, the findings, the method, and the
+     * live continuation of the search. SiteNav prints the short form on
+     * a narrow screen.
      */
-    built: "هل أُنجز شيء؟",
-    builtShort: "أُنجز؟",
-    who: "من يفعل ماذا؟",
-    whoShort: "من؟",
-    money: "أين ذهب المال؟",
-    moneyShort: "المال؟",
-    destroyed: "ما الذي دُمِّر؟",
-    destroyedShort: "الدمار؟",
-    reported: "ماذا يُنشَر؟",
-    reportedShort: "يُنشَر؟",
-    methodology: "كيف بُني هذا؟",
-    methodologyShort: "كيف؟",
+    aim: "الهدف",
+    aimShort: "الهدف",
+    actors2: "الجهات الفاعلة",
+    actors2Short: "الجهات",
+    actions: "الأفعال",
+    actionsShort: "الأفعال",
+    findings: "الاستنتاجات",
+    findingsShort: "استنتاجات",
+    methodology: "المنهجية",
+    methodologyShort: "منهجية",
+    reported: "التغطية المباشرة",
+    reportedShort: "مباشر",
     /*
      * The footer's topic names. It says what each page holds, because a
      * reader at the foot of a page has already read it and is looking for
-     * a subject by name; the questions above are for a reader arriving.
-     *
-     * `map` is gone with the route it named: the map is a section of /who,
-     * and `actors` says so.
+     * a subject by name.
      */
     home: "الرئيسية",
-    compare: "مقارنة الاستجابتين",
-    actors: "الجهات الفاعلة والخريطة",
-    damage: "الأضرار",
-    finance: "التمويل",
+    actors: "مجموعات الجهات والخريطة",
     news: "مستجدات",
     explorer: "المستكشف",
-    // `methodology` above carries the question form, so the footer's topic
-    // name for the same route lives under `method`.
     method: "المنهجية",
     english: "English",
     arabic: "العربية",
@@ -133,7 +125,7 @@ export const AR = {
 
   /** One entry per page, mirroring the English routes under /ar. */
   pages: {
-    who: {
+    actors: {
       desc:
         "أربع مجموعات فاعلة في إعادة إعمار لبنان - المؤسسات الرسمية، والمنظمات الدولية وغير الحكومية، والبلديات، والمجتمع المحلي - لعامي 2024 و2026، بأدوارها وتحوّلاتها.",
       title: "مجموعات الجهات الفاعلة",
@@ -141,21 +133,21 @@ export const AR = {
       point:
         "الخلاصة المتكررة: في القرى الجنوبية، العمل الظاهر فعلياً يقوم به الأهالي والجمعيات والبلديات، وغالباً على نفقتهم الخاصة.",
     },
-    destroyed: {
+    actions: {
       desc:
-        "تقديرات أضرار حربي 2024 و2026 في لبنان: أربعة مسارات لا تُجمع لعام 2024، وتقييمان لمنطقتين في 2026، مع منهجية كل رقم ونطاقه وتاريخه.",
-      title: "تقديرات الأضرار",
-      lede: "لا يوجد رقم واحد لأبنية حرب 2024: أربعة مسارات غير قابلة للجمع تحصر حجم الدمار، والفروق بينها هي نفسها معطى - في المنهجية والنطاق والوحدة والتوقيت. أما 2026 فله تقييمان لمنطقتين محددتين فقط، ولا يُجمعان مع أي رقم من 2024.",
+        "طبقة الأفعال في إعادة إعمار لبنان: أربع فئات - الإجراءات المالية، وتقييم الأضرار وإدارتها، والإغاثة والتعافي المجتمعي، وإعادة الإعمار والتنفيذ - وما رُصد تحت كل منها في 2024 و2026.",
+      title: "طبقة الأفعال",
+      lede: "كل ما رُصدت الجهات وهي تقوم به، مصنّفاً في أربع فئات للأفعال، مع مراحل الاستجابة التي تنتظم داخلها ومرحلة التنفيذ حيثما سمح ما نُشر علناً. الفئات تُجمع عبر المجموعات الأربع معاً - هذه صفحة عن العمل نفسه، لا عن من قام به.",
       point:
-        "تُعرض التقديرات جنباً إلى جنب ولا تُجمع ولا يؤخذ متوسطها. تعدّد التقديرات أخّر إرساء مرجع واحد للتعويضات.",
+        "الأعداد هنا مجاميع فئات ومراحل عبر كل المجموعات - وهي تقيس حضوراً مرصوداً، لا إنفاقاً ولا إنجازاً مكتملاً.",
     },
-    money: {
+    findings: {
       desc:
-        "التمويل مقابل الإنجاز في إعادة إعمار لبنان: الاحتياج والإطار والالتزام والدفع الفعلي أشياء مختلفة، وإطار LEAP ليس مكافئاً للاحتياج الوطني.",
-      title: "التمويل مقابل الإنجاز",
-      lede: "الاحتياج المقدَّر شيء، والإطار شيء آخر، والالتزام غيرهما، والدفع الفعلي غيرها جميعاً. إطار LEAP البالغ مليار دولار ليس مكافئاً للاحتياج الوطني البالغ 11 مليار دولار، والمبلغ المدفوع ليس دليلاً على أشغال قائمة.",
+        "الاستنتاجات الخمسة لمقارنة استجابتَي 2024 و2026: احتياجات تفوق القدرة، وأطر تمويل ليست مالاً في اليد، وخطة أقوى من استجابتها، ودور أوسع للمبادرات الأهلية، وتركّز في المراحل المبكرة.",
+      title: "الاستنتاجات",
+      lede: "خمسة استنتاجات تخرج من قراءة الاستجابتين عبر طبقتَي الجهات والأفعال، ولكل استنتاج هنا نصّه الكامل وعمقه: تقديرات الأضرار خلف المرجع البالغ 11 مليار دولار، ومسار المال من الإطار إلى الدفع، وبنى القيادة جنباً إلى جنب.",
       point:
-        "حتى 31 آب 2026 لم يُعرض أي عقد أشغال مُرسى على بوابة الشراء، وبقيت مؤشرات الإنجاز المادي المعلنة عند الصفر.",
+        "تقديرات الأضرار لا تُجمع ولا يؤخذ متوسطها، والتمويل المعلن ليس تمويلاً مدفوعاً، ولا شيء هنا يُعرض كإنجاز مكتمل.",
     },
     reported: {
       desc:

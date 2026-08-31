@@ -122,7 +122,7 @@ test.describe("the composite-widget keyboard model", () => {
   const group = (page: Page) => page.locator('[role="tablist"] [role="tab"]');
 
   test("keeps one Tab stop and moves selection with the arrow keys", async ({ page }) => {
-    await page.goto("/who", { waitUntil: "networkidle" });
+    await page.goto("/actors", { waitUntil: "networkidle" });
     const tabs = group(page);
     await expect(tabs.first()).toBeVisible();
     expect(await tabs.count()).toBeGreaterThan(1);
@@ -140,7 +140,7 @@ test.describe("the composite-widget keyboard model", () => {
   });
 
   test("flips the horizontal keys under right-to-left", async ({ page }) => {
-    await page.goto("/ar/who", { waitUntil: "networkidle" });
+    await page.goto("/ar/actors", { waitUntil: "networkidle" });
     const tabs = group(page);
     await expect(tabs.first()).toBeVisible();
     expect(await tabs.count()).toBeGreaterThan(1);
@@ -193,10 +193,10 @@ test.describe("the explorer drawer", () => {
 test.describe("the change heatmap", () => {
   test("walks the grid by keyboard and opens the entries behind a cell", async ({ page }) => {
     const w = watch(page);
-    // The heat maps live on /who now: they say who moved between the two
-    // years, and drawing them here as well as on the home page printed one
-    // figure twice with nothing to say which was the reference.
-    await page.goto("/who", { waitUntil: "networkidle" });
+    // The change heat map lives on /actions - the action layer's page - since
+    // the report-structure rebuild: it reads change per stage of the
+    // response, so it sits with the work rather than with the actors.
+    await page.goto("/actions", { waitUntil: "networkidle" });
 
     // The only role="application" on the site - the keyboard-walkable grid.
     const chart = page.locator('[role="application"]');
@@ -235,7 +235,7 @@ test.describe("the map", () => {
   test("draws the vector map and completes its cadastre request", async ({ page }) => {
     const w = watch(page);
     const cadastre = page.waitForResponse((r) => r.url().includes("lebanon-adm3.geojson"));
-    await page.goto("/who", { waitUntil: "networkidle" });
+    await page.goto("/actions", { waitUntil: "networkidle" });
 
     const response = await cadastre;
     expect(response.status()).toBe(200);
@@ -259,7 +259,7 @@ test.describe("the map", () => {
     });
 
     const w = watch(page);
-    await page.goto("/who", { waitUntil: "networkidle" });
+    await page.goto("/actions", { waitUntil: "networkidle" });
     await expect(page.locator('svg[role="group"]').first()).toBeVisible();
 
     /*

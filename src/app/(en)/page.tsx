@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import InstitutionalStructures from "@/components/InstitutionalStructures";
-import ThreeStreams from "@/components/ThreeStreams";
 import NewsTeaser from "@/components/news/NewsTeaser";
-import SeeMore from "@/components/SeeMore";
 import {
   Body,
-  FigureTile,
   LayerCard,
   Onward,
   ScaleStrip,
@@ -28,7 +24,18 @@ export const metadata: Metadata = {
  * The home page follows the report: aim, the two layers, why the
  * comparison matters, and the five findings. Everything the report worded
  * comes from framework.ts; only the connective prose is written here.
+ * The findings appear as teasers - one sentence each - because their full
+ * text and depth live on /findings.
  */
+
+/** The teaser prints only a finding's opening sentence; splitting on the
+ *  first sentence break is safe because framework.ts writes no dotted
+ *  abbreviations, and decimal points are never followed by a space. */
+function firstSentence(text: string): string {
+  const i = text.indexOf(". ");
+  return i === -1 ? text : text.slice(0, i + 1);
+}
+
 export default function HomePage() {
   const [actors, actions] = AIM.en.layers;
   const needs = finding("needs", "en");
@@ -76,7 +83,7 @@ export default function HomePage() {
               What the comparison shows
             </Link>
             <Link
-              href="/who"
+              href="/actors"
               className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-body font-semibold text-white transition-colors duration-150 hover:bg-white/10"
             >
               Explore the actor layer
@@ -104,10 +111,10 @@ export default function HomePage() {
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <LayerCard title={actors.title} body={actors.body}>
-            <Onward href="/who">Meet the four actor groups</Onward>
+            <Onward href="/actors">Meet the four actor groups</Onward>
           </LayerCard>
           <LayerCard title={actions.title} body={actions.body}>
-            <Onward href="/who#action-mix">
+            <Onward href="/actions#action-mix">
               See what each response did, category by category
             </Onward>
             <p className="mt-2 text-meta leading-relaxed text-text-secondary">
@@ -148,79 +155,65 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* The five findings */}
+        {/* The five findings, teased: one opening sentence each. The full
+            text and every finding's depth live on /findings, where the
+            finding-* anchors moved. */}
         <section id="findings" aria-labelledby="findings-heading">
           <h2 id="findings-heading" className="text-h1 font-semibold text-navy">
             What the comparison shows
           </h2>
           <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
-            Five findings hold across the tracking. Each one leads onward to
-            the page that carries its full detail.
+            Five findings hold across the tracking. Each opens here in a
+            sentence and carries its full text and depth on the findings
+            page.
           </p>
 
-          <div className="mt-10 space-y-16">
-            <section id="finding-needs" aria-label={needs.title}>
+          <div className="mt-8 space-y-4">
+            <article className="card">
               <SectionHeading index={1} title={needs.title} as="h3">
-                <Body>{needs.body[0]}</Body>
-                <Body>{needs.body[1]}</Body>
+                <Body>{firstSentence(needs.body[0])}</Body>
+                <Onward href="/findings#finding-needs">
+                  The full finding: the damage estimates and the needs
+                </Onward>
               </SectionHeading>
-              <div
-                role="group"
-                aria-label="The three headline figures of the 2024 assessment"
-                className="mt-6 grid max-w-4xl gap-4 sm:grid-cols-3"
-              >
-                <FigureTile value="US$6.8 billion" label="Physical damage" />
-                <FigureTile value="US$7.2 billion" label="Economic losses" />
-                <FigureTile
-                  value="~US$11 billion"
-                  label="Recovery and reconstruction needs"
-                />
-              </div>
-              <Onward href="/destroyed">The damage, area by area</Onward>
-              <Onward href="/money">The financing that followed</Onward>
-            </section>
+            </article>
 
-            <section id="finding-frameworks" aria-label={frameworks.title}>
+            <article className="card">
               <SectionHeading index={2} title={frameworks.title} as="h3">
-                <Body>{frameworks.body[0]}</Body>
-                <Body>{frameworks.body[1]}</Body>
+                <Body>{firstSentence(frameworks.body[0])}</Body>
+                <Onward href="/findings#finding-frameworks">
+                  The full finding: the money&apos;s path from framework to
+                  disbursement
+                </Onward>
               </SectionHeading>
-              <Onward href="/money">How far the money actually moved</Onward>
-            </section>
+            </article>
 
-            <section id="finding-plan" aria-label={plan.title}>
+            <article className="card">
               <SectionHeading index={3} title={plan.title} as="h3">
-                <Body>{plan.body[0]}</Body>
-                <Body>{plan.body[1]}</Body>
+                <Body>{firstSentence(plan.body[0])}</Body>
+                <Onward href="/findings#finding-plan">
+                  The full finding: the two command structures
+                </Onward>
               </SectionHeading>
-              <SeeMore label="the two command structures, side by side">
-                <InstitutionalStructures />
-                <div className="mt-8">
-                  <ThreeStreams />
-                </div>
-              </SeeMore>
-            </section>
+            </article>
 
-            {/* This finding reads the actor groups against each other, so
-                it carries no counts anywhere: the wording ranks, the
-                figures live nowhere. */}
-            <section id="finding-community" aria-label={community.title}>
+            <article className="card">
               <SectionHeading index={4} title={community.title} as="h3">
-                <Body>{community.body[0]}</Body>
-                <Body>{community.body[1]}</Body>
+                <Body>{firstSentence(community.body[0])}</Body>
+                <Onward href="/findings#finding-community">
+                  The full finding: the community share of the work
+                </Onward>
               </SectionHeading>
-              <Onward href="/who">Where each actor group stood</Onward>
-            </section>
+            </article>
 
-            <section id="finding-stages" aria-label={stages.title}>
+            <article className="card">
               <SectionHeading index={5} title={stages.title} as="h3">
-                <Body>{stages.body[0]}</Body>
-                <Body>{stages.body[1]}</Body>
+                <Body>{firstSentence(stages.body[0])}</Body>
+                <Onward href="/findings#finding-stages">
+                  The full finding: where the work concentrated
+                </Onward>
               </SectionHeading>
-              <Onward href="/who#action-mix">
-                What kind of work was traced, category by category
-              </Onward>
-            </section>
+            </article>
           </div>
         </section>
 

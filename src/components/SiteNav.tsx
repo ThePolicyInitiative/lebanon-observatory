@@ -12,25 +12,21 @@ import { AR, CHROME } from "@/lib/i18n";
  * back into English mid-visit.
  */
 /**
- * The tab bar is the question the reader arrived with.
+ * The tab bar is the reconstruction report's own table of contents.
  *
- * It used to be eight topics - Home, 2024 vs 2026, Actor layers, Damage
- * assessments, Map, Finance, Live updates, Explorer - which named the
- * site's own filing rather than anything a reader wants to know, and put
- * an axis (the year) and a tool (the explorer) beside four subjects as
- * though they were the same kind of thing.
- *
- * Each of these is a question the tracking can answer, and each page is
- * one instrument tuned to answer exactly one of them. The map is not a
- * tab, because "map" is not a question: it is how /who draws its answer.
+ * The site follows the report's structure - the aim, the two analytical
+ * layers (actors, actions), the five findings, the method - so the tabs
+ * name those parts rather than questions or the site's own filing. The
+ * map is not a tab: it is how /actors draws its answer. Live reporting is
+ * the report's search step continuing in public, so it closes the list.
  */
 const NAV_ITEMS = [
-  { path: "/", label: "Was anything built?", short: "Built?", ar: AR.nav.built, arShort: AR.nav.builtShort },
-  { path: "/who", label: "Who is doing what?", short: "Who?", ar: AR.nav.who, arShort: AR.nav.whoShort },
-  { path: "/money", label: "Where did the money go?", short: "Money?", ar: AR.nav.money, arShort: AR.nav.moneyShort },
-  { path: "/destroyed", label: "What was destroyed?", short: "Destroyed?", ar: AR.nav.destroyed, arShort: AR.nav.destroyedShort },
-  { path: "/reported", label: "What is being reported?", short: "Reported?", ar: AR.nav.reported, arShort: AR.nav.reportedShort },
-  { path: "/methodology", label: "How was this built?", short: "How?", ar: AR.nav.methodology, arShort: AR.nav.methodologyShort },
+  { path: "/", label: "The aim", short: "Aim", ar: AR.nav.aim, arShort: AR.nav.aimShort },
+  { path: "/actors", label: "The actors", short: "Actors", ar: AR.nav.actors2, arShort: AR.nav.actors2Short },
+  { path: "/actions", label: "The actions", short: "Actions", ar: AR.nav.actions, arShort: AR.nav.actionsShort },
+  { path: "/findings", label: "The findings", short: "Findings", ar: AR.nav.findings, arShort: AR.nav.findingsShort },
+  { path: "/methodology", label: "The method", short: "Method", ar: AR.nav.methodology, arShort: AR.nav.methodologyShort },
+  { path: "/reported", label: "Live reporting", short: "Reported", ar: AR.nav.reported, arShort: AR.nav.reportedShort },
 ];
 
 /**
@@ -52,7 +48,7 @@ const NAV_ITEMS = [
  */
 const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/about"];
 
-/** "/who" becomes "/ar/who"; "/" becomes "/ar". */
+/** "/actors" becomes "/ar/actors"; "/" becomes "/ar". */
 export function localisedHref(path: string, arabic: boolean): string {
   if (!arabic) return path;
   return path === "/" ? "/ar" : `/ar${path}`;

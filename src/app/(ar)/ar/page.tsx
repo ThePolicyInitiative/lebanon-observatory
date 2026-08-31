@@ -4,13 +4,9 @@ import { AR, localeAlternates } from "@/lib/i18n";
 import { AR_COUNT, arabicCount } from "@/lib/vocab";
 import { AIM, IMPORTANCE, finding } from "@/lib/framework";
 import { GOV_PATHS, VIEW_H, VIEW_W } from "@/lib/geo";
-import InstitutionalStructures from "@/components/InstitutionalStructures";
-import ThreeStreams from "@/components/ThreeStreams";
 import NewsTeaser from "@/components/news/NewsTeaser";
-import SeeMore from "@/components/SeeMore";
 import {
   Body,
-  FigureTile,
   LayerCard,
   Onward,
   ScaleStrip,
@@ -31,8 +27,18 @@ export const metadata: Metadata = {
  * The Arabic home mirrors the English one section for section: aim, the
  * two layers, why the comparison matters, and the five findings. The
  * report's wording comes from framework.ts in both languages; only the
- * connective prose is written here.
+ * connective prose is written here. The findings appear as teasers - one
+ * sentence each - because their full text and depth live on /ar/findings.
  */
+
+/** The teaser prints only a finding's opening sentence; splitting on the
+ *  first sentence break is safe because framework.ts writes no dotted
+ *  abbreviations, and decimal points are never followed by a space. */
+function firstSentence(text: string): string {
+  const i = text.indexOf(". ");
+  return i === -1 ? text : text.slice(0, i + 1);
+}
+
 export default function ArabicPage() {
   const [actors, actions] = AIM.ar.layers;
   const needs = finding("needs", "ar");
@@ -80,7 +86,7 @@ export default function ArabicPage() {
               ما الذي تُظهره المقارنة
             </Link>
             <Link
-              href="/ar/who"
+              href="/ar/actors"
               className="inline-flex min-h-11 items-center rounded-md border border-white/60 px-5 text-body font-semibold text-white transition-colors duration-150 hover:bg-white/10"
             >
               استكشف طبقة الجهات
@@ -108,12 +114,12 @@ export default function ArabicPage() {
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <LayerCard locale="ar" title={actors.title} body={actors.body}>
-            <Onward locale="ar" href="/ar/who">
+            <Onward locale="ar" href="/ar/actors">
               تعرّف إلى مجموعات الجهات الأربع
             </Onward>
           </LayerCard>
           <LayerCard locale="ar" title={actions.title} body={actions.body}>
-            <Onward locale="ar" href="/ar/who#action-mix">
+            <Onward locale="ar" href="/ar/actions#ar-action-mix">
               اطّلع على ما فعلته كل استجابة، فئةً فئة
             </Onward>
             <p className="mt-2 text-meta leading-loose text-text-secondary">
@@ -161,88 +167,63 @@ export default function ArabicPage() {
           </div>
         </section>
 
-        {/* The five findings */}
+        {/* The five findings, teased: one opening sentence each. The full
+            text and every finding's depth live on /ar/findings, where the
+            finding-* anchors moved. */}
         <section id="findings" aria-labelledby="findings-heading">
           <h2 id="findings-heading" className="text-h1 font-semibold text-navy">
             ما الذي تُظهره المقارنة
           </h2>
           <p className="mt-2 max-w-3xl text-body leading-loose text-text-secondary">
-            خمس نتائج تثبت عبر هذا التتبّع، وتحيل كل واحدة منها إلى الصفحة التي
-            تحمل تفصيلها الكامل.
+            خمسة استنتاجات تثبت عبر هذا التتبّع. يُفتتح كل منها هنا بجملة،
+            وله نصّه الكامل وعمقه في صفحة الاستنتاجات.
           </p>
 
-          <div className="mt-10 space-y-16">
-            <section id="finding-needs" aria-label={needs.title}>
+          <div className="mt-8 space-y-4">
+            <article className="card">
               <SectionHeading index={1} title={needs.title} as="h3">
-                <Body locale="ar">{needs.body[0]}</Body>
-                <Body locale="ar">{needs.body[1]}</Body>
+                <Body locale="ar">{firstSentence(needs.body[0])}</Body>
+                <Onward locale="ar" href="/ar/findings#finding-needs">
+                  الاستنتاج كاملاً: تقديرات الأضرار والاحتياجات
+                </Onward>
               </SectionHeading>
-              <div
-                role="group"
-                aria-label="الأرقام الرئيسية الثلاثة لتقييم 2024"
-                className="mt-6 grid max-w-4xl gap-4 sm:grid-cols-3"
-              >
-                <FigureTile locale="ar" value="6.8 مليارات دولار" label="أضرار مادية" />
-                <FigureTile locale="ar" value="7.2 مليارات دولار" label="خسائر اقتصادية" />
-                <FigureTile
-                  locale="ar"
-                  value="نحو 11 مليار دولار"
-                  label="احتياجات التعافي وإعادة الإعمار"
-                />
-              </div>
-              <Onward locale="ar" href="/ar/destroyed">
-                الدمار منطقةً منطقة
-              </Onward>
-              <Onward locale="ar" href="/ar/money">
-                التمويل الذي تلا التقييم
-              </Onward>
-            </section>
+            </article>
 
-            <section id="finding-frameworks" aria-label={frameworks.title}>
+            <article className="card">
               <SectionHeading index={2} title={frameworks.title} as="h3">
-                <Body locale="ar">{frameworks.body[0]}</Body>
-                <Body locale="ar">{frameworks.body[1]}</Body>
+                <Body locale="ar">{firstSentence(frameworks.body[0])}</Body>
+                <Onward locale="ar" href="/ar/findings#finding-frameworks">
+                  الاستنتاج كاملاً: مسار المال من الإطار إلى الدفع
+                </Onward>
               </SectionHeading>
-              <Onward locale="ar" href="/ar/money">
-                إلى أي مدى تحرّك المال فعلاً
-              </Onward>
-            </section>
+            </article>
 
-            <section id="finding-plan" aria-label={plan.title}>
+            <article className="card">
               <SectionHeading index={3} title={plan.title} as="h3">
-                <Body locale="ar">{plan.body[0]}</Body>
-                <Body locale="ar">{plan.body[1]}</Body>
+                <Body locale="ar">{firstSentence(plan.body[0])}</Body>
+                <Onward locale="ar" href="/ar/findings#finding-plan">
+                  الاستنتاج كاملاً: بنيتا القيادة جنباً إلى جنب
+                </Onward>
               </SectionHeading>
-              <SeeMore locale="ar" label="بنيتا القيادة في السنتين، جنباً إلى جنب">
-                <InstitutionalStructures locale="ar" />
-                <div className="mt-8">
-                  <ThreeStreams locale="ar" />
-                </div>
-              </SeeMore>
-            </section>
+            </article>
 
-            {/* This finding reads the actor groups against each other, so
-                it carries no counts anywhere: the wording ranks, the
-                figures live nowhere. */}
-            <section id="finding-community" aria-label={community.title}>
+            <article className="card">
               <SectionHeading index={4} title={community.title} as="h3">
-                <Body locale="ar">{community.body[0]}</Body>
-                <Body locale="ar">{community.body[1]}</Body>
+                <Body locale="ar">{firstSentence(community.body[0])}</Body>
+                <Onward locale="ar" href="/ar/findings#finding-community">
+                  الاستنتاج كاملاً: دور المبادرات الأهلية
+                </Onward>
               </SectionHeading>
-              <Onward locale="ar" href="/ar/who">
-                أين وقفت كل مجموعة من الجهات
-              </Onward>
-            </section>
+            </article>
 
-            <section id="finding-stages" aria-label={stages.title}>
+            <article className="card">
               <SectionHeading index={5} title={stages.title} as="h3">
-                <Body locale="ar">{stages.body[0]}</Body>
-                <Body locale="ar">{stages.body[1]}</Body>
+                <Body locale="ar">{firstSentence(stages.body[0])}</Body>
+                <Onward locale="ar" href="/ar/findings#finding-stages">
+                  الاستنتاج كاملاً: تركّز العمل في المراحل المبكرة
+                </Onward>
               </SectionHeading>
-              <Onward locale="ar" href="/ar/who#action-mix">
-                أي نوع من العمل رُصد، فئةً فئة
-              </Onward>
-            </section>
+            </article>
           </div>
         </section>
 

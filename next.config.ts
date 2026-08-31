@@ -116,20 +116,25 @@ const nextConfig: NextConfig = {
   /**
    * The routes as they were, kept working.
    *
-   * The tab bar became the question a reader arrives with rather than the
-   * site's own filing, and seven paths moved with it. Anything already
-   * published - a link in a report, a bookmark, a search result, the
-   * sitemap a crawler fetched last week - points at the old ones, and a
-   * URL that has been given out is a promise.
+   * The site has been refiled twice - first into question-phrased tabs,
+   * then into the reconstruction report's own structure (aim, the two
+   * analytical layers, findings, methodology). Anything already published
+   * - a link in a report, a bookmark, a search result, the sitemap a
+   * crawler fetched last week - points at an older path, and a URL that
+   * has been given out is a promise. Every old path 308s STRAIGHT to its
+   * newest home, never through a chain.
    *
-   * Five were renamed. The last two were dissolved rather than renamed,
-   * because neither was a question: /map is how /who draws its answer, and
-   * /compare was an axis pretending to be a subject - the year is a
-   * control, so its verdict panel is a section of the home page. Both land
-   * at the top of the page that absorbed them rather than at the section,
-   * because a hash in a redirect destination is not something the bundled
-   * guide documents and an undocumented Location header is a poor promise
-   * to keep a published URL with.
+   * /who became /actors (the actor layer's page; the early /actors slug
+   * needs no rule at all now - the name is live again and carries the
+   * right content). /money and /destroyed dissolved into /findings, where
+   * their material sits under findings 1 and 2, and the legacy /finance
+   * and /damage slugs follow them there. /map is how /actors draws its
+   * answer; /compare's verdict panel is the findings section of the home
+   * page. Dissolved paths land at the top of the absorbing page, because
+   * a hash in a redirect destination is not something the bundled guide
+   * documents and an undocumented Location header is a poor promise to
+   * keep a published URL with - a fragment the reader carried survives on
+   * its own.
    *
    * Permanent, because these are not coming back: a 308 is what tells a
    * crawler to move its index rather than keep asking. Both language
@@ -139,9 +144,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     /** Renamed: the page is the same page, so its subpaths came along. */
     const renamed: [string, string][] = [
-      ["/actors", "/who"],
-      ["/finance", "/money"],
-      ["/damage", "/destroyed"],
+      ["/who", "/actors"],
       ["/news", "/reported"],
       ["/explorer", "/entries"],
     ];
@@ -152,8 +155,12 @@ const nextConfig: NextConfig = {
      * to whatever Arabic route happened to share its name.
      */
     const dissolved: [string, string][] = [
-      ["/map", "/who"],
+      ["/map", "/actors"],
       ["/compare", "/"],
+      ["/money", "/findings"],
+      ["/destroyed", "/findings"],
+      ["/finance", "/findings"],
+      ["/damage", "/findings"],
     ];
     return [
       ...renamed.flatMap(([from, to]) => [
@@ -200,7 +207,7 @@ const nextConfig: NextConfig = {
       // for long enough that the header was announcing the feed on seven
       // paths that redirect and on none of the five that exist.
       {
-        source: "/:page(who|destroyed|money|reported|entries|methodology)?",
+        source: "/:page(actors|actions|findings|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",
@@ -209,7 +216,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/ar/:page(who|destroyed|money|reported|entries|methodology)?",
+        source: "/ar/:page(actors|actions|findings|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",

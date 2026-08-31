@@ -2726,7 +2726,7 @@ export default function SvgLebanonMap({
               </p>
               <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-micro">
                 <Link
-                  href={locale === "ar" ? "/ar/who#actor-register" : "/who#actor-register"}
+                  href={locale === "ar" ? "/ar/actors#actor-register" : "/actors#actor-register"}
                   className="font-medium text-blue underline-offset-2 hover:underline"
                 >
                   {tr.whoLink}

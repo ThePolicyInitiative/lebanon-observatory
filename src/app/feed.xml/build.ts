@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/vocab";
  *
  * Two things go in, both of them written and dated by this site: the
  * milestone chain the finance page charts, and the actions reported in open
- * web coverage that the actors page carries. The live news page is
+ * web coverage that the live-reporting page carries. The live news page is
  * deliberately left out - it aggregates other publishers by machine and each
  * item there already points at whoever wrote it, so syndicating it again
  * would only re-broadcast their headlines under this site's name.
@@ -22,7 +22,7 @@ const T = {
   en: {
     title: "Lebanon Reconstruction Observatory",
     subtitle:
-      "Dated updates the observatory keeps itself: the milestone chain charted on the finance page, and the actions reported in open web coverage that the actors page carries. Not a mirror of the live news page.",
+      "Dated updates the observatory keeps itself: the milestone chain charted on the findings page, and the actions reported in open web coverage that the live-reporting page carries. Not a mirror of the live news page.",
     rights:
       "Figures and wording belong to the observatory; quoted coverage belongs to the publisher named on each item.",
     milestone: "Milestone",
@@ -55,14 +55,14 @@ const T = {
  * because these are routes, not wording: the Arabic half is the English
  * routes under /ar, and both feeds point at the pages that already carry
  * the items they syndicate - milestones at the finance page, reported
- * updates at the actors page.
+ * updates at the live-reporting page.
  */
 function routes(locale: Locale) {
   const prefix = locale === "ar" ? "/ar" : "";
   return {
     home: prefix || "/",
-    milestonePage: `${prefix}/money`,
-    updatePage: `${prefix}/who`,
+    milestonePage: `${prefix}/findings`,
+    updatePage: `${prefix}/reported`,
     feed: `${prefix}/feed.xml`,
   };
 }

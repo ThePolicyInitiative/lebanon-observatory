@@ -20,11 +20,11 @@ import { kpis } from "@/lib/data";
  */
 
 /** The pages with their own entry in AR.pages. */
-const PAGES = ["who", "destroyed", "money", "reported", "entries"];
+const PAGES = ["actors", "actions", "findings", "reported", "entries"];
 /**
  * The two halves of the site have separate root layouts, so each lives in
- * its own route group. Route groups do not appear in a URL: (en)/who is
- * /who and (ar)/ar/who is /ar/who.
+ * its own route group. Route groups do not appear in a URL: (en)/actors is
+ * /actors and (ar)/ar/actors is /ar/actors.
  */
 const app = join(process.cwd(), "src", "app");
 const en = join(app, "(en)");
@@ -88,9 +88,21 @@ describe("the Arabic side", () => {
 
   it("names every page in Arabic in the navigation", () => {
     const arabic = /[؀-ۿ]/;
-    // The five tab questions, the home label, and the two footer topic
-    // names that are not one of the tabs.
-    for (const key of ["home", "built", "who", "money", "destroyed", "reported", "compare", "explorer"] as const) {
+    // The six tab labels, the home label, and the footer topic names
+    // that are not one of the tabs.
+    for (const key of [
+      "home",
+      "aim",
+      "actors2",
+      "actions",
+      "findings",
+      "methodology",
+      "reported",
+      "actors",
+      "news",
+      "explorer",
+      "method",
+    ] as const) {
       expect(arabic.test(AR.nav[key]), `nav.${key} is not Arabic`).toBe(true);
     }
   });
