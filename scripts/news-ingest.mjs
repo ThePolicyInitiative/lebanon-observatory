@@ -95,7 +95,8 @@ const knownUrls = new Set([
 const knownKeys = new Set(webUpdates.updates.map(updateKey));
 
 const auth = apiAuth();
-if (!auth) say("No ANTHROPIC_API_KEY: leads will be opened and queued, nothing written.\n");
+if (!auth) say("No writing key (ANTHROPIC_API_KEY or OPENROUTER_API_KEY): leads will be opened and queued, nothing written.\n");
+else if (auth.provider === "openrouter") say(`Writing with OpenRouter model ${auth.model}.\n`);
 
 /*
  * Direct publisher links first - they can be read now - then Google's

@@ -1,7 +1,9 @@
 /**
  * The writing step of the open-web pipeline: given an opened page, a
- * Claude model drafts either a reported-layer row or an archive item, in
- * both languages, under the site's own rules - or declines.
+ * model drafts either a reported-layer row or an archive item, in both
+ * languages, under the site's own rules - or declines. Claude by
+ * preference (an Anthropic key), or a free OpenRouter model as the
+ * no-cost alternative.
  *
  * Nothing the model returns is trusted: `news-rules.mjs` re-checks every
  * field mechanically, and the full test suite still gates the commit. The
@@ -19,13 +21,41 @@ import { get } from "./http.mjs";
 export const MODEL = "claude-opus-5";
 const API_URL = "https://api.anthropic.com/v1/messages";
 
-/** The key the pipeline runs under, if any. CI passes it as a secret. */
+/*
+ * The free alternative: OpenRouter's no-cost models, behind the same
+ * validators and the same test gate. A free model produces more drafts
+ * the checks refuse - those queue for a human instead of publishing - but
+ * nothing weaker ever reaches the site. Free-tier accounts carry a small
+ * daily request cap (about 50 at the time of writing), which the run caps
+ * in news-ingest.mjs already fit under. The free lineup rotates, so a
+ * vanished model falls back to OpenRouter's own free auto-router.
+ */
+const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+export const DEFAULT_FREE_MODEL = "z-ai/glm-5.2:free";
+export const FALLBACK_FREE_MODEL = "openrouter/free";
+
+/**
+ * Which writer the pipeline runs under, if any. CI passes one of the
+ * keys as a secret; a paid Anthropic key wins over a free OpenRouter one.
+ *
+ * @param {Record<string, string | undefined>} [env]
+ */
 export function apiAuth(env = process.env) {
-  if (env.ANTHROPIC_API_KEY) return { "x-api-key": env.ANTHROPIC_API_KEY };
+  if (env.ANTHROPIC_API_KEY)
+    return { provider: "anthropic", headers: { "x-api-key": env.ANTHROPIC_API_KEY } };
   if (env.ANTHROPIC_AUTH_TOKEN)
     return {
-      authorization: `Bearer ${env.ANTHROPIC_AUTH_TOKEN}`,
-      "anthropic-beta": "oauth-2025-04-20",
+      provider: "anthropic",
+      headers: {
+        authorization: `Bearer ${env.ANTHROPIC_AUTH_TOKEN}`,
+        "anthropic-beta": "oauth-2025-04-20",
+      },
+    };
+  if (env.OPENROUTER_API_KEY)
+    return {
+      provider: "openrouter",
+      headers: { authorization: `Bearer ${env.OPENROUTER_API_KEY}` },
+      model: env.OPENROUTER_MODEL || DEFAULT_FREE_MODEL,
     };
   return null;
 }
@@ -135,22 +165,42 @@ ARCHIVE FIELDS
 
 Judge only from the page text given. If the text contradicts or does not support the feed title, trust the text. If the page is a paywall stub, a listing page, or mostly unrelated, skip it.`;
 
-/**
- * One writing call. Returns the parsed decision object, or a synthetic
- * skip when the model itself declines. Throws on transport errors, bad
- * status and truncation - the pipeline queues the lead and moves on.
+/*
+ * Anthropic's endpoint enforces RESPONSE_SCHEMA itself. The free models
+ * cannot be relied on for that, so they get the shape spelled out - and
+ * whatever comes back still faces extractJson and the news-rules
+ * validators, which is where the real gate has been all along.
  */
-export async function draftRow({ lead, pageTitle, pageText, nearest, today, auth }) {
-  const user = [
-    `TODAY: ${today}`,
-    `FEED ITEM: ${JSON.stringify({ title: lead.title, publisher: lead.publisher || null, feedDate: lead.date || null, feed: lead.feed })}`,
-    `PAGE TITLE: ${pageTitle || "(none)"}`,
-    nearest.length
-      ? `EXISTING ROWS NEAREST THIS PAGE (skip only a real repeat of one of these):\n${JSON.stringify(nearest, null, 1)}`
-      : "EXISTING ROWS NEAREST THIS PAGE: none",
-    `PAGE TEXT:\n${pageText}`,
-  ].join("\n\n");
+export const CONTRACT = `Answer with ONE JSON object only - no code fences, no commentary before or after. Its exact shape:
 
+{
+  "decision": "update" | "archive" | "skip",
+  "reason": "one sentence",
+  "update": null, or (only when decision is "update") an object with exactly these keys:
+    dateReported (string "YYYY-MM-DD" or null), actor, actorAr,
+    layer ("official" | "municipal" | "ngo_international" | "community"),
+    action, actionAr, place, placeAr, kind, sourceName,
+    sourceKind ("press" | "institutional" | "social"),
+    dateText (string or null), dateTextAr (string or null),
+    southOfLitani (true or false), caution, cautionAr, detail, detailAr,
+  "archive": null, or (only when decision is "archive") an object with exactly these keys:
+    year (2024 | 2025 | 2026), kind ("news" | "research" | "official" | "assessment" | "rights"),
+    language ("en" | "ar" | "fr" | "en/ar"), publisher, title,
+    date ("YYYY-MM-DD"), focus, focusAr
+}
+
+Never add keys. Never include a URL field; the pipeline sets those itself.`;
+
+/** The JSON object in a model's reply, fences and prose stripped. */
+export function extractJson(text) {
+  const unfenced = String(text).replace(/```(?:json)?/gi, " ");
+  const start = unfenced.indexOf("{");
+  const end = unfenced.lastIndexOf("}");
+  if (start === -1 || end <= start) throw new Error("no JSON object in the reply");
+  return JSON.parse(unfenced.slice(start, end + 1));
+}
+
+async function draftWithAnthropic(auth, user) {
   const body = JSON.stringify({
     model: MODEL,
     max_tokens: 16000,
@@ -166,7 +216,7 @@ export async function draftRow({ lead, pageTitle, pageText, nearest, today, auth
       "content-type": "application/json",
       "content-length": Buffer.byteLength(body),
       "anthropic-version": "2023-06-01",
-      ...auth,
+      ...auth.headers,
     },
     body,
   });
@@ -180,4 +230,68 @@ export async function draftRow({ lead, pageTitle, pageText, nearest, today, auth
   const text = (message.content ?? []).find((b) => b.type === "text")?.text;
   if (!text) throw new Error("no text block in the response");
   return JSON.parse(text);
+}
+
+async function draftWithOpenRouter(auth, user, model) {
+  const body = JSON.stringify({
+    model,
+    max_tokens: 8000,
+    messages: [
+      { role: "system", content: `${SYSTEM}\n\n${CONTRACT}` },
+      { role: "user", content: user },
+    ],
+  });
+
+  const res = await get(OPENROUTER_URL, {
+    method: "POST",
+    accept: "application/json",
+    headers: {
+      "content-type": "application/json",
+      "content-length": Buffer.byteLength(body),
+      // OpenRouter's attribution headers; nothing secret in either.
+      "http-referer": "https://github.com",
+      "x-title": "Lebanon Reconstruction Observatory sweep",
+      ...auth.headers,
+    },
+    body,
+  });
+  if (!res.ok) throw new Error(`API ${res.status}: ${res.text().slice(0, 300)}`);
+
+  const choice = res.json().choices?.[0];
+  if (!choice?.message?.content) throw new Error("no reply in the response");
+  if (choice.finish_reason === "length") throw new Error("response truncated at max_tokens");
+  return extractJson(choice.message.content);
+}
+
+/**
+ * One writing call. Returns the parsed decision object, or a synthetic
+ * skip when the model itself declines. Throws on transport errors, bad
+ * status, truncation and unparseable replies - the pipeline queues the
+ * lead and moves on.
+ *
+ * The free lineup rotates: when the configured OpenRouter model has
+ * vanished, the run drops to the free auto-router once and stays there,
+ * rather than failing every remaining lead on a dead model id.
+ */
+export async function draftRow({ lead, pageTitle, pageText, nearest, today, auth }) {
+  const user = [
+    `TODAY: ${today}`,
+    `FEED ITEM: ${JSON.stringify({ title: lead.title, publisher: lead.publisher || null, feedDate: lead.date || null, feed: lead.feed })}`,
+    `PAGE TITLE: ${pageTitle || "(none)"}`,
+    nearest.length
+      ? `EXISTING ROWS NEAREST THIS PAGE (skip only a real repeat of one of these):\n${JSON.stringify(nearest, null, 1)}`
+      : "EXISTING ROWS NEAREST THIS PAGE: none",
+    `PAGE TEXT:\n${pageText}`,
+  ].join("\n\n");
+
+  if (auth.provider !== "openrouter") return draftWithAnthropic(auth, user);
+
+  try {
+    return await draftWithOpenRouter(auth, user, auth.model);
+  } catch (err) {
+    const gone = /API (400|404)/.test(String(err?.message)) && auth.model !== FALLBACK_FREE_MODEL;
+    if (!gone) throw err;
+    auth.model = FALLBACK_FREE_MODEL;
+    return draftWithOpenRouter(auth, user, auth.model);
+  }
 }

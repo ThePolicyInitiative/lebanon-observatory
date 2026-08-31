@@ -152,13 +152,20 @@ stages, and every stage can only shrink what the next one sees:
    page that will not open is queued.
 3. **Read.** The page's own text must pass the same country + theme gate,
    or the lead is dropped before it costs anything.
-4. **Draft.** With `ANTHROPIC_API_KEY` set, a Claude model
-   (`scripts/watch/claude-writer.mjs`) is shown the page text, the site's
-   writing rules, and the nearest existing rows, and answers in a fixed
-   JSON shape: one reported update, one archive item, or a refusal with a
-   reason. The model never controls a URL - `sourceUrl`, `id` and
-   `openedDirectly` are set by the pipeline from what it actually fetched.
-   Without the key, opened leads queue instead.
+4. **Draft.** A model (`scripts/watch/claude-writer.mjs`) is shown the
+   page text, the site's writing rules, and the nearest existing rows,
+   and answers in a fixed JSON shape: one reported update, one archive
+   item, or a refusal with a reason. With `ANTHROPIC_API_KEY` set that is
+   a Claude model with the schema enforced by the API; with
+   `OPENROUTER_API_KEY` set instead, it is a free OpenRouter model
+   (`OPENROUTER_MODEL`, falling back to the free auto-router when the
+   configured model has been rotated out) with the shape spelled out in
+   the prompt - free models fail the checks in step 5 more often, and
+   those drafts queue rather than publish, so the free tier trades
+   throughput, never quality. The model never controls a URL -
+   `sourceUrl`, `id` and `openedDirectly` are set by the pipeline from
+   what it actually fetched. With no key at all, opened leads queue
+   instead.
 5. **Check.** `scripts/watch/news-rules.mjs` re-validates every field
    mechanically: the banned vocabulary in both languages (imported from
    `tests/vocab-patterns.ts`, the same module the guard suites read, never

@@ -5,7 +5,9 @@ import {
   nextArchiveId, relevant, updateKey, validateArchive, validateUpdate,
 } from "../scripts/watch/news-rules.mjs";
 import { contentKey } from "../scripts/watch/content-key.mjs";
-import { RESPONSE_SCHEMA, SYSTEM } from "../scripts/watch/claude-writer.mjs";
+import {
+  CONTRACT, DEFAULT_FREE_MODEL, RESPONSE_SCHEMA, SYSTEM, apiAuth, extractJson,
+} from "../scripts/watch/claude-writer.mjs";
 
 /**
  * The open-web pipeline, offline: everything a machine-gathered row is
@@ -194,6 +196,47 @@ describe("the writer's contract", () => {
     const archive = RESPONSE_SCHEMA.properties.archive.anyOf[1];
     expect(archive.properties.url).toBeUndefined();
     expect(archive.properties.id).toBeUndefined();
+  });
+});
+
+describe("choosing a writer", () => {
+  it("prefers a paid Anthropic key over a free OpenRouter one", () => {
+    const auth = apiAuth({ ANTHROPIC_API_KEY: "a", OPENROUTER_API_KEY: "o" });
+    expect(auth?.provider).toBe("anthropic");
+    expect(auth?.headers["x-api-key"]).toBe("a");
+  });
+
+  it("runs on OpenRouter's free tier when that is the only key", () => {
+    const auth = apiAuth({ OPENROUTER_API_KEY: "o" });
+    expect(auth).toMatchObject({ provider: "openrouter", model: DEFAULT_FREE_MODEL });
+    expect(auth?.headers.authorization).toBe("Bearer o");
+    expect(apiAuth({ OPENROUTER_API_KEY: "o", OPENROUTER_MODEL: "x/y:free" })?.model).toBe("x/y:free");
+  });
+
+  it("reports no writer when no key is set", () => {
+    expect(apiAuth({})).toBeNull();
+  });
+});
+
+describe("reading a free model's reply", () => {
+  it("takes the JSON object out of fences and prose", () => {
+    expect(extractJson('```json\n{"decision":"skip","reason":"x"}\n```')).toEqual({
+      decision: "skip",
+      reason: "x",
+    });
+    expect(extractJson('Here is the row: {"decision":"skip"} - hope that helps')).toEqual({
+      decision: "skip",
+    });
+  });
+
+  it("refuses a reply with no JSON in it", () => {
+    expect(() => extractJson("I could not read the page.")).toThrow("no JSON object");
+  });
+
+  it("spells the whole shape out for models without schema enforcement", () => {
+    for (const need of ['"decision"', '"update"', '"archive"', "Never add keys", "no code fences"]) {
+      expect(CONTRACT).toContain(need);
+    }
   });
 });
 

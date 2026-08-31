@@ -3,15 +3,21 @@ name: Gather the open web into the reported layer
 # Sweep the free feeds, open each lead, write what holds up, publish.
 # See docs/automation.md ("The open-web sweep").
 #
-# Two modes, decided by one repository secret:
+# Three modes, decided by the repository secrets:
 #
-#   ANTHROPIC_API_KEY set     leads are opened and a Claude model drafts
-#                             the bilingual rows; every draft is re-checked
-#                             mechanically and the full test suite gates
-#                             the commit. A push deploys via the host.
-#   secret absent             leads are opened, filtered and queued in
+#   ANTHROPIC_API_KEY set     a Claude model drafts the bilingual rows
+#                             (best drafts; paid per call).
+#   OPENROUTER_API_KEY set    a free OpenRouter model drafts them at no
+#                             cost; more drafts fail the checks and queue,
+#                             but nothing weaker ever publishes. Optional
+#                             repository variable OPENROUTER_MODEL picks
+#                             the model.
+#   neither secret            leads are opened, filtered and queued in
 #                             scripts/watch/news-review.json for a human
 #                             read; nothing is written to the site's data.
+#
+# In every mode each draft is re-checked mechanically and the full test
+# suite gates the commit. A push deploys via the host.
 #
 # A failed run in the Actions list means something real:
 #   failure   a draft failed its checks (exit 10), the test suite
@@ -65,4 +71,6 @@ jobs:
       - name: Open, write, check and publish
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
         run: node scripts/news-ingest.mjs --leads "$RUNNER_TEMP/leads.json" --push

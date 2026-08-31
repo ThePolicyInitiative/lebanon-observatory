@@ -82,12 +82,15 @@ behind the full test suite and push only what survives it. See
   World Bank's machine-readable LEAP reporting, checks the arithmetic the
   report supplies about itself, and updates the finance figures.
 - **Open web** (`.github/workflows/news-sweep.yml`, twice daily): sweeps
-  free news feeds in three languages, opens each lead, and - when the
-  `ANTHROPIC_API_KEY` repository secret is set - has a Claude model draft
-  the bilingual reported-layer rows, which are re-checked mechanically and
-  then by the whole suite. Without the secret, leads queue in
-  `scripts/watch/news-review.json` for a human read. The confirmed analysis
-  is never touched by either workflow.
+  free news feeds in three languages, opens each lead, and has a model
+  draft the bilingual reported-layer rows, which are re-checked
+  mechanically and then by the whole suite. The writer is decided by one
+  repository secret: `ANTHROPIC_API_KEY` (a Claude model; best drafts,
+  paid per call) or `OPENROUTER_API_KEY` (a free OpenRouter model at no
+  cost; more drafts fail the checks and queue, nothing weaker ever
+  publishes). With neither secret, leads queue in
+  `scripts/watch/news-review.json` for a human read. The confirmed
+  analysis is never touched by either workflow.
 
 Run the same pipelines locally:
 
@@ -109,8 +112,12 @@ node scripts/news-ingest.mjs --dry-run
    `docs/deployment.md`.
 3. **Enable the two workflows** under the repository's Actions tab (GitHub
    asks once for scheduled workflows on a new repository).
-4. Optional: add `ANTHROPIC_API_KEY` under Settings → Secrets and variables
-   → Actions to turn on the writing step of the open-web sweep.
+4. Optional: turn on the writing step of the open-web sweep under
+   Settings → Secrets and variables → Actions - add `ANTHROPIC_API_KEY`
+   (paid, best drafts), or `OPENROUTER_API_KEY` from the free
+   [openrouter.ai](https://openrouter.ai) tier (no cost; a repository
+   variable `OPENROUTER_MODEL` picks the model, and a rotated-out model
+   falls back to the free auto-router by itself).
 
 ## Documentation
 
