@@ -5,7 +5,7 @@ import { changeFor, countsFor } from "@/lib/data-client";
 import { LAYER_META } from "@/lib/colors";
 
 /**
- * Both heat maps draw every stage except coordination.
+ * The change heat map draws every stage except coordination.
  *
  * Coordination is the stage nearly every actor touches, so its column sat far
  * above the rest and set the top of a ramp the other eleven then shared -
@@ -55,13 +55,12 @@ describe("heat map stage selection", () => {
     }
   });
 
-  it("keeps both charts reading the shared list rather than a literal 12", () => {
-    // Either chart falling back to a hardcoded stage count would draw a
-    // twelfth column with no data behind it, or drop a real one.
-    for (const file of [
-      "src/components/charts/YearHeatmaps.tsx",
-      "src/components/charts/ChangeHeatmap.tsx",
-    ]) {
+  it("keeps the chart reading the shared list rather than a literal 12", () => {
+    // The chart falling back to a hardcoded stage count would draw a
+    // twelfth column with no data behind it, or drop a real one. This
+    // covered two heat maps until the report-driven rebuild retired
+    // YearHeatmaps; the change map is the one that remains.
+    for (const file of ["src/components/charts/ChangeHeatmap.tsx"]) {
       const src = readFileSync(file, "utf8");
       expect(src, `${file} does not use the shared stage list`).toContain("HEATMAP_STAGES");
       expect(src, `${file} still indexes cells against a literal 12`).not.toMatch(/li \* 12 \+/);
@@ -131,7 +130,6 @@ describe("heat map stage selection", () => {
 
     // So no subtitle may tell the reader otherwise.
     for (const file of [
-      "src/components/charts/YearHeatmaps.tsx",
       "src/components/charts/ChangeHeatmap.tsx",
       "src/lib/vocab.ts",
     ]) {

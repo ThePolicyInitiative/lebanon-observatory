@@ -7,8 +7,9 @@ const T = {
   en: {
     title: "Reported beyond the tracking",
     // The heading and the lede below both state the quarantine already;
-    // this badge names where the entries came from, and nothing else.
-    badge: "Web-sourced",
+    // this badge names where the entries came from, and nothing else -
+    // one short line, since the page carries the fuller framing.
+    badge: "From the open web",
     institutional: "Institutional publisher",
     press: "Press report",
     social: "Social post - self-published",
@@ -20,7 +21,7 @@ const T = {
   },
   ar: {
     title: "مرصود خارج التتبّع",
-    badge: "من مراجع إلكترونية",
+    badge: "من الويب المفتوح",
     institutional: "مرجع مؤسسي",
     press: "تقرير صحفي",
     social: "منشور اجتماعي - ذاتي النشر",
@@ -194,7 +195,7 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
       {ar ? (
         <>
           <p className="mt-2 prose-measure text-body leading-relaxed text-text-secondary">
-            {updates.length} جهة وفعلاً وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
+            {updates.length} من الجهات والأفعال وردت في تغطية مفتوحة على الإنترنت بالعربية والإنجليزية
             والفرنسية (جُمعت في {fmtDate(webUpdates.gatheredOn, "ar")})، منها {south} في المنطقة بين
             الليطاني والخط الأزرق. هذه ادّعاءات منقولة عن مراجعها - لم تُقارَن بالتتبّع ولا تدخل
             في أي عدّ أو خريطة في هذا الموقع. كل مدخل يذكر مقدار التدقيق خلفه. اتبع كل رابط
@@ -233,10 +234,10 @@ export default function ReportedUpdates({ locale = "en" }: { locale?: Locale } =
                 className="h-2.5 w-2.5 shrink-0 rounded-sm"
                 style={{ background: g.color }}
               />
+              {/* The group name stands alone: the sections compare the
+                  groups, so no per-group count prints - the lede's
+                  overall totals are the only figures here. */}
               {g.label}
-              <span className="font-normal text-text-secondary">
-                ({g.items.length})
-              </span>
               <span aria-hidden className="text-text-secondary">
                 <span className="group-open:hidden">{ar ? "◂" : "▸"}</span>
                 <span className="hidden group-open:inline">▾</span>

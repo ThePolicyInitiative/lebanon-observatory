@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { finance } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
@@ -10,6 +11,7 @@ import LeapComponentsChart from "@/components/charts/LeapComponentsChart";
 import MilestoneGantt from "@/components/charts/MilestoneGantt";
 import LeapResultsBoard from "@/components/LeapResultsBoard";
 import CompensationTracks from "@/components/CompensationTracks";
+import SeeMore from "@/components/SeeMore";
 import Takeaways from "@/components/Takeaways";
 import { fmtUsd, fmtDate } from "@/lib/format";
 
@@ -63,7 +65,22 @@ export default function Page() {
   return (
     <ArabicPageShell
       title={AR.pages.money.title}
-      lede={AR.pages.money.lede}
+      lede={
+        <>
+          العمق خلف خلاصتين من{" "}
+          <Link
+            href="/ar#findings"
+            className="font-medium text-blue underline-offset-2 hover:underline"
+          >
+            خلاصات التقرير
+          </Link>
+          : مرجع الاحتياجات البالغ 11 مليار دولار، وخلاصة أن أطر التمويل
+          المعلنة لم تكن مالاً في اليد. تُبقي هذه الصفحة ستة مفاهيم منفصلة -
+          الاحتياج والإطار والإقرار والدفع والشراء والإنجاز المكتمل - لأن
+          دمجها هو ما يجعل عبارتَي «إعادة الإعمار جارية» و«إعادة الإعمار لم
+          تبدأ» تُقالان بصدق معاً.
+        </>
+      }
       point={AR.pages.money.point}
       englishHref="/money"
       figures={[
@@ -99,133 +116,141 @@ export default function Page() {
       </div>
 
       <div className="mt-6">
-        <LeapResultsBoard locale="ar" />
+        <SeeMore locale="ar" label="لوحة نتائج LEAP - ما وُعد به وموعده">
+          <LeapResultsBoard locale="ar" />
+        </SeeMore>
       </div>
 
-      {/* LEAP components, in full */}
-      <section aria-labelledby="ar-leap" className="mt-7 card">
-        <h2
-          id="ar-leap"
-          className="text-h2 font-semibold text-navy"
-        >
-          داخل الـ250 مليون دولار الأولى
-        </h2>
-        <p className="mt-1 text-body text-text-secondary">
-          مخصّصات التقييم. أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد -
-          فالأشغال تحتاج تحضيراً أولاً - وهو ما يترك فجوة الـ750 مليون دولار في
-          الإطار للشركاء.
-        </p>
-        <div className="mt-4 overflow-x-auto">
-          <table className="min-w-full border-collapse text-meta tabular-nums">
-            <caption className="sr-only">مخصّصات مكوّنات LEAP</caption>
-            <thead>
-              <tr>
-                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-start font-semibold text-navy">المكوّن</th>
-                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">التمويل الأولي</th>
-                <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">المقدَّر (الإطار الكامل)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {finance.leapComponents.map((c) => (
-                <tr key={c.label} className="odd:bg-bg">
-                  <td className="border-b border-border px-2 py-1.5">
-                    {c.labelAr}
-                    {"noteAr" in c && c.noteAr ? (
-                      <span className="block text-micro text-text-secondary">{c.noteAr}</span>
-                    ) : null}
-                  </td>
-                  <td className="border-b border-border px-2 py-1.5 text-end">
-                    {c.initialUsd > 0 ? fmtUsd(c.initialUsd, "ar") : "-"}
-                  </td>
-                  <td className="border-b border-border px-2 py-1.5 text-end">{fmtUsd(c.appraisedUsd, "ar")}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Procurement packages */}
-      <section aria-labelledby="ar-procurement" className="mt-7">
-        <h2
-          id="ar-procurement"
-          className="text-h2 font-semibold text-navy"
-        >
-          حزم الشراء وحالتها الفعلية
-        </h2>
-        <p className="mt-1 max-w-3xl text-body text-text-secondary">
-          الحالات كما كانت معروضة على بوابة الشراء في مجلس الإنماء والإعمار عند
-          المراجعة في 17 تموز 2026. التمديدات وفترات التقييم أمر عادي بقواعد البنك
-          الدولي، وغير عادي أمام الاحتياج اللبناني. وأحدّ إشارة هنا انعكاسية: جهة
-          الرقابة من طرف ثالث اصطفّت في المسار البطيء نفسه الذي وُجدت لمراقبته.
-        </p>
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {finance.procurementPackages.map((p) => (
-            <article key={p.id} className="card">
-              <h3 className="text-body font-semibold leading-snug text-navy">
-                {p.labelAr}
-              </h3>
-              <dl className="mt-2 space-y-1 text-meta text-text-secondary">
-                <div className="flex gap-1.5">
-                  <dt className="font-semibold">نُشرت:</dt>
-                  <dd>{fmtDate(p.published, "ar")}</dd>
-                </div>
-                <div className="flex gap-1.5">
-                  <dt className="font-semibold">الموعد النهائي:</dt>
-                  <dd>
-                    {fmtDate(p.deadline, "ar")}
-                    {"extended" in p && p.extended ? " (مُمدَّد)" : ""}
-                  </dd>
-                </div>
-              </dl>
-              <p className="mt-2 inline-block rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-semibold text-[#8a6200]">
-                {PORTAL_STATUS_AR[p.statusAtCheck] ?? p.statusAtCheck}
-              </p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-4 card text-body">
-          <p>
-            <span className="font-semibold text-navy">
-              أهداف الإصلاح تقيس حجم الجبل:
-            </span>{" "}
-            خط أساس{" "}
-            <strong className="tabular-nums">{finance.procurementBaselines.worksContractWeeksBaseline} أسبوعاً</strong>{" "}
-            من الإعلان إلى توقيع عقد أشغال، مقابل هدف{" "}
-            <strong className="tabular-nums">{finance.procurementBaselines.worksContractWeeksTarget} أسبوعاً</strong>؛
-            و{" "}
-            <strong className="tabular-nums">{finance.procurementBaselines.consultancyWeeksBaseline} أسبوعاً</strong>{" "}
-            للاستشارات مقابل{" "}
-            <strong className="tabular-nums">{finance.procurementBaselines.consultancyWeeksTarget}</strong>.
+      {/* LEAP components, folded: the chart above carries the shape */}
+      <SeeMore locale="ar" label="داخل الـ250 مليون دولار الأولى، مكوّناً مكوّناً">
+        <section aria-labelledby="ar-leap" className="card">
+          <h2
+            id="ar-leap"
+            className="text-h2 font-semibold text-navy"
+          >
+            داخل الـ250 مليون دولار الأولى
+          </h2>
+          <p className="mt-1 text-body text-text-secondary">
+            مخصّصات التقييم. أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد -
+            فالأشغال تحتاج تحضيراً أولاً - وهو ما يترك فجوة الـ750 مليون دولار في
+            الإطار للشركاء.
           </p>
-        </div>
-      </section>
+          <div className="mt-4 overflow-x-auto">
+            <table className="min-w-full border-collapse text-meta tabular-nums">
+              <caption className="sr-only">مخصّصات مكوّنات LEAP</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-start font-semibold text-navy">المكوّن</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">التمويل الأولي</th>
+                  <th scope="col" className="border-b-2 border-border px-2 py-1.5 text-end font-semibold text-navy">المقدَّر (الإطار الكامل)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {finance.leapComponents.map((c) => (
+                  <tr key={c.label} className="odd:bg-bg">
+                    <td className="border-b border-border px-2 py-1.5">
+                      {c.labelAr}
+                      {"noteAr" in c && c.noteAr ? (
+                        <span className="block text-micro text-text-secondary">{c.noteAr}</span>
+                      ) : null}
+                    </td>
+                    <td className="border-b border-border px-2 py-1.5 text-end">
+                      {c.initialUsd > 0 ? fmtUsd(c.initialUsd, "ar") : "-"}
+                    </td>
+                    <td className="border-b border-border px-2 py-1.5 text-end">{fmtUsd(c.appraisedUsd, "ar")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </SeeMore>
 
-      {/* Adjacent flows */}
-      <section aria-labelledby="ar-adjacent" className="mt-7 card">
-        <h2
-          id="ar-adjacent"
-          className="text-h2 font-semibold text-navy"
-        >
-          مال تحرّك على مسارات موازية - وليس تمويل إعادة إعمار
-        </h2>
-        <p className="mt-1 max-w-3xl text-body text-text-secondary">
-          هذه تدفّقات مال حقيقي لأغراض أخرى، ولا يجوز خلطها ببرنامج إعادة الإعمار.
-        </p>
-        <ul className="mt-4 space-y-2.5">
-          {finance.adjacentFlows.map((f) => (
-            <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-body last:border-b-0">
-              <span>
-                <span className="font-medium">{f.labelAr}.</span>{" "}
-                <span className="text-text-secondary">{f.noteAr}</span>
-              </span>
-              <span className="tabular-nums font-semibold text-navy">
-                {"displayAr" in f && f.displayAr ? f.displayAr : fmtUsd(f.amountUsd, "ar")}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* Procurement packages, folded */}
+      <SeeMore locale="ar" label="حزم الشراء الثلاث وحالتها على البوابة">
+        <section aria-labelledby="ar-procurement">
+          <h2
+            id="ar-procurement"
+            className="text-h2 font-semibold text-navy"
+          >
+            حزم الشراء وحالتها الفعلية
+          </h2>
+          <p className="mt-1 max-w-3xl text-body text-text-secondary">
+            الحالات كما كانت معروضة على بوابة الشراء في مجلس الإنماء والإعمار عند
+            المراجعة في 17 تموز 2026. التمديدات وفترات التقييم أمر عادي بقواعد البنك
+            الدولي، وغير عادي أمام الاحتياج اللبناني. وأحدّ إشارة هنا انعكاسية: جهة
+            الرقابة من طرف ثالث اصطفّت في المسار البطيء نفسه الذي وُجدت لمراقبته.
+          </p>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {finance.procurementPackages.map((p) => (
+              <article key={p.id} className="card">
+                <h3 className="text-body font-semibold leading-snug text-navy">
+                  {p.labelAr}
+                </h3>
+                <dl className="mt-2 space-y-1 text-meta text-text-secondary">
+                  <div className="flex gap-1.5">
+                    <dt className="font-semibold">نُشرت:</dt>
+                    <dd>{fmtDate(p.published, "ar")}</dd>
+                  </div>
+                  <div className="flex gap-1.5">
+                    <dt className="font-semibold">الموعد النهائي:</dt>
+                    <dd>
+                      {fmtDate(p.deadline, "ar")}
+                      {"extended" in p && p.extended ? " (مُمدَّد)" : ""}
+                    </dd>
+                  </div>
+                </dl>
+                <p className="mt-2 inline-block rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-semibold text-[#8a6200]">
+                  {PORTAL_STATUS_AR[p.statusAtCheck] ?? p.statusAtCheck}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-4 card text-body">
+            <p>
+              <span className="font-semibold text-navy">
+                أهداف الإصلاح تقيس حجم الجبل:
+              </span>{" "}
+              خط أساس{" "}
+              <strong className="tabular-nums">{finance.procurementBaselines.worksContractWeeksBaseline} أسبوعاً</strong>{" "}
+              من الإعلان إلى توقيع عقد أشغال، مقابل هدف{" "}
+              <strong className="tabular-nums">{finance.procurementBaselines.worksContractWeeksTarget} أسبوعاً</strong>؛
+              و{" "}
+              <strong className="tabular-nums">{finance.procurementBaselines.consultancyWeeksBaseline} أسبوعاً</strong>{" "}
+              للاستشارات مقابل{" "}
+              <strong className="tabular-nums">{finance.procurementBaselines.consultancyWeeksTarget}</strong>.
+            </p>
+          </div>
+        </section>
+      </SeeMore>
+
+      {/* Adjacent flows, folded */}
+      <SeeMore locale="ar" label="مسارات المال الموازية خارج تمويل إعادة الإعمار">
+        <section aria-labelledby="ar-adjacent" className="card">
+          <h2
+            id="ar-adjacent"
+            className="text-h2 font-semibold text-navy"
+          >
+            مال تحرّك على مسارات موازية - وليس تمويل إعادة إعمار
+          </h2>
+          <p className="mt-1 max-w-3xl text-body text-text-secondary">
+            هذه تدفّقات مال حقيقي لأغراض أخرى، ولا يجوز خلطها ببرنامج إعادة الإعمار.
+          </p>
+          <ul className="mt-4 space-y-2.5">
+            {finance.adjacentFlows.map((f) => (
+              <li key={f.label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-2.5 text-body last:border-b-0">
+                <span>
+                  <span className="font-medium">{f.labelAr}.</span>{" "}
+                  <span className="text-text-secondary">{f.noteAr}</span>
+                </span>
+                <span className="tabular-nums font-semibold text-navy">
+                  {"displayAr" in f && f.displayAr ? f.displayAr : fmtUsd(f.amountUsd, "ar")}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </SeeMore>
 
       {/* Compensation tracks */}
       <div className="mt-7">
@@ -242,20 +267,12 @@ export default function Page() {
         <FunctionSpeedChart locale="ar" />
       </div>
 
-      {/* Core statement */}
-      <section className="mt-7 rounded-md border-s-4 border-navy bg-white p-6">
-        <blockquote className="editorial-quote max-w-4xl text-h3 leading-relaxed text-navy">
-          تقدّمت البنية المؤسسية أسرع من المال ومن الإنجاز المادي. والشراء الجاري
-          محطة إجرائية، لا معطى عن إعادة إعمار مكتملة.
-        </blockquote>
-      </section>
-
       <div className="mt-8">
         <Takeaways
           locale="ar"
-          changed="حصل لبنان على أداة تمويل - حساب وقواعد ومسار يمكن أن يتدفّق إليه مال إضافي - حيث لم يكن في 2024 سوى رقم وأمل. والتحوّلات السياسية في 2025 تحرّكت بسرعة مؤسسية حالما وُجدت حكومة كاملة."
-          unchanged="المقام: حتى لو مُوّل الإطار بالكامل فهو يعالج نحو الثلث العام من حرب واحدة. أما الثلثان الخاصان من الاحتياجات وحرب 2026 بكاملها فبقيا بلا أي أداة تمويل، وبقي الإنجاز المكتمل المؤكَّد عند الصفر."
-          matters="كل ضمانة تحمي المال تُبطئه، والأسر لا تعيش سوى قاع القمع. ومصداقية التمويل صارت متوقفة على تحوّل مرئي - أول إرساء أشغال، وأول دفعة تعويض، وأول إنجاز مؤكَّد - وكل منها محدَّد وله صاحب ويمكن مراجعته."
+          changed="بحلول 26 شباط 2026 صار الإطار قنوات فعلية: قرض نافذ بقيمة 250 مليون دولار، وحساب دفع، وثلاث حزم شراء قيد الحركة - ولم يكن أي من ذلك موجوداً في 2024، حين كان للاستجابة تقييم بـ11 مليار دولار وبلا أداة خلفه."
+          unchanged="التحويل. حتى 29 حزيران 2026 لم يُدفع من القرض سوى 4.13 مليون دولار - أي 1.65% - ولم يُعرض إرساء أي عقد أشغال عند مراجعة البوابة، ولم يُؤكَّد علناً أي إنجاز إعادة إعمار مكتمل حتى 31 آب 2026."
+          matters="الفجوة التي تقيسها هذه الصفحة تمتد بين سرعة الورق وسرعة المال. وإلى أن يظهر أول إرساء أشغال وأول دفعة تعويض حكومية وأول إنجاز مؤكَّد، يبقى رقم المليار دولار في عنوان الإطار وصفاً لقدرة، لا لتعافٍ - والأسر تعيش عند قاع القمع."
         />
       </div>
     </ArabicPageShell>

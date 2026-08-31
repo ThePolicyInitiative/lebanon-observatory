@@ -174,6 +174,21 @@ const AR_PAGE = (route) =>
 
 const ABOUT_BODY = ["src", "app", "(en)", "about", "AboutBody.tsx"];
 const ABOUT_COPY = ["src", "lib", "about-content.ts"];
+const FRAMEWORK = ["src", "lib", "framework.ts"];
+
+/**
+ * A finding on the home page: the section id has to survive on both
+ * sides, and the title written here has to still be the title in
+ * src/lib/framework.ts - the wording's one home - or the anchor drops
+ * with a warning instead of the index quietly diverging from the page.
+ */
+const findingAnchor = (id, page, titleSnippet) => ({
+  id: `finding-${id}`,
+  checks: [
+    [page, `id="finding-${id}"`],
+    [FRAMEWORK, titleSnippet],
+  ],
+});
 const CHART = (name) => ["src", "components", "charts", `${name}.tsx`];
 const REGIONAL_COMPOSITION = ["src", "components", "map", "RegionalComposition.tsx"];
 
@@ -217,13 +232,13 @@ const actorAnchorFor = (id, component) => ({
   ],
 });
 
-/**
- * The indicator board. It is rendered by the two home pages and nowhere
- * else, so every indicator target points here rather than at the finance
- * page, which never reads kpis.json.
+/*
+ * The indicator board is gone: the report-driven home carries the aim,
+ * the importance and the five findings, and the money figures live in
+ * the finance page's own modules. Indicator hits therefore land on the
+ * finance page, whose six-concept list and funnel print every one of
+ * these figures with its date and scope.
  */
-const KPI_EN = { id: "kpi-heading", checks: [[EN_PAGE("/"), 'id="kpi-heading"']] };
-const KPI_AR = { id: "ar-kpis", checks: [[AR_PAGE("/"), 'id="ar-kpis"']] };
 
 /** The milestone timeline, the one surface that prints timeline.json. */
 const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
@@ -232,7 +247,7 @@ const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
 ]);
 
 /**
- * The seven routes the index covers - the eighth, the search page itself,
+ * The eight routes the index covers - the ninth, the search page itself,
  * is deliberately not a target of its own search - with their one-line
  * descriptions and their main section headings, in both languages. Heading
  * text is the wording the page prints.
@@ -252,72 +267,143 @@ const TIMELINE_ANCHOR = chartAnchor("delivery-timeline", "DeliveryTimeline", [
 const PAGES = [
   {
     route: "/",
-    en: "From emergency substitution to programmed reconstruction",
-    ar: "من الاستبدال الطارئ إلى إعادة إعمار مبرمجة",
+    en: "Two wars, two responses",
+    ar: "حربان، واستجابتان",
     enDesc:
-      "The opening argument, the indicator board and the seven steps from the 2024 emergency to the 2026 project architecture.",
+      "The platform's aim, why the 2024-2026 comparison matters, and the five findings it supports.",
     arDesc:
-      "الحجّة الافتتاحية ولوحة المؤشرات والخطوات السبع من طوارئ 2024 إلى بنية المشروع في 2026.",
+      "هدف المنصة، ولماذا تهمّ مقارنة 2024-2026، والاستنتاجات الخمسة التي تسندها.",
     headings: [
       {
-        en: "Key indicators - each dated, scoped and typed",
-        ar: "المؤشرات الأساسية - كل منها مؤرّخ ومحدّد النطاق والنوع",
-        enAnchor: KPI_EN,
-        arAnchor: KPI_AR,
+        en: "Two analytical layers",
+        ar: "طبقتان تحليليتان",
+        enAnchor: { id: "layers" },
+        arAnchor: { id: "layers" },
       },
       {
-        en: "The command structures, side by side",
-        ar: "بنى القيادة، جنباً إلى جنب",
-        enAnchor: { id: "structures" },
-        arAnchor: { id: "structures" },
+        en: "Why the comparison matters",
+        ar: "لماذا تهمّ المقارنة",
+        enAnchor: { id: "why" },
+        arAnchor: { id: "why" },
       },
       {
-        en: "The 2024 emergency system",
-        ar: "نظام الطوارئ في 2024",
-        enAnchor: { id: "emergency-2024" },
-        arAnchor: { id: "emergency-2024" },
+        en: "What the comparison shows",
+        ar: "ما الذي تُظهره المقارنة",
+        enAnchor: { id: "findings" },
+        arAnchor: { id: "findings" },
+      },
+      /*
+       * The five findings, individually reachable. Their titles live in
+       * src/lib/framework.ts; the ids here are the per-finding sections
+       * both home pages render, so the check is on the section id.
+       */
+      {
+        en: "The 2024 war created needs far beyond the government's immediate financial capacity",
+        ar: "حرب 2024 ولّدت احتياجات تتجاوز بكثير القدرة المالية الفورية للحكومة",
+        enAnchor: findingAnchor("needs", EN_PAGE("/"), "The 2024 war created needs far beyond"),
+        arAnchor: findingAnchor("needs", AR_PAGE("/"), "حرب 2024 ولّدت احتياجات"),
       },
       {
-        en: "The missing implementation middle",
-        ar: "الوسط التنفيذي الغائب",
-        enAnchor: { id: "implementation-middle" },
-        arAnchor: { id: "implementation-middle" },
+        en: "Announced financing frameworks were not money in hand",
+        ar: "أطر التمويل المعلنة لم تكن مالاً في اليد",
+        enAnchor: findingAnchor("frameworks", EN_PAGE("/"), "Announced financing frameworks were not money in hand"),
+        arAnchor: findingAnchor("frameworks", AR_PAGE("/"), "أطر التمويل المعلنة لم تكن"),
       },
       {
-        en: "Who gained and lost roles",
-        ar: "من ربح ومن خسر موقعه",
-        enAnchor: { id: "role-shift" },
-        arAnchor: { id: "role-shift" },
+        en: "The 2026 plan was a sound framework - the response stayed inadequate",
+        ar: "خطة 2026 كانت إطاراً سليماً - لكن الاستجابة بقيت قاصرة",
+        enAnchor: findingAnchor("plan", EN_PAGE("/"), "The 2026 plan was a sound framework"),
+        arAnchor: findingAnchor("plan", AR_PAGE("/"), "خطة 2026 كانت إطاراً سليماً"),
       },
       {
-        en: "Finance versus delivery",
-        ar: "التمويل مقابل الإنجاز",
-        enAnchor: { id: "finance-delivery" },
-        arAnchor: { id: "finance-delivery" },
+        en: "Community initiatives carried a larger share of the 2026 response",
+        ar: "مبادرات المجتمع المحلي حملت حصة أكبر من استجابة 2026",
+        enAnchor: findingAnchor("community", EN_PAGE("/"), "Community initiatives carried a larger share"),
+        arAnchor: findingAnchor("community", AR_PAGE("/"), "مبادرات المجتمع المحلي حملت حصة أكبر"),
       },
       {
-        en: "Geography of traced activity",
-        ar: "جغرافيا النشاط المرصود",
-        enAnchor: { id: "geography" },
-        arAnchor: { id: "geography" },
+        en: "Both responses stayed concentrated in the early stages of recovery",
+        ar: "الاستجابتان بقيتا متركّزتين في المراحل المبكرة من التعافي",
+        enAnchor: findingAnchor("stages", EN_PAGE("/"), "Both responses stayed concentrated in the early stages"),
+        arAnchor: findingAnchor("stages", AR_PAGE("/"), "الاستجابتان بقيتا متركّزتين"),
       },
       {
-        en: "Latest news and official updates",
-        ar: "آخر المستجدات والبيانات الرسمية",
-        enAnchor: { id: "latest-news" },
-        arAnchor: { id: "latest-news" },
+        en: "Latest reporting",
+        ar: "أحدث التغطية والمستجدات",
+        enAnchor: { id: "latest-reporting" },
+        arAnchor: { id: "latest-reporting" },
       },
     ],
   },
   {
     route: "/who",
-    en: "Actor layers",
-    ar: "طبقات الجهات الفاعلة",
+    en: "Actor groups",
+    ar: "مجموعات الجهات الفاعلة",
     enDesc:
-      "Four layers - official institutions, international and non-governmental bodies, municipalities, community initiatives - profiled for both years, with the full register of who did what and the map of where the traced activity sits.",
+      "The report's four actor groups - public officials and institutions; NGOs, international organisations and UN actors; municipal and local authorities; community initiatives - with the full register of who did what and the map of where the traced activity sits.",
     arDesc:
-      "أربع طبقات - المؤسسات الرسمية والمنظمات الدولية وغير الحكومية والبلديات ومبادرات المجتمع المحلي - بملامح كل منها في السنتين، مع السجل الكامل لمن فعل ماذا وخريطة موقع النشاط المرصود.",
+      "المجموعات الأربع في إطار التقرير - المؤسسات الرسمية والمنظمات الدولية وغير الحكومية والبلديات ومبادرات المجتمع المحلي - مع السجل الكامل لمن فعل ماذا وخريطة موقع النشاط المرصود.",
     headings: [
+      {
+        en: "The four groups",
+        ar: "المجموعات الأربع",
+        enAnchor: {
+          id: "groups",
+          checks: [
+            [EN_PAGE("/who"), "<GroupCards"],
+            [["src", "app", "(en)", "who", "GroupCards.tsx"], '"groups"'],
+          ],
+        },
+        arAnchor: {
+          id: "ar-groups",
+          checks: [
+            [AR_PAGE("/who"), "<GroupCards"],
+            [["src", "app", "(en)", "who", "GroupCards.tsx"], '"ar-groups"'],
+          ],
+        },
+      },
+      {
+        en: "Each group, one at a time",
+        ar: "كل مجموعة على حدة",
+        enAnchor: { id: "group-profiles" },
+        arAnchor: { id: "ar-group-profiles" },
+      },
+      {
+        en: "Who carries the work",
+        ar: "من يحمل العمل",
+        enAnchor: { id: "who-carries-the-work" },
+        arAnchor: { id: "ar-who-carries-the-work" },
+      },
+      {
+        en: "Which groups held each stage of the response",
+        ar: "أي المجموعات شغلت كل مرحلة من مراحل الاستجابة",
+        enAnchor: { id: "stages-held" },
+        arAnchor: { id: "ar-stages-held" },
+      },
+      {
+        en: "What shifted between the two wars",
+        ar: "ما الذي تبدّل بين الحربين",
+        enAnchor: { id: "what-shifted" },
+        arAnchor: { id: "ar-what-shifted" },
+      },
+      {
+        en: "What kind of work was traced",
+        ar: "أي نوع من العمل رُصد",
+        enAnchor: {
+          id: "action-mix",
+          checks: [
+            [EN_PAGE("/who"), "<CategoryMix"],
+            [["src", "app", "(en)", "who", "CategoryMix.tsx"], '"action-mix"'],
+          ],
+        },
+        arAnchor: {
+          id: "ar-action-mix",
+          checks: [
+            [AR_PAGE("/who"), "<CategoryMix"],
+            [["src", "app", "(en)", "who", "CategoryMix.tsx"], '"ar-action-mix"'],
+          ],
+        },
+      },
       {
         en: "Who did what - the full register",
         ar: "من فعل ماذا - السجل الكامل",
@@ -325,14 +411,8 @@ const PAGES = [
         arAnchor: actorAnchorFor("actor-register", "ActorRegister"),
       },
       {
-        en: "The four layers, layer by layer",
-        ar: "الطبقات الأربع، طبقةً طبقة",
-        enAnchor: actorAnchorFor("actor-layers", "ActorTabs"),
-        arAnchor: actorAnchorFor("actor-layers", "ActorTabs"),
-      },
-      {
-        en: "Actors by stage",
-        ar: "الجهات بحسب المرحلة",
+        en: "Every traced actor against every stage of the response",
+        ar: "كل جهة مرصودة مقابل كل مرحلة من مراحل الاستجابة",
         enAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
         arAnchor: actorAnchorFor("actor-matrix", "ActorStageMatrix"),
       },
@@ -422,6 +502,12 @@ const PAGES = [
           AR_PAGE("/destroyed"),
         ]),
       },
+      {
+        en: "Services and networks, as operators reported them",
+        ar: "الخدمات والشبكات، كما أبلغت عنها المؤسسات المشغّلة",
+        enAnchor: { id: "services-networks" },
+        arAnchor: { id: "ar-services" },
+      },
     ],
   },
   {
@@ -475,10 +561,57 @@ const PAGES = [
     en: "Who did what, and where",
     ar: "مستكشف المدخلات",
     enDesc:
-      "Every traced entry, one row per actor and function, filterable by year, layer, stage, status and comparability.",
+      "Every traced entry, one row per actor and function, filterable by year, group, stage, status and comparability.",
     arDesc:
-      "كل مدخل متتبَّع، صف لكل جهة ووظيفة، قابلاً للترشيح بالسنة والطبقة والمرحلة والحالة ودرجة القابلية للمقارنة.",
+      "كل مدخل متتبَّع، صف لكل جهة ووظيفة، قابلاً للترشيح بالسنة والمجموعة والمرحلة والحالة ودرجة القابلية للمقارنة.",
     headings: [],
+  },
+  {
+    route: "/methodology",
+    en: "How this tracking was built",
+    ar: "كيف بُني هذا التتبّع",
+    enDesc:
+      "The eight steps behind the tracking, the actor framework of four groups, the action framework of four categories, and what the counts do and do not mean.",
+    arDesc:
+      "الخطوات الثماني وراء التتبّع، وإطار الجهات بأربع مجموعات، وإطار الأفعال بأربع فئات، وما تعنيه الأعداد وما لا تعنيه.",
+    headings: [
+      {
+        en: "The eight steps",
+        ar: "الخطوات الثماني",
+        enAnchor: { id: "steps" },
+        arAnchor: { id: "ar-steps" },
+      },
+      {
+        en: "The actor framework: four groups",
+        ar: "إطار الجهات: أربع مجموعات",
+        enAnchor: { id: "actor-framework" },
+        arAnchor: { id: "ar-actor-framework" },
+      },
+      {
+        en: "The action framework: four categories",
+        ar: "إطار الأفعال: أربع فئات",
+        enAnchor: { id: "action-framework" },
+        arAnchor: { id: "ar-action-framework" },
+      },
+      {
+        en: "How the twelve tracked stages nest in the four categories",
+        ar: "كيف تنتظم المراحل الاثنتا عشرة المتتبَّعة داخل الفئات الأربع",
+        enAnchor: { id: "stage-mapping" },
+        arAnchor: { id: "ar-stage-mapping" },
+      },
+      {
+        en: "The implementation-status discipline",
+        ar: "انضباط حالة التنفيذ",
+        enAnchor: { id: "status-discipline" },
+        arAnchor: { id: "ar-status-discipline" },
+      },
+      {
+        en: "What the counts mean",
+        ar: "ماذا تعني الأعداد",
+        enAnchor: { id: "count-flag" },
+        arAnchor: { id: "ar-count-flag" },
+      },
+    ],
   },
   {
     route: "/about",
@@ -699,19 +832,19 @@ export function buildIndex() {
   for (const layer of LAYER_LABELS) {
     items.push(
       item("layer", layer.en, layer.ar, "/who", {
-        c: "Actor layer",
-        ca: "طبقة جهات فاعلة",
+        c: "Actor group",
+        ca: "مجموعة جهات فاعلة",
       }),
     );
   }
 
-  /* The indicators. The context line reprints exactly what KpiCard prints,
-     and KpiCard is rendered by the two home pages only - so the target is
-     the indicator board on the home page, not the finance page, which never
-     reads kpis.json. */
+  /* The indicators. The context line reprints the figure with its date;
+     the target is the finance page, where the six-concept list and the
+     funnel print these same figures - the home page's indicator board
+     was retired with the report-driven rebuild. */
   const kpis = readJson("src", "data", "kpis.json");
-  const kpiEn = anchorLives(KPI_EN, null, warnings) ? `/#${KPI_EN.id}` : "/";
-  const kpiAr = anchorLives(KPI_AR, null, warnings) ? `/ar#${KPI_AR.id}` : "/ar";
+  const kpiEn = "/money";
+  const kpiAr = "/ar/money";
   for (const kpi of kpis) {
     items.push(
       item("indicator", kpi.label, kpi.labelAr, kpiEn, {

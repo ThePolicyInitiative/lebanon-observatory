@@ -5,40 +5,33 @@ import type { EChartsOption, ECharts } from "echarts";
 import EChart from "./EChart";
 import { actorHref } from "@/app/(en)/who/actor-anchor";
 import ChartFrame from "./ChartFrame";
-import {
-  AR_COUNT,
-  arabicCount,
-  layers,
-  type Locale,
-} from "@/lib/vocab";
+import { layers, type Locale } from "@/lib/vocab";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import type { ActorLayer, Year } from "@/lib/types";
 import { YEAR_COLORS } from "@/lib/colors";
 
 const T = {
   en: {
-    title: "The traced actor landscape, cell by cell",
+    title: "Who is inside each actor group",
     sub: (y: number) =>
-      `Every named actor in the ${y} tracking - cell area is its number of traced role mentions, grouped by layer. Switch the year to watch the landscape recompose.`,
+      `Every named actor in the ${y} tracking - one cell per actor, grouped and coloured by its actor group. A bigger cell means a bigger share of the traced activity. Switch the year to watch the landscape recompose.`,
     caveat:
-      "Cell area measures traced presence in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled).",
-    mentions: (n: number, y: number) => `${n} traced mention${n === 1 ? "" : "s"} in ${y}`,
-    legend: (label: string, total: number, actors: number) =>
-      `${label}: ${total} ${total === 1 ? "mention" : "mentions"} · ${actors} ${actors === 1 ? "actor" : "actors"}`,
+      "Cell size measures a share of the traced activity in the tracking - not budget, staff or output. Actors traced under generic descriptions appear as traced; colour never carries identity alone (each readable cell is labelled).",
     yearLabel: "Treemap year",
-    chart: (y: number) => `Treemap of traced actors by layer, ${y}`,
+    chart: (y: number) => `Treemap of traced actors by group, ${y}`,
+    description: (y: number, names: string) =>
+      `Treemap of the traced actors in ${y}, one cell per actor, grouped by actor group. Groups from the widest to the narrowest share of traced activity: ${names}.`,
   },
   ar: {
-    title: "مشهد الجهات المرصودة، خليةً بخلية",
+    title: "من داخل كل مجموعة من الجهات",
     sub: (y: number) =>
-      `كل جهة مسمّاة في تتبّع ${y} - مساحة الخلية هي عدد الإشارات المرصودة إليها، مجمّعة بحسب الطبقة. بدّل السنة لترى المشهد يعيد تشكّله.`,
+      `كل جهة مسمّاة في تتبّع ${y} - خلية لكل جهة، مجمّعة وملوّنة بحسب مجموعتها. وكلما كبرت الخلية كبرت حصتها من النشاط المرصود. بدّل السنة لترى المشهد يعيد تشكّله.`,
     caveat:
-      "مساحة الخلية تقيس الحضور المرصود في التتبّع - لا الموازنة ولا الملاك ولا الإنجاز. الجهات المرصودة بأوصاف عامة تظهر كما رُصدت؛ واللون وحده لا يحمل الهوية أبداً (كل خلية مقروءة تحمل اسمها).",
-    mentions: (n: number, y: number) => `${arabicCount(n, AR_COUNT.mentionTraced)} في ${y}`,
-    legend: (label: string, total: number, actors: number) =>
-      `${label}: ${arabicCount(total, AR_COUNT.mention)} · ${arabicCount(actors, AR_COUNT.actor)}`,
+      "حجم الخلية يقيس حصة من النشاط المرصود في التتبّع - لا الموازنة ولا الملاك ولا الإنجاز. الجهات المرصودة بأوصاف عامة تظهر كما رُصدت؛ واللون وحده لا يحمل الهوية أبداً (كل خلية مقروءة تحمل اسمها).",
     yearLabel: "سنة المخطط",
-    chart: (y: number) => `مخطط مساحي للجهات المرصودة بحسب الطبقة، ${y}`,
+    chart: (y: number) => `مخطط مساحي للجهات المرصودة بحسب المجموعة، ${y}`,
+    description: (y: number, names: string) =>
+      `مخطط مساحي للجهات المرصودة في ${y}، خلية لكل جهة، مجمّعة بحسب مجموعتها. المجموعات من الأوسع حصة في النشاط المرصود إلى الأضيق: ${names}.`,
   },
 } as const;
 
@@ -88,11 +81,14 @@ export default function ActorTreemapChart({
       };
     });
     const opt: EChartsOption = {
+      // Name and group only. The count that sizes the cell never prints:
+      // groups sit side by side here, and the rule is that group
+      // comparisons carry no numbers anywhere - shape does the work.
       tooltip: {
         formatter: (p) => {
-          const item = p as { name?: string; value?: number; treePathInfo?: { name: string }[] };
+          const item = p as { name?: string; treePathInfo?: { name: string }[] };
           const layer = item.treePathInfo?.[1]?.name ?? "";
-          return `<strong>${item.name}</strong><br/>${layer}<br/>${t.mentions(Number(item.value ?? 0), year)}`;
+          return `<strong>${item.name}</strong><br/>${layer}`;
         },
       },
       series: [
@@ -105,9 +101,8 @@ export default function ActorTreemapChart({
           height: "100%",
           top: 0,
           // Cells carry the actor's name only. The count is what sets the
-          // cell's size, so printing it inside crowded the small cells with
-          // a number the area already gives; it stays in the tooltip, the
-          // layer totals below and the screen-reader description.
+          // cell's size and is never printed anywhere on this figure -
+          // the area is the whole statement.
           label: {
             show: true,
             fontSize: 11,
@@ -145,7 +140,7 @@ export default function ActorTreemapChart({
       ],
     };
     return { option: opt, layerTotals: totals };
-  }, [data, year, locale, t]);
+  }, [data, year, locale]);
 
   return (
     <ChartFrame
@@ -153,9 +148,14 @@ export default function ActorTreemapChart({
       title={t.title}
       subtitle={t.sub(year)}
       caveat={t.caveat}
-      description={`Treemap of traced actors in ${year}: ${layerTotals
-        .map((l) => `${l.label} ${l.total} mentions across ${l.actors} actors`)
-        .join("; ")}.`}
+      description={t.description(
+        year,
+        [...layerTotals]
+          .filter((l) => l.total > 0)
+          .sort((a, b) => b.total - a.total)
+          .map((l) => l.label)
+          .join(locale === "ar" ? "، " : ", "),
+      )}
     >
       <div>
         <div
@@ -200,13 +200,17 @@ export default function ActorTreemapChart({
             },
           }}
         />
+        {/* Group names only, ordered by share: the sizes on the canvas
+            already say how the groups compare, and no number repeats it. */}
         <ul className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-micro text-text-secondary">
-          {layerTotals.map((l) => (
-            <li key={l.id} className="flex items-center gap-1.5">
-              <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
-              {t.legend(l.label, l.total, l.actors)}
-            </li>
-          ))}
+          {[...layerTotals]
+            .sort((a, b) => b.total - a.total)
+            .map((l) => (
+              <li key={l.id} className="flex items-center gap-1.5">
+                <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
+                {l.label}
+              </li>
+            ))}
         </ul>
       </div>
     </ChartFrame>

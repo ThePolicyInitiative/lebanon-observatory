@@ -200,7 +200,7 @@ const nextConfig: NextConfig = {
       // for long enough that the header was announcing the feed on seven
       // paths that redirect and on none of the five that exist.
       {
-        source: "/:page(who|destroyed|money|reported|entries)?",
+        source: "/:page(who|destroyed|money|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",
@@ -209,7 +209,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/ar/:page(who|destroyed|money|reported|entries)?",
+        source: "/ar/:page(who|destroyed|money|reported|entries|methodology)?",
         headers: [
           {
             key: "Link",

@@ -147,15 +147,15 @@ describe("what the index covers", () => {
   });
 
   /**
-   * The site serves eight routes; the index covers seven of them. The
-   * eighth is the search page itself, which is deliberately not a target
+   * The site serves nine routes; the index covers eight of them. The
+   * ninth is the search page itself, which is deliberately not a target
    * of its own search.
    */
   it("reaches every page it indexes, and not the search page itself", () => {
     const routes = new Set(kinds("page").map((i) => i.h.split("#")[0]));
     expect([...routes].sort()).toEqual(
       // Sorted, because the assertion sorts what it is comparing against.
-      ["/", "/about", "/destroyed", "/entries", "/money", "/reported", "/who"],
+      ["/", "/about", "/destroyed", "/entries", "/methodology", "/money", "/reported", "/who"],
     );
     expect(items.some((i) => i.h.startsWith("/search"))).toBe(false);
   });
@@ -241,6 +241,7 @@ describe("what the index covers", () => {
       "/who",
       "/destroyed",
       "/entries",
+      "/methodology",
       "/money",
       "/reported",
     ]);

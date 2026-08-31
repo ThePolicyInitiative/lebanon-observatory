@@ -233,7 +233,13 @@ describe("figures written into the actors narrative", () => {
       }
     }
     expect(wrong).toEqual([]);
-    expect(checked).toBeGreaterThan(10);
+    /*
+     * No floor: share-of-a-column phrases are group-against-group
+     * comparisons, which the site now words without figures, so the
+     * expected count is zero. The check stays so that any share phrase
+     * that returns to the copy is still audited against the table.
+     */
+    expect(checked).toBeGreaterThanOrEqual(0);
   });
 
   it("prints the same figures in Arabic as in English", () => {
@@ -281,8 +287,13 @@ describe("figures written anywhere in the copy", () => {
       }
     }
     expect(wrong).toEqual([]);
-    // The sweep has to have swept something.
-    expect(checked).toBeGreaterThan(50);
+    /*
+     * The sweep has to have swept something. The floor was fifty when the
+     * actors narrative quoted a pair per bullet; group comparisons are now
+     * worded without figures, and the pairs that remain in print are the
+     * whole-tracking actor totals on the two explorer strips.
+     */
+    expect(checked).toBeGreaterThanOrEqual(2);
   });
 
   /**
@@ -307,7 +318,12 @@ describe("figures written anywhere in the copy", () => {
       }
     }
     expect(wrong).toEqual([]);
-    expect(checked).toBeGreaterThan(20);
+    /*
+     * No floor: bare signed changes were how the actors narrative quoted
+     * per-group swings, and those are now worded without figures. The
+     * check stays armed for any signed figure that returns.
+     */
+    expect(checked).toBeGreaterThanOrEqual(0);
   });
 });
 
@@ -373,16 +389,20 @@ describe("headline figures in the copy", () => {
       fromData: () => String(roleRecords.length),
     },
     /*
-     * The per-year entry counts, 357 and 414, are no longer claimed
-     * anywhere: they were printed only inside the home page's
-     * at-a-glance strip, which has been removed. A claim nothing makes
-     * needs no guard, and leaving it here would have this suite asserting
-     * the presence of copy the site deliberately does not carry.
-     *
-     * They remain derivable - recordsIn(2024) and recordsIn(2026) - so if
-     * either figure is printed again, add the claim back rather than
-     * trusting the number.
+     * The per-year entry counts came back into print with the
+     * methodology page, which states the 343 / 360 / 363 discrepancy and
+     * the 357 + 414 split behind the 771 total.
      */
+    {
+      what: "entries traced for 2024",
+      printed: "357",
+      fromData: () => String(roleRecords.filter((r) => r.year === 2024).length),
+    },
+    {
+      what: "entries traced for 2026",
+      printed: "414",
+      fromData: () => String(roleRecords.filter((r) => r.year === 2026).length),
+    },
     {
       what: "actor-stage presences counted for 2024",
       printed: "343",
@@ -394,24 +414,25 @@ describe("headline figures in the copy", () => {
       fromData: () => String(yearTotal(2026)),
     },
     {
-      what: "actors across the four layers, 2024 then 2026",
-      // The Arabic arrow, because this figure is now printed only on the
-      // Arabic explorer: the English home page no longer carries an
-      // at-a-glance strip for it to appear in.
+      what: "actors across the two years",
+      printed: "235",
+      fromData: () => String(actorsIn(2024) + actorsIn(2026)),
+    },
+    {
+      what: "actors across the four groups, 2024 then 2026",
+      // Printed with the Arabic arrow on the Arabic explorer strip and
+      // with the Latin arrow on the English one; either form satisfies
+      // the presence check below.
       printed: "105 ← 130",
       fromData: () => `${actorsIn(2024)} ← ${actorsIn(2026)}`,
     },
-    {
-      what: "community entries, 2024 then 2026",
-      printed: "145 → 172",
-      fromData: () =>
-        `${layerTotal(2024, "community")} → ${layerTotal(2026, "community")}`,
-    },
-    {
-      what: "municipal entries, 2024 then 2026",
-      printed: "19 → 12",
-      fromData: () => `${layerTotal(2024, "municipal")} → ${layerTotal(2026, "municipal")}`,
-    },
+    /*
+     * The community (145 → 172) and municipal (19 → 12) group totals are
+     * deliberately no longer printed anywhere: group-against-group
+     * comparisons are worded without figures on this site. They remain
+     * derivable via layerTotal, so if either returns to print, restore
+     * its claim rather than trusting the number.
+     */
   ];
 
   it.each(CLAIMS)("$what still reads $printed after recomputation", ({ printed, fromData }) => {

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: localeAlternates("/reported"),
   title: "What is being reported?",
   description:
-    "Aggregated live coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official publishers - searchable and filterable, kept separate from the analysis.",
+    "The live continuation of the search that feeds the tracking: coverage of Lebanon's reconstruction from global, Lebanese, humanitarian and official publishers, quarantined from the confirmed analysis until checked.",
 };
 
 export default async function NewsPage({
@@ -23,7 +23,24 @@ export default async function NewsPage({
   const params = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
   return (
-    <PageShell title="Live news and official updates">
+    <PageShell
+      title="Live news and official updates"
+      lede={
+        <>
+          The search that feeds the tracking does not stop, and this page is
+          where it runs live: coverage from global, Lebanese, humanitarian and
+          official publishers, landing as it appears - what is being reported
+          now, before it has been read into the analysis.
+        </>
+      }
+      point={
+        <>
+          Everything here is quarantined from the confirmed analysis: a piece
+          enters no count and no figure until it has been checked and read
+          into the traced entries.
+        </>
+      }
+    >
       {/* The heading is for the reader who arrives on the anchor and for
           anyone navigating by headings; the explorer prints its own
           controls immediately below it. */}

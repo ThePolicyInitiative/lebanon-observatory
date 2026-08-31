@@ -12,28 +12,26 @@ import { chartText } from "@/lib/chart-style";
 
 const T = {
   en: {
-    title: "Regional actor composition, 2024 vs 2026",
+    title: "Which groups were traced where, 2024 vs 2026",
     subtitle:
-      "For each regional grouping the upper stacked bar is 2024 and the lower is 2026; segments are the four actor layers.",
+      "For each regional grouping the upper stacked bar is 2024 and the lower is 2026. Segments are the four actor groups, and a longer segment means more traced activity there - no counts are printed here by design.",
     description:
-      "Paired stacked bars per regional grouping showing the actor-layer composition of traced location mentions in 2024 and 2026. South and Nabatieh and national/multi-region groupings dominate; community mentions dominate named affected localities.",
-    xAxis: "Location mentions in the tracking",
-    tooltipUnit: "mentions",
-    tableCaption: "Location mentions by region, year and actor layer.",
+      "Paired stacked bars per regional grouping showing the actor-group composition of traced activity in 2024 and 2026. South and Nabatieh and national/multi-region groupings dominate; community activity dominates the named affected localities.",
+    xAxis: "Traced activity located in each region",
+    tableCaption: "Traced activity by region, year and actor group.",
     headers: ["Region", "Year", "Official", "Municipal", "NGO/International", "Community"],
-    chartAria: "Paired stacked bars of regional actor composition for 2024 and 2026",
+    chartAria: "Paired stacked bars of regional actor-group composition for 2024 and 2026",
   },
   ar: {
-    title: "تركيبة الجهات إقليمياً، 2024 مقابل 2026",
+    title: "أي المجموعات رُصدت وأين، 2024 مقابل 2026",
     subtitle:
-      "لكل تجمّع إقليمي، الشريط المكدَّس الأعلى هو 2024 والأدنى هو 2026؛ والمقاطع هي طبقات الجهات الأربع.",
+      "لكل تجمّع إقليمي، الشريط المكدَّس الأعلى هو 2024 والأدنى هو 2026. والمقاطع هي مجموعات الجهات الأربع، وكلما طال المقطع زاد النشاط المرصود هناك - ولا تُطبع أي أعداد هنا عن قصد.",
     description:
-      "أشرطة مكدَّسة مزدوجة لكل تجمّع إقليمي تُظهر تركيبة طبقات الجهات في إشارات الأماكن المرصودة لعامي 2024 و2026. يغلب الجنوب والنبطية والتجمّع الوطني/متعدد المناطق؛ وتغلب الإشارات الأهلية في البلدات المتضررة المسمّاة.",
-    xAxis: "إشارات الأماكن في التتبّع",
-    tooltipUnit: "إشارة",
-    tableCaption: "إشارات الأماكن بحسب المنطقة والسنة وطبقة الجهة.",
+      "أشرطة مكدَّسة مزدوجة لكل تجمّع إقليمي تُظهر تركيبة مجموعات الجهات في النشاط المرصود لعامي 2024 و2026. يغلب الجنوب والنبطية والتجمّع الوطني/متعدد المناطق؛ ويغلب نشاط المجتمع المحلي في البلدات المتضررة المسمّاة.",
+    xAxis: "النشاط المرصود المحدَّد الموقع في كل منطقة",
+    tableCaption: "النشاط المرصود بحسب المنطقة والسنة ومجموعة الجهات.",
     headers: ["المنطقة", "السنة", "رسمية", "بلدية", "دولية / غير حكومية", "أهلية"],
-    chartAria: "أشرطة مكدَّسة مزدوجة لتركيبة الجهات إقليمياً لعامي 2024 و2026",
+    chartAria: "أشرطة مكدَّسة مزدوجة لتركيبة مجموعات الجهات إقليمياً لعامي 2024 و2026",
   },
 } as const;
 
@@ -66,17 +64,19 @@ export default function RegionalComposition({
     return {
       grid: { left: 190, right: 40, top: 34, bottom: 40 },
       legend: { top: 0, textStyle: { fontSize: 11 }, data: layerMeta.map((l) => l.label) },
+      // Region, year and group only: the groups compare here, so the
+      // tooltip never carries a figure - the segment's length is the whole
+      // statement.
       tooltip: {
         trigger: "item",
         formatter: (p) => {
           const params = p as unknown as {
             seriesName: string;
             name: string;
-            value: number;
             seriesIndex: number;
           };
           const year = params.seriesIndex < layerMeta.length ? 2024 : 2026;
-          return `<strong>${params.name}</strong> · ${year}<br/>${params.seriesName}: ${params.value} ${t.tooltipUnit}`;
+          return `<strong>${params.name}</strong> · ${year}<br/>${params.seriesName}`;
         },
       },
       xAxis: {
@@ -86,6 +86,9 @@ export default function RegionalComposition({
         nameGap: 26,
         nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
+        // No tick numbers: the axis title says what length means, and
+        // group comparisons print no counts anywhere on this site.
+        axisLabel: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
       yAxis: {

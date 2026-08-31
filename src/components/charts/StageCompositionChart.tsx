@@ -15,40 +15,57 @@ import {
   type Locale,
 } from "@/lib/vocab";
 import type { ActorLayer, Year } from "@/lib/types";
-import { signed } from "@/lib/format";
 import { chartText } from "@/lib/chart-style";
 
 /**
- * Visual 3 - Paired stage-composition chart. Who occupied each of the
- * twelve value-chain stages, and how the composition changed.
+ * Visual 3 - Paired stage-composition chart. Who occupied each stage of
+ * the response, and how the composition changed. Groups compare here, so
+ * no count appears anywhere on the figure: no printed marks, no axis
+ * numbers, no tooltip figures. Length and share carry the comparison.
  */
 const T = {
   en: {
-    title: "Who occupied each stage of the reconstruction value chain",
-    side: "Paired bars per stage: upper bar 2024, lower bar 2026 (labelled in tooltips). Segments are the four actor layers.",
-    change: "Change in traced actor presence per stage, 2026 minus 2024, by actor layer.",
-    one: (y: string) => `Traced actor composition per stage, ${y}.`,
-    percentToggle: "Percentage composition",
-    axisChange: "Change in traced actors (2026 - 2024)",
-    axisShare: "Share of traced actors in stage (%)",
-    axisCount: "Traced actors in stage",
-    tracedActors: "traced actors",
+    title: "Who occupied each stage of the response",
+    side: "Paired bars per stage: the upper bar is 2024, the lower is 2026. Segments are the four actor groups, and a longer segment means more traced activity. No counts are printed here by design.",
+    change: "For each stage, bars point toward more traced activity in 2026 or toward less, group by group - direction and length only, no counts.",
+    one: (y: string) => `Which groups were traced in each stage, ${y}. Longer segments mean more traced activity.`,
+    percentToggle: "Equal-width bars (compare shares within each stage)",
+    axisChange: "Change in traced activity, 2026 vs 2024",
+    axisShare: "Share of the stage's traced activity",
+    axisCount: "Traced activity in the stage",
+    shareMost: "most of this stage's traced activity",
+    shareWide: "a wide share of this stage's traced activity",
+    shareNarrow: "a narrower share of this stage's traced activity",
+    shareSmall: "a small share of this stage's traced activity",
+    moreTraced: "more traced activity in 2026",
+    fewerTraced: "less traced activity in 2026",
+    sameTraced: "about the same in both years",
     alt: "Stage composition chart",
+    description:
+      "Paired stacked bars per stage of the response, showing which actor groups were traced in each stage in 2024 and 2026. Read qualitatively: community activity widens most in relief and in shelter and return by 2026 while narrowing in rubble clearance and finance, and municipal activity narrows across most stages.",
     upper: "In each stage pair, the upper bar is ",
     lower: " and the lower bar is ",
     stop: ".",
   },
   ar: {
-    title: "من شغل كل مرحلة من سلسلة قيمة إعادة الإعمار",
-    side: "شريطان لكل مرحلة: الأعلى 2024 والأدنى 2026 (مُسمّيان في التلميحات). والقطع هي طبقات الجهات الأربع.",
-    change: "الفارق في حضور الجهات المرصود لكل مرحلة، 2026 ناقص 2024، بحسب طبقة الجهات.",
-    one: (y: string) => `تركيبة الجهات المرصودة لكل مرحلة، ${y}.`,
-    percentToggle: "تركيبة بالنسب المئوية",
-    axisChange: "الفارق في الجهات المرصودة (2026 - 2024)",
-    axisShare: "حصة الجهات المرصودة في المرحلة (%)",
-    axisCount: "الجهات المرصودة في المرحلة",
-    tracedActors: "جهة مرصودة",
+    title: "من شغل كل مرحلة من مراحل الاستجابة",
+    side: "شريطان لكل مرحلة: الأعلى 2024 والأدنى 2026. والقطع هي مجموعات الجهات الأربع، وكلما طال المقطع زاد النشاط المرصود. لا تُطبع أي أعداد هنا عن قصد.",
+    change: "لكل مرحلة، تتجه الأشرطة نحو نشاط مرصود أكبر في 2026 أو أقل، مجموعةً مجموعة - الاتجاه والطول فقط، من دون أعداد.",
+    one: (y: string) => `أي المجموعات رُصدت في كل مرحلة، ${y}. وكلما طال المقطع زاد النشاط المرصود.`,
+    percentToggle: "أشرطة متساوية العرض (لمقارنة الحصص داخل كل مرحلة)",
+    axisChange: "التغيّر في النشاط المرصود، 2026 مقابل 2024",
+    axisShare: "الحصة من النشاط المرصود في المرحلة",
+    axisCount: "النشاط المرصود في المرحلة",
+    shareMost: "معظم النشاط المرصود في هذه المرحلة",
+    shareWide: "حصة واسعة من النشاط المرصود في هذه المرحلة",
+    shareNarrow: "حصة أضيق من النشاط المرصود في هذه المرحلة",
+    shareSmall: "حصة صغيرة من النشاط المرصود في هذه المرحلة",
+    moreTraced: "نشاط مرصود أكبر في 2026",
+    fewerTraced: "نشاط مرصود أقل في 2026",
+    sameTraced: "على حاله تقريباً في السنتين",
     alt: "رسم تركيبة المراحل",
+    description:
+      "أشرطة مكدَّسة مزدوجة لكل مرحلة من الاستجابة تُظهر أي مجموعات الجهات رُصدت في كل مرحلة في 2024 و2026. قراءة نوعية: نشاط المجتمع المحلي يتسع أكثر ما يتسع في الإغاثة وفي الإيواء والعودة بحلول 2026 بينما يضيق في رفع الأنقاض والتمويل، ونشاط البلديات يضيق في معظم المراحل.",
     upper: "في كل زوج، الشريط الأعلى هو ",
     lower: " والأدنى هو ",
     stop: ".",
@@ -85,10 +102,16 @@ export default function StageCompositionChart({
           ? { left: 40, right: 160, top: 30, bottom: 30 }
           : { left: 160, right: 40, top: 30, bottom: 30 },
         legend: { top: 0, textStyle: { fontSize: 11 } },
+        // Words, not numbers: this mode reads groups against each other,
+        // so the tooltip says which way a group moved and nothing more.
         tooltip: {
-          trigger: "axis",
-          axisPointer: { type: "shadow" },
-          valueFormatter: (v) => signed(Number(v)),
+          trigger: "item",
+          formatter: (p) => {
+            const params = p as unknown as { seriesName: string; name: string; value: number };
+            const word =
+              params.value > 0 ? tr.moreTraced : params.value < 0 ? tr.fewerTraced : tr.sameTraced;
+            return `<strong>${params.name}</strong><br/>${params.seriesName}: ${word}`;
+          },
         },
         xAxis: {
           type: "value",
@@ -98,6 +121,9 @@ export default function StageCompositionChart({
           nameGap: 24,
           nameTextStyle: { fontSize: chartText(locale).axisTitle },
           axisLine: { show: false },
+          // The ticks would print the counts the rule keeps off group
+          // comparisons; the zero line still splits gain from loss.
+          axisLabel: { show: false },
           splitLine: { lineStyle: { color: "#EDF0F4" } },
         },
         yAxis: {
@@ -122,13 +148,16 @@ export default function StageCompositionChart({
         const values = counts.map((v, i) =>
           percent ? (totals[i] === 0 ? 0 : (v / totals[i]) * 100) : v,
         );
+        // The share within the stage rides along so the tooltip can put
+        // the segment into words without ever printing a figure.
+        const shares = counts.map((v, i) => (totals[i] === 0 ? 0 : v / totals[i]));
         return {
           name: layer.label,
           stack: String(year),
           type: "bar" as const,
           data: [...values].reverse().map((v, ri) => ({
             value: v,
-            raw: [...counts].reverse()[ri],
+            share: [...shares].reverse()[ri],
           })),
           itemStyle: {
             color: layer.color,
@@ -149,22 +178,22 @@ export default function StageCompositionChart({
         textStyle: { fontSize: 11 },
         data: LAYER_META.map((l) => l.label),
       },
+      // Group, stage, year and a share put into words - never a count or
+      // a percentage. The wording buckets are deliberately coarse.
       tooltip: {
         trigger: "item",
         formatter: (p) => {
           const params = p as unknown as {
             seriesName: string;
             name: string;
-            value: number;
-            data: { raw: number };
+            data: { share: number };
             seriesIndex: number;
           };
           const year = params.seriesIndex < 4 && mode !== "2026" ? years[0] : years[years.length - 1];
-          return `<strong>${params.name}</strong> · ${year}<br/>${params.seriesName}: ${
-            percent
-              ? `${params.value.toFixed(1)}% (${params.data.raw} ${tr.tracedActors})`
-              : `${params.data.raw} ${tr.tracedActors}`
-          }`;
+          const s = params.data.share;
+          const word =
+            s >= 0.5 ? tr.shareMost : s >= 0.25 ? tr.shareWide : s >= 0.1 ? tr.shareNarrow : tr.shareSmall;
+          return `<strong>${params.name}</strong> · ${year}<br/>${params.seriesName}: ${word}`;
         },
       },
       xAxis: {
@@ -176,6 +205,9 @@ export default function StageCompositionChart({
         nameGap: 24,
         nameTextStyle: { fontSize: chartText(locale).axisTitle },
         axisLine: { show: false },
+        // No tick numbers: the bars are read against each other, not
+        // against a scale, and the axis title says what length means.
+        axisLabel: { show: false },
         splitLine: { lineStyle: { color: "#EDF0F4" } },
       },
       yAxis: {
@@ -189,16 +221,6 @@ export default function StageCompositionChart({
       series,
     };
   }, [mode, percent, ar, locale, tr, LAYER_META, STAGES, STAGE_SHORT]);
-
-  const tableRows = STAGES.flatMap((stage, i) =>
-    LAYER_META.map((layer) => [
-      stage,
-      layer.label,
-      countsFor(2024, layer.id)[i],
-      countsFor(2026, layer.id)[i],
-      signed(changeFor(layer.id)[i]),
-    ]),
-  );
 
   return (
     <div>
@@ -222,10 +244,7 @@ export default function StageCompositionChart({
           mode === "side" ? tr.side : mode === "change" ? tr.change : tr.one(mode)
         }
         caveat={showCaveat ? cautionCounts(locale) : undefined}
-        description={tableRows
-          .filter((r) => Number(r[2]) > 0 || Number(r[3]) > 0)
-          .map((r) => `${r[0]} - ${r[1]}: 2024 ${r[2]}, 2026 ${r[3]}`)
-          .join("; ")}
+        description={tr.description}
       >
         <EChart
           option={option}

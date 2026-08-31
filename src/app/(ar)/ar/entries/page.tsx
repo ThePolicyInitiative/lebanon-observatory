@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { AR, localeAlternates } from "@/lib/i18n";
 import { slimRecords } from "@/lib/map-records";
@@ -22,13 +23,27 @@ export default function Page() {
   return (
     <ArabicPageShell
       title={AR.pages.entries.title}
-      lede={AR.pages.entries.lede}
+      lede={
+        <>
+          التتبّع الأساسي: صف واحد لكل جهة ووظيفة متتبَّعة، للسنتين 2024
+          و2026، مقروءاً عبر طبقتَي التحليل - جهات مصنّفة في أربع مجموعات،
+          وأفعال مصنّفة في أربع فئات. الصفوف تدل على نشاط متتبَّع، لا على
+          أداء أبداً. أما كيف جُمعت المدخلات فمبسوط على{" "}
+          <Link
+            href="/ar/methodology"
+            className="font-medium text-blue underline-offset-2 hover:underline"
+          >
+            صفحة المنهجية
+          </Link>
+          .
+        </>
+      }
       point={AR.pages.entries.point}
       englishHref="/entries"
       figures={[
-        { value: String(slimRecords.length), label: "مدخلاً متتبَّعاً" },
+        { value: String(slimRecords.length), label: "مدخلاً متتبَّعاً، 2024 و2026 معاً" },
         { value: "105 ← 130", label: "جهة فاعلة، 2024 ثم 2026" },
-        { value: "12", label: "مرحلة في سلسلة القيمة" },
+        { value: "12", label: "مرحلة من مراحل الاستجابة" },
         { value: "2", label: "سنتان تحت المقارنة" },
       ]}
     >
@@ -37,10 +52,8 @@ export default function Page() {
           من فعل ماذا، وأين
         </h2>
         <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
-          التتبّع الأساسي نفسه: صف واحد لكل جهة ووظيفة متتبَّعة، للسنتين 2024
-          و2026. الصفوف تدل على حضور متتبَّع - لا على أداء أبداً. وأعداد
-          المراحل في الرسوم تُعاد على مستوى المدخل من هذه القاعدة، فصفوف
-          المستكشف أدق تفصيلاً من أرقام الرسوم بحكم البناء.
+          أعداد المراحل في الرسوم تُعاد على مستوى المدخل من هذه القاعدة،
+          فصفوف المستكشف أدق تفصيلاً من أرقام الرسوم بحكم البناء.
         </p>
         <div className="mt-5">
           <Suspense fallback={<div className="h-64 animate-pulse rounded-md bg-white" />}>
@@ -58,7 +71,7 @@ export default function Page() {
       <div className="mt-7">
         <Takeaways
           locale="ar"
-          changed="عدد المدخلات ارتفع بين السنتين واتّسعت الطبقة الرسمية داخلها."
+          changed="عدد المدخلات ارتفع بين السنتين واتّسعت المجموعة الرسمية داخلها."
           unchanged="أغلب المدخلات تبقى حضوراً متتبَّعاً أو تفويضاً، لا إنجازاً مكتملاً."
           matters="ما يُعدّ هنا هو ما يقوله الإبلاغ، لا ما جرى على الأرض. والفارق بينهما هو موضوع هذا الموقع."
         />

@@ -13,13 +13,13 @@ import type { ActorLayer } from "@/lib/types";
 
 const T = {
   en: {
-    title: "Where this layer was traced",
-    sub: "Location mentions per region, both years. Presence is where activity was traced, never where damage or need was greatest.",
+    title: "Where this group was traced",
+    sub: "Traced activity per region, both years. Presence is where activity was traced, never where damage or need was greatest.",
     unmappable: "Not mappable to one governorate",
   },
   ar: {
-    title: "أين رُصدت هذه الطبقة",
-    sub: "إشارات المواقع بحسب المنطقة في السنتين. والحضور هو حيث رُصد النشاط، لا حيث كان الدمار أو الحاجة أكبر.",
+    title: "أين رُصدت هذه المجموعة",
+    sub: "النشاط المرصود بحسب المنطقة في السنتين. والحضور هو حيث رُصد النشاط، لا حيث كان الدمار أو الحاجة أكبر.",
     unmappable: "غير قابلة للإسناد إلى محافظة واحدة",
   },
 } as const;

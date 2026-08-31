@@ -14,11 +14,11 @@ import { pinOutline } from "@/lib/pins";
 const T = {
   en: {
     heading: "Key",
-    pins: "One pin per traced entry, coloured by actor layer",
+    pins: "One pin per traced entry, coloured by actor group",
   },
   ar: {
     heading: "مفتاح القراءة",
-    pins: "دبّوس واحد لكل مدخل مرصود، بلون طبقة الجهة",
+    pins: "دبّوس واحد لكل مدخل مرصود، بلون مجموعة الجهة",
   },
 } as const;
 

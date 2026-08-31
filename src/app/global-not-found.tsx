@@ -36,6 +36,7 @@ const EN_LINKS: [string, string][] = [
   ["/money", "Finance & delivery"],
   ["/reported", "Live updates"],
   ["/entries", "Data explorer"],
+  ["/methodology", "How was this built?"],
   ["/search", "Search"],
 ];
 
@@ -46,6 +47,7 @@ const AR_LINKS: [string, string][] = [
   ["/ar/money", "التمويل والإنجاز"],
   ["/ar/reported", "المستجدات"],
   ["/ar/entries", "المستكشف"],
+  ["/ar/methodology", "كيف بُني هذا؟"],
   ["/ar/search", "البحث"],
 ];
 

@@ -31,8 +31,8 @@ const T = {
     sub: "Counted over the matched rows, not the whole tracking. Presence, never performance.",
     empty: "Nothing matches. Widen a filter to see the shape of the result.",
     byYear: "By year",
-    byLayer: "By actor layer",
-    byStage: "By chain stage",
+    byLayer: "By actor group",
+    byStage: "By stage of the response",
     byStatus: "By status",
     rows: (n: number) => `${n} matched`,
   },
@@ -41,8 +41,8 @@ const T = {
     sub: "معدود على الصفوف المطابِقة، لا على التتبّع كله. حضور، لا أداء.",
     empty: "لا شيء مطابق. وسّع أحد المرشّحات لترى شكل النتيجة.",
     byYear: "بحسب السنة",
-    byLayer: "بحسب طبقة الجهات",
-    byStage: "بحسب مرحلة السلسلة",
+    byLayer: "بحسب مجموعة الجهات",
+    byStage: "بحسب مرحلة الاستجابة",
     byStatus: "بحسب الحالة",
     rows: (n: number) => arabicCount(n, AR_COUNT.entryMatching),
   },
@@ -51,9 +51,17 @@ const T = {
 function Bars({
   items,
   total,
+  showValues = true,
 }: {
   items: { key: string; label: string; value: number; color: string }[];
   total: number;
+  /**
+   * Off for the actor-group panel only: groups compare against each
+   * other there, so the bars scale but no count or percentage prints.
+   * The year, stage and status panels are not group comparisons and
+   * keep their figures.
+   */
+  showValues?: boolean;
 }) {
   const max = Math.max(1, ...items.map((i) => i.value));
   return (
@@ -64,14 +72,16 @@ function Bars({
             <span className="min-w-0 truncate text-text" title={i.label}>
               {i.label}
             </span>
-            <span className="shrink-0 tabular-nums text-text-secondary">
-              {i.value}
-              {total > 0 ? (
-                <span className="ms-1 text-micro">
-                  {Math.round((i.value / total) * 100)}%
-                </span>
-              ) : null}
-            </span>
+            {showValues ? (
+              <span className="shrink-0 tabular-nums text-text-secondary">
+                {i.value}
+                {total > 0 ? (
+                  <span className="ms-1 text-micro">
+                    {Math.round((i.value / total) * 100)}%
+                  </span>
+                ) : null}
+              </span>
+            ) : null}
           </p>
           <span
             aria-hidden
@@ -160,6 +170,7 @@ export default function ResultProfile({
             </h3>
             <Bars
               total={total}
+              showValues={false}
               items={layers(locale).map((l) => ({
                 key: l.id,
                 label: l.short,

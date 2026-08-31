@@ -22,6 +22,7 @@ export default function NotFound() {
           ["/money", "Finance & delivery"],
           ["/reported", "Live updates"],
           ["/entries", "Data explorer"],
+          ["/methodology", "How was this built?"],
           ["/search", "Search"],
         ].map(([href, label]) => (
           <li key={href}>

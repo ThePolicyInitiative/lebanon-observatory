@@ -31,12 +31,13 @@ import { localisedHref } from "./SiteNav";
  * home page in one seven-item list.
  */
 const LINKS: [string, string, string][] = [
-  ["/", "The 2024-2026 shift", AR.nav.compare],
-  ["/who", "Actor layers & map", AR.nav.actors],
+  ["/", "The two responses compared", AR.nav.compare],
+  ["/who", "Actor groups & map", AR.nav.actors],
   ["/destroyed", "Damage assessments", AR.nav.damage],
   ["/money", "Finance & delivery", AR.nav.finance],
   ["/reported", "Live updates", AR.nav.news],
   ["/entries", "Data explorer", AR.nav.explorer],
+  ["/methodology", "Methodology", AR.nav.method],
   // Search is not a tab, so this is how a reader reaches it. Its Arabic
   // label is written here rather than in AR.nav because the search route is
   // not one of the navigation's own entries.

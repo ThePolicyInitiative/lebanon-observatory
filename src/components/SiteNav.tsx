@@ -30,6 +30,7 @@ const NAV_ITEMS = [
   { path: "/money", label: "Where did the money go?", short: "Money?", ar: AR.nav.money, arShort: AR.nav.moneyShort },
   { path: "/destroyed", label: "What was destroyed?", short: "Destroyed?", ar: AR.nav.destroyed, arShort: AR.nav.destroyedShort },
   { path: "/reported", label: "What is being reported?", short: "Reported?", ar: AR.nav.reported, arShort: AR.nav.reportedShort },
+  { path: "/methodology", label: "How was this built?", short: "How?", ar: AR.nav.methodology, arShort: AR.nav.methodologyShort },
 ];
 
 /**
@@ -129,8 +130,8 @@ export default function SiteNav() {
                   >
                     {/*
                      * The whole question where the bar has room, and the
-                     * one-word form where it does not. Five questions run
-                     * about 700px at this size, so they fit a desktop and
+                     * one-word form where it does not. Six questions run
+                     * about 800px at this size, so they fit a desktop and
                      * crowd a small laptop - and a truncated question
                      * reads worse than a short one, so the short form is
                      * written rather than clipped.

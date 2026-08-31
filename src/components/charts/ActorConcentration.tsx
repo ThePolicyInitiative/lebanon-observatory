@@ -6,13 +6,7 @@ import { actorBase, actorLabel } from "@/lib/actor-names";
 // renders inside a client tree, and the register module carries the whole
 // entry log with it.
 import { actorHref } from "@/app/(en)/who/actor-anchor";
-import {
-  AR_COUNT,
-  arabicCount,
-  cautionCounts,
-  layers,
-  type Locale,
-} from "@/lib/vocab";
+import { cautionCounts, layers, type Locale } from "@/lib/vocab";
 import type { ActorLayer } from "@/lib/types";
 
 /**
@@ -26,31 +20,29 @@ import type { ActorLayer } from "@/lib/types";
 
 const T = {
   en: {
-    title: "Who carries this layer",
-    sub: "Traced entries per named actor, each year. Entry counts are traced presence, not importance or delivery.",
-    actors: (n: number) => `${n} traced ${n === 1 ? "actor" : "actors"}`,
-    top: (n: number, pct: number) => `Top ${n} carry ${pct}% of the layer's entries`,
+    title: "Who carries this group",
+    sub: "Traced entries per named actor, each year. Entry counts are traced activity, not importance or delivery.",
+    top: (n: number, pct: number) => `Top ${n} carry ${pct}% of the group's entries`,
     more: (n: number) => `Show the remaining ${n}`,
     explorer: "Open these actors in the explorer →",
     none: "No traced actors in this year.",
     namedHeading: "The bodies named by name",
     namedSub:
-      "Most of this layer is held as aggregates, because the reporting behind it names no single body. These are the ones it does name. They carry no count here - being named is not a measure of what a body carried.",
+      "Most of this group is held as aggregates, because the reporting behind it names no single body. These are the ones it does name. They carry no count here - being named is not a measure of what a body carried.",
     municipalities: "Municipalities",
     unions: "Unions of municipalities",
     inTracking: "in the tracking",
   },
   ar: {
-    title: "من يحمل هذه الطبقة",
-    sub: "المدخلات المرصودة لكل جهة مسمّاة، في كل سنة. وأعداد المدخلات حضور مرصود، لا أهمية ولا إنجازاً.",
-    actors: (n: number) => arabicCount(n, AR_COUNT.actorTraced),
-    top: (n: number, pct: number) => `أعلى ${n} جهات تحمل ${pct}% من مدخلات الطبقة`,
+    title: "من يحمل هذه المجموعة",
+    sub: "المدخلات المرصودة لكل جهة مسمّاة، في كل سنة. وأعداد المدخلات نشاط مرصود، لا أهمية ولا إنجازاً.",
+    top: (n: number, pct: number) => `أعلى ${n} جهات تحمل ${pct}% من مدخلات المجموعة`,
     more: (n: number) => `أظهر الـ${n} المتبقية`,
     explorer: "افتح هذه الجهات في المستكشف ←",
     none: "لا جهات مرصودة في هذه السنة.",
     namedHeading: "الجهات المسمّاة بالاسم",
     namedSub:
-      "معظم هذه الطبقة محفوظ بصيغة تجميعية، لأن الإبلاغ خلفها لا يسمّي جهة بعينها. وهذه هي التي يسمّيها. ولا تحمل هنا أي عدّ - فالتسمية ليست مقياساً لما حملته الجهة.",
+      "معظم هذه المجموعة محفوظ بصيغة تجميعية، لأن الإبلاغ خلفها لا يسمّي جهة بعينها. وهذه هي التي يسمّيها. ولا تحمل هنا أي عدّ - فالتسمية ليست مقياساً لما حملته الجهة.",
     municipalities: "البلديات",
     unions: "اتحادات البلديات",
     inTracking: "في التتبّع",
@@ -125,12 +117,11 @@ function YearColumn({
 
   return (
     <div>
-      <h4 className="flex flex-wrap items-baseline gap-x-2 text-body font-semibold text-navy">
-        {year}
-        <span className="text-meta font-normal text-text-secondary">
-          {t.actors(list.length)}
-        </span>
-      </h4>
+      {/* The year stands alone: "N traced actors" was this group's total,
+          and with two groups' panels on one page that total compares
+          them. The top-5 share below is a within-group statement and
+          stays. */}
+      <h4 className="text-body font-semibold text-navy">{year}</h4>
       <p className="mt-0.5 text-meta text-text-secondary">
         {t.top(headN, headShare)}
       </p>

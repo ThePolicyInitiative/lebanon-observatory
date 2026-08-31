@@ -54,7 +54,7 @@ const STATUS_STYLE: Record<
  */
 const T = {
   en: {
-    title: "From assessment request to (unconfirmed) delivery, Dec 2024 – Jul 2026",
+    title: "From assessment request to (unconfirmed) delivery, Dec 2024 - Jul 2026",
     sub: "Filled teal circles: milestones reached. Amber diamonds: processes under way. Open rust circles: not confirmed or unpaid by 31 August 2026. Grey squares: conflict context.",
     caveat:
       "Procurement under way is a process milestone, not data of completed reconstruction. Completed works were not publicly confirmed by 31 August 2026.",

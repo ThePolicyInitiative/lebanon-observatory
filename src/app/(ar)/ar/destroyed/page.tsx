@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AR, localeAlternates } from "@/lib/i18n";
 import destruction from "@/data/destruction.json";
 import ArabicPageShell from "../ArabicPageShell";
+import SeeMore from "@/components/SeeMore";
 import Takeaways from "@/components/Takeaways";
 import DisplacementCycle from "@/components/DisplacementCycle";
 import WaterRepairs from "@/components/WaterRepairs";
@@ -26,8 +27,23 @@ export default function Page() {
   return (
     <ArabicPageShell
       title={AR.pages.destroyed.title}
-      lede={AR.pages.destroyed.lede}
-      point={AR.pages.destroyed.point}
+      lede={
+        <>
+          العمق خلف{" "}
+          <Link
+            href="/ar#findings"
+            className="font-medium text-blue underline-offset-2 hover:underline"
+          >
+            مرجع الاحتياجات في التقرير
+          </Link>
+          : التقديرات التي يقوم عليها رقم الـ11 مليار دولار، معروضةً كل منها
+          بمنهجيتها ونطاقها ووحدتها وقابليتها للمقارنة - ولا تُجمع ولا يؤخذ
+          متوسطها ولا تُدمج أبداً. لا يوجد عدّ واحد لأبنية حرب 2024، ولم يكن
+          لحرب 2026 أي تقييم وطني حتى 31 آب 2026. وتعدّد التقديرات خلاصة
+          بذاته: أعطى الاستجابة أسرع أرقامها المبكرة، وأخّر خط الأساس الواحد
+          الذي يحتاجه أي نظام تعويض.
+        </>
+      }
       englishHref="/destroyed"
       figures={[
         { value: "4", label: "مسارات غير قابلة للجمع تحصر دمار 2024" },
@@ -193,12 +209,36 @@ export default function Page() {
       </div>
 
       <div className="mt-7">
-        <ServiceImpact locale="ar" />
-      </div>
-
-      <div className="mt-7">
         <HumanToll locale="ar" />
       </div>
+
+      <div className="mt-8">
+        <SeeMore locale="ar" label="دورة الإيواء والعودة، جرت مرتين">
+          <DisplacementCycle locale="ar" />
+        </SeeMore>
+      </div>
+
+      {/* Services and networks: the operator-reported account in one place,
+          with the two long modules folded behind the dated sector figures. */}
+      <section aria-labelledby="ar-services" className="mt-8">
+        <h2 id="ar-services" className="text-h2 font-semibold text-navy">
+          الخدمات والشبكات، كما أبلغت عنها المؤسسات المشغّلة
+        </h2>
+        <p className="mt-2 max-w-3xl text-body leading-relaxed text-text-secondary">
+          ما الذي توقّف وما الذي عاد تحت حرب 2026، بالأرقام التي نشرتها
+          المؤسسات المشغّلة نفسها. حالة القطاعات المؤرَّخة تتقدّم؛ والقائمتان
+          الطويلتان تُفتحان تحتها.
+        </p>
+        <div className="mt-5">
+          <ServiceImpact locale="ar" />
+        </div>
+        <SeeMore locale="ar" label="إصلاحات مؤسسة المياه، خطاً بخط">
+          <WaterRepairs locale="ar" />
+        </SeeMore>
+        <SeeMore locale="ar" label="الشبكات، مؤسسة بمؤسسة">
+          <ServiceOperators locale="ar" />
+        </SeeMore>
+      </section>
 
       <p className="mt-8 text-body">
         <Link
@@ -216,23 +256,12 @@ export default function Page() {
         </Link>
       </p>
 
-      {/* ما الذي توقّف وما الذي عاد: جانبا القصة الواحدة على صفحة واحدة. */}
-      <div className="mt-8">
-        <DisplacementCycle locale="ar" />
-      </div>
-      <div className="mt-7">
-        <WaterRepairs locale="ar" />
-      </div>
-      <div className="mt-7">
-        <ServiceOperators locale="ar" />
-      </div>
-
       <div className="mt-7">
         <Takeaways
           locale="ar"
-          changed="وصل التقييم أسرع في 2026: منتجات خلال أسابيع، أُنتجت بالشراكة مع مؤسسة علمية لبنانية وصريحة في حدودها هي - من عدد جهات مرصودة أقل مما في 2024، وعلى منطقتين بدل البلد كله."
-          unchanged="لا يوجد خط أساس مرجعي واحد لأي من الحربين - وهو المقام الذي يحتاجه أي نظام تعويض - وبقي البقاع وبعلبك-الهرمل بلا تقييم في 2026."
-          matters="جغرافيا المعطيات تصير جغرافيا التمويل: البرامج تموّل ما يُقاس، فتدخل المناطق غير المقيَّمة أي أداة مقبلة متأخرةً وضعيفة. كما أن أضرار 2026 المقيَّمة (نحو 1.75 مليار دولار في منطقتين) تقع كلياً خارج النطاق القانوني للبرنامج المموَّل الوحيد."
+          changed="قُيِّمت 2026 أسرع وبعلانية أكبر من 2024: منتجات مشتركة مع مؤسسة علمية لبنانية، صدرت خلال أسابيع، ويصرّح كل منها بحدوده - لكنها تغطي منطقتين محدودتين حيث بلغت مسارات 2024 أربع محافظات إلى ست."
+          unchanged="لا عدّ مرجعي واحد لأبنية أي من الحربين، وللفجوة جغرافيا: البقاع وبعلبك-الهرمل لم يُقيَّما أبداً في 2026، فرقم المنطقتين البالغ نحو 1.75 مليار دولار أرضية لمنطقتين، لا رقم وطني."
+          matters="البرامج تموّل ما يُقاس. المناطق غير المقيَّمة تدخل أي أداة تمويل مقبلة متأخرةً وضعيفة، وأضرار 2026 المقيَّمة تقع كلياً خارج النطاق القانوني للبرنامج المموَّل الوحيد."
         />
       </div>
     </ArabicPageShell>

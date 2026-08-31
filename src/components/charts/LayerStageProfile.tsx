@@ -16,20 +16,18 @@ import type { ActorLayer } from "@/lib/types";
 
 const T = {
   en: {
-    title: "Where this layer sits along the chain",
-    sub: "Traced presence per value-chain stage, both years on one scale. The bar is the count, not the size of what was done.",
-    none: "No traced presence in either year.",
+    title: "Where this group sits across the response",
+    sub: "Traced activity per stage of the response, both years on one scale. The bar is the count of traced entries, not the size of what was done.",
+    none: "No traced activity in either year.",
     y24: "2024",
     y26: "2026",
-    total: "Total",
   },
   ar: {
-    title: "أين تقع هذه الطبقة على امتداد السلسلة",
-    sub: "الحضور المرصود في كل مرحلة من سلسلة القيمة، السنتان على مقياس واحد. والشريط هو العدد، لا حجم ما أُنجز.",
-    none: "لا حضور مرصود في أي من السنتين.",
+    title: "أين تقع هذه المجموعة على امتداد الاستجابة",
+    sub: "النشاط المرصود في كل مرحلة من الاستجابة، والسنتان على مقياس واحد. والشريط هو عدد المدخلات المرصودة، لا حجم ما أُنجز.",
+    none: "لا نشاط مرصود في أي من السنتين.",
     y24: "2024",
     y26: "2026",
-    total: "المجموع",
   },
 } as const;
 
@@ -48,7 +46,6 @@ export default function LayerStageProfile({
   const a = countsFor(2024, layer);
   const b = countsFor(2026, layer);
   const max = Math.max(1, ...a, ...b);
-  const sum = (xs: number[]) => xs.reduce((x, y) => x + y, 0);
 
   return (
     <figure className="card">
@@ -59,6 +56,9 @@ export default function LayerStageProfile({
         <p className="mt-1 text-body text-text-secondary">{t.sub}</p>
       </figcaption>
 
+      {/* No group total: a group's overall 2024 -> 2026 figure is a group
+          comparison the moment two of these profiles sit side by side.
+          The per-stage counts below are one group's own detail and stay. */}
       <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-meta text-text-secondary">
         <span className="flex items-center gap-1.5">
           <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2024" />
@@ -67,9 +67,6 @@ export default function LayerStageProfile({
         <span className="flex items-center gap-1.5">
           <span aria-hidden className="h-2.5 w-4 rounded-sm bg-y2026" />
           {t.y26}
-        </span>
-        <span className="tabular-nums">
-          {t.total}: {sum(a)} → {sum(b)}
         </span>
       </p>
 

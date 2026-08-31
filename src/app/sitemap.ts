@@ -16,6 +16,7 @@ const PAGES = [
   "/money",
   "/reported",
   "/entries",
+  "/methodology",
   "/search",
   "/about",
 ];

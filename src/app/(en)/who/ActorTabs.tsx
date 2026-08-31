@@ -1,15 +1,15 @@
 "use client";
 
-import { layerTotal } from "@/lib/data-client";
 import { actors } from "@/lib/data-client";
 import { actorBase, actorLabel } from "@/lib/actor-names";
 import { actorHref } from "./actor-anchor";
 import { useUrlState } from "@/lib/useUrlState";
 import { useRovingRadio } from "@/lib/useRovingRadio";
 import { layers, type Locale } from "@/lib/vocab";
+import { actorGroup } from "@/lib/framework";
 import type { ActorEntry, ActorLayer } from "@/lib/types";
-import { signed } from "@/lib/format";
 import { CONTENT, CHANGE_CHARTS, GOVERNANCE_SHIFT } from "./actor-content";
+import SeeMore from "@/components/SeeMore";
 import MunicipalDumbbell from "@/components/charts/MunicipalDumbbell";
 import DivergingChangeChart from "@/components/charts/DivergingChangeChart";
 import LayerStageProfile from "@/components/charts/LayerStageProfile";
@@ -18,9 +18,7 @@ import ActorConcentration from "@/components/charts/ActorConcentration";
 
 const T = {
   en: {
-    tablist: "Actor layers",
-    presence: (a: number, b: number) =>
-      `Traced actor-stage presence: ${a} (2024) → ${b} (2026) · ${signed(b - a)}`,
+    tablist: "Actor groups",
     profile2024: "2024 profile",
     profile2026: "2026 profile",
     directChange: "Direct change",
@@ -37,12 +35,11 @@ const T = {
     onPaper: "On paper: ",
     inPractice: "In practice: ",
     showAll: (n: number) => `Show all ${n} actors with mandate-and-capacity notes`,
+    seeMore: "how this group's activity shifted, stage by stage",
     arrow: "→",
   },
   ar: {
-    tablist: "طبقات الجهات الفاعلة",
-    presence: (a: number, b: number) =>
-      `الحضور المرصود للجهات في المراحل: ${a} (2024) ← ${b} (2026) · ${signed(b - a)}`,
+    tablist: "مجموعات الجهات الفاعلة",
     profile2024: "ملامح 2024",
     profile2026: "ملامح 2026",
     directChange: "التغيّر المباشر",
@@ -59,6 +56,7 @@ const T = {
     onPaper: "على الورق: ",
     inPractice: "عملياً: ",
     showAll: (n: number) => `إظهار جميع الجهات (${n}) التي تحمل ملاحظات عن التفويض والقدرة`,
+    seeMore: "كيف تحوّل نشاط هذه المجموعة، مرحلةً مرحلة",
     arrow: "←",
   },
 } as const;
@@ -168,6 +166,8 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
   const content = CONTENT[layer];
   const layerList = layers(locale);
   const meta = layerList.find((l) => l.id === layer)!;
+  // The group's definition, verbatim from the report's actor framework.
+  const def = actorGroup(layer, locale)!;
   const govShift = GOVERNANCE_SHIFT;
   /** Letter-spacing breaks connected Arabic script, so the Arabic page
       keeps these headings unspaced and in their own case. */
@@ -199,7 +199,7 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
               /* The full label is 162-241px against a 343px phone line, so
                  each tab took its own row and the bar stood 205px tall
                  below a 65px header. The short forms already exist for
-                 every layer in both languages, so the accessible name
+                 every group in both languages, so the accessible name
                  stays the full one and only the visible text shortens. */
               aria-label={l.label}
               className={`min-h-11 rounded-t-md border-b-[3px] px-3.5 text-meta transition-colors duration-150 ${
@@ -227,16 +227,19 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
         aria-labelledby={`tab-${layer}`}
         className="mt-6 space-y-6"
       >
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <div>
           <h2 className="text-h2 font-semibold" style={{ color: meta.color }}>
             {meta.label}
           </h2>
-          <p className="text-meta tabular-nums text-text-secondary">
-            {t.presence(layerTotal(2024, layer), layerTotal(2026, layer))}
+          {/* One definition line from the framework, so the tab stands on
+              its own for a reader who arrived by link rather than through
+              the cards above. */}
+          <p className="mt-1 max-w-3xl text-meta leading-relaxed text-text-secondary">
+            {def.included}
           </p>
         </div>
 
-        {/* Who carries the layer comes before any analysis of it: the
+        {/* Who carries the group comes before any analysis of it: the
             named bodies are the thing the rest of the tab is about, and
             reading the profiles first meant meeting the argument before
             meeting its subjects. */}
@@ -292,106 +295,113 @@ export default function ActorTabs({ locale = "en" }: { locale?: Locale } = {}) {
           </div>
         </section>
 
-        {/* Every tab: the layer's own shape along the chain. The prose
-            above describes it; this is the same claim, drawn. */}
-        <LayerStageProfile layer={layer} locale={locale} showCaveat={false} />
-
-        {layer === "municipal" ? <MunicipalDumbbell locale={locale} /> : null}
-        {layer === "ngo_international" ? (
-          <>
-            <DivergingChangeChart
-              id={CHANGE_CHARTS.ngo_international.id}
-              layer="ngo_international"
-              locale={locale}
-              title={CHANGE_CHARTS.ngo_international.title[locale]}
-              subtitle={CHANGE_CHARTS.ngo_international.subtitle[locale]}
-              description={CHANGE_CHARTS.ngo_international.description[locale]}
-            />
-            <figure className="card">
-              <figcaption className="text-body font-semibold text-navy">
-                {govShift.heading[locale]}
-              </figcaption>
-              <div className="mt-3 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
-                <div className="rounded-md border border-y2024 p-3 text-body sm:flex-1">
-                  <p className="text-micro font-bold uppercase tracking-wide text-y2024">2024</p>
-                  <p className="mt-1">{govShift.before[locale]}</p>
-                </div>
-                <span aria-hidden className="self-center text-h3 text-text-secondary">
-                  {t.arrow}
-                </span>
-                <div className="rounded-md border border-y2026 p-3 text-body sm:flex-[2]">
-                  <p className="text-micro font-bold uppercase tracking-wide text-y2026">2026</p>
-                  <p className="mt-1">{govShift.afterIntro[locale]}</p>
-                  <ul className="mt-2 flex flex-wrap gap-1.5">
-                    {govShift.chips.map((c) => (
-                      <li key={c.en} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-micro font-medium text-teal">
-                        {c[locale]}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </figure>
-          </>
-        ) : null}
-        {layer === "community" ? (
-          <DivergingChangeChart
-            id={CHANGE_CHARTS.community.id}
-            layer="community"
-            locale={locale}
-            title={CHANGE_CHARTS.community.title[locale]}
-            subtitle={CHANGE_CHARTS.community.subtitle[locale]}
-            description={CHANGE_CHARTS.community.description[locale]}
-          />
-        ) : null}
-        {layer === "official" ? (
-          <DivergingChangeChart
-            id={CHANGE_CHARTS.official.id}
-            layer="official"
-            locale={locale}
-            title={CHANGE_CHARTS.official.title[locale]}
-            subtitle={CHANGE_CHARTS.official.subtitle[locale]}
-            description={CHANGE_CHARTS.official.description[locale]}
-          />
-        ) : null}
-
         {content.coreFinding ? (
           <p className="rounded-md border-s-4 border-navy bg-white p-5 text-body font-medium leading-relaxed">
             {content.coreFinding[locale]}
           </p>
         ) : null}
 
-        <section className="grid gap-4 lg:grid-cols-2">
-          <div className="card">
-            <h3 className="text-body font-semibold text-navy">
-              {t.mandateVsAction}
-            </h3>
-            <p className="mt-2 text-body leading-relaxed">{content.mandateVsAction[locale]}</p>
-          </div>
-          <div className="card">
-            <h3 className="text-body font-semibold text-navy">
-              {t.chainRoles}
-            </h3>
-            <dl className="mt-2 space-y-2.5 text-body">
-              <div>
-                <dt className="font-semibold text-text-secondary">{t.finance}</dt>
-                <dd className="leading-relaxed">{content.financeRole[locale]}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-text-secondary">{t.procurement}</dt>
-                <dd className="leading-relaxed">{content.procurementRole[locale]}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-text-secondary">{t.implementation}</dt>
-                <dd className="leading-relaxed">{content.implementationRole[locale]}</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
+        {/* The tab leads with the definition, the named bodies and the
+            narrative; the figures that substantiate the narrative fold
+            away until asked for. */}
+        <SeeMore label={t.seeMore} locale={locale}>
+          <div className="space-y-6">
+            {/* The group's own shape along the stages. The prose above
+                describes it; this is the same claim, drawn. */}
+            <LayerStageProfile layer={layer} locale={locale} showCaveat={false} />
 
-        <MandateVsCapacity layer={layer} locale={locale} />
+            {layer === "municipal" ? <MunicipalDumbbell locale={locale} /> : null}
+            {layer === "ngo_international" ? (
+              <>
+                <DivergingChangeChart
+                  id={CHANGE_CHARTS.ngo_international.id}
+                  layer="ngo_international"
+                  locale={locale}
+                  title={CHANGE_CHARTS.ngo_international.title[locale]}
+                  subtitle={CHANGE_CHARTS.ngo_international.subtitle[locale]}
+                  description={CHANGE_CHARTS.ngo_international.description[locale]}
+                />
+                <figure className="card">
+                  <figcaption className="text-body font-semibold text-navy">
+                    {govShift.heading[locale]}
+                  </figcaption>
+                  <div className="mt-3 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+                    <div className="rounded-md border border-y2024 p-3 text-body sm:flex-1">
+                      <p className="text-micro font-bold uppercase tracking-wide text-y2024">2024</p>
+                      <p className="mt-1">{govShift.before[locale]}</p>
+                    </div>
+                    <span aria-hidden className="self-center text-h3 text-text-secondary">
+                      {t.arrow}
+                    </span>
+                    <div className="rounded-md border border-y2026 p-3 text-body sm:flex-[2]">
+                      <p className="text-micro font-bold uppercase tracking-wide text-y2026">2026</p>
+                      <p className="mt-1">{govShift.afterIntro[locale]}</p>
+                      <ul className="mt-2 flex flex-wrap gap-1.5">
+                        {govShift.chips.map((c) => (
+                          <li key={c.en} className="rounded-sm bg-[#E8F1F3] px-2 py-0.5 text-micro font-medium text-teal">
+                            {c[locale]}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </figure>
+              </>
+            ) : null}
+            {layer === "community" ? (
+              <DivergingChangeChart
+                id={CHANGE_CHARTS.community.id}
+                layer="community"
+                locale={locale}
+                title={CHANGE_CHARTS.community.title[locale]}
+                subtitle={CHANGE_CHARTS.community.subtitle[locale]}
+                description={CHANGE_CHARTS.community.description[locale]}
+              />
+            ) : null}
+            {layer === "official" ? (
+              <DivergingChangeChart
+                id={CHANGE_CHARTS.official.id}
+                layer="official"
+                locale={locale}
+                title={CHANGE_CHARTS.official.title[locale]}
+                subtitle={CHANGE_CHARTS.official.subtitle[locale]}
+                description={CHANGE_CHARTS.official.description[locale]}
+              />
+            ) : null}
 
-        <RegionPresence layer={layer} locale={locale} showCaveat={false} />
+            <section className="grid gap-4 lg:grid-cols-2">
+              <div className="card">
+                <h3 className="text-body font-semibold text-navy">
+                  {t.mandateVsAction}
+                </h3>
+                <p className="mt-2 text-body leading-relaxed">{content.mandateVsAction[locale]}</p>
+              </div>
+              <div className="card">
+                <h3 className="text-body font-semibold text-navy">
+                  {t.chainRoles}
+                </h3>
+                <dl className="mt-2 space-y-2.5 text-body">
+                  <div>
+                    <dt className="font-semibold text-text-secondary">{t.finance}</dt>
+                    <dd className="leading-relaxed">{content.financeRole[locale]}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-text-secondary">{t.procurement}</dt>
+                    <dd className="leading-relaxed">{content.procurementRole[locale]}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-text-secondary">{t.implementation}</dt>
+                    <dd className="leading-relaxed">{content.implementationRole[locale]}</dd>
+                  </div>
+                </dl>
+              </div>
+            </section>
+
+            <MandateVsCapacity layer={layer} locale={locale} />
+
+            <RegionPresence layer={layer} locale={locale} showCaveat={false} />
+          </div>
+        </SeeMore>
       </div>
     </div>
   );

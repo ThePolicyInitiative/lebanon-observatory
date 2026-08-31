@@ -14,30 +14,24 @@ import { YEAR_COLORS } from "@/lib/colors";
 
 const T = {
   en: {
-    heading: "Actor-by-action matrices",
-    lede: "Every traced actor against the twelve value-chain actions, one matrix per year. Rows are grouped by layer and sorted by traced presence; a filled cell counts entries, not results.",
     filter: "Filter actors",
     placeholder: "e.g. municipality, UNDP, CDR",
-    panel: (y: number, n: number) => `${y}: ${n} actors × 12 actions`,
-    legend: "cell = entries placing the actor in that action; darker = more",
+    panel: (y: number, n: number) => `${y}: ${n} actors × 12 stages`,
+    legend: "cell = entries placing the actor in that stage; darker = more",
     actor: "Actor",
     total: "Total",
-    actors: (n: number) => `${n} actors`,
     cell: (a: string, s: string, n: number) => `${a} - ${s}: ${n} entr${n === 1 ? "y" : "ies"}`,
   },
   ar: {
-    heading: "مصفوفات الجهات مقابل الأفعال",
-    lede: "كل جهة مرصودة مقابل أفعال سلسلة القيمة الاثني عشر، مصفوفة لكل سنة. الصفوف مجمّعة بحسب الطبقة ومرتّبة بحسب الحضور المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
     filter: "ترشيح الجهات",
     placeholder: "مثلاً: بلدية، UNDP، مجلس الإنماء",
-    panel: (y: number, n: number) => `${y}: ${arabicCount(n, AR_COUNT.actor)} × 12 فعلاً`,
-    legend: "الخلية = مدخلات تضع الجهة في ذلك الفعل؛ الأغمق أكثر",
+    panel: (y: number, n: number) => `${y}: ${arabicCount(n, AR_COUNT.actor)} × 12 مرحلة`,
+    legend: "الخلية = مدخلات تضع الجهة في تلك المرحلة؛ الأغمق أكثر",
     actor: "الجهة",
     total: "المجموع",
-    // These two were the site's reference implementation of the count
-    // rule, written by hand - while `panel` above, in the same object,
-    // ignored it. That is what a shared helper is for.
-    actors: (n: number) => arabicCount(n, AR_COUNT.actor),
+    // `cell` was the site's reference implementation of the count rule,
+    // written by hand - while `panel` above, in the same object, ignored
+    // it. That is what a shared helper is for.
     cell: (a: string, s: string, n: number) =>
       `${a} - ${s}: ${arabicCount(n, AR_COUNT.entry)}`,
   },
@@ -137,7 +131,11 @@ function YearMatrix({ year, rows, query, locale }: { year: Year; rows: MatrixRow
                     }`}
                     style={{ color: g.meta.color }}
                   >
-                    {g.meta.label} · {t.actors(g.rows.length)}
+                    {/* The group header names the group and nothing more:
+                        an actor count here would sit beside the other
+                        groups' counts, and group comparisons on this site
+                        carry no figures. */}
+                    {g.meta.label}
                   </th>
                 </tr>
                 {g.rows.map((r) => (

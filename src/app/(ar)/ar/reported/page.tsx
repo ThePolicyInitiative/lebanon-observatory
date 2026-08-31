@@ -25,21 +25,33 @@ export default async function Page({
 }) {
   const params = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
-  // No opening passage: the English page carries none either.
+  // The quarantine is stated once, in the lede and the point below; the
+  // modules keep their own badges, the page-level copy does not repeat it.
   return (
-    <ArabicPageShell title={AR.pages.reported.title} englishHref="/reported">
+    <ArabicPageShell
+      title={AR.pages.reported.title}
+      lede={
+        <>
+          البحث الذي يغذّي التتبّع لا يتوقف، وهذه الصفحة مجراه المباشر:
+          تغطية من ناشرين لبنانيين ودوليين وإنسانيين ورسميين، تصل فور
+          ظهورها - ما يُنشَر الآن، قبل أن يُقرأ في التحليل.
+        </>
+      }
+      point={
+        <>
+          كل ما هنا معزول عن التحليل المؤكَّد: لا تدخل أي مادة في أي عدّ أو
+          رقم قبل التثبّت منها وقراءتها ضمن المدخلات المتتبَّعة.
+        </>
+      }
+      englishHref="/reported"
+    >
       <section aria-labelledby="ar-news-explorer" className="mt-8">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2
-            id="ar-news-explorer"
-            className="text-h2 font-semibold text-navy"
-          >
-            آخر ما نُشر
-          </h2>
-          <span className="rounded-sm bg-[#FAF3E3] px-2 py-0.5 text-micro font-bold text-[#8a6200]">
-            غير مؤكَّد · خارج كل عدّ
-          </span>
-        </div>
+        <h2
+          id="ar-news-explorer"
+          className="text-h2 font-semibold text-navy"
+        >
+          آخر ما نُشر
+        </h2>
         <div className="mt-4">
           <Suspense fallback={<div className="h-64 animate-pulse rounded-md bg-white" />}>
             <NewsExplorer locale="ar" />

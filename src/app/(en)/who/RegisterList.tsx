@@ -18,9 +18,9 @@ const T = {
   en: {
     search: "Search actors and actions",
     placeholder: "e.g. rubble, CDR, compensation, Nabatieh",
-    layerFilter: "Layer filter",
+    layerFilter: "Group filter",
     yearFilter: "Year filter",
-    allLayers: "All layers",
+    allLayers: "All groups",
     bothYears: "Both years",
     showing: (a: number, e: number) => [`Showing `, `${a}`, ` actors with `, `${e}`, ` entries under the current filters.`] as const,
     where: "Where:",
@@ -37,9 +37,9 @@ const T = {
   ar: {
     search: "ابحث في الجهات والأفعال",
     placeholder: "مثلاً: أنقاض، مجلس الإنماء، تعويضات، النبطية",
-    layerFilter: "ترشيح بالطبقة",
+    layerFilter: "ترشيح بالمجموعة",
     yearFilter: "ترشيح بالسنة",
-    allLayers: "كل الطبقات",
+    allLayers: "كل المجموعات",
     bothYears: "السنتان",
     showing: (a: number, e: number) =>
       [
@@ -372,8 +372,12 @@ export default function RegisterList({ allGroups, locale = "en" }: { allGroups: 
                         <p className="mt-2 text-micro text-text-secondary">
                           <span className="font-semibold">{t.where}</span>{" "}
                           {r.locationNames.join("; ")}{" "}
+                          {/* The map lives on this page now, so the link
+                              points at its section rather than at the
+                              retired /map route; the section id differs by
+                              language, which is why the whole href forks. */}
                           <Link
-                            href={`${locale === "ar" ? "/ar" : ""}/map?year=${r.year}&layer=${g.layer}&stage=${r.stageNo}`}
+                            href={locale === "ar" ? "/ar/who#ar-where-traced" : "/who#where-traced"}
                             className="font-medium text-blue underline-offset-2 hover:underline"
                           >
                             {t.seeMap}

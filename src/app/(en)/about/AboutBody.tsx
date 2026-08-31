@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ABOUT, CONTACT_EMAIL } from "@/lib/about-content";
 import type { Locale } from "@/lib/vocab";
 
@@ -42,6 +43,17 @@ export default function AboutBody({ locale = "en" }: { locale?: Locale } = {}) {
                 </li>
               ))}
             </ul>
+          ) : null}
+          {/* The one onward pointer a section may carry - see about-content. */}
+          {s.link ? (
+            <p className="mt-3 max-w-3xl text-body">
+              <Link
+                href={s.link.href}
+                className="font-medium text-blue underline-offset-2 hover:underline"
+              >
+                {s.link.label} {locale === "ar" ? "←" : "→"}
+              </Link>
+            </p>
           ) : null}
         </section>
       ))}

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: localeAlternates("/search"),
   title: "Search",
   description:
-    "One way into the Lebanon Reconstruction Observatory: find a page, a traced actor, a town, a value-chain stage, an actor layer, an indicator or a milestone, in Arabic or English.",
+    "One way into the Lebanon Reconstruction Observatory: find a page, a traced actor, a town, an actor group, an action category, a stage of the response, an indicator or a milestone, in Arabic or English.",
 };
 
 /**
@@ -25,9 +25,10 @@ export default function SearchPage() {
         <>
           One field over the whole site: every page of the analysis and its
           sections, every traced actor in the register, the named localities
-          and the regional groupings, the twelve value-chain stages, the four
-          actor layers, the indicators and the milestones. Arabic and English
-          reach the same target, so a query in either language finds it.
+          and the regional groupings, the four actor groups and four action
+          categories, the twelve stages of the response, the indicators and
+          the milestones. Arabic and English reach the same target, so a
+          query in either language finds it.
         </>
       }
       /* The Arabic link that used to sit here has gone. It existed because

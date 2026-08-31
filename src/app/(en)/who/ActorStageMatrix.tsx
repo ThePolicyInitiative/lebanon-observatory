@@ -7,19 +7,21 @@ import { actorAnchor } from "./actor-anchor";
 
 const HEAD = {
   en: {
-    title: "Actor-by-action matrices",
-    lede: "Every traced actor against the twelve value-chain actions, one matrix per year. Rows are grouped by layer and sorted by traced presence; a filled cell counts entries, not results.",
+    title: "Actor-by-stage matrices",
+    lede: "Every traced actor against the twelve stages of the response, one matrix per year. Rows are gathered by actor group and sorted by traced activity; a filled cell counts entries, not results.",
   },
   ar: {
-    title: "مصفوفات الجهات مقابل الأفعال",
-    lede: "كل جهة مرصودة مقابل أفعال سلسلة القيمة الاثني عشر، مصفوفة لكل سنة. الصفوف مجمّعة بحسب الطبقة ومرتّبة بحسب الحضور المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
+    title: "مصفوفات الجهات مقابل المراحل",
+    lede: "كل جهة مرصودة مقابل مراحل الاستجابة الاثنتي عشرة، مصفوفة لكل سنة. الصفوف مجمّعة بحسب مجموعة الجهات ومرتّبة بحسب النشاط المرصود؛ والخلية المملوءة تعدّ مدخلات، لا نتائج.",
   },
 } as const;
 
 /**
- * Actor-by-action matrices, one per year: every traced actor as a row,
- * the twelve value-chain actions as columns, cell = number of entries
- * placing that actor in that action. Presence, never performance.
+ * Actor-by-stage matrices, one per year: every traced actor as a row,
+ * the twelve stages of the response as columns, cell = number of entries
+ * placing that actor in that stage. Activity, never performance - and
+ * always a single actor's own counts, which the no-numbers rule for
+ * group comparisons permits.
  *
  * The reduction runs on the server. It used to run in the browser, which
  * meant shipping the whole register - 663kb of action text the matrix

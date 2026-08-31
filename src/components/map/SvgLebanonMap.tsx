@@ -136,8 +136,8 @@ const PIN_T = {
     zoomReadout: (z: string) => `×${z} zoom`,
     mapAria: (year: number, occupation: boolean) =>
       `Town-level map of Lebanon shaded by located traced activities for ${year}.${occupation ? " Hatched towns form the Blue Line border strip with traced Israeli occupation." : ""} Zoom with the wheel, drag or double-click; use the town search box for keyboard access to individual towns.`,
-    baseTitle: (name: string, zone: string, v: number, year: number) =>
-      `${name} - ${zone}: ${v} mentions (${year})`,
+    baseTitle: (name: string, zone: string, year: number) =>
+      `${name} - ${zone} (${year})`,
     area: (name: string, district: string) => `${name} · ${district} district`,
     hoverChange: (name: string, district: string, y24: number, y26: number) =>
       `${name} · ${district} district - activity ${y24} → ${y26} (${y26 - y24 >= 0 ? "+" : ""}${y26 - y24})`,
@@ -154,7 +154,7 @@ const PIN_T = {
     unnamed: "Unnamed or disputed area (boundary data)",
     overviewAria: "Overview map - click to recentre the view",
     km: "km",
-    dahieh: "Dahieh belt: 93% of Beirut–ML debris",
+    dahieh: "Dahieh belt: 93% of Beirut-ML debris",
     dmgAria: (label: string, n: string) =>
       `${label}: ${n} buildings completely destroyed in the 2026 assessment`,
     dmgTitle: (label: string, n: string) =>
@@ -162,11 +162,13 @@ const PIN_T = {
     stageTip: (no: number, name: string, c: number) =>
       `${no}. ${name}: ${c} ${c === 1 ? "entry" : "entries"}`,
     stagesCaption: (present: number) =>
-      `value-chain stages 1–12 (hover for names) - ${present} of 12 present`,
+      `stages of the response 1-12 (hover for names) - ${present} of 12 present`,
     zoneScaleNote:
-      "Mention counts are traced at the regional-grouping level; town boundaries are shown for geographic orientation.",
+      "The group breakdown reads at the regional-grouping level; town boundaries are shown for geographic orientation.",
     mentionsCaution:
-      "Mentions in the tracking - not damage severity, expenditure or coverage.",
+      "Traced activity in the tracking - not damage severity, expenditure or coverage.",
+    groupOrder: (names: string) =>
+      `Groups from most to least traced activity here: ${names}.`,
     whoLink: "Who did what here →",
     explorerLink: "Open the data explorer →",
     changeMorePins: "more located entries in 2026 than 2024",
@@ -197,8 +199,8 @@ const PIN_T = {
     zoomReadout: (z: string) => `تكبير ×${z}`,
     mapAria: (year: number, occupation: boolean) =>
       `خريطة لبنان على مستوى البلدات مظلَّلة بالنشاط المرصود المحدَّد الموقع لسنة ${year}.${occupation ? " البلدات المخطَّطة تشكّل شريط الخط الأزرق الحدودي حيث رُصد احتلال إسرائيلي." : ""} قرّب بالعجلة أو السحب أو النقر المزدوج؛ ومربّع البحث عن بلدة يتيح الوصول إلى البلدات بلوحة المفاتيح.`,
-    baseTitle: (name: string, zone: string, v: number, year: number) =>
-      `${name} - ${zone}: ${arabicCount(v, AR_COUNT.mention)} (${year})`,
+    baseTitle: (name: string, zone: string, year: number) =>
+      `${name} - ${zone} (${year})`,
     area: (name: string, district: string) => `${name} · قضاء ${district}`,
     hoverChange: (name: string, district: string, y24: number, y26: number) =>
       `${name} · قضاء ${district} - النشاط من ${y24} إلى ${y26} (${y26 - y24 >= 0 ? "+" : ""}${y26 - y24})`,
@@ -222,10 +224,12 @@ const PIN_T = {
       `${label}: ${n} مبنى مدمَّراً كلياً - تقييم جنوب الليطاني، صور 29 نيسان 2026، بتدقيق مكتبي`,
     stageTip: (no: number, name: string, c: number) => `${no}. ${name}: ${arabicCount(c, AR_COUNT.entry)}`,
     stagesCaption: (present: number) =>
-      `مراحل سلسلة القيمة 1-12 (مرّر المؤشر للأسماء) - ${present} من 12 حاضرة`,
+      `مراحل الاستجابة 1-12 (مرّر المؤشر للأسماء) - ${present} من 12 حاضرة`,
     zoneScaleNote:
-      "أعداد الإشارات مرصودة على مستوى التجمّع الإقليمي؛ وحدود البلدات معروضة للتوجيه الجغرافي.",
-    mentionsCaution: "إشارات في التتبّع - لا شدّة الضرر ولا الإنفاق ولا التغطية.",
+      "تفصيل المجموعات يُقرأ على مستوى التجمّع الإقليمي؛ وحدود البلدات معروضة للتوجيه الجغرافي.",
+    mentionsCaution: "نشاط مرصود في التتبّع - لا شدّة الضرر ولا الإنفاق ولا التغطية.",
+    groupOrder: (names: string) =>
+      `المجموعات من الأكثر نشاطاً مرصوداً هنا إلى الأقل: ${names}.`,
     whoLink: "من فعل ماذا هنا ←",
     explorerLink: "افتح مستكشف المدخلات ←",
     changeMorePins: "مدخلات محدَّدة الموقع في 2026 أكثر منها في 2024",
@@ -1650,12 +1654,14 @@ export default function SvgLebanonMap({
               {townLayer ?? (
                 /* Instant server-rendered district base while towns load */
                 DISTRICT_PATHS.map((p) => {
-                  const v = regionValues[p.zoneId] ?? 0;
                   // Districts outside the zones the war reached are drawn
-                  // as land and named, and that is all: a "0 mentions"
+                  // as land and named, and that is all: a zero-activity
                   // tooltip on a northern district invites the reader to
                   // read absence of tracing as absence of activity, when
-                  // there was nothing there to trace.
+                  // there was nothing there to trace. The traced zones get
+                  // name and grouping only - the filtered value would be a
+                  // single group's regional total when a group filter is
+                  // set, and group totals never print.
                   const traced = AFFECTED_ZONE_IDS.includes(p.zoneId);
                   return (
                     <path
@@ -1672,7 +1678,7 @@ export default function SvgLebanonMap({
                             traced zone has a grouping, so there is no
                             fallback branch here to leak a raw name. */}
                         {traced
-                          ? tr.baseTitle(p.name, regionLabel(p.zoneId, locale), v, year)
+                          ? tr.baseTitle(p.name, regionLabel(p.zoneId, locale), year)
                           : p.name}
                       </title>
                     </path>
@@ -2602,6 +2608,11 @@ export default function SvgLebanonMap({
                     if (recs.length === 0) return null;
                     return (
                       <>
+                        {/* Bars scale with the counts but print none of
+                            them: the groups compare against each other
+                            here, and shape alone carries that. The
+                            ordering statement below says the same thing
+                            for a screen reader. */}
                         <div className="mt-2 space-y-1">
                           {layers(locale).map((l) => {
                             const c = recs.filter((r) => r.actorLayer === l.id).length;
@@ -2623,11 +2634,23 @@ export default function SvgLebanonMap({
                                     opacity: 0.7,
                                   }}
                                 />
-                                <span className="tabular-nums font-semibold">{c}</span>
                               </div>
                             );
                           })}
                         </div>
+                        <p className="sr-only">
+                          {tr.groupOrder(
+                            layers(locale)
+                              .map((l) => ({
+                                label: l.label,
+                                c: recs.filter((r) => r.actorLayer === l.id).length,
+                              }))
+                              .filter((x) => x.c > 0)
+                              .sort((a, b) => b.c - a.c)
+                              .map((x) => x.label)
+                              .join(locale === "ar" ? "، " : ", "),
+                          )}
+                        </p>
                         {(() => {
                           const stageCounts = Array.from({ length: 12 }, (_, i) =>
                             recs.filter((r) => r.stageNo === i + 1).length,
@@ -2674,17 +2697,30 @@ export default function SvgLebanonMap({
               <p className="mt-1 text-meta text-text-secondary">
                 {tr.zoneScaleNote}
               </p>
+              {/* Group names in weight order, no figures: the zone's
+                  groups compare against each other, so the order is the
+                  ranking and no count prints. Zero-weight groups are left
+                  out - a bare name would read as presence. */}
               <ul className="mt-3 space-y-1.5 text-body">
-                {layers(locale).map((l) => (
-                  <li key={l.id} className="flex items-center justify-between gap-2">
-                    <span className="flex items-center gap-1.5">
+                {layers(locale)
+                  .filter((l) => zoneMentions[l.id] > 0)
+                  .sort((a, b) => zoneMentions[b.id] - zoneMentions[a.id])
+                  .map((l) => (
+                    <li key={l.id} className="flex items-center gap-1.5">
                       <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
                       {l.label}
-                    </span>
-                    <span className="tabular-nums font-semibold">{zoneMentions[l.id]}</span>
-                  </li>
-                ))}
+                    </li>
+                  ))}
               </ul>
+              <p className="sr-only">
+                {tr.groupOrder(
+                  layers(locale)
+                    .filter((l) => zoneMentions[l.id] > 0)
+                    .sort((a, b) => zoneMentions[b.id] - zoneMentions[a.id])
+                    .map((l) => l.label)
+                    .join(locale === "ar" ? "، " : ", "),
+                )}
+              </p>
               <p className="mt-3 text-meta text-text-secondary">
                 {tr.mentionsCaution}
               </p>

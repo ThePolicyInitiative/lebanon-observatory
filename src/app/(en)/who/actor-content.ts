@@ -1,13 +1,21 @@
 import type { ActorLayer } from "@/lib/types";
 
 /**
- * The per-layer analytical narrative for the actors page, in both
+ * The per-group analytical narrative for the actors page, in both
  * languages. Every reader-facing string is an { en, ar } pair so the two
  * sides of the site carry the same analysis at the same depth: the keys
- * never change, only the words. The English strings are the canonical
- * narrative and stay verbatim; the Arabic follows the site's analytical
- * rules - counts are traced presence, never performance, and commitment
- * is not disbursement is not completed output.
+ * never change, only the words.
+ *
+ * Group comparisons on this site are worded without figures: a group's
+ * totals and its share of any stage are never printed, here or anywhere
+ * else. The gains and losses bullets therefore rank and describe rather
+ * than count - "widened", "narrowed", "held steady" - but each still
+ * opens with the name of the stage it is about, because the figures
+ * suite anchors on that shape. The counts that survive are event-level
+ * facts (the 135-area municipal survey, the Saida school), which are not
+ * group comparisons, and the standing rules hold: counts are traced
+ * activity, never performance, and commitment is not disbursement is not
+ * completed output.
  */
 
 export type Bi = { en: string; ar: string };
@@ -29,51 +37,51 @@ export type TabContent = {
 export const CONTENT: Record<ActorLayer, TabContent> = {
   official: {
     profile2024: {
-      en: "The 2024 state was strong exactly where mandates require least money and weak exactly where reconstruction happens: 24 of 54 traced actors in coordination and 11 of 37 in assessment, but only 4 of 8 in procurement, 2 of 12 in debris treatment and 3 of 8 in oversight. Every downstream function had a legal public owner; in practice its traced performers were private, communal or international.",
-      ar: "كانت دولة 2024 قوية تحديداً حيث تتطلّب التفويضات أقل قدر من المال، وضعيفة تحديداً حيث تجري إعادة الإعمار: 24 من 54 جهة مرصودة في التنسيق، و11 من 37 في التقييم، مقابل 4 فقط من 8 في الشراء، و2 من 12 في معالجة الركام، و3 من 8 في الرقابة. كل وظيفة لاحقة في السلسلة كان لها مالك عام قانوني؛ وعملياً كان مؤدّوها المرصودون جهات خاصة أو أهلية أو دولية.",
+      en: "The 2024 state was strong exactly where mandates require least money and weak exactly where reconstruction happens: broad in coordination, clearly present in assessment, and thin in procurement, debris treatment and oversight. Every downstream function had a legal public owner; in practice its traced performers were private, communal or international.",
+      ar: "كانت دولة 2024 قوية تحديداً حيث تتطلّب التفويضات أقل قدر من المال، وضعيفة تحديداً حيث تجري إعادة الإعمار: حضور واسع في التنسيق، وحضور واضح في التقييم، وحضور رقيق في الشراء ومعالجة الركام والرقابة. كل وظيفة لاحقة في السلسلة كان لها مالك عام قانوني؛ وعملياً كان مؤدّوها المرصودون جهات خاصة أو أهلية أو دولية.",
     },
     profile2026: {
-      en: "The 2026 state concentrated in programmed reconstruction rather than expanding uniformly: steady in coordination (24 → 24), newly present in procurement and oversight cells that were thin or empty before, and thinner as an emergency-finance crowd - one financed project chain replaced fifteen scattered emergency-finance presences.",
-      ar: "تركّزت دولة 2026 في إعادة الإعمار المبرمجة بدل التوسّع المتجانس: ثبات في التنسيق (24 ← 24)، وحضور جديد في خانات الشراء والرقابة التي كانت رقيقة أو فارغة من قبل، وانحسار بوصفها حشداً لتمويل الطوارئ - سلسلة مشروع مموَّلة واحدة حلّت محل خمسة عشر حضوراً متناثراً في تمويل الطوارئ.",
+      en: "The 2026 state concentrated in programmed reconstruction rather than expanding uniformly: coordination held steady, the procurement and oversight cells that were thin or empty before gained sustained official activity for the first time, and the state thinned as an emergency-finance crowd - one financed project chain replaced a scatter of emergency-finance appearances.",
+      ar: "تركّزت دولة 2026 في إعادة الإعمار المبرمجة بدل التوسّع المتجانس: ثبت التنسيق على حاله، واكتسبت خانتا الشراء والرقابة، اللتان كانتا رقيقتين أو فارغتين من قبل، نشاطاً رسمياً متواصلاً للمرة الأولى، وانحسرت الدولة بوصفها حشداً لتمويل الطوارئ - سلسلة مشروع مموَّلة واحدة حلّت محل ظهورات متناثرة في تمويل الطوارئ.",
     },
     directChange: {
-      en: "Greater role specialisation rather than uniform state expansion: the official row changed least in total while changing most in kind.",
-      ar: "تخصّص أكبر في الأدوار لا توسّع متجانس للدولة: الصف الرسمي تغيّر الأقل في المجموع بينما تغيّر الأكثر في النوع.",
+      en: "Greater role specialisation rather than uniform state expansion: the official row changed least in size while changing most in kind.",
+      ar: "تخصّص أكبر في الأدوار لا توسّع متجانس للدولة: الصف الرسمي تغيّر الأقل في الحجم بينما تغيّر الأكثر في النوع.",
     },
     gains: [
       {
-        en: "Reconstruction and services: 8 → 13 traced actors",
-        ar: "إعادة الإعمار والخدمات: 8 ← 13 جهة مرصودة",
+        en: "Reconstruction and services: the clearest official widening, as programmed works gained named public owners",
+        ar: "إعادة الإعمار والخدمات: أوضح اتساع رسمي، إذ اكتسبت الأشغال المبرمجة مالكين عامّين مسمّين",
       },
       {
-        en: "Procurement and contracting: 4 → 5",
-        ar: "الشراء والتعاقد: 4 ← 5",
+        en: "Procurement and contracting: slightly wider, anchored to the formal project",
+        ar: "الشراء والتعاقد: اتساع طفيف، مشدود إلى المشروع الرسمي",
       },
       {
-        en: "Oversight and accountability: 3 → 4",
-        ar: "الرقابة والمساءلة: 3 ← 4",
+        en: "Oversight and accountability: slightly wider, with new watchdog cells around the financed chain",
+        ar: "الرقابة والمساءلة: اتساع طفيف، مع خانات رقابية جديدة حول السلسلة الممولة",
       },
       {
-        en: "Coordination held steady at 24 - with an empowered executive behind it",
-        ar: "التنسيق ثابت عند 24 - ومن خلفه سلطة تنفيذية ممكَّنة",
+        en: "Coordination: held steady - with an empowered executive behind it",
+        ar: "التنسيق: ثابت على حاله - ومن خلفه سلطة تنفيذية ممكَّنة",
       },
     ],
     losses: [
       {
-        en: "Finance and compensation: 15 → 7 (a project chain replaced an emergency-finance crowd)",
-        ar: "التمويل والتعويضات: 15 ← 7 (سلسلة مشروع حلّت محل حشد تمويل الطوارئ)",
+        en: "Finance and compensation: narrowed sharply - a single project chain replaced the emergency-finance crowd",
+        ar: "التمويل والتعويضات: ضاق ضيقاً حاداً - سلسلة مشروع واحدة حلّت محل حشد تمويل الطوارئ",
       },
       {
-        en: "Shelter and return: 6 → 3 (humanitarian routing formalised through MoSA)",
-        ar: "الإيواء والعودة: 6 ← 3 (رُسّم المسار الإنساني عبر وزارة الشؤون الاجتماعية)",
+        en: "Shelter and return: narrower, with humanitarian routing formalised through MoSA",
+        ar: "الإيواء والعودة: أضيق، مع ترسيم المسار الإنساني عبر وزارة الشؤون الاجتماعية",
       },
       {
-        en: "Livelihoods presence: 4 → 1",
-        ar: "حضور سبل العيش: 4 ← 1",
+        en: "Livelihoods and community recovery: almost no official activity left",
+        ar: "سبل العيش والتعافي المجتمعي: لم يبقَ فيه نشاط رسمي يُذكر",
       },
       {
-        en: "Relief presence held at 4 while the humanitarian load moved to partners",
-        ar: "حضور الإغاثة ثابت عند 4 بينما انتقل الحمل الإنساني إلى الشركاء",
+        en: "Relief and protection: held level while the humanitarian load moved to partners",
+        ar: "الإغاثة والحماية: ثبتت على حالها بينما انتقل الحمل الإنساني إلى الشركاء",
       },
     ],
     mandateVsAction: {
@@ -96,47 +104,47 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
   },
   ngo_international: {
     profile2024: {
-      en: "International organisations supplied the response's data and much of its delivery capacity: dominant in assessment (13 of 37 traced actors), strong in humanitarian finance (12) and relief (11), and absent from procurement and oversight. Agencies stood in for the state's operational functions and not at all for its political ones.",
-      ar: "وفّرت المنظمات الدولية معطيات الاستجابة وجانباً كبيراً من قدرتها على الإنجاز: هيمنة في التقييم (13 من 37 جهة مرصودة)، وقوة في التمويل الإنساني (12) والإغاثة (11)، وغياب عن الشراء والرقابة. أحلّت الوكالات نفسها بامتياز محل وظائف الدولة التشغيلية، ولم تحلّ إطلاقاً محل وظائفها السياسية.",
+      en: "International organisations supplied the response's data and much of its delivery capacity: leading in assessment, strong in humanitarian finance and relief, and absent from procurement and oversight. Agencies stood in for the state's operational functions and not at all for its political ones.",
+      ar: "وفّرت المنظمات الدولية معطيات الاستجابة وجانباً كبيراً من قدرتها على الإنجاز: تقدّمت في التقييم، وحضرت بقوة في التمويل الإنساني والإغاثة، وغابت عن الشراء والرقابة. أحلّت الوكالات نفسها محل وظائف الدولة التشغيلية، ولم تحلّ إطلاقاً محل وظائفها السياسية.",
     },
     profile2026: {
-      en: "International involvement shifted from assessment and humanitarian support toward operational governance around the formal project, including procurement rules, disclosure, safeguards, supervision, grievance handling and third-party monitoring - their first traced presence in procurement and oversight cells across the two years.",
-      ar: "انتقل الانخراط الدولي من التقييم والدعم الإنساني نحو حوكمة تشغيلية حول المشروع الرسمي، تشمل قواعد الشراء والإفصاح والضمانات والإشراف ومعالجة الشكاوى ورقابة الطرف الثالث - وهو أول حضور مرصود لها في خانتي الشراء والرقابة عبر السنتين.",
+      en: "International involvement shifted from assessment and humanitarian support toward operational governance around the formal project, including procurement rules, disclosure, safeguards, supervision, grievance handling and third-party monitoring - their first traced activity in the procurement and oversight cells across the two years.",
+      ar: "انتقل الانخراط الدولي من التقييم والدعم الإنساني نحو حوكمة تشغيلية حول المشروع الرسمي، تشمل قواعد الشراء والإفصاح والضمانات والإشراف ومعالجة الشكاوى ورقابة الطرف الثالث - وهو أول نشاط مرصود لها في خانتي الشراء والرقابة عبر السنتين.",
     },
     directChange: {
-      en: "Traced breadth grew moderately while placement changed decisively: fewer assessment presences (the function partially repatriated to CNRS-L), more governance presences around the financed chain.",
-      ar: "اتّسع النطاق المرصود اتساعاً معتدلاً بينما تبدّل الموقع تبدّلاً حاسماً: حضور أقل في التقييم (أُعيدت الوظيفة جزئياً إلى المجلس الوطني للبحوث العلمية)، وحضور أكبر في الحوكمة حول السلسلة الممولة.",
+      en: "Traced breadth grew moderately while placement changed decisively: less assessment activity (the function partially repatriated to CNRS-L), more governance activity around the financed chain.",
+      ar: "اتّسع النطاق المرصود اتساعاً معتدلاً بينما تبدّل الموقع تبدّلاً حاسماً: نشاط أقل في التقييم (أُعيدت الوظيفة جزئياً إلى المجلس الوطني للبحوث العلمية)، ونشاط أكبر في الحوكمة حول السلسلة الممولة.",
     },
     gains: [
       {
-        en: "Coordination: +8 (15 → 23)",
-        ar: "التنسيق: +8 (15 ← 23)",
+        en: "Coordination: the widest international gain, into the plan's coordination cells",
+        ar: "التنسيق: أوسع مكسب دولي، نحو خانات التنسيق في الخطة",
       },
       {
-        en: "Shelter and return: +4 (7 → 11)",
-        ar: "الإيواء والعودة: +4 (7 ← 11)",
+        en: "Shelter and return: wider through the second displacement",
+        ar: "الإيواء والعودة: أوسع عبر موجة النزوح الثانية",
       },
       {
-        en: "Relief and protection: +5 (11 → 16)",
-        ar: "الإغاثة والحماية: +5 (11 ← 16)",
+        en: "Relief and protection: wider as the humanitarian load grew",
+        ar: "الإغاثة والحماية: أوسع مع تعاظم الحمل الإنساني",
       },
       {
-        en: "Oversight and accountability: +3 (0 → 3)",
-        ar: "الرقابة والمساءلة: +3 (0 ← 3)",
+        en: "Oversight and accountability: a first appearance across the two years",
+        ar: "الرقابة والمساءلة: ظهور أول عبر السنتين",
       },
       {
-        en: "Procurement and contracting: +1 (0 → 1)",
-        ar: "الشراء والتعاقد: +1 (0 ← 1)",
+        en: "Procurement and contracting: a first, narrow foothold",
+        ar: "الشراء والتعاقد: موطئ قدم أول وضيّق",
       },
     ],
     losses: [
       {
-        en: "Damage and needs assessment: −7 (13 → 6) - a genuine capacity transfer to Lebanese institutions, not a withdrawal",
-        ar: "تقييم الأضرار والاحتياجات: −7 (13 ← 6) - نقل حقيقي للقدرة إلى مؤسسات لبنانية، لا انسحاب",
+        en: "Damage and needs assessment: narrower - a genuine capacity transfer to Lebanese institutions, not a withdrawal",
+        ar: "تقييم الأضرار والاحتياجات: أضيق - نقل حقيقي للقدرة إلى مؤسسات لبنانية، لا انسحاب",
       },
       {
-        en: "Finance presence: −2 (12 → 10), as humanitarian finance consolidated",
-        ar: "حضور التمويل: −2 (12 ← 10) مع تجميع التمويل الإنساني",
+        en: "Finance and compensation: slightly narrower as humanitarian finance consolidated",
+        ar: "التمويل والتعويضات: أضيق قليلاً مع تجميع التمويل الإنساني",
       },
     ],
     mandateVsAction: {
@@ -159,35 +167,35 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
   },
   municipal: {
     profile2024: {
-      en: "Municipalities were the system's sensors and shock absorbers, and its least resourced tier: they traced damage, ran or hosted shelters, reopened local access and marshalled volunteers - and the ten-day municipal survey of 135 areas produced the response's fastest national damage assessments. Yet the tracking shows 19 actor-stage entries with zero systematic roles in finance, direct reconstruction, livelihoods or oversight.",
-      ar: "كانت البلديات حسّاسات النظام وممتصّات صدماته، وطبقته الأفقر موارد: رصدت الأضرار، وأدارت مراكز إيواء أو استضافتها، وأعادت فتح الطرق المحلية، وحشدت المتطوّعين - والمسح البلدي الذي غطّى 135 منطقة في عشرة أيام أنتج أسرع تقييمات وطنية للأضرار في الاستجابة كلها. ومع ذلك يُظهر التتبّع 19 مدخل جهة-مرحلة مع صفر أدوار منهجية في التمويل أو إعادة الإعمار المباشرة أو سبل العيش أو الرقابة.",
+      en: "Municipalities were the system's sensors and shock absorbers, and its least resourced tier: they traced damage, ran or hosted shelters, reopened local access and marshalled volunteers - and the ten-day municipal survey of 135 areas produced the response's fastest national damage assessments. Yet the tracking shows no systematic municipal role in finance, direct reconstruction, livelihoods or oversight.",
+      ar: "كانت البلديات حسّاسات النظام وممتصّات صدماته، ومستواه الأفقر موارد: رصدت الأضرار، وأدارت مراكز إيواء أو استضافتها، وأعادت فتح الطرق المحلية، وحشدت المتطوّعين - والمسح البلدي الذي غطّى 135 منطقة في عشرة أيام أنتج أسرع تقييمات وطنية للأضرار في الاستجابة كلها. ومع ذلك لا يُظهر التتبّع أي دور بلدي منهجي في التمويل أو إعادة الإعمار المباشرة أو سبل العيش أو الرقابة.",
     },
     profile2026: {
-      en: "Municipalities were repositioned rather than empowered: from frontline improvisers to intake-and-certification nodes in longer chains. Their traced presence thinned to 12 entries, concentrated in reporting, shelter support and local clearance. Formal appearances in the new architecture are as data providers, certifiers, consultation subjects and grievance interfaces - never as budget holders, procurers or sequencers.",
-      ar: "أُعيد تموضع البلديات ولم تُمكَّن: من مرتجلي الخط الأمامي إلى نقاط استقبال وإفادة في سلاسل أطول. انحسر حضورها المرصود إلى 12 مدخلاً، متركّزاً في الإبلاغ ودعم الإيواء والإزالة المحلية. وظهورها الرسمي في البنية الجديدة هو ظهور مزوِّد معطيات وجهة إفادة وطرف يُستشار وواجهة شكاوى - لا حائز موازنة ولا مشترٍ ولا مقرِّر تسلسل أبداً.",
+      en: "Municipalities were repositioned rather than empowered: from frontline improvisers to intake-and-certification nodes in longer chains. Their traced activity narrowed, concentrating in reporting, shelter support and local clearance. Formal appearances in the new architecture are as data providers, certifiers, consultation subjects and grievance interfaces - never as budget holders, procurers or sequencers.",
+      ar: "أُعيد تموضع البلديات ولم تُمكَّن: من مرتجلي الخط الأمامي إلى نقاط استقبال وإفادة في سلاسل أطول. ضاق نشاطها المرصود وتركّز في الإبلاغ ودعم الإيواء والإزالة المحلية. وظهورها الرسمي في البنية الجديدة هو ظهور مزوِّد معطيات وجهة إفادة وطرف يُستشار وواجهة شكاوى - لا حائز موازنة ولا مشترٍ ولا مقرِّر تسلسل أبداً.",
     },
     directChange: {
-      en: "Traced presence fell 19 → 12 with no compensating gain anywhere in the row. Formalisation moved authority up while leaving labour down: every new procedure that runs 'through' municipalities extracts work without conferring resources.",
-      ar: "هبط الحضور المرصود 19 ← 12 من دون أي مكسب معوِّض في أي موضع من الصف. الترسيم نقل السلطة إلى أعلى وترك العمل في الأسفل: كل إجراء جديد يمرّ «عبر» البلديات ينتزع عملاً من دون أن يمنح موارد.",
+      en: "Traced municipal activity narrowed with no compensating gain anywhere in the row. Formalisation moved authority up while leaving labour down: every new procedure that runs 'through' municipalities extracts work without conferring resources.",
+      ar: "ضاق النشاط البلدي المرصود من دون أي مكسب معوِّض في أي موضع من الصف. الترسيم نقل السلطة إلى أعلى وترك العمل في الأسفل: كل إجراء جديد يمرّ «عبر» البلديات ينتزع عملاً من دون أن يمنح موارد.",
     },
     gains: [
       {
-        en: "Shelter and relief interface: 3 → 4 - the only functional gain",
-        ar: "واجهة الإيواء والإغاثة: 3 ← 4 - المكسب الوظيفي الوحيد",
+        en: "Shelter and return: the one functional widening, as the shelter-and-relief interface grew",
+        ar: "الإيواء والعودة: الاتساع الوظيفي الوحيد، مع نموّ واجهة الإيواء والإغاثة",
       },
     ],
     losses: [
       {
-        en: "Coordination and reporting: 6 → 3",
-        ar: "التنسيق والإبلاغ: 6 ← 3",
+        en: "Coordination: narrower reporting and liaison",
+        ar: "التنسيق: إبلاغ وتواصل أضيق",
       },
       {
-        en: "Damage assessment: 4 → 2",
-        ar: "تقييم الأضرار: 4 ← 2",
+        en: "Damage and needs assessment: narrower once the survey function moved upward",
+        ar: "تقييم الأضرار والاحتياجات: أضيق بعدما انتقلت وظيفة المسح إلى أعلى",
       },
       {
-        en: "Local clearance and enabling: 6 → 3",
-        ar: "الإزالة المحلية والتمكين: 6 ← 3",
+        en: "Safety and access: local clearance and enabling narrowed",
+        ar: "السلامة والوصول: ضاقت الإزالة المحلية وأعمال التمكين",
       },
     ],
     mandateVsAction: {
@@ -214,12 +222,12 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
   },
   community: {
     profile2024: {
-      en: "The community bloc - residents, NGOs, professional bodies, volunteers and parallel networks, 145 of 343 entries - performed the functions of a reconstruction ministry with none of its resources: households cleared and repaired at their own expense, villages financed collective solutions, professionals contributed system inputs, and the parallel track distributed the only compensation actually flowing.",
-      ar: "الكتلة الأهلية - الأهالي والجمعيات والهيئات المهنية والمتطوّعون والشبكات الموازية، 145 من 343 مدخلاً - أدّت وظائف وزارة لإعادة الإعمار من دون أي من مواردها: الأسر أزالت ورمّمت على نفقتها، والقرى موّلت حلولاً جماعية، والمهنيون قدّموا مدخلات للنظام، والمسار الموازي وزّع التعويض الوحيد المتدفق فعلاً.",
+      en: "The community bloc - residents, NGOs, professional bodies, volunteers and parallel networks - was the widest single block of traced activity in 2024 and performed the functions of a reconstruction ministry with none of its resources: households cleared and repaired at their own expense, villages financed collective solutions, professionals contributed system inputs, and the parallel track distributed the only compensation actually flowing.",
+      ar: "الكتلة الأهلية - الأهالي والجمعيات والهيئات المهنية والمتطوّعون والشبكات الموازية - كانت أوسع كتلة واحدة من النشاط المرصود في 2024، وأدّت وظائف وزارة لإعادة الإعمار من دون أي من مواردها: الأسر أزالت ورمّمت على نفقتها، والقرى موّلت حلولاً جماعية، والمهنيون قدّموا مدخلات للنظام، والمسار الموازي وزّع التعويض الوحيد المتدفق فعلاً.",
     },
     profile2026: {
-      en: "The bloc's entry grew to 172 entries and rotated: traced presence surged in coordination (9 → 34), relief (20 → 55) and shelter (18 → 25) while collapsing in finance (15 → 4), rubble (11 → 2), debris (7 → 2) and physical reconstruction (18 → 13). Its composition shifted from professional-technical to civic-operational - from supplying missing expertise to supplying missing labour.",
-      ar: "نمت مدخلات الكتلة إلى 172 مدخلاً ودارت وجهتها: قفز الحضور المرصود في التنسيق (9 ← 34) والإغاثة (20 ← 55) والإيواء (18 ← 25) بينما انهار في التمويل (15 ← 4) والأنقاض (11 ← 2) والركام (7 ← 2) وإعادة الإعمار المادية (18 ← 13). وتحوّل تكوينها من مهني-تقني إلى مدني-تشغيلي - من سدّ نقص الخبرة إلى سدّ نقص العمل.",
+      en: "The bloc widened further and rotated: traced activity surged in coordination, relief and shelter while collapsing in finance, rubble, debris and physical reconstruction. Its composition shifted from professional-technical to civic-operational - from supplying missing expertise to supplying missing labour.",
+      ar: "اتّسعت الكتلة أكثر ودارت وجهتها: قفز النشاط المرصود في التنسيق والإغاثة والإيواء بينما انهار في التمويل والأنقاض والركام وإعادة الإعمار المادية. وتحوّل تكوينها من مهني-تقني إلى مدني-تشغيلي - من سدّ نقص الخبرة إلى سدّ نقص العمل.",
     },
     directChange: {
       en: "Community action expanded sharply in humanitarian and social-recovery functions but contracted in finance, rubble management and physical reconstruction. It absorbed pressure without acquiring public-works authority.",
@@ -227,38 +235,38 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
     },
     gains: [
       {
-        en: "Relief and protection: +35 (20 → 55)",
-        ar: "الإغاثة والحماية: +35 (20 ← 55)",
+        en: "Relief and protection: the sharpest surge anywhere in the tracking",
+        ar: "الإغاثة والحماية: أحدّ قفزة في التتبّع كله",
       },
       {
-        en: "Coordination: +25 (9 → 34)",
-        ar: "التنسيق: +25 (9 ← 34)",
+        en: "Coordination: from marginal to widespread",
+        ar: "التنسيق: من الهامش إلى الانتشار",
       },
       {
-        en: "Shelter and return: +7 (18 → 25)",
-        ar: "الإيواء والعودة: +7 (18 ← 25)",
+        en: "Shelter and return: wider as displaced households were hosted and returned",
+        ar: "الإيواء والعودة: أوسع مع استضافة الأسر النازحة وعودتها",
       },
       {
-        en: "Livelihoods and community recovery: +1 (22 → 23)",
-        ar: "سبل العيش والتعافي المجتمعي: +1 (22 ← 23)",
+        en: "Livelihoods and community recovery: held roughly level",
+        ar: "سبل العيش والتعافي المجتمعي: ثبت تقريباً على حاله",
       },
     ],
     losses: [
       {
-        en: "Finance and compensation: −11 (15 → 4) - household finance exhausted by a second displacement in eighteen months",
-        ar: "التمويل والتعويضات: −11 (15 ← 4) - مالية الأسر استُنفدت بنزوح ثانٍ خلال ثمانية عشر شهراً",
+        en: "Finance and compensation: collapsed - household finance exhausted by a second displacement in eighteen months",
+        ar: "التمويل والتعويضات: انهار - مالية الأسر استُنفدت بنزوح ثانٍ خلال ثمانية عشر شهراً",
       },
       {
-        en: "Rubble clearance: −9 (11 → 2)",
-        ar: "رفع الأنقاض: −9 (11 ← 2)",
+        en: "Rubble clearance: nearly withdrawn",
+        ar: "رفع الأنقاض: انسحاب شبه كامل",
       },
       {
-        en: "Debris treatment: −5 (7 → 2)",
-        ar: "معالجة الركام: −5 (7 ← 2)",
+        en: "Debris treatment and disposal: nearly withdrawn",
+        ar: "معالجة الركام والتخلص منه: انسحاب شبه كامل",
       },
       {
-        en: "Reconstruction and services: −5 (18 → 13)",
-        ar: "إعادة الإعمار والخدمات: −5 (18 ← 13)",
+        en: "Reconstruction and services: narrower as physical work professionalised into contractor channels",
+        ar: "إعادة الإعمار والخدمات: أضيق مع انتقال العمل المادي إلى قنوات المقاولين",
       },
     ],
     mandateVsAction: {
@@ -274,18 +282,18 @@ export const CONTENT: Record<ActorLayer, TabContent> = {
       ar: "لا شيء - انتقل العمل المادي إلى قنوات مهنية لدى المقاولين والوزارات لا تتحكم بها الكتلة.",
     },
     implementationRole: {
-      en: "Shelter management (one Saida school hosted about 650 families), volunteer clearance campaigns in Nabatieh, entries initiatives and participatory workshops - load-bearing functions a programmed system would staff and budget, performed unpaid.",
-      ar: "إدارة الإيواء (مدرسة واحدة في صيدا استضافت نحو 650 عائلة)، وحملات إزالة تطوّعية في النبطية، ومبادرات تتبّع وورش تشاركية - وظائف حاملة للأثقال كان نظام مبرمج سيوظّف لها ويرصد لها موازنة، وقد أُدّيت بلا أجر.",
+      en: "Shelter management (one Saida school hosted about 650 families), volunteer clearance campaigns in Nabatieh, damage-reporting initiatives and participatory workshops - load-bearing functions a programmed system would staff and budget, performed unpaid.",
+      ar: "إدارة الإيواء (مدرسة واحدة في صيدا استضافت نحو 650 عائلة)، وحملات إزالة تطوّعية في النبطية، ومبادرات إبلاغ عن الأضرار وورش تشاركية - وظائف حاملة للأثقال كان نظام مبرمج سيوظّف لها ويرصد لها موازنة، وقد أُدّيت بلا أجر.",
     },
     coreFinding: {
-      en: "Community action expanded sharply in humanitarian and social-recovery functions but contracted in finance, rubble management and physical reconstruction. It absorbed pressure without acquiring public-works authority.",
-      ar: "اتّسع العمل الأهلي اتساعاً حاداً في الوظائف الإنسانية ووظائف التعافي الاجتماعي لكنه انكمش في التمويل وإدارة الأنقاض وإعادة الإعمار المادية. امتصّ الضغط من دون أن يكتسب سلطة أشغال عامة.",
+      en: "Community delivery widened where the official response was thinnest, and it absorbed the social shock of 2026 without acquiring public-works authority, stable finance or public accountability.",
+      ar: "اتّسع الإنجاز الأهلي حيث كانت الاستجابة الرسمية في أرقّ حالاتها، وامتصّ الصدمة الاجتماعية لعام 2026 من دون أن يكتسب سلطة أشغال عامة ولا تمويلاً مستقراً ولا مساءلة عامة.",
     },
     sourceIds: ["S-TRACKING", "S58", "S59", "S21", "S9"],
   },
 };
 
-/** The three diverging-change figures, one per layer that carries one. */
+/** The three diverging-change figures, one per group that carries one. */
 export const CHANGE_CHARTS: Record<
   "official" | "ngo_international" | "community",
   { id: string; title: Bi; subtitle: Bi; description: Bi }
@@ -297,12 +305,12 @@ export const CHANGE_CHARTS: Record<
       ar: "التحوّل الدولي نحو الحوكمة، 2026 ناقص 2024",
     },
     subtitle: {
-      en: "Change in traced NGO and international-agency presence per stage. Gains cluster in governance and humanitarian stages; the assessment contraction reflects repatriation to Lebanese institutions.",
-      ar: "التغيّر في الحضور المرصود للمنظمات غير الحكومية والوكالات الدولية في كل مرحلة. تتجمّع المكاسب في مراحل الحوكمة والمراحل الإنسانية؛ وانكماش التقييم يعكس إعادة الوظيفة إلى مؤسسات لبنانية.",
+      en: "Change in traced international activity at each stage of the response. Gains cluster in governance and humanitarian stages; the assessment contraction reflects repatriation to Lebanese institutions.",
+      ar: "التغيّر في النشاط الدولي المرصود في كل مرحلة من مراحل الاستجابة. تتجمّع المكاسب في مراحل الحوكمة والمراحل الإنسانية؛ وانكماش التقييم يعكس إعادة الوظيفة إلى مؤسسات لبنانية.",
     },
     description: {
-      en: "Diverging bar chart of change in traced international presence: coordination up 8, relief up 5, shelter up 4, oversight up 3, procurement up 1, assessment down 7.",
-      ar: "مخطط أشرطة متباعد للتغيّر في الحضور الدولي المرصود: التنسيق +8، والإغاثة +5، والإيواء +4، والرقابة +3، والشراء +1، والتقييم −7.",
+      en: "Diverging bar chart of change in traced international activity: coordination widened most, then relief and shelter; oversight and procurement appear for the first time; assessment is the one clear contraction.",
+      ar: "مخطط أشرطة متباعد للتغيّر في النشاط الدولي المرصود: اتّسع التنسيق أكثر من سواه، تليه الإغاثة فالإيواء؛ وتظهر الرقابة والشراء للمرة الأولى؛ والتقييم هو الانكماش الواضح الوحيد.",
     },
   },
   community: {
@@ -316,8 +324,8 @@ export const CHANGE_CHARTS: Record<
       ar: "اتّسع: الإغاثة والتنسيق والإيواء. انكمش: التمويل والأنقاض والركام وإعادة الإعمار.",
     },
     description: {
-      en: "Diverging bar chart of change in traced community presence: relief up 35, coordination up 25, shelter up 7, livelihoods up 1; finance down 11, rubble down 9, debris down 5, reconstruction down 5.",
-      ar: "مخطط أشرطة متباعد للتغيّر في الحضور الأهلي المرصود: الإغاثة +35، والتنسيق +25، والإيواء +7، وسبل العيش +1؛ والتمويل −11، والأنقاض −9، والركام −5، وإعادة الإعمار −5.",
+      en: "Diverging bar chart of change in traced community activity: relief widened most, then coordination, then shelter; finance narrowed most, with rubble, debris and physical reconstruction close behind.",
+      ar: "مخطط أشرطة متباعد للتغيّر في النشاط الأهلي المرصود: اتّسعت الإغاثة أكثر من سواها، ثم التنسيق فالإيواء؛ وضاق التمويل أكثر من سواه، وتليه الأنقاض والركام وإعادة الإعمار المادية.",
     },
   },
   official: {
@@ -327,12 +335,12 @@ export const CHANGE_CHARTS: Record<
       ar: "تغيّر المؤسسات الرسمية بحسب المرحلة، 2026 ناقص 2024",
     },
     subtitle: {
-      en: "Reconstruction and services rose 8 → 13; procurement 4 → 5; oversight 3 → 4; finance narrowed 15 → 7.",
-      ar: "إعادة الإعمار والخدمات صعدت 8 ← 13؛ والشراء 4 ← 5؛ والرقابة 3 ← 4؛ والتمويل ضاق 15 ← 7.",
+      en: "Reconstruction and services widened most; procurement and oversight edged wider; finance narrowed as one project chain replaced the emergency-finance crowd.",
+      ar: "اتّسعت إعادة الإعمار والخدمات أكثر من سواها؛ واتّسع الشراء والرقابة قليلاً؛ وضاق التمويل مع حلول سلسلة مشروع واحدة محل حشد تمويل الطوارئ.",
     },
     description: {
-      en: "Diverging bar chart of change in traced official-institution presence per value-chain stage.",
-      ar: "مخطط أشرطة متباعد للتغيّر في الحضور المرصود للمؤسسات الرسمية في كل مرحلة من سلسلة القيمة.",
+      en: "Diverging bar chart of change in traced official activity at each stage of the response: works, procurement and oversight widened; finance, shelter and livelihoods narrowed.",
+      ar: "مخطط أشرطة متباعد للتغيّر في النشاط الرسمي المرصود في كل مرحلة من مراحل الاستجابة: اتّسعت الأشغال والشراء والرقابة؛ وضاق التمويل والإيواء وسبل العيش.",
     },
   },
 };

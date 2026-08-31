@@ -148,9 +148,9 @@ const T = {
   en: {
     year: "Year",
     mapYear: "Map year",
-    actorLayer: "Actor layer",
-    allLayers: "All layers",
-    stage: "Value-chain stage (points)",
+    actorLayer: "Actor group",
+    allLayers: "All groups",
+    stage: "Stage of the response (points)",
     allStages: "All stages",
     status: "Implementation status (points)",
     allStatuses: "All statuses",
@@ -165,10 +165,10 @@ const T = {
        vector map, which this one replaces and the control above returns to,
        is the alternative that does. */
     glAria: (year: number) =>
-      `Map of Lebanon showing traced role concentration by governorate zone for ${year}. It supports keyboard panning and zooming when focused. The vector map it replaces, reachable from the control above, names each region and district as text.`,
+      `Map of Lebanon showing traced activity by governorate zone for ${year}. It supports keyboard panning and zooming when focused. The vector map it replaces, reachable from the control above, names each region and district as text.`,
     districtOf: (district: string) => `${district} district`,
-    tracedMentions: (year: string) => `Traced mentions, ${year}:`,
-    popupCaution: "Mentions in the tracking - not damage severity or coverage.",
+    groupsIntro: (year: string) => `Groups traced here in ${year}, from most to least:`,
+    popupCaution: "Traced activity in the tracking - not damage severity or coverage.",
     tracedEntry: "Traced entry",
     tracedEpisode: "Traced episode",
     pinFoot:
@@ -196,7 +196,7 @@ const T = {
     },
     fellBack:
       "The pan-and-zoom map could not start, so the vector map is shown instead. It carries the same entries and names each region and district as text.",
-    mentionsIn: (year: number) => `mentions in ${year}`,
+    mentionsIn: (year: number) => `traced in ${year}`,
     happenedAria: (year: number) => `Traced episodes in ${year}`,
     happenedHead: (year: number) => `What happened where - traced episodes, ${year}`,
     happenedSub:
@@ -205,9 +205,9 @@ const T = {
   ar: {
     year: "السنة",
     mapYear: "سنة الخريطة",
-    actorLayer: "طبقة الجهات",
-    allLayers: "كل الطبقات",
-    stage: "مرحلة سلسلة القيمة (النقاط)",
+    actorLayer: "مجموعة الجهات",
+    allLayers: "كل المجموعات",
+    stage: "مرحلة الاستجابة (النقاط)",
     allStages: "كل المراحل",
     status: "حالة التنفيذ (النقاط)",
     allStatuses: "كل الحالات",
@@ -217,10 +217,10 @@ const T = {
     backToVector: "عودة إلى الخريطة المتجهة",
     glOptIn: "خريطة تحريك وتقريب (GL)",
     glAria: (year: number) =>
-      `خريطة للبنان تُظهر تركّز الأدوار المرصودة بحسب مناطق المحافظات لسنة ${year}. تدعم التحريك والتقريب بلوحة المفاتيح عند التركيز عليها. والخريطة المتجهة التي حلّت هذه محلّها، ويمكن العودة إليها من الزر أعلاه، تسمّي كل منطقة وقضاء نصاً.`,
+      `خريطة للبنان تُظهر النشاط المرصود بحسب مناطق المحافظات لسنة ${year}. تدعم التحريك والتقريب بلوحة المفاتيح عند التركيز عليها. والخريطة المتجهة التي حلّت هذه محلّها، ويمكن العودة إليها من الزر أعلاه، تسمّي كل منطقة وقضاء نصاً.`,
     districtOf: (district: string) => `قضاء ${district}`,
-    tracedMentions: (year: string) => `الإشارات المرصودة، ${year}:`,
-    popupCaution: "إشارات في التتبّع - لا شدّة الضرر ولا التغطية.",
+    groupsIntro: (year: string) => `المجموعات المرصودة هنا في ${year}، من الأكثر إلى الأقل:`,
+    popupCaution: "نشاط مرصود في التتبّع - لا شدّة الضرر ولا التغطية.",
     tracedEntry: "مدخل مرصود",
     tracedEpisode: "واقعة مرصودة",
     pinFoot:
@@ -248,7 +248,7 @@ const T = {
     },
     fellBack:
       "تعذّر تشغيل خريطة التقريب والتحريك، فعُرضت الخريطة المتجهة بدلاً منها. وهي تحمل المدخلات نفسها وتسمّي كل منطقة وقضاء نصّاً.",
-    mentionsIn: (year: number) => `إشارة في ${year}`,
+    mentionsIn: (year: number) => `من النشاط المرصود في ${year}`,
     happenedAria: (year: number) => `وقائع مرصودة في ${year}`,
     happenedHead: (year: number) => `ما الذي جرى وأين - وقائع مرصودة، ${year}`,
     happenedSub:
@@ -749,11 +749,20 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             // at click time, so it survives the one-shot registration.
             const popupYear = yearRef.current;
             const m = zoneId ? mentionsFor(popupYear, zoneId) : null;
+            // Group names in weight order, no figures: groups compare
+            // against each other here, so the order carries the ranking
+            // and no count is printed. Zero-weight groups are left out -
+            // a bare name would read as presence.
+            const ranked = m
+              ? layers(locale)
+                  .filter((l) => m[l.id] > 0)
+                  .sort((a, b) => m[b.id] - m[a.id])
+              : [];
             const html = m
-              ? `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong><br/>${esc(t.tracedMentions(String(popupYear)))}<br/>` +
-                layers(locale).map(
-                  (l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}: <strong>${m[l.id]}</strong>`,
-                ).join("<br/>") +
+              ? `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong><br/>${esc(t.groupsIntro(String(popupYear)))}<br/>` +
+                ranked
+                  .map((l) => `<span style="color:${l.color}">■</span> ${esc(l.label)}`)
+                  .join("<br/>") +
                 `<br/><em style="color:${CHART.label}">${esc(t.popupCaution)}</em></div>`
               : `<div${dirAttr} style="font-size:12px">${townLine}<strong>${esc(zoneName)}</strong></div>`;
             // A pointer opened this one, so there is no list button to
@@ -1425,6 +1434,15 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
             {nonMappable.map((r) => {
               const m = mentionsFor(year, r.id);
               const total = m ? m.official + m.municipal + m.ngo_international + m.community : 0;
+              // The whole-place total may print; the per-group figures may
+              // not - groups compare here, so the list carries names in
+              // weight order and nothing else. Zero-weight groups are left
+              // out rather than shown as bare names implying presence.
+              const ranked = m
+                ? layers(locale)
+                    .filter((l) => m[l.id] > 0)
+                    .sort((a, b) => m[b.id] - m[a.id])
+                : [];
               return (
                 <section key={r.id} className="card">
                   <h3 className="text-body font-semibold text-navy">
@@ -1437,13 +1455,10 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                     </span>
                   </p>
                   <ul className="mt-2 space-y-1 text-meta">
-                    {layers(locale).map((l) => (
-                      <li key={l.id} className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-1.5">
-                          <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
-                          {l.short}
-                        </span>
-                        <span className="tabular-nums">{m ? m[l.id] : 0}</span>
+                    {ranked.map((l) => (
+                      <li key={l.id} className="flex items-center gap-1.5">
+                        <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: l.color }} />
+                        {l.short}
                       </li>
                     ))}
                   </ul>

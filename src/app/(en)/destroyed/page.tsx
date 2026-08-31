@@ -6,6 +6,7 @@ import DebrisTiles from "@/components/charts/DebrisTiles";
 import ServiceImpact from "@/components/ServiceImpact";
 import DistrictDamageChart from "@/components/charts/DistrictDamageChart";
 import HumanToll from "@/components/HumanToll";
+import SeeMore from "@/components/SeeMore";
 import Takeaways from "@/components/Takeaways";
 import DisplacementCycle from "@/components/DisplacementCycle";
 import WaterRepairs from "@/components/WaterRepairs";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   alternates: localeAlternates("/destroyed"),
   title: "What was destroyed?",
   description:
-    "The building-destruction data for Lebanon's 2024 and 2026 wars: four non-additive 2024 tracks, sector damage and losses, and the two bounded 2026 assessment zones - presented side by side, never merged.",
+    "The estimates behind the US$11 billion needs benchmark: four non-additive 2024 tracks, sector damage and losses, and the two bounded 2026 assessment zones - presented side by side, never merged.",
 };
 
 const COMPARABILITY_BADGE: Record<string, { label: string; cls: string }> = {
@@ -39,14 +40,20 @@ export default function DamagePage() {
       title="The damage assessments - kept honest"
       lede={
         <>
-          No single building count exists for the 2024 war, and no national
-          assessment existed for the 2026 war by 31 August 2026. This
-          page presents every major damage estimate side by side with its
-          method, scope, unit and comparability badge - and never averages,
-          sums or merges them. The plurality of estimates is itself data:
-          it delayed a single authoritative baseline for compensation, which
-          every claims system needs, while giving the response its fastest
-          early data.
+          The depth behind the{" "}
+          <Link
+            href="/#findings"
+            className="font-medium text-blue underline-offset-2 hover:underline"
+          >
+            report&apos;s needs benchmark
+          </Link>
+          : the estimates that sit under the US$11 billion figure, each
+          presented with its method, scope, unit and comparability - and never
+          averaged, summed or merged. No single building count exists for the
+          2024 war, and no national assessment existed for the 2026 war by 31
+          August 2026. The plurality is itself a finding: it gave the response
+          its fastest early figures while delaying the single baseline every
+          compensation system needs.
         </>
       }
     >
@@ -214,10 +221,6 @@ export default function DamagePage() {
           <DebrisTiles />
         </div>
 
-        <div className="mt-6">
-          <ServiceImpact />
-        </div>
-
         <div className="mt-7">
           <HumanToll />
         </div>
@@ -243,20 +246,33 @@ export default function DamagePage() {
         </div>
       </section>
 
-      {/*
-        * What stopped and what came back. The outage side of this story
-        * was here and the restoration side was filed under the actor
-        * page, so the two halves of one account sat on different routes.
-        */}
       <div className="mt-8">
-        <DisplacementCycle />
+        <SeeMore label="the shelter-and-return cycle, run twice">
+          <DisplacementCycle />
+        </SeeMore>
       </div>
-      <div className="mt-7">
-        <WaterRepairs />
-      </div>
-      <div className="mt-7">
-        <ServiceOperators />
-      </div>
+
+      {/* Services and networks: the operator-reported account in one place,
+          with the two long registers folded behind the dated sector figures. */}
+      <section aria-labelledby="services-networks" className="mt-8">
+        <h2 id="services-networks" className="text-h2 font-semibold text-navy">
+          Services and networks, as operators reported them
+        </h2>
+        <p className="mt-2 max-w-3xl text-body text-text-secondary">
+          What stopped and what came back under the 2026 war, in the operating
+          institutions&apos; own published figures. The dated sector status
+          leads; the two long operator registers open below it.
+        </p>
+        <div className="mt-5">
+          <ServiceImpact />
+        </div>
+        <SeeMore label="the water office's repairs, line by line">
+          <WaterRepairs />
+        </SeeMore>
+        <SeeMore label="the networks, operator by operator">
+          <ServiceOperators />
+        </SeeMore>
+      </section>
 
       <p className="mt-8 text-body">
         <Link href="/who" className="font-medium text-blue underline-offset-2 hover:underline">
@@ -270,9 +286,9 @@ export default function DamagePage() {
 
       <div className="mt-8">
         <Takeaways
-          changed="Assessment arrived faster in 2026: products in weeks, jointly produced with a Lebanese scientific institution and explicit about their own limits - from fewer traced actors than in 2024, and over two zones instead of the country."
-          unchanged="No single authoritative baseline exists for either war - the denominator every compensation system needs - and the Bekaa and Baalbek-Hermel remained unassessed in 2026."
-          matters="Data geography becomes financing geography: programmes fund what is measured, so unassessed areas enter any future instrument late and weakly. And the assessed 2026 damage (~US$1.75B in two zones) sits entirely outside the only financed programme's legal scope."
+          changed="2026 was assessed faster and more openly than 2024: joint products with a Lebanese scientific institution, out in weeks, each stating its own limits - but covering two bounded zones where the 2024 tracks reached four to six governorates."
+          unchanged="Neither war has one authoritative building count, and the gap has a geography: the Bekaa and Baalbek-Hermel were never assessed in 2026, so the two zones' roughly US$1.75 billion is a floor for two areas, not a national figure."
+          matters="Programmes fund what is measured. Unassessed areas enter any future financing instrument late and weakly, and the assessed 2026 damage sits entirely outside the legal scope of the only financed programme."
         />
       </div>
     </PageShell>

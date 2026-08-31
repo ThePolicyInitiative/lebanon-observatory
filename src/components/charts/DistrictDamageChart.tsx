@@ -19,7 +19,7 @@ const TR = {
   en: {
     title: "Where the 2024 damage was reported, district by district",
     sub: (top: number) =>
-      `Municipality-reported damaged housing units from the survey of 135 affected areas, 5-15 December 2024. Baabda - the Dahieh belt - alone reported ${top.toLocaleString("en-US")} units, roughly two thirds of them completely damaged.`,
+      `Municipality-reported damaged housing units from the survey of 135 affected areas, 5-15 December 2024. Baabda - the Dahieh belt - alone reported ${top.toLocaleString("en-US")} units, roughly two thirds of them completely damaged. The darker bars mark the districts where the survey also states what share was completely damaged.`,
     caveat: "",
     unit: "housing units reported damaged",
     tip: "municipality-reported housing units",
@@ -38,7 +38,7 @@ const TR = {
   ar: {
     title: "أين أُبلغ عن أضرار 2024، قضاءً بقضاء",
     sub: (top: number) =>
-      `وحدات سكنية متضررة بحسب إفادات البلديات، من مسح 135 منطقة متضررة بين 5 و15 كانون الأول 2024. قضاء بعبدا وحده - حزام الضاحية - أبلغ عن ${top.toLocaleString("en-US")} وحدة، نحو ثلثيها متضرر كلياً.`,
+      `وحدات سكنية متضررة بحسب إفادات البلديات، من مسح 135 منطقة متضررة بين 5 و15 كانون الأول 2024. قضاء بعبدا وحده - حزام الضاحية - أبلغ عن ${top.toLocaleString("en-US")} وحدة، نحو ثلثيها متضرر كلياً. والأشرطة الأغمق تشير إلى الأقضية التي ذكر المسح أيضاً نسبة تضرّرها الكلي.`,
     caveat:
       "مسح بلدي جُمع في عشرة أيام على المعرفة المحلية، لا مسحاً هندسياً. الأقضية المسمّاة لا تغطي كل الوحدات المتضررة المُبلَّغ عنها وطنياً.",
     unit: "وحدات سكنية أُبلغ عن تضرّرها",

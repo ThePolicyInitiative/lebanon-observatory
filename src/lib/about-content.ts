@@ -38,7 +38,18 @@ export const ANALYSIS_REVISED = "2026-08-31";
 export const CONTACT_EMAIL: string | null = null;
 
 type Figure = { value: string; label: string };
-type Section = { id: string; heading: string; body?: string[]; points?: string[] };
+type Section = {
+  id: string;
+  heading: string;
+  body?: string[];
+  points?: string[];
+  /**
+   * A single onward link rendered after the section's text. The one use is
+   * the pointer to the methodology page: the about page states scope and
+   * limits, and the eight-step method lives in exactly one other place.
+   */
+  link?: { href: string; label: string };
+};
 
 type AboutCopy = {
   metaTitle: string;
@@ -63,9 +74,9 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
     point:
       "This page states who runs the observatory, what the tracking covers, what it refuses to claim and how to reach us. It is not a method note, and it does not restate the analysis the pages themselves carry.",
     figures: [
-      { value: "771", label: "traced entries, 2024 and 2026 together" },
-      { value: "4", label: "actor layers, from state institutions to households" },
-      { value: "12", label: "stages of the reconstruction chain" },
+      { value: "771", label: "traced activity entries, 2024 and 2026 together" },
+      { value: "235", label: "actors traced across the two years" },
+      { value: "4 + 4", label: "actor groups, and action categories the activity sorts into" },
       { value: "31 Aug 2026", label: "the date the tracking reaches" },
     ],
     sections: [
@@ -73,8 +84,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         id: "what",
         heading: "What this is",
         body: [
-          "The observatory is a standing comparison of two moments in Lebanon's reconstruction system: the emergency response that filled the vacuum after the 2024 war, and the more formal project structure standing by mid-2026. It is independent policy analysis. It is not a relief operation, an official register or a compensation channel, and it cannot act on an individual case.",
-          "The question it answers is narrow on purpose. For each stage of the reconstruction chain, in each of the two years, it asks which actors were traced as present and in what capacity - finance, procurement, implementation or oversight. The map, the finance pages and the damage assessments all exist to keep that one comparison honest.",
+          "The observatory maps, tracks and compares the two responses that followed Lebanon's 2024 and 2026 wars, reading both through the same two layers: the actors involved, sorted into four groups from state institutions to community initiatives, and the actions they carried out, sorted into four categories from financial actions to reconstruction and implementation. It is independent policy analysis - not a relief operation, an official list or a compensation channel, and it cannot act on an individual case. Because every traced activity sits in a group, a category, a place and a time, the two years can be compared on the same terms.",
         ],
       },
       {
@@ -90,7 +100,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "What the tracking covers",
         body: [
           "Two years stand side by side: 2024 and 2026. Between them the tracking holds 771 traced entries, one per actor and function within a stage, so a single actor can carry several entries inside the same stage.",
-          "Actors sit in four layers - official institutions, NGOs and international agencies, municipalities and local authorities, and community initiatives. Each entry is placed on one of twelve chain stages, running from coordination, finance and compensation, damage and needs assessment, safety and access, and procurement, through rubble clearance, debris treatment and reconstruction works, to shelter and return, relief, livelihoods and oversight.",
+          "Actors sit in four groups - public officials and institutions, NGOs and international organisations, municipalities and local authorities, and community initiatives. Each entry is placed in one of four action categories and on one of twelve stages of the response, running from coordination, finance and compensation, damage and needs assessment, safety and access, and procurement, through rubble clearance, debris treatment and reconstruction works, to shelter and return, relief, livelihoods and oversight.",
           "The tracking reaches 31 August 2026 and holds no cut-off that shuts later material out. Every figure is dated where it stands, so a reader can see how current each one is rather than trusting a single date for all of them. The live updates page runs ahead of the tracking, gathering coverage as it appears; a piece there enters a count only once it has been read into the entries.",
           "Both languages carry the same thing. The Arabic pages are not a summary of the English ones - every page, chart, filter and entry runs in Arabic at the same depth, and the figures are read from one place, so a number cannot say one thing in Arabic and another in English.",
         ],
@@ -115,6 +125,11 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
           "The date the tracking reaches moves forward as further material is read in. Because it moves, it is stated on every page and beside the figures it governs: a date that advanced silently would let a reader take an older number for a current one. The two-year comparison is a separate matter - 2024 and 2026 are compared on the same terms, and a figure is only ever set against another drawn the same way.",
           "Where a figure changes because the underlying entries changed, the change is carried into both languages in the same revision. There is no partial release in one language.",
         ],
+        link: {
+          href: "/methodology",
+          label:
+            "The full eight-step method, from the two frameworks to manual confirmation, is set out on the methodology page",
+        },
       },
     ],
     contact: {
@@ -136,9 +151,9 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
     point:
       "هذه الصفحة تقول من يدير المرصد، وما الذي يغطيه التتبّع، وما الذي يرفض ادّعاءه، وكيف تصل إلينا. ليست ملاحظة منهجية، ولا تعيد سرد التحليل الذي تحمله الصفحات نفسها.",
     figures: [
-      { value: "771", label: "مدخلاً متتبَّعاً، 2024 و2026 معاً" },
-      { value: "4", label: "طبقات فاعلة، من المؤسسات الرسمية إلى الأهالي" },
-      { value: "12", label: "مرحلة في سلسلة إعادة الإعمار" },
+      { value: "771", label: "مدخلاً متتبَّعاً للنشاط، 2024 و2026 معاً" },
+      { value: "235", label: "جهة متتبَّعة عبر السنتين معاً" },
+      { value: "4 + 4", label: "مجموعات جهات وفئات أفعال يُصنَّف النشاط فيها" },
       { value: "31 آب 2026", label: "التاريخ الذي يبلغه التتبّع" },
     ],
     sections: [
@@ -146,8 +161,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         id: "what",
         heading: "ما هذا الموقع",
         body: [
-          "المرصد مقارنة دائمة بين لحظتين في نظام إعادة إعمار لبنان: استجابة الطوارئ التي ملأت الفراغ بعد حرب 2024، وبنية المشروع الأكثر رسمية التي قامت بحلول منتصف 2026. هو تحليل سياسات مستقل. ليس عملية إغاثة، ولا لائحة رسمية، ولا قناة لتقديم طلبات التعويض، ولا يمكنه التصرّف في أي حالة فردية.",
-          "والسؤال الذي يجيب عنه ضيّق عن قصد: في كل مرحلة من سلسلة إعادة الإعمار، وفي كل من السنتين، أي الجهات رُصد حضورها وبأي صفة - تمويلاً أو شراءً أو تنفيذاً أو رقابة. والخريطة وصفحات التمويل وتقديرات الأضرار كلها موجودة لتُبقي تلك المقارنة الواحدة أمينة.",
+          "يرسم المرصد خريطة الاستجابتين اللتين أعقبتا حربَي لبنان في 2024 و2026 ويتتبّعهما ويقارن بينهما، قارئاً كلتيهما عبر الطبقتين نفسيهما: الجهات الفاعلة مصنّفةً في أربع مجموعات من مؤسسات الدولة إلى مبادرات المجتمع المحلي، والأفعال التي نفّذتها مصنّفةً في أربع فئات من الإجراءات المالية إلى إعادة الإعمار والتنفيذ. وهو تحليل سياسات مستقل - لا عملية إغاثة ولا لائحة رسمية ولا قناة تعويض، ولا يمكنه التصرّف في أي حالة فردية. ولأن كل نشاط متتبَّع يقع في مجموعة وفئة ومكان وزمن، يمكن مقارنة السنتين بالشروط نفسها.",
         ],
       },
       {
@@ -163,7 +177,7 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
         heading: "ما الذي يغطيه التتبّع",
         body: [
           "سنتان جنباً إلى جنب: 2024 و2026. وبينهما يحمل التتبّع 771 مدخلاً متتبَّعاً، مدخلاً واحداً لكل جهة ووظيفة داخل مرحلة، فقد تحمل الجهة الواحدة عدة مدخلات في المرحلة نفسها.",
-          "وتتوزّع الجهات على أربع طبقات: المؤسسات الرسمية، والمنظمات الدولية وغير الحكومية، والبلديات والسلطات المحلية، ومبادرات المجتمع المحلي. ويُسنَد كل مدخل إلى واحدة من اثنتي عشرة مرحلة، من التنسيق، والتمويل والتعويضات، وتقييم الأضرار والاحتياجات، والسلامة والوصول، والشراء والتعاقد، مروراً برفع الأنقاض ومعالجة الركام وأشغال إعادة الإعمار، وصولاً إلى الإيواء والعودة، والإغاثة، وسبل العيش، والرقابة.",
+          "وتتوزّع الجهات على أربع مجموعات: المسؤولون الرسميون والمؤسسات الرسمية، والمنظمات غير الحكومية والدولية، والبلديات والسلطات المحلية، ومبادرات المجتمع المحلي. ويُسنَد كل مدخل إلى واحدة من أربع فئات أفعال، وإلى واحدة من اثنتي عشرة مرحلة من مراحل الاستجابة، من التنسيق، والتمويل والتعويضات، وتقييم الأضرار والاحتياجات، والسلامة والوصول، والشراء والتعاقد، مروراً برفع الأنقاض ومعالجة الركام وأشغال إعادة الإعمار، وصولاً إلى الإيواء والعودة، والإغاثة، وسبل العيش، والرقابة.",
           "يبلغ التتبّع 31 آب 2026، ولا يحمل تاريخ توقف يُقصي ما بعده. وكل رقم مؤرَّخ في موضعه، فيرى القارئ مدى حداثة كل رقم على حدة بدل الركون إلى تاريخ واحد لها جميعاً. وصفحة المستجدات تسبق التتبّع، تجمع التغطية فور ظهورها؛ ولا تدخل مادة منها في أي عدّ إلا بعد قراءتها ضمن المدخلات.",
           "واللغتان تحملان الشيء نفسه. الصفحات العربية ليست تلخيصاً للإنجليزية - كل صفحة ورسم ومرشّح ومدخل يعمل بالعربية بالعمق نفسه، والأرقام تُقرأ من مكان واحد، فلا يمكن لرقم أن يقول شيئاً بالعربية وشيئاً آخر بالإنجليزية.",
         ],
@@ -188,6 +202,11 @@ export const ABOUT: Record<"en" | "ar", AboutCopy> = {
           "يتقدّم التاريخ الذي يبلغه التتبّع كلما قُرئت مادة إضافية. ولأنه يتحرّك، فهو مكتوب على كل صفحة وإلى جانب الأرقام التي يحكمها: تاريخ يتقدّم بصمت يجعل القارئ يأخذ رقماً قديماً على أنه راهن. أما المقارنة بين السنتين فمسألة أخرى - 2024 و2026 تُقارَنان بالشروط نفسها، ولا يُوضع رقم قط في مواجهة رقم استُخرج بطريقة مغايرة.",
           "وحين يتغيّر رقم لأن المدخلات الأساسية تغيّرت، يُنقل التغيير إلى اللغتين في المراجعة نفسها. ولا إصدار جزئي بلغة واحدة.",
         ],
+        link: {
+          href: "/ar/methodology",
+          label:
+            "المنهجية الكاملة بخطواتها الثماني، من الإطارين إلى التثبّت اليدوي، مبسوطة على صفحة المنهجية",
+        },
       },
     ],
     contact: {

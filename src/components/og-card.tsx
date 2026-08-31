@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import type { CSSProperties } from "react";
+import { AIM } from "@/lib/framework";
 
 export const OG_ALT =
   "Lebanon Reconstruction Observatory - tracking rubble, works, finance and return, 2024-2026";
@@ -73,7 +74,7 @@ export function renderObservatoryCard() {
               maxWidth: 980,
             }}
           >
-            From Emergency Substitution to Programmed Reconstruction
+            {AIM.en.title}
           </div>
           <div
             style={{
@@ -287,7 +288,7 @@ export function renderArabicCard(fonts: CardFont[]) {
             <div style={{ display: "flex" }}>مرصد إعادة إعمار لبنان</div>
           </div>
           <ArabicLine
-            text="من الاستبدال الطارئ إلى إعادة إعمار مبرمجة"
+            text={AIM.ar.title}
             gap={10}
             style={{
               marginTop: 28,

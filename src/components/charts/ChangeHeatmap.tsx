@@ -18,7 +18,6 @@ import {
   type Locale,
 } from "@/lib/vocab";
 import type { ActorLayer, RoleRecord } from "@/lib/types";
-import { signed } from "@/lib/format";
 import { chartText } from "@/lib/chart-style";
 
 /**
@@ -42,50 +41,55 @@ type CellEntry = Pick<
 
 const T = {
   en: {
-    title: "Direct change in traced presence, 2026 minus 2024",
+    title: "Where each group gained or lost traced activity, 2026 vs 2024",
     subtitle:
-      "Teal marks gains in traced actor-stage presence; rust marks contraction; white marks no change. Coordination is left out: nearly every actor touches it, so the column says more about who convenes than about where work sits along the chain. Hover a cell for its value, or click it for the entries behind that change.",
-    tipChange: "Change",
-    tipClick: "Click for underlying data",
-    visualMapText: ["more traced in 2026", "fewer traced in 2026"],
+      "One row per actor group, one column per stage of the response. Teal marks more traced activity in 2026; rust marks less; the pale middle marks about the same. Coordination is left out: nearly every actor touches it, so the column says more about who convenes than about where work sits. Hover a cell for a reading in words, or click it for the entries behind that change.",
+    tipClick: "Click for the traced entries behind this cell",
+    tipMore: "more traced in 2026",
+    tipFewer: "fewer traced in 2026",
+    tipSame: "about the same in both years",
+    /* The first sentence is pinned by a test ("eleven value-chain
+       stages") and stays word for word. The second reads the grid
+       qualitatively, because groups compare here and no figure prints. */
     description:
-      "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and eleven value-chain stages; coordination is left out. The largest gains are community relief (+35) and community shelter and return (+7); the deepest contractions are community finance (−11) and community rubble clearance (−9).",
-    tableCaption: "Change in traced actor-stage presence, 2026 minus 2024.",
-    tableHeaders: ["Actor layer", "Stage", "2024", "2026", "Change"],
-    chartAria: "Heatmap of change in traced actor presence by layer and stage",
+      "Heatmap of change in traced actor presence between 2024 and 2026 across four actor layers and eleven value-chain stages; coordination is left out. The widest gain is community relief, with community shelter and return next; the deepest contractions are community finance and community rubble clearance.",
+    tableCaption: "Change in traced activity by group and stage, 2026 minus 2024.",
+    tableHeaders: ["Actor group", "Stage", "2024", "2026", "Change"],
+    chartAria: "Heatmap of change in traced activity by actor group and stage",
     chartKeys:
       "Interactive change heatmap. While it holds focus, the arrow keys move between cells and Enter opens the traced entries behind the selected cell.",
-    dialogLabel: (layer: string, stage: string) => `Data for ${layer} in ${stage}`,
+    dialogLabel: (layer: string, stage: string) => `Traced entries for ${layer} in ${stage}`,
     drawerCounts: (y24: number, y26: number) =>
       `${y24} traced in 2024 · ${y26} in 2026 (analysis)`,
     drawerShown: (n: number) => ` · ${n} traced entries shown below`,
     close: "Close",
     loading: "Loading the entries behind this cell…",
     empty:
-      "No traced entries map to this cell at function-column grain. The analytical count above is recomputed at entry level from the underlying tracking, which is finer grained than the chart figures by construction.",
+      "No traced entries map to this cell at this level of detail. The count above is recomputed at entry level from the underlying tracking, which is finer grained than the chart by construction.",
   },
   ar: {
-    title: "التغيّر المباشر في الحضور المرصود، 2026 ناقص 2024",
+    title: "أين زاد النشاط المرصود لكل مجموعة أو نقص، 2026 مقابل 2024",
     subtitle:
-      "الأزرق المخضرّ يعني كسباً في الحضور المرصود بين الجهات والمراحل؛ والصدئ يعني انكماشاً؛ والأبيض يعني لا تغيّر. ومرحلة التنسيق خارج الشكل: تكاد كل جهة تمسّها، فعمودها يقول عمّن ينسّق أكثر ممّا يقول أين يقع العمل على السلسلة. مرّر المؤشر فوق خلية لقراءة قيمتها، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
-    tipChange: "التغيّر",
-    tipClick: "انقر لعرض ما وراء الخلية",
-    visualMapText: ["حضور أكبر في 2026", "حضور أقل في 2026"],
+      "صف لكل مجموعة من الجهات، وعمود لكل مرحلة من الاستجابة. الأزرق المخضرّ يعني نشاطاً مرصوداً أكبر في 2026؛ والصدئ يعني أقل؛ والوسط الباهت يعني على حاله تقريباً. ومرحلة التنسيق خارج الشكل: تكاد كل جهة تمسّها، فعمودها يقول عمّن ينسّق أكثر ممّا يقول أين يقع العمل. مرّر المؤشر فوق خلية لقراءة بالكلمات، أو انقرها لعرض المدخلات وراء ذلك التغيّر.",
+    tipClick: "انقر لعرض المدخلات المتتبَّعة وراء هذه الخلية",
+    tipMore: "نشاط مرصود أكبر في 2026",
+    tipFewer: "نشاط مرصود أقل في 2026",
+    tipSame: "على حاله تقريباً في السنتين",
     description:
-      "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع طبقات فاعلة وإحدى عشرة مرحلة من سلسلة القيمة، مع إخراج مرحلة التنسيق. أكبر المكاسب إغاثة المجتمع المحلي (+35) وإيواؤه وعودته (+7)؛ وأعمق الانكماشات تمويل المجتمع المحلي (-11) ورفع الأنقاض لديه (-9).",
-    tableCaption: "التغيّر في الحضور المرصود بين الجهات والمراحل، 2026 ناقص 2024.",
-    tableHeaders: ["طبقة الجهة", "المرحلة", "2024", "2026", "التغيّر"],
-    chartAria: "خريطة حرارية للتغيّر في الحضور المرصود للجهات بحسب الطبقة والمرحلة",
+      "خريطة حرارية للتغيّر في الحضور المرصود للجهات بين 2024 و2026 عبر أربع مجموعات فاعلة وإحدى عشرة مرحلة من مراحل الاستجابة، مع إخراج مرحلة التنسيق. أوسع المكاسب إغاثة المجتمع المحلي، يليها إيواؤه وعودته؛ وأعمق الانكماشات تمويل المجتمع المحلي ورفع الأنقاض لديه.",
+    tableCaption: "التغيّر في النشاط المرصود بحسب المجموعة والمرحلة، 2026 ناقص 2024.",
+    tableHeaders: ["مجموعة الجهات", "المرحلة", "2024", "2026", "التغيّر"],
+    chartAria: "خريطة حرارية للتغيّر في النشاط المرصود بحسب المجموعة والمرحلة",
     chartKeys:
       "خريطة حرارية تفاعلية للتغيّر. ما دامت في بؤرة التركيز، تنقل مفاتيح الأسهم بين الخلايا ويفتح Enter المدخلات المتتبَّعة وراء الخلية المختارة.",
-    dialogLabel: (layer: string, stage: string) => `معطيات ${layer} في ${stage}`,
+    dialogLabel: (layer: string, stage: string) => `المدخلات المتتبَّعة لـ${layer} في ${stage}`,
     drawerCounts: (y24: number, y26: number) =>
       `${arabicCount(y24, AR_COUNT.entryTraced)} في 2024 · ${y26} في 2026 (التحليل)`,
     drawerShown: (n: number) => ` · ${n} من المدخلات المتتبَّعة معروضة أدناه`,
     close: "إغلاق",
     loading: "جارٍ تحميل المدخلات وراء هذه الخلية…",
     empty:
-      "لا مدخلات متتبَّعة تقابل هذه الخلية على مستوى عمود الوظيفة. العدد التحليلي أعلاه يُعاد حسابه على مستوى المدخل من التتبّع الأساسي، وهو أدق تفصيلاً من أرقام الرسم بحكم البناء.",
+      "لا مدخلات متتبَّعة تقابل هذه الخلية على هذا المستوى من التفصيل. العدد أعلاه يُعاد حسابه على مستوى المدخل من التتبّع الأساسي، وهو أدق تفصيلاً من الرسم بحكم البناء.",
   },
 } as const;
 
@@ -257,6 +261,9 @@ export default function ChangeHeatmap({
     const stageNames = stageList(locale);
     return {
       grid: { left: 120, right: 20, top: 10, bottom: 90 },
+      // Which group, which stage, which way it moved - in words. The
+      // figures live behind the click, where a single group's own cell
+      // is allowed its granular detail.
       tooltip: {
         formatter: (p) => {
           const { value } = p as unknown as { value: [number, number, number] };
@@ -264,9 +271,8 @@ export default function ChangeHeatmap({
           // x is the drawn position; map it back to the stage it stands for.
           const si = HEATMAP_STAGES[x];
           const layer = ls[li];
-          const y24 = countsFor(2024, layer.id)[si];
-          const y26 = countsFor(2026, layer.id)[si];
-          return `<strong>${stageNames[si]}</strong><br/>${layer.label}<br/>2024: ${y24} · 2026: ${y26} · ${tt.tipChange}: <strong><bdi dir="ltr">${signed(v)}</bdi></strong><br/><em>${tt.tipClick}</em>`;
+          const word = v > 0 ? tt.tipMore : v < 0 ? tt.tipFewer : tt.tipSame;
+          return `<strong>${stageNames[si]}</strong><br/>${layer.label}<br/><strong>${word}</strong><br/><em>${tt.tipClick}</em>`;
         },
       },
       xAxis: {
@@ -296,7 +302,7 @@ export default function ChangeHeatmap({
         bottom: 62,
         itemWidth: 10,
         itemHeight: 90,
-        text: [...tt.visualMapText],
+        text: [tt.tipMore, tt.tipFewer],
         textStyle: { fontSize: 10 },
         inRange: {
           // Diverging on valence. The positive end was the identity teal,
