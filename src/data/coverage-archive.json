@@ -3037,6 +3037,90 @@
       "focus": "The state to the south in August: CDR on LEAP with 250 million dollars secured against a 750 million gap, MoSA cash for about 230,000 families, Agriculture five-track plan, Education on 198 of 267 damaged schools",
       "focusAr": "الدولة إلى الجنوب في آب: مجلس الإنماء والإعمار على مشروع LEAP بـ250 مليون دولار مؤمّنة مقابل فجوة 750 مليوناً، ومساعدات وزارة الشؤون الاجتماعية النقدية لنحو 230 ألف عائلة، وخطة وزارة الزراعة بخمسة مسارات، ووزارة التربية أمام 198 مدرسة متضررة من أصل 267",
       "url": "https://english.aawsat.com/arab-world/5309705-state-return-south-lebanon-extends-beyond-security-services-recovery"
+    },
+    {
+      "id": "c263",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "NOW Lebanon",
+      "title": "Pilot Zones put Lebanon's sovereignty to the test in the South",
+      "date": "2026-07-25",
+      "focus": "pilot zones, army deployment, sovereignty, trilateral framework, reconstruction conditions",
+      "focusAr": "المناطق التجريبية، انتشار الجيش، السيادة، الإطار الثلاثي، شروط إعادة الإعمار",
+      "url": "https://nowlebanon.com/pilot-zones-put-lebanons-sovereignty-to-the-test-in-the-south/"
+    },
+    {
+      "id": "c264",
+      "year": 2026,
+      "kind": "research",
+      "language": "en",
+      "publisher": "International Labour Organization",
+      "title": "Lebanon's labour market in crisis: Assessing the impacts of renewed conflict and regional instability - A focus on private sector workers",
+      "date": "2026-07-07",
+      "focus": "employment, displacement, private sector, conflict impact, income loss",
+      "focusAr": "العمالة، النزوح، القطاع الخاص، أثر النزاع، فقدان الدخل",
+      "url": "https://www.ilo.org/resource/news/one-three-private-sector-workers-surveyed-lebanon-no-longer-working-amid"
+    },
+    {
+      "id": "c265",
+      "year": 2026,
+      "kind": "news",
+      "language": "ar",
+      "publisher": "أخبار الأمم المتحدة",
+      "title": "مفوضية اللاجئين: عودة النازحين في لبنان لا تنهي الاحتياجات الإنسانية",
+      "date": "2026-08-18",
+      "focus": "displacement returns, humanitarian needs, shelter, water infrastructure damage",
+      "focusAr": "عودة النازحين، الاحتياجات الإنسانية، الإيواء، أضرار البنية التحتية للمياه",
+      "url": "https://news.un.org/ar/story/2026/08/1145190"
+    },
+    {
+      "id": "c266",
+      "year": 2024,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "UN-Habitat",
+      "title": "Lebanon - Building destruction and debris quantities assessment - Bekaa Governorate",
+      "date": null,
+      "focus": "building destruction, debris quantities, satellite analysis, Bekaa",
+      "focusAr": "تدمير المباني، كميات الأنقاض، التحليل الفضائي، البقاع",
+      "url": "https://unhabitat.org/lebanon-building-destruction-and-debris-quantities-assessment-bekaa-governorate"
+    },
+    {
+      "id": "c267",
+      "year": 2026,
+      "kind": "news",
+      "language": "ar",
+      "publisher": "الجزيرة نت",
+      "title": "جنوب لبنان تحت الركام.. دمار يهدد العودة ومستقبل الإعمار",
+      "date": "2026-08-18",
+      "focus": "rubble volumes, housing damage, water networks, blocked return, reconstruction outlook",
+      "focusAr": "أحجام الركام، أضرار المساكن، شبكات المياه، تعذر العودة، آفاق الإعمار",
+      "url": "https://www.aljazeera.net/news/2026/8/18/%D8%AC%D9%86%D9%88%D8%A8-%D9%84%D8%A8%D9%86%D8%A7%D9%86-%D8%AA%D8%AD%D8%AA-%D8%A7%D9%84%D8%B1%D9%83%D8%A7%D9%85-%D8%AF%D9%85%D8%A7%D8%B1-%D9%8A%D9%87%D8%AF%D8%AF-%D8%A7%D9%84%D8%B9%D9%88%D8%AF%D8%A9"
+    },
+    {
+      "id": "c268",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "The National",
+      "title": "Hezbollah once paid families $14,000 when Israel destroyed their homes. Now it may not be able to",
+      "date": "2026-08-13",
+      "focus": "compensation, Hezbollah finances, Iranian funding, displacement, reconstruction delays",
+      "focusAr": "التعويضات، مالية حزب الله، التمويل الإيراني، النزوح، تأخر إعادة الإعمار",
+      "url": "https://www.thenationalnews.com/news/mena/2026/08/13/hezbollah-once-paid-families-14000-when-israel-destroyed-their-homes-now-it-may-not-afford-to/"
+    },
+    {
+      "id": "c269",
+      "year": 2026,
+      "kind": "research",
+      "language": "ar",
+      "publisher": "Al-Iktissad Wal-Aamal",
+      "title": "فرص تمويل إعادة الإعمار في لبنان: أي نماذج وبأي شروط؟",
+      "date": "2026-05-11",
+      "focus": "reconstruction financing models, donor conditions, Gulf role, World Bank, political scenarios",
+      "focusAr": "نماذج تمويل إعادة الإعمار، شروط المانحين، الدور الخليجي، البنك الدولي، السيناريوهات السياسية",
+      "url": "https://www.iktissadonline.com/news/2026/05/11/%D9%81%D8%B1%D8%B5-%D8%AA%D9%85%D9%88%D9%8A%D9%84-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D9%81%D9%8A-%D9%84%D8%A8%D9%86%D8%A7%D9%86-br-%D8%A3%D9%8A-%D9%86%D9%85%D8%A7%D8%B0%D8%AC-%D9%88%D8%A8%D8%A3%D9%8A-%D8%B4%D8%B1%D9%88%D8%B7"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
