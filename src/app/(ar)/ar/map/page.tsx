@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Suspense } from "react";
 import { localeAlternates } from "@/lib/i18n";
-import { locations } from "@/lib/data";
 import ArabicPageShell from "../ArabicPageShell";
 import LebanonMap from "@/components/map/LebanonMap";
 import RegionalComposition from "@/components/map/RegionalComposition";
@@ -21,8 +20,6 @@ export const metadata: Metadata = {
  * القديمة تصل.
  */
 export default function Page() {
-  const mappable = locations.regions.filter((r) => r.mappable).length;
-  const notMappable = locations.regions.length - mappable;
 
   return (
     <ArabicPageShell
@@ -34,20 +31,7 @@ export default function Page() {
         <h2 id="ar-where-traced" className="sr-only">
           الخريطة
         </h2>
-        {/* أول ما يحتاجه القارئ من الخريطة هو ما تستطيع عرضه وما لا تستطيع. */}
-        <dl className="mt-3 grid gap-3 sm:grid-cols-3">
-          {[
-            [String(locations.regions.length), "تجمّعات إقليمية في الرصد"],
-            [String(mappable), "منها يمكن وضعها على الخريطة"],
-            [String(notMappable), "تُعرض على حدة - يتعذّر تحديد موقعها"],
-          ].map(([value, label]) => (
-            <div key={label} className="card">
-              <dt className="figure-number text-h2 font-semibold text-navy">{value}</dt>
-              <dd className="text-meta text-text-secondary">{label}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-5">
+        <div className="mt-3">
           <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
             <LebanonMap locale="ar" />
           </Suspense>

@@ -325,7 +325,7 @@ export default function ChangeHeatmap({
           label: { show: false },
           itemStyle: { borderColor: UI.surface, borderWidth: 2 },
           emphasis: {
-            itemStyle: { borderColor: "#173B63", borderWidth: 2 },
+            itemStyle: { borderColor: "#143F35", borderWidth: 2 },
           },
         },
       ],

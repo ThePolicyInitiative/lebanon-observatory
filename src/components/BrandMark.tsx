@@ -23,7 +23,7 @@ export default function BrandMark({ className }: { className?: string }) {
       aria-hidden
       focusable="false"
     >
-      <rect width={SIDE} height={SIDE} rx={Math.round(SIDE * 0.195)} fill="#0e2542" />
+      <rect width={SIDE} height={SIDE} rx={Math.round(SIDE * 0.195)} fill="#0e2f27" />
       <g transform={`translate(${OX} ${OY})`}>
         <g
           fill="#ffffff"

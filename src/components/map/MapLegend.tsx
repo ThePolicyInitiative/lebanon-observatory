@@ -17,14 +17,14 @@ const T = {
     pins: "One pin per traced entry, coloured by actor group",
     area: "The deeper a town's colour, the more traced entries name it. Towns where nothing is traced keep the plain ground.",
     areaGroups:
-      "With every group showing, the shading is navy; narrowed to a single group, it takes that group's colour:",
+      "With every group showing, the shading is a deep green; narrowed to a single group, it takes that group's colour:",
   },
   ar: {
     heading: "مفتاح القراءة",
     pins: "دبّوس واحد لكل مدخل مرصود، بلون مجموعة الجهة",
     area: "كلما اشتدّ لون البلدة زادت المدخلات المرصودة التي تسمّيها. والبلدات التي لا شيء مرصود فيها تبقى بلون الأرضية.",
     areaGroups:
-      "حين تُعرض المجموعات كلها يكون التظليل كحلياً؛ وحين يضيق الترشيح إلى مجموعة واحدة يأخذ التظليل لون تلك المجموعة:",
+      "حين تُعرض المجموعات كلها يكون التظليل أخضرَ داكناً؛ وحين يضيق الترشيح إلى مجموعة واحدة يأخذ التظليل لون تلك المجموعة:",
   },
 } as const;
 

@@ -21,6 +21,11 @@
  * mark time controls, outlines and comparison markers only.
  */
 export const LAYER_COLORS = {
+  /**
+   * The old navy. Since the cedar restyle this is the official layer's
+   * own token (--color-official): the chrome moved to green, the data
+   * did not. A restyle may redress the chrome, never re-code the data.
+   */
   official: "#173B63",
   ngo_international: "#177384",
   municipal: "#D69600",
@@ -107,28 +112,30 @@ export const STATE_UNGRADED_EDGE = "#7b8696";
  * is the whole reason this file exists.
  */
 export const UI = {
-  background: "#EAEFF4",
+  background: "#EDF0EA",
   /** What a card is, and therefore what a figure inside one sits on. */
   surface: "#FFFFFF",
   /** The quiet inset panel, and the lightest thing a chart cell can be
    *  while still being distinguishable from the card behind it. */
-  surfaceSunken: "#F4F7FA",
-  navy: "#173B63",
+  surfaceSunken: "#F4F6F0",
+  /** The chrome ink - deep cedar since the restyle; the name stayed with
+   *  the token. The official layer's navy lives in LAYER_COLORS only. */
+  navy: "#143F35",
   blue: "#2E74B5",
   teal: "#177384",
   amber: "#D69600",
   magenta: "#A34F7C",
   rust: "#B04A37",
-  text: "#1F2D3D",
-  textSecondary: "#5D6B7D",
-  textMuted: "#8794A5",
+  text: "#1D2B24",
+  textSecondary: "#57665C",
+  textMuted: "#82917F",
   /**
    * Outlines a pale fill that has to stay pale and still be seen. Sized
    * against the fill it encloses, not the card behind it: 3.02:1 on the
    * palest of them.
    */
   outlineQuiet: "#7B8696",
-  border: "#DBE3EC",
+  border: "#D9E0D4",
 } as const;
 
 export const CHART = {

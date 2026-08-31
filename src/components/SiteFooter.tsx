@@ -37,7 +37,7 @@ export default function SiteFooter() {
   const locale = isArabic ? "ar" : "en";
 
   return (
-    <footer className="on-navy mt-16 border-t border-[#0e2542] bg-navy">
+    <footer className="on-navy mt-16 border-t border-[#0b2a22] bg-navy">
       <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
         <nav aria-label={CHROME[locale].footerNav}>
           <p className="text-micro font-semibold uppercase tracking-wide text-white/60">

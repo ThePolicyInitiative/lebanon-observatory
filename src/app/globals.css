@@ -35,10 +35,10 @@
    */
   --sticky-budget: 40vh;
 
-  /* Surfaces: the page sits on a cool ground, content on white. */
-  --color-bg: #eaeff4;
+  /* Surfaces: the page sits on a limestone ground, content on white. */
+  --color-bg: #edf0ea;
   --color-surface: #ffffff;
-  --color-surface-sunken: #f4f7fa;
+  --color-surface-sunken: #f4f6f0;
 
   /*
    * The teal, rust and 2026-green tokens carry text and chips as well as
@@ -55,19 +55,32 @@
    * the hue shift is imperceptible in a fill. tests/design-tokens.test.ts
    * holds the two copies together.
    */
-  --color-navy: #173b63;
-  --color-navy-deep: #102a48;
+  /*
+   * The chrome ink. The token kept its historical name when the cedar
+   * restyle re-pointed it (every band, heading, pill and rule on the site
+   * reads a *-navy utility), but its value is now the deep cedar green -
+   * the land, not the night. The official actor group, which used to
+   * share this token, has its own identity colour below and did NOT move:
+   * a restyle may redress the chrome, never re-code the data.
+   */
+  --color-navy: #143f35;
+  --color-navy-deep: #0e2f27;
+  /* The official layer's identity - the old navy, now data-only. */
+  --color-official: #173b63;
   --color-blue: #2e74b5;
   --color-teal: #177384;
   --color-amber: #d69600;
+  /* Amber for text on the cedar bands: the identity amber sits at 4.2:1
+     there, this sibling at 6.0:1. Accent use only, never a data mark. */
+  --color-amber-bright: #e8b64c;
   --color-magenta: #a34f7c;
   --color-rust: #b04a37;
 
-  --color-text: #1f2d3d;
-  --color-text-secondary: #5d6b7d;
-  --color-text-muted: #8794a5;
-  --color-border: #dbe3ec;
-  --color-border-strong: #c3cfdd;
+  --color-text: #1d2b24;
+  --color-text-secondary: #57665c;
+  --color-text-muted: #82917f;
+  --color-border: #d9e0d4;
+  --color-border-strong: #c0ccbd;
 
   /*
    * THE YEAR PAIR. This is the site's core comparison, and for most of its
@@ -244,8 +257,8 @@
   --text-display: 2rem; /* 32px - the home hero only */
 
   /* One elevation ramp, used everywhere. */
-  --shadow-card: 0 1px 2px rgba(16, 42, 72, 0.04), 0 1px 3px rgba(16, 42, 72, 0.06);
-  --shadow-lift: 0 4px 16px rgba(16, 42, 72, 0.1);
+  --shadow-card: 0 1px 2px rgba(14, 47, 39, 0.04), 0 1px 3px rgba(14, 47, 39, 0.06);
+  --shadow-lift: 0 4px 16px rgba(14, 47, 39, 0.1);
   --radius-card: 10px;
 
   /*
@@ -310,6 +323,8 @@
   --color-surface-sunken: var(--color-surface-sunken);
   --color-navy: var(--color-navy);
   --color-navy-deep: var(--color-navy-deep);
+  --color-official: var(--color-official);
+  --color-amber-bright: var(--color-amber-bright);
   --color-blue: var(--color-blue);
   --color-teal: var(--color-teal);
   --color-amber: var(--color-amber);

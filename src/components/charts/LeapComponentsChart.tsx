@@ -23,7 +23,7 @@ type Component = {
 const T = {
   en: {
     title: "Where LEAP's money is meant to go",
-    sub: "Component allocations of the initial US$250 million loan (light blue) against the appraised US$1 billion framework (navy).",
+    sub: "Component allocations of the initial US$250 million loan (light blue) against the appraised US$1 billion framework (deep green).",
     caveat:
       "Reconstruction works deliberately received no initial allocation - works need preparation first - so the framework's largest component is entirely unfunded until additional financing arrives. Allocation is not disbursement: by 29 June 2026, 1.65% of the loan had been disbursed.",
     axis: "US$ million",
@@ -34,7 +34,7 @@ const T = {
   },
   ar: {
     title: "إلى أين يُفترض أن يذهب مال LEAP",
-    sub: "توزيع مكوّنات القرض الأولي البالغ 250 مليون دولار (أزرق فاتح) مقابل الإطار المقدَّر بمليار دولار (كحلي).",
+    sub: "توزيع مكوّنات القرض الأولي البالغ 250 مليون دولار (أزرق فاتح) مقابل الإطار المقدَّر بمليار دولار (أخضر داكن).",
     caveat:
       "أشغال إعادة الإعمار لم تُخصَّص لها مبالغ أولية عن قصد - فالأشغال تحتاج تحضيراً أولاً - ولذلك يبقى أكبر مكوّنات الإطار بلا تمويل إلى أن يصل تمويل إضافي. والتخصيص ليس دفعاً: حتى 29 حزيران 2026 كان قد دُفع 1.65% من القرض.",
     axis: "مليون دولار",
@@ -103,7 +103,7 @@ export default function LeapComponentsChart({ locale = "en" }: { locale?: Locale
           name: tr.appraised,
           type: "bar",
           data: cats.map((c) => c.appraisedUsd),
-          itemStyle: { color: "#173B63", borderRadius: 2 },
+          itemStyle: { color: "#143F35", borderRadius: 2 },
           barMaxWidth: 13,
           label: {
             show: true,

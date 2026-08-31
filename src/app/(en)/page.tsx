@@ -46,7 +46,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="on-navy relative overflow-hidden border-b border-[#0e2542] bg-navy bg-[linear-gradient(160deg,#122e50_0%,#173b63_55%,#1c4a7c_100%)]">
+      <section className="on-navy relative overflow-hidden border-b border-[#0b2a22] bg-navy bg-[linear-gradient(160deg,#103329_0%,#143f35_55%,#1a4f41_100%)]">
         {/* The country drawn as its towns: one dot per cadastral shape,
             the Litani in amber. Generated from the site's own boundary
             layer by scripts/build-brand-art.mjs. */}

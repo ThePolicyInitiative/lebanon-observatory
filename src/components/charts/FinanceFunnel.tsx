@@ -50,7 +50,7 @@ export default function FinanceFunnel({ locale = "en" }: { locale?: Locale } = {
   const zeroRows = financeFunnel.filter((f) => f.amountUsd === 0);
 
   const barColor: Record<string, string> = {
-    need: "#173B63",
+    need: "#143F35",
     framework: "#2E74B5",
     approved: UI.teal,
     disbursed: "#D69600",

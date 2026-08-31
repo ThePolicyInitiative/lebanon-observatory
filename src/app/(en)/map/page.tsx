@@ -3,7 +3,6 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { Suspense } from "react";
 import LebanonMap from "@/components/map/LebanonMap";
 import RegionalComposition from "@/components/map/RegionalComposition";
-import { locations } from "@/lib/data-client";
 import { localeAlternates } from "@/lib/i18n";
 import PageShell from "@/components/PageShell";
 
@@ -24,8 +23,6 @@ export const metadata: Metadata = {
  * previous homes, so older deep links still land.
  */
 export default function MapPage() {
-  const mappable = locations.regions.filter((r) => r.mappable).length;
-  const notMappable = locations.regions.length - mappable;
 
   return (
     <PageShell
@@ -36,21 +33,7 @@ export default function MapPage() {
         <h2 id="where-traced" className="sr-only">
           The map
         </h2>
-        {/* The three figures state what the map can and cannot show, which
-            is the first thing a reader needs from it. */}
-        <dl className="mt-3 grid gap-3 sm:grid-cols-3">
-          {[
-            [String(locations.regions.length), "regional groupings in the tracking"],
-            [String(mappable), "of them can be placed on the map"],
-            [String(notMappable), "shown separately - they cannot be located"],
-          ].map(([value, label]) => (
-            <div key={label} className="card">
-              <dt className="figure-number text-h2 font-semibold text-navy">{value}</dt>
-              <dd className="text-meta text-text-secondary">{label}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-5">
+        <div className="mt-3">
           <Suspense fallback={<div className="h-[680px] animate-pulse rounded-md bg-white" />}>
             <LebanonMap />
           </Suspense>

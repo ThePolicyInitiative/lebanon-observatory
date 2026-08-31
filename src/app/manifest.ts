@@ -26,8 +26,8 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     orientation: "any",
     // The page ground and the navy the site's chrome is built on.
-    background_color: "#eaeff4",
-    theme_color: "#173b63",
+    background_color: "#edf0ea",
+    theme_color: "#143f35",
     lang: "en",
     dir: "ltr",
     categories: ["news", "government", "education"],

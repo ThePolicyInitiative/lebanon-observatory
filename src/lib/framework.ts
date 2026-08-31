@@ -472,32 +472,32 @@ export const FINDINGS: Record<Locale, Finding[]> = {
       id: "needs",
       title: "The 2024 war created needs far beyond the government's immediate financial capacity",
       body: [
-        "The World Bank-led assessment after the 2024 war put physical damage at US$6.8 billion, economic losses at US$7.2 billion, and recovery and reconstruction needs at roughly US$11 billion - of which the public sector would need to mobilise about US$3-5 billion and the private sector a further US$6-8 billion.",
-        "Those figures set the scale of the financing challenge and serve as the benchmark for every funding framework, commitment and compensation measure that followed. They do not mean the financing was ever secured or disbursed.",
+        "The World Bank-led assessment after the 2024 war put physical damage at US$6.8 billion, economic losses at US$7.2 billion, and recovery and reconstruction needs at roughly US$11 billion.",
+        "Those figures are the benchmark for every funding framework and compensation measure that followed - and they never meant the money was secured or disbursed.",
       ],
     },
     {
       id: "frameworks",
       title: "Announced financing frameworks were not money in hand",
       body: [
-        "The Lebanon Emergency Assistance Project (LEAP) is tracked separately because its headline value is not money available for reconstruction. It established a potential US$1 billion financing framework, beginning with an initial US$250 million loan - potential capacity, not an amount approved, disbursed or spent.",
-        "The tracking therefore keeps four things apart at every step: the framework's total value, approved financing, actual disbursement, and completed reconstruction.",
+        "LEAP's headline value is not money available for reconstruction: it established a potential US$1 billion financing framework, beginning with an initial US$250 million loan.",
+        "The tracking therefore keeps the framework's total value, approved financing, actual disbursement and completed reconstruction apart at every step.",
       ],
     },
     {
       id: "plan",
       title: "The 2026 plan was a sound framework - the response stayed inadequate",
       body: [
-        "After the 2026 war the government adopted a formal plan that strengthened the institutional design of the response: responsibilities, coordination mechanisms and recovery priorities were defined more clearly than in 2024.",
-        "The improvement did not translate into delivery. Limited financing kept the state from meeting needs on the ground, leaving a clear gap between the quality of the plan and the effectiveness of the response: a stronger frame, a weak result.",
+        "After the 2026 war the government adopted a plan that defined responsibilities, coordination and recovery priorities more clearly than in 2024.",
+        "The improvement did not translate into delivery: limited financing kept the state from meeting needs on the ground - a stronger frame, a weak result.",
       ],
     },
     {
       id: "community",
       title: "Community initiatives carried a larger share of the 2026 response",
       body: [
-        "Households, volunteers, neighbourhood committees, informal relief networks, equipment owners and repair teams took on a wider range of responsibilities after the 2026 war than after 2024 - relief distribution, shelter support, fundraising, rubble clearance, damage reporting and household repairs.",
-        "That expansion shows how quickly affected communities can mobilise. It also reads as a symptom: community initiatives stepped in where government-led compensation, reconstruction and service restoration stayed delayed or insufficient.",
+        "Households, volunteers, neighbourhood committees, informal networks and repair teams carried a wider share of the 2026 response than of 2024's - relief, shelter, fundraising, rubble clearance, damage reporting and repairs.",
+        "That speed shows what communities can mobilise; it also reads as a symptom, stepping in where state-led compensation and reconstruction stayed delayed or insufficient.",
       ],
     },
     {
@@ -505,7 +505,7 @@ export const FINDINGS: Record<Locale, Finding[]> = {
       title: "Both responses stayed concentrated in the early stages of recovery",
       body: [
         "In both periods, most traced activity sits in damage assessment, needs identification, relief, rubble clearance, coordination and planning - the work that prepares recovery rather than delivers it.",
-        "That groundwork did not consistently progress into compensation, contracting, service restoration or completed reconstruction. Lebanon's post-war response remained stronger at assessing, planning and relieving than at financed implementation and finished recovery.",
+        "That groundwork did not consistently progress into compensation, contracting, service restoration or completed reconstruction.",
       ],
     },
   ],
@@ -514,32 +514,32 @@ export const FINDINGS: Record<Locale, Finding[]> = {
       id: "needs",
       title: "حرب 2024 ولّدت احتياجات تتجاوز بكثير القدرة المالية الفورية للحكومة",
       body: [
-        "قدّر التقييم الذي قاده البنك الدولي بعد حرب 2024 الأضرار المادية بـ6.8 مليارات دولار، والخسائر الاقتصادية بـ7.2 مليارات دولار، واحتياجات التعافي وإعادة الإعمار بنحو 11 مليار دولار - يحتاج القطاع العام إلى تعبئة نحو 3 إلى 5 مليارات دولار منها، والقطاع الخاص إلى 6 إلى 8 مليارات إضافية.",
-        "ترسم هذه الأرقام حجم تحدّي التمويل، وهي المرجع الذي تُقاس عليه كل أطر التمويل والالتزامات وإجراءات التعويض اللاحقة. لكنها لا تعني أن التمويل المطلوب أُمِّن يوماً أو دُفع.",
+        "قدّر التقييم الذي قاده البنك الدولي بعد حرب 2024 الأضرار المادية بـ6.8 مليارات دولار، والخسائر الاقتصادية بـ7.2 مليارات دولار، واحتياجات التعافي وإعادة الإعمار بنحو 11 مليار دولار.",
+        "هذه الأرقام هي المرجع لكل أطر التمويل وإجراءات التعويض اللاحقة - ولم تعنِ يوماً أن المال أُمِّن أو دُفع.",
       ],
     },
     {
       id: "frameworks",
       title: "أطر التمويل المعلنة لم تكن مالاً في اليد",
       body: [
-        "يُتتبَّع مشروع المساعدة الطارئة للبنان (LEAP) على حدة لأن قيمته المعلنة ليست مالاً متاحاً لإعادة الإعمار. أنشأ المشروع إطار تمويل محتملاً بمليار دولار، يبدأ بقرض أولي بقيمة 250 مليون دولار - وهي قدرة محتملة، لا مبلغ أُقرّ أو دُفع أو أُنفق.",
-        "لذلك يُبقي التتبّع أربعة أشياء منفصلة في كل خطوة: القيمة الإجمالية للإطار، والتمويل المُقرّ، والدفع الفعلي، وإعادة الإعمار المكتملة.",
+        "القيمة المعلنة لمشروع المساعدة الطارئة للبنان (LEAP) ليست مالاً متاحاً لإعادة الإعمار: فقد أنشأ إطار تمويل محتملاً بمليار دولار يبدأ بقرض أولي بقيمة 250 مليون دولار.",
+        "لذلك يُبقي التتبّع القيمة الإجمالية للإطار والتمويل المُقرّ والدفع الفعلي وإعادة الإعمار المكتملة منفصلةً في كل خطوة.",
       ],
     },
     {
       id: "plan",
       title: "خطة 2026 كانت إطاراً سليماً - لكن الاستجابة بقيت قاصرة",
       body: [
-        "بعد حرب 2026 اعتمدت الحكومة خطة رسمية عزّزت التصميم المؤسسي للاستجابة: حُدّدت المسؤوليات وآليات التنسيق وأولويات التعافي بوضوح يفوق ما كان في 2024.",
-        "غير أن هذا التحسّن لم يُترجم إنجازاً. فقد حال التمويل المحدود دون تلبية الدولة الاحتياجات على الأرض، فانفتحت فجوة واضحة بين جودة الخطة وفاعلية الاستجابة: إطار أقوى، ونتيجة ضعيفة.",
+        "بعد حرب 2026 اعتمدت الحكومة خطة حدّدت المسؤوليات وآليات التنسيق وأولويات التعافي بوضوح يفوق ما كان في 2024.",
+        "غير أن التحسّن لم يُترجم إنجازاً: فقد حال التمويل المحدود دون تلبية الدولة الاحتياجات على الأرض - إطار أقوى، ونتيجة ضعيفة.",
       ],
     },
     {
       id: "community",
       title: "مبادرات المجتمع المحلي حملت حصة أكبر من استجابة 2026",
       body: [
-        "تولّت الأسر والمتطوّعون ولجان الأحياء وشبكات الإغاثة غير الرسمية وأصحاب المعدات وفرق الإصلاح نطاقاً من المسؤوليات بعد حرب 2026 أوسع مما تولّته بعد 2024 - توزيع الإغاثة، ودعم الإيواء، وجمع التبرعات، ورفع الأنقاض، والإبلاغ عن الأضرار، وإصلاحات المنازل.",
-        "يُظهر هذا التوسّع سرعة قدرة المجتمعات المتضررة على التحرّك. لكنه يُقرأ أيضاً عارضاً على خللٍ أعمق: فقد سدّت المبادرات الأهلية مكان التعويضات وإعادة الإعمار واستعادة الخدمات التي تأخّرت بقيادة الحكومة أو جاءت أدنى من الحاجة.",
+        "حملت الأسر والمتطوّعون ولجان الأحياء والشبكات غير الرسمية وفرق الإصلاح حصة من استجابة 2026 أوسع من حصتها في 2024 - إغاثةً ودعم إيواء وجمع تبرعات ورفع أنقاض وإبلاغاً عن الأضرار وإصلاحات منازل.",
+        "تُظهر هذه السرعة ما تستطيع المجتمعات تعبئته؛ لكنها تُقرأ أيضاً عارضاً، إذ سدّت مكان التعويضات وإعادة الإعمار بقيادة الدولة حيث تأخّرتا أو قصّرتا.",
       ],
     },
     {
@@ -547,7 +547,7 @@ export const FINDINGS: Record<Locale, Finding[]> = {
       title: "الاستجابتان بقيتا متركّزتين في المراحل المبكرة من التعافي",
       body: [
         "في الفترتين كلتيهما، يقع معظم النشاط المرصود في تقييم الأضرار وتحديد الاحتياجات والإغاثة ورفع الأنقاض والتنسيق والتخطيط - أي العمل الذي يُعدّ للتعافي لا العمل الذي يُنجزه.",
-        "هذا التمهيد لم يتقدّم باطّراد نحو التعويضات أو التعاقد أو استعادة الخدمات أو إعادة إعمار مكتملة. فبقيت استجابة لبنان لما بعد الحرب أقوى في التقييم والتخطيط والإغاثة منها في التنفيذ المموَّل والتعافي المكتمل.",
+        "هذا التمهيد لم يتقدّم باطّراد نحو التعويضات أو التعاقد أو استعادة الخدمات أو إعادة إعمار مكتملة.",
       ],
     },
   ],

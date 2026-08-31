@@ -412,8 +412,8 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
 
   const rampColor =
     layerFilter === "all"
-      ? "#173B63"
-      : (LAYER_META.find((l) => l.id === layerFilter)?.color ?? "#173B63");
+      ? "#143F35"
+      : (LAYER_META.find((l) => l.id === layerFilter)?.color ?? "#143F35");
 
   /**
    * The one way a popup is opened on this map.
@@ -700,7 +700,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
               "text-allow-overlap": true,
               "text-ignore-placement": true,
             },
-            paint: { "text-color": "#173B63" },
+            paint: { "text-color": "#143F35" },
           });
 
           map.on("click", "gov-fill", (e: MapLayerMouseEvent) => {
@@ -987,7 +987,7 @@ export default function LebanonMap({ locale = "en" }: { locale?: Locale } = {}) 
                 `${pin.kind === "episode" ? t.tracedEpisode : t.tracedEntry} · ${esc(pin.townName)}` +
                 `${pin.district ? ` · ${esc(pin.district)}` : ""} · ${year}</span>` +
                 `<br/><strong>${esc(pin.title)}</strong>` +
-                `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : chipBackground(layerColor(pin.layer))};color:${pin.kind === "episode" ? "#173B63" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
+                `<br/><span style="display:inline-block;margin-top:3px;padding:1px 5px;border-radius:2px;background:${pin.kind === "episode" ? "#EEF2F7" : chipBackground(layerColor(pin.layer))};color:${pin.kind === "episode" ? "#143F35" : "#FFFFFF"};font-size:10px;font-weight:600">${esc(pin.layerLabel)}</span>` +
                 `${pin.date ? ` <span style="font-size:10.5px;color:${CHART.label}">${esc(fmtDate(pin.date, locale))}</span>` : ""}` +
                 (pin.kind === "entry"
                   ? `<br/><span style="font-size:11px;color:${CHART.label}">${esc(pin.detail)}</span>`

@@ -64,7 +64,7 @@ function contrast(a: string, b: string): number {
 describe("the palette's two copies", () => {
   it("gives every JavaScript colour the same value as the token it mirrors", () => {
     const pairs: [string, string, string][] = [
-      ["LAYER_COLORS.official", LAYER_COLORS.official, "color-navy"],
+      ["LAYER_COLORS.official", LAYER_COLORS.official, "color-official"],
       ["LAYER_COLORS.ngo_international", LAYER_COLORS.ngo_international, "color-teal"],
       ["LAYER_COLORS.municipal", LAYER_COLORS.municipal, "color-amber"],
       ["LAYER_COLORS.community", LAYER_COLORS.community, "color-magenta"],

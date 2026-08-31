@@ -23,7 +23,7 @@ type Tone =
   | "alert";
 
 const TONE_BOX: Record<Tone, string> = {
-  command: "bg-[#173B63] text-white border-transparent",
+  command: "bg-[#143F35] text-white border-transparent",
   state: "bg-[#2E74B5] text-white border-transparent",
   stateLight: "bg-white text-text border-[#9FB4CB]",
   delivery: "bg-[#F1F4F8] text-text border-[#C6D2DF]",
@@ -509,7 +509,7 @@ const MISSING_2024: BoxSpec = {
 };
 
 function Map2024({ locale }: { locale: Locale }) {
-  const NAVY = "#173B63";
+  const NAVY = "#143F35";
   return (
     <figure className="card">
       <figcaption className="border-b-2 border-navy pb-3">

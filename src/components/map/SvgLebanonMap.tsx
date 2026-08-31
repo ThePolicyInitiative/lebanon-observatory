@@ -1584,7 +1584,7 @@ export default function SvgLebanonMap({
           d={t.d}
           fill={fill}
           fillOpacity={opacity}
-          stroke={isSel ? "#173B63" : view === "entries" ? "#AEBBCA" : "#FFFFFF"}
+          stroke={isSel ? "#143F35" : view === "entries" ? "#AEBBCA" : "#FFFFFF"}
           strokeWidth={isSel ? 1.8 : view === "entries" ? 0.4 : 0.3}
           strokeOpacity={isSel ? 1 : affected ? 0.8 : 0.45}
           vectorEffect="non-scaling-stroke"
@@ -2265,9 +2265,9 @@ export default function SvgLebanonMap({
                     y={vb.y}
                     width={vb.w}
                     height={vb.h}
-                    fill="#173B63"
+                    fill="#143F35"
                     fillOpacity={0.15}
-                    stroke="#173B63"
+                    stroke="#143F35"
                     strokeWidth={10}
                   />
                 </svg>

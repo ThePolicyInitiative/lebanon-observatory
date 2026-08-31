@@ -77,7 +77,7 @@ export default function SiteNav() {
       : "/ar";
 
   return (
-    <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0e2542] bg-navy/[0.97] backdrop-blur-sm">
+    <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0b2a22] bg-navy/[0.97] backdrop-blur-sm">
       {/* py-1.5, not py-2.5: the header is 44px of pointer target plus its
           padding plus a border, so the only way to tighten it without
           shrinking the target is to take the 8px off the padding. That is

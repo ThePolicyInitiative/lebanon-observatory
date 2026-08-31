@@ -118,28 +118,27 @@ writeFileSync(
 /* ---- the mark: true silhouette, shared paths ------------------------- */
 
 /*
- * ADM1 rings into the same frame. Lightly thinned only - neighbouring
- * governorates share border vertices, and sampling them independently
- * opens sliver cracks across the silhouette; the white stroke below
- * seals what thinning still opens.
+ * ADM1 rings into the same frame, at full resolution. Any thinning here
+ * draws visible hairlines across the silhouette: neighbouring
+ * governorates share their border vertices exactly, and sampling each
+ * ring independently misaligns the shared edge so the seam shows. Full
+ * rings coincide, and the stroke on the fill closes the antialiasing.
  */
 const silhouettePaths = adm1.features.map((f) =>
   rings(f.geometry)
-    .map((ring) => {
-      const pts = ring.filter((_, i) => i % 2 === 0);
-      return (
-        pts.map(([lon, lat], i) => `${i ? "L" : "M"}${r1(px(lon))} ${r1(py(lat))}`).join("") + "Z"
-      );
-    })
+    .map(
+      (ring) =>
+        ring.map(([lon, lat], i) => `${i ? "L" : "M"}${r1(px(lon))} ${r1(py(lat))}`).join("") + "Z",
+    )
     .join(""),
 );
 
-/* The river, coarsened harder: at 16px it is one amber glint. */
-const litaniMark = litani.segments
-  .flat()
-  .filter((_, i) => i % 14 === 0)
-  .map(([lon, lat], i) => `${i ? "L" : "M"}${r1(px(lon))} ${r1(py(lat))}`)
-  .join("");
+/*
+ * The river at full resolution, one M per real segment. Thinning it drew
+ * a forked ghost at the bend, and flattening the segments first joined
+ * unrelated reaches with stray straight lines.
+ */
+const litaniMark = litaniPath;
 
 writeFileSync(
   join(ROOT, "src/components/brand-paths.ts"),
@@ -167,10 +166,17 @@ function markSvg(size) {
   const ty = (tile - VIEW_H * s) / 2;
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${tile} ${tile}"${size ? ` width="${size}" height="${size}"` : ""}>` +
-    `<rect width="${tile}" height="${tile}" rx="200" fill="#102a48"/>` +
+    `<rect width="${tile}" height="${tile}" rx="200" fill="#0e2f27"/>` +
     `<g transform="translate(${r1(tx)} ${r1(ty)}) scale(${s.toFixed(4)})">` +
-    `<g fill="#ffffff" fill-opacity="0.93" stroke="#ffffff" stroke-opacity="0.93" stroke-width="7" stroke-linejoin="round">${silhouettePaths.map((d) => `<path d="${d}"/>`).join("")}</g>` +
-    `<path d="${litaniMark}" fill="none" stroke="${AMBER}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>` +
+    /*
+     * Full-opacity paint with the translucency applied once at group
+     * level, and a fat under-stroke: the ADM1 layers were simplified
+     * shape by shape upstream, so neighbouring borders do not quite
+     * coincide and any per-shape transparency lets the sliver gaps
+     * read as hairlines across the silhouette.
+     */
+    `<g opacity="0.95"><g fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round">${silhouettePaths.map((d) => `<path d="${d}"/>`).join("")}</g>` +
+    `<path d="${litaniMark}" fill="none" stroke="${AMBER}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></g>` +
     `</g></svg>`
   );
 }
@@ -197,7 +203,7 @@ function ogHtml({ lang, dir, title, tagline, years }) {
 <style>
   * { margin: 0; box-sizing: border-box; }
   body { width: 1200px; height: 630px; overflow: hidden; position: relative;
-         background: linear-gradient(160deg, #122e50 0%, #173b63 55%, #1c4a7c 100%);
+         background: linear-gradient(160deg, #103329 0%, #143f35 55%, #1a4f41 100%);
          font-family: ${dir === "rtl" ? "'IBM Plex Sans Arabic'," : ""} Inter, 'Segoe UI', sans-serif;
          display: flex; align-items: center; }
   .art { position: absolute; top: 50%; transform: translateY(-50%); height: 118%;
