@@ -1345,11 +1345,12 @@
       "kind": "Community / interfaith",
       "southOfLitani": false,
       "openedDirectly": true,
-      "caution": "Video reporting; the names of the volunteers and how the effort is organized are not detailed on the page.",
+      "caution": "Video reporting; the names of the volunteers and how the effort is organized are not detailed on the page. Zawtar al-Gharbiyeh sits just north of the Litani, so it falls outside this work's area, but it is one of the three pilot zones and the clearest instance of volunteer rebuilding of a standing structure.",
       "detail": "",
       "actionAr": "يعيد متطوعون من البلدة والجوار، مسلمون ومسيحيون معا، بناء دير كاثوليكي دُمّر خلال العمليات العسكرية الإسرائيلية في زوطر الغربية، وهي من المناطق التجريبية المقترحة، مع عودة الأهالي بعد انسحاب القوات الإسرائيلية. وبثت الجزيرة الإنجليزية تقريرا مصوّرا عن الأعمال في 2 آب 2026.",
       "placeAr": "زوطر الغربية، قضاء النبطية",
-      "actorAr": "متطوعون محليون من مختلف الطوائف في زوطر الغربية"
+      "actorAr": "متطوعون محليون من مختلف الطوائف في زوطر الغربية",
+      "cautionAr": "تغطية بالفيديو، ولا تفصّل الصفحة أسماء المتطوعين ولا طريقة تنظيم الجهد. زوطر الغربية تقع شمال الليطاني مباشرة، فهي خارج نطاق هذا العمل، لكنها إحدى المناطق النموذجية الثلاث وأوضح حالة لإعادة بناء تطوّعية لمنشأ قائم."
     },
     {
       "dateReported": "2026-07-29",
@@ -1655,25 +1656,6 @@
       "actionAr": "بدأت الوزارة بناء معبر بديل إلى جانب جسر قعقعية الجسر المدمَّر لإعادة العبور ريثما يُعاد بناء الجسر نفسه - معبر التفافي، لا إعادة البناء صراحةً.",
       "placeAr": "جسر قعقعية الجسر، منطقة النبطية",
       "actorAr": "وزارة الأشغال العامة والنقل"
-    },
-    {
-      "dateReported": "2026-08-04",
-      "actor": "Council of the South",
-      "layer": "official",
-      "action": "Teams reported completing damage assessment, beginning rubble clearance and installing temporary structures, while delivering humanitarian aid and preparing for residents' return in southern villages.",
-      "place": "South Lebanon border villages",
-      "sourceName": "Meir Amit ITIC (Israeli research institute; attribute accordingly)",
-      "sourceUrl": "https://www.terrorism-info.org.il/en/spotlight-on-terrorism-hezbollah-and-lebanon-july-27-august-4-2026/",
-      "sourceKind": "press",
-      "dateText": null,
-      "kind": "Reported earlier",
-      "southOfLitani": false,
-      "openedDirectly": true,
-      "caution": "",
-      "detail": "",
-      "actionAr": "أفادت الفرق بإنجاز تقييم الأضرار، والبدء برفع الأنقاض وتركيب منشآت مؤقتة، مع إيصال مساعدات إنسانية والتحضير لعودة الأهالي في القرى الجنوبية.",
-      "placeAr": "القرى الحدودية في جنوب لبنان",
-      "actorAr": "مجلس الجنوب"
     },
     {
       "dateReported": "2026-08-04",
@@ -2308,26 +2290,6 @@
       "cautionAr": "تنظيف تطوّعي لفضاء عام، لا ترميم أبنية. والجمعيات موصوفة بنوعها لا بأسمائها.",
       "placeAr": "صور",
       "actorAr": "متطوعو صور: جمعيات مدنية وكشفية وتربوية وصحية"
-    },
-    {
-      "dateReported": "2026-08-02",
-      "dateText": null,
-      "actor": "Interfaith volunteers of Zawtar al-Gharbiyeh",
-      "layer": "community",
-      "kind": "Community / interfaith",
-      "sourceKind": "press",
-      "action": "Volunteers from different faiths worked together to rebuild a destroyed Catholic monastery in a predominantly Shia Muslim village, as residents returned to ruins after the Israeli withdrawal from the pilot zone.",
-      "place": "Zawtar al-Gharbiyeh (El Nabatieh)",
-      "southOfLitani": false,
-      "openedDirectly": false,
-      "caution": "Zawtar al-Gharbiyeh sits just north of the Litani, so it falls outside this work's area, but it is one of the three pilot zones and the clearest instance of volunteer rebuilding of a standing structure.",
-      "sourceName": "Al Jazeera",
-      "sourceUrl": "https://www.aljazeera.com/video/newsfeed/2026/8/2/local-volunteers-help-rebuild-destroyed-christian-monastery-in-lebanon",
-      "detail": "",
-      "actionAr": "متطوعون من أديان مختلفة عملوا معاً على إعادة بناء دير كاثوليكي مدمَّر في بلدة ذات أكثرية شيعية، مع عودة الأهالي إلى الركام بعد الانسحاب الإسرائيلي من المنطقة النموذجية.",
-      "cautionAr": "زوطر الغربية تقع شمال الليطاني مباشرة، فهي خارج نطاق هذا العمل، لكنها إحدى المناطق النموذجية الثلاث وأوضح حالة لإعادة بناء تطوّعية لمنشأ قائم.",
-      "placeAr": "زوطر الغربية (النبطية)",
-      "actorAr": "متطوعون من أديان مختلفة في زوطر الغربية"
     },
     {
       "dateReported": null,
