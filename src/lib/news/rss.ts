@@ -103,7 +103,7 @@ export const RSS_FEEDS: FeedSpec[] = [
   },
   {
     name: "reliefweb-rss",
-    url: "https://reliefweb.int/updates/rss.xml?advanced-search=%28PC141%29",
+    url: "https://reliefweb.int/updates/rss.xml?advanced-search=%28PC137%29",
     language: null,
     fixed: { sourceName: "ReliefWeb", sourceDomain: "reliefweb.int" },
   },
