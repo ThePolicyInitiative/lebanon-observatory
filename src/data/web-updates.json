@@ -726,9 +726,9 @@
     },
     {
       "dateReported": "2026-07-31",
-      "actor": "Prime Minister Nawaf Salam, with the Ministry of Social Affairs, the Council of the South and the High Relief Commission",
+      "actor": "Prime Minister Nawaf Salam, with the Ministry of Social Affairs, the Council of the South and the Higher Relief Commission",
       "layer": "official",
-      "action": "At a 31 July meeting launching the first phase of the return and recovery plan for pilot villages, Salam directed faster purchase of prefabricated housing units by the Council of the South and the High Relief Commission, cash support through the Ministry of Social Affairs to cover rental allowances for returnees, and rebuilding of the bridge between Qaqaiyet al-Jisr and Froun. These are instructions to act, not payments already made.",
+      "action": "At a 31 July meeting launching the first phase of the return and recovery plan for pilot villages, Salam directed faster purchase of prefabricated housing units by the Council of the South and the Higher Relief Commission, cash support through the Ministry of Social Affairs to cover rental allowances for returnees, and rebuilding of the bridge between Qaqaiyet al-Jisr and Froun. These are instructions to act, not payments already made.",
       "place": "Pilot villages in south Lebanon, including the Qaqaiyet al-Jisr and Froun area",
       "sourceName": "Beirut 24",
       "sourceUrl": "https://www.beirut24.org/2026/07/31/%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%88%D9%8A%D9%91%D8%A9-%D9%84%D8%B1%D9%81%D8%B9-%D8%A7%D9%84%D8%A3%D9%86%D9%82%D8%A7%D8%B6-%D9%88%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A7%D9%84/",
@@ -1032,7 +1032,7 @@
       "dateReported": "2025-12-12",
       "actor": "Parliamentary Finance and Budget Committee",
       "layer": "official",
-      "action": "In December 2025 the committee approved moving US$90 million from the 2026 budget reserve - US$67 million to the Council of the South and US$24 million to the High Relief Commission - for shelter and rebuilding needs. Approval of credits inside the budget is not the same as money reaching affected households, and later reporting says payments had still not begun.",
+      "action": "In December 2025 the committee approved moving US$90 million from the 2026 budget reserve - US$67 million to the Council of the South and US$24 million to the Higher Relief Commission - for shelter and rebuilding needs. Approval of credits inside the budget is not the same as money reaching affected households, and later reporting says payments had still not begun.",
       "place": "Beirut (parliament); allocations aimed at south Lebanon and other damaged areas",
       "sourceName": "Asharq Al-Awsat (Arabic)",
       "sourceUrl": "https://aawsat.com/%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A/%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A/5218755-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9-%D8%A7%D9%84%D9%84%D8%A8%D9%86%D8%A7%D9%86%D9%8A%D8%A9-%D8%AA%D9%86%D8%AE%D8%B1%D8%B7-%D8%B1%D8%B3%D9%85%D9%8A%D8%A7%D9%8B-%D9%81%D9%8A-%D8%B9%D9%85%D9%84%D9%8A%D8%A9-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D8%A5%D8%B9%D9%85%D8%A7%D8%B1-%D8%A8%D8%AA%D9%85%D9%88%D9%8A%D9%84",
@@ -1118,10 +1118,11 @@
       "southOfLitani": false,
       "openedDirectly": true,
       "caution": "Amounts are allocations and targets as reported; the piece does not state what has actually been disbursed to date.",
-      "detail": "",
+      "detail": "The same report also details the schools and farming picture: of 267 schools in the two governorates, 198 are damaged and 30 of them destroyed, with the ministry planning a 15 September start that leans on host schools and remote learning until safety and readiness checks finish; the Ministry of Agriculture's response runs on five tracks, from emergency support for farmers to protecting livestock, markets and supply chains.",
       "actionAr": "أطلقت الحكومة الإطار الوطني للعودة والتعافي المبكر واستعادة الخدمات الأساسية في الجنوب، فيما تشير التقارير إلى أن إطار مشروع المساعدة الطارئة للبنان لم يؤمَّن له سوى 250 مليون دولار من هدف يبلغ مليار دولار. وحشدت وزارة الزراعة 1.65 مليون دولار كمساعدات مباشرة لـ4,840 مزارعاً، وتصل المساعدات النقدية إلى نحو 230 ألف أسرة - وهي مخصصات معلنة وليست إعماراً منجزاً.",
       "placeAr": "محافظتا الجنوب والنبطية، لبنان",
-      "actorAr": "الحكومة اللبنانية (مجلس الوزراء والوزارات المعنية)"
+      "actorAr": "الحكومة اللبنانية (مجلس الوزراء والوزارات المعنية)",
+      "detailAr": "ويفصّل التقرير نفسه صورة المدارس والزراعة: من أصل 267 مدرسة في المحافظتين، 198 متضررة بينها 30 مدمّرة بالكامل، مع خطة الوزارة لبدء العام الدراسي في 15 أيلول بالاستناد إلى مدارس مضيفة والتعلّم عن بُعد حتى استكمال فحوص السلامة والجهوزية؛ فيما تقوم استجابة وزارة الزراعة على خمسة مسارات، من الدعم الطارئ للمزارعين إلى حماية الثروة الحيوانية والأسواق وسلاسل الإمداد."
     },
     {
       "dateReported": "2026-08-21",
@@ -1144,9 +1145,9 @@
     },
     {
       "dateReported": "2026-08-20",
-      "actor": "Prime Minister Nawaf Salam with the Council of the South, the Higher Relief Committee and the Ministry of Social Affairs",
+      "actor": "Prime Minister Nawaf Salam with the Council of the South, the Higher Relief Commission and the Ministry of Social Affairs",
       "layer": "official",
-      "action": "At a 20 August 2026 meeting on return and recovery in southern villages, PM Salam directed the Council of the South to start repairing partially damaged homes in Froun, Qalawiyah, Srifa, Burj Qalawiyah, Zawtar and Ghandouriyeh, asked for faster purchase of prefabricated housing units through the Council of the South and the Higher Relief Committee, and requested cash rent support for returnees in coordination with the Ministry of Social Affairs.",
+      "action": "At a 20 August 2026 meeting following up on the 31 July launch of the return and recovery plan, PM Salam directed the Council of the South to start repairing partially damaged homes in Froun, Qalawiyah, Srifa, Burj Qalawiyah, Zawtar and Ghandouriyeh, and renewed the launch meeting's directives on prefabricated housing purchases through the Council of the South and the Higher Relief Commission and on cash rent support for returnees with the Ministry of Social Affairs.",
       "place": "Beirut - concerning six villages in the south Litani area",
       "sourceName": "Sawt Lubnan al-Ightirabi news report, 20 August 2026",
       "sourceUrl": "https://www.sla-news.com/305424",
@@ -1157,7 +1158,7 @@
       "openedDirectly": true,
       "caution": "These are directives to begin repairs and purchases, not completed works or delivered payments; no amounts or timelines were stated.",
       "detail": "",
-      "actionAr": "في اجتماع عُقد في 20 آب 2026 لمتابعة العودة والتعافي في قرى جنوبية، وجّه الرئيس سلام مجلس الجنوب إلى البدء بترميم المنازل المتضررة جزئياً في فرون والقلاوية وصريفا وبرج قلاوية وزوطر والغندورية، وطلب تسريع شراء وحدات سكنية جاهزة عبر مجلس الجنوب والهيئة العليا للإغاثة، وتأمين دعم نقدي لبدلات إيجار للعائدين بالتنسيق مع وزارة الشؤون الاجتماعية.",
+      "actionAr": "في اجتماع عُقد في 20 آب 2026 متابعةً لإطلاق خطة العودة والتعافي في 31 تموز، وجّه الرئيس سلام مجلس الجنوب إلى البدء بترميم المنازل المتضررة جزئياً في فرون والقلاوية وصريفا وبرج قلاوية وزوطر والغندورية، وجدّد توجيهات اجتماع الإطلاق بشأن شراء الوحدات السكنية الجاهزة عبر مجلس الجنوب والهيئة العليا للإغاثة وبشأن الدعم النقدي لبدلات الإيجار للعائدين بالتنسيق مع وزارة الشؤون الاجتماعية.",
       "placeAr": "بيروت - بشأن ست قرى في منطقة جنوب الليطاني",
       "actorAr": "رئيس مجلس الوزراء نواف سلام مع مجلس الجنوب والهيئة العليا للإغاثة ووزارة الشؤون الاجتماعية"
     },
@@ -1315,9 +1316,9 @@
     },
     {
       "dateReported": "2026-08-06",
-      "actor": "Prime Minister Nawaf Salam with the Council of the South and the Higher Relief Committee",
+      "actor": "Prime Minister Nawaf Salam with the Council of the South and the Higher Relief Commission",
       "layer": "official",
-      "action": "At a follow-up meeting on 6 August 2026 with Council of the South president Hashem Haidar and Higher Relief Committee secretary general Bassam Nabulsi, PM Salam reviewed damage surveying work in southern areas and pressed for faster completion of a temporary crossing at Qaqaiat al-Jisr to reconnect the Nabatieh and Bint Jbeil districts and restore movement between them.",
+      "action": "At a follow-up meeting on 6 August 2026 with Council of the South president Hashem Haidar and Higher Relief Commission secretary general Bassam Nabulsi, PM Salam reviewed damage surveying work in southern areas and pressed for faster completion of a temporary crossing at Qaqaiat al-Jisr to reconnect the Nabatieh and Bint Jbeil districts and restore movement between them.",
       "place": "Beirut - concerning Qaqaiat al-Jisr on the Litani river",
       "sourceName": "Al Jadeed news report, 6 August 2026",
       "sourceUrl": "https://www.aljadeed.tv/news/%D9%85%D8%AD%D9%84%D9%8A%D8%A7%D8%AA/584691/%D8%B3%D9%84%D8%A7%D9%85-%D9%8A%D9%88%D8%A7%D9%83%D8%A8-%D8%AE%D8%B7%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%81%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8",
@@ -1786,9 +1787,9 @@
       "southOfLitani": false,
       "openedDirectly": true,
       "caution": "",
-      "detail": "The instruction covers rubble removal, reopening roads, rebuilding infrastructure and restoring essential services, framed as the first phase of recovery in the south. It is an instruction to accelerate, not a financing decision: nothing in it attaches money or a contract to any of the four, and the pages on this site tracking disbursement and procurement show what had actually moved.",
+      "detail": "The instruction covers rubble removal, reopening roads, rebuilding infrastructure and restoring essential services, framed as the first phase of recovery in the south. It is an instruction to accelerate, not a financing decision: nothing in it attaches money or a contract to any of the four, and the pages on this site tracking disbursement and procurement show what had actually moved. The UN piece around it describes a 'UN Debris Taskforce' coordinating a sustainable, rights-based approach to the rubble, and the risks that returning families walk into before clearance, from unexploded ordnance to contaminants.",
       "actionAr": "أوعز رئيس مجلس الوزراء إلى الجهات المعنية بتسريع رفع الأنقاض وفتح الطرق وإعادة بناء البنى التحتية واستعادة الخدمات الأساسية، بوصفها المرحلة الأولى من التعافي في جنوب لبنان.",
-      "detailAr": "التوجيه يشمل رفع الأنقاض وفتح الطرق وإعادة بناء البنى التحتية واستعادة الخدمات الأساسية، مؤطَّرة بوصفها المرحلة الأولى من التعافي في الجنوب. وهو توجيه بالتسريع لا قرار تمويل: لا شيء فيه يربط مالاً أو عقداً بأي من الأربعة، وصفحات هذا الموقع التي تتتبّع الدفع والشراء تُظهر ما تحرّك فعلاً.",
+      "detailAr": "التوجيه يشمل رفع الأنقاض وفتح الطرق وإعادة بناء البنى التحتية واستعادة الخدمات الأساسية، مؤطَّرة بوصفها المرحلة الأولى من التعافي في الجنوب. وهو توجيه بالتسريع لا قرار تمويل: لا شيء فيه يربط مالاً أو عقداً بأي من الأربعة، وصفحات هذا الموقع التي تتتبّع الدفع والشراء تُظهر ما تحرّك فعلاً. ويصف منشور الأمم المتحدة نفسه 'فريق عمل أممياً للأنقاض' ينسّق مقاربة مستدامة قائمة على الحقوق للتعامل مع الركام، والمخاطر التي تواجه العائلات العائدة قبل الإزالة، من ذخائر غير منفجرة وملوّثات.",
       "placeAr": "جنوب لبنان",
       "actorAr": "رئاسة مجلس الوزراء (نواف سلام)"
     },
@@ -2371,12 +2372,13 @@
       "caution": "The AFD's 75 million euros is not currently carried by the site's finance figures - worth confirming and adding. The two-thirds funding gap is the reason most of this area shows no activity.",
       "sourceName": "Search compilation via reporting on the CDR programme",
       "sourceUrl": "https://www.newarab.com/features/lebanons-pilot-zones-expose-divisions-over-rebuilding-south",
-      "detail": "",
+      "detail": "The New Arab feature carrying these figures reports the strain inside the first phase: Froun's mayor counts 80 per cent of homes damaged or destroyed, with 120 of the village's 364 families back and living in shelters and tents, while residents of Froun and Srifa say ground forces never entered their villages and ask why equally devastated communities sit outside the first phase.",
       "actionAr": "صُمّم برنامج البنى التحتية لدى مجلس الإنماء والإعمار للمناطق المتضررة بنحو مليار دولار. منه 250 مليون دولار من البنك الدولي و75 مليون يورو من الوكالة الفرنسية للتنمية مؤمَّنة، فيبقى نحو الثلثين بلا تمويل.",
       "cautionAr": "الـ75 مليون يورو من الوكالة الفرنسية لا تحملها أرقام التمويل في الموقع حالياً - وتستحق التثبّت والإضافة. وفجوة الثلثين هي سبب خلوّ معظم هذه المنطقة من أي نشاط.",
       "placeAr": "وطني، المناطق المتضررة",
       "dateTextAr": "2026",
-      "actorAr": "الوكالة الفرنسية للتنمية مع مجلس الإنماء والإعمار"
+      "actorAr": "الوكالة الفرنسية للتنمية مع مجلس الإنماء والإعمار",
+      "detailAr": "وتنقل تغطية ذا نيو أراب التي تحمل هذه الأرقام الضغط داخل المرحلة الأولى: رئيس بلدية فرون يحصي 80 بالمئة من المنازل بين متضررة ومدمّرة، مع عودة 120 عائلة من أصل 364 تقيم في مراكز إيواء وخيم، فيما يقول أهالي فرون وصريفا إن القوات البرية لم تدخل قريتيهما ويتساءلون لماذا بقيت قرى منكوبة بالقدر نفسه خارج المرحلة الأولى."
     },
     {
       "dateReported": null,

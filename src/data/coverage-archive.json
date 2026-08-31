@@ -898,8 +898,8 @@
       "publisher": "UN-Habitat",
       "title": "Lebanon - Building destruction and debris quantities assessment",
       "date": null,
-      "focus": "Satellite imagery, destroyed buildings, debris quantities, South and Nabatiyeh",
-      "focusAr": "صور الأقمار الاصطناعية، أبنية مدمَّرة، كميات الركام، الجنوب والنبطية",
+      "focus": "The countrywide round of UN-Habitat's satellite assessment: destroyed buildings and debris quantities across the South and Nabatiyeh",
+      "focusAr": "الجولة الوطنية من تقييم موئل الأمم المتحدة عبر الأقمار الاصطناعية: أبنية مدمَّرة وكميات الركام في الجنوب والنبطية",
       "url": "https://unhabitat.org/lebanon-building-destruction-and-debris-quantities-assessment"
     },
     {
@@ -925,18 +925,6 @@
       "focus": "Municipal damage, displacement, infrastructure, businesses, initial recovery needs",
       "focusAr": "أضرار بلدية، النزوح، البنى التحتية، الأعمال، احتياجات التعافي الأولية",
       "url": "https://www.undp.org/arab-states/publications/crisis-recovery-local-authorities-confronting-post-war-realities-lebanon-rapid-impact-assessment"
-    },
-    {
-      "id": "c78",
-      "year": 2025,
-      "kind": "research",
-      "language": "en",
-      "publisher": "UN Sustainable Development Group",
-      "title": "Rebuilding Hope: Lebanon's Journey toward Sustainable Recovery through Debris Management",
-      "date": "2025-04-30",
-      "focus": "Debris taskforce, rubble hazards, recycling/reuse, sustainable recovery",
-      "focusAr": "فريق عمل الركام، مخاطر الأنقاض، إعادة التدوير والاستعمال، تعافٍ مستدام",
-      "url": "https://lebanon.un.org/en/293523-rebuilding-hope-lebanon%E2%80%99s-journey-toward-sustainable-recovery-through-debris-management"
     },
     {
       "id": "c80",
@@ -1126,7 +1114,7 @@
       "publisher": "L'Orient Today",
       "title": "Finance committee allocates more funds for reconstruction, Fadlallah says",
       "date": "2025-12-10",
-      "focus": "2026 budget, reconstruction credits, CDR, Council for the South, High Relief Commission",
+      "focus": "2026 budget, reconstruction credits, CDR, Council for the South, Higher Relief Commission",
       "focusAr": "موازنة 2026، اعتمادات إعادة الإعمار، مجلس الإنماء والإعمار، مجلس الجنوب، الهيئة العليا للإغاثة",
       "url": "https://today.lorientlejour.com/article/1487988/finance-committee-allocates-more-funds-for-reconstruction-fadlallah-says.html"
     },
@@ -3003,18 +2991,6 @@
       "url": "https://www.aljazeera.com/video/newsfeed/2026/7/4/nabatieh-recovery-begins-amid-ongoing-southern-lebanon-tensions"
     },
     {
-      "id": "c262",
-      "year": 2026,
-      "kind": "news",
-      "language": "en",
-      "publisher": "Asharq Al-Awsat",
-      "title": "State Return to South Lebanon Extends Beyond Security to Services, Recovery",
-      "date": "2026-08-22",
-      "focus": "The state to the south in August: CDR on LEAP with 250 million dollars secured against a 750 million gap, MoSA cash for about 230,000 families, Agriculture five-track plan, Education on 198 of 267 damaged schools",
-      "focusAr": "الدولة إلى الجنوب في آب: مجلس الإنماء والإعمار على مشروع LEAP بـ250 مليون دولار مؤمّنة مقابل فجوة 750 مليوناً، ومساعدات وزارة الشؤون الاجتماعية النقدية لنحو 230 ألف عائلة، وخطة وزارة الزراعة بخمسة مسارات، ووزارة التربية أمام 198 مدرسة متضررة من أصل 267",
-      "url": "https://english.aawsat.com/arab-world/5309705-state-return-south-lebanon-extends-beyond-security-services-recovery"
-    },
-    {
       "id": "c263",
       "year": 2026,
       "kind": "assessment",
@@ -3058,8 +3034,8 @@
       "publisher": "UN-Habitat",
       "title": "Lebanon - Building destruction and debris quantities assessment - Bekaa Governorate",
       "date": null,
-      "focus": "building destruction, debris quantities, satellite analysis, Bekaa",
-      "focusAr": "تدمير المباني، كميات الأنقاض، التحليل الفضائي، البقاع",
+      "focus": "The companion Bekaa Governorate round of the same satellite series, separate from the countrywide one: building destruction and debris quantities for the Bekaa",
+      "focusAr": "جولة محافظة البقاع المرافقة ضمن السلسلة الفضائية نفسها، وهي غير الجولة الوطنية: تدمير المباني وكميات الأنقاض في البقاع",
       "url": "https://unhabitat.org/lebanon-building-destruction-and-debris-quantities-assessment-bekaa-governorate"
     },
     {
@@ -3178,7 +3154,7 @@
       "publisher": "Manateq",
       "title": "بالأرقام: تفاصيل التعويضات التي حدّدتها الدولة عن أضرار الحرب",
       "date": "2026-02-12",
-      "focus": "compensation scales, payment mechanics, Council of the South, High Relief Commission",
+      "focus": "compensation scales, payment mechanics, Council of the South, Higher Relief Commission",
       "focusAr": "سلّم التعويضات، آليات الدفع، مجلس الجنوب، الهيئة العليا للإغاثة",
       "url": "https://manateq.net/%D8%A8%D8%A7%D9%84%D8%A3%D8%B1%D9%82%D8%A7%D9%85-%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84-%D8%A7%D9%84%D8%AA%D8%B9%D9%88%D9%8A%D8%B6%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%8A-%D8%AD%D8%AF%D9%91%D8%AF%D8%AA/"
     },
@@ -3313,30 +3289,6 @@
       "focus": "The pilot-zones process as a test of rebuilding state authority in the south, and what the second Rome round should aim to produce.",
       "focusAr": "مسار المناطق التجريبية بوصفه اختباراً لاستعادة سلطة الدولة في الجنوب، وما ينبغي أن تسعى جولة روما الثانية إلى إنتاجه.",
       "url": "https://www.csis.org/analysis/beyond-rome-talks-pilot-zones-hezbollah-and-rebuilding-state-authority-south-lebanon"
-    },
-    {
-      "id": "c288",
-      "year": 2026,
-      "kind": "news",
-      "language": "en",
-      "publisher": "Asharq Al-Awsat English",
-      "title": "Hezbollah Cash Crunch Stalls Lebanon War Compensation",
-      "date": "2026-07-26",
-      "focus": "Stalled war compensation: Hezbollah's cash squeeze and a state without funds, with survey work advancing ahead of any payments.",
-      "focusAr": "تعثر تعويضات الحرب: ضائقة مالية لدى حزب الله ودولة بلا أموال، فيما تتقدم أعمال المسح قبل أي مدفوعات.",
-      "url": "https://english.aawsat.com/arab-world/5300088-hezbollah-cash-crunch-stalls-lebanon-war-compensation"
-    },
-    {
-      "id": "c289",
-      "year": 2026,
-      "kind": "news",
-      "language": "en",
-      "publisher": "The New Arab",
-      "title": "Lebanon's 'pilot zones' leave war-ravaged southern villages asking who gets rebuilt first",
-      "date": "2026-07-21",
-      "focus": "The pilot-zone rollout in Froun, Srifa and Zawtar al-Gharbiyeh and the municipalities left outside it, with funding gaps at every level of the rebuilding effort",
-      "focusAr": "إطلاق المناطق التجريبية في فرون وصريفا وزوطر الغربية والبلديات المتروكة خارجها، مع فجوات التمويل على كل مستويات ورشة الإعمار",
-      "url": "https://www.newarab.com/features/lebanons-pilot-zones-expose-divisions-over-rebuilding-south"
     },
     {
       "id": "c290",
