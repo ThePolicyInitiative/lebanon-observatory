@@ -51,7 +51,6 @@ const arabicText = Object.freeze({
   "Track rebuilding": "تابع إعادة الإعمار",
   "with evidence.": "بالأدلة.",
   "A source-backed public record connecting damage assessments, response actors, actions, financing and recovery signals, with clear boundaries on what the evidence can and cannot prove.": "سجل عام مدعوم بالمصادر يربط تقييمات الأضرار والجهات الفاعلة والإجراءات والتمويل ومؤشرات التعافي، مع توضيح ما يمكن للأدلة إثباته وما لا يمكنها إثباته.",
-  "World Bank, UN and UNDP primary sources": "مصادر أولية من البنك الدولي والأمم المتحدة وبرنامج الأمم المتحدة الإنمائي",
   "Explore data library": "استكشف مكتبة البيانات",
   "LEBANON": "لبنان",
   "Recovery & reconstruction needs": "احتياجات التعافي وإعادة الإعمار",
