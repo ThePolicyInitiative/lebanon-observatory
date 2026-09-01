@@ -1,0 +1,32 @@
+name: Rebuild the site on Netlify
+
+# Every push to main - a person's, or the scheduled data workflows' -
+# asks Netlify to pull and rebuild. The repository is linked to Netlify
+# by public clone URL rather than the GitHub app, so no webhook exists;
+# this workflow is the webhook.
+#
+# NETLIFY_BUILD_HOOK is a repository secret holding the build-hook URL
+# (Netlify project > Build & deploy > Build hooks). A secret rather than
+# a literal, because anyone can read a public workflow file and a bare
+# hook URL would let anyone burn the team's build minutes. Without the
+# secret the workflow succeeds and does nothing, so nothing breaks
+# before it is configured.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask Netlify to build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK is not set; skipping (site will not redeploy on this push)."
+            exit 0
+          fi
+          curl -s -X POST -d '{}' "$HOOK"
+          echo "Build requested."

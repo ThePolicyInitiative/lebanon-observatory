@@ -7,11 +7,19 @@ import "server-only";
  * runtime. */
 
 /** Socket-idle timeout: a server that goes silent this long is dropped. */
-const FETCH_TIMEOUT_MS = 12000;
+const FETCH_TIMEOUT_MS = 5000;
 /** Wall-clock deadline for one logical request, redirects included: a
  * server that keeps trickling bytes cannot hold the request open past
- * this. */
-const TOTAL_DEADLINE_MS = 15000;
+ * this.
+ *
+ * Sized for a serverless window, not a patient process: on a function
+ * host the whole /api/news invocation must answer inside ~10 seconds or
+ * the platform kills it and the reader sees a 502 instead of the
+ * degraded-but-honest partial answer the route is designed to give.
+ * Providers that cannot answer in six seconds are reported down for
+ * this pass and retried on the next; the 60-second failure cache in
+ * cache.ts keeps recovery fast. */
+const TOTAL_DEADLINE_MS = 6000;
 const MAX_REDIRECTS = 5;
 /** No feed this site reads is anywhere near this size; one misbehaving
  * endpoint must not balloon server memory. */
