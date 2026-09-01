@@ -24,6 +24,7 @@ export default function Page() {
   return (
     <ArabicPageShell
       title="أين جرت الأفعال المرصودة"
+      art={{ src: "/brand/south.svg", className: "h-48" }}
       lede="كل فعل مرصود، موضوعاً حيث جرى. رشّح بالسنة أو مجموعة الجهات أو مرحلة الاستجابة أو الحالة لتتبّع شريحة واحدة من العمل عبر البلاد."
       englishHref="/map"
     >

@@ -27,6 +27,7 @@ export default function MapPage() {
   return (
     <PageShell
       title="Where the actions happened"
+      art={{ src: "/brand/south.svg", className: "h-48" }}
       lede="Every traced action, placed where it happened. Filter by year, actor group, stage of the response or status to follow one slice of the work across the country."
     >
       <section aria-labelledby="where-traced" className="mt-8">

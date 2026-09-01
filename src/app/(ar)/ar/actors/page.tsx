@@ -28,6 +28,7 @@ export default function Page() {
   return (
     <ArabicPageShell
       title="من يفعل ماذا؟"
+      art={{ src: "/brand/strata.svg", className: "h-24" }}
       lede={actorFrame.body}
       englishHref="/actors"
     >

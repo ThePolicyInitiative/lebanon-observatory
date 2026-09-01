@@ -26,6 +26,7 @@ export default function PageShell({
   figures,
   children,
   after,
+  art,
 }: {
   title: string;
   /**
@@ -50,9 +51,27 @@ export default function PageShell({
    * frame that happens to look the same.
    */
   after?: ReactNode;
+  /**
+   * The page's own drawing, generated from the site's data by
+   * scripts/build-brand-art.mjs: the south for the map, the governorate
+   * outlines for the method, the whole country for the findings. Purely
+   * decorative (aria-hidden, empty alt), placed at the header's inline
+   * end on wide screens only, so it never displaces content. The caller
+   * sizes it - motifs range from tall crops to a flat stage ribbon.
+   */
+  art?: { src: string; className: string };
 }) {
   return (
-    <div className="mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
+    <div className="relative mx-auto max-w-[1360px] px-4 py-7 sm:px-6">
+      {art ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          aria-hidden
+          alt=""
+          src={art.src}
+          className={`pointer-events-none absolute end-6 top-8 hidden w-auto select-none xl:block ${art.className}`}
+        />
+      ) : null}
       <header className="max-w-3xl">
         <h1 className="text-h1 font-bold text-navy">
           {title}

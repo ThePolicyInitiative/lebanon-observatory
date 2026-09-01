@@ -126,6 +126,7 @@ export default function FindingsPage() {
   return (
     <PageShell
       title="The findings"
+      art={{ src: "/brand/country.svg", className: "h-48" }}
       lede={
         <>
           Five findings come out of reading the two responses through the
@@ -164,9 +165,11 @@ export default function FindingsPage() {
           </div>
 
           <p className="mt-5 max-w-3xl text-body leading-relaxed text-text-secondary">
-            The estimates under those figures follow, each presented with its
-            method, scope, unit and comparability - never averaged, summed or
-            merged. No single building count exists for the 2024 war, and no
+            Of the roughly US$11 billion in needs, the assessment expected the
+            public sector to mobilise about US$3-5 billion and the private
+            sector a further US$6-8 billion. The estimates under those figures
+            follow, each presented with its method, scope, unit and
+            comparability - never averaged, summed or merged. No single building count exists for the 2024 war, and no
             national assessment existed for the 2026 war at the latest review;
             the plurality gave the response its fastest early figures while
             delaying the single baseline every compensation system needs.

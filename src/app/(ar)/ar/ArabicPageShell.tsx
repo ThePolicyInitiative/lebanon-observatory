@@ -24,6 +24,7 @@ export default function ArabicPageShell({
   englishHref,
   figures,
   children,
+  art,
 }: {
   title: string;
   lede?: ReactNode;
@@ -31,6 +32,9 @@ export default function ArabicPageShell({
   englishHref: string;
   figures?: { value: string; label: string }[];
   children?: ReactNode;
+  /** Passed through to PageShell; `end-6` is logical, so the same drawing
+   *  sits at the left edge here without a mirrored variant. */
+  art?: { src: string; className: string };
 }) {
   return (
     <PageShell
@@ -38,6 +42,7 @@ export default function ArabicPageShell({
       lede={lede}
       point={point}
       figures={figures}
+      art={art}
       after={
         <div className="mt-8 card">
           <p className="text-meta leading-relaxed text-text">

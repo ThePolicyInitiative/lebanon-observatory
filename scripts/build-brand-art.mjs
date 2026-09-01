@@ -115,7 +115,44 @@ writeFileSync(
     `</svg>\n`,
 );
 
-/* ---- the mark: true silhouette, shared paths ------------------------- */
+/* ---- page motifs: the same geography, dressed for light ground ------- */
+
+/*
+ * Each main page carries a small aria-hidden drawing of its own subject,
+ * from the same data as everything else: the map page the south, the
+ * methodology the nine governorate outlines, the findings the whole
+ * country, the actors the four group hues as strata, the actions the
+ * twelve stages as a sequence. Inks for the limestone ground, not the
+ * cedar bands.
+ */
+const CEDAR = "#143f35";
+const LAYER_HUES = ["#173b63", "#177384", "#d69600", "#a34f7c"];
+
+const lightDots = towns
+  .map((t) => {
+    const rank = rankOf.get(t);
+    const r = r1(0.7 + 1.5 * Math.sqrt(rank));
+    const o = (0.1 + 0.16 * rank).toFixed(2);
+    return `<circle cx="${r1(px(t.x))}" cy="${r1(py(t.y))}" r="${r}" opacity="${o}"/>`;
+  })
+  .join("");
+
+const lightConstellation = (viewBox) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">` +
+  `<g fill="${CEDAR}">${lightDots}</g>` +
+  `<path d="${litaniPath}" fill="none" stroke="${AMBER}" stroke-width="2" stroke-linecap="round" opacity="0.9"/>` +
+  `</svg>\n`;
+
+writeFileSync(
+  join(ROOT, "public/brand/country.svg"),
+  lightConstellation(`0 0 ${VIEW_W} ${VIEW_H}`),
+);
+/* The area the wars reached hardest: from just above the Litani down. */
+const southTop = r1(py(33.62));
+writeFileSync(
+  join(ROOT, "public/brand/south.svg"),
+  lightConstellation(`0 ${southTop} ${r1(VIEW_W * 0.62)} ${r1(VIEW_H - southTop)}`),
+);
 
 /*
  * ADM1 rings into the same frame, at full resolution. Any thinning here
@@ -182,6 +219,42 @@ function markSvg(size) {
 }
 
 writeFileSync(join(ROOT, "src/app/icon.svg"), markSvg() + "\n");
+
+/* The nine governorates as quiet outlines, for the methodology page. */
+writeFileSync(
+  join(ROOT, "public/brand/governorates.svg"),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${VIEW_W} ${VIEW_H}">` +
+    `<g fill="none" stroke="${CEDAR}" stroke-width="1.4" stroke-linejoin="round" opacity="0.5">` +
+    silhouettePaths.map((d) => `<path d="${d}"/>`).join("") +
+    `</g><path d="${litaniPath}" fill="none" stroke="${AMBER}" stroke-width="2" stroke-linecap="round" opacity="0.9"/></svg>\n`,
+);
+
+/*
+ * The four actor groups as strata, for the actors page: identity hues,
+ * equal bands - the groups are never compared by number anywhere, and a
+ * motif does not get to start.
+ */
+writeFileSync(
+  join(ROOT, "public/brand/strata.svg"),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 176">` +
+    LAYER_HUES.map(
+      (hue, i) =>
+        `<rect x="${12 + i * 12}" y="${16 + i * 40}" width="260" height="18" rx="9" fill="${hue}" opacity="0.85"/>`,
+    ).join("") +
+    `</svg>\n`,
+);
+
+/* The twelve stages as one sequence, for the actions page. */
+writeFileSync(
+  join(ROOT, "public/brand/stages.svg"),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 36">` +
+    `<line x1="14" y1="18" x2="466" y2="18" stroke="#c0ccbd" stroke-width="2"/>` +
+    Array.from({ length: 12 }, (_, i) => {
+      const x = 14 + (i * 452) / 11;
+      return `<circle cx="${r1(x)}" cy="18" r="7" fill="${CEDAR}"/>`;
+    }).join("") +
+    `</svg>\n`,
+);
 
 /* ---- the share cards ------------------------------------------------- */
 

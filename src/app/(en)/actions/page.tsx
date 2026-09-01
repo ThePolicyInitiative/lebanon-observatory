@@ -32,8 +32,15 @@ export default function ActionsPage() {
   return (
     <PageShell
       title="The action layer"
+      art={{ src: "/brand/stages.svg", className: "h-9" }}
       lede={actionFrame.body}
       point="Category and stage counts here sum across all four groups - they measure traced activity, not spending or completed output."
+      figures={[
+        { value: "4", label: "action categories" },
+        { value: "11", label: "subcategories separating the stages and forms of response" },
+        { value: "12", label: "stages of the response tracked" },
+        { value: "771", label: "traced activity entries behind them" },
+      ]}
     >
       {/* The report's action framework, before any figure built on it. */}
       <CategoryMix />

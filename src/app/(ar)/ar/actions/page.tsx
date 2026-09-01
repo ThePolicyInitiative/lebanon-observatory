@@ -27,9 +27,16 @@ export default function Page() {
   return (
     <ArabicPageShell
       title={AR.pages.actions.title}
+      art={{ src: "/brand/stages.svg", className: "h-9" }}
       lede={AR.pages.actions.lede}
       point={AR.pages.actions.point}
       englishHref="/actions"
+      figures={[
+        { value: "4", label: "فئات أفعال" },
+        { value: "11", label: "فئة فرعية تفصل مراحل الاستجابة وأشكالها" },
+        { value: "12", label: "مرحلة استجابة تُتتبَّع" },
+        { value: "771", label: "مدخلاً مرصوداً خلفها" },
+      ]}
     >
       {/* إطار الأفعال في التقرير، قبل أي شكل مبني عليه. */}
       <CategoryMix locale="ar" />

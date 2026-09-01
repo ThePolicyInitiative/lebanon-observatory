@@ -58,6 +58,7 @@ export default function Page() {
   return (
     <ArabicPageShell
       title="كيف بُني هذا التتبّع"
+      art={{ src: "/brand/governorates.svg", className: "h-48" }}
       lede={METHOD_INTRO.ar}
       englishHref="/methodology"
       figures={[

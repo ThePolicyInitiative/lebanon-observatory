@@ -35,7 +35,11 @@ export default function WhoPage() {
   const actorFrame = AIM.en.layers.find((l) => l.id === "actors")!;
 
   return (
-    <PageShell title="Who is doing what?" lede={actorFrame.body}>
+    <PageShell
+      title="Who is doing what?"
+      lede={actorFrame.body}
+      art={{ src: "/brand/strata.svg", className: "h-24" }}
+    >
       {/* The report's actor framework, before any figure built on it. */}
       <GroupCards />
 

@@ -60,6 +60,7 @@ export default function MethodologyPage() {
   return (
     <PageShell
       title="How this tracking was built"
+      art={{ src: "/brand/governorates.svg", className: "h-48" }}
       lede={METHOD_INTRO.en}
       figures={[
         { value: String(total), label: "traced activity entries" },
