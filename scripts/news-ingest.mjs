@@ -308,9 +308,18 @@ if (wroteAnything) {
  * re-attempted rather than remembered as done.
  */
 writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + "\n", "utf8");
+/*
+ * The queue is a worklist for a human, so items survive across runs
+ * until someone acts on them: this run's judgments first, then every
+ * earlier item nobody has resolved - dropped only once its address has
+ * actually entered the site's data.
+ */
+const carried = previousReview.items.filter(
+  (i) => !review.some((r) => r.url === i.url) && !knownUrls.has(i.url),
+);
 writeFileSync(
   REVIEW_FILE,
-  JSON.stringify({ updatedOn: today, items: review }, null, 2) + "\n",
+  JSON.stringify({ updatedOn: today, items: [...review, ...carried] }, null, 2) + "\n",
   "utf8",
 );
 
