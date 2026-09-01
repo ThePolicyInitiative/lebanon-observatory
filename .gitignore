@@ -57,3 +57,6 @@ scripts/web-sweep-results.json
 
 # Never the repo inside itself: a packaging clone once landed here.
 /lebanon-observatory/
+
+# Local Netlify folder
+.netlify

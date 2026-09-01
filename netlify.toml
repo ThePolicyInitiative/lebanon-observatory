@@ -1,0 +1,13 @@
+# The build contract, in the repository rather than the dashboard, so no
+# UI setting can drift from it. The Next.js runtime plugin is declared
+# explicitly: builds cloned via the manual provider do not framework-detect,
+# and without the plugin the API routes and server rendering never ship.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
