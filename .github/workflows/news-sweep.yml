@@ -74,3 +74,19 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
         run: node scripts/news-ingest.mjs --leads="$RUNNER_TEMP/leads.json" --push
+
+      # Pushes made with the workflow's own token do not trigger other
+      # workflows, so the push-to-main rebuild never fires for this job's
+      # commits - the hook is called here instead, and only when the run
+      # actually moved the branch.
+      - name: Rebuild the site if this run pushed
+        if: success()
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -n "$HOOK" ] && [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
+            curl -s -X POST -d '{}' "$HOOK" > /dev/null
+            echo "Netlify build requested."
+          else
+            echo "No new commit or no hook secret; site unchanged."
+          fi

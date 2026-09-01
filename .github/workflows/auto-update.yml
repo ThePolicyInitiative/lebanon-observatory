@@ -52,3 +52,17 @@ jobs:
 
       - name: Detect, write, test and publish
         run: node scripts/auto-update.mjs --push
+
+      # The workflow token's pushes do not trigger the push-to-main
+      # rebuild workflow, so a figure update calls the hook itself.
+      - name: Rebuild the site if this run pushed
+        if: success()
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -n "$HOOK" ] && [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
+            curl -s -X POST -d '{}' "$HOOK" > /dev/null
+            echo "Netlify build requested."
+          else
+            echo "No new commit or no hook secret; site unchanged."
+          fi

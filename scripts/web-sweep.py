@@ -119,6 +119,21 @@ def text_of(el: ET.Element | None) -> str:
     return (el.text or "").strip() if el is not None else ""
 
 
+def publisher_href(description: str) -> str | None:
+    """The first non-Google address in an item's description markup.
+
+    Google News links point at news.google.com redirect pages that resolve
+    only in a browser, but the item's own description usually carries the
+    publisher's address in an anchor. Preferring it turns a lead that would
+    sit in the review queue into one the pipeline can open and read.
+    """
+    for href in re.findall(r'href="(https?://[^"]+)"', description or ""):
+        host = urllib.parse.urlparse(href).netloc
+        if not re.search(r"(^|\.)google\.com$|(^|\.)googleusercontent\.com$", host):
+            return href
+    return None
+
+
 def parse_rss(raw: bytes) -> list[dict]:
     """RSS 2.0 and Atom, tolerantly. Returns title/url/date/source dicts."""
     try:
@@ -129,6 +144,9 @@ def parse_rss(raw: bytes) -> list[dict]:
     items = []
     for it in root.iter("item"):  # RSS 2.0
         link = text_of(it.find("link"))
+        direct = publisher_href(text_of(it.find("description")))
+        if direct and "news.google.com" in link:
+            link = direct
         src = it.find("source")
         items.append(
             {
