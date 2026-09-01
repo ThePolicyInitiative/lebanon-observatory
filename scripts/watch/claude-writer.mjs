@@ -51,12 +51,21 @@ export function apiAuth(env = process.env) {
         "anthropic-beta": "oauth-2025-04-20",
       },
     };
-  if (env.OPENROUTER_API_KEY)
+  if (env.OPENROUTER_API_KEY) {
+    /*
+     * Standing order: the OpenRouter path costs nothing, ever. A model
+     * that is not a :free variant - a typo in the repository variable,
+     * a paid id pasted by mistake - is coerced back to the free default
+     * rather than honoured, so no configuration can start billing.
+     */
+    const requested = env.OPENROUTER_MODEL || DEFAULT_FREE_MODEL;
+    const free = requested.endsWith(":free") || requested === FALLBACK_FREE_MODEL;
     return {
       provider: "openrouter",
       headers: { authorization: `Bearer ${env.OPENROUTER_API_KEY}` },
-      model: env.OPENROUTER_MODEL || DEFAULT_FREE_MODEL,
+      model: free ? requested : DEFAULT_FREE_MODEL,
     };
+  }
   return null;
 }
 

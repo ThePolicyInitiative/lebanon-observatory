@@ -225,6 +225,14 @@ describe("choosing a writer", () => {
     expect(apiAuth({ OPENROUTER_API_KEY: "o", OPENROUTER_MODEL: "x/y:free" })?.model).toBe("x/y:free");
   });
 
+  it("refuses to run a paid model, whatever the configuration says", () => {
+    for (const paid of ["anthropic/claude-opus-4.5", "openai/gpt-5", "z-ai/glm-5.2"]) {
+      expect(apiAuth({ OPENROUTER_API_KEY: "o", OPENROUTER_MODEL: paid })?.model).toBe(
+        DEFAULT_FREE_MODEL,
+      );
+    }
+  });
+
   it("reports no writer when no key is set", () => {
     expect(apiAuth({})).toBeNull();
   });
