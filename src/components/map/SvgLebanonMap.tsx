@@ -516,6 +516,13 @@ export default function SvgLebanonMap({
   const [hover, setHover] = useState<string | null>(null);
   const [hoverUid, setHoverUid] = useState<TownUid | null>(null);
   const [vb, setVb] = useState<ViewBox>(HOME);
+  /**
+   * Set by every gesture that places the view - wheel, drag, pinch,
+   * double-click, the town search and the overview button. While it is
+   * false the map may frame itself around the traced towns; once a hand
+   * has placed the view, it never re-frames underneath it.
+   */
+  const userMovedRef = useRef(false);
   /** Rendered width of the SVG in CSS pixels; VIEW_W until measured. */
   const [renderedW, setRenderedW] = useState(VIEW_W);
 
@@ -678,6 +685,7 @@ export default function SvgLebanonMap({
     if (!svg) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      userMovedRef.current = true;
       const rect = svg.getBoundingClientRect();
       setVb((cur) => {
         const cx = cur.x + ((e.clientX - rect.left) / rect.width) * cur.w;
@@ -721,6 +729,7 @@ export default function SvgLebanonMap({
       const [p1, p2] = [...pointersRef.current.values()];
       const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
       if (dist > 1) {
+        userMovedRef.current = true;
         const nw = Math.min(Math.max(pinch.vb0.w * (pinch.d0 / dist), MIN_W), VIEW_W);
         const r = nw / pinch.vb0.w;
         setVb(
@@ -740,6 +749,7 @@ export default function SvgLebanonMap({
     if (!d.moved && Math.hypot(dx, dy) < 4) return;
     if (!d.moved) {
       d.moved = true;
+      userMovedRef.current = true;
       setDragging(true);
     }
     const rect = e.currentTarget.getBoundingClientRect();
@@ -766,6 +776,7 @@ export default function SvgLebanonMap({
   }
 
   function onDoubleClick(e: React.MouseEvent<SVGSVGElement>) {
+    userMovedRef.current = true;
     const rect = e.currentTarget.getBoundingClientRect();
     const cx = vb.x + ((e.clientX - rect.left) / rect.width) * vb.w;
     const cy = vb.y + ((e.clientY - rect.top) / rect.height) * vb.h;
@@ -818,6 +829,7 @@ export default function SvgLebanonMap({
       const t = towns.find((x) => x.name === aliased);
       if (t) {
         selectTown(t);
+        userMovedRef.current = true;
         setVb(vbAround(anchorOf(t).x, anchorOf(t).y, VIEW_W / 5));
         return;
       }
@@ -827,6 +839,7 @@ export default function SvgLebanonMap({
     const t = towns.find((x) => x.name === m[1] && x.district === m[2]);
     if (t) {
       selectTown(t);
+      userMovedRef.current = true;
       setVb(vbAround(anchorOf(t).x, anchorOf(t).y, VIEW_W / 5));
     }
   }
@@ -1078,6 +1091,65 @@ export default function SvgLebanonMap({
     }
     return { byName, max };
   }, [placePoints]);
+
+  /**
+   * Open on the tracking, not on the whole country.
+   *
+   * At national zoom the traced towns are cadastral slivers, and the
+   * entries view read as a blank country with a dark smudge in the far
+   * south. Once the town layer and the filtered entries are in, the view
+   * frames what they cover - re-framing when a filter changes what is
+   * shown, and never after the reader has placed the view themselves.
+   * The other views shade whole districts across the country, so they
+   * return to the full frame. The overview button that appears once
+   * zoomed keeps the whole country one press away, and pressing it
+   * counts as placing the view.
+   *
+   * Adjusted during render, the same pattern as panelFor above: the
+   * frame follows a prop-derived value, so an effect would paint the
+   * old frame first - and the lint objects besides. Every gesture that
+   * flips userMovedRef also sets state, so this block always re-runs
+   * with the flag fresh.
+   */
+  const [framedFor, setFramedFor] = useState<{
+    view: MapView;
+    points: typeof placePoints;
+  } | null>(null);
+  if (
+    !userMovedRef.current &&
+    (framedFor === null ||
+      framedFor.view !== view ||
+      framedFor.points !== placePoints)
+  ) {
+    setFramedFor({ view, points: placePoints });
+    if (view !== "entries") {
+      setVb(HOME);
+    } else if (placePoints.length > 0) {
+      let minX = Infinity;
+      let minY = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+      for (const p of placePoints) {
+        if (p.town.cx < minX) minX = p.town.cx;
+        if (p.town.cx > maxX) maxX = p.town.cx;
+        if (p.town.cy < minY) minY = p.town.cy;
+        if (p.town.cy > maxY) maxY = p.town.cy;
+      }
+      // 15% of the span as margin each side, and never tighter than a
+      // third of the country: the frame is orientation, not a close-up.
+      const w = Math.min(
+        VIEW_W,
+        Math.max((maxX - minX) * 1.3, ((maxY - minY) * 1.3) / ASPECT, VIEW_W / 3),
+      );
+      setVb(
+        clampVb(
+          (minX + maxX) / 2 - w / 2,
+          (minY + maxY) / 2 - (w * ASPECT) / 2,
+          w,
+        ),
+      );
+    }
+  }
 
   /**
    * Every traced entry, grouped under its town and fanned in unit space.
@@ -2225,6 +2297,7 @@ export default function SvgLebanonMap({
                 aria-label={tr.overviewAria}
                 className="absolute right-2 top-2 rounded-sm border border-border bg-white/90 p-0.5 shadow-sm"
                 onClick={(e) => {
+                  userMovedRef.current = true;
                   // Enter and Space on a button produce a click with no
                   // pointer behind it, and clientX/clientY are 0 - which
                   // this handler read as "the reader aimed at the very
