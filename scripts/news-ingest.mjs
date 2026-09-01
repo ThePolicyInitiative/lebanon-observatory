@@ -44,9 +44,14 @@ const REVIEW_FILE = join(import.meta.dirname, "watch", "news-review.json");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(`--${name}`);
+/** Accepts both --name=value and --name value: the CI workflow quotes a
+ *  path with a space-separated flag, and a parser that silently misses
+ *  it sends the run hunting for a default file that is not there. */
 const opt = (name, fallback) => {
-  const hit = args.find((a) => a.startsWith(`--${name}=`));
-  return hit ? hit.slice(name.length + 3) : fallback;
+  const eq = args.find((a) => a.startsWith(`--${name}=`));
+  if (eq) return eq.slice(name.length + 3);
+  const i = args.indexOf(`--${name}`);
+  return i !== -1 && args[i + 1] && !args[i + 1].startsWith("--") ? args[i + 1] : fallback;
 };
 
 const dryRun = flag("dry-run");

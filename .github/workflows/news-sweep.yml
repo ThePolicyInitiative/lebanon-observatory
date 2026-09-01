@@ -73,4 +73,4 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
-        run: node scripts/news-ingest.mjs --leads "$RUNNER_TEMP/leads.json" --push
+        run: node scripts/news-ingest.mjs --leads="$RUNNER_TEMP/leads.json" --push
