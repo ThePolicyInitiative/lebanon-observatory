@@ -27,8 +27,10 @@ const LINKS: [string, string, string][] = [
   ["/reported", "Live updates", AR.nav.news],
   ["/entries", "Data explorer", AR.nav.explorer],
   ["/methodology", "Methodology", AR.nav.method],
-  // Search is deliberately absent: the header's search control already
-  // reaches it from every page.
+  // Search is deliberately absent from the topics: it is not a subject the
+  // site holds but the way across all of them, and the header reaches it
+  // from every page - the magnifier beside the language switch, or the
+  // search row in the phone menu.
 ];
 
 export default function SiteFooter() {

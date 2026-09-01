@@ -87,6 +87,11 @@ export const AR = {
     reported: "التغطية المباشرة",
     reportedShort: "مباشر",
     /*
+     * The header's search control, beside the language switch - not a
+     * tab and not a footer topic, so it sits between the two lists.
+     */
+    search: "البحث",
+    /*
      * The footer's topic names. It says what each page holds, because a
      * reader at the foot of a page has already read it and is looking for
      * a subject by name.

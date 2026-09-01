@@ -45,8 +45,9 @@ const NAV_ITEMS = [
  *
  * Two lists, because they answer two questions. What belongs in the tab bar
  * is an editorial decision about the argument's shape; what exists in both
- * languages is a fact about the routes. /search and /entries are reachable
- * from the footer, which carries both.
+ * languages is a fact about the routes. /entries is reachable from the
+ * footer's topic list, /search from the header's own control - the
+ * magnifier beside the language switch, or its row in the phone menu.
  */
 const BILINGUAL_ROUTES = [...NAV_ITEMS.map((i) => i.path), "/search", "/entries"];
 
@@ -75,6 +76,8 @@ export default function SiteNav() {
     : known
       ? localisedHref(basePath, true)
       : "/ar";
+  const searchHref = localisedHref("/search", isArabic);
+  const searchActive = pathname.startsWith(searchHref);
 
   return (
     <header className="on-navy sticky top-0 z-50 min-h-[var(--header-h)] border-b border-[#0b2a22] bg-navy/[0.97] backdrop-blur-sm">
@@ -143,15 +146,47 @@ export default function SiteNav() {
             })}
           </ul>
         </nav>
-        {/* Switching language keeps the reader on the page they are reading,
-            rather than sending them back to the other language's home. */}
-        <Link
-          href={counterpart}
-          lang={isArabic ? "en" : "ar"}
-          className="ms-auto inline-flex min-h-9 items-center rounded border border-white/35 px-2.5 text-meta font-semibold text-white/85 transition-colors hover:border-white hover:text-white xl:ms-0"
-        >
-          {isArabic ? "English" : "العربية"}
-        </Link>
+        {/* The two cross-cutting controls sit together at the end of the
+            bar. Search is chrome rather than a tab because the tabs are the
+            report's own parts and search is the way across all of them.
+            Hidden below sm, not for its own sake: a 44px magnifier at 375px
+            leaves the masthead 169px and wraps it to a third line, growing
+            the header past the 57px every sticky offset reads. Below sm the
+            control is a row in the menu instead. */}
+        <div className="ms-auto flex items-center gap-1 xl:ms-0">
+          <Link
+            href={searchHref}
+            aria-current={searchActive ? "page" : undefined}
+            className={`hidden min-h-11 min-w-11 items-center justify-center rounded transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-white sm:inline-flex ${
+              searchActive ? "text-white" : "text-white/70 hover:text-white"
+            }`}
+          >
+            <span className="sr-only">{isArabic ? AR.nav.search : "Search"}</span>
+            <svg
+              aria-hidden
+              focusable="false"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              className="h-5 w-5"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m16.4 16.4 4.1 4.1" />
+            </svg>
+          </Link>
+          {/* Switching language keeps the reader on the page they are
+              reading, rather than sending them back to the other language's
+              home. */}
+          <Link
+            href={counterpart}
+            lang={isArabic ? "en" : "ar"}
+            className="inline-flex min-h-9 items-center rounded border border-white/35 px-2.5 text-meta font-semibold text-white/85 transition-colors hover:border-white hover:text-white"
+          >
+            {isArabic ? "English" : "العربية"}
+          </Link>
+        </div>
         <button
           type="button"
           className="inline-flex min-h-11 min-w-11 items-center justify-center rounded border border-white/30 text-white xl:hidden"
@@ -198,6 +233,22 @@ export default function SiteNav() {
                 </li>
               );
             })}
+            {/* The phone-width home of the search control: the bar's
+                magnifier is hidden below sm, so on the narrowest screens
+                this row is the way in. It stays up to xl so the menu lists
+                every destination the header can reach. */}
+            <li>
+              <Link
+                href={searchHref}
+                aria-current={searchActive ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className={`block min-h-11 rounded px-2 py-2.5 text-body ${
+                  searchActive ? "font-semibold text-white" : "text-white/70"
+                }`}
+              >
+                {isArabic ? AR.nav.search : "Search"}
+              </Link>
+            </li>
           </ul>
         </nav>
       ) : null}

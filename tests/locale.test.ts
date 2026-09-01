@@ -88,16 +88,18 @@ describe("the Arabic side", () => {
 
   it("names every page in Arabic in the navigation", () => {
     const arabic = /[؀-ۿ]/;
-    // The six tab labels, the home label, and the footer topic names
-    // that are not one of the tabs.
+    // The seven tab labels, the header's search control, the home label,
+    // and the footer topic names that are not one of the tabs.
     for (const key of [
       "home",
       "aim",
       "actors2",
       "actions",
+      "map",
       "findings",
       "methodology",
       "reported",
+      "search",
       "actors",
       "news",
       "explorer",
