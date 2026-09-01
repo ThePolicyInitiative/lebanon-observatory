@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsTeaser from "@/components/news/NewsTeaser";
+import LatestReported from "@/components/LatestReported";
 import {
   Body,
   LayerCard,
@@ -217,6 +218,9 @@ export default function HomePage() {
             and stays outside every count.
           </p>
           <div className="mt-6">
+            <LatestReported />
+          </div>
+          <div className="mt-8">
             <NewsTeaser />
           </div>
         </section>

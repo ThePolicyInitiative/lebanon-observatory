@@ -33,7 +33,7 @@ import { join } from "node:path";
 import { get } from "./watch/http.mjs";
 import { readData, writeData } from "./watch/data-io.mjs";
 import {
-  extractPublisherLink, htmlTitle, htmlToText, nearestRows, nextArchiveId,
+  SALIENT, extractPublisherLink, htmlTitle, htmlToText, nearestRows, nextArchiveId,
   relevant, updateKey, validateArchive, validateUpdate,
 } from "./watch/news-rules.mjs";
 import { apiAuth, draftRow } from "./watch/claude-writer.mjs";
@@ -99,15 +99,22 @@ if (!auth) say("No writing key (ANTHROPIC_API_KEY or OPENROUTER_API_KEY): leads 
 else if (auth.provider === "openrouter") say(`Writing with OpenRouter model ${auth.model}.\n`);
 
 /*
- * Direct publisher links first - they can be read now - then Google's
- * redirect links, newest first within each half.
+ * Salient stories first, so the per-run caps never crowd out a major
+ * development; then direct publisher links - they can be read now -
+ * before Google's redirect links; newest first within each band.
  */
 const candidates = leads
   .filter((l) => l.url?.startsWith("https://") && !knownUrls.has(l.url) && !state.seen[l.url])
   .sort((a, b) => {
+    const aSalient = SALIENT.test(a.title ?? "") ? 0 : 1;
+    const bSalient = SALIENT.test(b.title ?? "") ? 0 : 1;
     const aGoogle = a.url.includes("news.google.com") ? 1 : 0;
     const bGoogle = b.url.includes("news.google.com") ? 1 : 0;
-    return aGoogle - bGoogle || String(b.date ?? "").localeCompare(String(a.date ?? ""));
+    return (
+      aSalient - bSalient ||
+      aGoogle - bGoogle ||
+      String(b.date ?? "").localeCompare(String(a.date ?? ""))
+    );
   });
 
 say(`${leads.length} lead(s), ${candidates.length} unseen.`);

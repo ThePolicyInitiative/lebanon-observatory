@@ -4,6 +4,7 @@ import { AR, localeAlternates } from "@/lib/i18n";
 import { AR_COUNT, arabicCount } from "@/lib/vocab";
 import { AIM, IMPORTANCE, finding } from "@/lib/framework";
 import NewsTeaser from "@/components/news/NewsTeaser";
+import LatestReported from "@/components/LatestReported";
 import {
   Body,
   LayerCard,
@@ -223,6 +224,9 @@ export default function ArabicPage() {
             فور ظهورها. تسبق هذه الموادُّ التتبّعَ وتبقى خارج كل عدّ.
           </p>
           <div className="mt-6">
+            <LatestReported locale="ar" />
+          </div>
+          <div className="mt-8">
             <NewsTeaser locale="ar" />
           </div>
         </section>

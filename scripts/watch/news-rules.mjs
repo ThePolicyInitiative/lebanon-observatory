@@ -43,6 +43,15 @@ export const THEMES = new RegExp(
 
 export const relevant = (text) => COUNTRY.test(text) && THEMES.test(text);
 
+/*
+ * Leads whose titles announce the stories this site tracks most closely
+ * jump the queue when a run's writing caps bind, so a major development
+ * is never crowded out by routine items. Ordering only - a salient lead
+ * still faces the same gates as any other.
+ */
+export const SALIENT =
+  /LEAP|World Bank|البنك الدولي|compensat|تعويض|disburs|Council of the South|مجلس الجنوب|cabinet|مجلس الوزراء|council of ministers|tender|مناقصة|pilot zone|تجريبية|نموذجية|reconstruction fund|صندوق إعادة|CDR|مجلس الإنماء/i;
+
 /** Em and en dashes are banned from copy alongside the vocabulary. */
 const DASHES = /[–—]/;
 

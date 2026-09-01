@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { BANNED as VOCAB_BANNED, AR_BANNED as VOCAB_AR } from "./vocab-patterns";
 import {
-  BANNED, AR_BANNED, extractPublisherLink, htmlTitle, htmlToText, nearestRows,
+  BANNED, AR_BANNED, SALIENT, extractPublisherLink, htmlTitle, htmlToText, nearestRows,
   nextArchiveId, relevant, updateKey, validateArchive, validateUpdate,
 } from "../scripts/watch/news-rules.mjs";
 import { contentKey } from "../scripts/watch/content-key.mjs";
@@ -142,6 +142,18 @@ describe("reading a fetched page", () => {
 
   it("reads the page title", () => {
     expect(htmlTitle("<title>Rebuilding the south | Outlet</title>")).toBe("Rebuilding the south | Outlet");
+  });
+
+  it("lets the stories the site tracks most closely jump the queue, in both languages", () => {
+    for (const title of [
+      "Cabinet approves war compensation mechanism",
+      "World Bank reviews LEAP disbursement",
+      "مجلس الجنوب يبدأ رفع الأنقاض في القرى التجريبية",
+      "CDR opens a tender for road repairs",
+    ]) {
+      expect(SALIENT.test(title), title).toBe(true);
+    }
+    expect(SALIENT.test("Lebanon wins a football match")).toBe(false);
   });
 
   it("keeps the sweep's relevance gate: country and theme, or nothing", () => {
