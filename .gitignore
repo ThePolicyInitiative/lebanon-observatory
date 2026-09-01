@@ -54,3 +54,6 @@ public/__*.html
 # The sweep's lead collection is a scratch product; what deserves to
 # persist lands in src/data or scripts/watch/news-review.json.
 scripts/web-sweep-results.json
+
+# Never the repo inside itself: a packaging clone once landed here.
+/lebanon-observatory/
