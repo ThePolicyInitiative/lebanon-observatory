@@ -5,6 +5,7 @@ const data = require("../data.js");
 const root = path.resolve(__dirname, "..");
 const output = path.join(root, "dist");
 const client = path.join(output, "client");
+const pagesOutput = path.join(root, "docs");
 
 async function copy(source, destination) {
   await fs.cp(path.join(root, source), path.join(client, destination), { recursive: true, force: true });
@@ -23,6 +24,8 @@ async function build() {
   ]);
   await fs.copyFile(path.join(root, "worker", "site-worker.js"), path.join(output, "server", "index.js"));
   await fs.writeFile(path.join(client, "data", "observatory-data.json"), `${JSON.stringify(data)}\n`, "utf8");
+  await fs.cp(client, pagesOutput, { recursive: true, force: true });
+  await fs.writeFile(path.join(pagesOutput, ".nojekyll"), "", "utf8");
   process.stdout.write("Prepared deployable site output.\n");
 }
 

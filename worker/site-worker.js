@@ -9,7 +9,7 @@ const newsChecks = new Map();
 function json(body, status = 200, headers = {}) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...headers }
+    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", "Access-Control-Allow-Origin": "https://thepolicyinitiative.github.io", "Vary": "Origin", ...headers }
   });
 }
 
@@ -171,7 +171,7 @@ async function api(request, env, url) {
     const header = ["Record", "Response period", "Type", "Publisher / partner", "Location / coverage", "Headline measure", "Supporting detail", "Publication date", "Primary source"];
     const rows = selected.map(record => [record.name, record.period, record.filter, record.status, record.place, record.funding, record.marker, record.date, record.href]);
     const csv = [header, ...rows].map(row => row.map(csvValue).join(",")).join("\n");
-    return new Response(csv, { headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": "attachment; filename=lebanon-reconstruction-observatory-records.csv", "Cache-Control": "no-store" } });
+    return new Response(csv, { headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": "attachment; filename=lebanon-reconstruction-observatory-records.csv", "Cache-Control": "no-store", "Access-Control-Allow-Origin": "https://thepolicyinitiative.github.io", "Vary": "Origin" } });
   }
   return json({ error: "Unknown API endpoint" }, 404);
 }

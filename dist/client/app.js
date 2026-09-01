@@ -7,6 +7,9 @@ const actors = [...seedData.actors];
 const actions = [...seedData.actions];
 const framework = seedData.framework;
 let apiAvailable = false;
+const GITHUB_PAGES_ORIGIN = "https://thepolicyinitiative.github.io";
+const LIVE_API_ORIGIN = "https://rebuild-lebanon.tpichatgpt.chatgpt.site";
+const apiUrl = pathname => window.location.origin === GITHUB_PAGES_ORIGIN ? `${LIVE_API_ORIGIN}${pathname}` : pathname;
 let activeLocale = "en";
 try {
   activeLocale = window.localStorage.getItem("observatory-language") === "ar" ? "ar" : "en";
@@ -1024,7 +1027,7 @@ function downloadRecords() {
   if (apiAvailable) {
     const params = new URLSearchParams({ filter: activeFilter, period: activePeriod, q: projectSearch.value.trim(), sort: recordSort.value });
     const link = document.createElement("a");
-    link.href = `/api/export.csv?${params.toString()}`;
+    link.href = apiUrl(`/api/export.csv?${params.toString()}`);
     link.download = "lebanon-reconstruction-observatory-records.csv";
     link.style.display = "none";
     document.body.append(link);
@@ -1080,7 +1083,7 @@ async function refreshSources() {
   sourceRefresh.classList.add("checking");
   sourceRefresh.innerHTML = "<span>↻</span> Checking…";
   try {
-    const response = await fetch("/api/refresh", { method: "POST" });
+    const response = await fetch(apiUrl("/api/refresh"), { method: "POST" });
     if (!response.ok) throw new Error("Refresh request failed");
     const payload = await response.json();
     sources = payload.sources;
@@ -1110,7 +1113,7 @@ async function refreshNews() {
   newsRefresh.disabled = true;
   newsRefresh.innerHTML = "<span>↻</span> Checking…";
   try {
-    const response = await fetch("/api/news/refresh", { method: "POST" });
+    const response = await fetch(apiUrl("/api/news/refresh"), { method: "POST" });
     if (!response.ok) throw new Error("News refresh failed");
     const payload = await response.json();
     news = payload.news;
@@ -1132,10 +1135,10 @@ newsRefresh.addEventListener("click", refreshNews);
 async function loadApplicationData() {
   try {
     const [recordsResponse, sectorsResponse, sourcesResponse, healthResponse] = await Promise.all([
-      fetch("/api/records"),
-      fetch("/api/sectors"),
-      fetch("/api/sources"),
-      fetch("/api/health")
+      fetch(apiUrl("/api/records")),
+      fetch(apiUrl("/api/sectors")),
+      fetch(apiUrl("/api/sources")),
+      fetch(apiUrl("/api/health"))
     ]);
     if (![recordsResponse, sectorsResponse, sourcesResponse, healthResponse].every(response => response.ok)) throw new Error("API unavailable");
     const [recordsPayload, sectorsPayload, sourcesPayload, healthPayload] = await Promise.all([
@@ -1160,7 +1163,7 @@ async function loadApplicationData() {
 
 async function loadNews() {
   try {
-    const response = await fetch("/api/news");
+    const response = await fetch(apiUrl("/api/news"));
     if (!response.ok) throw new Error("News API unavailable");
     const payload = await response.json();
     news = payload.news;
@@ -1433,7 +1436,7 @@ function renderOfficialMap(features) {
 
 async function loadOfficialMap() {
   try {
-    const response = await fetch("/api/map/districts");
+    const response = await fetch(apiUrl("/api/map/districts"));
     if (!response.ok) throw new Error("Boundary data unavailable");
     const payload = await response.json();
     officialMapFeatures = payload.data.features;
