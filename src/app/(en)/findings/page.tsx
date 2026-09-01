@@ -20,6 +20,7 @@ import ServiceOperators from "@/components/ServiceOperators";
 import InstitutionalStructures from "@/components/InstitutionalStructures";
 import ThreeStreams from "@/components/ThreeStreams";
 import SeeMore from "@/components/SeeMore";
+import FindingsIndex from "@/components/FindingsIndex";
 import Takeaways from "@/components/Takeaways";
 import { FigureTile, Onward } from "@/components/HomeNarrative";
 import { finding } from "@/lib/framework";
@@ -101,7 +102,13 @@ function FindingHeading({
         {String(index).padStart(2, "0")}
         <span aria-hidden className="h-px w-8 bg-amber" />
       </p>
-      <h2 id={id} className="mt-2 text-h2 font-semibold text-navy">
+      {/* The globals rule offsets anchored sections by the header alone;
+          these anchors also pass under the findings strip, so they carry
+          their own larger offset. */}
+      <h2
+        id={id}
+        className="mt-2 scroll-mt-[calc(var(--header-h)+5rem)] text-h2 font-semibold text-navy"
+      >
         {title}
       </h2>
     </div>
@@ -138,6 +145,7 @@ export default function FindingsPage() {
       }
       point="Damage estimates are never summed or averaged, announced financing is not disbursed financing, and nothing here is presented as completed output."
     >
+      <FindingsIndex />
       <div className="mt-10 space-y-16">
         {/* ------------------------------------------------------------ */}
         {/* Finding 1: needs beyond capacity, with the damage depth       */}
