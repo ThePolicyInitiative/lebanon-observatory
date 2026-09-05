@@ -143,6 +143,10 @@
     "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1mTG5reEloLWI3S2FRVGVzLWEwRkU0VC10TzF2bmhTdG91RXNORXNSU0FjUE84VXhiRDZPb00wb0Nndm9VMzBPZTV1Mmd4dw?oc=5": {
       "on": "2026-09-04",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiUkFVX3lxTE0xRTduY0pEZkhJZENpM3hBQTE2VVFtMkZfU3p4em90M3d6bVpoMzJUd0FMRUdka002VzYwQVI0U091cE44bmRDVUlhVGZLQmcwQkE?oc=5": {
+      "on": "2026-09-05",
+      "outcome": "google-redirect"
     }
   }
 }
