@@ -231,6 +231,10 @@
     "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5RQmJzbzRjRzl3dFBOVkg3N3RLZ1d0VVh2aUtwV3IyZGdEOE9mYTNCcU1NT0ZGdjJocHJOT3RwSnR5a0U?oc=5": {
       "on": "2026-09-11",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBSWnM0RnFDblhYeVF2RzJvSy15R1ZQdGRJRkdfa0QzVm9TOUhjTDNtVjFxXzVQamVRWEw3dUNDQS02LTRkV1pBQg?oc=5": {
+      "on": "2026-09-12",
+      "outcome": "google-redirect"
     }
   }
 }
