@@ -1,6 +1,46 @@
 {
-  "updatedOn": "2026-09-14",
+  "updatedOn": "2026-09-15",
   "items": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFB2Z1hUakZOb3BYdzdKWnhLcmNrT0hLNzcwVGJVRkFyUmk2MjdQNDBMWUtoNVFLdWxIUHJ3Mzl6b2lkd0VuUVE?oc=5",
+      "title": "نواف سلام: لبنان لا يستطيع تحمل تكلفة إعادة الإعمار ونحتاج إلى دعم عربي - رؤيا الإخباري",
+      "publisher": "رؤيا الإخباري",
+      "date": "2026-09-15",
+      "status": "google-redirect",
+      "firstSeen": "2026-09-15"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE50VU1XTzRvYmdNUVk0Snp3SUxxamZ4dHVZOWZHLXdRV2VzWTlpdnU4N09EY1Zva25CTHJoa0tNXzFKTTF3R2sxTU9IT1ZJWms?oc=5",
+      "title": "\"اللقاء الوطني للعاملين في القطاع العام\" في نداء الى \"مؤتمر العمل العربي\": لموقف مسؤول يعيد إعمار ما دمّره العدو - تطبيق نبض",
+      "publisher": "تطبيق نبض",
+      "date": "2026-09-14",
+      "status": "google-redirect",
+      "firstSeen": "2026-09-15"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMi0ANBVV95cUxNRDJHSG9mUk4yS1lBV0RoYzJ3Qm9NbWd6c1I2UW56X2RXWllOMjR3SkhhR25GanRjR3djYWhTTldkWkpxd1BYY1ZGUW85WHJZeFMwQzJ5MnpyM1haWWFPZWh2dFZ2UWE1ZFRlOEZRaXd4SDZmdkRaQ2hJLTNvaDBqY2lyaGxwT0EweE1rdWRFS3RlRDJvMFNtLVR3VkVEbWZ0dHF2R1huTmtoeVdLSU1fRlVKVXRPdzdvdHlrNEFGNmlha1Y5dXkzZ2JSZUpVNGFDTUk0TVNYUzdTaTlmd1A1RUdsZkxoRFZleFVHT2VNbzhqSGttMENsVHItUFFHeGJROHhfVzlRNU5WN2s3THZoWTV4dWs5cjNweEVwRThXZ09fc0tBYmtkQ3ItSDQ5YVFMekg4akFCdS1ScmM0TjR1ekVDUldCS0Q3TVZ6ZGtudUpFTlBPMUc3VjUxOHg2SEZVLUxkMS0zU0ljVEhWZWxrazIxSjJ5ME5aTHpyYTJfTXV0djdINWQ4MzRVNGFPSEF0WGxXajdtZTVyaXk4TFFidnQwX2RlMXgzUldUNFpXOXdrb21kUndqei1wVWZ5SEdEZEV2akhEdnU4QUVzdUZrUQ?oc=5",
+      "title": "\"حزب الله\" و\"أمل\": السلم الأهلي خط أحمر وإعادة الإعمار أولوية - الديار",
+      "publisher": "الديار",
+      "date": "2026-09-14",
+      "status": "google-redirect",
+      "firstSeen": "2026-09-15"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQaUdfa2Q4RWNsclFPTk5TME43YnBGbTBBbVd3WGVpV25LRVZIT09rQ0xfbUVzYk43TzFpbV9QRDJaRDFDZFRoenhsNnl6a3RmUC1tZkkyMVcwZ3RFUjN2Zk54cDVKaEtZUU1hV2ZTYVRCWWVKdEhOZHd3UVJDUUpPUG9RMno4UG16eVNUaFlMQ3dnVlU5UmpGcWFBTlAxODc0Ulc2U2RCVWJjWEx6UVZrMTdId0dLQ0VtSjBkODN4MHNlNTNWOGVBd3RXTU1wUEd2SlIyUjBTV2swSHFjT1BVUDQwYVdESEl2bWxabzJZd1d2T0Y4Tjl6bVJVQmhYMjI3UlJwSGFXNXBwS0gzSTBaN3hoaEJ1UU84WjltYU1CUm05ZFJFb3ZiLWoySGJvbXg4Z1lxT0xRMHZfVDY4c1UwQmRkUngzbHdRcUt3eHFicUVCcDdWVC1WYnZzOWNyQQ?oc=5",
+      "title": "أمل والحزب: السلم الأهلي خط أحمر وأولوية إعادة الإعمار - نافذة العرب",
+      "publisher": "نافذة العرب",
+      "date": "2026-09-14",
+      "status": "google-redirect",
+      "firstSeen": "2026-09-15"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxNVVFOeW5XUUpoWXAyR2xpS29PemxnbGN5R2FlZnZvVm1jX1k0NjN5WnVBWDBqR0VIVWtkOHg4LWw4WWFjRmp1OWlINzVsVDVXT1NTNWYweVpVaVc2dEFOY201SV8tWHpha1cxRVlTRzhRdFdzaU1Ya20ycHRQelhIWWlXbjBvckxOdjNSMzVCYlRWbVQ1aktkZzdoeE1XOC12OV9RM1hkRC1UUlN1ejVUd3UtUXc0TzVKTlVLb19UQ0QtVE5WOHhGSWIzcXFnbllsVTNpNEQtWFd5b0tQRkxUZXA2Q1ZWbjlCYjVuQnRzMS1vM2FoSDFCQmVtT2NOdzN0Mk5UQjhRVml2c1A0dU5YU29PSVpuc3BQdkUzcVM2M0lNejdHZnVPTHdhZUtZZ2gxZGF1djVyZ18yRXllUUY1Y1RqYkdQNWVBMk5nVHl4Tk1obWRGM3ZsUTVwOHZ4aEtMVDR6RnRqVmluaDdUQlN5WS1lZUs4a2JkMjB6cGlKYUo2VS11ZFdhaGZjc3lWWWw3ajhXSkV1MHFzcUxLZm0zY2tBQldOb2JKTXY3Wm5EakNfZi1iQUZUUFhwVzVoaVdfVnNWZnUzYkViaERiLTVKZlB6WDg5RzdPY1JrakdRTkZkeG9XTWl0UnFRcS1lNVN1ZnNYczFGaGFNTVFBTkdKV1N3S1dlNEhUWW1kNXYyTTZFWU83elBhZEFxRS04WVphZ2ZLYzcyRURvSzZvbWdZbTlVY1ZkS3plQnAtNTMwNWlUZXhUR3gxUTl4cEJJdUlJdks4?oc=5",
+      "title": "عون: انسحاب إسرائيل وعودة الأسرى والنازحين وإعادة الإعمار هي ثوابت وطنية - اخبارك نت",
+      "publisher": "اخبارك نت",
+      "date": "2026-09-12",
+      "status": "google-redirect",
+      "firstSeen": "2026-09-15"
+    },
     {
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9VbGZ1aDBnQmlBdS05djFEWExGY1F5eXBMdXhIa2pxdXdROXJSX2kyYVk0MVpFTjJrWmNXbXRQTlB1UFRKWUd5cnY3SQ?oc=5",
       "title": "\"السلم الأهلي خط أحمر\".. \"الحزب\" و\"أمل\" يؤكدان: إعادة الإعمار وتعويض المتضررين وتأمين عودة الأهالي أولويات وطنية - VDL NEWS",
