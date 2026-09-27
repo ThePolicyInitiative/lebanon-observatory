@@ -1,7 +1,29 @@
 {
   "note": "Actors and actions reported in external web coverage. Kept strictly separate from the tracking: nothing here enters the counts, matrices or maps. Each entry states only what its linked page reports, and names the publisher.",
-  "gatheredOn": "2026-08-31",
+  "gatheredOn": "2026-09-27",
   "updates": [
+    {
+      "dateReported": "2026-09-27",
+      "actor": "Hezbollah (Secretary General Sheikh Naim Qassem)",
+      "actorAr": "حزب الله (الأمين العام الشيخ نعيم قاسم)",
+      "layer": "community",
+      "action": "Coverage by tayyar.org reports that Hezbollah Secretary General Sheikh Naim Qassem, speaking at the second anniversary of the martyrdom of Hassan Nasrallah and Hashem Safieddine, announced a contribution to a shelter project. The speech did not specify the amount, location, or mechanism of the contribution.",
+      "actionAr": "تفيد تغطية tayyar.org بأن الأمين العام لحزب الله الشيخ نعيم قاسم، في كلمة خلال الذكرى السنوية الثانية لاستشهاد السيدين حسن نصر الله وهاشم صفي الدين، أعلن عن مساهمة في مشروع الإيواء. لم تحدد الكلمة المبلغ أو الموقع أو آلية المساهمة.",
+      "place": "Lebanon",
+      "placeAr": "لبنان",
+      "kind": "Community / residents",
+      "sourceName": "tayyar.org",
+      "sourceKind": "press",
+      "dateText": null,
+      "dateTextAr": null,
+      "southOfLitani": false,
+      "caution": "Press reporting of a political speech; the announcement lacks details on funding, scope, or implementation of the shelter project.",
+      "cautionAr": "تغطية صحفية لكلمة سياسية؛ الإعلان يفتقر إلى تفاصيل عن التمويل أو النطاق أو تنفيذ مشروع الإيواء.",
+      "detail": "The speech focused primarily on commemorating martyrs and affirming continuation of resistance, with the shelter project mentioned briefly.",
+      "detailAr": "ركزت الكلمة بشكل أساسي على تخليد الشهداء وتأكيد استمرار المقاومة، مع ذكر مشروع الإيواء بإيجاز.",
+      "sourceUrl": "https://www.tayyar.org/News/Lebanon/742903/_guid=742903",
+      "openedDirectly": true
+    },
     {
       "dateReported": "2026-08-31",
       "actor": "Lebanese Army and civilian state institutions",
