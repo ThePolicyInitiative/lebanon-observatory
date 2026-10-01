@@ -707,6 +707,14 @@
     "https://news.google.com/rss/articles/CBMioAFBVV95cUxObHdIUy0ybl9adE5fcmtCbDdFaE1ON3pXWWVHblpRMDEzaUh4ZEl6TGVmUHpDVlBCVno3anFueVhyRlFpUjB0MDRHQ1drajh5eHhTM3paa05nX2ZSaG42d05GcmJ3UGcxN1QtRVVCaHNzMFpwMHBmX1U3akpib3lvQWV1QnpNd1ZVWEM1a2ZtblZyN3RoUFlUYlZqeHR2ZDV6?oc=5": {
       "on": "2026-09-30",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBsQlhPWTVGUTJuejhrOE1GcGc4LWgwb1dxNllYREpvZjVIZ2tQV0tUSVB0MUpKSDBkOUR5LXlWclVOUmpIampFMWhIdVhlOUU?oc=5": {
+      "on": "2026-10-01",
+      "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA2cDJxTENHOWIzVU9VVmw4MDd2bU1HTGlPSThvNjZnZVBQYVMxcnFQbTlVVi1ET0tkMTVpTVdWMDJ0cFpYallQSl9MVHFHOVE?oc=5": {
+      "on": "2026-10-01",
+      "outcome": "google-redirect"
     }
   }
 }
