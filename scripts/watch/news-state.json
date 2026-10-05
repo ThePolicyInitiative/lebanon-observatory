@@ -919,6 +919,10 @@
     "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9vdVZjSFE5NEprN1A0d0RfYUVRTjZWQWlTQVk3SnRTMVQycWRDTDdVcTU1RWlHZ0tjUlo1TkFRTVR4MjlfN2pkempLYw?oc=5": {
       "on": "2026-10-04",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1lSFd3NmdKRm9ocUg5SG1NblgtSWNPcmM3YlFxZDFSYlF3dFlTRTd2V2Q0bjhYcFlhUWNyeTl1LVZpN3p3bFhXTzhIS3dxZHBKTGc?oc=5": {
+      "on": "2026-10-05",
+      "outcome": "google-redirect"
     }
   }
 }
