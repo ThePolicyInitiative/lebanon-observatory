@@ -1543,6 +1543,10 @@
     "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9mUzJIdFl2WGRlUE9BaTZaYndMMEZyMlhjR0RpTFFkbkRKV0ViLS16Y213eDBlM0RTZURJUVczbV9nSDdIbHFpSHU5dkVjaUE?oc=5": {
       "on": "2026-10-23",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1Lck8zRHk5cWVFVktkXzBfbUIzdUotYVo4UVMtYXgxVk96azVXc09hRXFmclY4X1F5b1c1VTRVMU1RVDJsWmpKZUhSaGVXdk9DdVhj?oc=5": {
+      "on": "2026-10-24",
+      "outcome": "google-redirect"
     }
   }
 }
