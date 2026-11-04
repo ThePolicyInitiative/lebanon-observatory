@@ -1755,6 +1755,10 @@
     "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBnSGNYay1lc2pwT252TE81R29EY08zRnVZT3FyYmNJcm9oOVdKbHpzNENhUGRRN2RxWnRqX0tLUi1UTzdKM1hxZ0dCUDhwaC1tekJB?oc=5": {
       "on": "2026-11-04",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiggFBVV95cUxQbGNhNlFuRC1QblVIY2F6bHVLb3JyNzlxQUZ0T3JFSVhjNW5wTFFHNVM3TDdocmQyS1NtcU9GSzQ1SEcwRC02eFJyVFM2NzNfX2pSTjY1WXpxSkJFeGFhcU5ueHVrU3dtV3RRQUhySDNlUDNvdHpZazlVbU9yNDhTSTZn?oc=5": {
+      "on": "2026-11-04",
+      "outcome": "google-redirect"
     }
   }
 }
