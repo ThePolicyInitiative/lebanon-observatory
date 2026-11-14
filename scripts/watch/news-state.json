@@ -1883,6 +1883,10 @@
     "https://news.un.org/feed/view/en/story/2026/11/1168784": {
       "on": "2026-11-14",
       "outcome": "written-archive"
+    },
+    "https://news.google.com/rss/articles/CBMiREFVX3lxTFBQVHpGWFI4TWFvZ2VPdG1uR0pxZ203UDhqdTRiZTJOd2x4ZXR0dnB4ZnRidlpESEpUU0NkeXFZNzNRQWN0?oc=5": {
+      "on": "2026-11-14",
+      "outcome": "google-redirect"
     }
   }
 }
