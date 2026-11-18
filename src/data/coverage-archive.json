@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-14",
+  "compiled": "2026-11-18",
   "items": [
     {
       "id": "c1",
@@ -3385,6 +3385,30 @@
       "focus": "A UN News feature and interview in which UNIFIL spokesperson Kandice Ardiel describes southern Lebanon as returnees head home to villages reduced to rubble with destroyed electricity, water and road networks, amid continued Israeli military activity and the mission's planned withdrawal after its mandate ends at the close of 2026.",
       "focusAr": "تقرير ومقابلة للأمم المتحدة تصف فيها المتحدثة باسم اليونيفيل كانديس أرديل جنوب لبنان بأن العائدين إليه يعودون إلى قرى تحولت إلى أنقاض مع شبكات كهرباء ومياه وطرق مدمرة، في ظل استمرار النشاط العسكري الإسرائيلي والانسحاب المخطط للبعثة بعد انتهاء ولايتها في نهاية 2026.",
       "url": "https://news.un.org/en/story/2026/11/1168784"
+    },
+    {
+      "id": "c298",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "ReliefWeb",
+      "title": "Lebanon: At a Glance - Winter Preparedness & Response 2026-2027 - Lebanon | ReliefWeb",
+      "date": "2026-11-16",
+      "focus": "UNHCR's winter preparedness and response overview for Lebanon's 2026-2027 season, describing Lebanon Response Plan partners' coordinated objectives for shelter, critical infrastructure, and household assistance amid displacement, economic hardship, and damaged infrastructure.",
+      "focusAr": "نظرة عامة من المفوضية السامية للأمم المتحدة لشؤون اللاجئين حول الاستعداد والاستجابة لفصل الشتاء 2026-2027 في لبنان، تصف أهداف شركاء خطة الاستجابة اللبنانية المنسقة للمأوى والبنية التحتية الحيوية والمساعدة الأسرية وسط النزوح والصعوبات الاقتصادية والبنية التحتية المتضررة.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-glance-winter-preparedness-response-2026-2027"
+    },
+    {
+      "id": "c299",
+      "year": 2026,
+      "kind": "research",
+      "language": "en",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "title": "Lebanon: Overview of Lebanon Winter Preparedness & Response 2026-2027",
+      "date": "2026-11-16",
+      "focus": "The article provides an overview of the 2026‑2027 winter response plan in Lebanon, detailing coordinated multi‑sectoral actions, early preparedness, and protection‑sensitive programming for vulnerable households.",
+      "focusAr": "المقال يقدّم نظرة عامة على خطة الاستجابة للشتاء لعام 2026‑2027 في لبنان، موضحاً الإجراءات المتعددة القطاعات، والتحضير المسبق، وبرمجة حساسة للحماية للبيوت التي تواجه احتياجات هشة.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-overview-lebanon-winter-preparedness-response-2026-2027"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
