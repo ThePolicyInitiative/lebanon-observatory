@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-18",
+  "compiled": "2026-11-19",
   "items": [
     {
       "id": "c1",
@@ -3409,6 +3409,18 @@
       "focus": "The article provides an overview of the 2026‑2027 winter response plan in Lebanon, detailing coordinated multi‑sectoral actions, early preparedness, and protection‑sensitive programming for vulnerable households.",
       "focusAr": "المقال يقدّم نظرة عامة على خطة الاستجابة للشتاء لعام 2026‑2027 في لبنان، موضحاً الإجراءات المتعددة القطاعات، والتحضير المسبق، وبرمجة حساسة للحماية للبيوت التي تواجه احتياجات هشة.",
       "url": "https://reliefweb.int/report/lebanon/lebanon-overview-lebanon-winter-preparedness-response-2026-2027"
+    },
+    {
+      "id": "c300",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "ReliefWeb",
+      "title": "Lebanon Situation Analysis: [26/10/2026] - [1/11/2026]",
+      "date": "2026-11-01",
+      "focus": "The report synthesizes humanitarian data to provide a situational analysis of the crisis in Lebanon, covering displacement, needs, and response gaps.",
+      "focusAr": "يحلل التقرير البيانات الإنسانية لتقديم تحليل للأزمة في لبنان، ويشمل النازحين، الاحتياجات، والفجوات في الاستجابة.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-26102026-1112026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
