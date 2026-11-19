@@ -2131,6 +2131,34 @@
     "https://news.google.com/rss/articles/CBMisANBVV95cUxQQU1TLUdzbUE1RzhQRlp4ajlYdElmb3R6amlvMEZmeEYzbWt5d1NqTjNGZ2JzUWhxclR6d2pkdWdabTR4VGhiTHR6N0gyYkw1d3dYUjE5eVRoRmhzX3pCY1pRMEVDN3JSazR0aUUxbW9wOGtWaThaMlkxM1paUEJtTTZDbzRvMG9WclQtTU5FUmUwOWloUjFOUTd1X0p4UkZEVmJpRUYwYzNVUm0zQTVtSnJqSHkzUVhfeHkwMXFvb0ZOSHhBaVVWOWExamZhN0o4MmxGUHBPLXRZaUVyNWFwMGl3UUVVdnlmcUE5TzkyMEpocWdES3N1bS1yZ0ljTEg1ejNHRWE3VmM5UWMzWXJib3NMQlBVZXRBUVV0bHZGcnVSSDhUVmRlU2xERjBTVkl2ZmJkWE9FblpYczJKQ1MzME1SbmVKd2NLakVmS0NNbElidjZ3OHZlUmszSXRJMUxjZC1sVTVIdkdQUlQyallET1hNa1pyVFVub3ppMTV4dlFYd2xLbE9VSjhFQk51TnJrcmItYWRaSTZ6NUstVlIxWDRZbndIV1JNdzJWMkdXWHY?oc=5": {
       "on": "2026-11-19",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNSEdHbGtJSWdzeU9POUdHN2J4UWdkQmNrOGt1YlY3UlU1ODVUbENjSHVkOU1BcTZOX1hmLVZCRWdhXzlqc1BsenB5MUw2QUVHaWhCNkIxUnB3WVp4V3BvLUZRNTV6MWVvelB4YzNvZWU5T01fZVoxMHVPM2ZWSUUtbFE5WlJObjdkTTRMbUJPVllMSXVjb1VMMFdVaWM3SXkzdUUtTURiZ0pGQWV4Nk54MEJQdUZ1bTdyRDBz?oc=5": {
+      "on": "2026-11-19",
+      "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5mV3UwaDRMZFB4ZTJEVVRoc0k4Y3hqTHc3c1Fic0pGQVY2bmZENU8zWXNYZWNza1V1SzhMTnF2VGhJUnk0RW5ZYXE4d0oyWnVQRU5r?oc=5": {
+      "on": "2026-11-19",
+      "outcome": "google-redirect"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-19102026-25102026": {
+      "on": "2026-11-19",
+      "outcome": "skip: The page is a ReliefWeb landing page for a downloadable situation report whose v"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-12102026-18102026": {
+      "on": "2026-11-19",
+      "outcome": "skip: The page is a ReliefWeb listing for a PDF situation report whose visible text is"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-5102026-11102026": {
+      "on": "2026-11-19",
+      "outcome": "written-archive"
+    },
+    "https://news.google.com/rss/articles/CBMivgFBVV95cUxNZWlkb1BnX21qVnVhdW9fVmlfNmdkRHM1M2hoN0NES0RWWU9nVUtPUXFPcEw2VVJPWkpLMDB6YmN2Wi1vZzhsdkpFdjh4MktTd1pMZHRoUjlDZTd1cVhhNTVGdTdQTVdpR2VLS3N5UFdJM3V2S1I4aGdOQUM3S1A2dE5aQnotbEY0aEs5dUpFXzRLZnBRdzhPTzY2ZUd6VURUa0JvZlFQTFZyNnVuMGZQdGRIR0g3N2tEeE51LUR3?oc=5": {
+      "on": "2026-11-19",
+      "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiqgRBVV95cUxOSjRaNlZPY2JPbkZhOFduNkhPMEVmVlRxRG9hMm9tTVlWYlZGOVllLTVzaURZT3pMTTUzVHZmQnN0SjJBY1ZaRTY4STJia0preG5mLWVqYXZLaG5HSlJSLVZQQ0tPeEtjcGRMbUNEdEN3WUc5QjRIY3V1TlgzVkttNVlicG93bXFJTnlEc09CTUcxakI2SU1fQVBDVGxocTJLQTZMSUVha3lfcm9oeFFKRU1UUzl1V21LREtQSUlCaERPaXFOOTVWTXM5dnlrd1FnZXZYQUpjYWZvWjJJNjZfbmZReEFqbktIV3Y3YmN4Xy1BZzNYYmlGY2FFR0QxUmh4Ti0zRVF5eGVrMVNhOTNqWElHQ2E3LXkzNHdDRXRnbmVzMmRFdVRobWVkcFlPZ0pXMlJYaU8tNElPZUM5WTYxZmlwbVRCZ21jWlhpWk85TEtJUHVhWVItUVF6TjhSR2NEa3NmaDZiaUsyTUV2U1l5em5RRi1RVzFXSW1KbzdTeHNUMEVEVTVScXF4aFVRQktNV3R1dXhNWW9mUy1aa2ZRREdOVDNyeHpCM2VKSWFzU2F3ZkJYYmptQUd5TTFPU2JBeXJMZTVyWUtablN2Zk5tamdiT2FEeXdJTThBcGJ0QXhuOFo1bU9RVmlaemwxZUhYQ3A5QmR3QkpGR3loZTl4YWJJT2xfRlB5YWdDWVYtdWh2U3NESjhwN0sxaVh4MXAtZVB1VWV0T0VwUQ?oc=5": {
+      "on": "2026-11-19",
+      "outcome": "google-redirect"
     }
   }
 }

@@ -3421,6 +3421,18 @@
       "focus": "The report synthesizes humanitarian data to provide a situational analysis of the crisis in Lebanon, covering displacement, needs, and response gaps.",
       "focusAr": "يحلل التقرير البيانات الإنسانية لتقديم تحليل للأزمة في لبنان، ويشمل النازحين، الاحتياجات، والفجوات في الاستجابة.",
       "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-26102026-1112026"
+    },
+    {
+      "id": "c301",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "ReliefWeb",
+      "title": "Lebanon Situation Analysis: [5/10/2026] - [11/10/2026]",
+      "date": "2026-10-11",
+      "focus": "The published page presents an AI-powered situation analysis produced by Data Friendly Space's GANNET SituationHub platform, covering humanitarian conditions and response priorities in Lebanon for 5 to 11 October 2026.",
+      "focusAr": "تعرض الصفحة المنشورة تحليلاً للوضع باستخدام الذكاء الاصطناعي أعدّته منصة GANNET SituationHub التابعة لـ Data Friendly Space، مع تغطية الظروف الإنسانية والأولويات في لبنان للفترة من 5 إلى 11 تشرين الأول/أكتوبر 2026.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-5102026-11102026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
