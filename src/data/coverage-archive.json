@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-19",
+  "compiled": "2026-11-20",
   "items": [
     {
       "id": "c1",
@@ -3433,6 +3433,30 @@
       "focus": "The published page presents an AI-powered situation analysis produced by Data Friendly Space's GANNET SituationHub platform, covering humanitarian conditions and response priorities in Lebanon for 5 to 11 October 2026.",
       "focusAr": "تعرض الصفحة المنشورة تحليلاً للوضع باستخدام الذكاء الاصطناعي أعدّته منصة GANNET SituationHub التابعة لـ Data Friendly Space، مع تغطية الظروف الإنسانية والأولويات في لبنان للفترة من 5 إلى 11 تشرين الأول/أكتوبر 2026.",
       "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-5102026-11102026"
+    },
+    {
+      "id": "c302",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "Data Friendly Space",
+      "title": "Lebanon Situation Analysis: [2/11/2026] - [8/11/2026]",
+      "date": "2026-11-08",
+      "focus": "A weekly situation analysis report covering the humanitarian situation in Lebanon from 2 to 8 November 2026, providing synthesised data across education, food, gender, health, protection, and shelter sectors.",
+      "focusAr": "تقرير تحليل weekly للوضع الإنساني في لبنان لفترة من 2 إلى 8 نوفمبر 2026، يجمع البيانات عبر قطاعات التعليم، الغذاء، الصحة، الحماية، والمأوى.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-2112026-8112026"
+    },
+    {
+      "id": "c303",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "ReliefWeb",
+      "title": "Gender-Based Violence Information Management System (GBVIMS) - Midyear Report 2026",
+      "date": "2026-11-20",
+      "focus": "The GBVIMS midyear report analyzes gender-based violence incidents reported to 18 service providers across Lebanon from January to June 2026, finding a 32% decrease in reported cases compared to the same period in 2025 while warning this reflects access barriers rather than reduced prevalence. It highlights intimate partner violence as the predominant context, significant mental health service gaps, and the impact of displacement on protection risks.",
+      "focusAr": "يحلل تقرير نظام إدارة معلومات العنف القائم على النوع الاجتماعي (GBVIMS) النصفي حوادث العنف القائم على النوع الاجتماعي التي أُبلغ عنها لـ 18 مقدم خدمة في لبنان من يناير إلى يونيو 2026، مشيراً إلى انخفاض بنسبة 32% في الحالات المبلغ عنها مقارنة بالفترة نفسها من 2025 مع التحذير من أن هذا يعكس عوائق الوصول وليس انخفاضاً في الانتشار. ويسلط الضوء على العنف من الشريك الحميم كسياق سائد، وفجوات كبيرة في خدمات الصحة النفسية، وتأثير النزوح على مخاطر الحماية.",
+      "url": "https://reliefweb.int/report/lebanon/gender-based-violence-information-management-system-gbvims-midyear-report-2026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."

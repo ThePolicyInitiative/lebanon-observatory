@@ -2187,6 +2187,30 @@
     "https://news.google.com/rss/articles/CBMiiwNBVV95cUxNYzN4anpMdmpzUG11clh1S2FCYjZkb2ZMdzcySzlpMXRwcnlva05qV0U5ODBadm9fdXdqYmEtRGYwZWpQQnhuUV8xSjZVUjhIdHpJbFFVVWhNaW5Jb29CT29kanJYR0kwM1pxeUNKRmZGWTV5Z1h0ZzRaa1hEcFBNU25zbXV0dk11OGdLaDVTOWNUR2JIbFdmODA0VmFiTVYxVjN2dGY1VFItUDdkQktrUEZ4U1JJMDVPOFJrNElpMGh1N045Y3RUMERjci1xVXhFM3IwQzZrX1cwYkFZWm9kSXNGU1FLajVDangxQ0FwcEZHWHBtQ2dhczBOU2xJUEpIbE5pdzFqakQxM19CQ0lUanZCR0RHMWprUEljQlRkeWJ4RWU2Z3JNZkctMHFjLU9vSW1VYmpweElHeTRsQVFXWlpaNnNUQ3Yzb1pSREVUMEgyY3VUWDdyMEUzTzhsT2RLZlBidlpVYl91N2Y5NXVtTnJzeFJkbnVfYWlZVjVSbVZzN080dkkwcDA4QQ?oc=5": {
       "on": "2026-11-20",
       "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiswFBVV95cUxPVWVrV0RKaWlHb3BKQUwtd2pEM1ZHR05tSDNEWUV1MldHdno0cDl4MUZ0NVQ1OTJjYzFpVXJoM05mM0tYR3ZldHJMQzM1TkxuZzR4dW9sejJSNHMzZ2FkXy1wZDlxMTB5YVZHMWFHOTA1WW12Z0tCcGRoUEZFWWd3TXhSU0I3Y2c0OEE2R0U1LWtJcmZuMDFDS1ZXTWozSFJxdmgtVy1aNXAtZ052Z1ZnUXRnVQ?oc=5": {
+      "on": "2026-11-20",
+      "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMitAFBVV95cUxPdGxTeDRGN2h6STgxeS1ra2FwY29GRjRSbGxLRlpkMjlwSWZzWktGdHRNN2NVMlFMcEZOUGRHaEprZ09ocVQzOU42VW1LWmYzUHFXWF8xWWthelZNUEdDN2diODYyd3pYaTE2anpuOXY4ZWpNUEdzd05vaUdsR1RvUzJmT0FHNWU3ZXVaR3BNaEo0VU9IUXpJSF90ME5BeS1zQ0l5VWJkY19wT215UHhHczhyY3rSAbQBQVVfeXFMT3RsU3g0Rjdoekk4MXkta2thcGNvRkY0UmxsS0ZaZDI5cElmc1pLRnR0TTdjVTJRTHBGTlBkR2hKa2dPaHFUMzlONlVtS1pmM1BxV1hfMVlrYXpWTVBHQzdnYjg2Mnd6WGkxNmp6bjl2OGVqTVBHc3dOb2lHbEdUb1MyZk9BRzVlN2V1WkdwTWhKNFVPSFF6SUhfdDBOQXktc0NJeVViZGNfcE9teVB4R3M4cmN6?oc=5": {
+      "on": "2026-11-20",
+      "outcome": "google-redirect"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-2112026-8112026": {
+      "on": "2026-11-20",
+      "outcome": "written-archive"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-quarterly-overview-rais-referrals-q3-2026-july-september": {
+      "on": "2026-11-20",
+      "outcome": "irrelevant-page"
+    },
+    "https://reliefweb.int/report/lebanon/rais-cumulative-assistance-summary-january-october-2026": {
+      "on": "2026-11-20",
+      "outcome": "skip: The page is a RAIS assistance summary tracking reported humanitarian aid by mult"
+    },
+    "https://reliefweb.int/report/lebanon/gender-based-violence-information-management-system-gbvims-midyear-report-2026": {
+      "on": "2026-11-20",
+      "outcome": "written-archive"
     }
   }
 }
