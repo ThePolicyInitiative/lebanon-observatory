@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-20",
+  "compiled": "2026-11-21",
   "items": [
     {
       "id": "c1",
@@ -3457,6 +3457,18 @@
       "focus": "The GBVIMS midyear report analyzes gender-based violence incidents reported to 18 service providers across Lebanon from January to June 2026, finding a 32% decrease in reported cases compared to the same period in 2025 while warning this reflects access barriers rather than reduced prevalence. It highlights intimate partner violence as the predominant context, significant mental health service gaps, and the impact of displacement on protection risks.",
       "focusAr": "يحلل تقرير نظام إدارة معلومات العنف القائم على النوع الاجتماعي (GBVIMS) النصفي حوادث العنف القائم على النوع الاجتماعي التي أُبلغ عنها لـ 18 مقدم خدمة في لبنان من يناير إلى يونيو 2026، مشيراً إلى انخفاض بنسبة 32% في الحالات المبلغ عنها مقارنة بالفترة نفسها من 2025 مع التحذير من أن هذا يعكس عوائق الوصول وليس انخفاضاً في الانتشار. ويسلط الضوء على العنف من الشريك الحميم كسياق سائد، وفجوات كبيرة في خدمات الصحة النفسية، وتأثير النزوح على مخاطر الحماية.",
       "url": "https://reliefweb.int/report/lebanon/gender-based-violence-information-management-system-gbvims-midyear-report-2026"
+    },
+    {
+      "id": "c304",
+      "year": 2026,
+      "kind": "news",
+      "language": "en",
+      "publisher": "OCHA",
+      "title": "Lebanon: Inter-Agency Response Update - (15 November 2026)",
+      "date": "2026-11-21",
+      "focus": "OCHA reporting says some 1,200 IDPs moved out of collective shelters in the first two weeks of the month, cites IPC analysis projecting 1.05 million people facing crisis or worse food insecurity rising to 1.15 million from March 2027, and describes increasing winterization needs among conflict-affected households.",
+      "focusAr": "تفيد تغطية أوتشا بنحو 1200 نازح غادروا الملاجئ الجماعية خلال الأسبوعين الأولين من الشهر، وتذكر تحليلًا للأمن الغذائي (IPC) يبيّن أن 1.05 مليون شخص يواجهون مستويات أزمة أو أسوأ من انعدام الأمن الغذائي حاليًا، وترتفع إلى 1.15 مليون من مارس 2027، وتصف احتياجات متزايدة للتدفئة الشتوية بين الأسر المتضررة من الصراع.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-inter-agency-response-update-15-november-2026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
