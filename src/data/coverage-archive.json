@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-21",
+  "compiled": "2026-11-22",
   "items": [
     {
       "id": "c1",
@@ -3469,6 +3469,18 @@
       "focus": "OCHA reporting says some 1,200 IDPs moved out of collective shelters in the first two weeks of the month, cites IPC analysis projecting 1.05 million people facing crisis or worse food insecurity rising to 1.15 million from March 2027, and describes increasing winterization needs among conflict-affected households.",
       "focusAr": "تفيد تغطية أوتشا بنحو 1200 نازح غادروا الملاجئ الجماعية خلال الأسبوعين الأولين من الشهر، وتذكر تحليلًا للأمن الغذائي (IPC) يبيّن أن 1.05 مليون شخص يواجهون مستويات أزمة أو أسوأ من انعدام الأمن الغذائي حاليًا، وترتفع إلى 1.15 مليون من مارس 2027، وتصف احتياجات متزايدة للتدفئة الشتوية بين الأسر المتضررة من الصراع.",
       "url": "https://reliefweb.int/report/lebanon/lebanon-inter-agency-response-update-15-november-2026"
+    },
+    {
+      "id": "c305",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "ReliefWeb",
+      "title": "WFP Lebanon Country Brief, November 2026",
+      "date": "2026-11-20",
+      "focus": "Coverage published by WFP on ReliefWeb describes humanitarian conditions in Lebanon after the escalation that began on 2 March 2026, including food and cash assistance reaching around 1.1 million conflict-affected people, the October launch of Lebanon's first National Nutrition and Food Environment Report with MEHE and UNICEF, returns and displacement figures, acute food insecurity estimates, and damage to education facilities.",
+      "focusAr": "تصف تغطية منشورة من برنامج الغذاء العالمي عبر ريليف ويب الأوضاع الإنسانية في لبنان بعد التصعيد الذي بدأ في 2 مارس 2026، وتشمل الوصول بنحو 1.1 مليون شخص متضرر من الصراع إلى مساعدات غذائية ونقدية، وإطلاق التقرير الوطني الأول للتغذية وبيئة الغذاء في أكتوبر مع وزارة التربية والتعليم العالي ويونيسيف، وأرقام العائدين والنازحين، وتقديرات انعدام الأمن الغذائي الحاد، وأضرار أثرت على مرافق التعليم.",
+      "url": "https://reliefweb.int/report/lebanon/wfp-lebanon-country-brief-november-2026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
