@@ -1,6 +1,50 @@
 {
-  "updatedOn": "2026-11-22",
+  "updatedOn": "2026-11-23",
   "items": [
+    {
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQSHk1RUJZTktBZERvZjdQQkFvU3cwZ3MxZTBzX1hPZGhhS1lkZ0sycVNRSHBhSHR1LVEyRllKZHdIbnBwVHRlUUJiM2VfYXFPTllvUzZEZVRfdkE5RGdfcHlZelFhOHdxRXN2Y3MtQVYyckVDUnRRN3hVLVBwajVOaGtSeF9NMVZ6VU1ncTRGbl84OHV5ZTVwbjlhSDRqSGMxYjZlRndMRm9ndVlBSXVsNy1iUzdLRFlsU2VaWXY0U0VCYXhGbG1ORTZ0QVdydGxhZThXZWRfcnY5cDA?oc=5",
+      "title": "World Bank official says Lebanon reconstruction slow to get off the ground - The Killeen Daily Herald",
+      "publisher": "The Killeen Daily Herald",
+      "date": "2026-11-18",
+      "status": "google-redirect",
+      "firstSeen": "2026-11-23"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxOSnlPUDA5RXhyMWc3ZTUtMmVIR3R5Q3Y3U1JvdDhQWmItRWNfN09nY0lHNGdWMWpmZ2t3T3JNZnZkLTdwc19mU3BBZlJRZnB3R2twYTBKM0xUUHJMUzVQUjdCN1RQekd2ZjJPQUVqbjRjUE5xcXFwa2lVMy1HVkRBUkxiTFFTSS1iRVZQTFhqeVh5N1BhM2p1X0xWRGJVdElFaUZMay1zOGJBekh1NVRRUnZBQ3BHaXJfaG01OVJFeFlYM3ZIOGpORVl3NTM4Rm1kaXJxYTJLM3BzMGJNVDdyNTd4eUV4UDY1TXdOQ0FsV1hVTUtmalBzc2hqa1VDeXZkem41NmUzbjhIWFR0ZkdrWWJaaXB4QTh1WS1hc3g5cVVfX084TFBRQmx3OUNLbkxwdDRCTVVzbzgtaU0xZE9rc1E4U0h2dWFXcEE1ODZSSWtjUQ?oc=5",
+      "title": "جابر: تمويل البنك الدولي يفتح الباب أمام مشاريع إعادة الإعمار وتأهيل البنى التحتية - المركزية",
+      "publisher": "المركزية",
+      "date": "2026-11-17",
+      "status": "google-redirect",
+      "firstSeen": "2026-11-23"
+    },
+    {
+      "url": "https://reliefweb.int/report/lebanon/nine-months-humanitarian-emergency-lebanon-far-over",
+      "title": "Nine months on, the humanitarian emergency in Lebanon is far from over",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "date": "2026-11-23",
+      "status": "rejected",
+      "firstSeen": "2026-11-23",
+      "problems": [
+        "caution: banned word \"verified\""
+      ],
+      "resolvedUrl": "https://reliefweb.int/report/lebanon/nine-months-humanitarian-emergency-lebanon-far-over"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMitwNBVV95cUxOOHIwUW9QckpKcHBxcVNva09INVllNWttT3FBcWFqdXJKV0hLU2xiTnRSZ1VMYk1PekNQZjNGMzRuNG1FT2hXellfWTZva2ZXYzNyOEl2N2pldkthM2VQMzkyNkRXQW1iZmp5SGU4dkgtLTQ0NjJ2NnBIb3FLVmdZMExDMlhvNDJfUWM5Z3V2RnpDWnlwT2szal9yY1RnakM3NFpXRFhhTV9yYWFKNHM5WG1xbzQ3NFY2enliYms4NFZZQlZ5bmgyTU4xYkpQMUFpN3VweFZocUZCOTBhTmxhVU5UQU83NWlzR2xWdjdSNnEwbmk1UUxhYUxuQm9senhjZEN0MjV6SWdZUU1UZlFfVkVSSU9vWTNxQzlnT0hnR1ZkcmtxcGt6ZXRRc282bUFqY1VfREZsVEtpUjZlTGJRS0NqZ2NNQnhoaUZMdU1HYnR5dzZBalc3b1o5OUZKUDNlRE42N3JRRU1BRU9XNFBYQ3pOZG95dFV3NTA5X3FTWlkyWHVVVFlSd1Yxd2JUSXI4NW5wZ0h5c1FjUWtNZFNJMkdMaUFaZVdVUzRPREV3azNjVkVfMWdR?oc=5",
+      "title": "جابر خلال لقاء مع البنك الأوروبي لإعادة الإعمار والتنمية: الإصلاح هو بوابة التعافي وبرنامج مع صندوق النقد يفتح الباب أمام تمويل أوسع - Elnashra",
+      "publisher": "Elnashra",
+      "date": "2026-11-20",
+      "status": "google-redirect",
+      "firstSeen": "2026-11-23"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMivARBVV95cUxNYmRENHNocTVuSWtkbXJnbHVGYlAtT29jZ3pXdkZzMzk0dnNkVktFNzM2UTQyUzdqQk9zekdPM1liYXpzWHN4a0hCUi1xMm5sS0pKZXFTaG5hR0xQV09Lcko5Q016MmpGbk9FR1ZtaFBMZFh3MkJZU2c4TkR3aWotYWtTRjcwcTE3SlltcGFjelV5ZnNfeHZSZFVndGtqMFVsY3JXNk9nSGN6dnVMQjlvaDBxR1ZaazZoaTJmTUYzOFJfQjFPYUZ3d0pVeXcza3B6X2tCVXlWMmxNYzJaWTZ0RHJiRGpCSkt5eU5QdEMxNzlUMG9oVldnU21TbmUwWXpfY1kzZV9Pak5MR2pmUWhhMzJtbS1mTjVUcHR3WFFZR1F6bzRONktXOVhqVTlzUUt0WF8zc3VMcGhaZ2l4VUp2cDdnZnJMRHB5VVk5c1BtWmtnNFVkNjRZbEpybXZjcEtPeHVfa0h3LVNOc3lERV9URlZnNmVITENpNDFoSTZ5MTlEX3N5U0FOSHJxcjRjVWRJcVEtbkFIeFRfdG15UU5UU1ROWTZLbjVTNVNGRmZhaTRvdkQ1Y1FYSVZrdGwxWmk2cVd5a2NWX0NmYllKZFIyNDU5TENlR2h3eThhc1h0V1Q0VUt5NWdpTnpmNlEzaE5FbWVjWHZ2T2dWc3YyQVUxd3NkdWhTVVBWWExIWFB0TmxQanMyYVV6T2plU0h5dXZ1ZG1wejVTSjVSUXc2bXFIOGJGT0lfZl95N1ZhWA?oc=5",
+      "title": "خلافات إعادة الإعمار قبل الإعمار.. الصراع على الحصص ورقابة دوليّة صارمة - https://www.akhbaralyawm.com/",
+      "publisher": "https://www.akhbaralyawm.com/",
+      "date": "2026-11-20",
+      "status": "google-redirect",
+      "firstSeen": "2026-11-23"
+    },
     {
       "url": "https://news.google.com/rss/articles/CBMi-gRBVV95cUxQSTNjaXk1enpvOTlFVE8zUmNfbl92YWtpMm94aGswd3cxNmMwYlNjT194N3Z6eVg0dnQ3SmxiemJEQzFscHlMZ2swX2RYcFl0SnNid0JxRGhTU1Z1SExleHM1OU0yd3Vvd0x6OXNGdFlIOUVSbXBfWHYxcVNLVV9VLTlRTWpGTERJaVhTdldZd3hRTTE5ekd2M2tOODlocGU5SWF3VUpVb1ZCZWlCRmxVVVdHOHNULVJTRHdkMWFockZXdWVFS1UyNWstWENvOGdYZnlOTE1SX0dkNEZUcExwQXhOa21jMDYwVWZEdjg0YV9CYVJCM3JRNUNIX0E5REJKLUpDWjFhME0wamVmNnJMckJrSTAtMUxNR05CSVFjSUZIT2Q4bkViUGZMeDFvMDdzV0gyT1N0VGhyQXlQd2ZTNnVfVmhpUTd6bldGWENLdF80Zk5Xb2FiWTNzdjc4dlhaZHJaeTRMeXVkdXJBSktWOGNGZmpjNXI5QWZSN0liazAtaDhRdFZCSHdrNUlvYWx3aE00ZmJhdFZsNjR5MUdtZTB0a2lvOGhpS25YUnp0dHVyUi1aaFN5bkNDX2tkU255QjJDNVhkaUU1dkFiTTVQaW1FSDJVd0VCNnJzOHpBNkhYR3lwSmJid3F2R2d5bmpMM1FnUS1sUlJ5R2VSa01IRXZmWF9GUDU3b3NSV2xTQU5ERFRNbjRUV0xOUUdFeHdGUm44amJ1YVJuZjFCWUpRTTlyN3RYV2djcmlXbVYyQ1dhdEs5cmV5Z1hYT0tNZjg1bm55YlJEQ2gtVHZiN1pyQ3JBMTBZcjVDZjh2M2pEU1dxYXJiQU1sdFFB?oc=5",
       "title": "جابر خلال لقاء مع البنك الأوروبي لإعادة الإعمار والتنمية: الإصلاح هو بوابة التعافي - الكتائب",

@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-22",
+  "compiled": "2026-11-23",
   "items": [
     {
       "id": "c1",
@@ -3481,6 +3481,18 @@
       "focus": "Coverage published by WFP on ReliefWeb describes humanitarian conditions in Lebanon after the escalation that began on 2 March 2026, including food and cash assistance reaching around 1.1 million conflict-affected people, the October launch of Lebanon's first National Nutrition and Food Environment Report with MEHE and UNICEF, returns and displacement figures, acute food insecurity estimates, and damage to education facilities.",
       "focusAr": "تصف تغطية منشورة من برنامج الغذاء العالمي عبر ريليف ويب الأوضاع الإنسانية في لبنان بعد التصعيد الذي بدأ في 2 مارس 2026، وتشمل الوصول بنحو 1.1 مليون شخص متضرر من الصراع إلى مساعدات غذائية ونقدية، وإطلاق التقرير الوطني الأول للتغذية وبيئة الغذاء في أكتوبر مع وزارة التربية والتعليم العالي ويونيسيف، وأرقام العائدين والنازحين، وتقديرات انعدام الأمن الغذائي الحاد، وأضرار أثرت على مرافق التعليم.",
       "url": "https://reliefweb.int/report/lebanon/wfp-lebanon-country-brief-november-2026"
+    },
+    {
+      "id": "c306",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "OCHA",
+      "title": "Lebanon: Inter-Agency Response Update #2 (As of 15 November 2026)",
+      "date": "2026-11-21",
+      "focus": "OCHA's second inter-agency response update for Lebanon describes shrinking alternatives for displaced people as collective shelters are consolidated, with about 1,200 IDPs moving out of shelters during the first two weeks of November and planned closures continuing. It relays an IPC finding that 1.05 million people face crisis or worse levels of acute food insecurity, projected to rise to 1.15 million from March 2027, and notes growing winterisation needs among displaced and returning households in inadequate shelter.",
+      "focusAr": "يفيد التحديث الثاني للاستجابة المشتركة بين الوكالات في لبنان بأن خيارات النازحين تضيق مع استمرار دمج مراكز الإيواء الجماعي، إذ غادر نحو 1200 نازح المراكز خلال الأسبوعين الأولين من تشرين الثاني، مع استمرار عمليات الإغلاق المخطط لها. وينقل عن تحليل التصنيف المرحلي المتكامل أن 1.05 مليون شخص يواجهون مستويات أزمة أو أسوأ من انعدام الأمن الغذائي الحاد، مع توقع ارتفاع العدد إلى 1.15 مليون اعتباراً من آذار 2027، ويسلط الضوء على تزايد احتياجات التجهيز الشتوي لدى النازحين والعائدين المقيمين في مأوى غير ملائم.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-inter-agency-response-update-2-15-november-2026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
