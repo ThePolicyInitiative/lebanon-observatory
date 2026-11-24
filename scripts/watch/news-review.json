@@ -2,6 +2,27 @@
   "updatedOn": "2026-11-24",
   "items": [
     {
+      "url": "https://reliefweb.int/report/lebanon/violations-international-humanitarian-law-lebanon-harm-continues-despite-cessation-hostilities-arrangements",
+      "title": "Violations of International Humanitarian Law in Lebanon: Harm Continues Despite Cessation-of-Hostilities Arrangements",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "date": "2026-11-24",
+      "status": "rejected",
+      "firstSeen": "2026-11-24",
+      "problems": [
+        "focus: banned word \"documents\"",
+        "focusAr: banned word \"يوثق\""
+      ],
+      "resolvedUrl": "https://reliefweb.int/report/lebanon/violations-international-humanitarian-law-lebanon-harm-continues-despite-cessation-hostilities-arrangements"
+    },
+    {
+      "url": "https://news.google.com/rss/articles/CBMivgNBVV95cUxPblNnZmFpNno5SnMwc0tWSFA3MFRjZWRzUFdSeG5DQmZmaFhyWV9FczBXcVA3SlZfZzdRZzV1UzFqQVpFQXJ0czJsUHcyUXNVRnduMXg0cU0zMjd6OHVIbHFkNWZ3WUlvTHdrY1NyV0lzUTlzdFRIWE5GaFpBOUNadENQRzdva2JITHNQUTFPYlZZQllGN3VzX3FkbUJCT1BoNG1TVVJQcU9LWU1nQnBpS29SbVI1Um1fRVNUWUtNMFlMOHVyVHlLekt3UnJlMTlGYnB1cnkzRDVwZjd1ajRRVXhoTGwtTk82QVJnQV9saHJxVk0wdXZoSjRTSEZ1Y29rdzg3dUdWb2ZNNlhJNGhpMzEyRzJieF9KaGoxeXN3UzBjWnhTYnE2M24wVV9BbVdRNEdoQlVqLWxweDJTTTVfNXlfRDdWSDRNczJiTHhaU3RKVXk0RG5pNDZURXVHYUtWNjhMWi16TFRTQmo1a1N2TzQ2WXhSeld4ZWM3MG5kWFhTY0hrM0l0TlgyZG55dmtROUJRVzJzVWhZb3FlNXZFSlR3anM3YWdZOF9JSkZjSXNpdkF0dkFSeldON1EwQQ?oc=5",
+      "title": "إعادة الإعمار بين الاعتداءات الإسرائيلية وتباطؤ الدولة: من يدفع ثمن الانتظار؟ - Elnashra",
+      "publisher": "Elnashra",
+      "date": "2026-11-23",
+      "status": "google-redirect",
+      "firstSeen": "2026-11-24"
+    },
+    {
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdzhUYjJQRGMzdGszdEN5X0hiVmczZkpndXlPV2JGY1FmMTdMSGcxQWJXVUVnV2NzcDZZU2NORXRNQ0ZOZjVJNXluQlhla0E1RkpBb0o5QXRWN3lQWnV2TWgxVEhSdktZdVVvVmRzN0hYS3J2bW8zbnZqNFBQTC1ub0VzUlp3Ql9DRkxQTFhkdVdmemlQLVNKekc1Smx2VlpCcHh3eg?oc=5",
       "title": "World Bank official says Lebanon reconstruction slow to get off the ground - CTPost",
       "publisher": "CTPost",
