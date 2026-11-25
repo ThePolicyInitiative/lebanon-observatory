@@ -2,6 +2,31 @@
   "updatedOn": "2026-11-25",
   "items": [
     {
+      "url": "https://reliefweb.int/report/lebanon/unhcr-lebanon-operational-update-october-2026",
+      "title": "UNHCR Lebanon- Operational Update (October 2026)",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "date": "2026-11-25",
+      "status": "rejected",
+      "firstSeen": "2026-11-25",
+      "problems": [
+        "year: 2026 out of range",
+        "year 2026 disagrees with date 2026-11-25"
+      ],
+      "resolvedUrl": "https://reliefweb.int/report/lebanon/unhcr-lebanon-operational-update-october-2026"
+    },
+    {
+      "url": "https://reliefweb.int/report/lebanon/no-one-spared-impact-attacks-civilians-and-healthcare-southern-lebanon-enar",
+      "title": "No one is spared: The impact of attacks on civilians and healthcare in southern Lebanon [EN/AR]",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "date": "2026-11-25",
+      "status": "rejected",
+      "firstSeen": "2026-11-25",
+      "problems": [
+        "focus: banned word \"evidence\""
+      ],
+      "resolvedUrl": "https://reliefweb.int/report/lebanon/no-one-spared-impact-attacks-civilians-and-healthcare-southern-lebanon-enar"
+    },
+    {
       "url": "https://news.google.com/rss/articles/CBMiqwNBVV95cUxQQm45QjhsbFVjV3BPcUEtYnRoNDAyWk9JWFh1R0djOWxOMmUwWjRsN2Q3dXJDMGZTNEpmRml1UURVYXdIZ3BIT2d0VTZEMlR3WmJsUlVkdERySnA2XzlKRERSYURUZWRWMHZhOXpWMGVEQ0xiOTBYdDAwQm5rd0phdFRMczlESEZ5UjYwVDZDQUplRGcxRkVKckJIYzRiaklkTTMzbFIxWmlUWWlsYzdYeW1IVG53X1pZT2FpS1R3SHBXUDEtYlZYNGVEOHAwQ0JNZmhWVmdqNHo5ZC1MeFNfcWdmM1B2Ql9QR0hsVG44YXdOOS16MXBLLTBiOG4wSENvYWNJTXhIWHdnOVUzb292SmRvR18xSVFGT0pvODh3WEtvR2JiQWlDbVNjeUR6aXpVaVZyeXJJVFRac1N1cE5wbEpXOEpYRjNTYnVLZnFMR1ZoajZWaTA0M3ROcllIeXFrX2swNzF4Y2dHUWVjclFYejlQZkpvOG4wNy0zTlgteldka19BTVFxTlhaMmJBT1NTXzkyenhvU3g2b2oxTWNvcXBPLVVsZG85R3NN?oc=5",
       "title": "البنك الدولي يوظّف مفاوضيه في «الإنماء والإعمار» - Al Akhbar",
       "publisher": "Al Akhbar",
