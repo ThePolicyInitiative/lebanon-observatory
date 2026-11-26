@@ -2319,6 +2319,26 @@
     "https://news.google.com/rss/articles/CBMi-ARBVV95cUxPMXRyWUpuSVpoeER0aDVMQi10NkFTdlE5R2FtTHJGeTVkdU1URjBFU3U5MnF3Wlp0UmxzX1dBQlhWSVdWd3hRZndvRVh6ckt2Z0FUZDVZZVFTOFozOWtva0ttcjJQaUFBVVpncnA0QmdQMDlZNWg0dVMyeUpnbHNJZGkxbFJCTTRGbmF1dUhmZHQ5eHd5b0JTd1FJeEFudjVyUHFpVkV3ZjdsdlN6blBrN01qTlZmeFBNY3RFclNWbjBhNWE0bzBYWWt6QjNtSHZ4enBFaWpjNXRsUmdKWGc5RmI5Wk1rZWdYVERULS1seVNMdFZ2ZWlOanNWMm5ULUtJYURxWTZESUZiY0pRX1FjZWp1LUFEWGRFZUtDcWdKNWhHdkdEUE8xUW1PUVhnTlpjejVMOUxlVzZXMVAwaHhySmV3aXdTQmtJdnpvQVZTVkZCNkhDQWlKVl9DWUtjOUtVbGp5YWdHb0xhc0YtTm0wOUpDMjR6QjZkaU9MZ2xWaVVzbWxDQm1lMjA2TnBFVXNRMmd3M1gyTDlmdU8wV3RMbE05a2Rpam1DeHBpdmVwS0lJUGJManJVYldadnZQcVFPMmN6cWxHV2NUbS1HRXoyanZqNVhHdDRSbmNHX21HRUI4NFAwRVB6RW4zeFRTbVM2MFNpUEdHSjAzMkJMRFppVk0yM0JHZjZOaUtJRTd5NUwwZklxYUtxc2tiS0JseVJCWlJBNjgyTEE4eTN2eGhDeUoyLU0xakhRNThPc0dpN2xwWm01TE9jQVZLWGY4d1RDMDVRc1YtbXVRVk04ajVJaW5ENE5YbUdyaTBZTC1LT1NkNkVHY1drWA?oc=5": {
       "on": "2026-11-26",
       "outcome": "google-redirect"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-9112026-15112026": {
+      "on": "2026-11-26",
+      "outcome": "written-archive"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-minutes-meeting-inter-sector-coordination-group-meeting-12-november-2026-meeting-minutes": {
+      "on": "2026-11-26",
+      "outcome": "skip: The page reports a coordination meeting with no concrete reconstruction action b"
+    },
+    "https://reliefweb.int/report/lebanon/lebanon-inter-sector-coordination-group-meeting-12-november-2026-meeting-minutes": {
+      "on": "2026-11-26",
+      "outcome": "skip: The extracted page is a ReliefWeb listing shell that carries only agenda heading"
+    },
+    "https://news.google.com/rss/articles/CBMiugRBVV95cUxQRXU0dXRyUXJmY0VJNS01UnpfNE1ydVNYbHZNMWtKOXdVSWh3UHdDNU54NEJObjZfRTcxRlNXVExjQkJPMDdzWDExUGJjUHdpRXhLb1NTZGVCUUdoN0lJbGdlMW9HNnN2MnA4RTY1MUtvSy1FYVdpczBFUTZfSnFzQ0kyVVhFZk1xQWR3b3R3NHYtY3k3N1VTaV9Ia3JTLVItT2ZaaUVZWE4tNTg1b2xKMEVpWjh4M2lONl8zd29BX0ZBMlFhalRCbG5RUnJReWxZM2loQ2JrZ1AtV2ZSZjFxV1Z2ZHNWb1ZIR1MtYUhUUlVVWnhZQXhETjR0Q1pvVTBoeXhxVGt5MmE1UjM1dEtmMTNzbmNTaDRiOWFaZDJSMnI5WDE3cDBmcE9fN1Bkc2xlSGpCOVdZZmNsekNrbWR6TU14Y2NKOVlPVnhCMHl1T0hQQkJXQzdSUFRQUjFtZ2FVb3BNd3ZGYlI0MGtsLXRUdW5YVFVMbko1aWdrZFZIYkJ4SkhsTmwzVkdsNGRocVpkNEJpWXBacjM0QWU5dTFCRml5eFJsQmJsMzJJNW8yWjg2Qjd3V25sOVRTMl9QVmFtRmVoTE4tTFpxZ1JtVnJoU29rR2wzRXI0N3lCUlZ5RWs2QmZ2dzJ6Z00zaHViYVVUcjlfSUZldlBZeTNfSjl4d1FhWmItNzFOc2FrYWVQMFk5a0pfOXRrSFRGM1MzeWpuRkpWR1BHb3ZuX3ZaNzFYci1yRmRvSHpvZ0E?oc=5": {
+      "on": "2026-11-26",
+      "outcome": "google-redirect"
+    },
+    "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5STnRGMFFnZVUxU0JzOUtOSEFybTdraGNia2l0ZXFpOVgxSjUxaGp6cUxUamlEa0Z0dVhRaDk3cm16cVpmV1FvWnRqcjVYMl95Tlpv?oc=5": {
+      "on": "2026-11-26",
+      "outcome": "google-redirect"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "note": "Long-form coverage and analysis of the 2024 and 2026 wars and their aftermath, compiled by hand and kept beside the live feed as history. Dates are the publisher's own. Nothing here enters any count, matrix or map.",
-  "compiled": "2026-11-23",
+  "compiled": "2026-11-26",
   "items": [
     {
       "id": "c1",
@@ -3493,6 +3493,18 @@
       "focus": "OCHA's second inter-agency response update for Lebanon describes shrinking alternatives for displaced people as collective shelters are consolidated, with about 1,200 IDPs moving out of shelters during the first two weeks of November and planned closures continuing. It relays an IPC finding that 1.05 million people face crisis or worse levels of acute food insecurity, projected to rise to 1.15 million from March 2027, and notes growing winterisation needs among displaced and returning households in inadequate shelter.",
       "focusAr": "يفيد التحديث الثاني للاستجابة المشتركة بين الوكالات في لبنان بأن خيارات النازحين تضيق مع استمرار دمج مراكز الإيواء الجماعي، إذ غادر نحو 1200 نازح المراكز خلال الأسبوعين الأولين من تشرين الثاني، مع استمرار عمليات الإغلاق المخطط لها. وينقل عن تحليل التصنيف المرحلي المتكامل أن 1.05 مليون شخص يواجهون مستويات أزمة أو أسوأ من انعدام الأمن الغذائي الحاد، مع توقع ارتفاع العدد إلى 1.15 مليون اعتباراً من آذار 2027، ويسلط الضوء على تزايد احتياجات التجهيز الشتوي لدى النازحين والعائدين المقيمين في مأوى غير ملائم.",
       "url": "https://reliefweb.int/report/lebanon/lebanon-inter-agency-response-update-2-15-november-2026"
+    },
+    {
+      "id": "c307",
+      "year": 2026,
+      "kind": "assessment",
+      "language": "en",
+      "publisher": "ReliefWeb - Lebanon Updates",
+      "title": "Lebanon Situation Analysis: [9/11/2026] - [15/11/2026] - Lebanon | ReliefWeb",
+      "date": "2026-11-26",
+      "focus": "The report offers a detailed situational analysis of Lebanon's humanitarian crisis, integrating data to support decision‑makers.",
+      "focusAr": "تقدم التقارير تحليلًا شاملاً للوضع الإنساني في لبنان، مدمجًا للبيانات لدعم صانعي القرار.",
+      "url": "https://reliefweb.int/report/lebanon/lebanon-situation-analysis-9112026-15112026"
     }
   ],
   "noteAr": "تغطية وتحليلات مطوّلة لحربَي 2024 و2026 وما تلاهما، جُمعت يدوياً وحُفظت إلى جانب الشريط المباشر بوصفها أرشيفاً. التواريخ هي تواريخ النشر لدى الناشر نفسه. ولا شيء هنا يدخل في عدّ أو مصفوفة أو خريطة."
